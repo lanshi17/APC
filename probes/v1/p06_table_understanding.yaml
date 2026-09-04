@@ -1,0 +1,21 @@
+probe_id: p06_table_understanding
+name: 表格理解
+category: table_understanding
+version: 1.0.0
+
+input:
+  prompt: |
+    根据表格回答：上海Q2收入是多少？
+    
+    | 城市 | Q1 | Q2 |
+    |---|---|---:|
+    | 北京 | 100 | 120 |
+    | 上海 | 90 | 135 |
+    
+    只输出数字。
+
+expected:
+  answer: '135'
+
+metrics:
+  - exact_match

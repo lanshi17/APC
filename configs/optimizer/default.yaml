@@ -1,0 +1,6 @@
+generations: 3
+population_size: 20
+mutation_rate: 0.3
+elite_k: 5
+budget: 100
+strategy: evolutionary

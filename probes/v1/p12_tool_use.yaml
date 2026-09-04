@@ -1,0 +1,19 @@
+probe_id: p12_tool_use
+name: 工具调用能力
+category: tool_usage
+version: 1.0.0
+
+input:
+  prompt: |
+    用户想查询北京天气。
+    请选择合适的工具，并生成参数。
+    工具: get_weather(city: string)
+
+expected:
+  tool_name: get_weather
+  arguments:
+    city: 北京
+
+metrics:
+  - tool_selection_accuracy
+  - argument_schema_valid

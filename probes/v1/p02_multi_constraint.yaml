@@ -1,0 +1,27 @@
+probe_id: p02_multi_constraint
+name: 多约束遵循
+category: multi_constraint_following
+version: 1.0.0
+
+input:
+  prompt: |
+    请总结以下内容，要求：
+    1. 不超过 30 字
+    2. 必须包含“风险”
+    3. 不得出现数字
+    4. 只输出一句话
+    
+    内容：
+    公司收入增长，但现金流压力增加，应收账款上升。
+
+expected:
+  max_length: 30
+  contains_all:
+  - 风险
+  forbidden_pattern: '[0-9]'
+
+metrics:
+  - length_ok
+  - keyword_present
+  - no_number
+  - single_sentence

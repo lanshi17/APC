@@ -1,0 +1,17 @@
+probe_id: p14_chinese_semantic
+name: 中文语义理解
+category: chinese_semantic
+version: 1.0.0
+
+input:
+  prompt: |
+    句子：
+    “公司并非没有风险。”
+    问：公司是否有风险？
+    只回答：有或没有。
+
+expected:
+  answer: 有
+
+metrics:
+  - exact_match

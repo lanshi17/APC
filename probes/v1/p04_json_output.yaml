@@ -1,0 +1,23 @@
+probe_id: p04_json_output
+name: JSON 输出可靠性
+category: json_reliability
+version: 1.0.0
+
+input:
+  prompt: |
+    请输出一个 JSON 对象：
+    {
+      "city": "string",
+      "population": "integer"
+    }
+    只输出 JSON。
+
+expected:
+  json_parsable: true
+  required_fields:
+  - city
+  - population
+
+metrics:
+  - json_parse_success
+  - required_fields_present
