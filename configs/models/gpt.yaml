@@ -1,0 +1,7 @@
+model_id: gpt
+provider: openai
+name: gpt-4o-mini
+api_base: https://api.openai.com/v1
+model: gpt-4o-mini
+temperature: 0.0
+max_tokens: 2000

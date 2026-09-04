@@ -1,0 +1,21 @@
+probe_id: p05_schema_strictness
+name: Schema 严格遵循
+category: schema_strictness
+version: 1.0.0
+
+input:
+  prompt: |
+    请输出 JSON。
+    只能包含字段：
+    - title
+    - price
+    不得添加其他字段。
+
+expected:
+  required_fields:
+  - title
+  - price
+  forbid_extra_fields: true
+
+metrics:
+  - no_extra_fields

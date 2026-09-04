@@ -1,0 +1,48 @@
+# Java
+target/
+*.class
+*.jar
+*.war
+.mvn/
+mvnw
+mvnw.cmd
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+dist/
+build/
+*.whl
+
+# IDE
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Artifacts (keep dirs, ignore outputs)
+artifacts/prompts/*.txt
+artifacts/prompts/*.json
+artifacts/outputs/*.jsonl
+artifacts/evaluations/*.json
+artifacts/profiles/*.json
+!artifacts/**/.gitkeep
+
+# DB
+*.db
+*.sqlite
+*.sqlite3
+
+# Env
+.env
+.env.*
+!.env.example
+
+# Logs
+logs/
+*.log

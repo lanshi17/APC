@@ -1,0 +1,7 @@
+model_id: qwen
+provider: dashscope
+name: qwen-max
+api_base: https://dashscope.aliyuncs.com/compatible-mode/v1
+model: qwen-max
+temperature: 0.0
+max_tokens: 2000

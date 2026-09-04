@@ -1,0 +1,21 @@
+probe_id: p09_extraction
+name: 信息抽取
+category: information_extraction
+version: 1.0.0
+
+input:
+  prompt: |
+    从下面文本中抽取金额和日期，输出 JSON。
+    文本：2026年9月1日，甲公司支付货款人民币 358,000 元。
+    
+    输出字段：
+    - amount
+    - date
+
+expected:
+  json:
+    amount: '358000'
+    date: '2026-09-01'
+
+metrics:
+  - field_match

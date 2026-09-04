@@ -1,0 +1,45 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: apc-service
+  datasource:
+    url: jdbc:sqlite:./data/apc.db
+    driver-class-name: org.sqlite.JDBC
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.community.dialect.SQLiteDialect
+        format_sql: true
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY:dummy}
+      base-url: ${OPENAI_BASE_URL:https://api.openai.com}
+      chat:
+        options:
+          model: ${OPENAI_MODEL:gpt-4o-mini}
+          temperature: 0.0
+
+# APC configs
+apc:
+  artifact-dir: ../artifacts
+  probe-suite: probes/v1
+  python-pipeline:
+    enabled: true
+    base-url: http://localhost:8001
+
+# SpringDoc
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+logging:
+  level:
+    com.apc: DEBUG
+    org.springframework.ai: INFO

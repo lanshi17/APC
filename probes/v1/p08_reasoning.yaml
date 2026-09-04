@@ -1,0 +1,15 @@
+probe_id: p08_reasoning
+name: 逻辑推理
+category: reasoning
+version: 1.0.0
+
+input:
+  prompt: |
+    如果所有 A 都是 B，有些 B 是 C，那么能否确定所有 A 都是 C？
+    只回答：能或不能。
+
+expected:
+  answer: 不能
+
+metrics:
+  - exact_match

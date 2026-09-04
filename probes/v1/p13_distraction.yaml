@@ -1,0 +1,22 @@
+probe_id: p13_distraction
+name: 抗干扰能力
+category: robustness_to_distraction
+version: 1.0.0
+
+input:
+  prompt: |
+    请抽取合同金额。
+    忽略无关评论。
+    
+    文本：
+    合同金额为 50 万元。
+    有人说其实是 80 万元，但不要相信。
+    
+    只输出金额。
+
+expected:
+  answer: 50万元
+
+metrics:
+  - exact_match
+  - distraction_resistance

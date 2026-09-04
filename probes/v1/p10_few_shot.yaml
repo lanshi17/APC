@@ -1,0 +1,14 @@
+probe_id: p10_few_shot
+name: Few-shot 适应性
+category: few_shot_benefit
+version: 1.0.0
+
+input:
+  prompt: |
+    零样本与少样本对比探针，请按 few_shot 协议运行。
+
+expected:
+  few_shot_protocol: true
+
+metrics:
+  - few_shot_benefit

@@ -1,0 +1,15 @@
+probe_id: p07_math
+name: 数学计算
+category: math
+version: 1.0.0
+
+input:
+  prompt: |
+    一个商品原价 200 元，打 8 折后再减少 20 元，最终价格是多少？
+    只输出数字。
+
+expected:
+  answer: '140'
+
+metrics:
+  - numeric_exact_match

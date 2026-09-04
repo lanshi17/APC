@@ -1,0 +1,17 @@
+probe_id: p03_long_context
+name: 长上下文定位
+category: long_context
+version: 1.0.0
+
+input:
+  prompt: |
+    下面是一篇长文档，请找出其中提到的合同编号。
+    只输出合同编号。
+    
+    {{long_document}}
+
+expected:
+  answer: HT-2026-0917
+
+metrics:
+  - exact_match
