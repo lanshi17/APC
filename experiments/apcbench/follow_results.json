@@ -287,7 +287,7 @@
   "validation_score": 0.9651,
   "holdout_score": 0.9842,
   "budget_used": 50,
-  "elapsed_s": 0.0
+  "elapsed_s": 0.1
  },
  {
   "method": "apc-no-halving",
@@ -317,7 +317,7 @@
   "validation_score": 0.9799,
   "holdout_score": 0.9842,
   "budget_used": 50,
-  "elapsed_s": 0.0
+  "elapsed_s": 0.1
  },
  {
   "method": "apc-no-halving",
@@ -327,7 +327,7 @@
   "validation_score": 0.9281,
   "holdout_score": 0.9455,
   "budget_used": 50,
-  "elapsed_s": 0.0
+  "elapsed_s": 0.1
  },
  {
   "method": "apc-no-halving",
@@ -337,7 +337,7 @@
   "validation_score": 0.9511,
   "holdout_score": 0.9551,
   "budget_used": 50,
-  "elapsed_s": 0.0
+  "elapsed_s": 0.1
  },
  {
   "method": "apc-no-halving",
@@ -357,7 +357,7 @@
   "validation_score": 0.957,
   "holdout_score": 0.9601,
   "budget_used": 50,
-  "elapsed_s": 0.0
+  "elapsed_s": 0.1
  },
  {
   "method": "random-search",
