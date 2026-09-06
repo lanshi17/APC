@@ -158,8 +158,8 @@
   "apc-full - zero-shot": {
    "mean": 0.0093,
    "ci95": [
-    0.0082,
-    0.0102
+    0.0081,
+    0.0103
    ],
    "significant": true
   },
@@ -190,7 +190,7 @@
   "apc-pgam - apc-full": {
    "mean": 0.0008,
    "ci95": [
-    0.0,
+    0.0001,
     0.0016
    ],
    "significant": true
@@ -199,7 +199,7 @@
    "mean": 0.003,
    "ci95": [
     0.0022,
-    0.0037
+    0.0038
    ],
    "significant": true
   },
@@ -348,6 +348,22 @@
     0.0248
    ],
    "significant": true
+  },
+  "apc-no-halving - random-search": {
+   "mean": 0.0103,
+   "ci95": [
+    0.0022,
+    0.0199
+   ],
+   "significant": true
+  },
+  "apc-full - apc-no-halving": {
+   "mean": -0.0235,
+   "ci95": [
+    -0.0356,
+    -0.0113
+   ],
+   "significant": true
   }
  },
  "robustness": {
@@ -443,6 +459,16 @@
  },
  "follow": {
   "apc-full": {
+   "n": 9,
+   "mean": 0.9381,
+   "std": 0.0193
+  },
+  "apc-no-halving": {
+   "n": 9,
+   "mean": 0.9616,
+   "std": 0.0153
+  },
+  "apc-no-profile": {
    "n": 9,
    "mean": 0.9381,
    "std": 0.0193
