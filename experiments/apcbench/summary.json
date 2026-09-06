@@ -183,15 +183,15 @@
    "mean": -0.0009,
    "ci95": [
     -0.0017,
-    -0.0003
+    -0.0001
    ],
    "significant": true
   },
   "apc-pgam - apc-full": {
    "mean": 0.0008,
    "ci95": [
-    0.0001,
-    0.0017
+    0.0,
+    0.0016
    ],
    "significant": true
   },
@@ -199,7 +199,7 @@
    "mean": 0.003,
    "ci95": [
     0.0022,
-    0.0038
+    0.0037
    ],
    "significant": true
   },
@@ -233,7 +233,7 @@
    "n": 12,
    "mean": 1.0,
    "ci95": [
-    0.9977,
+    0.9975,
     1.0023
    ]
   },
@@ -306,6 +306,48 @@
     0.0
    ],
    "significant": false
+  }
+ },
+ "follow_contrasts": {
+  "apc-full - zero-shot": {
+   "mean": 0.0292,
+   "ci95": [
+    0.0171,
+    0.0386
+   ],
+   "significant": true
+  },
+  "apc-pgam - zero-shot": {
+   "mean": 0.0297,
+   "ci95": [
+    0.0187,
+    0.0399
+   ],
+   "significant": true
+  },
+  "apc-full - manual": {
+   "mean": 0.0238,
+   "ci95": [
+    0.0117,
+    0.0341
+   ],
+   "significant": true
+  },
+  "apc-pgam - apc-full": {
+   "mean": 0.0005,
+   "ci95": [
+    -0.0149,
+    0.0169
+   ],
+   "significant": false
+  },
+  "random-search - apc-full": {
+   "mean": 0.0132,
+   "ci95": [
+    0.0027,
+    0.0248
+   ],
+   "significant": true
   }
  },
  "robustness": {
@@ -399,12 +441,39 @@
    "std": 0.0233
   }
  },
+ "follow": {
+  "apc-full": {
+   "n": 9,
+   "mean": 0.9381,
+   "std": 0.0193
+  },
+  "apc-pgam": {
+   "n": 9,
+   "mean": 0.9386,
+   "std": 0.0197
+  },
+  "manual": {
+   "n": 9,
+   "mean": 0.9143,
+   "std": 0.0037
+  },
+  "random-search": {
+   "n": 9,
+   "mean": 0.9513,
+   "std": 0.0059
+  },
+  "zero-shot": {
+   "n": 9,
+   "mean": 0.9089,
+   "std": 0.004
+  }
+ },
  "pgam_pooled": {
-  "n": 33,
+  "n": 42,
   "mean": 0.0004,
   "ci95": [
-   0.0,
-   0.0008
+   -0.0029,
+   0.004
   ]
  }
 }

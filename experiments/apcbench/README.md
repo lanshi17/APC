@@ -83,3 +83,21 @@
 
 同口径 2 样本链路（factory → client → runner → scorer），
 无凭证时明确 SKIP，有 key 后即跑。投稿复现入口。
+
+## 任务 D：可验证约束遵循（第四任务，b50，9 runs/方法）
+
+- 任务配置 `configs/tasks/constraint_following.yaml`；数据
+  `datasets/constraint_following/`（dev 40 / validation 30 / holdout 30，
+  生成器 `scripts/gen_follow_dataset.py` 种子 20260910；
+  20 主题 × 8 背景 × 3 口吻 × 2 句数 = 960 候选，防去重死锁）。
+- 仿真：`_follow_json` 任务内动力学（关键词/句数/数字三通道），激活
+  instructions/constraints 位点；评测用任务内 Judge + 同权重 TrialScorer。
+- 结果（`follow_results.json`）：search 0.938 vs zero-shot 0.909
+  （Δ +0.029 显著）；search − manual +0.024 显著（首次显著超越）；
+  **random − evolution +0.0132 显著**——单一位点任务上 SHA 小样本
+  筛选噪声反而有害，无免费午餐。
+- 跨任务 pooled（pgam−uniform，n=42）：+0.0004 [−0.0029, +0.0040]，零结果。
+
+```bash
+.venv/bin/python scripts/bench_follow.py  # 约束任务 → follow_results.json
+```

@@ -1,0 +1,39 @@
+task_id: constraint_following_v1
+name: 可验证约束遵循
+version: 1.0.0
+objective: |
+  根据输入的主题与要求，撰写一段中文回答，回答必须满足全部可验证约束，
+  并以 JSON 形式返回回答文本与置信度。
+input:
+  type: document
+  format: text
+  max_tokens: 20000
+  language: zh
+output:
+  type: json
+  strict: true
+  schema:
+    response: string
+    confidence: number
+constraints:
+  - 回答必须包含指定关键词
+  - 回答不得超过指定句数
+  - 不得出现阿拉伯数字
+  - 不得虚构输入中不存在的数据
+reasoning:
+  required: true
+  visibility: hidden
+quality_weights:
+  accuracy: 0.50
+  instruction_following: 0.20
+  format: 0.15
+  robustness: 0.10
+  efficiency: 0.05
+cost_limits:
+  max_input_tokens: 25000
+  max_output_tokens: 2000
+  max_latency_ms: 15000
+evaluation:
+  gold_set_required: true
+  perturbation_required: false
+  judge_model_separate: true

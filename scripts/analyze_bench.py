@@ -52,7 +52,7 @@ def method_stats(rows: list[dict]) -> dict:
 
 def main():
     summary: dict = {"budgets": {}, "contrasts_b100": {}, "transfer": {},
-                 "contract_contrasts": {}, "math_contrasts": {}}
+                 "contract_contrasts": {}, "math_contrasts": {}, "follow_contrasts": {}}
     for b in (25, 50, 100):
         rows = load(b)
         summary["budgets"][str(b)] = method_stats(rows)
@@ -93,6 +93,21 @@ def main():
         summary["math_contrasts"][f"{a} - {b}"] = {
             "mean": round(mean, 4), "ci95": [round(lo, 4), round(hi, 4)],
             "significant": bool(lo > 0 or hi < 0)}
+    frows = json.loads((EXP / "follow_results.json").read_text(encoding="utf-8"))
+    fgm = defaultdict(list)
+    for r in frows:
+        fgm[r["method"]].append(r["holdout_score"])
+    summary["follow"] = {
+        m: {"n": len(v), "mean": round(float(np.mean(v)), 4),
+            "std": round(float(np.std(v, ddof=1)), 4)}
+        for m, v in sorted(fgm.items())}
+    for a, b in [("apc-full", "zero-shot"), ("apc-pgam", "zero-shot"),
+                 ("apc-full", "manual"), ("apc-pgam", "apc-full"),
+                 ("random-search", "apc-full")]:
+        mean, (lo, hi) = paired_diff(frows, a, b)
+        summary["follow_contrasts"][f"{a} - {b}"] = {
+            "mean": round(mean, 4), "ci95": [round(lo, 4), round(hi, 4)],
+            "significant": bool(lo > 0 or hi < 0)}
     rows100 = load(100)
     for a, b in [("apc-full", "zero-shot"), ("apc-pgam", "zero-shot"),
                  ("random-search", "zero-shot"), ("apc-full", "manual"),
@@ -102,9 +117,9 @@ def main():
         summary["contrasts_b100"][f"{a} - {b}"] = {
             "mean": round(mean, 4), "ci95": [round(lo, 4), round(hi, 4)],
             "significant": bool(lo > 0 or hi < 0)}
-    # 跨任务 pooled PGAM−uniform（finance b100 + contract + math，配对差合并）
+    # 跨任务 pooled PGAM−uniform（finance b100 + contract + math + follow，配对差合并）
     pooled = []
-    for rows_x in (rows100, crows, mrows):
+    for rows_x in (rows100, crows, mrows, frows):
         ka = {(r["model_id"], r["seed"]): r["holdout_score"] for r in rows_x if r["method"] == "apc-pgam"}
         kb = {(r["model_id"], r["seed"]): r["holdout_score"] for r in rows_x if r["method"] == "apc-full"}
         pooled += [ka[k] - kb[k] for k in sorted(set(ka) & set(kb))]

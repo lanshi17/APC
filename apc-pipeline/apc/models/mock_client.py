@@ -293,11 +293,68 @@ def _math_json(document: str, prompt: str, model_id: str) -> str:
     if not guarded["json_only"] and _rate(model_id, "prefix_noise", document):
         text = "好的，以下是计算结果：\n" + text
     return text
+_FOLLOW_REQ = re.compile(r"至多(\d+)句话.*?关键词“([^”]+)”")
+
+
+def _follow_json(document: str, prompt: str, model_id: str) -> str:
+    """可验证约束遵循应答：任务内基因动力学（v2.3，与财务/合同/数学解耦）。
+
+    合规三通道（全部确定性文档哈希）：
+    - 关键词：constraints.explicitness=low 时 30% 丢失；无校验时叠加模型
+      wrong_answer 率丢失；否则保留。
+    - 句数：instructions 非 fine（无"对照每条约束自查"）时 25% 多出一句；
+      fine 时恰好 max_sent 句。
+    - 数字：verification 关闭时 30% 混入数字；format_check 时 2%；否则 8%。
+    - 置信度：沿用跨任务校准映射（ex_level→0.78/0.66/0.60）。
+    """
+    s = _prompt_skill(prompt, model_id)
+    guarded, ex_level = s["guarded"], s["ex_level"]
+    m = _FOLLOW_REQ.search(document)
+    max_sent = int(m.group(1)) if m else 2
+    keyword = m.group(2) if m else ""
+    ctx = document.split("要求：")[0].split("背景：")[-1]
+    h = lambda kind: (int(hashlib.sha256(f"{model_id}:{kind}:{document}".encode()).hexdigest(), 16) % 1000) / 1000
+    base_wrong = MODEL_DEVIATIONS.get(model_id, DEFAULT_DEVIATIONS).get("wrong_answer", 0.10)
+    # 关键词通道
+    keep_kw = True
+    if "参考约束" in prompt and h("follow_kw_low") < 0.30:
+        keep_kw = False
+    if not guarded["verification"] and h("follow_kw_ver") < base_wrong:
+        keep_kw = False
+    # 句数通道
+    fine = "对照每条约束自查" in prompt
+    n_sent = max_sent
+    if not fine and h("follow_sent") < 0.25:
+        n_sent = max_sent + 1
+    # 数字通道
+    if not guarded["verification"]:
+        digit_p = 0.30
+    elif guarded["verif_format"]:
+        digit_p = 0.02
+    else:
+        digit_p = 0.08
+    use_digits = h("follow_digit") < digit_p
+    # 组装回答
+    kw_sentence = f"其中{keyword}最引人注目" if (keep_kw and keyword) else "景色十分宜人"
+    parts = [ctx.rstrip("。")] + [kw_sentence] * max(0, n_sent - 1)
+    text_body = "。".join(parts[:n_sent]) + "。"
+    if use_digits:
+        text_body += "共3处美景值得停留。"
+    confidence = 0.78 if ex_level >= 2 else (0.66 if ex_level == 1 else 0.60)
+    data = {"response": text_body, "confidence": confidence}
+    if not guarded["no_extra"] and _rate(model_id, "extra_field", document):
+        data["notes"] = "模型补充说明（额外字段）"
+    if not guarded["json_only"] and _rate(model_id, "prefix_noise", document):
+        text = "好的，以下是回答：\n" + json.dumps(data, ensure_ascii=False)
+    else:
+        text = json.dumps(data, ensure_ascii=False)
+    return text
 class MockClient(BaseModelClient):
     """无外部凭证时的确定性客户端：固定应答 + 按模型 id 的确定性偏差。"""
 
     def __init__(self, model_id: str = "mock"):
         self._model_id = model_id
+
 
     @property
     def model_id(self) -> str:
@@ -320,6 +377,9 @@ class MockClient(BaseModelClient):
     def _respond(self, prompt: str) -> str:
         # 任务路由优先：带引用的 schema 键高度特指，不会出现在探针 prompt 中；
         # 探针关键词（如 amount）反而会出现在任务 schema 里，故任务先行。
+        if '"response"' in prompt:
+            doc = self._extract_document(prompt)
+            return _follow_json(doc, prompt, self._model_id)
         if '"answer"' in prompt and '"steps"' in prompt:
             doc = self._extract_document(prompt)
             return _math_json(doc, prompt, self._model_id)
