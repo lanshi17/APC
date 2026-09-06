@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import json
 import random
+import re
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
@@ -96,9 +97,21 @@ def main():
             seen_docs.add(s["input"]["document"])
             all_samples.append(s)
             if split == "perturbation":
-                # 扰动集：追加 2 条干扰句 + 顺序打乱(测 robustness)
+                # 扰动集（金标准保持清洁版答案）：
+                # (a) 追加 2 条干扰句；(b) 将首个指标值替换为不同数字。
+                # 模型若照搬被扰动数值则与金标准失配 → 可测量的稳健性下降。
                 extra = "\n".join(rng.sample(DISTRACTORS, 2))
                 s["input"]["document"] += "\n" + extra
+                gm = s["expected"]["metrics"][0]
+                old_val = gm["value"]
+                m = re.match(r"^([0-9.]+)(.*)$", old_val)
+                if m:
+                    num = float(m.group(1))
+                    new_num = round(num * 1.5 + 1.7, 1)
+                    new_val = (str(int(new_num)) if float(new_num).is_integer()
+                               else str(new_num)) + m.group(2)
+                    s["input"]["document"] = s["input"]["document"].replace(
+                        old_val, new_val, 1)
             samples.append(s)
         path = out_dir / f"{split}.jsonl"
         path.write_text("\n".join(json.dumps(x, ensure_ascii=False) for x in samples) + "\n",

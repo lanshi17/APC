@@ -43,13 +43,16 @@ holdout 对比决策（adopt 当且仅当 ≥90% 源分数，KR-6）`。
 
 ## 3. 实验（APCBench，`experiments/apcbench/`）
 
-- 任务：财务报告分析（dev 40 / validation 30 / holdout 30 / perturbation 30，
-  生成器 `scripts/gen_financial_dataset.py`，种子固定）。
-- 模型：glm / qwen / gpt（MockClient 确定性仿真；ground truth 见
-  `experiments/apcbench/README.md`）。
-- 方法：zero-shot / manual（强人工启发式）/ random-search /
-  apc-full（均匀进化+SHA）/ apc-no-profile / apc-no-halving / apc-pgam。
-- 统计：5 seeds × 3 模型；配对 bootstrap 95% CI（2000 次）。
+> - 任务 A「财务报告分析」（dev 40 / validation 30 / holdout 30 / perturbation 30，
+>   生成器 `scripts/gen_financial_dataset.py`，种子固定）；
+>   任务 B「合同信息抽取」（dev 40 / validation 30 / holdout 30，
+>   `scripts/gen_contract_dataset.py`；同一 `_prompt_skill` 基因动力学，不同领域抽取）。
+>   perturbation 设计：干扰句 + 首个指标值替换（金标准保持清洁版），专测输入保真敏感度。
+> - 模型：glm / qwen / gpt（MockClient 确定性仿真；ground truth 见
+>   `experiments/apcbench/README.md`）。
+> - 方法：zero-shot / manual（强人工启发式）/ random-search /
+>   apc-full（均匀进化+SHA）/ apc-no-profile / apc-no-halving / apc-pgam。
+> - 统计：任务 A 5 seeds × 3 模型，任务 B 3 seeds × 3 模型；配对 bootstrap 95% CI（2000 次）。
 
 ### 3.1 主结果（b100，holdout）
 
@@ -72,6 +75,23 @@ holdout 对比决策（adopt 当且仅当 ≥90% 源分数，KR-6）`。
 
 50 evals 即达平台（任务单峰性所致）；random 在 b100 反降（单步空间+候选增多→dev 过拟合）。
 
+### 3.2b 第二任务：合同抽取（b50，holdout，n=9/方法）
+
+| 方法 | 均值 | 对比 | Δ | 95% CI |
+|---|---|---|---|---|
+| apc-full / apc-pgam | 0.9844 | search − zero-shot | +0.0275 | [0.0124, 0.0420]，显著 |
+| manual | 0.9814 | search − manual | +0.0031 | [0.0000, 0.0061]，不显著 |
+| zero-shot | 0.9569 |（qwen 单项 0.9300 → 搜索修复至 0.9833，弱模型救援 +0.05）| | |
+
+跨任务一致性：搜索 ≥ manual ≥ zero-shot 的排序在双任务成立；绝对水平随任务
+难度而异（财务 0.75 vs 合同 0.98）。
+
+### 3.2c 稳健性（perturbation，冠军 genome，n=15/方法）
+
+全方法 holdout→perturbation 下降 ≈ −0.010（apc-full −0.0101，pgam −0.0104，
+manual −0.0106，random −0.0096）：数值替换扰动 genome 无关，各方法同等受影响；
+无证据表明搜索冠军更脆弱（与 holdout 同排序）。
+
 ### 3.3 迁移（4 方向 × 3 seeds，adapt 预算 30 vs native 100）
 
 - recover（adapted/native）：1.0000 [0.9978, 1.0026]；KR-6 通过率 12/12；
@@ -84,8 +104,8 @@ holdout 对比决策（adopt 当且仅当 ≥90% 源分数，KR-6）`。
 1. **无真实 LLM 验证**：全部结论限于自带仿真器；ground truth 由作者编写，
    存在"拟合自己仿真器"的根本性质疑。投稿前必须在 ≥2 真实模型（1 开源 3 seeds
    + 1 闭源 1 seed，EvoPrompt 双轨制）上复现主对比。
-2. **单任务**：仅财务报告分析；至少补 BBH 子集 + IFEval 风格 + JSON 约束任务
-   （见 `docs/literature/lit-benchmark.md` §7 最小矩阵）。
+> 2. **任务覆盖 2/6**：财务 + 合同双任务，排序一致；仍缺推理类（BBH/GSM8K 系）
+>   与指令遵循类（IFEval 风格）——见 `docs/literature/lit-benchmark.md` §7。
 3. **PGAM 增益边缘**：+0.0008 且 CI 触零；需更难的多峰任务或更大 seed 数
    才能确认/证伪画像先验的价值。
 4. **SHA 与 rules 消融为零结果**：分别需要紧预算多代场景与规则违背型 base

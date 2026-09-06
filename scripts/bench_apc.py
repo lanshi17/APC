@@ -168,14 +168,16 @@ def result_of(method: str, model_id: str, seed: int, out_root: Path) -> dict:
         b = runner.evaluate(spec, cp, dev_ds, save_outputs=False).score
         v = runner.evaluate(spec, cp, val_ds, save_outputs=False).score
         h = runner.evaluate(spec, cp, holdout_ds, save_outputs=False).score
-        return pack(method, model_id, seed, b, v, h, 0, t0)
+        return pack(method, model_id, seed, b, v, h, 0, t0,
+                    champion_genome=g.model_dump(mode="json"))
 
     if method == "zero-shot":
         cp = compiler.compile(base, spec, profile, apply_rules=False)
         b = runner.evaluate(spec, cp, dev_ds, save_outputs=False).score
         v = runner.evaluate(spec, cp, val_ds, save_outputs=False).score
         h = runner.evaluate(spec, cp, holdout_ds, save_outputs=False).score
-        return pack(method, model_id, seed, b, v, h, 0, t0)
+        return pack(method, model_id, seed, b, v, h, 0, t0,
+                    champion_genome=base.model_dump(mode="json"))
 
     ev, _ = full_eval_factory(spec, compiler, profile, runner, dev_ds, holdout_ds)
 
@@ -204,7 +206,7 @@ def result_of(method: str, model_id: str, seed: int, out_root: Path) -> dict:
             rep = {"trials": [], "budget_used": budget_used}
             hold = holdout_score(spec, compiler, profile, runner, holdout_ds, champ)
             return pack(method, model_id, seed, scored[0][1], champ_v, hold, budget_used, t0,
-                        champion=champ.genome_id)
+                        champion=champ.genome_id, champion_genome=champ.model_dump(mode="json"))
         if method == "apc-pgam":
             import random as _r
             from apc.optimizer.evolutionary import ProfileGuidedMutator
@@ -221,7 +223,8 @@ def result_of(method: str, model_id: str, seed: int, out_root: Path) -> dict:
         val_hold = runner.evaluate(spec, compiler.compile(champ, spec, profile, apply_rules=False),
                                    val_ds, save_outputs=False).score
         return pack(method, model_id, seed, rep.baseline_score, val_hold, hold, rep.budget_used, t0,
-                    champion=rep.champion_genome_id, history=rep.history)
+                    champion=rep.champion_genome_id, history=rep.history,
+                    champion_genome=rep.champion_genome)
     raise ValueError(method)
 
 
@@ -230,11 +233,13 @@ def holdout_score(spec, compiler, profile, runner, holdout_ds, genome):
     return runner.evaluate(spec, cp, holdout_ds, save_outputs=False).score
 
 
-def pack(method, model_id, seed, baseline, validation, holdout, budget, t0, champion="", history=None):
+def pack(method, model_id, seed, baseline, validation, holdout, budget, t0, champion="",
+         history=None, champion_genome=None):
     return {"method": method, "model_id": model_id, "seed": seed,
             "baseline_score": round(float(baseline), 4), "validation_score": round(float(validation), 4),
             "holdout_score": round(float(holdout), 4), "budget_used": budget,
             "champion_genome_id": champion, "history": history or [],
+            "champion_genome": champion_genome,
             "elapsed_s": round(time.time() - t0, 1)}
 
 def main():

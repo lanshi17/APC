@@ -1,0 +1,947 @@
+[
+ {
+  "method": "apc-pgam",
+  "model_id": "glm",
+  "seed": 42,
+  "holdout": 0.7601,
+  "perturbation": 0.7494,
+  "drop": 0.0107,
+  "pert_robustness": 0.9867
+ },
+ {
+  "method": "apc-pgam",
+  "model_id": "glm",
+  "seed": 43,
+  "holdout": 0.7598,
+  "perturbation": 0.7497,
+  "drop": 0.0101,
+  "pert_robustness": 0.9865
+ },
+ {
+  "method": "apc-pgam",
+  "model_id": "glm",
+  "seed": 44,
+  "holdout": 0.7601,
+  "perturbation": 0.7494,
+  "drop": 0.0107,
+  "pert_robustness": 0.9867
+ },
+ {
+  "method": "apc-pgam",
+  "model_id": "glm",
+  "seed": 45,
+  "holdout": 0.7601,
+  "perturbation": 0.7494,
+  "drop": 0.0107,
+  "pert_robustness": 0.9867
+ },
+ {
+  "method": "apc-pgam",
+  "model_id": "glm",
+  "seed": 46,
+  "holdout": 0.7601,
+  "perturbation": 0.7494,
+  "drop": 0.0107,
+  "pert_robustness": 0.9867
+ },
+ {
+  "method": "apc-pgam",
+  "model_id": "qwen",
+  "seed": 42,
+  "holdout": 0.76,
+  "perturbation": 0.749,
+  "drop": 0.011,
+  "pert_robustness": 0.9865
+ },
+ {
+  "method": "apc-pgam",
+  "model_id": "qwen",
+  "seed": 43,
+  "holdout": 0.76,
+  "perturbation": 0.7498,
+  "drop": 0.0102,
+  "pert_robustness": 0.9867
+ },
+ {
+  "method": "apc-pgam",
+  "model_id": "qwen",
+  "seed": 44,
+  "holdout": 0.76,
+  "perturbation": 0.749,
+  "drop": 0.011,
+  "pert_robustness": 0.9865
+ },
+ {
+  "method": "apc-pgam",
+  "model_id": "qwen",
+  "seed": 45,
+  "holdout": 0.76,
+  "perturbation": 0.749,
+  "drop": 0.011,
+  "pert_robustness": 0.9865
+ },
+ {
+  "method": "apc-pgam",
+  "model_id": "qwen",
+  "seed": 46,
+  "holdout": 0.7598,
+  "perturbation": 0.749,
+  "drop": 0.0108,
+  "pert_robustness": 0.9864
+ },
+ {
+  "method": "apc-pgam",
+  "model_id": "gpt",
+  "seed": 42,
+  "holdout": 0.76,
+  "perturbation": 0.7499,
+  "drop": 0.0101,
+  "pert_robustness": 0.9866
+ },
+ {
+  "method": "apc-pgam",
+  "model_id": "gpt",
+  "seed": 43,
+  "holdout": 0.7599,
+  "perturbation": 0.7502,
+  "drop": 0.0097,
+  "pert_robustness": 0.9867
+ },
+ {
+  "method": "apc-pgam",
+  "model_id": "gpt",
+  "seed": 44,
+  "holdout": 0.76,
+  "perturbation": 0.7499,
+  "drop": 0.0101,
+  "pert_robustness": 0.9866
+ },
+ {
+  "method": "apc-pgam",
+  "model_id": "gpt",
+  "seed": 45,
+  "holdout": 0.76,
+  "perturbation": 0.7499,
+  "drop": 0.0101,
+  "pert_robustness": 0.9866
+ },
+ {
+  "method": "apc-pgam",
+  "model_id": "gpt",
+  "seed": 46,
+  "holdout": 0.7599,
+  "perturbation": 0.7502,
+  "drop": 0.0097,
+  "pert_robustness": 0.9867
+ },
+ {
+  "method": "apc-full",
+  "model_id": "glm",
+  "seed": 42,
+  "holdout": 0.7601,
+  "perturbation": 0.7494,
+  "drop": 0.0107,
+  "pert_robustness": 0.9867
+ },
+ {
+  "method": "apc-full",
+  "model_id": "glm",
+  "seed": 43,
+  "holdout": 0.7598,
+  "perturbation": 0.7497,
+  "drop": 0.0101,
+  "pert_robustness": 0.9865
+ },
+ {
+  "method": "apc-full",
+  "model_id": "glm",
+  "seed": 44,
+  "holdout": 0.7559,
+  "perturbation": 0.7467,
+  "drop": 0.0092,
+  "pert_robustness": 0.9857
+ },
+ {
+  "method": "apc-full",
+  "model_id": "glm",
+  "seed": 45,
+  "holdout": 0.7601,
+  "perturbation": 0.7494,
+  "drop": 0.0107,
+  "pert_robustness": 0.9867
+ },
+ {
+  "method": "apc-full",
+  "model_id": "glm",
+  "seed": 46,
+  "holdout": 0.7598,
+  "perturbation": 0.7497,
+  "drop": 0.0101,
+  "pert_robustness": 0.9865
+ },
+ {
+  "method": "apc-full",
+  "model_id": "qwen",
+  "seed": 42,
+  "holdout": 0.76,
+  "perturbation": 0.749,
+  "drop": 0.011,
+  "pert_robustness": 0.9865
+ },
+ {
+  "method": "apc-full",
+  "model_id": "qwen",
+  "seed": 43,
+  "holdout": 0.76,
+  "perturbation": 0.7498,
+  "drop": 0.0102,
+  "pert_robustness": 0.9867
+ },
+ {
+  "method": "apc-full",
+  "model_id": "qwen",
+  "seed": 44,
+  "holdout": 0.7559,
+  "perturbation": 0.7468,
+  "drop": 0.0091,
+  "pert_robustness": 0.9858
+ },
+ {
+  "method": "apc-full",
+  "model_id": "qwen",
+  "seed": 45,
+  "holdout": 0.7598,
+  "perturbation": 0.749,
+  "drop": 0.0108,
+  "pert_robustness": 0.9864
+ },
+ {
+  "method": "apc-full",
+  "model_id": "qwen",
+  "seed": 46,
+  "holdout": 0.76,
+  "perturbation": 0.7498,
+  "drop": 0.0102,
+  "pert_robustness": 0.9867
+ },
+ {
+  "method": "apc-full",
+  "model_id": "gpt",
+  "seed": 42,
+  "holdout": 0.76,
+  "perturbation": 0.7499,
+  "drop": 0.0101,
+  "pert_robustness": 0.9866
+ },
+ {
+  "method": "apc-full",
+  "model_id": "gpt",
+  "seed": 43,
+  "holdout": 0.7599,
+  "perturbation": 0.7502,
+  "drop": 0.0097,
+  "pert_robustness": 0.9867
+ },
+ {
+  "method": "apc-full",
+  "model_id": "gpt",
+  "seed": 44,
+  "holdout": 0.7563,
+  "perturbation": 0.7469,
+  "drop": 0.0094,
+  "pert_robustness": 0.9858
+ },
+ {
+  "method": "apc-full",
+  "model_id": "gpt",
+  "seed": 45,
+  "holdout": 0.7599,
+  "perturbation": 0.7502,
+  "drop": 0.0097,
+  "pert_robustness": 0.9867
+ },
+ {
+  "method": "apc-full",
+  "model_id": "gpt",
+  "seed": 46,
+  "holdout": 0.76,
+  "perturbation": 0.7499,
+  "drop": 0.0101,
+  "pert_robustness": 0.9866
+ },
+ {
+  "method": "apc-no-profile",
+  "model_id": "glm",
+  "seed": 42,
+  "holdout": 0.7601,
+  "perturbation": 0.7494,
+  "drop": 0.0107,
+  "pert_robustness": 0.9867
+ },
+ {
+  "method": "apc-no-profile",
+  "model_id": "glm",
+  "seed": 43,
+  "holdout": 0.7598,
+  "perturbation": 0.7497,
+  "drop": 0.0101,
+  "pert_robustness": 0.9865
+ },
+ {
+  "method": "apc-no-profile",
+  "model_id": "glm",
+  "seed": 44,
+  "holdout": 0.7559,
+  "perturbation": 0.7467,
+  "drop": 0.0092,
+  "pert_robustness": 0.9857
+ },
+ {
+  "method": "apc-no-profile",
+  "model_id": "glm",
+  "seed": 45,
+  "holdout": 0.7601,
+  "perturbation": 0.7494,
+  "drop": 0.0107,
+  "pert_robustness": 0.9867
+ },
+ {
+  "method": "apc-no-profile",
+  "model_id": "glm",
+  "seed": 46,
+  "holdout": 0.7598,
+  "perturbation": 0.7497,
+  "drop": 0.0101,
+  "pert_robustness": 0.9865
+ },
+ {
+  "method": "apc-no-profile",
+  "model_id": "qwen",
+  "seed": 42,
+  "holdout": 0.76,
+  "perturbation": 0.749,
+  "drop": 0.011,
+  "pert_robustness": 0.9865
+ },
+ {
+  "method": "apc-no-profile",
+  "model_id": "qwen",
+  "seed": 43,
+  "holdout": 0.76,
+  "perturbation": 0.7498,
+  "drop": 0.0102,
+  "pert_robustness": 0.9867
+ },
+ {
+  "method": "apc-no-profile",
+  "model_id": "qwen",
+  "seed": 44,
+  "holdout": 0.7559,
+  "perturbation": 0.7468,
+  "drop": 0.0091,
+  "pert_robustness": 0.9858
+ },
+ {
+  "method": "apc-no-profile",
+  "model_id": "qwen",
+  "seed": 45,
+  "holdout": 0.7598,
+  "perturbation": 0.749,
+  "drop": 0.0108,
+  "pert_robustness": 0.9864
+ },
+ {
+  "method": "apc-no-profile",
+  "model_id": "qwen",
+  "seed": 46,
+  "holdout": 0.76,
+  "perturbation": 0.7498,
+  "drop": 0.0102,
+  "pert_robustness": 0.9867
+ },
+ {
+  "method": "apc-no-profile",
+  "model_id": "gpt",
+  "seed": 42,
+  "holdout": 0.76,
+  "perturbation": 0.7499,
+  "drop": 0.0101,
+  "pert_robustness": 0.9866
+ },
+ {
+  "method": "apc-no-profile",
+  "model_id": "gpt",
+  "seed": 43,
+  "holdout": 0.7599,
+  "perturbation": 0.7502,
+  "drop": 0.0097,
+  "pert_robustness": 0.9867
+ },
+ {
+  "method": "apc-no-profile",
+  "model_id": "gpt",
+  "seed": 44,
+  "holdout": 0.7563,
+  "perturbation": 0.7469,
+  "drop": 0.0094,
+  "pert_robustness": 0.9858
+ },
+ {
+  "method": "apc-no-profile",
+  "model_id": "gpt",
+  "seed": 45,
+  "holdout": 0.7599,
+  "perturbation": 0.7502,
+  "drop": 0.0097,
+  "pert_robustness": 0.9867
+ },
+ {
+  "method": "apc-no-profile",
+  "model_id": "gpt",
+  "seed": 46,
+  "holdout": 0.76,
+  "perturbation": 0.7499,
+  "drop": 0.0101,
+  "pert_robustness": 0.9866
+ },
+ {
+  "method": "apc-no-halving",
+  "model_id": "glm",
+  "seed": 42,
+  "holdout": 0.7601,
+  "perturbation": 0.7494,
+  "drop": 0.0107,
+  "pert_robustness": 0.9867
+ },
+ {
+  "method": "apc-no-halving",
+  "model_id": "glm",
+  "seed": 43,
+  "holdout": 0.7598,
+  "perturbation": 0.7497,
+  "drop": 0.0101,
+  "pert_robustness": 0.9865
+ },
+ {
+  "method": "apc-no-halving",
+  "model_id": "glm",
+  "seed": 44,
+  "holdout": 0.7559,
+  "perturbation": 0.7467,
+  "drop": 0.0092,
+  "pert_robustness": 0.9857
+ },
+ {
+  "method": "apc-no-halving",
+  "model_id": "glm",
+  "seed": 45,
+  "holdout": 0.7601,
+  "perturbation": 0.7494,
+  "drop": 0.0107,
+  "pert_robustness": 0.9867
+ },
+ {
+  "method": "apc-no-halving",
+  "model_id": "glm",
+  "seed": 46,
+  "holdout": 0.7598,
+  "perturbation": 0.7497,
+  "drop": 0.0101,
+  "pert_robustness": 0.9865
+ },
+ {
+  "method": "apc-no-halving",
+  "model_id": "qwen",
+  "seed": 42,
+  "holdout": 0.76,
+  "perturbation": 0.749,
+  "drop": 0.011,
+  "pert_robustness": 0.9865
+ },
+ {
+  "method": "apc-no-halving",
+  "model_id": "qwen",
+  "seed": 43,
+  "holdout": 0.76,
+  "perturbation": 0.7498,
+  "drop": 0.0102,
+  "pert_robustness": 0.9867
+ },
+ {
+  "method": "apc-no-halving",
+  "model_id": "qwen",
+  "seed": 44,
+  "holdout": 0.7559,
+  "perturbation": 0.7468,
+  "drop": 0.0091,
+  "pert_robustness": 0.9858
+ },
+ {
+  "method": "apc-no-halving",
+  "model_id": "qwen",
+  "seed": 45,
+  "holdout": 0.7598,
+  "perturbation": 0.749,
+  "drop": 0.0108,
+  "pert_robustness": 0.9864
+ },
+ {
+  "method": "apc-no-halving",
+  "model_id": "qwen",
+  "seed": 46,
+  "holdout": 0.76,
+  "perturbation": 0.7498,
+  "drop": 0.0102,
+  "pert_robustness": 0.9867
+ },
+ {
+  "method": "apc-no-halving",
+  "model_id": "gpt",
+  "seed": 42,
+  "holdout": 0.76,
+  "perturbation": 0.7499,
+  "drop": 0.0101,
+  "pert_robustness": 0.9866
+ },
+ {
+  "method": "apc-no-halving",
+  "model_id": "gpt",
+  "seed": 43,
+  "holdout": 0.7599,
+  "perturbation": 0.7502,
+  "drop": 0.0097,
+  "pert_robustness": 0.9867
+ },
+ {
+  "method": "apc-no-halving",
+  "model_id": "gpt",
+  "seed": 44,
+  "holdout": 0.7563,
+  "perturbation": 0.7469,
+  "drop": 0.0094,
+  "pert_robustness": 0.9858
+ },
+ {
+  "method": "apc-no-halving",
+  "model_id": "gpt",
+  "seed": 45,
+  "holdout": 0.7599,
+  "perturbation": 0.7502,
+  "drop": 0.0097,
+  "pert_robustness": 0.9867
+ },
+ {
+  "method": "apc-no-halving",
+  "model_id": "gpt",
+  "seed": 46,
+  "holdout": 0.76,
+  "perturbation": 0.7499,
+  "drop": 0.0101,
+  "pert_robustness": 0.9866
+ },
+ {
+  "method": "random-search",
+  "model_id": "glm",
+  "seed": 42,
+  "holdout": 0.7562,
+  "perturbation": 0.7464,
+  "drop": 0.0098,
+  "pert_robustness": 0.9859
+ },
+ {
+  "method": "random-search",
+  "model_id": "glm",
+  "seed": 43,
+  "holdout": 0.7562,
+  "perturbation": 0.7464,
+  "drop": 0.0098,
+  "pert_robustness": 0.9859
+ },
+ {
+  "method": "random-search",
+  "model_id": "glm",
+  "seed": 44,
+  "holdout": 0.7562,
+  "perturbation": 0.7464,
+  "drop": 0.0098,
+  "pert_robustness": 0.9859
+ },
+ {
+  "method": "random-search",
+  "model_id": "glm",
+  "seed": 45,
+  "holdout": 0.7562,
+  "perturbation": 0.7464,
+  "drop": 0.0098,
+  "pert_robustness": 0.9859
+ },
+ {
+  "method": "random-search",
+  "model_id": "glm",
+  "seed": 46,
+  "holdout": 0.7562,
+  "perturbation": 0.7464,
+  "drop": 0.0098,
+  "pert_robustness": 0.9859
+ },
+ {
+  "method": "random-search",
+  "model_id": "qwen",
+  "seed": 42,
+  "holdout": 0.7559,
+  "perturbation": 0.7462,
+  "drop": 0.0097,
+  "pert_robustness": 0.9857
+ },
+ {
+  "method": "random-search",
+  "model_id": "qwen",
+  "seed": 43,
+  "holdout": 0.7559,
+  "perturbation": 0.7462,
+  "drop": 0.0097,
+  "pert_robustness": 0.9857
+ },
+ {
+  "method": "random-search",
+  "model_id": "qwen",
+  "seed": 44,
+  "holdout": 0.7559,
+  "perturbation": 0.7462,
+  "drop": 0.0097,
+  "pert_robustness": 0.9857
+ },
+ {
+  "method": "random-search",
+  "model_id": "qwen",
+  "seed": 45,
+  "holdout": 0.7559,
+  "perturbation": 0.7462,
+  "drop": 0.0097,
+  "pert_robustness": 0.9857
+ },
+ {
+  "method": "random-search",
+  "model_id": "qwen",
+  "seed": 46,
+  "holdout": 0.7559,
+  "perturbation": 0.7462,
+  "drop": 0.0097,
+  "pert_robustness": 0.9857
+ },
+ {
+  "method": "random-search",
+  "model_id": "gpt",
+  "seed": 42,
+  "holdout": 0.7563,
+  "perturbation": 0.7469,
+  "drop": 0.0094,
+  "pert_robustness": 0.9858
+ },
+ {
+  "method": "random-search",
+  "model_id": "gpt",
+  "seed": 43,
+  "holdout": 0.7563,
+  "perturbation": 0.7469,
+  "drop": 0.0094,
+  "pert_robustness": 0.9858
+ },
+ {
+  "method": "random-search",
+  "model_id": "gpt",
+  "seed": 44,
+  "holdout": 0.7563,
+  "perturbation": 0.7469,
+  "drop": 0.0094,
+  "pert_robustness": 0.9858
+ },
+ {
+  "method": "random-search",
+  "model_id": "gpt",
+  "seed": 45,
+  "holdout": 0.7563,
+  "perturbation": 0.7469,
+  "drop": 0.0094,
+  "pert_robustness": 0.9858
+ },
+ {
+  "method": "random-search",
+  "model_id": "gpt",
+  "seed": 46,
+  "holdout": 0.7563,
+  "perturbation": 0.7469,
+  "drop": 0.0094,
+  "pert_robustness": 0.9858
+ },
+ {
+  "method": "zero-shot",
+  "model_id": "glm",
+  "seed": 42,
+  "holdout": 0.7503,
+  "perturbation": 0.7408,
+  "drop": 0.0095,
+  "pert_robustness": 0.985
+ },
+ {
+  "method": "zero-shot",
+  "model_id": "glm",
+  "seed": 43,
+  "holdout": 0.7503,
+  "perturbation": 0.7408,
+  "drop": 0.0095,
+  "pert_robustness": 0.985
+ },
+ {
+  "method": "zero-shot",
+  "model_id": "glm",
+  "seed": 44,
+  "holdout": 0.7503,
+  "perturbation": 0.7408,
+  "drop": 0.0095,
+  "pert_robustness": 0.985
+ },
+ {
+  "method": "zero-shot",
+  "model_id": "glm",
+  "seed": 45,
+  "holdout": 0.7503,
+  "perturbation": 0.7408,
+  "drop": 0.0095,
+  "pert_robustness": 0.985
+ },
+ {
+  "method": "zero-shot",
+  "model_id": "glm",
+  "seed": 46,
+  "holdout": 0.7503,
+  "perturbation": 0.7408,
+  "drop": 0.0095,
+  "pert_robustness": 0.985
+ },
+ {
+  "method": "zero-shot",
+  "model_id": "qwen",
+  "seed": 42,
+  "holdout": 0.7482,
+  "perturbation": 0.7404,
+  "drop": 0.0078,
+  "pert_robustness": 0.9849
+ },
+ {
+  "method": "zero-shot",
+  "model_id": "qwen",
+  "seed": 43,
+  "holdout": 0.7482,
+  "perturbation": 0.7404,
+  "drop": 0.0078,
+  "pert_robustness": 0.9849
+ },
+ {
+  "method": "zero-shot",
+  "model_id": "qwen",
+  "seed": 44,
+  "holdout": 0.7482,
+  "perturbation": 0.7404,
+  "drop": 0.0078,
+  "pert_robustness": 0.9849
+ },
+ {
+  "method": "zero-shot",
+  "model_id": "qwen",
+  "seed": 45,
+  "holdout": 0.7482,
+  "perturbation": 0.7404,
+  "drop": 0.0078,
+  "pert_robustness": 0.9849
+ },
+ {
+  "method": "zero-shot",
+  "model_id": "qwen",
+  "seed": 46,
+  "holdout": 0.7482,
+  "perturbation": 0.7404,
+  "drop": 0.0078,
+  "pert_robustness": 0.9849
+ },
+ {
+  "method": "zero-shot",
+  "model_id": "gpt",
+  "seed": 42,
+  "holdout": 0.7512,
+  "perturbation": 0.7408,
+  "drop": 0.0104,
+  "pert_robustness": 0.985
+ },
+ {
+  "method": "zero-shot",
+  "model_id": "gpt",
+  "seed": 43,
+  "holdout": 0.7512,
+  "perturbation": 0.7408,
+  "drop": 0.0104,
+  "pert_robustness": 0.985
+ },
+ {
+  "method": "zero-shot",
+  "model_id": "gpt",
+  "seed": 44,
+  "holdout": 0.7512,
+  "perturbation": 0.7408,
+  "drop": 0.0104,
+  "pert_robustness": 0.985
+ },
+ {
+  "method": "zero-shot",
+  "model_id": "gpt",
+  "seed": 45,
+  "holdout": 0.7512,
+  "perturbation": 0.7408,
+  "drop": 0.0104,
+  "pert_robustness": 0.985
+ },
+ {
+  "method": "zero-shot",
+  "model_id": "gpt",
+  "seed": 46,
+  "holdout": 0.7512,
+  "perturbation": 0.7408,
+  "drop": 0.0104,
+  "pert_robustness": 0.985
+ },
+ {
+  "method": "manual",
+  "model_id": "glm",
+  "seed": 42,
+  "holdout": 0.7601,
+  "perturbation": 0.7494,
+  "drop": 0.0107,
+  "pert_robustness": 0.9867
+ },
+ {
+  "method": "manual",
+  "model_id": "glm",
+  "seed": 43,
+  "holdout": 0.7601,
+  "perturbation": 0.7494,
+  "drop": 0.0107,
+  "pert_robustness": 0.9867
+ },
+ {
+  "method": "manual",
+  "model_id": "glm",
+  "seed": 44,
+  "holdout": 0.7601,
+  "perturbation": 0.7494,
+  "drop": 0.0107,
+  "pert_robustness": 0.9867
+ },
+ {
+  "method": "manual",
+  "model_id": "glm",
+  "seed": 45,
+  "holdout": 0.7601,
+  "perturbation": 0.7494,
+  "drop": 0.0107,
+  "pert_robustness": 0.9867
+ },
+ {
+  "method": "manual",
+  "model_id": "glm",
+  "seed": 46,
+  "holdout": 0.7601,
+  "perturbation": 0.7494,
+  "drop": 0.0107,
+  "pert_robustness": 0.9867
+ },
+ {
+  "method": "manual",
+  "model_id": "qwen",
+  "seed": 42,
+  "holdout": 0.76,
+  "perturbation": 0.749,
+  "drop": 0.011,
+  "pert_robustness": 0.9865
+ },
+ {
+  "method": "manual",
+  "model_id": "qwen",
+  "seed": 43,
+  "holdout": 0.76,
+  "perturbation": 0.749,
+  "drop": 0.011,
+  "pert_robustness": 0.9865
+ },
+ {
+  "method": "manual",
+  "model_id": "qwen",
+  "seed": 44,
+  "holdout": 0.76,
+  "perturbation": 0.749,
+  "drop": 0.011,
+  "pert_robustness": 0.9865
+ },
+ {
+  "method": "manual",
+  "model_id": "qwen",
+  "seed": 45,
+  "holdout": 0.76,
+  "perturbation": 0.749,
+  "drop": 0.011,
+  "pert_robustness": 0.9865
+ },
+ {
+  "method": "manual",
+  "model_id": "qwen",
+  "seed": 46,
+  "holdout": 0.76,
+  "perturbation": 0.749,
+  "drop": 0.011,
+  "pert_robustness": 0.9865
+ },
+ {
+  "method": "manual",
+  "model_id": "gpt",
+  "seed": 42,
+  "holdout": 0.76,
+  "perturbation": 0.7499,
+  "drop": 0.0101,
+  "pert_robustness": 0.9866
+ },
+ {
+  "method": "manual",
+  "model_id": "gpt",
+  "seed": 43,
+  "holdout": 0.76,
+  "perturbation": 0.7499,
+  "drop": 0.0101,
+  "pert_robustness": 0.9866
+ },
+ {
+  "method": "manual",
+  "model_id": "gpt",
+  "seed": 44,
+  "holdout": 0.76,
+  "perturbation": 0.7499,
+  "drop": 0.0101,
+  "pert_robustness": 0.9866
+ },
+ {
+  "method": "manual",
+  "model_id": "gpt",
+  "seed": 45,
+  "holdout": 0.76,
+  "perturbation": 0.7499,
+  "drop": 0.0101,
+  "pert_robustness": 0.9866
+ },
+ {
+  "method": "manual",
+  "model_id": "gpt",
+  "seed": 46,
+  "holdout": 0.76,
+  "perturbation": 0.7499,
+  "drop": 0.0101,
+  "pert_robustness": 0.9866
+ }
+]
