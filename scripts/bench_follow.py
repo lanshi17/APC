@@ -36,7 +36,7 @@ DS = REPO / "datasets" / "constraint_following"
 MODELS = ["glm", "qwen", "gpt"]
 SEEDS = [42, 43, 44]
 BUDGET, GENS, POP, ELITE = 50, 3, 20, 5
-METHODS = ["apc-pgam", "apc-full", "random-search", "zero-shot", "manual"]
+METHODS = ["apc-pgam", "apc-full", "apc-no-profile", "apc-no-halving", "random-search", "zero-shot", "manual"]
 _SENT = re.compile(r"[^。！？]+[。！？]")
 
 
@@ -100,6 +100,55 @@ def run_task(spec, compiler, profile, client, dataset, genome) -> object:
                                temperature=0.0, model_version=client.model_version)
 
 
+def _run_no_halving(spec, profile, root, ev, seed):
+    """无 SHA 对照：每候选 dev_full 全量评估（预算口径一致），冠军选择与主管线一致。"""
+    from copy import deepcopy as _dc
+    from apc.optimizer.evolutionary import BudgetExhausted, OptimizationReport
+    opt = EvolutionaryOptimizer(spec, profile, root, ev, generations=GENS,
+                                population_size=POP, elite_k=ELITE,
+                                budget=BUDGET, seed=seed)
+    baseline = opt._eval(opt.root, "dev_full")
+    population = opt._initial_population()
+    best_g, best_s, hist = opt.root, baseline, []
+    for gen in range(opt.generations):
+        if opt.budget_used >= opt.budget:
+            break
+        try:
+            scored = [(g, opt._eval(g, "dev_full")) for g in population]
+        except BudgetExhausted:
+            break
+        scored.sort(key=lambda x: x[1], reverse=True)
+        if scored and scored[0][1] > best_s:
+            best_g, best_s = scored[0]
+        elite = scored[: opt.elite_k] or [(best_g, best_s)]
+        population = [_dc(g) for g, _ in elite]
+        while len(population) < opt.population_size:
+            mutated, _ = opt.mutator.mutate(opt.rng.choice(elite)[0])
+            population.append(mutated)
+        hist.append({"generation": gen + 1,
+                     "best_score": round(max(s for _, s in scored), 4),
+                     "avg_score": round(sum(s for _, s in scored) / len(scored), 4),
+                     "budget_used": opt.budget_used, "survivors": len(scored)})
+    val_scores: dict[str, float] = {}
+    for g in (best_g, opt.root):
+        try:
+            val_scores[g.genome_id] = opt._eval(g, "validation")
+        except BudgetExhausted:
+            break
+    if val_scores:
+        champ_id = max(val_scores, key=lambda k: val_scores[k])
+        champ = best_g if champ_id == best_g.genome_id else opt.root
+        champ_s = val_scores[champ_id]
+    else:
+        champ, champ_s = best_g, best_s
+    return OptimizationReport(task_id=spec.task_id, model_id=profile.model_id,
+                              baseline_score=round(baseline, 4),
+                              champion_score=round(champ_s, 4),
+                              champion_genome=champ.model_dump(mode="json"),
+                              champion_genome_id=champ.genome_id,
+                              history=hist, trials=opt.trials, budget_used=opt.budget_used,
+                              improvement=round(champ_s - baseline, 4))
+
 def result_of(method: str, model_id: str, seed: int) -> dict:
     import random as _r
     spec = TaskSpec.from_yaml(TASK)
@@ -134,7 +183,7 @@ def result_of(method: str, model_id: str, seed: int) -> dict:
             else (val if phase == "validation" else dev)
         return score_of(g, ds)
 
-    root = CompilerRules.apply(deepcopy(base), profile)
+    root = CompilerRules.apply(deepcopy(base), profile) if method != "apc-no-profile" else deepcopy(base)
     if method == "random-search":
         mut = GenomeMutator(root.search_space or {}, _r.Random(seed))
         cands = [root]
@@ -154,6 +203,8 @@ def result_of(method: str, model_id: str, seed: int) -> dict:
         rep = EvolutionaryOptimizer(spec, profile, root, ev, generations=GENS,
                                     population_size=POP, elite_k=ELITE,
                                     budget=BUDGET, seed=seed, mutator=mut).optimize()
+    elif method == "apc-no-halving":
+        rep = _run_no_halving(spec, profile, root, ev, seed)
     else:
         rep = EvolutionaryOptimizer(spec, profile, root, ev, generations=GENS,
                                     population_size=POP, elite_k=ELITE,

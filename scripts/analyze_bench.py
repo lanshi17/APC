@@ -103,7 +103,8 @@ def main():
         for m, v in sorted(fgm.items())}
     for a, b in [("apc-full", "zero-shot"), ("apc-pgam", "zero-shot"),
                  ("apc-full", "manual"), ("apc-pgam", "apc-full"),
-                 ("random-search", "apc-full")]:
+                 ("random-search", "apc-full"), ("apc-no-halving", "random-search"),
+                 ("apc-full", "apc-no-halving")]:
         mean, (lo, hi) = paired_diff(frows, a, b)
         summary["follow_contrasts"][f"{a} - {b}"] = {
             "mean": round(mean, 4), "ci95": [round(lo, 4), round(hi, 4)],

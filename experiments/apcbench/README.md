@@ -101,3 +101,10 @@
 ```bash
 .venv/bin/python scripts/bench_follow.py  # 约束任务 → follow_results.json
 ```
+
+## 任务 D 消融：SHA 分解（b50，n=9/方法）
+
+- no-halving（0.9616）> random（0.9513）> SHA 进化（0.938）：
+  no-halving − random +0.0103（显著，选择准确时多步组合价值为正）；
+  full − no-halving −0.0235（显著，SHA 小样本筛选代价）。
+- 结论：SHA 是速度-精度权衡，非普适加速器；与财务任务（full≡no-halving）对照。
