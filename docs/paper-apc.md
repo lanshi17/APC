@@ -43,16 +43,16 @@ holdout 对比决策（adopt 当且仅当 ≥90% 源分数，KR-6）`。
 
 ## 3. 实验（APCBench，`experiments/apcbench/`）
 
-> - 任务 A「财务报告分析」（dev 40 / validation 30 / holdout 30 / perturbation 30，
->   生成器 `scripts/gen_financial_dataset.py`，种子固定）；
->   任务 B「合同信息抽取」（dev 40 / validation 30 / holdout 30，
->   `scripts/gen_contract_dataset.py`；同一 `_prompt_skill` 基因动力学，不同领域抽取）。
->   perturbation 设计：干扰句 + 首个指标值替换（金标准保持清洁版），专测输入保真敏感度。
-> - 模型：glm / qwen / gpt（MockClient 确定性仿真；ground truth 见
->   `experiments/apcbench/README.md`）。
-> - 方法：zero-shot / manual（强人工启发式）/ random-search /
->   apc-full（均匀进化+SHA）/ apc-no-profile / apc-no-halving / apc-pgam。
-> - 统计：任务 A 5 seeds × 3 模型，任务 B 3 seeds × 3 模型；配对 bootstrap 95% CI（2000 次）。
+> - 任务 A「财务报告分析」（dev 40 / validation 30 / holdout 30 / perturbation 30）；
+>   任务 B「合同信息抽取」、任务 C「数学应用题」、任务 D「可验证约束遵循」
+>   （均为 dev 40 / validation 30 / holdout 30；生成器与种子见各任务脚本）。
+>   B/C 共用 `_prompt_skill` 基因动力学（不同领域逻辑）；D 用任务内动力学
+>   （约束/句数/数字三通道，激活此前中性的 instructions/constraints 位点）。
+>   perturbation 设计（仅 A）：干扰句 + 首个指标值替换（金标准保持清洁版）。
+> - 模型：glm / qwen / gpt（MockClient 确定性仿真；ground truth 见 README）。
+> - 方法：zero-shot / manual / random-search / apc-full（均匀进化+SHA）/
+>   apc-no-profile / apc-no-halving / apc-pgam。
+> - 统计：A 任务 5 seeds × 3 模型，B/C/D 3 seeds × 3 模型；配对 bootstrap 95% CI。
 
 ### 3.1 主结果（b100，holdout）
 
@@ -91,19 +91,33 @@ holdout 对比决策（adopt 当且仅当 ≥90% 源分数，KR-6）`。
 | search − manual | −0.0109 | [−0.0154, −0.0063] | 显著；manual 强（精确 count/策略手工最优） |
 | pgam − full | 0.0000 | — | 无差异 |
 
-跨任务一致性：搜索 ≫ zero-shot 在三任务成立（+0.009 / +0.028 / +0.029）；
-搜索 vs manual：财务 −0.001、合同 +0.003（n.s.）、数学 −0.011——
+跨任务一致性：搜索 ≫ zero-shot 在四任务成立（+0.009 / +0.028 / +0.029 / +0.029）；
+搜索 vs manual：财务 −0.001、合同 +0.003（n.s.）、数学 −0.011、约束遵循 +0.024（显著）——
 手工强启发式在单峰仿真器上难被超越；自动化的价值在免手工+迁移+血统。
 
-### 3.2d PGAM 跨任务 pooled（配对差合并，n=33）
+### 3.2d 第四任务：可验证约束遵循（b50，holdout，n=9/方法）
 
-pgam − uniform：+0.0004 [0.0000, 0.0008]——**零结果**。
+| 对比 | Δ | 95% CI | 结论 |
+|---|---|---|---|
+| search − zero-shot | +0.0292 | [0.0171, 0.0386] | 显著 |
+| search − manual | +0.0238 | [0.0117, 0.0341] | 显著；搜索首次显著超越 manual |
+| random − evolution | +0.0132 | [0.0027, 0.0248] | 显著；方向反转（见下） |
+| pgam − full | +0.0005 | [−0.0149, 0.0169] | 不显著 |
+
+**优化器交叉现象**：random 在单一位点增益任务（约束遵循）上超越进化，
+而在需多步组合任务（财务）上落后 −0.003。解释：SHA 的 dev_r1 小样本筛选
+带来选择噪声；当最优解只需单次变异命中时，无噪声的 dev_full 全量选择
+（random）反而更准——经典的速度-精度权衡，无免费午餐。PGAM 在此任务同样
+与 uniform 无差异（+0.0005）。
+
+### 3.2e PGAM 跨任务 pooled（配对差合并，n=42）
+pgam − uniform：+0.0004 [−0.0029, +0.0040]——**零结果**（CI 收窄后仍过零）。
 画像先验在本仿真器上不带来可测量的增益（画像本身信息量弱：
 三模型仅 3/15 维有差异；且最优盆地单一）。
 保留 PGAM 的理由：方差更低（b100 std 0.0001 vs 0.0016）、先验可解释、
 bandit 下限保证不更差；确认/证伪需真实多峰任务。
 
-### 3.2e 稳健性（perturbation，冠军 genome，n=15/方法）
+### 3.2f 稳健性（perturbation，冠军 genome，n=15/方法）
 
 全方法 holdout→perturbation 下降 ≈ −0.010（与 genome 无关的数值替换偏移）；
 无证据表明搜索冠军更脆弱（排序与 holdout 一致）。
@@ -121,9 +135,9 @@ bandit 下限保证不更差；确认/证伪需真实多峰任务。
    存在"拟合自己仿真器"的根本性质疑。`scripts/bench_real.py`
    烟囱已备好（同口径 2 样本链路，无 key 时明确 SKIP）；
    投稿前必须在 ≥2 真实模型（1 开源 3 seeds + 1 闭源 1 seed）上复现主对比。
-2. **任务覆盖 3/6**：财务 + 合同 + 数学三任务，搜索≫zero-shot 排序一致；
-   仍缺指令遵循类（IFEval 风格）与真实推理基准（BBH/GSM8K）。
-3. **PGAM 跨任务 pooled 零结果**：+0.0004 [0.0000, 0.0008]（n=33）；
+2. **任务覆盖 4/6**：财务 + 合同 + 数学 + 约束遵循四任务，搜索≫zero-shot
+   排序一致；仍缺真实推理基准（BBH/GSM8K）与开放式指令任务。
+3. **PGAM 跨任务 pooled 零结果**：+0.0004 [−0.0029, +0.0040]（n=42）；
    画像先验的价值未被证实也不该被夸大。投稿级 claim 必须等待真实多峰任务。
 4. **SHA 与 rules 消融为零结果**：分别需要紧预算多代场景与规则违背型 base
    才能测出差异；当前不断言。
