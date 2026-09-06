@@ -77,7 +77,9 @@ class PromptSectionRenderer:
 
     @staticmethod
     def render_examples(task_spec: TaskSpec, genome: PromptGenome) -> str:
-        count = max(genome.examples.count, 2 if genome.examples.enabled else 0)
+        # count 语义：enabled 时至少渲染 1 个示例（单次 enabled 变异即有部分增益，
+        # 无中性平台）；count=2 满增益，3 饱和——形成 0→1→2 的 uphill 梯度。
+        count = max(genome.examples.count, 1) if genome.examples.enabled else 0
         if count <= 0:
             return ""
         examples = task_spec.examples[:count]
@@ -85,7 +87,10 @@ class PromptSectionRenderer:
             schema = task_spec.output.schema_ or {}
             skeleton = {k: ("<按输入填写>" if v == "string" else "[]" if isinstance(v, dict) and v.get("type") == "array" else 0.9)
                         for k, v in schema.items()}
-            examples = [{"input": "<输入材料摘要>", "output": json.dumps(skeleton, ensure_ascii=False)}]
+            # 无任务示例时按 count 重复 skeleton，使 examples.count 在 prompt 文本中可见
+            # （Mock/真实模型均可感知示例数量；count=0 时上游已返回空字符串）
+            examples = [{"input": "<输入材料摘要>", "output": json.dumps(skeleton, ensure_ascii=False)}
+                        for _ in range(max(count, 1))]
         lines = ["示例（仅演示输出结构，数据以实际输入为准）："]
         for i, ex in enumerate(examples, 1):
             lines.append(f"示例{i}：\n输入：{ex.get('input', '')}")

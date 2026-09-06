@@ -17,6 +17,13 @@
     "reasoning.strategy": ["none", "brief_plan", "hidden_analysis", "structured_checklist"],
     "verification.enabled": [true, false],
     "verification.type": ["constraint_check", "source_grounding_check", "format_check"],
-    "output.strictness": ["low", "medium", "high"]
+    "output.strictness": ["low", "medium", "high"],
+    "instructions.style": ["imperative", "declarative", "conversational"],
+    "instructions.granularity": ["coarse", "medium", "fine"],
+    "constraints.placement": ["top", "after_goal", "bottom"],
+    "constraints.explicitness": ["low", "medium", "high"],
+    "goal.explicitness": ["low", "medium", "high"],
+    "role.style": ["expert", "assistant", "auditor", "analyst"],
+    "style.verbosity": ["low", "medium", "high"]
   }
 }
