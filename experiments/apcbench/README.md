@@ -5,7 +5,6 @@
 > **阅读本说明即可复现全部"最优解"**，因此本基准衡量的是*优化器效率*
 > （给定结构化搜索空间，谁用更少评估找到最优），而非绝对任务精度。
 > 真实 LLM 验证是明确的未来工作（见 `docs/paper-apc.md` §Limitations）。
-
 ## 搜索空间（`configs/genomes/base.json`，13 位点）
 
 | 位点 | 取值数 | 仿真器中的真实效应 |
@@ -42,3 +41,27 @@
 - manual ≥ search：−0.0009（强人工启发式仍具竞争力；自动化的价值在免手工+迁移+血统）
 - SHA / Profile-rules 消融：0.0000（零结果；base 已满足规则）
 - 迁移：recover 1.0000 [0.9978, 1.0026]，KR-6 12/12，adapted@30 ≈ native@100
+
+## 任务 B：合同信息抽取（第二任务，b50，9 runs/方法）
+
+- 任务配置 `configs/tasks/contract_extraction.yaml`；数据
+  `datasets/contract_extraction/`（dev 40 / validation 30 / holdout 30，
+  生成器 `scripts/gen_contract_dataset.py` 种子 20260908）。
+- 仿真：`_contract_json` 与财务任务共用 `_prompt_skill` 基因动力学
+  （同增益/亲和/饱和表），不同领域抽取逻辑；评测用任务内 Judge
+  （parties 召回/amount 等值/date 精确/义务 bigram-F1/置信度接近）+
+  通用 `TrialScorer` 同权重。
+- 结果（`contract_results.json`）：search 0.9844 vs zero-shot 0.9569，
+  Δ +0.0275 [0.0124, 0.0420] 显著；search − manual +0.0031（不显著）；
+  qwen 单项 0.9300 → 0.9833（弱模型救援）。
+- 跨任务一致性：搜索 ≥ manual ≥ zero-shot 排序双任务成立。
+
+## 稳健性（perturbation，`robustness_results.json`）
+
+- 扰动设计：干扰句 + 首个指标值替换（金标准保持清洁版），专测输入保真敏感度。
+- 全方法下降 ≈ −0.010（与 genome 无关的数据偏移）；无证据表明搜索冠军更脆弱。
+
+```bash
+.venv/bin/python scripts/bench_contract.py  # 合同任务 → contract_results.json
+.venv/bin/python scripts/eval_robustness.py # 扰动评测 → robustness_results.json
+```

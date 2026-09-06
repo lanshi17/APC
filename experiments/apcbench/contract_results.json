@@ -1,0 +1,452 @@
+[
+ {
+  "method": "apc-pgam",
+  "model_id": "glm",
+  "seed": 42,
+  "baseline_score": 0.949,
+  "validation_score": 0.991,
+  "holdout_score": 0.9863,
+  "budget_used": 50,
+  "elapsed_s": 0.1
+ },
+ {
+  "method": "apc-pgam",
+  "model_id": "glm",
+  "seed": 43,
+  "baseline_score": 0.949,
+  "validation_score": 0.991,
+  "holdout_score": 0.9863,
+  "budget_used": 50,
+  "elapsed_s": 0.1
+ },
+ {
+  "method": "apc-pgam",
+  "model_id": "glm",
+  "seed": 44,
+  "baseline_score": 0.949,
+  "validation_score": 0.991,
+  "holdout_score": 0.9863,
+  "budget_used": 50,
+  "elapsed_s": 0.1
+ },
+ {
+  "method": "apc-pgam",
+  "model_id": "qwen",
+  "seed": 42,
+  "baseline_score": 0.9612,
+  "validation_score": 0.9812,
+  "holdout_score": 0.9833,
+  "budget_used": 50,
+  "elapsed_s": 0.1
+ },
+ {
+  "method": "apc-pgam",
+  "model_id": "qwen",
+  "seed": 43,
+  "baseline_score": 0.9612,
+  "validation_score": 0.9812,
+  "holdout_score": 0.9833,
+  "budget_used": 50,
+  "elapsed_s": 0.1
+ },
+ {
+  "method": "apc-pgam",
+  "model_id": "qwen",
+  "seed": 44,
+  "baseline_score": 0.9612,
+  "validation_score": 0.9812,
+  "holdout_score": 0.9833,
+  "budget_used": 50,
+  "elapsed_s": 0.1
+ },
+ {
+  "method": "apc-pgam",
+  "model_id": "gpt",
+  "seed": 42,
+  "baseline_score": 0.9815,
+  "validation_score": 0.9802,
+  "holdout_score": 0.9837,
+  "budget_used": 50,
+  "elapsed_s": 0.1
+ },
+ {
+  "method": "apc-pgam",
+  "model_id": "gpt",
+  "seed": 43,
+  "baseline_score": 0.9815,
+  "validation_score": 0.9802,
+  "holdout_score": 0.9837,
+  "budget_used": 50,
+  "elapsed_s": 0.1
+ },
+ {
+  "method": "apc-pgam",
+  "model_id": "gpt",
+  "seed": 44,
+  "baseline_score": 0.9815,
+  "validation_score": 0.9802,
+  "holdout_score": 0.9837,
+  "budget_used": 50,
+  "elapsed_s": 0.1
+ },
+ {
+  "method": "apc-full",
+  "model_id": "glm",
+  "seed": 42,
+  "baseline_score": 0.949,
+  "validation_score": 0.991,
+  "holdout_score": 0.9863,
+  "budget_used": 50,
+  "elapsed_s": 0.1
+ },
+ {
+  "method": "apc-full",
+  "model_id": "glm",
+  "seed": 43,
+  "baseline_score": 0.949,
+  "validation_score": 0.991,
+  "holdout_score": 0.9863,
+  "budget_used": 50,
+  "elapsed_s": 0.1
+ },
+ {
+  "method": "apc-full",
+  "model_id": "glm",
+  "seed": 44,
+  "baseline_score": 0.949,
+  "validation_score": 0.991,
+  "holdout_score": 0.9863,
+  "budget_used": 50,
+  "elapsed_s": 0.1
+ },
+ {
+  "method": "apc-full",
+  "model_id": "qwen",
+  "seed": 42,
+  "baseline_score": 0.9612,
+  "validation_score": 0.9812,
+  "holdout_score": 0.9833,
+  "budget_used": 50,
+  "elapsed_s": 0.1
+ },
+ {
+  "method": "apc-full",
+  "model_id": "qwen",
+  "seed": 43,
+  "baseline_score": 0.9612,
+  "validation_score": 0.9812,
+  "holdout_score": 0.9833,
+  "budget_used": 50,
+  "elapsed_s": 0.1
+ },
+ {
+  "method": "apc-full",
+  "model_id": "qwen",
+  "seed": 44,
+  "baseline_score": 0.9612,
+  "validation_score": 0.9812,
+  "holdout_score": 0.9833,
+  "budget_used": 50,
+  "elapsed_s": 0.1
+ },
+ {
+  "method": "apc-full",
+  "model_id": "gpt",
+  "seed": 42,
+  "baseline_score": 0.9815,
+  "validation_score": 0.9802,
+  "holdout_score": 0.9837,
+  "budget_used": 50,
+  "elapsed_s": 0.1
+ },
+ {
+  "method": "apc-full",
+  "model_id": "gpt",
+  "seed": 43,
+  "baseline_score": 0.9815,
+  "validation_score": 0.9802,
+  "holdout_score": 0.9837,
+  "budget_used": 50,
+  "elapsed_s": 0.1
+ },
+ {
+  "method": "apc-full",
+  "model_id": "gpt",
+  "seed": 44,
+  "baseline_score": 0.9815,
+  "validation_score": 0.9802,
+  "holdout_score": 0.9837,
+  "budget_used": 50,
+  "elapsed_s": 0.1
+ },
+ {
+  "method": "random-search",
+  "model_id": "glm",
+  "seed": 42,
+  "baseline_score": 0.9841,
+  "validation_score": 0.991,
+  "holdout_score": 0.9863,
+  "budget_used": 50,
+  "elapsed_s": 0.1
+ },
+ {
+  "method": "random-search",
+  "model_id": "glm",
+  "seed": 43,
+  "baseline_score": 0.9841,
+  "validation_score": 0.991,
+  "holdout_score": 0.9863,
+  "budget_used": 50,
+  "elapsed_s": 0.1
+ },
+ {
+  "method": "random-search",
+  "model_id": "glm",
+  "seed": 44,
+  "baseline_score": 0.9841,
+  "validation_score": 0.991,
+  "holdout_score": 0.9863,
+  "budget_used": 50,
+  "elapsed_s": 0.1
+ },
+ {
+  "method": "random-search",
+  "model_id": "qwen",
+  "seed": 42,
+  "baseline_score": 0.9906,
+  "validation_score": 0.9812,
+  "holdout_score": 0.9833,
+  "budget_used": 50,
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "random-search",
+  "model_id": "qwen",
+  "seed": 43,
+  "baseline_score": 0.9906,
+  "validation_score": 0.9812,
+  "holdout_score": 0.9833,
+  "budget_used": 50,
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "random-search",
+  "model_id": "qwen",
+  "seed": 44,
+  "baseline_score": 0.9906,
+  "validation_score": 0.9812,
+  "holdout_score": 0.9833,
+  "budget_used": 50,
+  "elapsed_s": 0.1
+ },
+ {
+  "method": "random-search",
+  "model_id": "gpt",
+  "seed": 42,
+  "baseline_score": 0.9852,
+  "validation_score": 0.9884,
+  "holdout_score": 0.9936,
+  "budget_used": 50,
+  "elapsed_s": 0.1
+ },
+ {
+  "method": "random-search",
+  "model_id": "gpt",
+  "seed": 43,
+  "baseline_score": 0.9852,
+  "validation_score": 0.9884,
+  "holdout_score": 0.9936,
+  "budget_used": 50,
+  "elapsed_s": 0.1
+ },
+ {
+  "method": "random-search",
+  "model_id": "gpt",
+  "seed": 44,
+  "baseline_score": 0.9852,
+  "validation_score": 0.9884,
+  "holdout_score": 0.9936,
+  "budget_used": 50,
+  "elapsed_s": 0.1
+ },
+ {
+  "method": "zero-shot",
+  "model_id": "glm",
+  "seed": 42,
+  "baseline_score": 0.949,
+  "validation_score": 0.9638,
+  "holdout_score": 0.9571,
+  "budget_used": 0,
+  "elapsed_s": 0.0
+ },
+ {
+  "method": "zero-shot",
+  "model_id": "glm",
+  "seed": 43,
+  "baseline_score": 0.949,
+  "validation_score": 0.9638,
+  "holdout_score": 0.9571,
+  "budget_used": 0,
+  "elapsed_s": 0.0
+ },
+ {
+  "method": "zero-shot",
+  "model_id": "glm",
+  "seed": 44,
+  "baseline_score": 0.949,
+  "validation_score": 0.9638,
+  "holdout_score": 0.9571,
+  "budget_used": 0,
+  "elapsed_s": 0.0
+ },
+ {
+  "method": "zero-shot",
+  "model_id": "qwen",
+  "seed": 42,
+  "baseline_score": 0.9612,
+  "validation_score": 0.9322,
+  "holdout_score": 0.93,
+  "budget_used": 0,
+  "elapsed_s": 0.0
+ },
+ {
+  "method": "zero-shot",
+  "model_id": "qwen",
+  "seed": 43,
+  "baseline_score": 0.9612,
+  "validation_score": 0.9322,
+  "holdout_score": 0.93,
+  "budget_used": 0,
+  "elapsed_s": 0.0
+ },
+ {
+  "method": "zero-shot",
+  "model_id": "qwen",
+  "seed": 44,
+  "baseline_score": 0.9612,
+  "validation_score": 0.9322,
+  "holdout_score": 0.93,
+  "budget_used": 0,
+  "elapsed_s": 0.0
+ },
+ {
+  "method": "zero-shot",
+  "model_id": "gpt",
+  "seed": 42,
+  "baseline_score": 0.9815,
+  "validation_score": 0.9802,
+  "holdout_score": 0.9837,
+  "budget_used": 0,
+  "elapsed_s": 0.0
+ },
+ {
+  "method": "zero-shot",
+  "model_id": "gpt",
+  "seed": 43,
+  "baseline_score": 0.9815,
+  "validation_score": 0.9802,
+  "holdout_score": 0.9837,
+  "budget_used": 0,
+  "elapsed_s": 0.0
+ },
+ {
+  "method": "zero-shot",
+  "model_id": "gpt",
+  "seed": 44,
+  "baseline_score": 0.9815,
+  "validation_score": 0.9802,
+  "holdout_score": 0.9837,
+  "budget_used": 0,
+  "elapsed_s": 0.0
+ },
+ {
+  "method": "manual",
+  "model_id": "glm",
+  "seed": 42,
+  "baseline_score": 0.9841,
+  "validation_score": 0.991,
+  "holdout_score": 0.9863,
+  "budget_used": 0,
+  "elapsed_s": 0.0
+ },
+ {
+  "method": "manual",
+  "model_id": "glm",
+  "seed": 43,
+  "baseline_score": 0.9841,
+  "validation_score": 0.991,
+  "holdout_score": 0.9863,
+  "budget_used": 0,
+  "elapsed_s": 0.0
+ },
+ {
+  "method": "manual",
+  "model_id": "glm",
+  "seed": 44,
+  "baseline_score": 0.9841,
+  "validation_score": 0.991,
+  "holdout_score": 0.9863,
+  "budget_used": 0,
+  "elapsed_s": 0.0
+ },
+ {
+  "method": "manual",
+  "model_id": "qwen",
+  "seed": 42,
+  "baseline_score": 0.9877,
+  "validation_score": 0.9812,
+  "holdout_score": 0.9833,
+  "budget_used": 0,
+  "elapsed_s": 0.0
+ },
+ {
+  "method": "manual",
+  "model_id": "qwen",
+  "seed": 43,
+  "baseline_score": 0.9877,
+  "validation_score": 0.9812,
+  "holdout_score": 0.9833,
+  "budget_used": 0,
+  "elapsed_s": 0.0
+ },
+ {
+  "method": "manual",
+  "model_id": "qwen",
+  "seed": 44,
+  "baseline_score": 0.9877,
+  "validation_score": 0.9812,
+  "holdout_score": 0.9833,
+  "budget_used": 0,
+  "elapsed_s": 0.0
+ },
+ {
+  "method": "manual",
+  "model_id": "gpt",
+  "seed": 42,
+  "baseline_score": 0.9768,
+  "validation_score": 0.9884,
+  "holdout_score": 0.9745,
+  "budget_used": 0,
+  "elapsed_s": 0.0
+ },
+ {
+  "method": "manual",
+  "model_id": "gpt",
+  "seed": 43,
+  "baseline_score": 0.9768,
+  "validation_score": 0.9884,
+  "holdout_score": 0.9745,
+  "budget_used": 0,
+  "elapsed_s": 0.0
+ },
+ {
+  "method": "manual",
+  "model_id": "gpt",
+  "seed": 44,
+  "baseline_score": 0.9768,
+  "validation_score": 0.9884,
+  "holdout_score": 0.9745,
+  "budget_used": 0,
+  "elapsed_s": 0.0
+ }
+]

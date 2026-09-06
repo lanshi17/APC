@@ -41,25 +41,19 @@ def _rate(model_id: str, kind: str, prompt: str) -> bool:
     h = int(hashlib.sha256(f"{model_id}:{kind}:{prompt}".encode()).hexdigest(), 16)
     return (h % 1000) / 1000 < rate
 
+def _prompt_skill(prompt: str, model_id: str) -> dict:
+    """prompt 工程信号 → 技能分（财务/合同双任务共用，v2.2 ground truth）。
 
-def _financial_json(document: str, prompt: str, model_id: str) -> str:
-    """财务分析应答：输出质量随 prompt 工程信号变化，使 genome 变异与迁移
-    在 Mock 模式下产生可复现的分数差异（受控合成评测环境 v2）。
-
-    基因效应（全部确定性、可复现；模型相关增益模拟真实的能力差异）：
-    - examples.count: 0→1→2 逐步降低数值抽取错误率（模型相关增益）；
-      3 无进一步增益（收益递减），count 经渲染器以 skeleton 个数编码。
-    - reasoning.strategy: structured_checklist > hidden_analysis >
-      decompose_then_answer > brief_plan > none（逐步降低抽取/推理错误）。
-    - verification.type: source_grounding_check 提升忠实度（数值扎根），
-      constraint_check 补足风险条数语义，format_check 降低格式噪声。
-    - output.strictness: 经 schema 是否完整呈现传导（high 完整 schema，
-      medium 字段列表，low 无 schema），影响缺失字段率。
+    返回 {"guarded", "ex_level", "skill", "drop_rate", "drop_kind"}：
+    skill 越高数值抽取错误率越低；drop_* 控制推理缺失通道。
+    模型异质性：示例增益/饱和点（glm 0.06/3、qwen 0.09/2、gpt 0.035/1）、
+    推理策略亲和（glm→decompose、qwen→checklist、gpt→hidden）。
     """
     guarded = {
         "json_only": "只输出 JSON" in prompt,
         "no_extra": "不要添加 schema 之外" in prompt or "额外字段" in prompt,
-        "schema": '"metrics"' in prompt and '"summary"' in prompt,
+        "schema_fin": '"metrics"' in prompt and '"summary"' in prompt,
+        "schema_con": '"parties"' in prompt and '"obligations"' in prompt,
         "n_examples": min(3, prompt.count("<按输入填写>")),
         # 注：“在输出前”（带“在”）只出现在 verification 段；output 高严格度的
         # “输出前请自查”不含“在”，故二者信号解耦（v2 修复 v1 的信号污染）。
@@ -72,19 +66,12 @@ def _financial_json(document: str, prompt: str, model_id: str) -> str:
         "reason_decompose": "分解为子问题" in prompt,
         "reason_brief": "一两句话规划" in prompt,
     }
-    # 模型相关的示例增益与饱和点（ground-truth 异质性 v2.2）：
-    # 强模型早饱和（gpt:1，多余示例引入噪声）、弱模型需更多演示（glm:3）。
-    # 最优 count 因模型而异（gpt=1/qwen=2/glm=3），是迁移衰减的主要来源。
     _EX_GAIN = {"glm": 0.06, "qwen": 0.09, "gpt": 0.035}
     _EX_SAT = {"glm": 3, "qwen": 2, "gpt": 1}
     ex_gain = _EX_GAIN.get(model_id, 0.05)
     ex_sat = _EX_SAT.get(model_id, 2)
     ex_level = guarded["n_examples"]  # 0..3
     ex_bonus = min(ex_sat, ex_level) * ex_gain - max(0, ex_level - ex_sat) * 0.06
-    # 推理策略增益：模型相关的策略亲和（ground-truth 异质性 v2.1，
-    # 模拟不同模型对推理脚手架的偏好差异；直接迁移时产生可测量的衰减，
-    # 是迁移协议（FR-7/KR-6）评测的前提）。与 verification 的上位交互保留：
-    # 无校验时增益减半。未知模型回退默认排序。
     _REASON_AFFINITY: dict[str, list[tuple[str, float, float]]] = {
         # (策略键, skill bonus, comment dropout)
         "glm": [("reason_decompose", 0.090, 0.00), ("reason_checklist", 0.060, 0.02),
@@ -114,6 +101,28 @@ def _financial_json(document: str, prompt: str, model_id: str) -> str:
     else:
         ground_bonus = 0.0
     skill = ex_bonus + reason_bonus + ground_bonus  # 技能分：越高错误率越低
+    return {"guarded": guarded, "ex_level": ex_level, "skill": skill,
+            "drop_rate": drop_rate, "drop_kind": drop_kind}
+
+
+def _financial_json(document: str, prompt: str, model_id: str) -> str:
+    """财务分析应答：输出质量随 prompt 工程信号变化，使 genome 变异与迁移
+    在 Mock 模式下产生可复现的分数差异（受控合成评测环境 v2）。
+
+    基因效应（全部确定性、可复现；模型相关增益模拟真实的能力差异）：
+    - examples.count: 0→1→2 逐步降低数值抽取错误率（模型相关增益）；
+      3 无进一步增益（收益递减），count 经渲染器以 skeleton 个数编码。
+    - reasoning.strategy: structured_checklist > hidden_analysis >
+      decompose_then_answer > brief_plan > none（逐步降低抽取/推理错误）。
+    - verification.type: source_grounding_check 提升忠实度（数值扎根），
+      constraint_check 补足风险条数语义，format_check 降低格式噪声。
+    - output.strictness: 经 schema 是否完整呈现传导（high 完整 schema，
+      medium 字段列表，low 无 schema），影响缺失字段率。
+    """
+    s = _prompt_skill(prompt, model_id)
+    guarded, ex_level, skill = s["guarded"], s["ex_level"], s["skill"]
+    drop_rate, drop_kind = s["drop_rate"], s["drop_kind"]
+    has_schema = guarded["schema_fin"]
     metrics = []
     for m in _NUM_UNIT.finditer(document):
         name, value, unit = m.group(1), m.group(2), m.group(3)
@@ -158,7 +167,7 @@ def _financial_json(document: str, prompt: str, model_id: str) -> str:
     }
     if not guarded["no_extra"] and _rate(model_id, "extra_field", document):
         data["notes"] = "模型补充说明（额外字段）"
-    if not guarded["schema"] and _rate(model_id, "missing_field", document):
+    if not has_schema and _rate(model_id, "missing_field", document):
         for k in ("confidence", "summary", "risks"):
             if k in data:
                 data.pop(k)
@@ -169,6 +178,66 @@ def _financial_json(document: str, prompt: str, model_id: str) -> str:
     return text
 
 
+
+_CONTRACT_AMOUNT = re.compile(r"合同金额\s*([0-9]+(?:\.[0-9]+)?)\s*(亿元|亿|万元|万|元)")
+_CONTRACT_DATE = re.compile(r"签订日期[：:]\s*([0-9]{4}-[0-9]{2}-[0-9]{2})")
+_CONTRACT_PARTY = re.compile(r"(甲方|乙方)([\u4e00-\u9fa5]{2,8}?)(公司|集团)?(?=与|签订|，|。|；|、|$)")
+_CONTRACT_OBL = re.compile(r"[；;]\s*([^；;。]{4,40}?(?:义务|责任|提供|支付|交付|配合|保密)[^；;。]{0,30})")
+
+
+def _contract_json(document: str, prompt: str, model_id: str) -> str:
+    """合同抽取应答：与财务任务共用 _prompt_skill 基因动力学（v2.2），
+    不同领域抽取逻辑。金标准可规则判定，支持第二任务基准。"""
+    s = _prompt_skill(prompt, model_id)
+    guarded, ex_level, skill = s["guarded"], s["ex_level"], s["skill"]
+    drop_rate, drop_kind = s["drop_rate"], s["drop_kind"]
+    has_schema = guarded["schema_con"]
+    parties: list[str] = []
+    for m in _CONTRACT_PARTY.finditer(document):
+        name = m.group(2)
+        if name not in parties:
+            parties.append(name)
+    parties = parties[:2]
+    amount, date = "", ""
+    ma = _CONTRACT_AMOUNT.search(document)
+    if ma:
+        amount = f"{ma.group(1)}{ma.group(2)}"
+    md = _CONTRACT_DATE.search(document)
+    if md:
+        date = md.group(1)
+    obligations = [m.group(1).strip() for m in _CONTRACT_OBL.finditer(document)]
+    # 金额抽取错误：同财务 err 通道（保底 1%）
+    base_rate = MODEL_DEVIATIONS.get(model_id, DEFAULT_DEVIATIONS).get("wrong_answer", 0.10)
+    err_rate = max(0.01, base_rate + 0.22 - 1.5 * skill)
+    h = int(hashlib.sha256(f"{model_id}:contract_err:{document}".encode()).hexdigest(), 16)
+    if (h % 1000) / 1000 < err_rate and amount:
+        amount = "99万元"
+    elif not ex_level and _rate(model_id, "wrong_answer", document) and amount:
+        amount = "99万元"
+    # 义务缺失通道：推理脚手架越弱丢失越多（确定性逐条哈希）
+    if drop_rate > 0 and obligations:
+        kept = []
+        for idx, ob in enumerate(obligations):
+            hh = int(hashlib.sha256(f"{model_id}:{drop_kind}:contract:{document}:{idx}".encode()).hexdigest(), 16)
+            if (hh % 1000) / 1000 >= drop_rate:
+                kept.append(ob)
+        obligations = kept
+    confidence = 0.78 if ex_level >= 2 else (0.66 if ex_level == 1 else 0.60)
+    if not guarded["verification"]:
+        obligations = obligations[:1]  # 无校验 → 义务覆盖不足
+    data = {"parties": parties, "amount": amount, "date": date,
+            "obligations": obligations, "confidence": confidence}
+    if not guarded["no_extra"] and _rate(model_id, "extra_field", document):
+        data["notes"] = "模型补充说明（额外字段）"
+    if not has_schema and _rate(model_id, "missing_field", document):
+        for k in ("confidence", "date", "obligations"):
+            if k in data:
+                data.pop(k)
+                break
+    text = json.dumps(data, ensure_ascii=False)
+    if not guarded["json_only"] and _rate(model_id, "prefix_noise", document):
+        text = "好的，以下是抽取结果：\n" + text
+    return text
 class MockClient(BaseModelClient):
     """无外部凭证时的确定性客户端：固定应答 + 按模型 id 的确定性偏差。"""
 
@@ -194,6 +263,14 @@ class MockClient(BaseModelClient):
         )
 
     def _respond(self, prompt: str) -> str:
+        # 任务路由优先：带引用的 schema 键高度特指，不会出现在探针 prompt 中；
+        # 探针关键词（如 amount）反而会出现在任务 schema 里，故任务先行。
+        if '"parties"' in prompt and '"obligations"' in prompt:
+            doc = self._extract_document(prompt)
+            return _contract_json(doc, prompt, self._model_id)
+        if "summary" in prompt and ("metrics" in prompt or "risks" in prompt):
+            doc = self._extract_document(prompt)
+            return _financial_json(doc, prompt, self._model_id)
         for keys, answer in _PROBE_ANSWERS:
             if keys and keys in prompt:
                 if not answer:  # 情感分类探针
@@ -201,9 +278,6 @@ class MockClient(BaseModelClient):
                 if _rate(self._model_id, "wrong_answer", prompt):
                     return "无法确定"
                 return answer
-        if "summary" in prompt and ("metrics" in prompt or "risks" in prompt):
-            doc = self._extract_document(prompt)
-            return _financial_json(doc, prompt, self._model_id)
         return '{"answer": 42}'
 
     @staticmethod

@@ -51,10 +51,33 @@ def method_stats(rows: list[dict]) -> dict:
 
 
 def main():
-    summary: dict = {"budgets": {}, "contrasts_b100": {}, "transfer": {}}
+    summary: dict = {"budgets": {}, "contrasts_b100": {}, "transfer": {},
+                 "contract_contrasts": {}}
     for b in (25, 50, 100):
         rows = load(b)
         summary["budgets"][str(b)] = method_stats(rows)
+    rrows = json.loads((EXP / "robustness_results.json").read_text(encoding="utf-8"))
+    rgm = defaultdict(list)
+    for r in rrows:
+        rgm[r["method"]].append(r["drop"])
+    summary["robustness"] = {
+        m: {"n": len(v), "mean_drop": round(float(np.mean(v)), 4),
+            "std": round(float(np.std(v, ddof=1)), 4)}
+        for m, v in sorted(rgm.items())}
+    crows = json.loads((EXP / "contract_results.json").read_text(encoding="utf-8"))
+    cgm = defaultdict(list)
+    for r in crows:
+        cgm[r["method"]].append(r["holdout_score"])
+    summary["contract"] = {
+        m: {"n": len(v), "mean": round(float(np.mean(v)), 4),
+            "std": round(float(np.std(v, ddof=1)), 4)}
+        for m, v in sorted(cgm.items())}
+    for a, b in [("apc-full", "zero-shot"), ("apc-pgam", "zero-shot"),
+                 ("apc-full", "manual"), ("apc-pgam", "apc-full")]:
+        mean, (lo, hi) = paired_diff(crows, a, b)
+        summary["contract_contrasts"][f"{a} - {b}"] = {
+            "mean": round(mean, 4), "ci95": [round(lo, 4), round(hi, 4)],
+            "significant": bool(lo > 0 or hi < 0)}
     rows100 = load(100)
     for a, b in [("apc-full", "zero-shot"), ("apc-pgam", "zero-shot"),
                  ("random-search", "zero-shot"), ("apc-full", "manual"),
