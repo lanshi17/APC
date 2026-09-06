@@ -65,3 +65,21 @@
 .venv/bin/python scripts/bench_contract.py  # 合同任务 → contract_results.json
 .venv/bin/python scripts/eval_robustness.py # 扰动评测 → robustness_results.json
 ```
+
+## 任务 C：数学应用题（第三任务，b50，9 runs/方法）
+
+- 任务配置 `configs/tasks/math_reasoning.yaml`；数据
+  `datasets/math_reasoning/`（dev 40 / validation 30 / holdout 30，
+  生成器 `scripts/gen_math_dataset.py` 种子 20260909；整数安全三题型：
+  求和/打折/平均，文档仅含解题数字）。
+- 仿真：`_math_json` 共用 `_prompt_skill`；按题型关键字精确求解；
+  步骤通道（无推理脚手架只给 1 步，约束要求 ≥2 步）。
+- 结果（`math_results.json`）：search 0.9735 vs zero-shot 0.9450，
+  Δ +0.0285 [0.0184, 0.0365] 显著；search − manual −0.0109 显著
+  （manual 强）；pgam − full 0.0000。
+- 跨任务 pooled（pgam−uniform，n=33）：+0.0004 [0.0000, 0.0008]，零结果。
+
+## 真实 LLM 烟囱（`scripts/bench_real.py`）
+
+同口径 2 样本链路（factory → client → runner → scorer），
+无凭证时明确 SKIP，有 key 后即跑。投稿复现入口。

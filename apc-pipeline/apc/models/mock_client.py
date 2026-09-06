@@ -54,6 +54,7 @@ def _prompt_skill(prompt: str, model_id: str) -> dict:
         "no_extra": "不要添加 schema 之外" in prompt or "额外字段" in prompt,
         "schema_fin": '"metrics"' in prompt and '"summary"' in prompt,
         "schema_con": '"parties"' in prompt and '"obligations"' in prompt,
+        "schema_math": '"answer"' in prompt and '"steps"' in prompt,
         "n_examples": min(3, prompt.count("<按输入填写>")),
         # 注：“在输出前”（带“在”）只出现在 verification 段；output 高严格度的
         # “输出前请自查”不含“在”，故二者信号解耦（v2 修复 v1 的信号污染）。
@@ -238,6 +239,60 @@ def _contract_json(document: str, prompt: str, model_id: str) -> str:
     if not guarded["json_only"] and _rate(model_id, "prefix_noise", document):
         text = "好的，以下是抽取结果：\n" + text
     return text
+
+_MATH_SUM = re.compile(r"购入(\d+)件单价为(\d+)元")
+_MATH_DISC = re.compile(r"标价(\d+)元.*?打(\d+)折")
+_MATH_AVG = re.compile(r"分别为(\d+)件、(\d+)件、(\d+)件")
+
+
+def _math_json(document: str, prompt: str, model_id: str) -> str:
+    """数学应用题应答：与财务/合同任务共用 _prompt_skill 基因动力学，
+    按题型关键字精确求解（整数安全题库）。"""
+    s = _prompt_skill(prompt, model_id)
+    guarded, ex_level, skill = s["guarded"], s["ex_level"], s["skill"]
+    drop_rate, drop_kind = s["drop_rate"], s["drop_kind"]
+    pairs = _MATH_SUM.findall(document)
+    if len(pairs) >= 2 and "共花费" in document:
+        ans = sum(int(a) * int(p) for a, p in pairs[:2])
+    elif (md := _MATH_DISC.search(document)):
+        ans = int(md.group(1)) * int(md.group(2)) // 10
+    elif (ma := _MATH_AVG.search(document)):
+        ans = (int(ma.group(1)) + int(ma.group(2)) + int(ma.group(3))) // 3
+    else:
+        ans = None
+    # 数值错误通道（同财务 err 口径）
+    base_rate = MODEL_DEVIATIONS.get(model_id, DEFAULT_DEVIATIONS).get("wrong_answer", 0.10)
+    err_rate = max(0.01, base_rate + 0.22 - 1.5 * skill)
+    h = int(hashlib.sha256(f"{model_id}:math_err:{document}".encode()).hexdigest(), 16)
+    if ans is not None and (h % 1000) / 1000 < err_rate:
+        ans = ans + 13
+    elif ans is not None and not ex_level and _rate(model_id, "wrong_answer", document):
+        ans = ans + 13
+    # 步骤通道：无推理脚手架只给 1 步（约束要求 ≥2 步）；弱脚手架确定性丢步
+    if guarded["reason_checklist"] or guarded["reason_hidden"] or guarded["reason_decompose"]:
+        steps = ["提取题干中的数值", "列式并分步计算", "核对结果与单位"]
+    elif guarded["reason_brief"]:
+        steps = ["简要规划后计算", "核对结果"]
+    else:
+        steps = ["直接给出答案"]
+    if drop_rate >= 0.2 and len(steps) > 1:
+        steps = steps[:1]  # 推理缺失严重时步骤坍缩（与 comment 丢失通道同源）
+    confidence = 0.78 if ex_level >= 2 else (0.66 if ex_level == 1 else 0.60)
+    if not guarded["verification"]:
+        steps = steps[:1]  # 无校验 → 步骤不足
+    data = {"answer": str(ans) if ans is not None else "",
+            "steps": steps, "confidence": confidence}
+    if not guarded["no_extra"] and _rate(model_id, "extra_field", document):
+        data["notes"] = "模型补充说明（额外字段）"
+    if not guarded["schema_math"] and _rate(model_id, "missing_field", document):
+        for k in ("confidence", "answer", "steps"):
+            if k in data:
+                data.pop(k)
+                break
+    text = json.dumps(data, ensure_ascii=False)
+    if not guarded["json_only"] and _rate(model_id, "prefix_noise", document):
+        text = "好的，以下是计算结果：\n" + text
+    return text
 class MockClient(BaseModelClient):
     """无外部凭证时的确定性客户端：固定应答 + 按模型 id 的确定性偏差。"""
 
@@ -265,6 +320,9 @@ class MockClient(BaseModelClient):
     def _respond(self, prompt: str) -> str:
         # 任务路由优先：带引用的 schema 键高度特指，不会出现在探针 prompt 中；
         # 探针关键词（如 amount）反而会出现在任务 schema 里，故任务先行。
+        if '"answer"' in prompt and '"steps"' in prompt:
+            doc = self._extract_document(prompt)
+            return _math_json(doc, prompt, self._model_id)
         if '"parties"' in prompt and '"obligations"' in prompt:
             doc = self._extract_document(prompt)
             return _contract_json(doc, prompt, self._model_id)

@@ -52,7 +52,7 @@ def method_stats(rows: list[dict]) -> dict:
 
 def main():
     summary: dict = {"budgets": {}, "contrasts_b100": {}, "transfer": {},
-                 "contract_contrasts": {}}
+                 "contract_contrasts": {}, "math_contrasts": {}}
     for b in (25, 50, 100):
         rows = load(b)
         summary["budgets"][str(b)] = method_stats(rows)
@@ -78,6 +78,21 @@ def main():
         summary["contract_contrasts"][f"{a} - {b}"] = {
             "mean": round(mean, 4), "ci95": [round(lo, 4), round(hi, 4)],
             "significant": bool(lo > 0 or hi < 0)}
+    mrows = json.loads((EXP / "math_results.json").read_text(encoding="utf-8"))
+    mgm = defaultdict(list)
+    for r in mrows:
+        mgm[r["method"]].append(r["holdout_score"])
+    summary["math"] = {
+        m: {"n": len(v), "mean": round(float(np.mean(v)), 4),
+            "std": round(float(np.std(v, ddof=1)), 4)}
+        for m, v in sorted(mgm.items())}
+    summary["math_contrasts"] = {}
+    for a, b in [("apc-full", "zero-shot"), ("apc-pgam", "zero-shot"),
+                 ("apc-full", "manual"), ("apc-pgam", "apc-full")]:
+        mean, (lo, hi) = paired_diff(mrows, a, b)
+        summary["math_contrasts"][f"{a} - {b}"] = {
+            "mean": round(mean, 4), "ci95": [round(lo, 4), round(hi, 4)],
+            "significant": bool(lo > 0 or hi < 0)}
     rows100 = load(100)
     for a, b in [("apc-full", "zero-shot"), ("apc-pgam", "zero-shot"),
                  ("random-search", "zero-shot"), ("apc-full", "manual"),
@@ -87,6 +102,17 @@ def main():
         summary["contrasts_b100"][f"{a} - {b}"] = {
             "mean": round(mean, 4), "ci95": [round(lo, 4), round(hi, 4)],
             "significant": bool(lo > 0 or hi < 0)}
+    # 跨任务 pooled PGAM−uniform（finance b100 + contract + math，配对差合并）
+    pooled = []
+    for rows_x in (rows100, crows, mrows):
+        ka = {(r["model_id"], r["seed"]): r["holdout_score"] for r in rows_x if r["method"] == "apc-pgam"}
+        kb = {(r["model_id"], r["seed"]): r["holdout_score"] for r in rows_x if r["method"] == "apc-full"}
+        pooled += [ka[k] - kb[k] for k in sorted(set(ka) & set(kb))]
+    pooled = np.array(pooled)
+    pboots = np.array([np.mean(RNG.choice(pooled, size=len(pooled), replace=True)) for _ in range(N_BOOT)])
+    summary["pgam_pooled"] = {"n": len(pooled), "mean": round(float(pooled.mean()), 4),
+                              "ci95": [round(float(np.percentile(pboots, 2.5)), 4),
+                                       round(float(np.percentile(pboots, 97.5)), 4)]}
     trows = json.loads((EXP / "transfer_results.json").read_text(encoding="utf-8"))
     for metric in ("decay_direct", "recover"):
         vals = [r[metric] for r in trows if r.get(metric) is not None]

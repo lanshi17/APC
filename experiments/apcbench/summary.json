@@ -183,15 +183,15 @@
    "mean": -0.0009,
    "ci95": [
     -0.0017,
-    -0.0001
+    -0.0003
    ],
    "significant": true
   },
   "apc-pgam - apc-full": {
    "mean": 0.0008,
    "ci95": [
-    0.0,
-    0.0016
+    0.0001,
+    0.0017
    ],
    "significant": true
   },
@@ -274,6 +274,40 @@
    "significant": false
   }
  },
+ "math_contrasts": {
+  "apc-full - zero-shot": {
+   "mean": 0.0285,
+   "ci95": [
+    0.0184,
+    0.0365
+   ],
+   "significant": true
+  },
+  "apc-pgam - zero-shot": {
+   "mean": 0.0285,
+   "ci95": [
+    0.0184,
+    0.0365
+   ],
+   "significant": true
+  },
+  "apc-full - manual": {
+   "mean": -0.0109,
+   "ci95": [
+    -0.0154,
+    -0.0063
+   ],
+   "significant": true
+  },
+  "apc-pgam - apc-full": {
+   "mean": 0.0,
+   "ci95": [
+    0.0,
+    0.0
+   ],
+   "significant": false
+  }
+ },
  "robustness": {
   "apc-full": {
    "n": 15,
@@ -337,5 +371,40 @@
    "mean": 0.9569,
    "std": 0.0233
   }
+ },
+ "math": {
+  "apc-full": {
+   "n": 9,
+   "mean": 0.9735,
+   "std": 0.0091
+  },
+  "apc-pgam": {
+   "n": 9,
+   "mean": 0.9735,
+   "std": 0.0091
+  },
+  "manual": {
+   "n": 9,
+   "mean": 0.9844,
+   "std": 0.0035
+  },
+  "random-search": {
+   "n": 9,
+   "mean": 0.9735,
+   "std": 0.0091
+  },
+  "zero-shot": {
+   "n": 9,
+   "mean": 0.945,
+   "std": 0.0233
+  }
+ },
+ "pgam_pooled": {
+  "n": 33,
+  "mean": 0.0004,
+  "ci95": [
+   0.0,
+   0.0008
+  ]
  }
 }

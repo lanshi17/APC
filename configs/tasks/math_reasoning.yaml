@@ -1,0 +1,41 @@
+task_id: math_reasoning_v1
+name: 数学应用题求解
+version: 1.0.0
+objective: |
+  根据输入的中文数学应用题，经分步推理求出数值答案，并输出结构化结论。
+input:
+  type: document
+  format: text
+  max_tokens: 20000
+  language: zh
+output:
+  type: json
+  strict: true
+  schema:
+    answer: string
+    steps:
+      type: array
+      items: string
+    confidence: number
+constraints:
+  - 不得虚构输入中不存在的数据
+  - 推理步骤必须基于输入数值
+  - 如果信息不足，必须明确说明
+  - 推理步骤至少输出 2 步，若不足则说明原因
+reasoning:
+  required: true
+  visibility: hidden
+quality_weights:
+  accuracy: 0.50
+  instruction_following: 0.20
+  format: 0.15
+  robustness: 0.10
+  efficiency: 0.05
+cost_limits:
+  max_input_tokens: 25000
+  max_output_tokens: 2000
+  max_latency_ms: 15000
+evaluation:
+  gold_set_required: true
+  perturbation_required: false
+  judge_model_separate: true
