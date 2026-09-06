@@ -161,7 +161,8 @@ bandit 下限保证不更差；确认/证伪需真实多峰任务。
 
 - [x] 一键全量复现：`bench_apc.py [25|50|100]` + `bench_contract/math/follow/transfer.py`
   + `eval_robustness.py` + `analyze_bench.py`（确定种子，全 Mock，无网络）
-- [x] 均值从零重跑逐值一致（本轮验证：全部方法均值与提交版逐值相等）
+- [x] 40 单元测试全绿；`.env` 零密钥（ggshield + 模式双检）
+- [x] Java 服务 13 测试全绿（CompilerRules/PromptRenderer/MockClient；`mvn test`）
 - [x] CI 顺序无关（每对比独立 crc32 种子；分析代码增删不改变已有 CI）
 - [x] 数据集生成器 + 种子随仓（`scripts/gen_*_dataset.py`）
 - [x] 全部冠军 genome 入库（bench 行含 `champion_genome`，扰动复评可重做）
