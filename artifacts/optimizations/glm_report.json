@@ -1,0 +1,781 @@
+{
+  "task_id": "financial_report_analysis_v1",
+  "model_id": "glm",
+  "baseline_score": 0.7029,
+  "champion_score": 0.7481,
+  "champion_genome": {
+    "genome_id": "genome_5394dd4ebd75",
+    "genome_version": "1.0",
+    "parent_genome_id": "genome_438a8be3d55f",
+    "mutation_note": "examples.enabled: False -> True",
+    "task_id": "financial_report_analysis_v1",
+    "role": {
+      "enabled": true,
+      "style": "analyst",
+      "authority_level": "high"
+    },
+    "goal": {
+      "explicitness": "high",
+      "placement": "top"
+    },
+    "instructions": {
+      "style": "imperative",
+      "granularity": "medium",
+      "step_decomposition": true
+    },
+    "constraints": {
+      "placement": "after_goal",
+      "explicitness": "high",
+      "max_count": 8
+    },
+    "examples": {
+      "enabled": true,
+      "count": 0,
+      "selection": "diverse",
+      "format": "input_output"
+    },
+    "reasoning": {
+      "strategy": "hidden_analysis",
+      "visibility": "hidden",
+      "budget": "medium"
+    },
+    "verification": {
+      "enabled": true,
+      "type": "source_grounding_check",
+      "position": "before_final_output"
+    },
+    "output": {
+      "format": "json_schema",
+      "strictness": "high",
+      "include_schema_in_prompt": true,
+      "forbid_extra_fields": true
+    },
+    "style": {
+      "tone": "professional",
+      "verbosity": "low",
+      "language": "zh"
+    },
+    "layout": {
+      "section_order": [
+        "goal",
+        "constraints",
+        "input",
+        "reasoning_instruction",
+        "verification",
+        "output_format"
+      ],
+      "delimiter": "xml"
+    },
+    "search_space": {
+      "examples.enabled": [
+        true,
+        false
+      ],
+      "examples.count": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "reasoning.strategy": [
+        "none",
+        "brief_plan",
+        "hidden_analysis",
+        "structured_checklist"
+      ],
+      "verification.enabled": [
+        true,
+        false
+      ],
+      "verification.type": [
+        "constraint_check",
+        "source_grounding_check",
+        "format_check"
+      ],
+      "output.strictness": [
+        "low",
+        "medium",
+        "high"
+      ]
+    }
+  },
+  "champion_genome_id": "genome_5394dd4ebd75",
+  "history": [
+    {
+      "generation": 1,
+      "best_score": 0.7481,
+      "avg_score": 0.7255,
+      "budget_used": 31,
+      "survivors": 10
+    },
+    {
+      "generation": 2,
+      "best_score": 0.7481,
+      "avg_score": 0.7481,
+      "budget_used": 61,
+      "survivors": 10
+    },
+    {
+      "generation": 3,
+      "best_score": 0.7481,
+      "avg_score": 0.7481,
+      "budget_used": 91,
+      "survivors": 10
+    }
+  ],
+  "trials": [
+    {
+      "genome_id": "genome_438a8be3d55f",
+      "parent_genome_id": null,
+      "mutation_note": null,
+      "phase": "dev_full",
+      "score": 0.7029
+    },
+    {
+      "genome_id": "genome_438a8be3d55f",
+      "parent_genome_id": null,
+      "mutation_note": null,
+      "phase": "dev_r1",
+      "score": 0.7029
+    },
+    {
+      "genome_id": "genome_2d1810032807",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "output.strictness: high -> low",
+      "phase": "dev_r1",
+      "score": 0.7029
+    },
+    {
+      "genome_id": "genome_5394dd4ebd75",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "examples.enabled: False -> True",
+      "phase": "dev_r1",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_24153737e373",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "examples.count: 0 -> 1",
+      "phase": "dev_r1",
+      "score": 0.7029
+    },
+    {
+      "genome_id": "genome_03bae886b4ab",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "examples.count: 0 -> 3",
+      "phase": "dev_r1",
+      "score": 0.7029
+    },
+    {
+      "genome_id": "genome_5394dd4ebd75",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "examples.enabled: False -> True",
+      "phase": "dev_r1",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_0980cd198115",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "verification.type: source_grounding_check -> format_check",
+      "phase": "dev_r1",
+      "score": 0.7029
+    },
+    {
+      "genome_id": "genome_5394dd4ebd75",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "examples.enabled: False -> True",
+      "phase": "dev_r1",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_5394dd4ebd75",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "examples.enabled: False -> True",
+      "phase": "dev_r1",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_03bae886b4ab",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "examples.count: 0 -> 3",
+      "phase": "dev_r1",
+      "score": 0.7029
+    },
+    {
+      "genome_id": "genome_5ebd01064135",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "verification.type: source_grounding_check -> constraint_check",
+      "phase": "dev_r1",
+      "score": 0.7029
+    },
+    {
+      "genome_id": "genome_5ebd01064135",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "verification.type: source_grounding_check -> constraint_check",
+      "phase": "dev_r1",
+      "score": 0.7029
+    },
+    {
+      "genome_id": "genome_53df6dc1e707",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "output.strictness: high -> medium",
+      "phase": "dev_r1",
+      "score": 0.7029
+    },
+    {
+      "genome_id": "genome_029a649a5b61",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "examples.count: 0 -> 2",
+      "phase": "dev_r1",
+      "score": 0.7029
+    },
+    {
+      "genome_id": "genome_0980cd198115",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "verification.type: source_grounding_check -> format_check",
+      "phase": "dev_r1",
+      "score": 0.7029
+    },
+    {
+      "genome_id": "genome_5394dd4ebd75",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "examples.enabled: False -> True",
+      "phase": "dev_r1",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_53df6dc1e707",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "output.strictness: high -> medium",
+      "phase": "dev_r1",
+      "score": 0.7029
+    },
+    {
+      "genome_id": "genome_dc5b75c69855",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "reasoning.strategy: hidden_analysis -> brief_plan",
+      "phase": "dev_r1",
+      "score": 0.7029
+    },
+    {
+      "genome_id": "genome_24153737e373",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "examples.count: 0 -> 1",
+      "phase": "dev_r1",
+      "score": 0.7029
+    },
+    {
+      "genome_id": "genome_191cecef9887",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "reasoning.strategy: hidden_analysis -> none",
+      "phase": "dev_r1",
+      "score": 0.7029
+    },
+    {
+      "genome_id": "genome_5394dd4ebd75",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "examples.enabled: False -> True",
+      "phase": "dev_full",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_5394dd4ebd75",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "examples.enabled: False -> True",
+      "phase": "dev_full",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_5394dd4ebd75",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "examples.enabled: False -> True",
+      "phase": "dev_full",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_5394dd4ebd75",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "examples.enabled: False -> True",
+      "phase": "dev_full",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_5394dd4ebd75",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "examples.enabled: False -> True",
+      "phase": "dev_full",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_438a8be3d55f",
+      "parent_genome_id": null,
+      "mutation_note": null,
+      "phase": "dev_full",
+      "score": 0.7029
+    },
+    {
+      "genome_id": "genome_2d1810032807",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "output.strictness: high -> low",
+      "phase": "dev_full",
+      "score": 0.7029
+    },
+    {
+      "genome_id": "genome_24153737e373",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "examples.count: 0 -> 1",
+      "phase": "dev_full",
+      "score": 0.7029
+    },
+    {
+      "genome_id": "genome_03bae886b4ab",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "examples.count: 0 -> 3",
+      "phase": "dev_full",
+      "score": 0.7029
+    },
+    {
+      "genome_id": "genome_0980cd198115",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "verification.type: source_grounding_check -> format_check",
+      "phase": "dev_full",
+      "score": 0.7029
+    },
+    {
+      "genome_id": "genome_5394dd4ebd75",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "examples.enabled: False -> True",
+      "phase": "dev_r1",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_5394dd4ebd75",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "examples.enabled: False -> True",
+      "phase": "dev_r1",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_5394dd4ebd75",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "examples.enabled: False -> True",
+      "phase": "dev_r1",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_5394dd4ebd75",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "examples.enabled: False -> True",
+      "phase": "dev_r1",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_5394dd4ebd75",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "examples.enabled: False -> True",
+      "phase": "dev_r1",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_fbf94ab782bc",
+      "parent_genome_id": "genome_5394dd4ebd75",
+      "mutation_note": "verification.enabled: True -> False",
+      "phase": "dev_r1",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_63c0e3862774",
+      "parent_genome_id": "genome_5394dd4ebd75",
+      "mutation_note": "reasoning.strategy: hidden_analysis -> structured_checklist",
+      "phase": "dev_r1",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_52f7bc270c98",
+      "parent_genome_id": "genome_5394dd4ebd75",
+      "mutation_note": "examples.enabled: True -> False",
+      "phase": "dev_r1",
+      "score": 0.7029
+    },
+    {
+      "genome_id": "genome_52f7bc270c98",
+      "parent_genome_id": "genome_5394dd4ebd75",
+      "mutation_note": "examples.enabled: True -> False",
+      "phase": "dev_r1",
+      "score": 0.7029
+    },
+    {
+      "genome_id": "genome_ed99aa139c55",
+      "parent_genome_id": "genome_5394dd4ebd75",
+      "mutation_note": "verification.type: source_grounding_check -> format_check",
+      "phase": "dev_r1",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_63c0e3862774",
+      "parent_genome_id": "genome_5394dd4ebd75",
+      "mutation_note": "reasoning.strategy: hidden_analysis -> structured_checklist",
+      "phase": "dev_r1",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_79eac541b41f",
+      "parent_genome_id": "genome_5394dd4ebd75",
+      "mutation_note": "output.strictness: high -> low",
+      "phase": "dev_r1",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_79eac541b41f",
+      "parent_genome_id": "genome_5394dd4ebd75",
+      "mutation_note": "output.strictness: high -> low",
+      "phase": "dev_r1",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_52f7bc270c98",
+      "parent_genome_id": "genome_5394dd4ebd75",
+      "mutation_note": "examples.enabled: True -> False",
+      "phase": "dev_r1",
+      "score": 0.7029
+    },
+    {
+      "genome_id": "genome_fbf94ab782bc",
+      "parent_genome_id": "genome_5394dd4ebd75",
+      "mutation_note": "verification.enabled: True -> False",
+      "phase": "dev_r1",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_adc129c11290",
+      "parent_genome_id": "genome_5394dd4ebd75",
+      "mutation_note": "output.strictness: high -> medium",
+      "phase": "dev_r1",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_86804263c2d0",
+      "parent_genome_id": "genome_5394dd4ebd75",
+      "mutation_note": "reasoning.strategy: hidden_analysis -> brief_plan",
+      "phase": "dev_r1",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_adc129c11290",
+      "parent_genome_id": "genome_5394dd4ebd75",
+      "mutation_note": "output.strictness: high -> medium",
+      "phase": "dev_r1",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_86e62a4761ca",
+      "parent_genome_id": "genome_5394dd4ebd75",
+      "mutation_note": "verification.type: source_grounding_check -> constraint_check",
+      "phase": "dev_r1",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_79eac541b41f",
+      "parent_genome_id": "genome_5394dd4ebd75",
+      "mutation_note": "output.strictness: high -> low",
+      "phase": "dev_r1",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_5394dd4ebd75",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "examples.enabled: False -> True",
+      "phase": "dev_full",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_5394dd4ebd75",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "examples.enabled: False -> True",
+      "phase": "dev_full",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_5394dd4ebd75",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "examples.enabled: False -> True",
+      "phase": "dev_full",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_5394dd4ebd75",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "examples.enabled: False -> True",
+      "phase": "dev_full",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_5394dd4ebd75",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "examples.enabled: False -> True",
+      "phase": "dev_full",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_fbf94ab782bc",
+      "parent_genome_id": "genome_5394dd4ebd75",
+      "mutation_note": "verification.enabled: True -> False",
+      "phase": "dev_full",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_63c0e3862774",
+      "parent_genome_id": "genome_5394dd4ebd75",
+      "mutation_note": "reasoning.strategy: hidden_analysis -> structured_checklist",
+      "phase": "dev_full",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_ed99aa139c55",
+      "parent_genome_id": "genome_5394dd4ebd75",
+      "mutation_note": "verification.type: source_grounding_check -> format_check",
+      "phase": "dev_full",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_63c0e3862774",
+      "parent_genome_id": "genome_5394dd4ebd75",
+      "mutation_note": "reasoning.strategy: hidden_analysis -> structured_checklist",
+      "phase": "dev_full",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_79eac541b41f",
+      "parent_genome_id": "genome_5394dd4ebd75",
+      "mutation_note": "output.strictness: high -> low",
+      "phase": "dev_full",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_5394dd4ebd75",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "examples.enabled: False -> True",
+      "phase": "dev_r1",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_5394dd4ebd75",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "examples.enabled: False -> True",
+      "phase": "dev_r1",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_5394dd4ebd75",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "examples.enabled: False -> True",
+      "phase": "dev_r1",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_5394dd4ebd75",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "examples.enabled: False -> True",
+      "phase": "dev_r1",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_5394dd4ebd75",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "examples.enabled: False -> True",
+      "phase": "dev_r1",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_fbf94ab782bc",
+      "parent_genome_id": "genome_5394dd4ebd75",
+      "mutation_note": "verification.enabled: True -> False",
+      "phase": "dev_r1",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_79eac541b41f",
+      "parent_genome_id": "genome_5394dd4ebd75",
+      "mutation_note": "output.strictness: high -> low",
+      "phase": "dev_r1",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_52f7bc270c98",
+      "parent_genome_id": "genome_5394dd4ebd75",
+      "mutation_note": "examples.enabled: True -> False",
+      "phase": "dev_r1",
+      "score": 0.7029
+    },
+    {
+      "genome_id": "genome_86804263c2d0",
+      "parent_genome_id": "genome_5394dd4ebd75",
+      "mutation_note": "reasoning.strategy: hidden_analysis -> brief_plan",
+      "phase": "dev_r1",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_52f7bc270c98",
+      "parent_genome_id": "genome_5394dd4ebd75",
+      "mutation_note": "examples.enabled: True -> False",
+      "phase": "dev_r1",
+      "score": 0.7029
+    },
+    {
+      "genome_id": "genome_adc129c11290",
+      "parent_genome_id": "genome_5394dd4ebd75",
+      "mutation_note": "output.strictness: high -> medium",
+      "phase": "dev_r1",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_adc129c11290",
+      "parent_genome_id": "genome_5394dd4ebd75",
+      "mutation_note": "output.strictness: high -> medium",
+      "phase": "dev_r1",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_adc129c11290",
+      "parent_genome_id": "genome_5394dd4ebd75",
+      "mutation_note": "output.strictness: high -> medium",
+      "phase": "dev_r1",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_46ae51bf1178",
+      "parent_genome_id": "genome_5394dd4ebd75",
+      "mutation_note": "reasoning.strategy: hidden_analysis -> none",
+      "phase": "dev_r1",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_adc129c11290",
+      "parent_genome_id": "genome_5394dd4ebd75",
+      "mutation_note": "output.strictness: high -> medium",
+      "phase": "dev_r1",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_fbf94ab782bc",
+      "parent_genome_id": "genome_5394dd4ebd75",
+      "mutation_note": "verification.enabled: True -> False",
+      "phase": "dev_r1",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_6a8db32c0c33",
+      "parent_genome_id": "genome_5394dd4ebd75",
+      "mutation_note": "examples.count: 0 -> 1",
+      "phase": "dev_r1",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_fbf94ab782bc",
+      "parent_genome_id": "genome_5394dd4ebd75",
+      "mutation_note": "verification.enabled: True -> False",
+      "phase": "dev_r1",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_52f7bc270c98",
+      "parent_genome_id": "genome_5394dd4ebd75",
+      "mutation_note": "examples.enabled: True -> False",
+      "phase": "dev_r1",
+      "score": 0.7029
+    },
+    {
+      "genome_id": "genome_adc129c11290",
+      "parent_genome_id": "genome_5394dd4ebd75",
+      "mutation_note": "output.strictness: high -> medium",
+      "phase": "dev_r1",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_5394dd4ebd75",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "examples.enabled: False -> True",
+      "phase": "dev_full",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_5394dd4ebd75",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "examples.enabled: False -> True",
+      "phase": "dev_full",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_5394dd4ebd75",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "examples.enabled: False -> True",
+      "phase": "dev_full",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_5394dd4ebd75",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "examples.enabled: False -> True",
+      "phase": "dev_full",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_5394dd4ebd75",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "examples.enabled: False -> True",
+      "phase": "dev_full",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_fbf94ab782bc",
+      "parent_genome_id": "genome_5394dd4ebd75",
+      "mutation_note": "verification.enabled: True -> False",
+      "phase": "dev_full",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_79eac541b41f",
+      "parent_genome_id": "genome_5394dd4ebd75",
+      "mutation_note": "output.strictness: high -> low",
+      "phase": "dev_full",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_86804263c2d0",
+      "parent_genome_id": "genome_5394dd4ebd75",
+      "mutation_note": "reasoning.strategy: hidden_analysis -> brief_plan",
+      "phase": "dev_full",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_adc129c11290",
+      "parent_genome_id": "genome_5394dd4ebd75",
+      "mutation_note": "output.strictness: high -> medium",
+      "phase": "dev_full",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_adc129c11290",
+      "parent_genome_id": "genome_5394dd4ebd75",
+      "mutation_note": "output.strictness: high -> medium",
+      "phase": "dev_full",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_5394dd4ebd75",
+      "parent_genome_id": "genome_438a8be3d55f",
+      "mutation_note": "examples.enabled: False -> True",
+      "phase": "validation",
+      "score": 0.7481
+    },
+    {
+      "genome_id": "genome_438a8be3d55f",
+      "parent_genome_id": null,
+      "mutation_note": null,
+      "phase": "validation",
+      "score": 0.7029
+    }
+  ],
+  "budget_used": 93,
+  "improvement": 0.0452
+}
