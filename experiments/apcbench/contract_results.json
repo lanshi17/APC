@@ -187,7 +187,7 @@
   "validation_score": 0.991,
   "holdout_score": 0.9863,
   "budget_used": 50,
-  "elapsed_s": 0.1
+  "elapsed_s": 0.2
  },
  {
   "method": "random-search",
@@ -197,7 +197,7 @@
   "validation_score": 0.991,
   "holdout_score": 0.9863,
   "budget_used": 50,
-  "elapsed_s": 0.1
+  "elapsed_s": 0.2
  },
  {
   "method": "random-search",
@@ -227,7 +227,7 @@
   "validation_score": 0.9812,
   "holdout_score": 0.9833,
   "budget_used": 50,
-  "elapsed_s": 0.2
+  "elapsed_s": 0.1
  },
  {
   "method": "random-search",

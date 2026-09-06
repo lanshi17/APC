@@ -2,7 +2,7 @@
 """APCBench 统计分析：均值±std、配对 bootstrap 95% CI、预算曲线、迁移矩阵。
 
 配对方式：同一 (model_id, seed) 下两方法 holdout 分数之差；
-bootstrap 2000 次重采样（numpy RandomState(0)，确定可复现）。
+bootstrap 2000 次重采样（每个对比独立 crc32 种子，与代码顺序无关，确定可复现）。
 输出 experiments/apcbench/summary.json + 控制台表格。
 """
 from __future__ import annotations
@@ -16,8 +16,13 @@ import numpy as np
 
 REPO = Path(__file__).resolve().parents[1]
 EXP = REPO / "experiments" / "apcbench"
-RNG = np.random.RandomState(0)
 N_BOOT = 2000
+
+
+def _rng(name: str) -> np.random.RandomState:
+    """每个对比独立的确定种子（zlib.crc32 对比名）：分析代码增删不改变已有 CI。"""
+    import zlib
+    return np.random.RandomState(zlib.crc32(name.encode()) & 0xFFFFFFFF)
 
 
 def load(budget: int) -> list[dict]:
@@ -31,7 +36,8 @@ def paired_diff(rows: list[dict], a: str, b: str) -> tuple[float, tuple[float, f
     db = {key(r): r["holdout_score"] for r in rows if r["method"] == b}
     common = sorted(set(da) & set(db))
     diffs = np.array([da[k] - db[k] for k in common])
-    boots = np.array([np.mean(RNG.choice(diffs, size=len(diffs), replace=True))
+    rng = _rng(f"paired:{a}-{b}:{len(diffs)}")
+    boots = np.array([np.mean(rng.choice(diffs, size=len(diffs), replace=True))
                       for _ in range(N_BOOT)])
     return float(np.mean(diffs)), (float(np.percentile(boots, 2.5)),
                                    float(np.percentile(boots, 97.5)))
@@ -125,7 +131,8 @@ def main():
         kb = {(r["model_id"], r["seed"]): r["holdout_score"] for r in rows_x if r["method"] == "apc-full"}
         pooled += [ka[k] - kb[k] for k in sorted(set(ka) & set(kb))]
     pooled = np.array(pooled)
-    pboots = np.array([np.mean(RNG.choice(pooled, size=len(pooled), replace=True)) for _ in range(N_BOOT)])
+    _prng = _rng("pooled:pgam-full")
+    pboots = np.array([np.mean(_prng.choice(pooled, size=len(pooled), replace=True)) for _ in range(N_BOOT)])
     summary["pgam_pooled"] = {"n": len(pooled), "mean": round(float(pooled.mean()), 4),
                               "ci95": [round(float(np.percentile(pboots, 2.5)), 4),
                                        round(float(np.percentile(pboots, 97.5)), 4)]}
@@ -133,7 +140,8 @@ def main():
     for metric in ("decay_direct", "recover"):
         vals = [r[metric] for r in trows if r.get(metric) is not None]
         a = np.array(vals)
-        boots = np.array([np.mean(RNG.choice(a, size=len(a), replace=True)) for _ in range(N_BOOT)])
+        _trng = _rng(f"transfer:{metric}")
+        boots = np.array([np.mean(_trng.choice(a, size=len(a), replace=True)) for _ in range(N_BOOT)])
         summary["transfer"][metric] = {
             "n": len(vals), "mean": round(float(a.mean()), 4),
             "ci95": [round(float(np.percentile(boots, 2.5)), 4),

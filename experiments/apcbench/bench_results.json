@@ -11541,7 +11541,7 @@
     ]
    }
   },
-  "elapsed_s": 1.0
+  "elapsed_s": 0.9
  },
  {
   "method": "random-search",
@@ -11685,7 +11685,7 @@
     ]
    }
   },
-  "elapsed_s": 1.0
+  "elapsed_s": 0.9
  },
  {
   "method": "random-search",
@@ -11829,7 +11829,7 @@
     ]
    }
   },
-  "elapsed_s": 1.0
+  "elapsed_s": 0.9
  },
  {
   "method": "random-search",
@@ -11973,7 +11973,7 @@
     ]
    }
   },
-  "elapsed_s": 1.0
+  "elapsed_s": 0.9
  },
  {
   "method": "random-search",
@@ -12117,7 +12117,7 @@
     ]
    }
   },
-  "elapsed_s": 1.0
+  "elapsed_s": 0.9
  },
  {
   "method": "zero-shot",
