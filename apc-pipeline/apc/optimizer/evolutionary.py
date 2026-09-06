@@ -48,6 +48,74 @@ class GenomeMutator:
         g.genome_id = g.fresh_content_id()
         return g, note
 
+def profile_prior_weights(search_space: dict[str, list], capability: dict[str, float]) -> dict[str, float]:
+    """画像先验权重：能力越弱的维度对应基因获得越高变异权重（缺陷补偿原则）。
+
+    映射（基因路径前缀 → 能力维度）：
+    examples.* ← few_shot_benefit；output.* ← json_reliability；
+    reasoning.* ← reasoning；verification.* ← self_verification_benefit。
+    w = 1 + 2 × (1 − capability)，截断到 [0.5, 3.0]；未映射路径权重 1.0。
+    先验只是起点：搜索中由精英存活做 bandit 式在线修正（见下）。
+    """
+    _MAP = {
+        "examples.": capability.get("few_shot_benefit", 0.5),
+        "output.": capability.get("json_reliability", 0.5),
+        "reasoning.": capability.get("reasoning", 0.5),
+        "verification.": capability.get("self_verification_benefit", 0.5),
+    }
+    weights = {}
+    for path in search_space:
+        cap = next((c for prefix, c in _MAP.items() if path.startswith(prefix)), None)
+        weights[path] = min(3.0, max(0.5, 1.0 + 2.0 * (1.0 - cap))) if cap is not None else 1.0
+    return weights
+
+
+class ProfileGuidedMutator(GenomeMutator):
+    """画像先验 + 精英 bandit 自适应的变异器（APC 创新算子 PGAM）。
+
+    - 初始化：profile_prior_weights（弱能力维度多探索）。
+    - 在线修正：每代结束后，产生精英幸存者的变异路径权重 ×1.3（上限 5.0）；
+      路径权重下限 0.3（ε-保证：任何基因永不饿死，画像与任务失配时 bandit 可纠正）。
+    - 采样：按权重轮盘赌选路径，路径内均匀选值；其余语义与 GenomeMutator 一致。
+    """
+
+    def __init__(self, search_space: dict[str, list], rng: random.Random,
+                 capability: dict[str, float] | None = None):
+        super().__init__(search_space, rng)
+        self.weights = profile_prior_weights(search_space, capability or {})
+        self.successes: dict[str, int] = {p: 0 for p in search_space}
+
+    def _sample_path(self) -> str:
+        paths = list(self.search_space.keys())
+        total = sum(self.weights[p] for p in paths)
+        r = self.rng.random() * total
+        upto = 0.0
+        for p in paths:
+            upto += self.weights[p]
+            if r <= upto:
+                return p
+        return paths[-1]
+
+    def mutate(self, genome: PromptGenome) -> tuple[PromptGenome, str]:
+        g = deepcopy(genome)
+        path = self._sample_path()
+        choices = [v for v in self.search_space[path] if v != _get_by_path(g, path)]
+        if not choices:
+            return genome, ""
+        value = self.rng.choice(choices)
+        _set_by_path(g, path, value)
+        note = f"{path}: {_get_by_path(genome, path)} -> {value}"
+        g.parent_genome_id = genome.genome_id
+        g.mutation_note = note
+        g.genome_id = g.fresh_content_id()
+        return g, note
+
+    def reinforce(self, path: str | None) -> None:
+        """精英幸存者对其变异路径做 bandit 奖励（path 为 None/空时跳过）。"""
+        if path and path in self.weights:
+            self.weights[path] = min(5.0, self.weights[path] * 1.3)
+            self.successes[path] += 1
+
 
 class TrialTrace(BaseModel):
     genome_id: str
@@ -80,7 +148,7 @@ class EvolutionaryOptimizer:
     def __init__(self, task_spec, model_profile, genome_root: PromptGenome,
                  evaluator: Callable[[PromptGenome, str], float], *,
                  generations: int = 3, population_size: int = 20, elite_k: int = 5,
-                 budget: int = 100, seed: int = 42):
+                 budget: int = 100, seed: int = 42, mutator: GenomeMutator | None = None):
         self.task_spec = task_spec
         self.model_profile = model_profile
         self.root = genome_root
@@ -90,7 +158,13 @@ class EvolutionaryOptimizer:
         self.elite_k = elite_k
         self.budget = budget
         self.rng = random.Random(seed)
-        self.mutator = GenomeMutator(genome_root.search_space or {}, self.rng)
+        # 预算感知种群规模：每代约 1.5×P 次评估（SHA r1 全量 + r2 半量），
+        # 预留 1 次基线 + 2 次 validation；小预算时自动收缩 P，保证至少完成一代。
+        per_gen = max(1, int(1.5 * population_size))
+        if budget < 1 + per_gen + 2:
+            population_size = max(elite_k + 1, (budget - 3) // max(1, generations + 2))
+        self.population_size = population_size
+        self.mutator = mutator or GenomeMutator(genome_root.search_space or {}, self.rng)
         self.budget_used = 0
         self.trials: list[TrialTrace] = []
 
@@ -126,8 +200,13 @@ class EvolutionaryOptimizer:
             gen_scored.sort(key=lambda x: x[1], reverse=True)
             if gen_scored and gen_scored[0][1] > best_score:
                 best_genome, best_score = gen_scored[0]
-            # 精英繁殖下一代
+            # 精英繁殖下一代（PGAM：幸存者对其变异路径做 bandit 奖励）
             elite = gen_scored[: self.elite_k] or [(best_genome, best_score)]
+            reinforce = getattr(self.mutator, "reinforce", None)
+            if reinforce is not None:
+                for g, _ in elite:
+                    note = g.mutation_note or ""
+                    reinforce(note.split(":")[0] if ":" in note else None)
             population = [deepcopy(g) for g, _ in elite]
             while len(population) < self.population_size:
                 mutated, _ = self.mutator.mutate(self.rng.choice(elite)[0])

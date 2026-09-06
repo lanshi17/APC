@@ -26,6 +26,7 @@ def test_apply_rules_true_disables_examples_for_low_benefit(base_genome, task_sp
     profile.capability.few_shot_benefit = 0.0
     genome = PromptGenome.model_validate(base_genome.model_dump())
     genome.examples.enabled = True
+    genome.examples.count = 2  # 显式给出数量（渲染语义：enabled + count>0 才渲染）
     cp = DefaultPromptCompiler().compile(genome, task_spec, profile, apply_rules=True)
     assert "示例" not in cp.prompt_text
     cp2 = DefaultPromptCompiler().compile(genome, task_spec, profile, apply_rules=False)

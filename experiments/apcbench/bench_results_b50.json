@@ -1,0 +1,1847 @@
+[
+ {
+  "method": "apc-pgam",
+  "model_id": "glm",
+  "seed": 42,
+  "baseline_score": 0.7529,
+  "validation_score": 0.759,
+  "holdout_score": 0.7585,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7636,
+    "avg_score": 0.7582,
+    "budget_used": 31,
+    "survivors": 10
+   }
+  ],
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "apc-pgam",
+  "model_id": "glm",
+  "seed": 43,
+  "baseline_score": 0.7529,
+  "validation_score": 0.759,
+  "holdout_score": 0.7585,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7636,
+    "avg_score": 0.755,
+    "budget_used": 31,
+    "survivors": 10
+   }
+  ],
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "apc-pgam",
+  "model_id": "glm",
+  "seed": 44,
+  "baseline_score": 0.7529,
+  "validation_score": 0.759,
+  "holdout_score": 0.7585,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7636,
+    "avg_score": 0.7593,
+    "budget_used": 31,
+    "survivors": 10
+   }
+  ],
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "apc-pgam",
+  "model_id": "glm",
+  "seed": 45,
+  "baseline_score": 0.7529,
+  "validation_score": 0.759,
+  "holdout_score": 0.7585,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7636,
+    "avg_score": 0.755,
+    "budget_used": 31,
+    "survivors": 10
+   }
+  ],
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "apc-pgam",
+  "model_id": "glm",
+  "seed": 46,
+  "baseline_score": 0.7529,
+  "validation_score": 0.759,
+  "holdout_score": 0.7585,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7636,
+    "avg_score": 0.755,
+    "budget_used": 31,
+    "survivors": 10
+   }
+  ],
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "apc-pgam",
+  "model_id": "qwen",
+  "seed": 42,
+  "baseline_score": 0.7507,
+  "validation_score": 0.759,
+  "holdout_score": 0.7577,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7628,
+    "avg_score": 0.7563,
+    "budget_used": 31,
+    "survivors": 10
+   }
+  ],
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "apc-pgam",
+  "model_id": "qwen",
+  "seed": 43,
+  "baseline_score": 0.7507,
+  "validation_score": 0.759,
+  "holdout_score": 0.7577,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7628,
+    "avg_score": 0.7527,
+    "budget_used": 31,
+    "survivors": 10
+   }
+  ],
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "apc-pgam",
+  "model_id": "qwen",
+  "seed": 44,
+  "baseline_score": 0.7507,
+  "validation_score": 0.759,
+  "holdout_score": 0.7577,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7628,
+    "avg_score": 0.758,
+    "budget_used": 31,
+    "survivors": 10
+   }
+  ],
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "apc-pgam",
+  "model_id": "qwen",
+  "seed": 45,
+  "baseline_score": 0.7507,
+  "validation_score": 0.759,
+  "holdout_score": 0.7577,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7628,
+    "avg_score": 0.7526,
+    "budget_used": 31,
+    "survivors": 10
+   }
+  ],
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "apc-pgam",
+  "model_id": "qwen",
+  "seed": 46,
+  "baseline_score": 0.7507,
+  "validation_score": 0.759,
+  "holdout_score": 0.7577,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7628,
+    "avg_score": 0.7522,
+    "budget_used": 31,
+    "survivors": 10
+   }
+  ],
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "apc-pgam",
+  "model_id": "gpt",
+  "seed": 42,
+  "baseline_score": 0.7534,
+  "validation_score": 0.7594,
+  "holdout_score": 0.758,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7635,
+    "avg_score": 0.7584,
+    "budget_used": 31,
+    "survivors": 10
+   }
+  ],
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "apc-pgam",
+  "model_id": "gpt",
+  "seed": 43,
+  "baseline_score": 0.7534,
+  "validation_score": 0.7594,
+  "holdout_score": 0.758,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7635,
+    "avg_score": 0.7554,
+    "budget_used": 31,
+    "survivors": 10
+   }
+  ],
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "apc-pgam",
+  "model_id": "gpt",
+  "seed": 44,
+  "baseline_score": 0.7534,
+  "validation_score": 0.7594,
+  "holdout_score": 0.758,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7635,
+    "avg_score": 0.7593,
+    "budget_used": 31,
+    "survivors": 10
+   }
+  ],
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "apc-pgam",
+  "model_id": "gpt",
+  "seed": 45,
+  "baseline_score": 0.7534,
+  "validation_score": 0.7594,
+  "holdout_score": 0.758,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7635,
+    "avg_score": 0.7549,
+    "budget_used": 31,
+    "survivors": 10
+   }
+  ],
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "apc-pgam",
+  "model_id": "gpt",
+  "seed": 46,
+  "baseline_score": 0.7534,
+  "validation_score": 0.7594,
+  "holdout_score": 0.758,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7635,
+    "avg_score": 0.7553,
+    "budget_used": 31,
+    "survivors": 10
+   }
+  ],
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "apc-full",
+  "model_id": "glm",
+  "seed": 42,
+  "baseline_score": 0.7529,
+  "validation_score": 0.759,
+  "holdout_score": 0.7585,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7636,
+    "avg_score": 0.755,
+    "budget_used": 31,
+    "survivors": 10
+   }
+  ],
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "apc-full",
+  "model_id": "glm",
+  "seed": 43,
+  "baseline_score": 0.7529,
+  "validation_score": 0.759,
+  "holdout_score": 0.7585,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7636,
+    "avg_score": 0.755,
+    "budget_used": 31,
+    "survivors": 10
+   }
+  ],
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "apc-full",
+  "model_id": "glm",
+  "seed": 44,
+  "baseline_score": 0.7529,
+  "validation_score": 0.759,
+  "holdout_score": 0.7585,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7636,
+    "avg_score": 0.755,
+    "budget_used": 31,
+    "survivors": 10
+   }
+  ],
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "apc-full",
+  "model_id": "glm",
+  "seed": 45,
+  "baseline_score": 0.7529,
+  "validation_score": 0.759,
+  "holdout_score": 0.7585,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7636,
+    "avg_score": 0.755,
+    "budget_used": 31,
+    "survivors": 10
+   }
+  ],
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "apc-full",
+  "model_id": "glm",
+  "seed": 46,
+  "baseline_score": 0.7529,
+  "validation_score": 0.759,
+  "holdout_score": 0.7585,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7636,
+    "avg_score": 0.7561,
+    "budget_used": 31,
+    "survivors": 10
+   }
+  ],
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "apc-full",
+  "model_id": "qwen",
+  "seed": 42,
+  "baseline_score": 0.7507,
+  "validation_score": 0.759,
+  "holdout_score": 0.7577,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7628,
+    "avg_score": 0.7532,
+    "budget_used": 31,
+    "survivors": 10
+   }
+  ],
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "apc-full",
+  "model_id": "qwen",
+  "seed": 43,
+  "baseline_score": 0.7507,
+  "validation_score": 0.759,
+  "holdout_score": 0.7577,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7628,
+    "avg_score": 0.7532,
+    "budget_used": 31,
+    "survivors": 10
+   }
+  ],
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "apc-full",
+  "model_id": "qwen",
+  "seed": 44,
+  "baseline_score": 0.7507,
+  "validation_score": 0.759,
+  "holdout_score": 0.7577,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7628,
+    "avg_score": 0.7532,
+    "budget_used": 31,
+    "survivors": 10
+   }
+  ],
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "apc-full",
+  "model_id": "qwen",
+  "seed": 45,
+  "baseline_score": 0.7507,
+  "validation_score": 0.759,
+  "holdout_score": 0.7577,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7628,
+    "avg_score": 0.7526,
+    "budget_used": 31,
+    "survivors": 10
+   }
+  ],
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "apc-full",
+  "model_id": "qwen",
+  "seed": 46,
+  "baseline_score": 0.7507,
+  "validation_score": 0.759,
+  "holdout_score": 0.7577,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7628,
+    "avg_score": 0.7543,
+    "budget_used": 31,
+    "survivors": 10
+   }
+  ],
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "apc-full",
+  "model_id": "gpt",
+  "seed": 42,
+  "baseline_score": 0.7534,
+  "validation_score": 0.7594,
+  "holdout_score": 0.758,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7635,
+    "avg_score": 0.7555,
+    "budget_used": 31,
+    "survivors": 10
+   }
+  ],
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "apc-full",
+  "model_id": "gpt",
+  "seed": 43,
+  "baseline_score": 0.7534,
+  "validation_score": 0.7594,
+  "holdout_score": 0.758,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7635,
+    "avg_score": 0.7555,
+    "budget_used": 31,
+    "survivors": 10
+   }
+  ],
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "apc-full",
+  "model_id": "gpt",
+  "seed": 44,
+  "baseline_score": 0.7534,
+  "validation_score": 0.7594,
+  "holdout_score": 0.758,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7635,
+    "avg_score": 0.7554,
+    "budget_used": 31,
+    "survivors": 10
+   }
+  ],
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "apc-full",
+  "model_id": "gpt",
+  "seed": 45,
+  "baseline_score": 0.7534,
+  "validation_score": 0.7594,
+  "holdout_score": 0.758,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7635,
+    "avg_score": 0.7552,
+    "budget_used": 31,
+    "survivors": 10
+   }
+  ],
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "apc-full",
+  "model_id": "gpt",
+  "seed": 46,
+  "baseline_score": 0.7534,
+  "validation_score": 0.7594,
+  "holdout_score": 0.758,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7635,
+    "avg_score": 0.7564,
+    "budget_used": 31,
+    "survivors": 10
+   }
+  ],
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "apc-no-profile",
+  "model_id": "glm",
+  "seed": 42,
+  "baseline_score": 0.7529,
+  "validation_score": 0.759,
+  "holdout_score": 0.7585,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7636,
+    "avg_score": 0.755,
+    "budget_used": 31,
+    "survivors": 10
+   }
+  ],
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "apc-no-profile",
+  "model_id": "glm",
+  "seed": 43,
+  "baseline_score": 0.7529,
+  "validation_score": 0.759,
+  "holdout_score": 0.7585,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7636,
+    "avg_score": 0.755,
+    "budget_used": 31,
+    "survivors": 10
+   }
+  ],
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "apc-no-profile",
+  "model_id": "glm",
+  "seed": 44,
+  "baseline_score": 0.7529,
+  "validation_score": 0.759,
+  "holdout_score": 0.7585,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7636,
+    "avg_score": 0.755,
+    "budget_used": 31,
+    "survivors": 10
+   }
+  ],
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "apc-no-profile",
+  "model_id": "glm",
+  "seed": 45,
+  "baseline_score": 0.7529,
+  "validation_score": 0.759,
+  "holdout_score": 0.7585,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7636,
+    "avg_score": 0.755,
+    "budget_used": 31,
+    "survivors": 10
+   }
+  ],
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "apc-no-profile",
+  "model_id": "glm",
+  "seed": 46,
+  "baseline_score": 0.7529,
+  "validation_score": 0.759,
+  "holdout_score": 0.7585,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7636,
+    "avg_score": 0.7561,
+    "budget_used": 31,
+    "survivors": 10
+   }
+  ],
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "apc-no-profile",
+  "model_id": "qwen",
+  "seed": 42,
+  "baseline_score": 0.7507,
+  "validation_score": 0.759,
+  "holdout_score": 0.7577,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7628,
+    "avg_score": 0.7532,
+    "budget_used": 31,
+    "survivors": 10
+   }
+  ],
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "apc-no-profile",
+  "model_id": "qwen",
+  "seed": 43,
+  "baseline_score": 0.7507,
+  "validation_score": 0.759,
+  "holdout_score": 0.7577,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7628,
+    "avg_score": 0.7532,
+    "budget_used": 31,
+    "survivors": 10
+   }
+  ],
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "apc-no-profile",
+  "model_id": "qwen",
+  "seed": 44,
+  "baseline_score": 0.7507,
+  "validation_score": 0.759,
+  "holdout_score": 0.7577,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7628,
+    "avg_score": 0.7532,
+    "budget_used": 31,
+    "survivors": 10
+   }
+  ],
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "apc-no-profile",
+  "model_id": "qwen",
+  "seed": 45,
+  "baseline_score": 0.7507,
+  "validation_score": 0.759,
+  "holdout_score": 0.7577,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7628,
+    "avg_score": 0.7526,
+    "budget_used": 31,
+    "survivors": 10
+   }
+  ],
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "apc-no-profile",
+  "model_id": "qwen",
+  "seed": 46,
+  "baseline_score": 0.7507,
+  "validation_score": 0.759,
+  "holdout_score": 0.7577,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7628,
+    "avg_score": 0.7543,
+    "budget_used": 31,
+    "survivors": 10
+   }
+  ],
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "apc-no-profile",
+  "model_id": "gpt",
+  "seed": 42,
+  "baseline_score": 0.7534,
+  "validation_score": 0.7594,
+  "holdout_score": 0.758,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7635,
+    "avg_score": 0.7555,
+    "budget_used": 31,
+    "survivors": 10
+   }
+  ],
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "apc-no-profile",
+  "model_id": "gpt",
+  "seed": 43,
+  "baseline_score": 0.7534,
+  "validation_score": 0.7594,
+  "holdout_score": 0.758,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7635,
+    "avg_score": 0.7555,
+    "budget_used": 31,
+    "survivors": 10
+   }
+  ],
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "apc-no-profile",
+  "model_id": "gpt",
+  "seed": 44,
+  "baseline_score": 0.7534,
+  "validation_score": 0.7594,
+  "holdout_score": 0.758,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7635,
+    "avg_score": 0.7554,
+    "budget_used": 31,
+    "survivors": 10
+   }
+  ],
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "apc-no-profile",
+  "model_id": "gpt",
+  "seed": 45,
+  "baseline_score": 0.7534,
+  "validation_score": 0.7594,
+  "holdout_score": 0.758,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7635,
+    "avg_score": 0.7552,
+    "budget_used": 31,
+    "survivors": 10
+   }
+  ],
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "apc-no-profile",
+  "model_id": "gpt",
+  "seed": 46,
+  "baseline_score": 0.7534,
+  "validation_score": 0.7594,
+  "holdout_score": 0.758,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7635,
+    "avg_score": 0.7564,
+    "budget_used": 31,
+    "survivors": 10
+   }
+  ],
+  "elapsed_s": 0.2
+ },
+ {
+  "method": "apc-no-halving",
+  "model_id": "glm",
+  "seed": 42,
+  "baseline_score": 0.7529,
+  "validation_score": 0.759,
+  "holdout_score": 0.7585,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7636,
+    "avg_score": 0.7524,
+    "budget_used": 21,
+    "survivors": 20
+   },
+   {
+    "generation": 2,
+    "best_score": 0.7636,
+    "avg_score": 0.7567,
+    "budget_used": 41,
+    "survivors": 20
+   }
+  ],
+  "elapsed_s": 0.5
+ },
+ {
+  "method": "apc-no-halving",
+  "model_id": "glm",
+  "seed": 43,
+  "baseline_score": 0.7529,
+  "validation_score": 0.7597,
+  "holdout_score": 0.7588,
+  "budget_used": 50,
+  "champion_genome_id": "genome_c01a80534a57",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7636,
+    "avg_score": 0.7538,
+    "budget_used": 21,
+    "survivors": 20
+   },
+   {
+    "generation": 2,
+    "best_score": 0.7637,
+    "avg_score": 0.7562,
+    "budget_used": 41,
+    "survivors": 20
+   }
+  ],
+  "elapsed_s": 0.5
+ },
+ {
+  "method": "apc-no-halving",
+  "model_id": "glm",
+  "seed": 44,
+  "baseline_score": 0.7529,
+  "validation_score": 0.759,
+  "holdout_score": 0.7585,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7636,
+    "avg_score": 0.7497,
+    "budget_used": 21,
+    "survivors": 20
+   },
+   {
+    "generation": 2,
+    "best_score": 0.7636,
+    "avg_score": 0.7557,
+    "budget_used": 41,
+    "survivors": 20
+   }
+  ],
+  "elapsed_s": 0.5
+ },
+ {
+  "method": "apc-no-halving",
+  "model_id": "glm",
+  "seed": 45,
+  "baseline_score": 0.7529,
+  "validation_score": 0.759,
+  "holdout_score": 0.7585,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7636,
+    "avg_score": 0.7506,
+    "budget_used": 21,
+    "survivors": 20
+   },
+   {
+    "generation": 2,
+    "best_score": 0.7636,
+    "avg_score": 0.7525,
+    "budget_used": 41,
+    "survivors": 20
+   }
+  ],
+  "elapsed_s": 0.5
+ },
+ {
+  "method": "apc-no-halving",
+  "model_id": "glm",
+  "seed": 46,
+  "baseline_score": 0.7529,
+  "validation_score": 0.7597,
+  "holdout_score": 0.7588,
+  "budget_used": 50,
+  "champion_genome_id": "genome_5b5a7f4ea5c0",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7636,
+    "avg_score": 0.7528,
+    "budget_used": 21,
+    "survivors": 20
+   },
+   {
+    "generation": 2,
+    "best_score": 0.7637,
+    "avg_score": 0.7564,
+    "budget_used": 41,
+    "survivors": 20
+   }
+  ],
+  "elapsed_s": 0.5
+ },
+ {
+  "method": "apc-no-halving",
+  "model_id": "qwen",
+  "seed": 42,
+  "baseline_score": 0.7507,
+  "validation_score": 0.759,
+  "holdout_score": 0.7577,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7628,
+    "avg_score": 0.7503,
+    "budget_used": 21,
+    "survivors": 20
+   },
+   {
+    "generation": 2,
+    "best_score": 0.7628,
+    "avg_score": 0.7553,
+    "budget_used": 41,
+    "survivors": 20
+   }
+  ],
+  "elapsed_s": 0.5
+ },
+ {
+  "method": "apc-no-halving",
+  "model_id": "qwen",
+  "seed": 43,
+  "baseline_score": 0.7507,
+  "validation_score": 0.7595,
+  "holdout_score": 0.7583,
+  "budget_used": 50,
+  "champion_genome_id": "genome_c01a80534a57",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7628,
+    "avg_score": 0.7518,
+    "budget_used": 21,
+    "survivors": 20
+   },
+   {
+    "generation": 2,
+    "best_score": 0.7637,
+    "avg_score": 0.7548,
+    "budget_used": 41,
+    "survivors": 20
+   }
+  ],
+  "elapsed_s": 0.5
+ },
+ {
+  "method": "apc-no-halving",
+  "model_id": "qwen",
+  "seed": 44,
+  "baseline_score": 0.7507,
+  "validation_score": 0.759,
+  "holdout_score": 0.7577,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7628,
+    "avg_score": 0.7506,
+    "budget_used": 21,
+    "survivors": 20
+   },
+   {
+    "generation": 2,
+    "best_score": 0.7628,
+    "avg_score": 0.7542,
+    "budget_used": 41,
+    "survivors": 20
+   }
+  ],
+  "elapsed_s": 0.5
+ },
+ {
+  "method": "apc-no-halving",
+  "model_id": "qwen",
+  "seed": 45,
+  "baseline_score": 0.7507,
+  "validation_score": 0.759,
+  "holdout_score": 0.7577,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7628,
+    "avg_score": 0.75,
+    "budget_used": 21,
+    "survivors": 20
+   },
+   {
+    "generation": 2,
+    "best_score": 0.7628,
+    "avg_score": 0.7521,
+    "budget_used": 41,
+    "survivors": 20
+   }
+  ],
+  "elapsed_s": 0.5
+ },
+ {
+  "method": "apc-no-halving",
+  "model_id": "qwen",
+  "seed": 46,
+  "baseline_score": 0.7507,
+  "validation_score": 0.7595,
+  "holdout_score": 0.7583,
+  "budget_used": 50,
+  "champion_genome_id": "genome_5b5a7f4ea5c0",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7628,
+    "avg_score": 0.7523,
+    "budget_used": 21,
+    "survivors": 20
+   },
+   {
+    "generation": 2,
+    "best_score": 0.7637,
+    "avg_score": 0.7566,
+    "budget_used": 41,
+    "survivors": 20
+   }
+  ],
+  "elapsed_s": 0.5
+ },
+ {
+  "method": "apc-no-halving",
+  "model_id": "gpt",
+  "seed": 42,
+  "baseline_score": 0.7534,
+  "validation_score": 0.7594,
+  "holdout_score": 0.758,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7635,
+    "avg_score": 0.7528,
+    "budget_used": 21,
+    "survivors": 20
+   },
+   {
+    "generation": 2,
+    "best_score": 0.7635,
+    "avg_score": 0.757,
+    "budget_used": 41,
+    "survivors": 20
+   }
+  ],
+  "elapsed_s": 0.5
+ },
+ {
+  "method": "apc-no-halving",
+  "model_id": "gpt",
+  "seed": 43,
+  "baseline_score": 0.7534,
+  "validation_score": 0.7597,
+  "holdout_score": 0.7588,
+  "budget_used": 50,
+  "champion_genome_id": "genome_c01a80534a57",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7635,
+    "avg_score": 0.7543,
+    "budget_used": 21,
+    "survivors": 20
+   },
+   {
+    "generation": 2,
+    "best_score": 0.7638,
+    "avg_score": 0.7567,
+    "budget_used": 41,
+    "survivors": 20
+   }
+  ],
+  "elapsed_s": 0.5
+ },
+ {
+  "method": "apc-no-halving",
+  "model_id": "gpt",
+  "seed": 44,
+  "baseline_score": 0.7534,
+  "validation_score": 0.7594,
+  "holdout_score": 0.758,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7635,
+    "avg_score": 0.7535,
+    "budget_used": 21,
+    "survivors": 20
+   },
+   {
+    "generation": 2,
+    "best_score": 0.7635,
+    "avg_score": 0.7561,
+    "budget_used": 41,
+    "survivors": 20
+   }
+  ],
+  "elapsed_s": 0.5
+ },
+ {
+  "method": "apc-no-halving",
+  "model_id": "gpt",
+  "seed": 45,
+  "baseline_score": 0.7534,
+  "validation_score": 0.7594,
+  "holdout_score": 0.758,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7635,
+    "avg_score": 0.7526,
+    "budget_used": 21,
+    "survivors": 20
+   },
+   {
+    "generation": 2,
+    "best_score": 0.7635,
+    "avg_score": 0.7546,
+    "budget_used": 41,
+    "survivors": 20
+   }
+  ],
+  "elapsed_s": 0.5
+ },
+ {
+  "method": "apc-no-halving",
+  "model_id": "gpt",
+  "seed": 46,
+  "baseline_score": 0.7534,
+  "validation_score": 0.7597,
+  "holdout_score": 0.7588,
+  "budget_used": 50,
+  "champion_genome_id": "genome_5b5a7f4ea5c0",
+  "history": [
+   {
+    "generation": 1,
+    "best_score": 0.7635,
+    "avg_score": 0.7549,
+    "budget_used": 21,
+    "survivors": 20
+   },
+   {
+    "generation": 2,
+    "best_score": 0.7638,
+    "avg_score": 0.7582,
+    "budget_used": 41,
+    "survivors": 20
+   }
+  ],
+  "elapsed_s": 0.5
+ },
+ {
+  "method": "random-search",
+  "model_id": "glm",
+  "seed": 42,
+  "baseline_score": 0.7636,
+  "validation_score": 0.759,
+  "holdout_score": 0.7585,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [],
+  "elapsed_s": 0.5
+ },
+ {
+  "method": "random-search",
+  "model_id": "glm",
+  "seed": 43,
+  "baseline_score": 0.7636,
+  "validation_score": 0.759,
+  "holdout_score": 0.7585,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [],
+  "elapsed_s": 0.5
+ },
+ {
+  "method": "random-search",
+  "model_id": "glm",
+  "seed": 44,
+  "baseline_score": 0.7636,
+  "validation_score": 0.759,
+  "holdout_score": 0.7585,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [],
+  "elapsed_s": 0.5
+ },
+ {
+  "method": "random-search",
+  "model_id": "glm",
+  "seed": 45,
+  "baseline_score": 0.7636,
+  "validation_score": 0.759,
+  "holdout_score": 0.7585,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [],
+  "elapsed_s": 0.5
+ },
+ {
+  "method": "random-search",
+  "model_id": "glm",
+  "seed": 46,
+  "baseline_score": 0.7636,
+  "validation_score": 0.759,
+  "holdout_score": 0.7585,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [],
+  "elapsed_s": 0.5
+ },
+ {
+  "method": "random-search",
+  "model_id": "qwen",
+  "seed": 42,
+  "baseline_score": 0.7628,
+  "validation_score": 0.759,
+  "holdout_score": 0.7577,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [],
+  "elapsed_s": 0.5
+ },
+ {
+  "method": "random-search",
+  "model_id": "qwen",
+  "seed": 43,
+  "baseline_score": 0.7628,
+  "validation_score": 0.759,
+  "holdout_score": 0.7577,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [],
+  "elapsed_s": 0.5
+ },
+ {
+  "method": "random-search",
+  "model_id": "qwen",
+  "seed": 44,
+  "baseline_score": 0.7628,
+  "validation_score": 0.759,
+  "holdout_score": 0.7577,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [],
+  "elapsed_s": 0.5
+ },
+ {
+  "method": "random-search",
+  "model_id": "qwen",
+  "seed": 45,
+  "baseline_score": 0.7628,
+  "validation_score": 0.759,
+  "holdout_score": 0.7577,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [],
+  "elapsed_s": 0.5
+ },
+ {
+  "method": "random-search",
+  "model_id": "qwen",
+  "seed": 46,
+  "baseline_score": 0.7628,
+  "validation_score": 0.759,
+  "holdout_score": 0.7577,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [],
+  "elapsed_s": 0.5
+ },
+ {
+  "method": "random-search",
+  "model_id": "gpt",
+  "seed": 42,
+  "baseline_score": 0.7635,
+  "validation_score": 0.7594,
+  "holdout_score": 0.758,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [],
+  "elapsed_s": 0.5
+ },
+ {
+  "method": "random-search",
+  "model_id": "gpt",
+  "seed": 43,
+  "baseline_score": 0.7635,
+  "validation_score": 0.7594,
+  "holdout_score": 0.758,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [],
+  "elapsed_s": 0.5
+ },
+ {
+  "method": "random-search",
+  "model_id": "gpt",
+  "seed": 44,
+  "baseline_score": 0.7635,
+  "validation_score": 0.7594,
+  "holdout_score": 0.758,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [],
+  "elapsed_s": 0.5
+ },
+ {
+  "method": "random-search",
+  "model_id": "gpt",
+  "seed": 45,
+  "baseline_score": 0.7635,
+  "validation_score": 0.7594,
+  "holdout_score": 0.758,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [],
+  "elapsed_s": 0.5
+ },
+ {
+  "method": "random-search",
+  "model_id": "gpt",
+  "seed": 46,
+  "baseline_score": 0.7635,
+  "validation_score": 0.7594,
+  "holdout_score": 0.758,
+  "budget_used": 50,
+  "champion_genome_id": "genome_878f90bae8a5",
+  "history": [],
+  "elapsed_s": 0.5
+ },
+ {
+  "method": "zero-shot",
+  "model_id": "glm",
+  "seed": 42,
+  "baseline_score": 0.7529,
+  "validation_score": 0.7501,
+  "holdout_score": 0.7501,
+  "budget_used": 0,
+  "champion_genome_id": "",
+  "history": [],
+  "elapsed_s": 0.0
+ },
+ {
+  "method": "zero-shot",
+  "model_id": "glm",
+  "seed": 43,
+  "baseline_score": 0.7529,
+  "validation_score": 0.7501,
+  "holdout_score": 0.7501,
+  "budget_used": 0,
+  "champion_genome_id": "",
+  "history": [],
+  "elapsed_s": 0.0
+ },
+ {
+  "method": "zero-shot",
+  "model_id": "glm",
+  "seed": 44,
+  "baseline_score": 0.7529,
+  "validation_score": 0.7501,
+  "holdout_score": 0.7501,
+  "budget_used": 0,
+  "champion_genome_id": "",
+  "history": [],
+  "elapsed_s": 0.0
+ },
+ {
+  "method": "zero-shot",
+  "model_id": "glm",
+  "seed": 45,
+  "baseline_score": 0.7529,
+  "validation_score": 0.7501,
+  "holdout_score": 0.7501,
+  "budget_used": 0,
+  "champion_genome_id": "",
+  "history": [],
+  "elapsed_s": 0.0
+ },
+ {
+  "method": "zero-shot",
+  "model_id": "glm",
+  "seed": 46,
+  "baseline_score": 0.7529,
+  "validation_score": 0.7501,
+  "holdout_score": 0.7501,
+  "budget_used": 0,
+  "champion_genome_id": "",
+  "history": [],
+  "elapsed_s": 0.0
+ },
+ {
+  "method": "zero-shot",
+  "model_id": "qwen",
+  "seed": 42,
+  "baseline_score": 0.7507,
+  "validation_score": 0.7485,
+  "holdout_score": 0.7476,
+  "budget_used": 0,
+  "champion_genome_id": "",
+  "history": [],
+  "elapsed_s": 0.0
+ },
+ {
+  "method": "zero-shot",
+  "model_id": "qwen",
+  "seed": 43,
+  "baseline_score": 0.7507,
+  "validation_score": 0.7485,
+  "holdout_score": 0.7476,
+  "budget_used": 0,
+  "champion_genome_id": "",
+  "history": [],
+  "elapsed_s": 0.0
+ },
+ {
+  "method": "zero-shot",
+  "model_id": "qwen",
+  "seed": 44,
+  "baseline_score": 0.7507,
+  "validation_score": 0.7485,
+  "holdout_score": 0.7476,
+  "budget_used": 0,
+  "champion_genome_id": "",
+  "history": [],
+  "elapsed_s": 0.0
+ },
+ {
+  "method": "zero-shot",
+  "model_id": "qwen",
+  "seed": 45,
+  "baseline_score": 0.7507,
+  "validation_score": 0.7485,
+  "holdout_score": 0.7476,
+  "budget_used": 0,
+  "champion_genome_id": "",
+  "history": [],
+  "elapsed_s": 0.0
+ },
+ {
+  "method": "zero-shot",
+  "model_id": "qwen",
+  "seed": 46,
+  "baseline_score": 0.7507,
+  "validation_score": 0.7485,
+  "holdout_score": 0.7476,
+  "budget_used": 0,
+  "champion_genome_id": "",
+  "history": [],
+  "elapsed_s": 0.0
+ },
+ {
+  "method": "zero-shot",
+  "model_id": "gpt",
+  "seed": 42,
+  "baseline_score": 0.7534,
+  "validation_score": 0.7503,
+  "holdout_score": 0.7502,
+  "budget_used": 0,
+  "champion_genome_id": "",
+  "history": [],
+  "elapsed_s": 0.0
+ },
+ {
+  "method": "zero-shot",
+  "model_id": "gpt",
+  "seed": 43,
+  "baseline_score": 0.7534,
+  "validation_score": 0.7503,
+  "holdout_score": 0.7502,
+  "budget_used": 0,
+  "champion_genome_id": "",
+  "history": [],
+  "elapsed_s": 0.0
+ },
+ {
+  "method": "zero-shot",
+  "model_id": "gpt",
+  "seed": 44,
+  "baseline_score": 0.7534,
+  "validation_score": 0.7503,
+  "holdout_score": 0.7502,
+  "budget_used": 0,
+  "champion_genome_id": "",
+  "history": [],
+  "elapsed_s": 0.0
+ },
+ {
+  "method": "zero-shot",
+  "model_id": "gpt",
+  "seed": 45,
+  "baseline_score": 0.7534,
+  "validation_score": 0.7503,
+  "holdout_score": 0.7502,
+  "budget_used": 0,
+  "champion_genome_id": "",
+  "history": [],
+  "elapsed_s": 0.0
+ },
+ {
+  "method": "zero-shot",
+  "model_id": "gpt",
+  "seed": 46,
+  "baseline_score": 0.7534,
+  "validation_score": 0.7503,
+  "holdout_score": 0.7502,
+  "budget_used": 0,
+  "champion_genome_id": "",
+  "history": [],
+  "elapsed_s": 0.0
+ },
+ {
+  "method": "manual",
+  "model_id": "glm",
+  "seed": 42,
+  "baseline_score": 0.7596,
+  "validation_score": 0.7509,
+  "holdout_score": 0.7598,
+  "budget_used": 0,
+  "champion_genome_id": "",
+  "history": [],
+  "elapsed_s": 0.0
+ },
+ {
+  "method": "manual",
+  "model_id": "glm",
+  "seed": 43,
+  "baseline_score": 0.7596,
+  "validation_score": 0.7509,
+  "holdout_score": 0.7598,
+  "budget_used": 0,
+  "champion_genome_id": "",
+  "history": [],
+  "elapsed_s": 0.0
+ },
+ {
+  "method": "manual",
+  "model_id": "glm",
+  "seed": 44,
+  "baseline_score": 0.7596,
+  "validation_score": 0.7509,
+  "holdout_score": 0.7598,
+  "budget_used": 0,
+  "champion_genome_id": "",
+  "history": [],
+  "elapsed_s": 0.0
+ },
+ {
+  "method": "manual",
+  "model_id": "glm",
+  "seed": 45,
+  "baseline_score": 0.7596,
+  "validation_score": 0.7509,
+  "holdout_score": 0.7598,
+  "budget_used": 0,
+  "champion_genome_id": "",
+  "history": [],
+  "elapsed_s": 0.0
+ },
+ {
+  "method": "manual",
+  "model_id": "glm",
+  "seed": 46,
+  "baseline_score": 0.7596,
+  "validation_score": 0.7509,
+  "holdout_score": 0.7598,
+  "budget_used": 0,
+  "champion_genome_id": "",
+  "history": [],
+  "elapsed_s": 0.0
+ },
+ {
+  "method": "manual",
+  "model_id": "qwen",
+  "seed": 42,
+  "baseline_score": 0.7597,
+  "validation_score": 0.7511,
+  "holdout_score": 0.7593,
+  "budget_used": 0,
+  "champion_genome_id": "",
+  "history": [],
+  "elapsed_s": 0.0
+ },
+ {
+  "method": "manual",
+  "model_id": "qwen",
+  "seed": 43,
+  "baseline_score": 0.7597,
+  "validation_score": 0.7511,
+  "holdout_score": 0.7593,
+  "budget_used": 0,
+  "champion_genome_id": "",
+  "history": [],
+  "elapsed_s": 0.0
+ },
+ {
+  "method": "manual",
+  "model_id": "qwen",
+  "seed": 44,
+  "baseline_score": 0.7597,
+  "validation_score": 0.7511,
+  "holdout_score": 0.7593,
+  "budget_used": 0,
+  "champion_genome_id": "",
+  "history": [],
+  "elapsed_s": 0.0
+ },
+ {
+  "method": "manual",
+  "model_id": "qwen",
+  "seed": 45,
+  "baseline_score": 0.7597,
+  "validation_score": 0.7511,
+  "holdout_score": 0.7593,
+  "budget_used": 0,
+  "champion_genome_id": "",
+  "history": [],
+  "elapsed_s": 0.0
+ },
+ {
+  "method": "manual",
+  "model_id": "qwen",
+  "seed": 46,
+  "baseline_score": 0.7597,
+  "validation_score": 0.7511,
+  "holdout_score": 0.7593,
+  "budget_used": 0,
+  "champion_genome_id": "",
+  "history": [],
+  "elapsed_s": 0.0
+ },
+ {
+  "method": "manual",
+  "model_id": "gpt",
+  "seed": 42,
+  "baseline_score": 0.7595,
+  "validation_score": 0.7513,
+  "holdout_score": 0.7593,
+  "budget_used": 0,
+  "champion_genome_id": "",
+  "history": [],
+  "elapsed_s": 0.0
+ },
+ {
+  "method": "manual",
+  "model_id": "gpt",
+  "seed": 43,
+  "baseline_score": 0.7595,
+  "validation_score": 0.7513,
+  "holdout_score": 0.7593,
+  "budget_used": 0,
+  "champion_genome_id": "",
+  "history": [],
+  "elapsed_s": 0.0
+ },
+ {
+  "method": "manual",
+  "model_id": "gpt",
+  "seed": 44,
+  "baseline_score": 0.7595,
+  "validation_score": 0.7513,
+  "holdout_score": 0.7593,
+  "budget_used": 0,
+  "champion_genome_id": "",
+  "history": [],
+  "elapsed_s": 0.0
+ },
+ {
+  "method": "manual",
+  "model_id": "gpt",
+  "seed": 45,
+  "baseline_score": 0.7595,
+  "validation_score": 0.7513,
+  "holdout_score": 0.7593,
+  "budget_used": 0,
+  "champion_genome_id": "",
+  "history": [],
+  "elapsed_s": 0.0
+ },
+ {
+  "method": "manual",
+  "model_id": "gpt",
+  "seed": 46,
+  "baseline_score": 0.7595,
+  "validation_score": 0.7513,
+  "holdout_score": 0.7593,
+  "budget_used": 0,
+  "champion_genome_id": "",
+  "history": [],
+  "elapsed_s": 0.0
+ }
+]

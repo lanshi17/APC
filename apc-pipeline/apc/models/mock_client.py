@@ -43,15 +43,77 @@ def _rate(model_id: str, kind: str, prompt: str) -> bool:
 
 
 def _financial_json(document: str, prompt: str, model_id: str) -> str:
-    """财务分析应答：输出质量随 prompt 工程信号变化（示例/校验/格式守卫），
-    使 genome 变异与迁移在 Mock 模式下产生可复现的分数差异。"""
+    """财务分析应答：输出质量随 prompt 工程信号变化，使 genome 变异与迁移
+    在 Mock 模式下产生可复现的分数差异（受控合成评测环境 v2）。
+
+    基因效应（全部确定性、可复现；模型相关增益模拟真实的能力差异）：
+    - examples.count: 0→1→2 逐步降低数值抽取错误率（模型相关增益）；
+      3 无进一步增益（收益递减），count 经渲染器以 skeleton 个数编码。
+    - reasoning.strategy: structured_checklist > hidden_analysis >
+      decompose_then_answer > brief_plan > none（逐步降低抽取/推理错误）。
+    - verification.type: source_grounding_check 提升忠实度（数值扎根），
+      constraint_check 补足风险条数语义，format_check 降低格式噪声。
+    - output.strictness: 经 schema 是否完整呈现传导（high 完整 schema，
+      medium 字段列表，low 无 schema），影响缺失字段率。
+    """
     guarded = {
         "json_only": "只输出 JSON" in prompt,
         "no_extra": "不要添加 schema 之外" in prompt or "额外字段" in prompt,
         "schema": '"metrics"' in prompt and '"summary"' in prompt,
-        "examples": "示例" in prompt and "输出：" in prompt,
-        "verification": "输出前" in prompt,
+        "n_examples": min(3, prompt.count("<按输入填写>")),
+        # 注：“在输出前”（带“在”）只出现在 verification 段；output 高严格度的
+        # “输出前请自查”不含“在”，故二者信号解耦（v2 修复 v1 的信号污染）。
+        "verification": "在输出前" in prompt,
+        "verif_grounding": "找到依据" in prompt,
+        "verif_constraint": "逐条核对" in prompt,
+        "verif_format": "格式是否完全符合" in prompt,
+        "reason_checklist": "检查清单" in prompt,
+        "reason_hidden": "不要输出分析过程" in prompt,
+        "reason_decompose": "分解为子问题" in prompt,
+        "reason_brief": "一两句话规划" in prompt,
     }
+    # 模型相关的示例增益与饱和点（ground-truth 异质性 v2.2）：
+    # 强模型早饱和（gpt:1，多余示例引入噪声）、弱模型需更多演示（glm:3）。
+    # 最优 count 因模型而异（gpt=1/qwen=2/glm=3），是迁移衰减的主要来源。
+    _EX_GAIN = {"glm": 0.06, "qwen": 0.09, "gpt": 0.035}
+    _EX_SAT = {"glm": 3, "qwen": 2, "gpt": 1}
+    ex_gain = _EX_GAIN.get(model_id, 0.05)
+    ex_sat = _EX_SAT.get(model_id, 2)
+    ex_level = guarded["n_examples"]  # 0..3
+    ex_bonus = min(ex_sat, ex_level) * ex_gain - max(0, ex_level - ex_sat) * 0.06
+    # 推理策略增益：模型相关的策略亲和（ground-truth 异质性 v2.1，
+    # 模拟不同模型对推理脚手架的偏好差异；直接迁移时产生可测量的衰减，
+    # 是迁移协议（FR-7/KR-6）评测的前提）。与 verification 的上位交互保留：
+    # 无校验时增益减半。未知模型回退默认排序。
+    _REASON_AFFINITY: dict[str, list[tuple[str, float, float]]] = {
+        # (策略键, skill bonus, comment dropout)
+        "glm": [("reason_decompose", 0.090, 0.00), ("reason_checklist", 0.060, 0.02),
+                ("reason_hidden", 0.050, 0.04), ("reason_brief", 0.025, 0.12)],
+        "qwen": [("reason_checklist", 0.090, 0.00), ("reason_hidden", 0.060, 0.02),
+                 ("reason_decompose", 0.050, 0.04), ("reason_brief", 0.025, 0.12)],
+        "gpt": [("reason_hidden", 0.090, 0.00), ("reason_checklist", 0.060, 0.02),
+                ("reason_decompose", 0.050, 0.04), ("reason_brief", 0.025, 0.12)],
+    }
+    _DEFAULT_AFFINITY = [("reason_checklist", 0.090, 0.00), ("reason_hidden", 0.060, 0.02),
+                         ("reason_decompose", 0.050, 0.04), ("reason_brief", 0.025, 0.12)]
+    reason_bonus, drop_rate, drop_kind = 0.0, 0.25, "reason_drop_none"
+    for key, bonus, drop in _REASON_AFFINITY.get(model_id, _DEFAULT_AFFINITY):
+        if guarded.get(key):
+            reason_bonus, drop_rate = bonus, drop
+            drop_kind = f"reason_drop_{key}"
+            break
+    else:
+        if guarded["reason_brief"]:
+            reason_bonus, drop_rate, drop_kind = 0.025, 0.12, "reason_drop_brief"
+    if not guarded["verification"]:
+        reason_bonus *= 0.5
+    if guarded["verif_grounding"]:
+        ground_bonus = 0.050
+    elif guarded["verif_constraint"]:
+        ground_bonus = 0.025
+    else:
+        ground_bonus = 0.0
+    skill = ex_bonus + reason_bonus + ground_bonus  # 技能分：越高错误率越低
     metrics = []
     for m in _NUM_UNIT.finditer(document):
         name, value, unit = m.group(1), m.group(2), m.group(3)
@@ -64,12 +126,30 @@ def _financial_json(document: str, prompt: str, model_id: str) -> str:
             change = f"{'-' if decline else '+'}{ch.group(2)}"
             comment = f"{ch.group(1)}{direction}"
         metrics.append({"name": name, "value": f"{value}{unit}", "change": change, "comment": comment})
-    if not guarded["examples"] and _rate(model_id, "wrong_answer", document) and metrics:
+    # 推理策略第二通道：drop_rate/drop_kind 已由上面的模型亲和表给出，
+    # 此处只应用逐指标确定性丢失（comment 缺失 → judge comment_hit=0）。
+    if drop_rate > 0 and metrics:
+        for idx, m in enumerate(metrics):
+            hh = int(hashlib.sha256(f"{model_id}:{drop_kind}:{document}:{idx}".encode()).hexdigest(), 16)
+            if (hh % 1000) / 1000 < drop_rate:
+                m["comment"] = ""
+    # 数值抽取错误：基础 wrong_answer 率按技能分线性下降（保底 1% 噪声）。
+    # 系数 1.5 使推理/示例/校验的满配与零配之间拉开约 0.25 的错误率差。
+    base_rate = MODEL_DEVIATIONS.get(model_id, DEFAULT_DEVIATIONS).get("wrong_answer", 0.10)
+    err_rate = max(0.01, base_rate + 0.22 - 1.5 * skill)
+    h = int(hashlib.sha256(f"{model_id}:skill_err:{document}".encode()).hexdigest(), 16)
+    if (h % 1000) / 1000 < err_rate and metrics:
         metrics[0]["value"] = "99"
-    confidence = 0.85 if guarded["examples"] else 0.6
+    elif not ex_level and _rate(model_id, "wrong_answer", document) and metrics:
+        metrics[0]["value"] = "99"
+    # 置信度校准：示例越充分校准越好（2 个示例 0.78 最接近金标准均值 0.75，
+    # 形成 0→1→2 的 uphill；与 err 通道同向叠加）。
+    confidence = 0.78 if ex_level >= 2 else (0.66 if ex_level == 1 else 0.60)
     risks = ["业绩波动风险", "现金流压力风险", "应收账款回收风险"]
     if not guarded["verification"]:
         risks = risks[:2]  # 缺少输出前校验 → 约束「至少 3 条」不满足
+    elif guarded["verif_format"] and not guarded["verif_constraint"] and not guarded["verif_grounding"]:
+        risks = risks[:2] + ["格式自检通过"]  # format_check 只保格式不补语义：数量够但语义弱
     data = {
         "summary": "营收" + (metrics[0]["value"] if metrics else "数据不足") + "，需关注风险与现金流变化",
         "metrics": metrics,
