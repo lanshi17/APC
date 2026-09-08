@@ -70,14 +70,17 @@ def main() -> int:
                               artifacts_dir=Path("/tmp/judgecheck"))
     trial = runner.evaluate(env.spec, cp, env.hold, save_outputs=True)
     rows = [json.loads(l) for l in
-            Path(trial.meta["outputs_file"]).read_text(encoding="utf-8").splitlines() if l]
+            Path(trial.metadata["outputs_file"]).read_text(encoding="utf-8").splitlines() if l]
 
     llm_judge = LLMJudge(create_client(args.model))
-    pairs_acc, pairs_cf, disagreements = [], [], []
+    pairs_acc, pairs_cf, disagreements, parse_fail = [], [], [], 0
     for i, row in enumerate(rows):
         sample = env.hold.samples[i]
         doc = runner._document(sample)
         lj = llm_judge.judge(doc, sample.get("expected", {}), row["output"], env.spec)
+        if not lj.get("parse_ok", True):
+            parse_fail += 1
+            continue
         ra, la = float(row["judge"].get("accuracy", 0.0)), float(lj.get("accuracy", 0.0))
         rc, lc = float(row["judge"].get("constraint_following", 0.0)), float(lj.get("constraint_following", 0.0))
         pairs_acc += [ra, la]
@@ -86,13 +89,14 @@ def main() -> int:
             disagreements.append({"sample_id": row["sample_id"], "rule": ra, "llm": la})
     a_r, a_l = pairs_acc[0::2], pairs_acc[1::2]
     c_r, c_l = pairs_cf[0::2], pairs_cf[1::2]
+    dim = lambda r_, l_: {"pearson": corr(r_, l_), "spearman": spearman(r_, l_),
+                          "mean_rule": round(statistics.fmean(r_), 4),
+                          "mean_llm": round(statistics.fmean(l_), 4)} if r_ else None
     out = {
         "task": args.task, "model": args.model, "genome": args.genome, "n": len(rows),
         "independence": "self-judge(非独立,弱效度对照)",
-        "accuracy": {"pearson": corr(a_r, a_l), "spearman": spearman(a_r, a_l),
-                     "mean_rule": round(statistics.fmean(a_r), 4), "mean_llm": round(statistics.fmean(a_l), 4)},
-        "constraint_following": {"pearson": corr(c_r, c_l), "spearman": spearman(c_r, c_l),
-                                 "mean_rule": round(statistics.fmean(c_r), 4), "mean_llm": round(statistics.fmean(c_l), 4)},
+        "judge_parse_failures": parse_fail,
+        "accuracy": dim(a_r, a_l), "constraint_following": dim(c_r, c_l),
         "disagreements": disagreements,
     }
     dest = REPO / "experiments" / "apcbench" / f"real_judge_agreement_{args.task}.json"
