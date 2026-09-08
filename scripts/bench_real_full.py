@@ -129,14 +129,14 @@ def main() -> int:
     ap.add_argument("--val-n", type=int, default=8)
     ap.add_argument("--hold-n", type=int, default=20)
     ap.add_argument("--methods", default="zero-shot,manual,apc-full",
-                    help="逗号分隔子集;已有结果文件中的同名 method 行会被替换/保留")
+                    help="逗号分隔:zero-shot,manual,apc-full(rule-root),apc-safe(base-root);同文件按 method 合并")
     args = ap.parse_args()
     want = {m.strip() for m in args.methods.split(",")}
     env = RealEnv(args.task, args.model, args.dev_r, args.val_n, args.hold_n)
     rows, t_start = [], time.time()
     out = REPO / "experiments" / "apcbench" / f"real_{args.task}.json"
     out.parent.mkdir(parents=True, exist_ok=True)
-    if out.exists() and want != {"zero-shot", "manual", "apc-full"}:
+    if out.exists():  # 同 task 文件按 method 合并:未跑的方法行保留,跑过的替换
         rows = [r for r in json.loads(out.read_text(encoding="utf-8"))["rows"] if r["method"] not in want]
 
     def dump(partial: bool):
@@ -156,18 +156,21 @@ def main() -> int:
         dump(True)
         print(f"{method:10s} hold={r['holdout_score']:.4f} ({r['elapsed_s']}s)", flush=True)
 
-    if "apc-full" in want:
+    for arm, mk_root in (("apc-full", lambda: CompilerRules.apply(deepcopy(env.base), env.profile)),
+                         ("apc-safe", lambda: deepcopy(env.base))):
+        if arm not in want:
+            continue
         t0 = time.time()
-        root = CompilerRules.apply(deepcopy(env.base), env.profile)
-        rep = env.optimize(root, args.budget)
+        rep = env.optimize(mk_root(), args.budget)
         champ = PromptGenome.model_validate(rep.champion_genome)
         CHAMPS_DIR.mkdir(parents=True, exist_ok=True)
-        (CHAMPS_DIR / f"real_{args.task}_champ.json").write_text(champ.model_dump_json(indent=1), encoding="utf-8")
-        r = env.row("apc-full", rep.baseline_score, env.score_of(champ, env.val),
+        suffix = "_champ" if arm == "apc-full" else "_champ_safe"
+        (CHAMPS_DIR / f"real_{args.task}{suffix}.json").write_text(champ.model_dump_json(indent=1), encoding="utf-8")
+        r = env.row(arm, rep.baseline_score, env.score_of(champ, env.val),
                     env.score_of(champ, env.hold), rep.budget_used, t0,
                     champion_genome_id=champ.genome_id, mutation_note=champ.mutation_note)
-        rows = [x for x in rows if x["method"] != "apc-full"] + [r]
-        print(f"{'apc-full':10s} hold={r['holdout_score']:.4f} budget={r['budget_used']} ({r['elapsed_s']}s)", flush=True)
+        rows = [x for x in rows if x["method"] != arm] + [r]
+        print(f"{arm:10s} hold={r['holdout_score']:.4f} budget={r['budget_used']} ({r['elapsed_s']}s)", flush=True)
     dump(False)
     print(f"-> {out}")
     return 0
