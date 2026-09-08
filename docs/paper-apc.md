@@ -8,11 +8,11 @@
 上：搜索显著超越 zero-shot（+0.009 ~ +0.029）；进化在组合任务上超越随机搜索
 （+0.003），在单位点任务上被随机搜索超越（−0.013，SHA 筛选噪声所致）；
 PGAM 与均匀变异无差异（pooled +0.0004，零结果）；迁移以 30% 预算达到原生质量
-（KR-6 12/12）。真实 LLM 第一阶段验证（§3.4，单模型 qwen3.8-flash）：强 reasoning
-模型上 accuracy 饱和（优化余量 ≤0.005）；**profile 编译规则在真实模型上严重失准**
-（root 落后 zero-shot 0.2–0.53），预算内搜索仅把两个饱和任务完全救回（+0.001），
-余量最大的 financial 只部分修复（−0.101 vs zero-shot）；跨任务 genome 零适配直用
-即达 zero-shot 水平（较冷启动重搜 +0.20~+0.79）。多模型与 PGAM 验证待更多凭证。
+（KR-6 12/12）。真实 LLM 第一阶段验证（§3.4，四臂 × 3 任务，单模型 qwen3.8-flash）：
+结构 genome 搜索的 accuracy 增益 ≈ 0——**base-root 臂三任务全部守住 zero-shot
+−0.004 下限；profile 规则先验是净负债**（root 落后 0.2–0.53，rule-root 臂在余量
+最大的 financial 预算内只修复一半,−0.101）；跨任务 genome 零适配直用即达
+zero-shot 水平（较冷启动重搜 +0.20~+0.79）。多模型与 PGAM 验证待更多凭证。
 
 ## 1. 问题与主张
 
@@ -150,21 +150,25 @@ bandit 下限保证不更差；确认/证伪需真实多峰任务。
 设定：模型白名单 key，reasoning 模型（~29 s/样本），temp=0；判分与仿真基准**同一套
 rule-judge**；三任务完全同口径 dev_r/val/holdout=5/8/20；主对比预算 8、迁移实验预算 6。
 
-| 任务 | zero-shot | manual | apc-full |
-|---|---|---|---|
-| contract | 0.9770 | 0.9773 | **0.9782** |
-| math | 0.8436 | 0.8439 | **0.8442** |
-| financial | **0.6712** | 0.6662 | 0.5704 |
+| 任务 | zero-shot | manual | apc-full(rule-root) | apc-safe(base-root) |
+|---|---|---|---|---|
+| contract | 0.9770 | 0.9773 | **0.9782** | 0.9773 |
+| math | 0.8436 | 0.8439 | **0.8442** | 0.8436 |
+| financial | **0.6712** | 0.6662 | 0.5704 | 0.6672 |
 
 - **F1 天花板效应**：强 reasoning 模型上,规则可验任务的 accuracy 余量 ≤0.005；
   prompt 优化的真实价值在格式/约束维度与弱初值救援（F2），而非 accuracy。
-- **F2 规则先验是真实模型上的主要风险；搜索是限损而非恢复**：profile 编译出的 root
-  dev 分 contract 0.1778 / math 0.6335 / financial 0.1286，全部比 zero-shot 低
-  0.2–0.53。b8 搜索把三者都拉回 examples-on 盆地，但**修复完全度随任务余量递增
-  而递减**：contract 0.9782>z0、math 0.8442≈z0、financial 0.5704 仍低于 z0
-  −0.101；预算降到 6 时连修复位点都采不到（contract cold 0.1850）。结论：
-  **真实模型上规则先验是净负债——它制造了需要搜索来救援的坑**；仿真器中
-  apc-full≡zero-shot 的"安全"在真实模型上不成立，搜索的价值是限损不是回本。
+- **F2 规则先验是真实模型上的主要风险；base-root 搜索是"无损失下限"，rule-root
+  搜索是"高成本救援"**：profile 编译 root 的 dev 分 contract 0.1778 / math 0.6335 /
+  financial 0.1286，全部比 zero-shot 低 0.2–0.53。b8 搜索把 rule-root 臂拉回
+  examples-on 盆地，但**修复完全度随任务余量递增而递减**：contract 0.9782>z0、
+  math 0.8442≈z0、financial 0.5704 仍 −0.101；预算降到 6 连修复位点都采不到
+  （cold 0.1850）。对照臂 **apc-safe（base root + 同预算 b8）三任务全部落在
+  zero-shot 的 −0.004 内**（0.9773/0.8436/0.6672）：搜索在花掉同样预算后既没赚
+  也没亏，financial 冠军是 base+`goal.explicitness: high→low`（val 选择噪声,
+  holdout −0.004）。结论：**真实模型上 profile 规则先验是净负债；结构 genome
+  搜索的 accuracy 增益 ≈ 0，其价值仅是救援坏先验（且不保证修满）**。仿真器中
+  apc-full≡zero-shot 的"安全"在真实模型上不成立——不安全的来源正是编译规则。
 - **F3 跨任务 genome 迁移（两个方向,b6 同预算三臂）**：
 
 | 迁移 | cold(搜) | transfer-0(零适配直用) | transfer-ws(续搜) |
@@ -177,7 +181,7 @@ rule-judge**；三任务完全同口径 dev_r/val/holdout=5/8/20；主对比预�
   val_n=8 选择噪声选中过拟合冠军）；冷启动因要先付 F2 的修复成本而显著落后。
   机理：genome 全结构、few-shot 内容由编译期从 TaskSpec 注入 ⇒ 跨任务零损耗;
   最优盆地唯一（两任务冠军同为 examples-on），与仿真器"单峰"发现互相印证。
-  **工程含义：部署顺序 transfer-0 → base(zero-shot) → rule-root+预算≥修复成本；
+  **工程含义：部署顺序 transfer-0 → base/apc-safe → rule-root+预算≥修复成本；
   绝不默认冷启动重搜**。
 - **F4 判分器分歧抽检（financial 冠军 20 例，self-LLM-judge，`real_judge_check.py`）**：
   accuracy 维度 rule 均值 0.206 vs LLM 0.830（Pearson 0.48 / Spearman 0.56，20/20 分歧
@@ -212,9 +216,9 @@ rule-judge**；三任务完全同口径 dev_r/val/holdout=5/8/20；主对比预�
 - [x] Java 服务 13 测试全绿（CompilerRules/PromptRenderer/MockClient；`mvn test`）
 - [x] CI 顺序无关（每对比独立 crc32 种子；分析代码增删不改变已有 CI）
 - [x] 数据集生成器 + 种子随仓（`scripts/gen_*_dataset.py`）
-- [x] 真实 LLM 第一阶段：`bench_real_full.py`（3 任务 × 3 方法,同口径 dev5/val8/hold20/b8）
-  + `bench_real_transfer.py`（双向迁移对）+ `analyze_real.py`（表格聚合）；单模型白名单 key,
-  结果入库 `experiments/apcbench/real_*.json`,冠军 genome 入库 `artifacts/optimizations/real_*_champ.json`
+- [x] 真实 LLM 第一阶段：`bench_real_full.py`（3 任务 × 4 臂:z0/manual/apc-full/apc-safe,
+  同口径 dev5/val8/hold20/b8）+ `bench_real_transfer.py`（双向迁移对）+ `analyze_real.py`
+  （表格聚合）；结果入库 `experiments/apcbench/real_*.json`,冠军入库 `real_*_champ*.json`
 - [x] LLM-Judge 一致性抽检：`real_judge_check.py`（self-judge 弱效度标注）⇒ §3.4 F4
   判分器分歧量化；结果入库 `experiments/apcbench/real_judge_agreement_financial.json`
 - [ ] 第三方复现报告（待外部协作者）
