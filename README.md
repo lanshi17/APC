@@ -82,7 +82,11 @@ APC/
 cp .env.example .env   # 填入 OPENAI_API_KEY / DASHSCOPE_API_KEY / ZHIPUAI_API_KEY
 ```
 
-`.env` 已被 gitignore;同名字段优先级:环境变量 > `configs/models/*.yaml` > 内置默认。支持以 `APC_<MODEL_ID>_<FIELD>` 覆盖已有模型或纯环境变量定义新模型,详见 [.env.example](.env.example)。
+`.env` 已被 gitignore。仓库 `.env` 是凭证唯一事实来源(import `apc.models.factory` 时以 `override=True`
+加载,遮蔽 shell 残留旧值);字段优先级:`.env`/`APC_<MODEL_ID>_<FIELD>` 环境变量 > `configs/models/*.yaml` > 内置默认。
+**任意自定义 OpenAI 兼容网关,无需注册供应商**:`APC_<新ID>_MODEL` + `APC_<新ID>_BASE_URL` +
+`APC_<新ID>_API_KEY`(或 `API_KEY_ENV` 指向存 key 变量)三行即成新模型;
+老配置可用 `api_key_env` 字段声明 key 变量名。详见 [.env.example](.env.example)。
 
 ### 2. 启动业务服务(Java)
 
@@ -120,6 +124,20 @@ apc migrate run --task financial_report_analysis_v1 --source-model glm --target-
 ```
 
 > 注:`apc probe/profile/optimize/migrate` 默认走 Mock,加 `--no-mock` 走真实 API(需对应凭证)。
+
+### 3b. 真实 LLM 基准(需 key)
+
+```bash
+# 主对比:zero-shot / manual / apc-full 同判分口径(与仿真基准同一套 rule-judge)
+.venv/bin/python scripts/bench_real_full.py --task contract --model qwen
+# 跨任务 genome 迁移三臂:cold / transfer-0(零适配) / transfer-ws(续搜)
+.venv/bin/python scripts/bench_real_transfer.py --source contract --target math --model qwen
+# 汇总成论文表格
+.venv/bin/python scripts/analyze_real.py
+```
+
+结果入库 `experiments/apcbench/real_*.json`,冠军 genome 入库 `artifacts/optimizations/real_*_champ.json`。
+真实模型发现(天花板效应、搜索兜底、迁移零损耗)见 [docs/paper-apc.md](docs/paper-apc.md) §3.4。
 
 ### 4. LangGraph 可视化
 
