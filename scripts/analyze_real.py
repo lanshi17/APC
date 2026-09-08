@@ -12,7 +12,7 @@ import sys
 from pathlib import Path
 
 EXP = Path(__file__).resolve().parents[1] / "experiments" / "apcbench"
-ORDER = ["zero-shot", "manual", "apc-full"]
+ORDER = ["zero-shot", "manual", "apc-full", "apc-safe"]
 
 
 def load(p: Path):
@@ -42,6 +42,8 @@ def main() -> int:
         note = "⚠partial" if partial else ""
         if m == "apc-full":
             note = (note + " " + f"root={r['baseline_score']:.4f}, b={r['budget_used']}").strip()
+        elif m == "apc-safe":
+            note = (note + " " + f"b={r['budget_used']}").strip()
         print(f"| {t} | {m} | {hold:.4f} | {delta} | {note} |")
     print()
 
