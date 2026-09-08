@@ -55,6 +55,15 @@ holdout 只跑冠军一次（EvoPrompt 铁律）。
 `CapabilityDelta（15 维差）→ MigrationMutator 调整 seed → 目标小预算重搜 →
 holdout 对比决策（adopt 当且仅当 ≥90% 源分数，KR-6）`。
 
+### 2.5 设计原则：Compile-as-Hypothesis（编译即假设）
+
+真实模型实验（§3.4 F2）迫使本方法明确一条原则：**profile 规则编译的输出是待验证
+假设，不是默认可部署产物**。管线因此恒带双臂——rule-root（apc-full）与 base-root
+（apc-safe）在同等预算下并行评测，部署取优者。这把 DSPy 式"按模型重搜"的黑箱
+隐含假设显式化为可测量的先验质量：先验的价值 = Δ(rule-root, base-root)，
+可为负（本文实测：3 任务中 2 个 ≤ +0.001）。该原则同样约束迁移：adopt 判据（KR-6）
+即"假设须过 holdout 检验才携带"。
+
 ## 3. 实验（APCBench，`experiments/apcbench/`）
 
 > - 任务 A「财务报告分析」（dev 40 / validation 30 / holdout 30 / perturbation 30）；
