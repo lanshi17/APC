@@ -5,7 +5,7 @@ import httpx
 from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
 from apc.models.base import BaseModelClient, CallResult
 
-_PROVIDER_ENV_KEYS = {"openai": "OPENAI_API_KEY", "dashscope": "DASHSCOPE_API_KEY", "zhipu": "ZHIPUAI_API_KEY"}
+# 凭证解析不设供应商特例:模型配置(api_key / api_key_env)或全局 APC_API_KEY,三选一。
 
 
 class OpenAIClient(BaseModelClient):
@@ -68,10 +68,19 @@ class OpenAIClient(BaseModelClient):
         )
 
 
+def resolve_api_key(model_config: dict) -> str:
+    """凭证优先级: 直填 api_key > api_key_env 指向的环境变量。
+    供应商名只是标签;换网关只需改 BASE_URL,换 key 变量改 api_key_env。"""
+    direct = model_config.get("api_key") or ""
+    if direct:
+        return direct
+    env_name = model_config.get("api_key_env") or ""
+    return os.getenv(env_name, "") if env_name else ""
+
+
 def build_openai_client(model_config: dict, api_key: str | None = None) -> OpenAIClient:
-    """从 configs/models/*.yaml 的 dict 构建客户端；凭证只从环境变量读取。"""
-    env_name = model_config.get("api_key_env") or _PROVIDER_ENV_KEYS.get(model_config.get("provider", ""), "OPENAI_API_KEY")
-    key = api_key if api_key is not None else os.getenv(env_name, "")
+    """从模型配置 dict 构建客户端;凭证解析见 resolve_api_key。"""
+    key = api_key or resolve_api_key(model_config)
     return OpenAIClient(
         model_id=model_config["model_id"], model=model_config["model"], base_url=model_config["api_base"],
         api_key=key, max_tokens=int(model_config.get("max_tokens", 2000)),

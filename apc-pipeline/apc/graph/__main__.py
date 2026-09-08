@@ -9,7 +9,7 @@ def main() -> None:
 
     from dotenv import load_dotenv
 
-    load_dotenv(Path(__file__).resolve().parents[3] / ".env")
+    load_dotenv(Path(__file__).resolve().parents[3] / ".env", override=True)
     parser = argparse.ArgumentParser(description="APC LangGraph 管线")
 
     if args.visualize:

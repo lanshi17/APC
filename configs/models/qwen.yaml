@@ -5,3 +5,5 @@ api_base: https://dashscope.aliyuncs.com/compatible-mode/v1
 model: qwen-max
 temperature: 0.0
 max_tokens: 2000
+
+api_key_env: DASHSCOPE_API_KEY
