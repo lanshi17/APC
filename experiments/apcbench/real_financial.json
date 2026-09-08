@@ -1,0 +1,51 @@
+{
+ "meta": {
+  "protocol": "real-llm",
+  "partial": false,
+  "total_s": 2589.7,
+  "dev_r": 3,
+  "val_n": 5,
+  "hold_n": 10,
+  "judge": "financial_rule_v1"
+ },
+ "rows": [
+  {
+   "method": "zero-shot",
+   "model_id": "qwen",
+   "model_version": "qwen3.8-flash",
+   "task": "financial",
+   "seed": 42,
+   "baseline_score": 0.678,
+   "validation_score": 0.6602,
+   "holdout_score": 0.6661,
+   "budget_used": 0,
+   "elapsed_s": 543.6
+  },
+  {
+   "method": "manual",
+   "model_id": "qwen",
+   "model_version": "qwen3.8-flash",
+   "task": "financial",
+   "seed": 42,
+   "baseline_score": 0.6641,
+   "validation_score": 0.6725,
+   "holdout_score": 0.6626,
+   "budget_used": 0,
+   "elapsed_s": 542.1
+  },
+  {
+   "method": "apc-full",
+   "model_id": "qwen",
+   "model_version": "qwen3.8-flash",
+   "task": "financial",
+   "seed": 42,
+   "baseline_score": 0.1416,
+   "validation_score": 0.1336,
+   "holdout_score": 0.1233,
+   "budget_used": 4,
+   "elapsed_s": 1504.0,
+   "champion_genome_id": "genome_62f985109b1e",
+   "mutation_note": null
+  }
+ ]
+}
