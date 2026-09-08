@@ -1,0 +1,50 @@
+{
+ "meta": {
+  "protocol": "real-llm",
+  "total_s": 1114.2,
+  "dev_r": 5,
+  "val_n": 8,
+  "hold_n": 20,
+  "judge": "contract_rule_v1"
+ },
+ "rows": [
+  {
+   "method": "zero-shot",
+   "model_id": "qwen",
+   "model_version": "qwen3.8-flash",
+   "task": "contract",
+   "seed": 42,
+   "baseline_score": 0.975,
+   "validation_score": 0.9818,
+   "holdout_score": 0.977,
+   "budget_used": 0,
+   "elapsed_s": 170.7
+  },
+  {
+   "method": "manual",
+   "model_id": "qwen",
+   "model_version": "qwen3.8-flash",
+   "task": "contract",
+   "seed": 42,
+   "baseline_score": 0.9765,
+   "validation_score": 0.9818,
+   "holdout_score": 0.9773,
+   "budget_used": 0,
+   "elapsed_s": 169.3
+  },
+  {
+   "method": "apc-full",
+   "model_id": "qwen",
+   "model_version": "qwen3.8-flash",
+   "task": "contract",
+   "seed": 42,
+   "baseline_score": 0.1778,
+   "validation_score": 0.9833,
+   "holdout_score": 0.9782,
+   "budget_used": 8,
+   "elapsed_s": 774.2,
+   "champion_genome_id": "genome_73a57db38597",
+   "mutation_note": "examples.enabled: False -> True"
+  }
+ ]
+}
