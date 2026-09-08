@@ -74,11 +74,26 @@ def last_boxed_any(s: str) -> str | None:
     return _scan_from(s, i) if i >= 0 else None
 
 
+def _balanced_whole(t: str) -> bool:
+    """t[0] 的括号若恰好在末尾闭合 ⇒ 整串是单一括号结构。"""
+    if t[:1] not in "([{":
+        return False
+    depth = 0
+    for i, ch in enumerate(t):
+        if ch in "([{":
+            depth += 1
+        elif ch in "})]":
+            depth -= 1
+            if depth == 0:
+                return i == len(t) - 1
+    return False
+
+
 def _split_top(body: str) -> list[str]:
     """按 depth-0 的 , 与行分隔 \\\\ 切分（嵌套括号内的逗号不切）。"""
     parts, cur, depth, i = [], [], 0, 0
     while i < len(body):
-        if body.startswith("\\\\", i):
+        if body.startswith("\\\\", i):  # 行分隔 \\
             if depth == 0:
                 parts.append("".join(cur))
                 cur = []
@@ -137,20 +152,22 @@ def norm_answer(s: object) -> str:
     store: list[str] = []
 
     def stash(parts: list[str], ordered: bool) -> str:
-        elems = sorted(norm_answer(x) for x in parts)  # multiset: 一切括号列表无序比对
+        flat: list[str] = []
+        for x in parts:  # 一级括号展开:行的列表 ≡ 拍平矩阵
+            sub = _split_top(x[1:-1]) if x[:1] in "([" and x[-1:] in ")]" else []
+            flat.extend(sub if len(sub) >= 2 else [x])
+        elems = sorted(norm_answer(y) for y in flat)  # multiset: 一切括号列表无序比对
         del ordered
         store.append("(" + ",".join(elems) + ")")
         return f"\x01{len(store) - 1}\x02"
 
-    t = re.sub(_MATRIX, lambda m: stash(_split_top(m.group(2)), False), t, flags=re.S)
+    t = re.sub(_MATRIX, lambda m: stash(_split_top(re.sub(r"\\\\|&", ",", m.group(2))), False), t, flags=re.S)
     if not _PLACE_RE.search(t):
-        m = re.fullmatch(r"\[([^\[\]]+)\]", t)
-        if m and len(ps := _split_top(m.group(1))) >= 2:
+        if t[:1] == "[" and t[-1:] == "]" and len(ps := _split_top(t[1:-1])) >= 2:
             t = stash(ps, False)
-        elif m := re.fullmatch(r"\((.+)\)", t):
-            if len(ps := _split_top(m.group(1))) >= 2:
-                t = stash(ps, False)
-        elif len(ps := _split_top(t)) >= 2 and t[:1] not in "([" and max(map(len, ps)) <= 40:
+        elif _balanced_whole(t) and (m := re.fullmatch(r"\((.+)\)", t)) and len(ps := _split_top(m.group(1))) >= 2:
+            t = stash(ps, False)
+        elif len(ps := _split_top(t)) >= 2 and not _balanced_whole(t) and max(map(len, ps)) <= 40:
             t = stash(ps, False)  # 裸逗号表 = 解集(无序)
     t = re.sub(r"\\([a-zA-Z]+)", r"\1", t)
     t = re.sub(r"\^?circ", "", t).replace("\\", "")
@@ -250,6 +267,7 @@ def main() -> int:
         g = arm_genome(arm)
         cp = compiler.compile(g, spec, profile, apply_rules=False)
         t0, acc, json_ok, err, fails = time.time(), 0, 0, 0, []
+        preds: list[dict] = []
         for i, p in enumerate(problems):
             try:
                 call = client.complete(cp.prompt_text.replace("{{input}}", p["problem"]), temperature=0.0)
@@ -265,6 +283,7 @@ def main() -> int:
             pred = extract_pred(call.text)
             ok = answers_match(pred, p["gold"]) if pred != "" else False
             acc += ok
+            preds.append({"i": i, "pred": pred[:120], "gold": str(p["gold"])[:120], "ok": ok})
             if not ok:
                 fails.append({"i": i, "pred": pred[:60], "gold": str(p["gold"])[:60]})
         row = {"dataset": args.dataset, "arm": arm, "n": len(problems),
@@ -272,7 +291,7 @@ def main() -> int:
                "answer_field_rate": round(json_ok / len(problems), 4),
                "call_errors": err,
                "budget_used": 0, "elapsed_s": round(time.time() - t0, 1),
-               "model_version": client.model_version, "fail_sample": fails[:12]}
+               "model_version": client.model_version, "fail_sample": fails[:12], "preds": preds}
         doc["rows"] = [r for r in doc["rows"] if not (r["dataset"] == args.dataset and r["arm"] == arm)] + [row]
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(json.dumps(doc, ensure_ascii=False, indent=1), encoding="utf-8")
