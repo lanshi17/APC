@@ -38,6 +38,7 @@ EXT_SPEC = REPO / "apc-pipeline" / "configs" / "tasks" / "external_math.yaml"
 CHAMPS = REPO / "artifacts" / "optimizations"
 OUT = REPO / "experiments" / "apcbench" / "real_external.json"  # 默认;--out 覆盖
 
+JUDGE_VERSION = "exact-match-normalized-v3.2"
 _NUMPAT = re.compile(r"[\d+\-*/.()eE]+")
 _MATRIX = (r"\\begin\{([pbvB]?matrix|cases|array)(?:\[[^\]]*\])?\}(?:\{[^{}]*\})?"
            r"(.*?)\\end\{\1\}")
@@ -183,7 +184,12 @@ def norm_answer(s: object) -> str:
             return f"{v:.6g}"
         except Exception:
             pass
-    return t.lower()
+    tl = t.lower()
+    ts = re.findall(r"[+-][^+-]+", tl if tl[:1] in "+-" else "+" + tl)
+    # 加法交换律:符号项 multiset 规范(全字符串被项链覆盖才生效,防误伤)
+    if len(ts) >= 2 and "".join(ts) == (tl if tl[:1] in "+-" else "+" + tl):
+        return "S|" + "".join(sorted(ts))
+    return tl
 
 
 def answers_match(pred: object, gold: object) -> bool:
@@ -259,7 +265,7 @@ def main() -> int:
     problems = load_problems(args.dataset, args.n)
 
     out = Path(args.out) if args.out else OUT
-    doc = {"protocol": "real-external", "judge": "exact-match-normalized-v2", "rows": []}
+    doc = {"protocol": "real-external", "judge": JUDGE_VERSION, "rows": []}
     if out.exists():
         doc = json.loads(out.read_text(encoding="utf-8"))
 
