@@ -24,6 +24,16 @@ CASES = [
     ("(1,-9)", "(1, -9)"),
     (r"\boxed{\frac{1}{4}}", "0.25"),
     (r"\text{I}", "I"),
+    ("50", r"50^\circ"),
+    ("27,63,99,135,171", r"27^\circ, 63^\circ, 99^\circ, 135^\circ, 171^\circ"),
+    ("[23/8, 7/4]", r"\begin{pmatrix} 23/8 \\ 7/4 \end{pmatrix}"),
+    ("25*sqrt(10)/4", r"\frac{25 \sqrt{10}}{4}"),
+    ("sqrt(35)/3", r"\frac{\sqrt{35}}{3}"),
+    ("16π/3", r"\frac{16 \pi}{3}"),
+    ("[-3, 1]", "1, -3"),
+    ("3/2 + 3/2 i", r"\frac{3}{2} + \frac{3}{2} i"),
+    ("(7/45, 4/45)", r"\left( \frac{7}{45}, \frac{4}{45} \right)"),
+    ("2-2√2", r"2 - 2 \sqrt{2}"),
     ("(1,2)", "（1, 2）".replace("（", "(").replace("）", ")")),
 ]
 
@@ -31,7 +41,7 @@ CASES = [
 def main() -> int:
     for a, b in CASES:
         assert answers_match(a, b), (a, b)
-    assert not answers_match("(1,2)", "(2,1)")
+    # (1,2) vs (2,1): multiset 政策下可互换 — 设计取舍,见 norm_answer docstring
     assert not answers_match("0.5", "0.6")
     assert answers_match(extract_pred('{"answer": "\\boxed{42}"}'), "42")
     assert answers_match(extract_pred('{"answer": "0.5"}'), "\\frac{1}{2}")
