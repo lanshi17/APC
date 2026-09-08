@@ -128,43 +128,47 @@ def main() -> int:
     ap.add_argument("--dev-r", type=int, default=5)
     ap.add_argument("--val-n", type=int, default=8)
     ap.add_argument("--hold-n", type=int, default=20)
+    ap.add_argument("--methods", default="zero-shot,manual,apc-full",
+                    help="逗号分隔子集;已有结果文件中的同名 method 行会被替换/保留")
     args = ap.parse_args()
-
+    want = {m.strip() for m in args.methods.split(",")}
     env = RealEnv(args.task, args.model, args.dev_r, args.val_n, args.hold_n)
     rows, t_start = [], time.time()
     out = REPO / "experiments" / "apcbench" / f"real_{args.task}.json"
     out.parent.mkdir(parents=True, exist_ok=True)
+    if out.exists() and want != {"zero-shot", "manual", "apc-full"}:
+        rows = [r for r in json.loads(out.read_text(encoding="utf-8"))["rows"] if r["method"] not in want]
 
-    def checkpoint():
-        out.write_text(json.dumps({"meta": {"protocol": "real-llm", "partial": True,
+    def dump(partial: bool):
+        out.write_text(json.dumps({"meta": {"protocol": "real-llm", "partial": partial,
                                             "total_s": round(time.time() - t_start, 1), "dev_r": args.dev_r,
                                             "val_n": args.val_n, "hold_n": args.hold_n, "judge": env.judge_id},
                                    "rows": rows}, ensure_ascii=False, indent=1), encoding="utf-8")
 
     for method in ("zero-shot", "manual"):
+        if method not in want:
+            continue
         t0 = time.time()
         g = env.base if method == "zero-shot" else manual_genome(env.base)
         r = env.row(method, env.score_of(g, env.dev_r), env.score_of(g, env.val),
                     env.score_of(g, env.hold), 0, t0)
         rows.append(r)
-        checkpoint()
+        dump(True)
         print(f"{method:10s} hold={r['holdout_score']:.4f} ({r['elapsed_s']}s)", flush=True)
 
-    t0 = time.time()
-    root = CompilerRules.apply(deepcopy(env.base), env.profile)
-    rep = env.optimize(root, args.budget)
-    champ = PromptGenome.model_validate(rep.champion_genome)
-    CHAMPS_DIR.mkdir(parents=True, exist_ok=True)
-    (CHAMPS_DIR / f"real_{args.task}_champ.json").write_text(champ.model_dump_json(indent=1), encoding="utf-8")
-    r = env.row("apc-full", rep.baseline_score, env.score_of(champ, env.val),
-                env.score_of(champ, env.hold), rep.budget_used, t0,
-                champion_genome_id=champ.genome_id, mutation_note=champ.mutation_note)
-    rows.append(r)
-    print(f"{'apc-full':10s} hold={r['holdout_score']:.4f} budget={r['budget_used']} ({r['elapsed_s']}s)", flush=True)
-    out.write_text(json.dumps({"meta": {"protocol": "real-llm", "partial": False,
-                                        "total_s": round(time.time() - t_start, 1), "dev_r": args.dev_r,
-                                        "val_n": args.val_n, "hold_n": args.hold_n, "judge": env.judge_id},
-                               "rows": rows}, ensure_ascii=False, indent=1), encoding="utf-8")
+    if "apc-full" in want:
+        t0 = time.time()
+        root = CompilerRules.apply(deepcopy(env.base), env.profile)
+        rep = env.optimize(root, args.budget)
+        champ = PromptGenome.model_validate(rep.champion_genome)
+        CHAMPS_DIR.mkdir(parents=True, exist_ok=True)
+        (CHAMPS_DIR / f"real_{args.task}_champ.json").write_text(champ.model_dump_json(indent=1), encoding="utf-8")
+        r = env.row("apc-full", rep.baseline_score, env.score_of(champ, env.val),
+                    env.score_of(champ, env.hold), rep.budget_used, t0,
+                    champion_genome_id=champ.genome_id, mutation_note=champ.mutation_note)
+        rows = [x for x in rows if x["method"] != "apc-full"] + [r]
+        print(f"{'apc-full':10s} hold={r['holdout_score']:.4f} budget={r['budget_used']} ({r['elapsed_s']}s)", flush=True)
+    dump(False)
     print(f"-> {out}")
     return 0
 
