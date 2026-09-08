@@ -9,8 +9,10 @@
 （+0.003），在单位点任务上被随机搜索超越（−0.013，SHA 筛选噪声所致）；
 PGAM 与均匀变异无差异（pooled +0.0004，零结果）；迁移以 30% 预算达到原生质量
 （KR-6 12/12）。真实 LLM 第一阶段验证（§3.4，单模型 qwen3.8-flash）：强 reasoning
-模型上 accuracy 饱和；**profile 编译规则失准时进化搜索兜底（但修复在预算刀刃上）**；
-跨任务 genome 零适配直用即达本任务水平（cold 差 −0.20~−0.79）。多模型与 PGAM 验证待更多凭证。
+模型上 accuracy 饱和（优化余量 ≤0.005）；**profile 编译规则在真实模型上严重失准**
+（root 落后 zero-shot 0.2–0.53），预算内搜索仅把两个饱和任务完全救回（+0.001），
+余量最大的 financial 只部分修复（−0.101 vs zero-shot）；跨任务 genome 零适配直用
+即达 zero-shot 水平（较冷启动重搜 +0.20~+0.79）。多模型与 PGAM 验证待更多凭证。
 
 ## 1. 问题与主张
 
@@ -145,23 +147,24 @@ bandit 下限保证不更差；确认/证伪需真实多峰任务。
 
 ### 3.4 真实 LLM 验证（第一阶段：qwen3.8-flash × 3 任务，`bench_real_full/transfer.py`）
 
-设定：模型白名单 key，reasoning 模型，temp=0；判分与仿真基准**同一套 rule-judge**；
-子集 dev_r/val/holdout=5/8/20（financial 3/5/10，29 s/样本延迟所限）；搜索预算 6–8。
+设定：模型白名单 key，reasoning 模型（~29 s/样本），temp=0；判分与仿真基准**同一套
+rule-judge**；三任务完全同口径 dev_r/val/holdout=5/8/20；主对比预算 8、迁移实验预算 6。
 
 | 任务 | zero-shot | manual | apc-full |
 |---|---|---|---|
 | contract | 0.9770 | 0.9773 | **0.9782** |
 | math | 0.8436 | 0.8439 | **0.8442** |
-| financial | 0.6613 | 待补 | 待补 |
+| financial | **0.6712** | 0.6662 | 0.5704 |
 
 - **F1 天花板效应**：强 reasoning 模型上,规则可验任务的 accuracy 余量 ≤0.005；
   prompt 优化的真实价值在格式/约束维度与弱初值救援（F2），而非 accuracy。
-- **F2 搜索兜底,但修复处于预算刀刃上**：编译规则在本模型上**失准**——contract 上
-  profile 规则编译出的 root 仅 0.1778（zero-shot 0.9770；math root 0.6335）。
-  b8 的进化能把它修复至 0.9782 > zero-shot；而 b6 冷启动在同一任务只到 0.1850
-  （关键变异 examples-on 未被采到）。结论：**当规则先验失准时，预算内进化是
-  负收益的最后防线——但"最后防线"本身依赖预算足够采到修复位点**。仿真器中
-  apc-full≡zero-shot 的"安全"在真实模型上换了兑现方式：不是规则有用,而是搜索能修。
+- **F2 规则先验是真实模型上的主要风险；搜索是限损而非恢复**：profile 编译出的 root
+  dev 分 contract 0.1778 / math 0.6335 / financial 0.1286，全部比 zero-shot 低
+  0.2–0.53。b8 搜索把三者都拉回 examples-on 盆地，但**修复完全度随任务余量递增
+  而递减**：contract 0.9782>z0、math 0.8442≈z0、financial 0.5704 仍低于 z0
+  −0.101；预算降到 6 时连修复位点都采不到（contract cold 0.1850）。结论：
+  **真实模型上规则先验是净负债——它制造了需要搜索来救援的坑**；仿真器中
+  apc-full≡zero-shot 的"安全"在真实模型上不成立，搜索的价值是限损不是回本。
 - **F3 跨任务 genome 迁移（两个方向,b6 同预算三臂）**：
 
 | 迁移 | cold(搜) | transfer-0(零适配直用) | transfer-ws(续搜) |
@@ -174,7 +177,8 @@ bandit 下限保证不更差；确认/证伪需真实多峰任务。
   val_n=8 选择噪声选中过拟合冠军）；冷启动因要先付 F2 的修复成本而显著落后。
   机理：genome 全结构、few-shot 内容由编译期从 TaskSpec 注入 ⇒ 跨任务零损耗;
   最优盆地唯一（两任务冠军同为 examples-on），与仿真器"单峰"发现互相印证。
-  **工程含义：先 transfer-0、再决定是否花预算适配,而不是默认重搜**。
+  **工程含义：部署顺序 transfer-0 → base(zero-shot) → rule-root+预算≥修复成本；
+  绝不默认冷启动重搜**。
 - 诚实边界：单模型、单 seed、无 CI；多模型差异与 PGAM 的真实验证仍缺（凭证白名单）。
 
 ## 4. Limitations（投稿前必须解决）
@@ -197,14 +201,14 @@ bandit 下限保证不更差；确认/证伪需真实多峰任务。
 
 - [x] 一键全量复现：`bench_apc.py [25|50|100]` + `bench_contract/math/follow/transfer.py`
   + `eval_robustness.py` + `analyze_bench.py`（确定种子，全 Mock，无网络）
-- [x] 40 单元测试全绿；`.env` 零密钥（ggshield + 模式双检）
+- [x] 41 单元测试全绿；`.env` 零密钥（ggshield + 模式双检）
 - [x] Java 服务 13 测试全绿（CompilerRules/PromptRenderer/MockClient；`mvn test`）
 - [x] CI 顺序无关（每对比独立 crc32 种子；分析代码增删不改变已有 CI）
 - [x] 数据集生成器 + 种子随仓（`scripts/gen_*_dataset.py`）
-- [x] 真实 LLM 第一阶段：`bench_real_full.py`（3 任务 × 3 方法）+ `bench_real_transfer.py`
-  （contract→math +0.2039）+ `analyze_real.py`（表格聚合）；单模型白名单 key,结果入库
-  `experiments/apcbench/real_*.json`,冠军 genome 入库 `artifacts/optimizations/real_*_champ.json`
-- [x] 40 单元测试全绿；`.env` 零密钥（ggshield + 模式双检）
+- [x] 真实 LLM 第一阶段：`bench_real_full.py`（3 任务 × 3 方法,同口径 dev5/val8/hold20/b8）
+  + `bench_real_transfer.py`（双向迁移对）+ `analyze_real.py`（表格聚合）；单模型白名单 key,
+  结果入库 `experiments/apcbench/real_*.json`,冠军 genome 入库 `artifacts/optimizations/real_*_champ.json`
+- [ ] LLM-Judge 一致性抽检（`real_judge_check.py`,self-judge 弱效度标注）结果入 §3.4
 - [ ] 第三方复现报告（待外部协作者）
 
 ## 6. Related Work（详见 `docs/literature/`）
