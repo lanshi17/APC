@@ -154,15 +154,20 @@ class LLMJudge(BaseJudge):
             f"模型实际输出：\n{actual[:2000]}\n\n"
             '只输出 JSON：{"accuracy": 0-1, "constraint_following": 0-1, "faithfulness": 0-1, "completeness": 0-1}'
         )
+        out = {"accuracy": 0.0, "constraint_following": 0.0, "faithfulness": 0.0, "completeness": 0.0}
         try:
             result = self.client.complete(prompt, temperature=0.0)
-            scores = json.loads(result.text.strip())
-            out = {}
+            text = result.text.strip()
+            lo, hi = text.find("{"), text.rfind("}")  # 容忍 ```json 围栏/前后散文
+            if lo >= 0 and hi > lo:
+                text = text[lo:hi + 1]
+            scores = json.loads(text)
             for k in ("accuracy", "constraint_following", "faithfulness", "completeness"):
                 out[k] = max(0.0, min(1.0, float(scores.get(k, 0.0))))
-            return out
+            out["parse_ok"] = True
         except Exception:
-            return {"accuracy": 0.0, "constraint_following": 0.0, "faithfulness": 0.0, "completeness": 0.0}
+            out["parse_ok"] = False  # 解析失败 ⇒ 零分并显式标注，绝不静默污染一致性统计
+        return out
 
 
 def create_judge(judge_name: str | None = None, eval_model_id: str | None = None) -> BaseJudge:
