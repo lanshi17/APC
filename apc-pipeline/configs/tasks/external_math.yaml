@@ -1,0 +1,36 @@
+task_id: external_math_v1
+name: External math benchmark (GSM8K / MATH)
+version: 1.0.0
+objective: |
+  Solve the given math word problem. Reason carefully, then output the final
+  answer in the required JSON format. The answer must be a number or the exact
+  value requested by the problem.
+input:
+  type: document
+  format: text
+  max_tokens: 20000
+  language: en
+output:
+  type: json
+  strict: true
+  schema:
+    answer: string
+constraints:
+  - Do not restate the problem; provide only the structured answer
+  - The answer field must contain the final numeric or symbolic value
+reasoning:
+  required: true
+  visibility: hidden
+quality_weights:
+  accuracy: 0.60
+  instruction_following: 0.15
+  format: 0.15
+  robustness: 0.05
+  efficiency: 0.05
+cost_limits:
+  max_input_tokens: 25000
+  max_output_tokens: 3000
+  max_latency_ms: 120000
+evaluation:
+  gold_set_required: true
+  perturbation_required: false
