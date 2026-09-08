@@ -9,10 +9,11 @@
 （+0.003），在单位点任务上被随机搜索超越（−0.013，SHA 筛选噪声所致）；
 PGAM 与均匀变异无差异（pooled +0.0004，零结果）；迁移以 30% 预算达到原生质量
 （KR-6 12/12）。真实 LLM 第一阶段验证（§3.4，四臂 × 3 任务，单模型 qwen3.8-flash）：
-结构 genome 搜索的 accuracy 增益 ≈ 0——**base-root 臂三任务全部守住 zero-shot
-−0.004 下限；profile 规则先验是净负债**（root 落后 0.2–0.53，rule-root 臂在余量
-最大的 financial 预算内只修复一半,−0.101）；跨任务 genome 零适配直用即达
-zero-shot 水平（较冷启动重搜 +0.20~+0.79）。多模型与 PGAM 验证待更多凭证。
+结构 genome 搜索的 accuracy 增益 ≈ 0（扰动鲁棒性同样饱和，|drop|≤0.013）——
+**base-root 臂三任务全部守住 zero-shot −0.004 下限；profile 规则先验是净负债**
+（root 落后 0.2–0.53，rule-root 臂在余量最大的 financial 预算内只修复一半）；
+跨任务 genome 零适配直用即达 zero-shot 水平（较冷启动重搜 +0.20~+0.79）。
+多模型与 PGAM 验证待更多凭证。
 
 ## 1. 问题与主张
 
@@ -156,8 +157,10 @@ rule-judge**；三任务完全同口径 dev_r/val/holdout=5/8/20；主对比预�
 | math | 0.8436 | 0.8439 | **0.8442** | 0.8436 |
 | financial | **0.6712** | 0.6662 | 0.5704 | 0.6672 |
 
-- **F1 天花板效应**：强 reasoning 模型上,规则可验任务的 accuracy 余量 ≤0.005；
-  prompt 优化的真实价值在格式/约束维度与弱初值救援（F2），而非 accuracy。
+- **F1 天花板效应（accuracy 与鲁棒性双饱和）**：强 reasoning 模型上规则可验任务的
+  accuracy 余量 ≤0.005，且输入扰动下的鲁棒性余量同样 ≤0.013（F5）——"prompt 优化的
+  价值在格式/约束维度"这一预设立场**在真实模型上被证伪**；正面价值只剩弱先验救援
+  （F2，不保证修满）与零损耗迁移（F3）。
 - **F2 规则先验是真实模型上的主要风险；base-root 搜索是"无损失下限"，rule-root
   搜索是"高成本救援"**：profile 编译 root 的 dev 分 contract 0.1778 / math 0.6335 /
   financial 0.1286，全部比 zero-shot 低 0.2–0.53。b8 搜索把 rule-root 臂拉回
@@ -189,6 +192,12 @@ rule-judge**；三任务完全同口径 dev_r/val/holdout=5/8/20；主对比预�
   检查、系统性严于自评 LLM，且两个判分器各自的严苛维度不同。⇒ 本文所有真实 LLM 排序
   结论在同口径 rule-judge 下有效，但**绝对分不可读作“人类质量分”**；独立第三方 judge
   （非自评）仍是缺口。self-judge 的宽容度也可能含模型自偏好偏置。
+- **F5 扰动鲁棒性抽检（financial 数字篡改集前 20 例 × 4 genome，`bench_real_robust.py`）**：
+  pert 分 base 0.6580（drop +0.0132）/ manual 0.6654（+0.0008）/ apc-full 0.5820
+  （−0.0116）/ apc-safe 0.6582（+0.0090）。全部 |drop|≤0.013——强模型对数值篡改扰动
+  本身就不敏感，格式基因没有可兑现的鲁棒性溢价（apc-full 的负 drop 是其水平整体下移
+  后落进扰动集噪声，非"更鲁棒"）。⇒ 与 F1 合并：**真实强模型上结构 genome 的
+  accuracy 与鲁棒性双重饱和，增益预算只可能来自救援与迁移，不来自优化本身**。
 - 诚实边界：单模型、单 seed、无 CI；多模型差异与 PGAM 的真实验证仍缺（凭证白名单）。
 
 ## 4. Limitations（投稿前必须解决）
@@ -219,8 +228,10 @@ rule-judge**；三任务完全同口径 dev_r/val/holdout=5/8/20；主对比预�
 - [x] 真实 LLM 第一阶段：`bench_real_full.py`（3 任务 × 4 臂:z0/manual/apc-full/apc-safe,
   同口径 dev5/val8/hold20/b8）+ `bench_real_transfer.py`（双向迁移对）+ `analyze_real.py`
   （表格聚合）；结果入库 `experiments/apcbench/real_*.json`,冠军入库 `real_*_champ*.json`
-- [x] LLM-Judge 一致性抽检：`real_judge_check.py`（self-judge 弱效度标注）⇒ §3.4 F4
-  判分器分歧量化；结果入库 `experiments/apcbench/real_judge_agreement_financial.json`
+- [x] LLM-Judge 一致性抽检：`real_judge_check.py` ⇒ §3.4 F4；入库
+  `experiments/apcbench/real_judge_agreement_financial.json`
+- [x] 真实扰动鲁棒性：`bench_real_robust.py`（4 genome × perturbation 20 例）⇒ §3.4 F5
+  双饱和结论；入库 `experiments/apcbench/real_robust_financial.json`
 - [ ] 第三方复现报告（待外部协作者）
 
 ## 6. Related Work（详见 `docs/literature/`）

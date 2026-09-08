@@ -1,0 +1,39 @@
+{
+ "task": "financial",
+ "model": "qwen",
+ "judge": "financial_rule_v1",
+ "rows": [
+  {
+   "genome": "base",
+   "perturbation_score": 0.658,
+   "n": 20,
+   "elapsed_s": 713.7,
+   "holdout": 0.6712,
+   "drop": 0.0132
+  },
+  {
+   "genome": "manual",
+   "perturbation_score": 0.6654,
+   "n": 20,
+   "elapsed_s": 664.2,
+   "holdout": 0.6662,
+   "drop": 0.0008
+  },
+  {
+   "genome": "apc-full",
+   "perturbation_score": 0.582,
+   "n": 20,
+   "elapsed_s": 681.1,
+   "holdout": 0.5704,
+   "drop": -0.0116
+  },
+  {
+   "genome": "apc-safe",
+   "perturbation_score": 0.6582,
+   "n": 20,
+   "elapsed_s": 749.2,
+   "holdout": 0.6672,
+   "drop": 0.009
+  }
+ ]
+}
