@@ -37,6 +37,16 @@ CASES = [
     ("25", "025"),
     ("0.5", "0.50"),
     ("(1,2)", "（1, 2）".replace("（", "(").replace("）", ")")),
+    ("[[1,2],[-3,-5]]", r"\begin{pmatrix} 1 & 2 \\ -3 & -5 \end{pmatrix}"),
+    ("3/5, 117/125", r"\frac{3}{5}, \frac{117}{125}"),
+    ("[[1/50, 7/50], [7/50, 49/50]]", r"\begin{pmatrix} 1/50 & 7/50 \\ 7/50 & 49/50 \end{pmatrix}"),
+    ("-3/4, 3/4", r"\frac{3}{4}, -\frac{3}{4}"),
+    ("25", "025"),
+    ("[[1,2],[-3,-5]]", r"\begin{pmatrix} 1 & 2 \\ -3 & -5 \end{pmatrix}"),
+    ("3/5, 117/125", r"\frac{3}{5}, \frac{117}{125}"),
+    ("[[1/50, 7/50], [7/50, 49/50]]", r"\begin{pmatrix} 1/50 & 7/50 \\ 7/50 & 49/50 \end{pmatrix}"),
+    ("-3/4, 3/4", r"\frac{3}{4}, -\frac{3}{4}"),
+    ("(2,-3)", r"\left(\begin{array}{c} 2 \\ -3 \end{array}\right)"),
 ]
 
 
@@ -45,6 +55,9 @@ def main() -> int:
         assert answers_match(a, b), (a, b)
     # (1,2) vs (2,1): multiset 政策下可互换 — 设计取舍,见 norm_answer docstring
     assert not answers_match("0.5", "0.6")
+    assert not answers_match(r"pi/4, 5pi/4", r"\frac{5\pi}{4}")
+    assert not answers_match("-1, 2", "2")
+    assert not answers_match("204", "385")
     assert answers_match(extract_pred('{"answer": "\\boxed{42}"}'), "42")
     assert answers_match(extract_pred('{"answer": "0.5"}'), "\\frac{1}{2}")
     m = load_problems("math5", 135)
