@@ -1,0 +1,122 @@
+{
+ "task": "financial",
+ "model": "qwen",
+ "genome": "champ",
+ "n": 20,
+ "independence": "self-judge(非独立,弱效度对照)",
+ "judge_parse_failures": 0,
+ "accuracy": {
+  "pearson": 0.4790228229132641,
+  "spearman": 0.5629253270104634,
+  "mean_rule": 0.2061,
+  "mean_llm": 0.8295
+ },
+ "constraint_following": {
+  "pearson": NaN,
+  "spearman": NaN,
+  "mean_rule": 1.0,
+  "mean_llm": 0.4975
+ },
+ "disagreements": [
+  {
+   "sample_id": "hold_r#0000",
+   "rule": 0.1910135135135135,
+   "llm": 0.92
+  },
+  {
+   "sample_id": "hold_r#0001",
+   "rule": 0.16893776824034334,
+   "llm": 0.72
+  },
+  {
+   "sample_id": "hold_r#0002",
+   "rule": 0.2539942528735632,
+   "llm": 0.85
+  },
+  {
+   "sample_id": "hold_r#0003",
+   "rule": 0.23162790697674418,
+   "llm": 0.96
+  },
+  {
+   "sample_id": "hold_r#0004",
+   "rule": 0.1509170305676856,
+   "llm": 0.82
+  },
+  {
+   "sample_id": "hold_r#0005",
+   "rule": 0.13569672131147542,
+   "llm": 0.68
+  },
+  {
+   "sample_id": "hold_r#0006",
+   "rule": 0.15867283950617286,
+   "llm": 0.68
+  },
+  {
+   "sample_id": "hold_r#0007",
+   "rule": 0.3436224489795919,
+   "llm": 0.86
+  },
+  {
+   "sample_id": "hold_r#0008",
+   "rule": 0.13873595505617978,
+   "llm": 0.78
+  },
+  {
+   "sample_id": "hold_r#0009",
+   "rule": 0.21432900432900434,
+   "llm": 0.95
+  },
+  {
+   "sample_id": "hold_r#0010",
+   "rule": 0.19921658986175114,
+   "llm": 0.9
+  },
+  {
+   "sample_id": "hold_r#0011",
+   "rule": 0.19597457627118645,
+   "llm": 0.86
+  },
+  {
+   "sample_id": "hold_r#0012",
+   "rule": 0.2353125,
+   "llm": 0.98
+  },
+  {
+   "sample_id": "hold_r#0013",
+   "rule": 0.22431159420289856,
+   "llm": 0.72
+  },
+  {
+   "sample_id": "hold_r#0014",
+   "rule": 0.20242574257425744,
+   "llm": 0.82
+  },
+  {
+   "sample_id": "hold_r#0015",
+   "rule": 0.25138297872340426,
+   "llm": 0.85
+  },
+  {
+   "sample_id": "hold_r#0016",
+   "rule": 0.20125,
+   "llm": 0.6
+  },
+  {
+   "sample_id": "hold_r#0017",
+   "rule": 0.14369565217391306,
+   "llm": 0.75
+  },
+  {
+   "sample_id": "hold_r#0018",
+   "rule": 0.2198780487804878,
+   "llm": 0.94
+  },
+  {
+   "sample_id": "hold_r#0019",
+   "rule": 0.2608333333333333,
+   "llm": 0.95
+  }
+ ]
+}
