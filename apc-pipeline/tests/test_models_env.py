@@ -56,3 +56,27 @@ def test_bad_int_override_rejected(monkeypatch):
     monkeypatch.setenv("APC_GLM_MAX_TOKENS", "not-a-number")
     with pytest.raises(ValueError):
         apply_env_overrides("glm", {"model_id": "glm"})
+
+
+def test_credential_resolution_is_provider_agnostic(monkeypatch):
+    """直填 api_key > api_key_env；provider 名不得再自动映射到任何 key 变量。"""
+    import httpx
+    from apc.models.openai_client import _retryable, build_openai_client, resolve_api_key
+
+    monkeypatch.setenv("SOME_VENDOR_ENV", "vendor-key")
+    monkeypatch.setenv("OPENAI_API_KEY", "leaked-by-provider-map")
+    cfg = {"model_id": "x", "model": "m", "api_base": "https://e/v1", "provider": "openai",
+           "api_key_env": "SOME_VENDOR_ENV", "api_key": "direct-key"}
+    assert resolve_api_key(cfg) == "direct-key"
+    cfg.pop("api_key")
+    assert resolve_api_key(cfg) == "vendor-key"
+    cfg.pop("api_key_env")
+    assert resolve_api_key(cfg) == ""  # provider=openai 不再兜底读 OPENAI_API_KEY
+    assert build_openai_client(cfg | {"api_key_env": "SOME_VENDOR_ENV"}).api_key == "vendor-key"
+
+    def st(code):
+        r = httpx.Response(code, request=httpx.Request("POST", "http://x"))
+        return httpx.HTTPStatusError("x", request=r.request, response=r)
+
+    assert _retryable(st(429)) and _retryable(st(500)) and _retryable(httpx.ReadTimeout("t"))
+    assert not _retryable(st(401)) and not _retryable(st(404)) and not _retryable(ValueError())
