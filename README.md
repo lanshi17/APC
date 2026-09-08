@@ -128,16 +128,21 @@ apc migrate run --task financial_report_analysis_v1 --source-model glm --target-
 ### 3b. 真实 LLM 基准(需 key)
 
 ```bash
-# 主对比:zero-shot / manual / apc-full 同判分口径(与仿真基准同一套 rule-judge)
+# 主对比 4 臂:zero-shot / manual / apc-full(rule-root) / apc-safe(base-root),同判分口径
 .venv/bin/python scripts/bench_real_full.py --task contract --model qwen
+.venv/bin/python scripts/bench_real_full.py --task financial --methods apc-safe  # 单臂增量合并
 # 跨任务 genome 迁移三臂:cold / transfer-0(零适配) / transfer-ws(续搜)
 .venv/bin/python scripts/bench_real_transfer.py --source contract --target math --model qwen
+# 扰动鲁棒性(4 genome × financial perturbation 集)与 LLM-Judge 一致性抽检
+.venv/bin/python scripts/bench_real_robust.py --task financial --n 20
+.venv/bin/python scripts/real_judge_check.py --task financial --genome champ
 # 汇总成论文表格
 .venv/bin/python scripts/analyze_real.py
 ```
 
-结果入库 `experiments/apcbench/real_*.json`,冠军 genome 入库 `artifacts/optimizations/real_*_champ.json`。
-真实模型发现(天花板效应、搜索兜底、迁移零损耗)见 [docs/paper-apc.md](docs/paper-apc.md) §3.4。
+结果入库 `experiments/apcbench/real_*.json`,冠军 genome 入库 `artifacts/optimizations/real_*_champ*.json`。
+真实模型发现(双饱和天花板、规则先验负债、无损失下限、迁移零损耗、判分器分歧)见
+[docs/paper-apc.md](docs/paper-apc.md) §3.4 F1–F5。
 
 ### 4. LangGraph 可视化
 
