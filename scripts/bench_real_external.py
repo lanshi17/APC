@@ -225,9 +225,13 @@ def main() -> int:
     ap.add_argument("--arms", default="base,math-champ,contract-champ")
     ap.add_argument("--n", type=int, default=135)
     ap.add_argument("--out", default=None, help="独立输出文件(并行分数据集防写竞态)")
+    ap.add_argument("--timeout", type=float, default=420.0, help="单请求读超时(AIME 长 CoT+并发)")
     args = ap.parse_args()
 
     client = create_client(args.model, prefer_mock=False)
+    if hasattr(client, "client"):
+        import httpx
+        client.client.timeout = httpx.Timeout(args.timeout)
     if isinstance(client, MockClient):
         raise SystemExit("需要真实凭证")
     spec = TaskSpec.from_yaml(str(EXT_SPEC))
@@ -243,9 +247,14 @@ def main() -> int:
     for arm in [a.strip() for a in args.arms.split(",")]:
         g = arm_genome(arm)
         cp = compiler.compile(g, spec, profile, apply_rules=False)
-        t0, acc, json_ok, fails = time.time(), 0, 0, []
+        t0, acc, json_ok, err, fails = time.time(), 0, 0, 0, []
         for i, p in enumerate(problems):
-            call = client.complete(cp.prompt_text.replace("{{input}}", p["problem"]), temperature=0.0)
+            try:
+                call = client.complete(cp.prompt_text.replace("{{input}}", p["problem"]), temperature=0.0)
+            except Exception:
+                err += 1
+                fails.append({"i": i, "pred": "<call-error>", "gold": str(p["gold"])[:60]})
+                continue
             try:
                 dd = json.loads(call.text[call.text.find("{"): call.text.rfind("}") + 1])
                 json_ok += int(isinstance(dd, dict) and "answer" in dd)
@@ -259,6 +268,7 @@ def main() -> int:
         row = {"dataset": args.dataset, "arm": arm, "n": len(problems),
                "accuracy": round(acc / len(problems), 4),
                "answer_field_rate": round(json_ok / len(problems), 4),
+               "call_errors": err,
                "budget_used": 0, "elapsed_s": round(time.time() - t0, 1),
                "model_version": client.model_version, "fail_sample": fails[:12]}
         doc["rows"] = [r for r in doc["rows"] if not (r["dataset"] == args.dataset and r["arm"] == arm)] + [row]
