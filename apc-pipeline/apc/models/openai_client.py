@@ -2,17 +2,27 @@ from __future__ import annotations
 import os
 import time
 import httpx
-from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
+from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception
 from apc.models.base import BaseModelClient, CallResult
 
 # 凭证解析不设供应商特例:模型配置(api_key / api_key_env)或全局 APC_API_KEY,三选一。
+# 重试策略:超时/网络/5xx/429 重试;4xx(鉴权/坏请求)立即失败不浪费预算。
+_RETRY_STATUS = {408, 409, 429, 500, 502, 503, 504}
+
+
+def _retryable(exc: BaseException) -> bool:
+    if isinstance(exc, httpx.TimeoutException | httpx.TransportError):
+        return True
+    if isinstance(exc, httpx.HTTPStatusError):
+        return exc.response.status_code in _RETRY_STATUS
+    return isinstance(exc, KeyError)
 
 
 class OpenAIClient(BaseModelClient):
     """OpenAI-compatible 调用通路（GPT / DashScope compatible-mode / Zhipu compatible API）。"""
 
     def __init__(self, model_id: str, model: str, base_url: str, api_key: str | None = None,
-                 max_tokens: int = 2000, timeout: float = 60.0):
+                 max_tokens: int = 2000, timeout: float = 180.0):
         self._model_id = model_id
         self.model = model
         self.max_tokens = max_tokens
@@ -48,8 +58,8 @@ class OpenAIClient(BaseModelClient):
         def _before(retry_state):
             attempts["n"] += 1
 
-        @retry(stop=stop_after_attempt(3), wait=wait_exponential(min=1, max=10),
-               retry=retry_if_exception_type((httpx.HTTPError, KeyError)), before_sleep=_before)
+        @retry(stop=stop_after_attempt(4), wait=wait_exponential(min=1, max=20),
+               retry=retry_if_exception(_retryable), before_sleep=_before)
         def _call() -> dict:
             return self._post(prompt, temperature)
 

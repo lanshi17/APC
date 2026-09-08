@@ -132,6 +132,14 @@ def main() -> int:
 
     env = RealEnv(args.task, args.model, args.dev_r, args.val_n, args.hold_n)
     rows, t_start = [], time.time()
+    out = REPO / "experiments" / "apcbench" / f"real_{args.task}.json"
+    out.parent.mkdir(parents=True, exist_ok=True)
+
+    def checkpoint():
+        out.write_text(json.dumps({"meta": {"protocol": "real-llm", "partial": True,
+                                            "total_s": round(time.time() - t_start, 1), "dev_r": args.dev_r,
+                                            "val_n": args.val_n, "hold_n": args.hold_n, "judge": env.judge_id},
+                                   "rows": rows}, ensure_ascii=False, indent=1), encoding="utf-8")
 
     for method in ("zero-shot", "manual"):
         t0 = time.time()
@@ -139,6 +147,7 @@ def main() -> int:
         r = env.row(method, env.score_of(g, env.dev_r), env.score_of(g, env.val),
                     env.score_of(g, env.hold), 0, t0)
         rows.append(r)
+        checkpoint()
         print(f"{method:10s} hold={r['holdout_score']:.4f} ({r['elapsed_s']}s)", flush=True)
 
     t0 = time.time()
@@ -152,13 +161,10 @@ def main() -> int:
                 champion_genome_id=champ.genome_id, mutation_note=champ.mutation_note)
     rows.append(r)
     print(f"{'apc-full':10s} hold={r['holdout_score']:.4f} budget={r['budget_used']} ({r['elapsed_s']}s)", flush=True)
-
-    out = REPO / "experiments" / "apcbench" / f"real_{args.task}.json"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps({"meta": {"protocol": "real-llm", "total_s": round(time.time() - t_start, 1),
-                                        "dev_r": args.dev_r, "val_n": args.val_n, "hold_n": args.hold_n,
-                                        "judge": env.judge_id}, "rows": rows}, ensure_ascii=False, indent=1),
-                   encoding="utf-8")
+    out.write_text(json.dumps({"meta": {"protocol": "real-llm", "partial": False,
+                                        "total_s": round(time.time() - t_start, 1), "dev_r": args.dev_r,
+                                        "val_n": args.val_n, "hold_n": args.hold_n, "judge": env.judge_id},
+                               "rows": rows}, ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"-> {out}")
     return 0
 

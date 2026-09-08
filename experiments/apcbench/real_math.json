@@ -1,0 +1,50 @@
+{
+ "meta": {
+  "protocol": "real-llm",
+  "total_s": 777.2,
+  "dev_r": 5,
+  "val_n": 8,
+  "hold_n": 20,
+  "judge": "math_rule_v1"
+ },
+ "rows": [
+  {
+   "method": "zero-shot",
+   "model_id": "qwen",
+   "model_version": "qwen3.8-flash",
+   "task": "math",
+   "seed": 42,
+   "baseline_score": 0.8387,
+   "validation_score": 0.839,
+   "holdout_score": 0.8436,
+   "budget_used": 0,
+   "elapsed_s": 112.4
+  },
+  {
+   "method": "manual",
+   "model_id": "qwen",
+   "model_version": "qwen3.8-flash",
+   "task": "math",
+   "seed": 42,
+   "baseline_score": 0.8387,
+   "validation_score": 0.8388,
+   "holdout_score": 0.8439,
+   "budget_used": 0,
+   "elapsed_s": 105.0
+  },
+  {
+   "method": "apc-full",
+   "model_id": "qwen",
+   "model_version": "qwen3.8-flash",
+   "task": "math",
+   "seed": 42,
+   "baseline_score": 0.6335,
+   "validation_score": 0.8395,
+   "holdout_score": 0.8442,
+   "budget_used": 8,
+   "elapsed_s": 559.8,
+   "champion_genome_id": "genome_73a57db38597",
+   "mutation_note": "examples.enabled: False -> True"
+  }
+ ]
+}

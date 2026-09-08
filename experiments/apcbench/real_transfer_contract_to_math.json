@@ -1,0 +1,53 @@
+{
+ "meta": {
+  "source": "contract",
+  "target": "math",
+  "model": "qwen",
+  "model_version": "qwen3.8-flash",
+  "budget": 6,
+  "seed": 42,
+  "judge": "math_rule_v1"
+ },
+ "transfer_gain_vs_cold": 0.2039,
+ "rows": [
+  {
+   "method": "transfer-0",
+   "model_id": "qwen",
+   "model_version": "qwen3.8-flash",
+   "task": "math",
+   "seed": 42,
+   "baseline_score": 0.8393,
+   "validation_score": 0.8395,
+   "holdout_score": 0.8439,
+   "budget_used": 0,
+   "elapsed_s": 251.3,
+   "source_genome_id": "genome_73a57db38597"
+  },
+  {
+   "method": "cold",
+   "model_id": "qwen",
+   "model_version": "qwen3.8-flash",
+   "task": "math",
+   "seed": 42,
+   "baseline_score": 0.6285,
+   "validation_score": 0.6589,
+   "holdout_score": 0.6402,
+   "budget_used": 6,
+   "elapsed_s": 458.4
+  },
+  {
+   "method": "transfer-ws",
+   "model_id": "qwen",
+   "model_version": "qwen3.8-flash",
+   "task": "math",
+   "seed": 42,
+   "baseline_score": 0.8395,
+   "validation_score": 0.8392,
+   "holdout_score": 0.8441,
+   "budget_used": 6,
+   "elapsed_s": 479.2,
+   "source_genome_id": "genome_73a57db38597",
+   "champion_genome_id": "genome_73a57db38597"
+  }
+ ]
+}
