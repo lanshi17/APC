@@ -1,7 +1,8 @@
 {
  "meta": {
   "protocol": "real-llm",
-  "total_s": 1114.2,
+  "partial": false,
+  "total_s": 497.9,
   "dev_r": 5,
   "val_n": 8,
   "hold_n": 20,
@@ -45,6 +46,20 @@
    "elapsed_s": 774.2,
    "champion_genome_id": "genome_73a57db38597",
    "mutation_note": "examples.enabled: False -> True"
+  },
+  {
+   "method": "apc-safe",
+   "model_id": "qwen",
+   "model_version": "qwen3.8-flash",
+   "task": "contract",
+   "seed": 42,
+   "baseline_score": 0.9739,
+   "validation_score": 0.9822,
+   "holdout_score": 0.9773,
+   "budget_used": 8,
+   "elapsed_s": 497.9,
+   "champion_genome_id": "genome_62f985109b1e",
+   "mutation_note": null
   }
  ]
 }
