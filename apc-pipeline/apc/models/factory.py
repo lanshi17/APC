@@ -12,6 +12,12 @@ from apc.models.openai_client import OpenAIClient, build_openai_client
 
 _REPO_ROOT = Path(__file__).resolve().parents[3]
 
+# 仓库 .env 是唯一凭证来源:override=True 防止 shell 里残留的同名旧值遮蔽 .env;
+# 所有入口(CLI / python -m / scripts)只需 import factory 即自动加载。
+from dotenv import load_dotenv  # noqa: E402
+
+load_dotenv(_REPO_ROOT / ".env", override=True)
+
 # 环境变量后缀 → 配置字段；APC_<MODEL_ID 大写>_<后缀> 优先级高于 yaml。
 _ENV_FIELDS = {
     "PROVIDER": "provider",
@@ -77,7 +83,6 @@ def config_from_env(model_id: str) -> dict | None:
         "max_tokens": max_tokens,
     }
 
-_REPO_ROOT = Path(__file__).resolve().parents[3]
 
 
 def load_model_config(model_id: str, configs_dir: str | Path | None = None) -> dict:
@@ -100,9 +105,8 @@ def load_model_config(model_id: str, configs_dir: str | Path | None = None) -> d
 
 
 def has_credentials(cfg: dict) -> bool:
-    from apc.models.openai_client import _PROVIDER_ENV_KEYS
-    env_name = cfg.get("api_key_env") or _PROVIDER_ENV_KEYS.get(cfg.get("provider", ""), "OPENAI_API_KEY")
-    return bool(cfg.get("api_key") or os.getenv(env_name))
+    from apc.models.openai_client import resolve_api_key
+    return bool(resolve_api_key(cfg))
 
 
 def create_client(model_id: str, configs_dir: str | Path | None = None,

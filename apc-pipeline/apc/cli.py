@@ -28,7 +28,7 @@ migrate_app = typer.Typer(); app.add_typer(migrate_app, name="migrate")
 _REPO_ROOT = pathlib.Path(__file__).resolve().parents[2]
 from dotenv import load_dotenv  # noqa: E402 （需在 _REPO_ROOT 之后定位 .env）
 
-load_dotenv(_REPO_ROOT / ".env")
+load_dotenv(_REPO_ROOT / ".env", override=True)
 ARTIFACTS = _REPO_ROOT / "artifacts"
 DATASETS = _REPO_ROOT / "datasets"
 
