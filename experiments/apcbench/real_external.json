@@ -1,0 +1,17 @@
+{
+ "protocol": "real-external",
+ "judge": "exact-match-normalized",
+ "rows": [
+  {
+   "dataset": "math5",
+   "arm": "base",
+   "n": 3,
+   "accuracy": 1.0,
+   "answer_field_rate": 1.0,
+   "budget_used": 0,
+   "elapsed_s": 19.4,
+   "model_version": "qwen3.8-flash",
+   "fail_sample": []
+  }
+ ]
+}
