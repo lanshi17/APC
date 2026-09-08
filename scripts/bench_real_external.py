@@ -161,7 +161,9 @@ def norm_answer(s: object) -> str:
         t = _PLACE_RE.sub(lambda m: store[int(m.group(1))], t)
     if _NUMPAT.fullmatch(t):
         try:
-            return f"{float(eval(t)):.6g}"
+            # 纯数值走 float(eval 对前导零 SyntaxError);含运算符才 eval
+            v = float(t) if re.fullmatch(r"-?[\d.]+([eE][-+]?\d+)?", t) else float(eval(t))
+            return f"{v:.6g}"
         except Exception:
             pass
     return t.lower()
@@ -206,7 +208,7 @@ def load_problems(dataset: str, n: int) -> list[dict]:
         raw = (REPO / "datasets/aime/test.jsonl").read_text(encoding="utf-8")
         rows = [json.loads(l) for l in raw.splitlines() if l.strip()]
         return [{"problem": r["problem"] + "\n(Answer with an integer from 0 to 999.)",
-                 "gold": r["answer"]} for r in rows[:n]]
+                 "gold": str(int(r["answer"]))} for r in rows[:n]]
     raise SystemExit(f"未知数据集 {dataset}")
 
 
