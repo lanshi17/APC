@@ -179,6 +179,12 @@ rule-judge**；三任务完全同口径 dev_r/val/holdout=5/8/20；主对比预�
   最优盆地唯一（两任务冠军同为 examples-on），与仿真器"单峰"发现互相印证。
   **工程含义：部署顺序 transfer-0 → base(zero-shot) → rule-root+预算≥修复成本；
   绝不默认冷启动重搜**。
+- **F4 判分器分歧抽检（financial 冠军 20 例，self-LLM-judge，`real_judge_check.py`）**：
+  accuracy 维度 rule 均值 0.206 vs LLM 0.830（Pearson 0.48 / Spearman 0.56，20/20 分歧
+  ≥0.25）；constraint 维度反向：rule 恒 1.0 vs LLM 0.50。解读：rule-judge 是金标准容差
+  检查、系统性严于自评 LLM，且两个判分器各自的严苛维度不同。⇒ 本文所有真实 LLM 排序
+  结论在同口径 rule-judge 下有效，但**绝对分不可读作“人类质量分”**；独立第三方 judge
+  （非自评）仍是缺口。self-judge 的宽容度也可能含模型自偏好偏置。
 - 诚实边界：单模型、单 seed、无 CI；多模型差异与 PGAM 的真实验证仍缺（凭证白名单）。
 
 ## 4. Limitations（投稿前必须解决）
@@ -194,8 +200,9 @@ rule-judge**；三任务完全同口径 dev_r/val/holdout=5/8/20；主对比预�
 4. **SHA 消融两面**：财务任务 full≡no-halving（零结果）；约束任务上
    SHA 代价 −0.0235（显著），而 rules 消融仍为零（base 已满足规则）。
    SHA 的取舍与任务结构有关，非普适加速器。
-5. **Judge 可靠性**：规则可验部分全代码判；开放维度仅规则 Judge，无 LLM
-   Judge、无人工 spot-check（50–100 例）。
+5. **Judge 可靠性（已量化,见 §3.4 F4）**：开放维度 rule-judge 与 self-LLM-judge
+   系统性分歧（accuracy 0.21 vs 0.83），排序结论依赖同口径比较；独立第三方
+   judge 与人工 spot-check（50–100 例）仍缺。
 
 ## 5. 可复现清单（本仓库现状）
 
@@ -208,7 +215,8 @@ rule-judge**；三任务完全同口径 dev_r/val/holdout=5/8/20；主对比预�
 - [x] 真实 LLM 第一阶段：`bench_real_full.py`（3 任务 × 3 方法,同口径 dev5/val8/hold20/b8）
   + `bench_real_transfer.py`（双向迁移对）+ `analyze_real.py`（表格聚合）；单模型白名单 key,
   结果入库 `experiments/apcbench/real_*.json`,冠军 genome 入库 `artifacts/optimizations/real_*_champ.json`
-- [ ] LLM-Judge 一致性抽检（`real_judge_check.py`,self-judge 弱效度标注）结果入 §3.4
+- [x] LLM-Judge 一致性抽检：`real_judge_check.py`（self-judge 弱效度标注）⇒ §3.4 F4
+  判分器分歧量化；结果入库 `experiments/apcbench/real_judge_agreement_financial.json`
 - [ ] 第三方复现报告（待外部协作者）
 
 ## 6. Related Work（详见 `docs/literature/`）
