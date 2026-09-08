@@ -229,3 +229,10 @@ rule-judge**；三任务完全同口径 dev_r/val/holdout=5/8/20；主对比预�
 DSPy–MIPROv2 → GEPA（最强基线，投稿时必含）；画像与路由：HELM/FLASK/
 FrugalGPT/RouteLLM；结构与迁移：Sclar 格式敏感、软提示（不可迁移）vs
 离散基因组（可重编译）。
+2026 编译/载体/约束前沿（详见 `docs/literature/lit-2026-frontier.md`）：
+Instruction Stacking Collapse（2608.02639）证编译价值 capability-dependent——与本
+文 F2"规则先验净负债"同轴对峙（NL 重写编译 vs genome 编译）；PromptBridge
+（2512.01420）证自然语言载体跨模型漂移严重——与 F3 结构 genome 跨任务零损耗
+互为补集：**脆弱性在载体不在表示**；DUALFIX（2607.05121）规则演化回潮 vs 本文
+PGAM 零结果——规则应进 genome 而非自由文本；CAPO（2608.16068）约束感知优化，
+投稿时约束维度的最新基线候选。
