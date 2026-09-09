@@ -305,7 +305,8 @@ Same-day paired four arms (financial, completed within one hour window):
 
 | Method (same-day re-measured) | holdout | vs z0 |
 |---|---|---|
-| z0 (same-batch reference) | .6983 | — |
+| z0 (same-batch ref; 4 same-day measures: .6950/.6983/.6998/.7016) | .6983 | — |
+| manual | .7012 | +.0029 (noise band; last night's .6662 was a low-drift day) |
 | APC-safe champion | .7008 | +.0025 (within the noise band) |
 | GEPA champion | .7014 | +.0024 (within the noise band) |
 | APC-full champion | .6082 | **−.090 (a real liability)** |
