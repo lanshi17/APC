@@ -40,7 +40,8 @@ from bench_real_external import (answers_match, extract_pred, JUDGE_VERSION)  # 
 from bench_real_gepa import RolloutBudget, eval_cases, gepa_search  # noqa: E402
 import bench_real_gepa as G  # 用于 monkeypatch JUDGE/CHECKER 到 hle 语义
 
-OUT = REPO / "experiments" / "apcbench" / "real_hle.json"
+import os
+OUT = Path(os.environ.get("HLE_OUT", str(REPO / "experiments" / "apcbench" / "real_hle.json")))
 SPEC_PATH = REPO / "apc-pipeline" / "configs" / "tasks" / "external_math.yaml"
 DS = REPO / "datasets" / "hle_exact"
 
@@ -79,8 +80,55 @@ def compile_for(genome: PromptGenome, spec, profile, compiler) -> str:
     return compiler.compile(genome, spec, profile, apply_rules=False).prompt_text
 
 
-def run_eval(client, spec, samples, prompt_text, budget) -> tuple[float, list]:
-    return eval_cases(client, spec, samples, prompt_text, budget)
+def run_eval(client, spec, samples, prompt_text, budget, stream_path=None) -> tuple[float, list]:
+    """带 per-sample 流式落盘 + 断点续跑的评测(代理挂起/进程死后可重入)。"""
+    if not stream_path:
+        return eval_cases(client, spec, samples, prompt_text, budget)
+    done = {}
+    sp = Path(stream_path)
+    if sp.exists():
+        for line in sp.read_text(encoding="utf-8").splitlines():
+            try:
+                c = json.loads(line)
+                done[c["sample_id"]] = c
+            except Exception:
+                pass
+    cases = []
+    from apc.evaluation.runner import TrialScorer
+    from concurrent.futures import ThreadPoolExecutor
+    import uuid
+    def _hard_call(prompt):
+        with ThreadPoolExecutor(max_workers=1) as ex:
+            return ex.submit(client.complete, prompt, 0.0).result(timeout=args.hard)
+    for smp in samples:
+        sid = str(hash(smp["doc"]))[:8]
+        if sid in done:
+            cases.append(done[sid]); continue
+        try:
+            call = _hard_call(prompt_text.replace("{{input}}", smp["doc"]))
+        except Exception:
+            c = {"sample_id": sid, "doc": smp["doc"], "format_score": 0.0, "constraint_score": 0.0,
+                 "accuracy": 0.0, "instruction_following": 0.0, "output": "<call-error>",
+                 "expected": json.dumps(smp.get("expected", {}), ensure_ascii=False)}
+            cases.append(c)
+            with open(sp, "a", encoding="utf-8") as f:
+                f.write(json.dumps(c, ensure_ascii=False) + "\n")
+            continue
+        rule = G.CHECKER.check(call.text, spec)
+        j = G.JUDGE.judge(smp["doc"], smp.get("expected", {}), call.text, spec)
+        c = {"sample_id": sid, "doc": smp["doc"], "format_score": rule.get("format_score", 0.0),
+             "constraint_score": rule.get("constraint_score", 0.0),
+             "accuracy": round(float(j.get("accuracy", 0.0)), 4),
+             "instruction_following": round(float(j.get("constraint_following", 0.0)), 4),
+             "output": call.text, "expected": json.dumps(smp.get("expected", {}), ensure_ascii=False)}
+        cases.append(c)
+        with open(sp, "a", encoding="utf-8") as f:
+            f.write(json.dumps(c, ensure_ascii=False) + "\n")
+    trial = TrialScorer().score(spec, cases, trial_id=uuid.uuid4().hex[:8],
+                                model_id=client.model_id, genome_id="hle", prompt_id="hle",
+                                dataset_id="hle", dataset_version="real",
+                                judge_id="hle-v32", temperature=0.0)
+    return float(trial.score), cases
 
 
 def row_of(method, seed, sc, cases, t0, chars, budget, extra=None):
@@ -105,7 +153,10 @@ def main() -> int:
     ap.add_argument("--rollouts", type=int, default=48)
     ap.add_argument("--hold-n", type=int, default=30)
     ap.add_argument("--seed", type=int, default=921)
-    ap.add_argument("--timeout", type=float, default=420.0)
+    ap.add_argument("--timeout", type=float, default=300.0)
+    ap.add_argument("--hard", type=float, default=330.0, help="thread 级硬超时(read timeout 对半开连接可失效)")
+    ap.add_argument("--no-thinking", action="store_true",
+                    help="关推理模型思考通路:题目仍难但单题成本 x10(协议余量主信号)")
     args = ap.parse_args()
 
     client = create_client(args.model, prefer_mock=False)
@@ -113,7 +164,13 @@ def main() -> int:
         raise SystemExit("需要真实凭证")
     if hasattr(client, "client"):
         import httpx
-        client.client.timeout = httpx.Timeout(args.timeout)
+        client.client.timeout = httpx.Timeout(args.timeout, connect=30.0, read=args.timeout)
+    if args.no_thinking:
+        _orig_complete = client.complete
+        def _nt(messages, max_tokens=2000, temperature=0.0):
+            return _orig_complete(messages, max_tokens=max_tokens, temperature=temperature,
+                                  extra_body={"enable_thinking": False})
+        client.complete = _nt
     # 判分适配:monkeypatch gepa 全局 JUDGE/CHECKER(hle 语义)
     G.JUDGE = HLEJudge()
     G.CHECKER = HLEChecker()
@@ -141,7 +198,7 @@ def main() -> int:
 
     if "z0" in arms:
         t0 = time.time(); b = RolloutBudget(10_000)
-        sc, cases = run_eval(client, spec, hold, z0_text, b)
+        sc, cases = run_eval(client, spec, hold, z0_text, b, f"/tmp/hle_z0_{args.seed}.jsonl")
         persist(row_of("z0", args.seed, sc, cases, t0, len(z0_text), b))
 
     if "champs" in arms:
@@ -151,7 +208,7 @@ def main() -> int:
             t0 = time.time(); b = RolloutBudget(10_000)
             g = PromptGenome.model_validate_json((CHAMPS_DIR / fn).read_text(encoding="utf-8"))
             text = compile_for(g, spec, profile, compiler)
-            sc, cases = run_eval(client, spec, hold, text, b)
+            sc, cases = run_eval(client, spec, hold, text, b, f"/tmp/hle_{nm}_{args.seed}.jsonl")
             persist(row_of(nm, args.seed, sc, cases, t0, len(text), b))
 
     if "gepa" in arms:
@@ -160,7 +217,7 @@ def main() -> int:
                                                random.Random(args.seed))
         (Path("/tmp") / f"hle_gepa_{args.seed}_champ.txt").write_text(champ, encoding="utf-8")
         b2 = RolloutBudget(10_000)
-        sc, cases = run_eval(client, spec, hold, champ, b2)
+        sc, cases = run_eval(client, spec, hold, champ, b2, f"/tmp/hle_gepa_{args.seed}.jsonl")
         persist(row_of("gepa", args.seed, sc, cases, t0, len(champ), b,
                        {"validation_score": round(cval, 4), "iterations": iters}))
 
@@ -170,7 +227,7 @@ def main() -> int:
         champ, cval, iters, used, biases = espo_run(client, spec, val[:8], z0_text, b, args.seed)
         (Path("/tmp") / f"hle_espo_{args.seed}_champ.txt").write_text(champ, encoding="utf-8")
         b2 = RolloutBudget(10_000)
-        sc, cases = run_eval(client, spec, hold, champ, b2)
+        sc, cases = run_eval(client, spec, hold, champ, b2, f"/tmp/hle_espo_{args.seed}.jsonl")
         persist(row_of("espo", args.seed, sc, cases, t0, len(champ), b,
                        {"validation_score": round(cval, 4), "biases": biases}))
 
