@@ -77,7 +77,13 @@ def eval_cases(client, spec: TaskSpec, samples: list[dict], prompt_text: str,
             break
         doc = document(smp)
         budget.used += 1
-        call = client.complete(prompt_text.replace("{{input}}", doc), temperature=0.0)
+        try:
+            call = client.complete(prompt_text.replace("{{input}}", doc), temperature=0.0)
+        except Exception:
+            cases.append({"sample_id": str(hash(doc))[:8], "doc": doc, "format_score": 0.0,
+                          "constraint_score": 0.0, "accuracy": 0.0, "instruction_following": 0.0,
+                          "output": "<call-error>", "expected": json.dumps(smp.get("expected", {}), ensure_ascii=False)})
+            continue
         rule = CHECKER.check(call.text, spec)
         j = JUDGE.judge(doc, smp.get("expected", {}), call.text, spec)
         cases.append({
@@ -103,7 +109,10 @@ def reflect(client, parent: str, fails: list[dict]) -> str:
         for c in fails[:3])
     msg = (f"CURRENT PROMPT:\n<<<\n{parent}\n>>>\n\nFAILING CASES:\n{ex}\n\n"
            "Now output the improved complete prompt.")
-    call = client.complete(msg, temperature=0.3)
+    try:
+        call = client.complete(msg, temperature=0.3)
+    except Exception:
+        return parent
     t = call.text.strip()
     for fence in ("```text\n", "```\n", "```"):
         if t.startswith(fence):
@@ -181,11 +190,15 @@ def main() -> int:
     ap.add_argument("--model", default="qwen")
     ap.add_argument("--rollouts", type=int, default=48)
     ap.add_argument("--seeds", default="42,43")
+    ap.add_argument("--timeout", type=float, default=420.0)
     args = ap.parse_args()
 
     client = create_client(args.model, prefer_mock=False)
     if isinstance(client, MockClient):
         raise SystemExit("需要真实凭证")
+    if hasattr(client, "client"):
+        import httpx
+        client.client.timeout = httpx.Timeout(args.timeout)
     task_yaml, ds_name, judge_id = TASK_CFG[args.task]
     spec = TaskSpec.from_yaml(REPO / task_yaml)
     compiler = DefaultPromptCompiler()
