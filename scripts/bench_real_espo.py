@@ -165,6 +165,7 @@ def main() -> int:
     ap.add_argument("--seeds", default="42")
     ap.add_argument("--rollouts", type=int, default=48)
     ap.add_argument("--hold-n", type=int, default=20)
+    ap.add_argument("--max-tokens", type=int, default=None)
     args = ap.parse_args()
 
     client = create_client(args.model, prefer_mock=False)
@@ -173,6 +174,8 @@ def main() -> int:
     if hasattr(client, "client"):
         import httpx
         client.client.timeout = httpx.Timeout(420.0)
+    if args.max_tokens:
+        client.max_tokens = args.max_tokens
     task_yaml, ds_name, judge_id = TASK_CFG[args.task]
     spec = TaskSpec.from_yaml(REPO / task_yaml)
     from apc.core.model_profile import ModelProfile
@@ -190,6 +193,9 @@ def main() -> int:
         PromptGenome.from_json(str(REPO / BASE_GENOME)), spec, profile,
         apply_rules=False).prompt_text
 
+    global OUT
+    if args.max_tokens:
+        OUT = REPO / "experiments" / "apcbench" / f"real_gepa_mt{args.max_tokens}.json"
     doc = {"protocol": "real-gepa", "judge": judge_id, "rows": []}
     if OUT.exists():
         doc = json.loads(OUT.read_text(encoding="utf-8"))
