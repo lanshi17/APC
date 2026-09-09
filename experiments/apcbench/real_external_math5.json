@@ -1,0 +1,2559 @@
+{
+ "protocol": "real-external",
+ "judge": "exact-match-normalized-v3.2",
+ "rows": [
+  {
+   "dataset": "math5",
+   "arm": "base",
+   "n": 135,
+   "accuracy": 0.9704,
+   "answer_field_rate": 1.0,
+   "call_errors": 0,
+   "budget_used": 0,
+   "elapsed_s": 3818.4,
+   "model_version": "qwen3.8-flash",
+   "fail_sample": [
+    {
+     "i": 31,
+     "pred": "2, -1",
+     "gold": "2"
+    },
+    {
+     "i": 59,
+     "pred": "sqrt(2/5)",
+     "gold": "\\frac{\\sqrt{10}}{5}"
+    },
+    {
+     "i": 91,
+     "pred": "pi/4, 5pi/4",
+     "gold": "\\frac{5\\pi}{4}"
+    },
+    {
+     "i": 97,
+     "pred": "-3-2sqrt(2),-3+2sqrt(2),3-2sqrt(2),3+2sqrt(2)",
+     "gold": "3 \\pm 2 \\sqrt{2}"
+    }
+   ],
+   "preds": [
+    {
+     "i": 0,
+     "pred": "1/4",
+     "gold": "\\frac{1}{4}",
+     "ok": true
+    },
+    {
+     "i": 1,
+     "pred": "1/72",
+     "gold": "\\frac{1}{72}",
+     "ok": true
+    },
+    {
+     "i": 2,
+     "pred": "(1,4,3)",
+     "gold": "\\begin{pmatrix} 1 \\\\ 4 \\\\ 3 \\end{pmatrix}",
+     "ok": true
+    },
+    {
+     "i": 3,
+     "pred": "-3",
+     "gold": "-3",
+     "ok": true
+    },
+    {
+     "i": 4,
+     "pred": "-1",
+     "gold": "-1",
+     "ok": true
+    },
+    {
+     "i": 5,
+     "pred": "5",
+     "gold": "5",
+     "ok": true
+    },
+    {
+     "i": 6,
+     "pred": "3/2",
+     "gold": "\\frac{3}{2}",
+     "ok": true
+    },
+    {
+     "i": 7,
+     "pred": "4",
+     "gold": "4",
+     "ok": true
+    },
+    {
+     "i": 8,
+     "pred": "65536",
+     "gold": "65536",
+     "ok": true
+    },
+    {
+     "i": 9,
+     "pred": "50",
+     "gold": "50^\\circ",
+     "ok": true
+    },
+    {
+     "i": 10,
+     "pred": "11",
+     "gold": "11",
+     "ok": true
+    },
+    {
+     "i": 11,
+     "pred": "(4, 24)",
+     "gold": "(4,24)",
+     "ok": true
+    },
+    {
+     "i": 12,
+     "pred": "18",
+     "gold": "18",
+     "ok": true
+    },
+    {
+     "i": 13,
+     "pred": "1/3",
+     "gold": "\\frac{1}{3}",
+     "ok": true
+    },
+    {
+     "i": 14,
+     "pred": "116-75i",
+     "gold": "116 - 75i",
+     "ok": true
+    },
+    {
+     "i": 15,
+     "pred": "\\begin{pmatrix} \\frac{23}{8} \\\\ \\frac{7}{4} \\end{pmatrix}",
+     "gold": "\\begin{pmatrix} 23/8 \\\\ 7/4 \\end{pmatrix}",
+     "ok": true
+    },
+    {
+     "i": 16,
+     "pred": "27,63,99,135,171",
+     "gold": "27^\\circ, 63^\\circ, 99^\\circ, 135^\\circ, 171^\\circ",
+     "ok": true
+    },
+    {
+     "i": 17,
+     "pred": "3R^2",
+     "gold": "3R^2",
+     "ok": true
+    },
+    {
+     "i": 18,
+     "pred": "25*sqrt(10)/4",
+     "gold": "\\frac{25 \\sqrt{10}}{4}",
+     "ok": true
+    },
+    {
+     "i": 19,
+     "pred": "4/3",
+     "gold": "\\frac{4}{3}",
+     "ok": true
+    },
+    {
+     "i": 20,
+     "pred": "D",
+     "gold": "D",
+     "ok": true
+    },
+    {
+     "i": 21,
+     "pred": "21/64",
+     "gold": "\\frac{21}{64}",
+     "ok": true
+    },
+    {
+     "i": 22,
+     "pred": "92",
+     "gold": "92",
+     "ok": true
+    },
+    {
+     "i": 23,
+     "pred": "\\begin{pmatrix} -5/13 \\\\ 12/13 \\end{pmatrix}",
+     "gold": "\\begin{pmatrix} -5/13 \\\\ 12/13 \\end{pmatrix}",
+     "ok": true
+    },
+    {
+     "i": 24,
+     "pred": "82",
+     "gold": "82",
+     "ok": true
+    },
+    {
+     "i": 25,
+     "pred": "7",
+     "gold": "7",
+     "ok": true
+    },
+    {
+     "i": 26,
+     "pred": "sqrt(35)/3",
+     "gold": "\\frac{\\sqrt{35}}{3}",
+     "ok": true
+    },
+    {
+     "i": 27,
+     "pred": "16",
+     "gold": "16",
+     "ok": true
+    },
+    {
+     "i": 28,
+     "pred": "27",
+     "gold": "27",
+     "ok": true
+    },
+    {
+     "i": 29,
+     "pred": "2-2√2",
+     "gold": "2 - 2 \\sqrt{2}",
+     "ok": true
+    },
+    {
+     "i": 30,
+     "pred": "4/7",
+     "gold": "\\frac{4}{7}",
+     "ok": true
+    },
+    {
+     "i": 31,
+     "pred": "2, -1",
+     "gold": "2",
+     "ok": false
+    },
+    {
+     "i": 32,
+     "pred": "3, 11, 33",
+     "gold": "3, 11, 33",
+     "ok": true
+    },
+    {
+     "i": 33,
+     "pred": "49",
+     "gold": "49",
+     "ok": true
+    },
+    {
+     "i": 34,
+     "pred": "4",
+     "gold": "4",
+     "ok": true
+    },
+    {
+     "i": 35,
+     "pred": "432",
+     "gold": "432",
+     "ok": true
+    },
+    {
+     "i": 36,
+     "pred": "8+4√3",
+     "gold": "8+4\\sqrt3",
+     "ok": true
+    },
+    {
+     "i": 37,
+     "pred": "(-7,10)",
+     "gold": "(-7,10)",
+     "ok": true
+    },
+    {
+     "i": 38,
+     "pred": "1/5",
+     "gold": "\\frac{1}{5}",
+     "ok": true
+    },
+    {
+     "i": 39,
+     "pred": "4018",
+     "gold": "4018",
+     "ok": true
+    },
+    {
+     "i": 40,
+     "pred": "(7/45, 4/45)",
+     "gold": "\\left( \\frac{7}{45}, \\frac{4}{45} \\right)",
+     "ok": true
+    },
+    {
+     "i": 41,
+     "pred": "(-4/9, 1/9, 8/9)",
+     "gold": "\\begin{pmatrix} -4/9 \\\\ 1/9 \\\\ 8/9 \\end{pmatrix}",
+     "ok": true
+    },
+    {
+     "i": 42,
+     "pred": "175/2",
+     "gold": "87.5",
+     "ok": true
+    },
+    {
+     "i": 43,
+     "pred": "(2,-1)",
+     "gold": "(2,-1)",
+     "ok": true
+    },
+    {
+     "i": 44,
+     "pred": "120",
+     "gold": "120^\\circ",
+     "ok": true
+    },
+    {
+     "i": 45,
+     "pred": "7/8",
+     "gold": "\\frac{7}{8}",
+     "ok": true
+    },
+    {
+     "i": 46,
+     "pred": "12",
+     "gold": "12",
+     "ok": true
+    },
+    {
+     "i": 47,
+     "pred": "20",
+     "gold": "20",
+     "ok": true
+    },
+    {
+     "i": 48,
+     "pred": "(0,1)",
+     "gold": "(0,1)",
+     "ok": true
+    },
+    {
+     "i": 49,
+     "pred": "16π/3",
+     "gold": "\\frac{16 \\pi}{3}",
+     "ok": true
+    },
+    {
+     "i": 50,
+     "pred": "-3, 1",
+     "gold": "1, -3",
+     "ok": true
+    },
+    {
+     "i": 51,
+     "pred": "(5/3, 5/3, 4/3)",
+     "gold": "\\begin{pmatrix} 5/3 \\\\ 5/3 \\\\ 4/3 \\end{pmatrix}",
+     "ok": true
+    },
+    {
+     "i": 52,
+     "pred": "3/2+3/2i",
+     "gold": "\\frac{3}{2} + \\frac{3}{2} i",
+     "ok": true
+    },
+    {
+     "i": 53,
+     "pred": "9/10",
+     "gold": "\\frac{9}{10}",
+     "ok": true
+    },
+    {
+     "i": 54,
+     "pred": "(-4, -3)",
+     "gold": "\\begin{pmatrix} -4\\\\-3 \\end{pmatrix}",
+     "ok": true
+    },
+    {
+     "i": 55,
+     "pred": "1",
+     "gold": "1",
+     "ok": true
+    },
+    {
+     "i": 56,
+     "pred": "sqrt(6)/3",
+     "gold": "\\frac{\\sqrt{6}}{3}",
+     "ok": true
+    },
+    {
+     "i": 57,
+     "pred": "2/3",
+     "gold": "\\frac{2}{3}",
+     "ok": true
+    },
+    {
+     "i": 58,
+     "pred": "y = 2x + 3",
+     "gold": "y = 2x + 3",
+     "ok": true
+    },
+    {
+     "i": 59,
+     "pred": "sqrt(2/5)",
+     "gold": "\\frac{\\sqrt{10}}{5}",
+     "ok": false
+    },
+    {
+     "i": 60,
+     "pred": "(-5/3, 2/3, 19/3)",
+     "gold": "\\left( -\\frac{5}{3}, \\frac{2}{3}, \\frac{19}{3} \\right)",
+     "ok": true
+    },
+    {
+     "i": 61,
+     "pred": "2√149/3",
+     "gold": "\\frac{2 \\sqrt{149}}{3}",
+     "ok": true
+    },
+    {
+     "i": 62,
+     "pred": "(1/5, -18/5)",
+     "gold": "\\begin{pmatrix} 1/5 \\\\ -18/5 \\end{pmatrix}",
+     "ok": true
+    },
+    {
+     "i": 63,
+     "pred": "-3",
+     "gold": "-3",
+     "ok": true
+    },
+    {
+     "i": 64,
+     "pred": "8x^3 - 6x - 1",
+     "gold": "8x^3 - 6x - 1",
+     "ok": true
+    },
+    {
+     "i": 65,
+     "pred": "3+sqrt(6)",
+     "gold": "3 + \\sqrt{6}",
+     "ok": true
+    },
+    {
+     "i": 66,
+     "pred": "7",
+     "gold": "7",
+     "ok": true
+    },
+    {
+     "i": 67,
+     "pred": "-1/16",
+     "gold": "-\\frac{1}{16}",
+     "ok": true
+    },
+    {
+     "i": 68,
+     "pred": "9",
+     "gold": "9",
+     "ok": true
+    },
+    {
+     "i": 69,
+     "pred": "120",
+     "gold": "120^\\circ",
+     "ok": true
+    },
+    {
+     "i": 70,
+     "pred": "4, 20",
+     "gold": "4^\\circ, 20^\\circ",
+     "ok": true
+    },
+    {
+     "i": 71,
+     "pred": "3/4",
+     "gold": "\\frac{3}{4}",
+     "ok": true
+    },
+    {
+     "i": 72,
+     "pred": "-1, 0, 1",
+     "gold": "-1,0,1",
+     "ok": true
+    },
+    {
+     "i": 73,
+     "pred": "sqrt(6)/3",
+     "gold": "\\frac{\\sqrt{6}}{3}",
+     "ok": true
+    },
+    {
+     "i": 74,
+     "pred": "-1, 2",
+     "gold": "2, -1",
+     "ok": true
+    },
+    {
+     "i": 75,
+     "pred": "19/21",
+     "gold": "\\frac{19}{21}",
+     "ok": true
+    },
+    {
+     "i": 76,
+     "pred": "(-8/3, 4/3, -1/3)",
+     "gold": "\\left( -\\frac{8}{3}, \\frac{4}{3}, -\\frac{1}{3} \\right)",
+     "ok": true
+    },
+    {
+     "i": 77,
+     "pred": "[[1, 2], [-3, -5]]",
+     "gold": "\\begin{pmatrix} 1 & 2 \\\\ -3 & -5 \\end{pmatrix}",
+     "ok": true
+    },
+    {
+     "i": 78,
+     "pred": "43",
+     "gold": "43",
+     "ok": true
+    },
+    {
+     "i": 79,
+     "pred": "32R^2 - 3(a^2 + b^2 + c^2)",
+     "gold": "32R^2 - 3(a^2 + b^2 + c^2)",
+     "ok": true
+    },
+    {
+     "i": 80,
+     "pred": "20x + 23y + 26z - 69 = 0",
+     "gold": "20x + 23y + 26z - 69 = 0",
+     "ok": true
+    },
+    {
+     "i": 81,
+     "pred": "(4/3, -1/3)",
+     "gold": "\\left( \\frac{4}{3}, -\\frac{1}{3} \\right)",
+     "ok": true
+    },
+    {
+     "i": 82,
+     "pred": "12",
+     "gold": "12",
+     "ok": true
+    },
+    {
+     "i": 83,
+     "pred": "3/5, 117/125",
+     "gold": "\\frac{3}{5}, \\frac{117}{125}",
+     "ok": true
+    },
+    {
+     "i": 84,
+     "pred": "1/9",
+     "gold": "\\frac{1}{9}",
+     "ok": true
+    },
+    {
+     "i": 85,
+     "pred": "6/7",
+     "gold": "\\frac{6}{7}",
+     "ok": true
+    },
+    {
+     "i": 86,
+     "pred": "(2, -1)",
+     "gold": "(2,-1)",
+     "ok": true
+    },
+    {
+     "i": 87,
+     "pred": "1/8",
+     "gold": "\\frac{1}{8}",
+     "ok": true
+    },
+    {
+     "i": 88,
+     "pred": "3+2√3",
+     "gold": "2 \\sqrt{3} + 3",
+     "ok": false
+    },
+    {
+     "i": 89,
+     "pred": "4",
+     "gold": "4",
+     "ok": true
+    },
+    {
+     "i": 90,
+     "pred": "1/2",
+     "gold": "\\frac{1}{2}",
+     "ok": true
+    },
+    {
+     "i": 91,
+     "pred": "pi/4, 5pi/4",
+     "gold": "\\frac{5\\pi}{4}",
+     "ok": false
+    },
+    {
+     "i": 92,
+     "pred": "(3, 11π/8, 4π/5)",
+     "gold": "\\left( 3, \\frac{11 \\pi}{8}, \\frac{4 \\pi}{5} \\right)",
+     "ok": true
+    },
+    {
+     "i": 93,
+     "pred": "8\\pi",
+     "gold": "8 \\pi",
+     "ok": true
+    },
+    {
+     "i": 94,
+     "pred": "11x + 6y + 5z + 86 = 0",
+     "gold": "11x + 6y + 5z + 86 = 0",
+     "ok": true
+    },
+    {
+     "i": 95,
+     "pred": "159",
+     "gold": "159",
+     "ok": true
+    },
+    {
+     "i": 96,
+     "pred": "\\begin{pmatrix} 1/50 & 7/50 \\\\ 7/50 & 49/50 \\end{pmatrix}",
+     "gold": "\\begin{pmatrix} 1/50 & 7/50 \\\\ 7/50 & 49/50 \\end{pmatrix}",
+     "ok": true
+    },
+    {
+     "i": 97,
+     "pred": "-3-2sqrt(2),-3+2sqrt(2),3-2sqrt(2),3+2sqrt(2)",
+     "gold": "3 \\pm 2 \\sqrt{2}",
+     "ok": false
+    },
+    {
+     "i": 98,
+     "pred": "3/8",
+     "gold": "\\frac{3}{8}",
+     "ok": true
+    },
+    {
+     "i": 99,
+     "pred": "2\\sqrt{2}",
+     "gold": "2 \\sqrt{2}",
+     "ok": true
+    },
+    {
+     "i": 100,
+     "pred": "9",
+     "gold": "9",
+     "ok": true
+    },
+    {
+     "i": 101,
+     "pred": "(7, 21, 35)",
+     "gold": "(7,21,35)",
+     "ok": true
+    },
+    {
+     "i": 102,
+     "pred": "(11/15, 11/60, 1/12)",
+     "gold": "\\left( \\frac{11}{15}, \\frac{11}{60}, \\frac{1}{12} \\right)",
+     "ok": true
+    },
+    {
+     "i": 103,
+     "pred": "sqrt(3)/2",
+     "gold": "\\frac{\\sqrt{3}}{2}",
+     "ok": true
+    },
+    {
+     "i": 104,
+     "pred": "840",
+     "gold": "840^\\circ",
+     "ok": true
+    },
+    {
+     "i": 105,
+     "pred": "sqrt(3)-2",
+     "gold": "-2 + \\sqrt{3}",
+     "ok": false
+    },
+    {
+     "i": 106,
+     "pred": "3^{2007}",
+     "gold": "3^{2007}",
+     "ok": true
+    },
+    {
+     "i": 107,
+     "pred": "4",
+     "gold": "4",
+     "ok": true
+    },
+    {
+     "i": 108,
+     "pred": "4096\\sqrt{2}",
+     "gold": "4096 \\sqrt{2}",
+     "ok": true
+    },
+    {
+     "i": 109,
+     "pred": "9/2",
+     "gold": "\\frac{9}{2}",
+     "ok": true
+    },
+    {
+     "i": 110,
+     "pred": "\\begin{pmatrix} 2 \\\\ -1 \\\\ -5 \\end{pmatrix}",
+     "gold": "\\begin{pmatrix} 2 \\\\ -1 \\\\ -5 \\end{pmatrix}",
+     "ok": true
+    },
+    {
+     "i": 111,
+     "pred": "5\\sqrt{6}/3",
+     "gold": "\\frac{5 \\sqrt{6}}{3}",
+     "ok": true
+    },
+    {
+     "i": 112,
+     "pred": "27, 93",
+     "gold": "27,93",
+     "ok": true
+    },
+    {
+     "i": 113,
+     "pred": "6/23",
+     "gold": "\\frac{6}{23}",
+     "ok": true
+    },
+    {
+     "i": 114,
+     "pred": "-17/19",
+     "gold": "-\\frac{17}{19}",
+     "ok": true
+    },
+    {
+     "i": 115,
+     "pred": "8",
+     "gold": "8",
+     "ok": true
+    },
+    {
+     "i": 116,
+     "pred": "4036082/4036081",
+     "gold": "\\frac{4036082}{4036081}",
+     "ok": true
+    },
+    {
+     "i": 117,
+     "pred": "sqrt(66)",
+     "gold": "\\sqrt{66}",
+     "ok": true
+    },
+    {
+     "i": 118,
+     "pred": "6",
+     "gold": "6",
+     "ok": true
+    },
+    {
+     "i": 119,
+     "pred": "-31/8",
+     "gold": "-\\frac{31}{8}",
+     "ok": true
+    },
+    {
+     "i": 120,
+     "pred": "-8",
+     "gold": "-8",
+     "ok": true
+    },
+    {
+     "i": 121,
+     "pred": "-3/4, 3/4",
+     "gold": "\\frac{3}{4}, -\\frac{3}{4}",
+     "ok": true
+    },
+    {
+     "i": 122,
+     "pred": "-1/14",
+     "gold": "-\\frac{1}{14}",
+     "ok": true
+    },
+    {
+     "i": 123,
+     "pred": "1/2",
+     "gold": "\\frac{1}{2}",
+     "ok": true
+    },
+    {
+     "i": 124,
+     "pred": "3/2",
+     "gold": "\\frac{3}{2}",
+     "ok": true
+    },
+    {
+     "i": 125,
+     "pred": "(3,-3,1)",
+     "gold": "(3,-3,1)",
+     "ok": true
+    },
+    {
+     "i": 126,
+     "pred": "(-6, 9)",
+     "gold": "\\begin{pmatrix} -6 \\\\ 9 \\end{pmatrix}",
+     "ok": true
+    },
+    {
+     "i": 127,
+     "pred": "14",
+     "gold": "14",
+     "ok": true
+    },
+    {
+     "i": 128,
+     "pred": "144",
+     "gold": "144",
+     "ok": true
+    },
+    {
+     "i": 129,
+     "pred": "sqrt(3)-2,2+sqrt(3)",
+     "gold": "2 + \\sqrt{3}, -2 + \\sqrt{3}",
+     "ok": false
+    },
+    {
+     "i": 130,
+     "pred": "6-5i",
+     "gold": "6 - 5i",
+     "ok": true
+    },
+    {
+     "i": 131,
+     "pred": "-4/3",
+     "gold": "-\\frac{4}{3}",
+     "ok": true
+    },
+    {
+     "i": 132,
+     "pred": "\\begin{pmatrix} 1 \\\\ 2 \\\\ -3 \\end{pmatrix}",
+     "gold": "\\begin{pmatrix} 1 \\\\ 2 \\\\ -3 \\end{pmatrix}",
+     "ok": true
+    },
+    {
+     "i": 133,
+     "pred": "159",
+     "gold": "159",
+     "ok": true
+    },
+    {
+     "i": 134,
+     "pred": "\\begin{pmatrix} 1 \\\\ -2 \\\\ -1 \\end{pmatrix}",
+     "gold": "\\begin{pmatrix} 1 \\\\ -2 \\\\ -1 \\end{pmatrix}",
+     "ok": true
+    }
+   ],
+   "judge": "exact-match-normalized-v3.2"
+  },
+  {
+   "dataset": "math5",
+   "arm": "math-champ",
+   "n": 135,
+   "accuracy": 0.9481,
+   "answer_field_rate": 0.9926,
+   "call_errors": 0,
+   "budget_used": 0,
+   "elapsed_s": 3840.6,
+   "model_version": "qwen3.8-flash",
+   "fail_sample": [
+    {
+     "i": 31,
+     "pred": "2,-1",
+     "gold": "2"
+    },
+    {
+     "i": 59,
+     "pred": "sqrt(2/5)",
+     "gold": "\\frac{\\sqrt{10}}{5}"
+    },
+    {
+     "i": 67,
+     "pred": "",
+     "gold": "-\\frac{1}{16}"
+    },
+    {
+     "i": 73,
+     "pred": "sqrt(2/3)",
+     "gold": "\\frac{\\sqrt{6}}{3}"
+    },
+    {
+     "i": 91,
+     "pred": "π/4,5π/4",
+     "gold": "\\frac{5\\pi}{4}"
+    },
+    {
+     "i": 97,
+     "pred": "-3-2√2,-3+2√2,3-2√2,3+2√2",
+     "gold": "3 \\pm 2 \\sqrt{2}"
+    },
+    {
+     "i": 111,
+     "pred": "sqrt(50/3)",
+     "gold": "\\frac{5 \\sqrt{6}}{3}"
+    }
+   ],
+   "preds": [
+    {
+     "i": 0,
+     "pred": "1/4",
+     "gold": "\\frac{1}{4}",
+     "ok": true
+    },
+    {
+     "i": 1,
+     "pred": "1/72",
+     "gold": "\\frac{1}{72}",
+     "ok": true
+    },
+    {
+     "i": 2,
+     "pred": "(1, 4, 3)",
+     "gold": "\\begin{pmatrix} 1 \\\\ 4 \\\\ 3 \\end{pmatrix}",
+     "ok": true
+    },
+    {
+     "i": 3,
+     "pred": "-3",
+     "gold": "-3",
+     "ok": true
+    },
+    {
+     "i": 4,
+     "pred": "-1",
+     "gold": "-1",
+     "ok": true
+    },
+    {
+     "i": 5,
+     "pred": "5",
+     "gold": "5",
+     "ok": true
+    },
+    {
+     "i": 6,
+     "pred": "1.5",
+     "gold": "\\frac{3}{2}",
+     "ok": true
+    },
+    {
+     "i": 7,
+     "pred": "4",
+     "gold": "4",
+     "ok": true
+    },
+    {
+     "i": 8,
+     "pred": "65536",
+     "gold": "65536",
+     "ok": true
+    },
+    {
+     "i": 9,
+     "pred": "50",
+     "gold": "50^\\circ",
+     "ok": true
+    },
+    {
+     "i": 10,
+     "pred": "11",
+     "gold": "11",
+     "ok": true
+    },
+    {
+     "i": 11,
+     "pred": "[4, 24]",
+     "gold": "(4,24)",
+     "ok": true
+    },
+    {
+     "i": 12,
+     "pred": "18",
+     "gold": "18",
+     "ok": true
+    },
+    {
+     "i": 13,
+     "pred": "1/3",
+     "gold": "\\frac{1}{3}",
+     "ok": true
+    },
+    {
+     "i": 14,
+     "pred": "116-75i",
+     "gold": "116 - 75i",
+     "ok": true
+    },
+    {
+     "i": 15,
+     "pred": "(23/8, 7/4)",
+     "gold": "\\begin{pmatrix} 23/8 \\\\ 7/4 \\end{pmatrix}",
+     "ok": true
+    },
+    {
+     "i": 16,
+     "pred": "27, 63, 99, 135, 171",
+     "gold": "27^\\circ, 63^\\circ, 99^\\circ, 135^\\circ, 171^\\circ",
+     "ok": true
+    },
+    {
+     "i": 17,
+     "pred": "3R^2",
+     "gold": "3R^2",
+     "ok": true
+    },
+    {
+     "i": 18,
+     "pred": "25*sqrt(10)/4",
+     "gold": "\\frac{25 \\sqrt{10}}{4}",
+     "ok": true
+    },
+    {
+     "i": 19,
+     "pred": "4/3",
+     "gold": "\\frac{4}{3}",
+     "ok": true
+    },
+    {
+     "i": 20,
+     "pred": "D",
+     "gold": "D",
+     "ok": true
+    },
+    {
+     "i": 21,
+     "pred": "21/64",
+     "gold": "\\frac{21}{64}",
+     "ok": true
+    },
+    {
+     "i": 22,
+     "pred": "92",
+     "gold": "92",
+     "ok": true
+    },
+    {
+     "i": 23,
+     "pred": "\\begin{pmatrix}-5/13\\\\12/13\\end{pmatrix}",
+     "gold": "\\begin{pmatrix} -5/13 \\\\ 12/13 \\end{pmatrix}",
+     "ok": true
+    },
+    {
+     "i": 24,
+     "pred": "82",
+     "gold": "82",
+     "ok": true
+    },
+    {
+     "i": 25,
+     "pred": "7",
+     "gold": "7",
+     "ok": true
+    },
+    {
+     "i": 26,
+     "pred": "√35/3",
+     "gold": "\\frac{\\sqrt{35}}{3}",
+     "ok": true
+    },
+    {
+     "i": 27,
+     "pred": "16",
+     "gold": "16",
+     "ok": true
+    },
+    {
+     "i": 28,
+     "pred": "27",
+     "gold": "27",
+     "ok": true
+    },
+    {
+     "i": 29,
+     "pred": "2-2√2",
+     "gold": "2 - 2 \\sqrt{2}",
+     "ok": true
+    },
+    {
+     "i": 30,
+     "pred": "4/7",
+     "gold": "\\frac{4}{7}",
+     "ok": true
+    },
+    {
+     "i": 31,
+     "pred": "2,-1",
+     "gold": "2",
+     "ok": false
+    },
+    {
+     "i": 32,
+     "pred": "3, 11, 33",
+     "gold": "3, 11, 33",
+     "ok": true
+    },
+    {
+     "i": 33,
+     "pred": "49",
+     "gold": "49",
+     "ok": true
+    },
+    {
+     "i": 34,
+     "pred": "4",
+     "gold": "4",
+     "ok": true
+    },
+    {
+     "i": 35,
+     "pred": "432",
+     "gold": "432",
+     "ok": true
+    },
+    {
+     "i": 36,
+     "pred": "8+4\\sqrt{3}",
+     "gold": "8+4\\sqrt3",
+     "ok": true
+    },
+    {
+     "i": 37,
+     "pred": "(-7,10)",
+     "gold": "(-7,10)",
+     "ok": true
+    },
+    {
+     "i": 38,
+     "pred": "1/5",
+     "gold": "\\frac{1}{5}",
+     "ok": true
+    },
+    {
+     "i": 39,
+     "pred": "4018",
+     "gold": "4018",
+     "ok": true
+    },
+    {
+     "i": 40,
+     "pred": "(7/45, 4/45)",
+     "gold": "\\left( \\frac{7}{45}, \\frac{4}{45} \\right)",
+     "ok": true
+    },
+    {
+     "i": 41,
+     "pred": "\\begin{pmatrix} -4/9 \\\\ 1/9 \\\\ 8/9 \\end{pmatrix}",
+     "gold": "\\begin{pmatrix} -4/9 \\\\ 1/9 \\\\ 8/9 \\end{pmatrix}",
+     "ok": true
+    },
+    {
+     "i": 42,
+     "pred": "175/2",
+     "gold": "87.5",
+     "ok": true
+    },
+    {
+     "i": 43,
+     "pred": "(2, -1)",
+     "gold": "(2,-1)",
+     "ok": true
+    },
+    {
+     "i": 44,
+     "pred": "120",
+     "gold": "120^\\circ",
+     "ok": true
+    },
+    {
+     "i": 45,
+     "pred": "0.875",
+     "gold": "\\frac{7}{8}",
+     "ok": true
+    },
+    {
+     "i": 46,
+     "pred": "12",
+     "gold": "12",
+     "ok": true
+    },
+    {
+     "i": 47,
+     "pred": "20",
+     "gold": "20",
+     "ok": true
+    },
+    {
+     "i": 48,
+     "pred": "(0,1)",
+     "gold": "(0,1)",
+     "ok": true
+    },
+    {
+     "i": 49,
+     "pred": "16π/3",
+     "gold": "\\frac{16 \\pi}{3}",
+     "ok": true
+    },
+    {
+     "i": 50,
+     "pred": "[-3, 1]",
+     "gold": "1, -3",
+     "ok": true
+    },
+    {
+     "i": 51,
+     "pred": "(5/3, 5/3, 4/3)",
+     "gold": "\\begin{pmatrix} 5/3 \\\\ 5/3 \\\\ 4/3 \\end{pmatrix}",
+     "ok": true
+    },
+    {
+     "i": 52,
+     "pred": "3/2+3/2i",
+     "gold": "\\frac{3}{2} + \\frac{3}{2} i",
+     "ok": true
+    },
+    {
+     "i": 53,
+     "pred": "9/10",
+     "gold": "\\frac{9}{10}",
+     "ok": true
+    },
+    {
+     "i": 54,
+     "pred": "[-4, -3]",
+     "gold": "\\begin{pmatrix} -4\\\\-3 \\end{pmatrix}",
+     "ok": true
+    },
+    {
+     "i": 55,
+     "pred": "1",
+     "gold": "1",
+     "ok": true
+    },
+    {
+     "i": 56,
+     "pred": "sqrt(6)/3",
+     "gold": "\\frac{\\sqrt{6}}{3}",
+     "ok": true
+    },
+    {
+     "i": 57,
+     "pred": "2/3",
+     "gold": "\\frac{2}{3}",
+     "ok": true
+    },
+    {
+     "i": 58,
+     "pred": "y=2x+3",
+     "gold": "y = 2x + 3",
+     "ok": true
+    },
+    {
+     "i": 59,
+     "pred": "sqrt(2/5)",
+     "gold": "\\frac{\\sqrt{10}}{5}",
+     "ok": false
+    },
+    {
+     "i": 60,
+     "pred": "(-5/3, 2/3, 19/3)",
+     "gold": "\\left( -\\frac{5}{3}, \\frac{2}{3}, \\frac{19}{3} \\right)",
+     "ok": true
+    },
+    {
+     "i": 61,
+     "pred": "2*sqrt(149)/3",
+     "gold": "\\frac{2 \\sqrt{149}}{3}",
+     "ok": true
+    },
+    {
+     "i": 62,
+     "pred": "(1/5, -18/5)",
+     "gold": "\\begin{pmatrix} 1/5 \\\\ -18/5 \\end{pmatrix}",
+     "ok": true
+    },
+    {
+     "i": 63,
+     "pred": "-3",
+     "gold": "-3",
+     "ok": true
+    },
+    {
+     "i": 64,
+     "pred": "8x^3-6x-1",
+     "gold": "8x^3 - 6x - 1",
+     "ok": true
+    },
+    {
+     "i": 65,
+     "pred": "3+sqrt(6)",
+     "gold": "3 + \\sqrt{6}",
+     "ok": true
+    },
+    {
+     "i": 66,
+     "pred": "7",
+     "gold": "7",
+     "ok": true
+    },
+    {
+     "i": 67,
+     "pred": "",
+     "gold": "-\\frac{1}{16}",
+     "ok": false
+    },
+    {
+     "i": 68,
+     "pred": "9",
+     "gold": "9",
+     "ok": true
+    },
+    {
+     "i": 69,
+     "pred": "120",
+     "gold": "120^\\circ",
+     "ok": true
+    },
+    {
+     "i": 70,
+     "pred": "4,20",
+     "gold": "4^\\circ, 20^\\circ",
+     "ok": true
+    },
+    {
+     "i": 71,
+     "pred": "0.75",
+     "gold": "\\frac{3}{4}",
+     "ok": true
+    },
+    {
+     "i": 72,
+     "pred": "[-1, 0, 1]",
+     "gold": "-1,0,1",
+     "ok": true
+    },
+    {
+     "i": 73,
+     "pred": "sqrt(2/3)",
+     "gold": "\\frac{\\sqrt{6}}{3}",
+     "ok": false
+    },
+    {
+     "i": 74,
+     "pred": "-1, 2",
+     "gold": "2, -1",
+     "ok": true
+    },
+    {
+     "i": 75,
+     "pred": "19/21",
+     "gold": "\\frac{19}{21}",
+     "ok": true
+    },
+    {
+     "i": 76,
+     "pred": "(-8/3, 4/3, -1/3)",
+     "gold": "\\left( -\\frac{8}{3}, \\frac{4}{3}, -\\frac{1}{3} \\right)",
+     "ok": true
+    },
+    {
+     "i": 77,
+     "pred": "[[1, 2], [-3, -5]]",
+     "gold": "\\begin{pmatrix} 1 & 2 \\\\ -3 & -5 \\end{pmatrix}",
+     "ok": true
+    },
+    {
+     "i": 78,
+     "pred": "43",
+     "gold": "43",
+     "ok": true
+    },
+    {
+     "i": 79,
+     "pred": "32R^2 - 3(a^2 + b^2 + c^2)",
+     "gold": "32R^2 - 3(a^2 + b^2 + c^2)",
+     "ok": true
+    },
+    {
+     "i": 80,
+     "pred": "20x + 23y + 26z - 69 = 0",
+     "gold": "20x + 23y + 26z - 69 = 0",
+     "ok": true
+    },
+    {
+     "i": 81,
+     "pred": "(4/3, -1/3)",
+     "gold": "\\left( \\frac{4}{3}, -\\frac{1}{3} \\right)",
+     "ok": true
+    },
+    {
+     "i": 82,
+     "pred": "12",
+     "gold": "12",
+     "ok": true
+    },
+    {
+     "i": 83,
+     "pred": "3/5,117/125",
+     "gold": "\\frac{3}{5}, \\frac{117}{125}",
+     "ok": true
+    },
+    {
+     "i": 84,
+     "pred": "1/9",
+     "gold": "\\frac{1}{9}",
+     "ok": true
+    },
+    {
+     "i": 85,
+     "pred": "6/7",
+     "gold": "\\frac{6}{7}",
+     "ok": true
+    },
+    {
+     "i": 86,
+     "pred": "(2, -1)",
+     "gold": "(2,-1)",
+     "ok": true
+    },
+    {
+     "i": 87,
+     "pred": "1/8",
+     "gold": "\\frac{1}{8}",
+     "ok": true
+    },
+    {
+     "i": 88,
+     "pred": "3+2\\sqrt{3}",
+     "gold": "2 \\sqrt{3} + 3",
+     "ok": false
+    },
+    {
+     "i": 89,
+     "pred": "4",
+     "gold": "4",
+     "ok": true
+    },
+    {
+     "i": 90,
+     "pred": "1/2",
+     "gold": "\\frac{1}{2}",
+     "ok": true
+    },
+    {
+     "i": 91,
+     "pred": "π/4,5π/4",
+     "gold": "\\frac{5\\pi}{4}",
+     "ok": false
+    },
+    {
+     "i": 92,
+     "pred": "(3, 11π/8, 4π/5)",
+     "gold": "\\left( 3, \\frac{11 \\pi}{8}, \\frac{4 \\pi}{5} \\right)",
+     "ok": true
+    },
+    {
+     "i": 93,
+     "pred": "8π",
+     "gold": "8 \\pi",
+     "ok": true
+    },
+    {
+     "i": 94,
+     "pred": "11x+6y+5z+86=0",
+     "gold": "11x + 6y + 5z + 86 = 0",
+     "ok": true
+    },
+    {
+     "i": 95,
+     "pred": "159",
+     "gold": "159",
+     "ok": true
+    },
+    {
+     "i": 96,
+     "pred": "[[0.02, 0.14], [0.14, 0.98]]",
+     "gold": "\\begin{pmatrix} 1/50 & 7/50 \\\\ 7/50 & 49/50 \\end{pmatrix}",
+     "ok": true
+    },
+    {
+     "i": 97,
+     "pred": "-3-2√2,-3+2√2,3-2√2,3+2√2",
+     "gold": "3 \\pm 2 \\sqrt{2}",
+     "ok": false
+    },
+    {
+     "i": 98,
+     "pred": "3/8",
+     "gold": "\\frac{3}{8}",
+     "ok": true
+    },
+    {
+     "i": 99,
+     "pred": "2√2",
+     "gold": "2 \\sqrt{2}",
+     "ok": true
+    },
+    {
+     "i": 100,
+     "pred": "9",
+     "gold": "9",
+     "ok": true
+    },
+    {
+     "i": 101,
+     "pred": "(7,21,35)",
+     "gold": "(7,21,35)",
+     "ok": true
+    },
+    {
+     "i": 102,
+     "pred": "(11/15, 11/60, 1/12)",
+     "gold": "\\left( \\frac{11}{15}, \\frac{11}{60}, \\frac{1}{12} \\right)",
+     "ok": true
+    },
+    {
+     "i": 103,
+     "pred": "sqrt(3)/2",
+     "gold": "\\frac{\\sqrt{3}}{2}",
+     "ok": true
+    },
+    {
+     "i": 104,
+     "pred": "840",
+     "gold": "840^\\circ",
+     "ok": true
+    },
+    {
+     "i": 105,
+     "pred": "sqrt(3)-2",
+     "gold": "-2 + \\sqrt{3}",
+     "ok": false
+    },
+    {
+     "i": 106,
+     "pred": "3^2007",
+     "gold": "3^{2007}",
+     "ok": true
+    },
+    {
+     "i": 107,
+     "pred": "4",
+     "gold": "4",
+     "ok": true
+    },
+    {
+     "i": 108,
+     "pred": "4096\\sqrt{2}",
+     "gold": "4096 \\sqrt{2}",
+     "ok": true
+    },
+    {
+     "i": 109,
+     "pred": "4.5",
+     "gold": "\\frac{9}{2}",
+     "ok": true
+    },
+    {
+     "i": 110,
+     "pred": "\\begin{pmatrix} 2 \\\\ -1 \\\\ -5 \\end{pmatrix}",
+     "gold": "\\begin{pmatrix} 2 \\\\ -1 \\\\ -5 \\end{pmatrix}",
+     "ok": true
+    },
+    {
+     "i": 111,
+     "pred": "sqrt(50/3)",
+     "gold": "\\frac{5 \\sqrt{6}}{3}",
+     "ok": false
+    },
+    {
+     "i": 112,
+     "pred": "27, 93",
+     "gold": "27,93",
+     "ok": true
+    },
+    {
+     "i": 113,
+     "pred": "6/23",
+     "gold": "\\frac{6}{23}",
+     "ok": true
+    },
+    {
+     "i": 114,
+     "pred": "-17/19",
+     "gold": "-\\frac{17}{19}",
+     "ok": true
+    },
+    {
+     "i": 115,
+     "pred": "8",
+     "gold": "8",
+     "ok": true
+    },
+    {
+     "i": 116,
+     "pred": "4036082/4036081",
+     "gold": "\\frac{4036082}{4036081}",
+     "ok": true
+    },
+    {
+     "i": 117,
+     "pred": "sqrt(66)",
+     "gold": "\\sqrt{66}",
+     "ok": true
+    },
+    {
+     "i": 118,
+     "pred": "6",
+     "gold": "6",
+     "ok": true
+    },
+    {
+     "i": 119,
+     "pred": "-31/8",
+     "gold": "-\\frac{31}{8}",
+     "ok": true
+    },
+    {
+     "i": 120,
+     "pred": "-8",
+     "gold": "-8",
+     "ok": true
+    },
+    {
+     "i": 121,
+     "pred": "-3/4, 3/4",
+     "gold": "\\frac{3}{4}, -\\frac{3}{4}",
+     "ok": true
+    },
+    {
+     "i": 122,
+     "pred": "-1/14",
+     "gold": "-\\frac{1}{14}",
+     "ok": true
+    },
+    {
+     "i": 123,
+     "pred": "1/2",
+     "gold": "\\frac{1}{2}",
+     "ok": true
+    },
+    {
+     "i": 124,
+     "pred": "1.5",
+     "gold": "\\frac{3}{2}",
+     "ok": true
+    },
+    {
+     "i": 125,
+     "pred": "(3, -3, 1)",
+     "gold": "(3,-3,1)",
+     "ok": true
+    },
+    {
+     "i": 126,
+     "pred": "(-6,9)",
+     "gold": "\\begin{pmatrix} -6 \\\\ 9 \\end{pmatrix}",
+     "ok": true
+    },
+    {
+     "i": 127,
+     "pred": "14",
+     "gold": "14",
+     "ok": true
+    },
+    {
+     "i": 128,
+     "pred": "144",
+     "gold": "144",
+     "ok": true
+    },
+    {
+     "i": 129,
+     "pred": "sqrt(3)-2, sqrt(3)+2",
+     "gold": "2 + \\sqrt{3}, -2 + \\sqrt{3}",
+     "ok": false
+    },
+    {
+     "i": 130,
+     "pred": "6-5i",
+     "gold": "6 - 5i",
+     "ok": true
+    },
+    {
+     "i": 131,
+     "pred": "-4/3",
+     "gold": "-\\frac{4}{3}",
+     "ok": true
+    },
+    {
+     "i": 132,
+     "pred": "\\begin{pmatrix} 1 \\\\ 2 \\\\ -3 \\end{pmatrix}",
+     "gold": "\\begin{pmatrix} 1 \\\\ 2 \\\\ -3 \\end{pmatrix}",
+     "ok": true
+    },
+    {
+     "i": 133,
+     "pred": "159",
+     "gold": "159",
+     "ok": true
+    },
+    {
+     "i": 134,
+     "pred": "\\begin{pmatrix} 1 \\\\ -2 \\\\ -1 \\end{pmatrix}",
+     "gold": "\\begin{pmatrix} 1 \\\\ -2 \\\\ -1 \\end{pmatrix}",
+     "ok": true
+    }
+   ],
+   "judge": "exact-match-normalized-v3.2"
+  },
+  {
+   "dataset": "math5",
+   "arm": "contract-champ",
+   "n": 135,
+   "accuracy": 0.9704,
+   "answer_field_rate": 1.0,
+   "call_errors": 0,
+   "budget_used": 0,
+   "elapsed_s": 3656.3,
+   "model_version": "qwen3.8-flash",
+   "fail_sample": [
+    {
+     "i": 31,
+     "pred": "-1,2",
+     "gold": "2"
+    },
+    {
+     "i": 59,
+     "pred": "sqrt(2/5)",
+     "gold": "\\frac{\\sqrt{10}}{5}"
+    },
+    {
+     "i": 91,
+     "pred": "π/4, 5π/4",
+     "gold": "\\frac{5\\pi}{4}"
+    },
+    {
+     "i": 97,
+     "pred": "-3-2sqrt(2), -3+2sqrt(2), 3-2sqrt(2), 3+2sqrt(2)",
+     "gold": "3 \\pm 2 \\sqrt{2}"
+    }
+   ],
+   "preds": [
+    {
+     "i": 0,
+     "pred": "1/4",
+     "gold": "\\frac{1}{4}",
+     "ok": true
+    },
+    {
+     "i": 1,
+     "pred": "1/72",
+     "gold": "\\frac{1}{72}",
+     "ok": true
+    },
+    {
+     "i": 2,
+     "pred": "(1, 4, 3)",
+     "gold": "\\begin{pmatrix} 1 \\\\ 4 \\\\ 3 \\end{pmatrix}",
+     "ok": true
+    },
+    {
+     "i": 3,
+     "pred": "-3",
+     "gold": "-3",
+     "ok": true
+    },
+    {
+     "i": 4,
+     "pred": "-1",
+     "gold": "-1",
+     "ok": true
+    },
+    {
+     "i": 5,
+     "pred": "5",
+     "gold": "5",
+     "ok": true
+    },
+    {
+     "i": 6,
+     "pred": "3/2",
+     "gold": "\\frac{3}{2}",
+     "ok": true
+    },
+    {
+     "i": 7,
+     "pred": "4",
+     "gold": "4",
+     "ok": true
+    },
+    {
+     "i": 8,
+     "pred": "65536",
+     "gold": "65536",
+     "ok": true
+    },
+    {
+     "i": 9,
+     "pred": "50",
+     "gold": "50^\\circ",
+     "ok": true
+    },
+    {
+     "i": 10,
+     "pred": "11",
+     "gold": "11",
+     "ok": true
+    },
+    {
+     "i": 11,
+     "pred": "[4, 24]",
+     "gold": "(4,24)",
+     "ok": true
+    },
+    {
+     "i": 12,
+     "pred": "18",
+     "gold": "18",
+     "ok": true
+    },
+    {
+     "i": 13,
+     "pred": "1/3",
+     "gold": "\\frac{1}{3}",
+     "ok": true
+    },
+    {
+     "i": 14,
+     "pred": "116-75i",
+     "gold": "116 - 75i",
+     "ok": true
+    },
+    {
+     "i": 15,
+     "pred": "(23/8, 7/4)",
+     "gold": "\\begin{pmatrix} 23/8 \\\\ 7/4 \\end{pmatrix}",
+     "ok": true
+    },
+    {
+     "i": 16,
+     "pred": "27,63,99,135,171",
+     "gold": "27^\\circ, 63^\\circ, 99^\\circ, 135^\\circ, 171^\\circ",
+     "ok": true
+    },
+    {
+     "i": 17,
+     "pred": "3R^2",
+     "gold": "3R^2",
+     "ok": true
+    },
+    {
+     "i": 18,
+     "pred": "25*sqrt(10)/4",
+     "gold": "\\frac{25 \\sqrt{10}}{4}",
+     "ok": true
+    },
+    {
+     "i": 19,
+     "pred": "4/3",
+     "gold": "\\frac{4}{3}",
+     "ok": true
+    },
+    {
+     "i": 20,
+     "pred": "D",
+     "gold": "D",
+     "ok": true
+    },
+    {
+     "i": 21,
+     "pred": "21/64",
+     "gold": "\\frac{21}{64}",
+     "ok": true
+    },
+    {
+     "i": 22,
+     "pred": "92",
+     "gold": "92",
+     "ok": true
+    },
+    {
+     "i": 23,
+     "pred": "(-5/13, 12/13)",
+     "gold": "\\begin{pmatrix} -5/13 \\\\ 12/13 \\end{pmatrix}",
+     "ok": true
+    },
+    {
+     "i": 24,
+     "pred": "82",
+     "gold": "82",
+     "ok": true
+    },
+    {
+     "i": 25,
+     "pred": "7",
+     "gold": "7",
+     "ok": true
+    },
+    {
+     "i": 26,
+     "pred": "sqrt(35)/3",
+     "gold": "\\frac{\\sqrt{35}}{3}",
+     "ok": true
+    },
+    {
+     "i": 27,
+     "pred": "16",
+     "gold": "16",
+     "ok": true
+    },
+    {
+     "i": 28,
+     "pred": "27",
+     "gold": "27",
+     "ok": true
+    },
+    {
+     "i": 29,
+     "pred": "2-2\\sqrt{2}",
+     "gold": "2 - 2 \\sqrt{2}",
+     "ok": true
+    },
+    {
+     "i": 30,
+     "pred": "4/7",
+     "gold": "\\frac{4}{7}",
+     "ok": true
+    },
+    {
+     "i": 31,
+     "pred": "-1,2",
+     "gold": "2",
+     "ok": false
+    },
+    {
+     "i": 32,
+     "pred": "3,11,33",
+     "gold": "3, 11, 33",
+     "ok": true
+    },
+    {
+     "i": 33,
+     "pred": "49",
+     "gold": "49",
+     "ok": true
+    },
+    {
+     "i": 34,
+     "pred": "4",
+     "gold": "4",
+     "ok": true
+    },
+    {
+     "i": 35,
+     "pred": "432",
+     "gold": "432",
+     "ok": true
+    },
+    {
+     "i": 36,
+     "pred": "8+4\\sqrt{3}",
+     "gold": "8+4\\sqrt3",
+     "ok": true
+    },
+    {
+     "i": 37,
+     "pred": "(-7,10)",
+     "gold": "(-7,10)",
+     "ok": true
+    },
+    {
+     "i": 38,
+     "pred": "1/5",
+     "gold": "\\frac{1}{5}",
+     "ok": true
+    },
+    {
+     "i": 39,
+     "pred": "4018",
+     "gold": "4018",
+     "ok": true
+    },
+    {
+     "i": 40,
+     "pred": "(7/45, 4/45)",
+     "gold": "\\left( \\frac{7}{45}, \\frac{4}{45} \\right)",
+     "ok": true
+    },
+    {
+     "i": 41,
+     "pred": "(-4/9, 1/9, 8/9)",
+     "gold": "\\begin{pmatrix} -4/9 \\\\ 1/9 \\\\ 8/9 \\end{pmatrix}",
+     "ok": true
+    },
+    {
+     "i": 42,
+     "pred": "87.5",
+     "gold": "87.5",
+     "ok": true
+    },
+    {
+     "i": 43,
+     "pred": "(2,-1)",
+     "gold": "(2,-1)",
+     "ok": true
+    },
+    {
+     "i": 44,
+     "pred": "120",
+     "gold": "120^\\circ",
+     "ok": true
+    },
+    {
+     "i": 45,
+     "pred": "7/8",
+     "gold": "\\frac{7}{8}",
+     "ok": true
+    },
+    {
+     "i": 46,
+     "pred": "12",
+     "gold": "12",
+     "ok": true
+    },
+    {
+     "i": 47,
+     "pred": "20",
+     "gold": "20",
+     "ok": true
+    },
+    {
+     "i": 48,
+     "pred": "(0,1)",
+     "gold": "(0,1)",
+     "ok": true
+    },
+    {
+     "i": 49,
+     "pred": "16π/3",
+     "gold": "\\frac{16 \\pi}{3}",
+     "ok": true
+    },
+    {
+     "i": 50,
+     "pred": "[-3, 1]",
+     "gold": "1, -3",
+     "ok": true
+    },
+    {
+     "i": 51,
+     "pred": "(5/3, 5/3, 4/3)",
+     "gold": "\\begin{pmatrix} 5/3 \\\\ 5/3 \\\\ 4/3 \\end{pmatrix}",
+     "ok": true
+    },
+    {
+     "i": 52,
+     "pred": "3/2+3/2i",
+     "gold": "\\frac{3}{2} + \\frac{3}{2} i",
+     "ok": true
+    },
+    {
+     "i": 53,
+     "pred": "9/10",
+     "gold": "\\frac{9}{10}",
+     "ok": true
+    },
+    {
+     "i": 54,
+     "pred": "[-4, -3]",
+     "gold": "\\begin{pmatrix} -4\\\\-3 \\end{pmatrix}",
+     "ok": true
+    },
+    {
+     "i": 55,
+     "pred": "1",
+     "gold": "1",
+     "ok": true
+    },
+    {
+     "i": 56,
+     "pred": "sqrt(6)/3",
+     "gold": "\\frac{\\sqrt{6}}{3}",
+     "ok": true
+    },
+    {
+     "i": 57,
+     "pred": "2/3",
+     "gold": "\\frac{2}{3}",
+     "ok": true
+    },
+    {
+     "i": 58,
+     "pred": "y = 2x + 3",
+     "gold": "y = 2x + 3",
+     "ok": true
+    },
+    {
+     "i": 59,
+     "pred": "sqrt(2/5)",
+     "gold": "\\frac{\\sqrt{10}}{5}",
+     "ok": false
+    },
+    {
+     "i": 60,
+     "pred": "(-5/3, 2/3, 19/3)",
+     "gold": "\\left( -\\frac{5}{3}, \\frac{2}{3}, \\frac{19}{3} \\right)",
+     "ok": true
+    },
+    {
+     "i": 61,
+     "pred": "2√149/3",
+     "gold": "\\frac{2 \\sqrt{149}}{3}",
+     "ok": true
+    },
+    {
+     "i": 62,
+     "pred": "(1/5, -18/5)",
+     "gold": "\\begin{pmatrix} 1/5 \\\\ -18/5 \\end{pmatrix}",
+     "ok": true
+    },
+    {
+     "i": 63,
+     "pred": "-3",
+     "gold": "-3",
+     "ok": true
+    },
+    {
+     "i": 64,
+     "pred": "8x^3 - 6x - 1",
+     "gold": "8x^3 - 6x - 1",
+     "ok": true
+    },
+    {
+     "i": 65,
+     "pred": "3+sqrt(6)",
+     "gold": "3 + \\sqrt{6}",
+     "ok": true
+    },
+    {
+     "i": 66,
+     "pred": "7",
+     "gold": "7",
+     "ok": true
+    },
+    {
+     "i": 67,
+     "pred": "-1/16",
+     "gold": "-\\frac{1}{16}",
+     "ok": true
+    },
+    {
+     "i": 68,
+     "pred": "9",
+     "gold": "9",
+     "ok": true
+    },
+    {
+     "i": 69,
+     "pred": "120",
+     "gold": "120^\\circ",
+     "ok": true
+    },
+    {
+     "i": 70,
+     "pred": "4,20",
+     "gold": "4^\\circ, 20^\\circ",
+     "ok": true
+    },
+    {
+     "i": 71,
+     "pred": "0.75",
+     "gold": "\\frac{3}{4}",
+     "ok": true
+    },
+    {
+     "i": 72,
+     "pred": "[-1, 0, 1]",
+     "gold": "-1,0,1",
+     "ok": true
+    },
+    {
+     "i": 73,
+     "pred": "\\sqrt{6}/3",
+     "gold": "\\frac{\\sqrt{6}}{3}",
+     "ok": true
+    },
+    {
+     "i": 74,
+     "pred": "-1, 2",
+     "gold": "2, -1",
+     "ok": true
+    },
+    {
+     "i": 75,
+     "pred": "19/21",
+     "gold": "\\frac{19}{21}",
+     "ok": true
+    },
+    {
+     "i": 76,
+     "pred": "(-8/3, 4/3, -1/3)",
+     "gold": "\\left( -\\frac{8}{3}, \\frac{4}{3}, -\\frac{1}{3} \\right)",
+     "ok": true
+    },
+    {
+     "i": 77,
+     "pred": "[[1, 2], [-3, -5]]",
+     "gold": "\\begin{pmatrix} 1 & 2 \\\\ -3 & -5 \\end{pmatrix}",
+     "ok": true
+    },
+    {
+     "i": 78,
+     "pred": "43",
+     "gold": "43",
+     "ok": true
+    },
+    {
+     "i": 79,
+     "pred": "32R^2 - 3(a^2+b^2+c^2)",
+     "gold": "32R^2 - 3(a^2 + b^2 + c^2)",
+     "ok": true
+    },
+    {
+     "i": 80,
+     "pred": "20x+23y+26z-69=0",
+     "gold": "20x + 23y + 26z - 69 = 0",
+     "ok": true
+    },
+    {
+     "i": 81,
+     "pred": "(4/3, -1/3)",
+     "gold": "\\left( \\frac{4}{3}, -\\frac{1}{3} \\right)",
+     "ok": true
+    },
+    {
+     "i": 82,
+     "pred": "12",
+     "gold": "12",
+     "ok": true
+    },
+    {
+     "i": 83,
+     "pred": "3/5, 117/125",
+     "gold": "\\frac{3}{5}, \\frac{117}{125}",
+     "ok": true
+    },
+    {
+     "i": 84,
+     "pred": "1/9",
+     "gold": "\\frac{1}{9}",
+     "ok": true
+    },
+    {
+     "i": 85,
+     "pred": "6/7",
+     "gold": "\\frac{6}{7}",
+     "ok": true
+    },
+    {
+     "i": 86,
+     "pred": "(2,-1)",
+     "gold": "(2,-1)",
+     "ok": true
+    },
+    {
+     "i": 87,
+     "pred": "1/8",
+     "gold": "\\frac{1}{8}",
+     "ok": true
+    },
+    {
+     "i": 88,
+     "pred": "3+2\\sqrt{3}",
+     "gold": "2 \\sqrt{3} + 3",
+     "ok": false
+    },
+    {
+     "i": 89,
+     "pred": "4",
+     "gold": "4",
+     "ok": true
+    },
+    {
+     "i": 90,
+     "pred": "1/2",
+     "gold": "\\frac{1}{2}",
+     "ok": true
+    },
+    {
+     "i": 91,
+     "pred": "π/4, 5π/4",
+     "gold": "\\frac{5\\pi}{4}",
+     "ok": false
+    },
+    {
+     "i": 92,
+     "pred": "(3, 11π/8, 4π/5)",
+     "gold": "\\left( 3, \\frac{11 \\pi}{8}, \\frac{4 \\pi}{5} \\right)",
+     "ok": true
+    },
+    {
+     "i": 93,
+     "pred": "8\\pi",
+     "gold": "8 \\pi",
+     "ok": true
+    },
+    {
+     "i": 94,
+     "pred": "11x+6y+5z+86=0",
+     "gold": "11x + 6y + 5z + 86 = 0",
+     "ok": true
+    },
+    {
+     "i": 95,
+     "pred": "159",
+     "gold": "159",
+     "ok": true
+    },
+    {
+     "i": 96,
+     "pred": "[[1/50,7/50],[7/50,49/50]]",
+     "gold": "\\begin{pmatrix} 1/50 & 7/50 \\\\ 7/50 & 49/50 \\end{pmatrix}",
+     "ok": true
+    },
+    {
+     "i": 97,
+     "pred": "-3-2sqrt(2), -3+2sqrt(2), 3-2sqrt(2), 3+2sqrt(2)",
+     "gold": "3 \\pm 2 \\sqrt{2}",
+     "ok": false
+    },
+    {
+     "i": 98,
+     "pred": "3/8",
+     "gold": "\\frac{3}{8}",
+     "ok": true
+    },
+    {
+     "i": 99,
+     "pred": "2\\sqrt{2}",
+     "gold": "2 \\sqrt{2}",
+     "ok": true
+    },
+    {
+     "i": 100,
+     "pred": "9",
+     "gold": "9",
+     "ok": true
+    },
+    {
+     "i": 101,
+     "pred": "(7, 21, 35)",
+     "gold": "(7,21,35)",
+     "ok": true
+    },
+    {
+     "i": 102,
+     "pred": "(11/15, 11/60, 1/12)",
+     "gold": "\\left( \\frac{11}{15}, \\frac{11}{60}, \\frac{1}{12} \\right)",
+     "ok": true
+    },
+    {
+     "i": 103,
+     "pred": "\\sqrt{3}/2",
+     "gold": "\\frac{\\sqrt{3}}{2}",
+     "ok": true
+    },
+    {
+     "i": 104,
+     "pred": "840",
+     "gold": "840^\\circ",
+     "ok": true
+    },
+    {
+     "i": 105,
+     "pred": "sqrt(3)-2",
+     "gold": "-2 + \\sqrt{3}",
+     "ok": false
+    },
+    {
+     "i": 106,
+     "pred": "3^{2007}",
+     "gold": "3^{2007}",
+     "ok": true
+    },
+    {
+     "i": 107,
+     "pred": "4",
+     "gold": "4",
+     "ok": true
+    },
+    {
+     "i": 108,
+     "pred": "4096*sqrt(2)",
+     "gold": "4096 \\sqrt{2}",
+     "ok": true
+    },
+    {
+     "i": 109,
+     "pred": "9/2",
+     "gold": "\\frac{9}{2}",
+     "ok": true
+    },
+    {
+     "i": 110,
+     "pred": "\\begin{pmatrix} 2 \\\\ -1 \\\\ -5 \\end{pmatrix}",
+     "gold": "\\begin{pmatrix} 2 \\\\ -1 \\\\ -5 \\end{pmatrix}",
+     "ok": true
+    },
+    {
+     "i": 111,
+     "pred": "5*sqrt(6)/3",
+     "gold": "\\frac{5 \\sqrt{6}}{3}",
+     "ok": true
+    },
+    {
+     "i": 112,
+     "pred": "27,93",
+     "gold": "27,93",
+     "ok": true
+    },
+    {
+     "i": 113,
+     "pred": "6/23",
+     "gold": "\\frac{6}{23}",
+     "ok": true
+    },
+    {
+     "i": 114,
+     "pred": "-17/19",
+     "gold": "-\\frac{17}{19}",
+     "ok": true
+    },
+    {
+     "i": 115,
+     "pred": "8",
+     "gold": "8",
+     "ok": true
+    },
+    {
+     "i": 116,
+     "pred": "4036082/4036081",
+     "gold": "\\frac{4036082}{4036081}",
+     "ok": true
+    },
+    {
+     "i": 117,
+     "pred": "sqrt(66)",
+     "gold": "\\sqrt{66}",
+     "ok": true
+    },
+    {
+     "i": 118,
+     "pred": "6",
+     "gold": "6",
+     "ok": true
+    },
+    {
+     "i": 119,
+     "pred": "-31/8",
+     "gold": "-\\frac{31}{8}",
+     "ok": true
+    },
+    {
+     "i": 120,
+     "pred": "-8",
+     "gold": "-8",
+     "ok": true
+    },
+    {
+     "i": 121,
+     "pred": "-3/4,3/4",
+     "gold": "\\frac{3}{4}, -\\frac{3}{4}",
+     "ok": true
+    },
+    {
+     "i": 122,
+     "pred": "-1/14",
+     "gold": "-\\frac{1}{14}",
+     "ok": true
+    },
+    {
+     "i": 123,
+     "pred": "1/2",
+     "gold": "\\frac{1}{2}",
+     "ok": true
+    },
+    {
+     "i": 124,
+     "pred": "3/2",
+     "gold": "\\frac{3}{2}",
+     "ok": true
+    },
+    {
+     "i": 125,
+     "pred": "(3,-3,1)",
+     "gold": "(3,-3,1)",
+     "ok": true
+    },
+    {
+     "i": 126,
+     "pred": "[-6, 9]",
+     "gold": "\\begin{pmatrix} -6 \\\\ 9 \\end{pmatrix}",
+     "ok": true
+    },
+    {
+     "i": 127,
+     "pred": "14",
+     "gold": "14",
+     "ok": true
+    },
+    {
+     "i": 128,
+     "pred": "144",
+     "gold": "144",
+     "ok": true
+    },
+    {
+     "i": 129,
+     "pred": "sqrt(3)-2, sqrt(3)+2",
+     "gold": "2 + \\sqrt{3}, -2 + \\sqrt{3}",
+     "ok": false
+    },
+    {
+     "i": 130,
+     "pred": "6-5i",
+     "gold": "6 - 5i",
+     "ok": true
+    },
+    {
+     "i": 131,
+     "pred": "-4/3",
+     "gold": "-\\frac{4}{3}",
+     "ok": true
+    },
+    {
+     "i": 132,
+     "pred": "\\begin{pmatrix} 1 \\\\ 2 \\\\ -3 \\end{pmatrix}",
+     "gold": "\\begin{pmatrix} 1 \\\\ 2 \\\\ -3 \\end{pmatrix}",
+     "ok": true
+    },
+    {
+     "i": 133,
+     "pred": "159",
+     "gold": "159",
+     "ok": true
+    },
+    {
+     "i": 134,
+     "pred": "\\begin{pmatrix} 1 \\\\ -2 \\\\ -1 \\end{pmatrix}",
+     "gold": "\\begin{pmatrix} 1 \\\\ -2 \\\\ -1 \\end{pmatrix}",
+     "ok": true
+    }
+   ],
+   "judge": "exact-match-normalized-v3.2"
+  }
+ ]
+}
