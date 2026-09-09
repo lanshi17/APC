@@ -2,7 +2,7 @@
  "meta": {
   "protocol": "real-llm",
   "partial": false,
-  "total_s": 2454.4,
+  "total_s": 8742.1,
   "dev_r": 5,
   "val_n": 8,
   "hold_n": 20,
@@ -60,6 +60,62 @@
    "elapsed_s": 2454.4,
    "champion_genome_id": "genome_e8bedadebb3c",
    "mutation_note": "goal.explicitness: high -> low"
+  },
+  {
+   "method": "apc-full",
+   "model_id": "qwen",
+   "model_version": "qwen3.8-flash",
+   "task": "financial",
+   "seed": 43,
+   "baseline_score": 0.1521,
+   "validation_score": 0.5705,
+   "holdout_score": 0.5705,
+   "budget_used": 8,
+   "elapsed_s": 3667.6,
+   "champion_genome_id": "genome_73a57db38597",
+   "mutation_note": "examples.enabled: False -> True"
+  },
+  {
+   "method": "apc-safe",
+   "model_id": "qwen",
+   "model_version": "qwen3.8-flash",
+   "task": "financial",
+   "seed": 43,
+   "baseline_score": 0.6672,
+   "validation_score": 0.6642,
+   "holdout_score": 0.6679,
+   "budget_used": 8,
+   "elapsed_s": 2795.1,
+   "champion_genome_id": "genome_4ae0a6aa73a7",
+   "mutation_note": "instructions.granularity: medium -> fine"
+  },
+  {
+   "method": "apc-full",
+   "model_id": "qwen",
+   "model_version": "qwen3.8-flash",
+   "task": "financial",
+   "seed": 44,
+   "baseline_score": 0.1214,
+   "validation_score": 0.1452,
+   "holdout_score": 0.1334,
+   "budget_used": 8,
+   "elapsed_s": 5686.9,
+   "champion_genome_id": "genome_09bbe1ad6645",
+   "mutation_note": "instructions.style: imperative -> declarative"
+  },
+  {
+   "method": "apc-safe",
+   "model_id": "qwen",
+   "model_version": "qwen3.8-flash",
+   "task": "financial",
+   "seed": 44,
+   "baseline_score": 0.6585,
+   "validation_score": 0.6683,
+   "holdout_score": 0.6575,
+   "budget_used": 8,
+   "elapsed_s": 3055.2,
+   "champion_genome_id": "genome_1f81f8069244",
+   "mutation_note": "verification.enabled: True -> False"
   }
  ]
 }

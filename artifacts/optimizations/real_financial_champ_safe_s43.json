@@ -1,0 +1,132 @@
+{
+ "genome_id": "genome_4ae0a6aa73a7",
+ "genome_version": "1.0",
+ "parent_genome_id": "genome_62f985109b1e",
+ "mutation_note": "instructions.granularity: medium -> fine",
+ "task_id": "financial_report_analysis_v1",
+ "role": {
+  "enabled": true,
+  "style": "analyst",
+  "authority_level": "high"
+ },
+ "goal": {
+  "explicitness": "high",
+  "placement": "top"
+ },
+ "instructions": {
+  "style": "imperative",
+  "granularity": "fine",
+  "step_decomposition": true
+ },
+ "constraints": {
+  "placement": "after_goal",
+  "explicitness": "high",
+  "max_count": 8
+ },
+ "examples": {
+  "enabled": false,
+  "count": 0,
+  "selection": "diverse",
+  "format": "input_output"
+ },
+ "reasoning": {
+  "strategy": "hidden_analysis",
+  "visibility": "hidden",
+  "budget": "medium"
+ },
+ "verification": {
+  "enabled": true,
+  "type": "source_grounding_check",
+  "position": "before_final_output"
+ },
+ "output": {
+  "format": "json_schema",
+  "strictness": "high",
+  "include_schema_in_prompt": true,
+  "forbid_extra_fields": true
+ },
+ "style": {
+  "tone": "professional",
+  "verbosity": "low",
+  "language": "zh"
+ },
+ "layout": {
+  "section_order": [
+   "goal",
+   "constraints",
+   "input",
+   "reasoning_instruction",
+   "verification",
+   "output_format"
+  ],
+  "delimiter": "xml"
+ },
+ "search_space": {
+  "examples.enabled": [
+   true,
+   false
+  ],
+  "examples.count": [
+   0,
+   1,
+   2,
+   3
+  ],
+  "reasoning.strategy": [
+   "none",
+   "brief_plan",
+   "hidden_analysis",
+   "structured_checklist"
+  ],
+  "verification.enabled": [
+   true,
+   false
+  ],
+  "verification.type": [
+   "constraint_check",
+   "source_grounding_check",
+   "format_check"
+  ],
+  "output.strictness": [
+   "low",
+   "medium",
+   "high"
+  ],
+  "instructions.style": [
+   "imperative",
+   "declarative",
+   "conversational"
+  ],
+  "instructions.granularity": [
+   "coarse",
+   "medium",
+   "fine"
+  ],
+  "constraints.placement": [
+   "top",
+   "after_goal",
+   "bottom"
+  ],
+  "constraints.explicitness": [
+   "low",
+   "medium",
+   "high"
+  ],
+  "goal.explicitness": [
+   "low",
+   "medium",
+   "high"
+  ],
+  "role.style": [
+   "expert",
+   "assistant",
+   "auditor",
+   "analyst"
+  ],
+  "style.verbosity": [
+   "low",
+   "medium",
+   "high"
+  ]
+ }
+}

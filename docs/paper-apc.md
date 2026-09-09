@@ -15,6 +15,7 @@ PGAM 与均匀变异无差异（pooled +0.0004，零结果）；迁移以 30% �
 跨任务 genome 零适配直用即达 zero-shot 水平（较冷启动重搜 +0.20~+0.79）；
 外部真实基准（GSM8K/MATH-L5/AIME24+25，作者未造的任务）复现两结论：六个冠军-vs-base
 对比全部统计打平（零损耗迁移成立），且三数据集精度 0.96~1.00 无余量——AIME 三臂全对（饱和外推成立）。
+**GEPA 官方基线对垒与方差审计（§3.4 F7）**：复现 GEPA Algorithm 1（反思式 prompt 优化，最强开源基线）在同协议同预算下对比，其增益也在同日测量噪声带内（+.0024）——null 结果非 APC 表征的局部缺陷；同时发现 temp=0 推理模型存在跨日评分漂移（Δ.028），故全部对比以配对同日复测为准，rule-root 负债（−.090）在三 seed 下稳健复现（含一例种子崩至 .13 的双峰风险直证）。
 多模型与 PGAM 验证待更多凭证。
 
 ## 1. 问题与主张
@@ -231,12 +232,34 @@ rule-judge**；三任务完全同口径 dev_r/val/holdout=5/8/20；主对比预�
   AIME 两臂各 1 例网络超时按错计（n=60 ⇒ ≤0.017 下偏）。
 - 诚实边界：单模型、单 seed、无 CI；多模型差异与 PGAM 的真实验证仍缺（凭证白名单）。
 
+**F7 GEPA 官方基线对垒 + 方差审计（gepa vs full/safe/z0，`bench_real_gepa.py` / `bench_real_reeval.py`）**
+
+对照设计：复现 GEPA（Agrawal et al. 2025，arXiv 2507.19457）Algorithm 1 核心——minibatch(3) 失败驱动反思改写（自由文本变异）、per-instance Pareto 前沿采样选父、整 val 复评选冠军；与 APC 同起点（z0 编译文本）、同判分（TrialScorer 通路）、同预算货币（task rollout 48 ≈ APC b8 实耗 25-35）、同 holdout20 终测。反思 LLM 调用不计预算（与 APC 编译器开销同逻辑）。
+
+方差审计的发现先于一切比较：**temp=0 的推理模型输出非确定**——同一 z0 prompt 的 holdout20 同日四测 .6950/.6997/.6998/.7016（全距 .0066），跨日（昨日 .6712 → 今日 .6990，Δ.028）。因此**任何跨日数字对比无效**，本节全部结论基于**同日配对复测**（reeval 批，seed 902）。
+
+同日四臂配对（financial，同一小时窗内完成）：
+
+| 方法（同日复测） | holdout | vs z0 |
+|---|---|---|
+| z0（同批参照） | .6983 | — |
+| APC-safe 冠军 | .7008 | +.0025（噪声带内） |
+| GEPA 冠军 | .7014 | +.0024（噪声带内） |
+| APC-full 冠军 | .6082 | **−.090（真实负债）** |
+
+搜索的 seed 稳定性（各 seed 自带当日内基线，天然配对）：APC-full s42/s43 = .5704/.5705（Δ.0001），s44 崩至 .1334（val .1452，错误 basin 锁定）——**rule-root 变异存在种子脆弱性**：债务（−.09）之外还有双峰风险。APC-safe 三 seed .6672/.6679/.6575（全距 .010，与日漂移同量级）稳定无差。contract 上的 GEPA（generic judge 口径，不可与 APC contract_case 口径互比）：.7491/.7495 vs 同口径 z0 .7500——饱和任务上无反思信号，零进展，作为 null 的旁证。
+
+三点结论：① **最强开源基线 GEPA 在强推理模型上同样零增益**（+.0024，噪声带内）——§3.4 的 null 不是 APC 表征的局部缺陷，而是"强模型 + 高判分器覆盖"regime 的属性；GEPA 的反思通路在此与 APC 的结构化变异通路同归于平。② APC 的差异化价值在 null 之外保持不变：可审计的决策链（F4）、零成本迁移（contract→math 冠军 .9808）、schema/鲁棒性机制（F3、§3.6 外部判分器硬化）——这些是 GEPA 自由文本变异不具备的。③ **方法学贡献**：提出配对同日复测协议（paired same-day re-evaluation）——推理模型评测论文若不控制日漂移，±.03 以内的全部结论都可能反转；本文主表四臂同夜同协议完成，GEPA/reeval 批为同日配对补测。
+
+
 ## 4. Limitations（投稿前必须解决）
 
-1. **真实 LLM 验证为单模型单 seed**（§3.4）：qwen3.8-flash × 3 任务 + 跨任务迁移
-   已完成；所用 key 为模型白名单，无法加第二模型。投稿需 ≥2 真实模型
-   （1 开源 3 seeds + 1 闭源），脚本已就绪（`--model <id>` 配 `.env` 即可），
-   blocker 是凭证不是代码。ground truth 仍由作者编写（rule-judge）。
+1. **真实 LLM 验证为单模型**（§3.4）：qwen3.8-flash × 3 任务 + 跨任务迁移 +
+   GEPA 基线对垒（F7）已完成；seed 维度已补（APC 搜索 3 seeds、z0 同日 4 复测，
+   量化了配对噪声带 ±.007 与跨日漂移 .028——±.01 级"增益"一律判为噪声）。
+   所用 key 为模型白名单，无法加第二模型；投稿需 ≥2 真实模型，脚本已就绪
+   （`--model <id>` 配 `.env` 即可），blocker 是凭证不是代码。
+   ground truth 仍由作者编写（rule-judge；外部基准 GSM8K/MATH 除外）。
 2. **任务覆盖**：财务 + 合同 + 数学 + 约束遵循四任务（仿真）+ 外部真实基准
    GSM8K/MATH-L5/AIME24+25（§3.4 F6，判分为唯一可自动核验的 exact-match）；
    仍缺开放式无唯一答案任务（只能靠 judge，见 #5）与 BBH 类非数学推理任务。
@@ -273,7 +296,7 @@ rule-judge**；三任务完全同口径 dev_r/val/holdout=5/8/20；主对比预�
 ## 6. Related Work（详见 `docs/literature/`）
 
 优化器谱系：APE/OPRO/APO–ProTeGi → PromptBreeder/EvoPrompt → PromptWizard/
-DSPy–MIPROv2 → GEPA（最强基线，投稿时必含）；画像与路由：HELM/FLASK/
+GEPA 已对垒（F7，官方 Algorithm 1 核心复现，null 复现）→ DSPy–MIPROv2；画像与路由：HELM/FLASK/
 FrugalGPT/RouteLLM；结构与迁移：Sclar 格式敏感、软提示（不可迁移）vs
 离散基因组（可重编译）。
 2026 编译/载体/约束前沿（详见 `docs/literature/lit-2026-frontier.md`）：

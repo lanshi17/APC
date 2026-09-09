@@ -2,7 +2,7 @@
 
 *Working English manuscript v0.1 — sections with stable content translated from
 `paper-apc.md` (Chinese master). Experiment numbers cited here are final as of
-v0.2; GEPA baseline (§3.5) pending. Venue target: EMNLP/NeurIPS-style.*
+v0.3; GEPA head-to-head + variance audit landed (§3.5). Venue target: EMNLP/NeurIPS-style.*
 
 **Abstract.** APC turns prompts from hand-written text into compilable engineering
 objects: a task specification (TaskSpec) compiles, together with an explicit
@@ -109,13 +109,37 @@ master `paper-apc.md` §3; the numbers are:*
   F6 external benchmarks (GSM8K/MATH-L5/AIME24+25): all six champion-vs-base
   deltas within 1σ, three arms perfect on AIME — transfer and saturation both
   reproduce on author-unseen tasks.
-- 3.5 (GEPA baseline, pending): reflective-Pareto official baseline under the
-  identical protocol and rollout-aligned budget.
+- 3.5 GEPA head-to-head + variance audit. We reproduce the core of GEPA
+  (Algorithm 1: minibatch reflection, per-instance Pareto pool, full-val
+  champion re-eval) under the identical protocol, start prompt, judge path and
+  rollout-aligned budget. First, a variance finding that governs everything:
+  the reasoning model is **non-deterministic at temp 0** — the same compiled
+  zero-shot prompt scores .6950/.6997/.6998/.7016 on four same-day holdout
+  re-measures (range .0066) and drifts by .028 across days, so cross-day
+  comparisons are invalid; all claims below use paired same-day
+  re-evaluation. Paired result (financial): z0 .6983, APC-safe champion
+  .7008, GEPA champion .7014, APC-full (rule-root) .6082. Three conclusions:
+  (i) the strongest open-source baseline also achieves zero gain beyond the
+  noise band (+.0024) — the null is a property of the strong-model /
+  high-judge-coverage regime, not of APC's representation; (ii) the rule-root
+  deficit (−.090) is robust across seeds (.5704/.5705 over s42/s43) but the
+  arm also shows seed fragility (s44 collapses to .1334 — bimodal basin
+  risk); (iii) methodological: we propose paired same-day re-evaluation as a
+  minimum protocol standard for reasoning-model prompt research — conclusions
+  inside ±.03 can otherwise flip with the calendar. GEPA on contract
+  (.7491/.7495 vs its own z0 .7500 under the generic judge) shows zero
+  progress on the saturated task, corroborating (i). APC's differentiators —
+  auditable decision chains (F4), zero-cost transfer (contract→math .9808),
+  schema/robustness machinery (F3, hardened external judges of F6) — are not
+  provided by free-text reflection.
 
 ## 4. Limitations
 
-1. Real-model phase is single-model, single-seed (whitelist key); scripts ready
-   for multi-model (`--model <id>` + three `.env` lines). Ground truth is
+1. Real-model phase is single-model (whitelist key); the seed axis is covered
+   (§3.5: 3 search seeds, 4 same-day z0 re-measures, quantified noise band
+   ±.007 and day-drift .028 — any "gain" within ±.01 is judged noise).
+   Multi-model scripts are ready (`--model <id>` + three `.env` lines).
+   Ground truth is
    author-authored (rule-judge).
 2. Task coverage: four simulation tasks + three external math benchmarks; open
    instruction tasks without unique answers still missing (judge-dependent).
@@ -138,7 +162,7 @@ pattern double-check).
 ## 6. Related Work (details in `docs/literature/`)
 
 Optimizers: APE/OPRO/APO–ProTeGi → PromptBreeder/EvoPrompt → PromptWizard/
-DSPy–MIPROv2 → GEPA (strongest baseline, head-to-head in §3.5). Profiles and
+GEPA head-to-head done (§3.5) → DSPy–MIPROv2. Profiles and
 routing: HELM/FLASK/FrugalGPT/RouteLLM. Structure and transfer: Sclar format
 sensitivity; soft prompts (non-portable) vs discrete genomes (re-compilable).
 2026 frontier: Instruction Stacking Collapse (2608.02639) — compilation value is
