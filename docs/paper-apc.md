@@ -16,7 +16,7 @@ PGAM 与均匀变异无差异（pooled +0.0004，零结果）；迁移以 30% �
 外部真实基准（GSM8K/MATH-L5/AIME24+25，作者未造的任务）复现两结论：六个冠军-vs-base
 对比全部统计打平（零损耗迁移成立），且三数据集精度 0.96~1.00 无余量——AIME 三臂全对（饱和外推成立）。
 **GEPA 官方基线对垒与方差审计（§3.4 F7）**：复现 GEPA Algorithm 1（反思式 prompt 优化，最强开源基线）在同协议同预算下对比，其增益也在同日测量噪声带内（+.0024）——null 结果非 APC 表征的局部缺陷；同时发现 temp=0 推理模型存在跨日评分漂移（Δ.028），故全部对比以配对同日复测为准，rule-root 负债（−.090）在三 seed 下稳健复现（含一例种子崩至 .13 的双峰风险直证）。
-据此提出 F8 AutoAPC-Select 部署门控：val 分数 argmax + 噪声带内奥卡姆 tie-break，回放+前瞻共 7 组：6/7 落入噪声带、5/7 精确命中 oracle，两个种子崩溃臂（s44 .1334 / s45 .1318）均零 regret 救回，其中 s45 为门控规则冻结后的前瞻盲测（gate = 当日 oracle）；唯一失效模式（val 小样本高估，+.0196）已刻画。第二强公开基线 ESPO（EMNLP 2026 main，Diagnose/Propose/bootstrap-Select 三步复现）同日配对同样落入噪声带（.7009）——四个独立优化器族在同一 regime 全部归零，null 的基线覆盖已闭环。多模型与 PGAM 验证待更多凭证。
+据此提出 F8 AutoAPC-Select 部署门控：val 分数 argmax + 噪声带内奥卡姆 tie-break，回放+前瞻共 7 组：6/7 落入噪声带、5/7 精确命中 oracle，两个种子崩溃臂（s44 .1334 / s45 .1318）均零 regret 救回，其中 s45 为门控规则冻结后的前瞻盲测（gate = 当日 oracle）；唯一失效模式（val 小样本高估，+.0196）已刻画。第二强公开基线 ESPO（EMNLP 2026 main，Diagnose/Propose/bootstrap-Select 三步复现）同日配对同样落入噪声带（.7009）——四个独立优化器族在同一 regime 全部归零，null 的基线覆盖已闭环。判别实验 F10（预注册后执行）：token-starved regime（max_tokens 150，z0 崩至 .15）下六条通路同日全部钉死判分下限——headroom 存在但属物理截断墙、prompt 不可救，给出 APO 等价零结果的 regime 边界完整刻画。多模型与 PGAM 验证待更多凭证。
 
 ## 1. 问题与主张
 
@@ -293,6 +293,19 @@ z0 holdout 从 .699 崩至 **.150** — 巨大 headroom 打开。判别命题：
    APC 主张回缩到审计/迁移/门控（诚实且与 F1-F9 一致）；
 (c) 全臂不动 → 物理截断限制，prompt 不可救，判别实验本身证伪退出。
 结果待 `real_gepa_mt150.json` 齐后填入，任何分支都成文。
+
+**F10 结果（命中分支 (c)，预注册兑现）**：同日 starved 配对全矩阵——
+z0 .1500 / manual .1500 / APC-safe .1500 / APC-full .1500 / GEPA .1500 / ESPO .1500。
+六条独立优化/表达通路全部钉死在同一 floor：截断发生在 JSON 输出中途（fail 样例实证），
+format/constraint 维度归零，score=0.15 是判分器下限而非模型能力。**没有任何 prompt
+改写能阻止推理模型烧掉输出预算**——指令级抑制思考在本模型上无效。判定：headroom 的
+性质是物理截断墙，prompt-optimization 不可达 ⇒ F10 不推翻 F1-F9，反而给出 regime
+边界完整刻画：**信号可优化区（headroom>带，且瓶颈在指令遵循而非生成机制）不存在时，
+一切 APO 表征等价于零；存在时（本文仿真弱模型 qwen-sim +0.05 救援）结构化通路有效**。
+附带发现（对评测协议的价值）：GEPA 在 starved val-8 上得 .6961（前 8 个 val 样本短文档
+150 tokens 内可完成）而 starved holdout-20 .15——**小 val 集与 holdout 的截断难度不对
+称会让反思优化器对着错误 regime 优化**；这是 val/holdout 同分布采样条款（F8 失效模式段）
+的 starved 实例证明。
 
 ## 4. Limitations（投稿前必须解决）
 

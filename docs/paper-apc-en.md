@@ -406,6 +406,27 @@ endogenous (re-sampling its own evaluations); APC's is exogenous (a measured
 drift band, at zero extra cost) — orthogonal and stackable, and this run
 illustrates exactly that distinction.
 
+**F10 Pre-registered discriminative experiment: the token-starved regime.**
+Before running it we committed (git e8bd373, 22:20) a three-branch prediction:
+capping output at max_tokens=150 collapses zero-shot holdout from .699 to .150,
+opening apparent headroom; the question was whether genome search, free-text
+reflection (GEPA), and cluster-and-stabilize selection (ESPO) diverge once the
+signal is winnable. Result — branch (c), the pre-registered null-of-the-null:
+all six pathways measured .1500 on a paired same day (z0 / manual / APC-safe /
+APC-full / GEPA / ESPO). Truncation occurs mid-JSON (verified in fail samples);
+the floor is the judge's format-collapse value, not model competence — **no
+prompt rewrite stops a reasoning model from spending its output budget**
+(instruction-level thought suppression is ineffective on this model). F10 does
+not overturn F1-F9; it completes the regime map: optimizer representations are
+equivalent-to-zero whenever headroom is either absent (F1-F9) or physically
+unreachable by prompting (F10); where headroom is genuinely reachable, the
+structured pathway wins (simulator weak-model rescue, +0.05, §3.2b). Side
+finding for evaluation protocol: GEPA scored .6961 on the starved val-8 (short
+documents finish inside 150 tokens) while the starved holdout-20 scored .15 —
+truncation-difficulty asymmetry between a small validation set and holdout makes
+reflective optimizers adapt to the wrong regime; this is a concrete instance of
+the val/holdout common-pool clause of F8's failure-mode analysis.
+
 ## 4. Limitations
 
 1. Real-model phase is single-model (whitelist key); the seed axis is covered
