@@ -12,7 +12,9 @@ PGAM 与均匀变异无差异（pooled +0.0004，零结果）；迁移以 30% �
 结构 genome 搜索的 accuracy 增益 ≈ 0（扰动鲁棒性同样饱和，|drop|≤0.013）——
 **base-root 臂三任务全部守住 zero-shot −0.004 下限；profile 规则先验是净负债**
 （root 落后 0.2–0.53，rule-root 臂在余量最大的 financial 预算内只修复一半）；
-跨任务 genome 零适配直用即达 zero-shot 水平（较冷启动重搜 +0.20~+0.79）。
+跨任务 genome 零适配直用即达 zero-shot 水平（较冷启动重搜 +0.20~+0.79）；
+外部真实基准（GSM8K/MATH-L5/AIME24+25，作者未造的任务）复现两结论：六个冠军-vs-base
+对比全部统计打平（零损耗迁移成立），且三数据集精度 0.96~1.00 无余量——AIME 三臂全对（饱和外推成立）。
 多模型与 PGAM 验证待更多凭证。
 
 ## 1. 问题与主张
@@ -207,6 +209,26 @@ rule-judge**；三任务完全同口径 dev_r/val/holdout=5/8/20；主对比预�
   本身就不敏感，格式基因没有可兑现的鲁棒性溢价（apc-full 的负 drop 是其水平整体下移
   后落进扰动集噪声，非"更鲁棒"）。⇒ 与 F1 合并：**真实强模型上结构 genome 的
   accuracy 与鲁棒性双重饱和，增益预算只可能来自救援与迁移，不来自优化本身**。
+- **F6 外部真实基准（GSM8K / MATH Level-5 / AIME 2024+25，`bench_real_external.py`，
+  exact-match 判分带 latex 结构规约，零适配三臂）**：作者未造的任务上直接检验 F1/F3——
+  genome 经外置 `external_math.yaml` spec 编译，三臂 = base / math 冠军(源任务) /
+  contract 冠军(跨域)，全部从未参与任何 genome 的数据集上评测。
+
+| 数据集 (n) | base | math-champ (transfer-0) | contract-champ (跨域) |
+|---|---|---|---|
+| GSM8K (100) | 0.96 | **0.98** | **0.98** |
+| MATH-L5 (135) | 0.9704 | 0.9481 (−1.0σ) | 0.9704 |
+| AIME 24+25 (60) | 1.00 | 1.00 | 1.00 |
+
+  判分 v3.2（exact-match + latex 结构规约）离线重判后：六个 champ-vs-base 对比无一显著，
+  且 **AIME 2024+25 三臂 60/60 全对**（前沿 reasoning 模型 olympiad 满分 ⇒ 外部基准
+  连"难"都失效）；跨域冠军（contract→math）与源域冠军同为无损。唯一一致方向性信号：
+  math-champ 在两数学集均 −0.012~−0.022（合并 −1.1σ，不显著）——**先验负债在外部
+  任务上的微弱回声**，与 F2 同向但幅度小两个数量级（genome 已进化到近 base 形态）。
+  判分器可信度：fail 样本 12 例人工审计 → v2→v3.1→v3.2 三轮修复（矩阵/解集/单位/
+  前导零拍平 + 加法交换律符号项 multiset；政策：牺牲 (1,2)≠(2,1) 严格性换全部记法
+  变体等价，判不准按错）→ 27 正 4 负回归 + 全量 preds 落盘可复算（`rejudge_external.py`）；
+  AIME 两臂各 1 例网络超时按错计（n=60 ⇒ ≤0.017 下偏）。
 - 诚实边界：单模型、单 seed、无 CI；多模型差异与 PGAM 的真实验证仍缺（凭证白名单）。
 
 ## 4. Limitations（投稿前必须解决）
@@ -215,8 +237,9 @@ rule-judge**；三任务完全同口径 dev_r/val/holdout=5/8/20；主对比预�
    已完成；所用 key 为模型白名单，无法加第二模型。投稿需 ≥2 真实模型
    （1 开源 3 seeds + 1 闭源），脚本已就绪（`--model <id>` 配 `.env` 即可），
    blocker 是凭证不是代码。ground truth 仍由作者编写（rule-judge）。
-2. **任务覆盖 4/6**：财务 + 合同 + 数学 + 约束遵循四任务，搜索≫zero-shot
-   排序一致；仍缺真实推理基准（BBH/GSM8K）与开放式指令任务。
+2. **任务覆盖**：财务 + 合同 + 数学 + 约束遵循四任务（仿真）+ 外部真实基准
+   GSM8K/MATH-L5/AIME24+25（§3.4 F6，判分为唯一可自动核验的 exact-match）；
+   仍缺开放式无唯一答案任务（只能靠 judge，见 #5）与 BBH 类非数学推理任务。
 3. **PGAM 跨任务 pooled 零结果**：+0.0004 [−0.0029, 0.0038]（n=42）；
    画像先验的价值未被证实也不该被夸大。投稿级 claim 必须等待真实多峰任务。
 4. **SHA 消融两面**：财务任务 full≡no-halving（零结果）；约束任务上
@@ -241,6 +264,10 @@ rule-judge**；三任务完全同口径 dev_r/val/holdout=5/8/20；主对比预�
   `experiments/apcbench/real_judge_agreement_financial.json`
 - [x] 真实扰动鲁棒性：`bench_real_robust.py`（4 genome × perturbation 20 例）⇒ §3.4 F5
   双饱和结论；入库 `experiments/apcbench/real_robust_financial.json`
+- [x] 外部真实基准（F6）：`bench_real_external.py` + `external_math.yaml` + `test_external_judge.py`
+  （判分器 27 正 4 负回归 + 编译闸门）；数据集随仓：`datasets/gsm8k`(MIT),
+  `datasets/hendrycks_math`(MIT), `datasets/aime`(AIME24+25)；入库
+  `experiments/apcbench/real_external_{gsm8k,math5,aime}.json`（含全量 preds 供离线重判）
 - [ ] 第三方复现报告（待外部协作者）
 
 ## 6. Related Work（详见 `docs/literature/`）
