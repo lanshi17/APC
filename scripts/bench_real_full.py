@@ -128,15 +128,18 @@ def main() -> int:
     ap.add_argument("--dev-r", type=int, default=5)
     ap.add_argument("--val-n", type=int, default=8)
     ap.add_argument("--hold-n", type=int, default=20)
+    ap.add_argument("--no-thinking", action="store_true", help="DashScope qwen3 关思考造弱 regime(输出隔离 *_nt.json)")
     ap.add_argument("--seed", type=int, default=42, help="搜索 seed(≠42 行按 method×seed 合并,champion 分文件)")
     ap.add_argument("--methods", default="zero-shot,manual,apc-full",
                     help="逗号分隔:zero-shot,manual,apc-full(rule-root),apc-safe(base-root);同文件按 method 合并")
     args = ap.parse_args()
     want = {m.strip() for m in args.methods.split(",")}
     env = RealEnv(args.task, args.model, args.dev_r, args.val_n, args.hold_n)
+    if args.no_thinking and hasattr(env.client, "enable_thinking"):
+        env.client.enable_thinking = False
     env.seed = args.seed
     rows, t_start = [], time.time()
-    out = REPO / "experiments" / "apcbench" / f"real_{args.task}.json"
+    out = REPO / "experiments" / "apcbench" / (f"real_{args.task}_nt.json" if args.no_thinking else f"real_{args.task}.json")
     out.parent.mkdir(parents=True, exist_ok=True)
     if out.exists():  # 同 task 文件按 method 合并:未跑的方法行保留,跑过的替换
         rows = [r for r in json.loads(out.read_text(encoding="utf-8"))["rows"]
@@ -167,7 +170,7 @@ def main() -> int:
         rep = env.optimize(mk_root(), args.budget, seed=args.seed)
         champ = PromptGenome.model_validate(rep.champion_genome)
         CHAMPS_DIR.mkdir(parents=True, exist_ok=True)
-        suffix = ("_champ" if arm == "apc-full" else "_champ_safe") + ("" if args.seed == 42 else f"_s{args.seed}")
+        suffix = ("_champ" if arm == "apc-full" else "_champ_safe") + ("" if args.seed == 42 else f"_s{args.seed}") + ("_nt" if args.no_thinking else "")
         (CHAMPS_DIR / f"real_{args.task}{suffix}.json").write_text(champ.model_dump_json(indent=1), encoding="utf-8")
         r = env.row(arm, rep.baseline_score, env.score_of(champ, env.val),
                     env.score_of(champ, env.hold), rep.budget_used, t0,
