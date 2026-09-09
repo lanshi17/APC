@@ -23,7 +23,7 @@ from apc.compiler.renderer import DefaultPromptCompiler
 from apc.models.factory import create_client
 from apc.models.mock_client import MockClient
 
-from bench_real_full import TASK_CFG, BASE_GENOME, CHAMPS_DIR, real_profile  # noqa: E402
+from bench_real_full import TASK_CFG, BASE_GENOME, CHAMPS_DIR, real_profile, manual_genome  # noqa: E402
 from bench_real_gepa import eval_cases, RolloutBudget, OUT  # noqa: E402
 
 def main() -> int:
@@ -32,6 +32,7 @@ def main() -> int:
     ap.add_argument("--model", default="qwen")
     ap.add_argument("--seed", type=int, default=902, help="当日序号(902=第2日)")
     ap.add_argument("--gepa-champ", default=None, help="GEPA 冠军文本文件(可选第4臂)")
+    ap.add_argument("--only", default=None, help="逗号分隔臂名(如 reeval-manual),缺省全跑")
     args = ap.parse_args()
 
     client = create_client(args.model, prefer_mock=False)
@@ -58,12 +59,16 @@ def main() -> int:
         fn = f"real_{args.task}_champ_safe.json" if safe else f"real_{args.task}_champ.json"
         return PromptGenome.model_validate_json((CHAMPS_DIR / fn).read_text(encoding="utf-8"))
 
-    arms = [("reeval-z0", PromptGenome.from_json(str(REPO / BASE_GENOME))),
+    base = PromptGenome.from_json(str(REPO / BASE_GENOME))
+    arms = [("reeval-z0", base),
+            ("reeval-manual", manual_genome(base)),
             ("reeval-safe", champ(True)),
             ("reeval-full", champ(False))]
     if args.gepa_champ:
         arms.append(("reeval-gepa", None))
     for method, g in arms:
+        if args.only and method not in {x.strip() for x in args.only.split(",")}:
+            continue
         t0 = time.time()
         if g is None:
             text = Path(args.gepa_champ).read_text(encoding="utf-8")
