@@ -32,6 +32,10 @@ def main() -> int:
             r = by.get(m)
             if r:
                 rows.append((t, m, r, d["meta"].get("partial"), r["holdout_score"]))
+    gepa = load(EXP / "real_gepa.json")
+    if gepa:
+        for r in gepa["rows"]:
+            rows.append((r["task"], f"gepa-s{r['seed']}", r, None, r["holdout_score"]))
     mv = next((r["model_version"] for t in tasks if data[t] and data[t]["rows"] for r in data[t]["rows"]), "?")
     print(f"### 真实 LLM 主对比（qwen3.8-flash reasoning，rule-judge 同口径，temp=0）\n")
     print("| 任务 | 方法 | holdout | Δ vs zero-shot | 备注 |")
@@ -40,6 +44,8 @@ def main() -> int:
         z = next((x for x in rows if x[0] == t and x[1] == "zero-shot"), None)
         delta = f"{hold - z[4]:+.4f}" if z and m != "zero-shot" else "—"
         note = "⚠partial" if partial else ""
+        if m.startswith("gepa"):
+            note = (note + " " + f"pool={r['pool_size']},ro={r['rollouts_used']}").strip()
         if m == "apc-full":
             note = (note + " " + f"root={r['baseline_score']:.4f}, b={r['budget_used']}").strip()
         elif m == "apc-safe":
