@@ -1,0 +1,185 @@
+"""HLE-exact 高难对垒(F11):真实 headroom regime 下 APC genome vs GEPA vs ESPO。
+
+动机:F1-F10 的真实 API 任务全部饱和或物理不可达;F10 regime map 指出判别力需要
+"可达 headroom"。HLE exact-match 子集(90 题 30/30/30,数学/物理/化学分层)同时具备:
+  (a) 答案正确率有余量(题目难度 → acc ~.2-.6)
+  (b) **协议余量**:external_math 严格 JSON 输出 {answer:...};reasoning 模型常在
+      截断/全文混排中违反协议 → format_score=0 → 这是 genome 格式槽的机制强项
+判分:hardened exact-match judge v3.2(norm_answer/answers_match/extract_pred 逐字复用
+bench_real_external)+ TrialScorer 权重(accuracy .60 / if .15 / format .15 / 其余 .10)。
+
+臂:base(z0) | transfer champs(math/contract/financial) | gepa | espo | apc 双臂搜索。
+用法:
+  .venv/bin/python scripts/bench_real_hle.py --arms z0 [--hold-n 30]           # pilot
+  .venv/bin/python scripts/bench_real_hle.py --arms z0,champs,gepa,espo,search  # 全矩阵
+结果:experiments/apcbench/real_hle.json(seed 921+,与主表隔离)。
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import random
+import sys
+import time
+import uuid
+from pathlib import Path
+
+REPO = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(REPO / "apc-pipeline"))
+sys.path.insert(0, str(REPO / "scripts"))
+
+from apc.core.genome import PromptGenome
+from apc.core.task_spec import TaskSpec
+from apc.compiler.renderer import DefaultPromptCompiler
+from apc.models.factory import create_client
+from apc.models.mock_client import MockClient
+from apc.evaluation.runner import TrialScorer
+
+from bench_real_full import real_profile, CHAMPS_DIR  # noqa: E402
+from bench_real_external import (answers_match, extract_pred, JUDGE_VERSION)  # noqa: E402
+from bench_real_gepa import RolloutBudget, eval_cases, gepa_search  # noqa: E402
+import bench_real_gepa as G  # 用于 monkeypatch JUDGE/CHECKER 到 hle 语义
+
+OUT = REPO / "experiments" / "apcbench" / "real_hle.json"
+SPEC_PATH = REPO / "apc-pipeline" / "configs" / "tasks" / "external_math.yaml"
+DS = REPO / "datasets" / "hle_exact"
+
+
+class HLEJudge:
+    """bench_gepa 通路 JUDGE 适配:accuracy=answers_match(gold, extracted)。"""
+
+    def judge(self, doc: str, expected: dict, output: str, spec: TaskSpec) -> dict:
+        pred = extract_pred(output)
+        acc = 1.0 if pred and answers_match(pred, expected.get("answer", "")) else 0.0
+        return {"accuracy": acc, "constraint_following": 1.0 if output.strip() else 0.0}
+
+
+class HLEChecker:
+    """CHECKER 适配:format = 输出可解析出 JSON 对象且含 answer 键。"""
+
+    def check(self, text: str, spec: TaskSpec) -> dict:
+        t = text.strip()
+        ok = False
+        if "{" in t and "}" in t:
+            try:
+                d = json.loads(t[t.find("{"): t.rfind("}") + 1])
+                ok = isinstance(d, dict) and "answer" in d and str(d["answer"]).strip() != ""
+            except Exception:
+                ok = False
+        return {"format_score": 1.0 if ok else 0.0, "constraint_score": 1.0 if ok else 0.0}
+
+
+def load(part: str, n: int) -> list[dict]:
+    rows = [json.loads(l) for l in (DS / f"{part}.jsonl").read_text(encoding="utf-8").splitlines() if l.strip()]
+    return [{"doc": r["input"], "expected": {"answer": r["expected"]["answer"]},
+             "question": r["input"]} for r in rows[:n]]
+
+
+def compile_for(genome: PromptGenome, spec, profile, compiler) -> str:
+    return compiler.compile(genome, spec, profile, apply_rules=False).prompt_text
+
+
+def run_eval(client, spec, samples, prompt_text, budget) -> tuple[float, list]:
+    return eval_cases(client, spec, samples, prompt_text, budget)
+
+
+def row_of(method, seed, sc, cases, t0, chars, budget, extra=None):
+    r = {"task": "hle_exact", "seed": seed, "method": method,
+         "holdout_score": round(float(sc), 4),
+         "n_acc": sum(1 for c in cases if c["accuracy"] > 0.5),
+         "n_format": sum(1 for c in cases if c["format_score"] > 0.5),
+         "n": len(cases),
+         "rollouts_used": budget.used if budget else None,
+         "elapsed_s": round(time.time() - t0, 1), "prompt_chars": chars,
+         "fail_sample": [c["sample_id"] for c in cases
+                         if c["accuracy"] < 0.5 or c["format_score"] < 0.5][:10]}
+    if extra:
+        r.update(extra)
+    return r
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--arms", default="z0", help="逗号分隔: z0,champs,gepa,espo,search")
+    ap.add_argument("--model", default="qwen")
+    ap.add_argument("--rollouts", type=int, default=48)
+    ap.add_argument("--hold-n", type=int, default=30)
+    ap.add_argument("--seed", type=int, default=921)
+    ap.add_argument("--timeout", type=float, default=420.0)
+    args = ap.parse_args()
+
+    client = create_client(args.model, prefer_mock=False)
+    if isinstance(client, MockClient):
+        raise SystemExit("需要真实凭证")
+    if hasattr(client, "client"):
+        import httpx
+        client.client.timeout = httpx.Timeout(args.timeout)
+    # 判分适配:monkeypatch gepa 全局 JUDGE/CHECKER(hle 语义)
+    G.JUDGE = HLEJudge()
+    G.CHECKER = HLEChecker()
+    G.document = lambda smp: smp["doc"]  # hle 样本无 document 字段映射
+
+    spec = TaskSpec.from_yaml(str(SPEC_PATH))
+    compiler = DefaultPromptCompiler()
+    profile = real_profile(client)
+    hold = load("holdout", args.hold_n)
+    val = load("validation", 30)
+    base = PromptGenome.from_json(str(REPO / "configs/genomes/base.json"))
+    z0_text = compile_for(base, spec, profile, compiler)
+
+    doc = {"protocol": "real-hle", "judge": JUDGE_VERSION, "rows": []}
+    if OUT.exists():
+        doc = json.loads(OUT.read_text(encoding="utf-8"))
+    arms = {m.strip() for m in args.arms.split(",")}
+
+    def persist(r):
+        doc["rows"] = [x for x in doc["rows"]
+                       if not (x["method"] == r["method"] and x.get("seed") == r["seed"])] + [r]
+        OUT.write_text(json.dumps(doc, ensure_ascii=False, indent=1), encoding="utf-8")
+        print(f"{r['method']:16s} hold={r['holdout_score']:.4f} acc={r['n_acc']}/{r['n']} "
+              f"fmt={r['n_format']}/{r['n']} ({r['elapsed_s']}s)", flush=True)
+
+    if "z0" in arms:
+        t0 = time.time(); b = RolloutBudget(10_000)
+        sc, cases = run_eval(client, spec, hold, z0_text, b)
+        persist(row_of("z0", args.seed, sc, cases, t0, len(z0_text), b))
+
+    if "champs" in arms:
+        for nm, fn in (("math-champ", "real_math_champ.json"),
+                       ("contract-champ", "real_contract_champ.json"),
+                       ("financial-champ", "real_financial_champ.json")):
+            t0 = time.time(); b = RolloutBudget(10_000)
+            g = PromptGenome.model_validate_json((CHAMPS_DIR / fn).read_text(encoding="utf-8"))
+            text = compile_for(g, spec, profile, compiler)
+            sc, cases = run_eval(client, spec, hold, text, b)
+            persist(row_of(nm, args.seed, sc, cases, t0, len(text), b))
+
+    if "gepa" in arms:
+        t0 = time.time(); b = RolloutBudget(args.rollouts)
+        champ, cval, iters, used = gepa_search(client, spec, val[:8], z0_text, b,
+                                               random.Random(args.seed))
+        (Path("/tmp") / f"hle_gepa_{args.seed}_champ.txt").write_text(champ, encoding="utf-8")
+        b2 = RolloutBudget(10_000)
+        sc, cases = run_eval(client, spec, hold, champ, b2)
+        persist(row_of("gepa", args.seed, sc, cases, t0, len(champ), b,
+                       {"validation_score": round(cval, 4), "iterations": iters}))
+
+    if "espo" in arms:
+        from bench_real_espo import espo_run
+        t0 = time.time(); b = RolloutBudget(args.rollouts)
+        champ, cval, iters, used, biases = espo_run(client, spec, val[:8], z0_text, b, args.seed)
+        (Path("/tmp") / f"hle_espo_{args.seed}_champ.txt").write_text(champ, encoding="utf-8")
+        b2 = RolloutBudget(10_000)
+        sc, cases = run_eval(client, spec, hold, champ, b2)
+        persist(row_of("espo", args.seed, sc, cases, t0, len(champ), b,
+                       {"validation_score": round(cval, 4), "biases": biases}))
+
+    if "search" in arms:
+        # 在线 genome 搜索臂留待多模型轮;F11 判别由 champs(预编译结构先验) vs
+        # gepa/espo(反思发现)承担 — 两条通路对协议余量的利用方式正是要对比的对象。
+        print("search arm skipped by design (champs+gepa+espo 足以判别)", flush=True)
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
