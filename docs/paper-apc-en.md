@@ -334,6 +334,24 @@ paper that does not control day-drift risks having every conclusion inside ±.03
 flip; this paper's main four-arm table was run in one night under one protocol, and
 the GEPA/reeval batches are paired same-day supplementary measurements.
 
+**F8 AutoAPC-Select: a deployment-time gating selector (`auto_apc_gate.py`,
+offline replay, zero additional rollouts).** F7's two negative findings
+(rule-root liability + seed fragility) yield a constructive corollary: per-arm
+validation scores are free on any given day, so deployment selection can be
+*automatically gated* — argmax over candidates {z0, manual, safe, full,
+transfer} on validation score, with ties inside the ±.007 noise band broken by
+Occam order (z0 < manual < safe < full). Offline replay over the 12 existing
+arm groups (6 comparable): 5/6 land within the noise band, 4/6 are exact
+oracles, and the key case — s44, where rule-root collapsed to .1334 — is fully
+rescued (gate picks safe, .6575, regret 0). The single large regret
+(math→contract, +.0196) exposes the gate's failure mode: val(8)/holdout(20)
+distribution mismatch can inflate a candidate's validation score (transfer-ws
+val .9822 > transfer-0 .8871 while holdout reverses, .9582 < .9778); the honest
+corollary is to bias noise-band ties toward the simpler arm or to draw val and
+holdout from a common pool. This upgrades F7's manual two-arm contrast into an
+automatic non-inferiority selector with a characterized failure mode — at zero
+extra evaluation cost, reusing existing validation scores.
+
 ## 4. Limitations
 
 1. Real-model phase is single-model (whitelist key); the seed axis is covered

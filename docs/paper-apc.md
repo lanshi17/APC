@@ -16,7 +16,7 @@ PGAM 与均匀变异无差异（pooled +0.0004，零结果）；迁移以 30% �
 外部真实基准（GSM8K/MATH-L5/AIME24+25，作者未造的任务）复现两结论：六个冠军-vs-base
 对比全部统计打平（零损耗迁移成立），且三数据集精度 0.96~1.00 无余量——AIME 三臂全对（饱和外推成立）。
 **GEPA 官方基线对垒与方差审计（§3.4 F7）**：复现 GEPA Algorithm 1（反思式 prompt 优化，最强开源基线）在同协议同预算下对比，其增益也在同日测量噪声带内（+.0024）——null 结果非 APC 表征的局部缺陷；同时发现 temp=0 推理模型存在跨日评分漂移（Δ.028），故全部对比以配对同日复测为准，rule-root 负债（−.090）在三 seed 下稳健复现（含一例种子崩至 .13 的双峰风险直证）。
-多模型与 PGAM 验证待更多凭证。
+据此提出 F8 AutoAPC-Select 部署门控：val 分数 argmax + 噪声带内奥卡姆 tie-break，离线回放 6 组既有臂数据 5/6 落入噪声带、4/6 精确命中 oracle，种子崩溃案例零 regret 完整救回（唯一失效模式：val 小样本高估，已刻画）。多模型与 PGAM 验证待更多凭证。
 
 ## 1. 问题与主张
 
@@ -252,6 +252,22 @@ rule-judge**；三任务完全同口径 dev_r/val/holdout=5/8/20；主对比预�
 
 三点结论：① **最强开源基线 GEPA 在强推理模型上同样零增益**（+.0024，噪声带内）——§3.4 的 null 不是 APC 表征的局部缺陷，而是"强模型 + 高判分器覆盖"regime 的属性；GEPA 的反思通路在此与 APC 的结构化变异通路同归于平。② APC 的差异化价值在 null 之外保持不变：可审计的决策链（F4）、零成本迁移（contract→math 冠军 .9808）、schema/鲁棒性机制（F3、§3.6 外部判分器硬化）——这些是 GEPA 自由文本变异不具备的。③ **方法学贡献**：提出配对同日复测协议（paired same-day re-evaluation）——推理模型评测论文若不控制日漂移，±.03 以内的全部结论都可能反转；本文主表四臂同夜同协议完成，GEPA/reeval 批为同日配对补测。
 
+**F8 AutoAPC-Select：部署期门控选择器（`auto_apc_gate.py`，离线回放，零额外 rollout）**
+
+F7 的两个负面发现（rule-root 负债 + 种子脆弱性）合起来给出一个 constructive 推论：既然每臂的 val 分数在同一天内免费可得，部署选择可**自动门控**——候选 {z0, manual, safe, full, transfer} 按 val argmax，噪声带（±.007）内并列取最简（奥卡姆序 z0 < manual < safe < full）。对既有 12 组臂数据的离线回放（6 个可比组）：
+
+| 组 | gate 选择 | gate hold | oracle | regret |
+|---|---|---|---|---|
+| financial s42 | zero-shot | .6712 | .6712 | 0 |
+| financial s43 | apc-safe | .6679 | .6679 | 0 |
+| financial s44 | apc-safe | .6575 | .6575 | **0（救离 full 的 .1334）** |
+| math s42 | zero-shot | .8436 | .8442 | +.0006（噪声带） |
+| transfer contract→math | transfer-ws | .8441 | .8441 | 0 |
+| transfer math→contract | transfer-ws | .9582 | .9778 | +.0196（val 高估，见下） |
+
+6 组中 5 组落入噪声带、4 组精确命中 oracle；关键案例 s44 被门控从崩溃臂完整救回。唯一显著 regret（math→contract +.0196）暴露门控的适用边界：**val(8) 与 holdout(20) 分布差异可致 val 高估**（transfer-ws val .9822 > transfer-0 .8871，但 hold 反转 .9582 < .9778）——诚实推论：val 噪声带内 tie-break 偏保守臂（此处 cold/zero-shot 更简单），或 val/holdout 同分布采样。这把 F7 的"人工双臂对照"升级为"自动非劣选择 + 明确的失效模式刻画"，且零成本（复用既有 val 评估）。
+
+
 
 ## 4. Limitations（投稿前必须解决）
 
@@ -292,6 +308,12 @@ rule-judge**；三任务完全同口径 dev_r/val/holdout=5/8/20；主对比预�
   （判分器 27 正 4 负回归 + 编译闸门）；数据集随仓：`datasets/gsm8k`(MIT),
   `datasets/hendrycks_math`(MIT), `datasets/aime`(AIME24+25)；入库
   `experiments/apcbench/real_external_{gsm8k,math5,aime}.json`（含全量 preds 供离线重判）
+- [x] GEPA 基线对垒 + 方差审计（F7）：`bench_real_gepa.py`（官方 Algorithm 1 核心：
+  minibatch 反思 / per-instance Pareto / eval_full 冠军；`--rollouts 0` 为 z0 对照模式）
+  + `bench_real_reeval.py`（同日配对五臂复测，`--only` 选臂）；多 seed 搜索
+  `bench_real_full.py --seed 43|44`（method×seed 合并）；入库 `real_gepa.json`
+- [x] AutoAPC-Select（F8）：`auto_apc_gate.py` 纯离线回放 12 组臂数据（零 API），
+  gate vs oracle vs worst 三列对照表 ⇒ §3.4 F8
 - [ ] 第三方复现报告（待外部协作者）
 
 ## 6. Related Work（详见 `docs/literature/`）
