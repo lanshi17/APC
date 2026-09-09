@@ -80,6 +80,23 @@ def compile_for(genome: PromptGenome, spec, profile, compiler) -> str:
     return compiler.compile(genome, spec, profile, apply_rules=False).prompt_text
 
 
+def make_client(model: str, timeout: float):
+    """每次评测新建客户端:全新连接池 + 1-attempt(错误即落 <call-error>,由外层重跑续)。"""
+    import tenacity as _tc
+    from apc.models.openai_client import OpenAIClient, resolve_api_key
+    from apc.models.factory import load_model_config
+    cfg = load_model_config(model)
+    c = OpenAIClient(model_id=cfg["model_id"], model=cfg["model"], base_url=cfg["api_base"],
+                     api_key=resolve_api_key(cfg), max_tokens=cfg.get("max_tokens", 2000),
+                     timeout=timeout)
+    c.client = type(c.client)(timeout=__import__("httpx").Timeout(timeout, connect=30.0, read=timeout))
+    _orig = c.complete
+    c.complete = _tc.retry(stop=_tc.stop_after_attempt(1))(
+        lambda prompt, temperature=0.0: _orig.__wrapped__(prompt, temperature)
+        if hasattr(_orig, "__wrapped__") else _orig(prompt, temperature))
+    return c
+
+
 def run_eval(client, spec, samples, prompt_text, budget, stream_path=None) -> tuple[float, list]:
     """带 per-sample 流式落盘 + 断点续跑的评测(代理挂起/进程死后可重入)。"""
     if not stream_path:
@@ -93,34 +110,60 @@ def run_eval(client, spec, samples, prompt_text, budget, stream_path=None) -> tu
                 done[c["sample_id"]] = c
             except Exception:
                 pass
-    cases = []
     from apc.evaluation.runner import TrialScorer
     from concurrent.futures import ThreadPoolExecutor
     import uuid
-    def _hard_call(prompt):
-        with ThreadPoolExecutor(max_workers=1) as ex:
-            return ex.submit(client.complete, prompt, 0.0).result(timeout=args.hard)
+
+    def _hard_call(prompt, hard):
+        """每次调用独立 executor:future 超时后 shutdown(wait=False) 不阻塞主循环。"""
+        ex = ThreadPoolExecutor(max_workers=1)
+        try:
+            return ex.submit(client.complete, prompt, 0.0).result(timeout=hard)
+        finally:
+            ex.shutdown(wait=False)
+
+    cases = []
     for smp in samples:
         sid = str(hash(smp["doc"]))[:8]
         if sid in done:
             cases.append(done[sid]); continue
+        prompt = prompt_text.replace("{{input}}", smp["doc"])
         try:
-            call = _hard_call(prompt_text.replace("{{input}}", smp["doc"]))
+            call = _hard_call(prompt, args.hard)
         except Exception:
+            call = None
+        if call is None:
+            # 换独立新连接重试一次(绕开可能被污染的 keep-alive 连接)
+            try:
+                import apc.models.openai_client as OC
+                fresh = OC.OpenAIClient(model_id=client.model_id, model=client.model,
+                                        base_url=client.base_url, api_key=client.api_key,
+                                        max_tokens=client.max_tokens, timeout=args.timeout)
+                call = fresh.client.post(f"{fresh.base_url}/chat/completions",
+                                         headers={"Authorization": f"Bearer {fresh.api_key}"} if fresh.api_key else {},
+                                         json={"model": fresh.model,
+                                               "messages": [{"role": "user", "content": prompt}],
+                                               "temperature": 0.0,
+                                               "max_tokens": fresh.max_tokens},
+                                         timeout=(args.timeout + 40, 30.0))
+                j = call.json()
+                class _C:  # 统一返回形状
+                    text = (j.get("choices") or [{}])[0].get("message", {}).get("content") or ""
+                call = _C()
+            except Exception:
+                call = None
+        if call is None:
             c = {"sample_id": sid, "doc": smp["doc"], "format_score": 0.0, "constraint_score": 0.0,
                  "accuracy": 0.0, "instruction_following": 0.0, "output": "<call-error>",
                  "expected": json.dumps(smp.get("expected", {}), ensure_ascii=False)}
-            cases.append(c)
-            with open(sp, "a", encoding="utf-8") as f:
-                f.write(json.dumps(c, ensure_ascii=False) + "\n")
-            continue
-        rule = G.CHECKER.check(call.text, spec)
-        j = G.JUDGE.judge(smp["doc"], smp.get("expected", {}), call.text, spec)
-        c = {"sample_id": sid, "doc": smp["doc"], "format_score": rule.get("format_score", 0.0),
-             "constraint_score": rule.get("constraint_score", 0.0),
-             "accuracy": round(float(j.get("accuracy", 0.0)), 4),
-             "instruction_following": round(float(j.get("constraint_following", 0.0)), 4),
-             "output": call.text, "expected": json.dumps(smp.get("expected", {}), ensure_ascii=False)}
+        else:
+            rule = G.CHECKER.check(call.text, spec)
+            j = G.JUDGE.judge(smp["doc"], smp.get("expected", {}), call.text, spec)
+            c = {"sample_id": sid, "doc": smp["doc"], "format_score": rule.get("format_score", 0.0),
+                 "constraint_score": rule.get("constraint_score", 0.0),
+                 "accuracy": round(float(j.get("accuracy", 0.0)), 4),
+                 "instruction_following": round(float(j.get("constraint_following", 0.0)), 4),
+                 "output": call.text, "expected": json.dumps(smp.get("expected", {}), ensure_ascii=False)}
         cases.append(c)
         with open(sp, "a", encoding="utf-8") as f:
             f.write(json.dumps(c, ensure_ascii=False) + "\n")
@@ -159,7 +202,7 @@ def main() -> int:
                     help="关推理模型思考通路:题目仍难但单题成本 x10(协议余量主信号)")
     args = ap.parse_args()
 
-    client = create_client(args.model, prefer_mock=False)
+    client = make_client(args.model, args.timeout)
     if isinstance(client, MockClient):
         raise SystemExit("需要真实凭证")
     if hasattr(client, "client"):
