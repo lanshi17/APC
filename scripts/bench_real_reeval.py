@@ -33,7 +33,13 @@ def main() -> int:
     ap.add_argument("--seed", type=int, default=902, help="当日序号(902=第2日)")
     ap.add_argument("--gepa-champ", default=None, help="GEPA 冠军文本文件(可选第4臂)")
     ap.add_argument("--only", default=None, help="逗号分隔臂名(如 reeval-manual),缺省全跑")
+    ap.add_argument("--no-thinking", action="store_true", help="DashScope qwen3 关闭思考(非流式)造弱 regime")
+    ap.add_argument("--max-tokens", type=int, default=None, help="截断预算造 token-starved regime(输出隔离 _mtN.json)")
     args = ap.parse_args()
+    if args.no_thinking or args.max_tokens:
+        import bench_real_gepa as _G
+        tag = ("_nt" if args.no_thinking else "") + (f"_mt{args.max_tokens}" if args.max_tokens else "")
+        _G.OUT = OUT = REPO / "experiments" / "apcbench" / f"real_gepa{tag}.json"
 
     client = create_client(args.model, prefer_mock=False)
     if isinstance(client, MockClient):
@@ -41,6 +47,10 @@ def main() -> int:
     if hasattr(client, "client"):
         import httpx
         client.client.timeout = httpx.Timeout(420.0)
+    if args.no_thinking and hasattr(client, "enable_thinking"):
+        client.enable_thinking = False
+    if args.max_tokens:
+        client.max_tokens = args.max_tokens
     task_yaml, ds_name, judge_id = TASK_CFG[args.task]
     spec = TaskSpec.from_yaml(REPO / task_yaml)
     compiler = DefaultPromptCompiler()

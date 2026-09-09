@@ -22,8 +22,9 @@ class OpenAIClient(BaseModelClient):
     """OpenAI-compatible 调用通路（GPT / DashScope compatible-mode / Zhipu compatible API）。"""
 
     def __init__(self, model_id: str, model: str, base_url: str, api_key: str | None = None,
-                 max_tokens: int = 2000, timeout: float = 180.0):
+                 max_tokens: int = 2000, timeout: float = 180.0, enable_thinking: bool | None = None):
         self._model_id = model_id
+        self.enable_thinking = enable_thinking
         self.model = model
         self.max_tokens = max_tokens
         self.base_url = base_url.rstrip("/")
@@ -46,7 +47,8 @@ class OpenAIClient(BaseModelClient):
             f"{self.base_url}/chat/completions",
             headers={"Authorization": f"Bearer {self.api_key}"} if self.api_key else {},
             json={"model": self.model, "messages": [{"role": "user", "content": prompt}],
-                  "temperature": temperature, "max_tokens": self.max_tokens},
+                  "temperature": temperature, "max_tokens": self.max_tokens,
+                  **({"enable_thinking": self.enable_thinking} if self.enable_thinking is not None else {})},
         )
         resp.raise_for_status()
         return resp.json()
