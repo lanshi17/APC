@@ -97,7 +97,8 @@ def make_client(model: str, timeout: float):
     return c
 
 
-def run_eval(client, spec, samples, prompt_text, budget, stream_path=None) -> tuple[float, list]:
+def run_eval(client, spec, samples, prompt_text, budget, stream_path=None,
+               hard=330.0, timeout=300.0) -> tuple[float, list]:
     """带 per-sample 流式落盘 + 断点续跑的评测(代理挂起/进程死后可重入)。"""
     if not stream_path:
         return eval_cases(client, spec, samples, prompt_text, budget)
@@ -129,8 +130,9 @@ def run_eval(client, spec, samples, prompt_text, budget, stream_path=None) -> tu
             cases.append(done[sid]); continue
         prompt = prompt_text.replace("{{input}}", smp["doc"])
         try:
-            call = _hard_call(prompt, args.hard)
-        except Exception:
+            call = _hard_call(prompt, hard)
+        except Exception as e:
+            print(f"  hard-fail {sid}: {type(e).__name__}: {str(e)[:120]}", flush=True)
             call = None
         if call is None:
             # 换独立新连接重试一次(绕开可能被污染的 keep-alive 连接)
@@ -138,19 +140,20 @@ def run_eval(client, spec, samples, prompt_text, budget, stream_path=None) -> tu
                 import apc.models.openai_client as OC
                 fresh = OC.OpenAIClient(model_id=client.model_id, model=client.model,
                                         base_url=client.base_url, api_key=client.api_key,
-                                        max_tokens=client.max_tokens, timeout=args.timeout)
+                                        max_tokens=client.max_tokens, timeout=timeout)
                 call = fresh.client.post(f"{fresh.base_url}/chat/completions",
                                          headers={"Authorization": f"Bearer {fresh.api_key}"} if fresh.api_key else {},
                                          json={"model": fresh.model,
                                                "messages": [{"role": "user", "content": prompt}],
                                                "temperature": 0.0,
                                                "max_tokens": fresh.max_tokens},
-                                         timeout=(args.timeout + 40, 30.0))
+                                         timeout=(timeout + 40, 30.0))
                 j = call.json()
                 class _C:  # 统一返回形状
                     text = (j.get("choices") or [{}])[0].get("message", {}).get("content") or ""
                 call = _C()
-            except Exception:
+            except Exception as e2:
+                print(f"  retry-fail {sid}: {type(e2).__name__}: {str(e2)[:120]}", flush=True)
                 call = None
         if call is None:
             c = {"sample_id": sid, "doc": smp["doc"], "format_score": 0.0, "constraint_score": 0.0,
@@ -241,7 +244,8 @@ def main() -> int:
 
     if "z0" in arms:
         t0 = time.time(); b = RolloutBudget(10_000)
-        sc, cases = run_eval(client, spec, hold, z0_text, b, f"/tmp/hle_z0_{args.seed}.jsonl")
+        sc, cases = run_eval(client, spec, hold, z0_text, b, f"/tmp/hle_z0_{args.seed}.jsonl",
+                           hard=args.hard, timeout=args.timeout)
         persist(row_of("z0", args.seed, sc, cases, t0, len(z0_text), b))
 
     if "champs" in arms:
@@ -251,7 +255,8 @@ def main() -> int:
             t0 = time.time(); b = RolloutBudget(10_000)
             g = PromptGenome.model_validate_json((CHAMPS_DIR / fn).read_text(encoding="utf-8"))
             text = compile_for(g, spec, profile, compiler)
-            sc, cases = run_eval(client, spec, hold, text, b, f"/tmp/hle_{nm}_{args.seed}.jsonl")
+            sc, cases = run_eval(client, spec, hold, text, b, f"/tmp/hle_{nm}_{args.seed}.jsonl",
+                               hard=args.hard, timeout=args.timeout)
             persist(row_of(nm, args.seed, sc, cases, t0, len(text), b))
 
     if "gepa" in arms:
@@ -260,7 +265,8 @@ def main() -> int:
                                                random.Random(args.seed))
         (Path("/tmp") / f"hle_gepa_{args.seed}_champ.txt").write_text(champ, encoding="utf-8")
         b2 = RolloutBudget(10_000)
-        sc, cases = run_eval(client, spec, hold, champ, b2, f"/tmp/hle_gepa_{args.seed}.jsonl")
+        sc, cases = run_eval(client, spec, hold, champ, b2, f"/tmp/hle_gepa_{args.seed}.jsonl",
+                           hard=args.hard, timeout=args.timeout)
         persist(row_of("gepa", args.seed, sc, cases, t0, len(champ), b,
                        {"validation_score": round(cval, 4), "iterations": iters}))
 
@@ -270,7 +276,8 @@ def main() -> int:
         champ, cval, iters, used, biases = espo_run(client, spec, val[:8], z0_text, b, args.seed)
         (Path("/tmp") / f"hle_espo_{args.seed}_champ.txt").write_text(champ, encoding="utf-8")
         b2 = RolloutBudget(10_000)
-        sc, cases = run_eval(client, spec, hold, champ, b2, f"/tmp/hle_espo_{args.seed}.jsonl")
+        sc, cases = run_eval(client, spec, hold, champ, b2, f"/tmp/hle_espo_{args.seed}.jsonl",
+                           hard=args.hard, timeout=args.timeout)
         persist(row_of("espo", args.seed, sc, cases, t0, len(champ), b,
                        {"validation_score": round(cval, 4), "biases": biases}))
 
