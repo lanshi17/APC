@@ -130,9 +130,9 @@ def bootstrap_select(cand_scores: list[list[float]], champ_scores: list[float],
     return max(cands, key=lambda k: (float(np.mean(cand_scores[k])), wins[k]))
 
 
-def espo_run(client, spec, val, z0, budget: RolloutBudget, seed: int):
+def espo_run(client, spec, val, z0, budget: RolloutBudget, seed: int, starve=None):
     rng = random.Random(seed)
-    sc0, cases0 = eval_cases(client, spec, val, z0, budget)
+    sc0, cases0 = eval_cases(client, spec, val, z0, budget, starve=starve)
     s0 = [c["accuracy"] for c in cases0]
     fails = [c for c in cases0 if c["accuracy"] < 0.99]
     iters = 0
@@ -146,7 +146,7 @@ def espo_run(client, spec, val, z0, budget: RolloutBudget, seed: int):
             continue
         if budget.left < 8:
             break
-        cs, ccases = eval_cases(client, spec, val, c, budget)
+        cs, ccases = eval_cases(client, spec, val, c, budget, starve=starve)
         cands.append((bname, c))
         cscores.append([x["accuracy"] for x in ccases])
         iters += 1
@@ -174,8 +174,6 @@ def main() -> int:
     if hasattr(client, "client"):
         import httpx
         client.client.timeout = httpx.Timeout(420.0)
-    if args.max_tokens:
-        client.max_tokens = args.max_tokens
     task_yaml, ds_name, judge_id = TASK_CFG[args.task]
     spec = TaskSpec.from_yaml(REPO / task_yaml)
     from apc.core.model_profile import ModelProfile
@@ -203,8 +201,8 @@ def main() -> int:
     for seed in [int(x) for x in args.seeds.split(",")]:
         t0 = time.time()
         budget = RolloutBudget(args.rollouts)
-        champ, cval, iters, used, biases = espo_run(client, spec, val, z0, budget, seed)
-        sc, cases = eval_cases(client, spec, hold, champ, RolloutBudget(10_000))
+        champ, cval, iters, used, biases = espo_run(client, spec, val, z0, budget, seed, starve=args.max_tokens)
+        sc, cases = eval_cases(client, spec, hold, champ, RolloutBudget(10_000), starve=args.max_tokens)
         (Path("/tmp") / f"espo_{args.task}_{seed}_champ.txt").write_text(champ, encoding="utf-8")
         row = {"task": args.task, "seed": seed, "method": "espo",
                "holdout_score": round(sc, 4), "validation_score": round(cval, 4),

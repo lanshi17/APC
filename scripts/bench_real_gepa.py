@@ -68,8 +68,12 @@ class RolloutBudget:
 
 
 def eval_cases(client, spec: TaskSpec, samples: list[dict], prompt_text: str,
-               budget: RolloutBudget, cap: int | None = None) -> tuple[float, list[dict]]:
-    """与 EvaluationRunner.evaluate 完全同构的逐样本评分；rollout 计数。"""
+               budget: RolloutBudget, cap: int | None = None,
+               starve: int | None = None) -> tuple[float, list[dict]]:
+    """与 EvaluationRunner.evaluate 完全同构的逐样本评分；rollout 计数。
+    starve=任务评测的 token 预算(仅评测调用受限;优化器元调用不在此通路)。"""
+    if starve:
+        client.max_tokens = starve
     cases = []
     todo = samples if cap is None else samples[:cap]
     for smp in todo:
@@ -94,6 +98,8 @@ def eval_cases(client, spec: TaskSpec, samples: list[dict], prompt_text: str,
             "instruction_following": round(float(j.get("constraint_following", 0.0)), 4),
             "output": call.text, "expected": json.dumps(smp.get("expected", {}), ensure_ascii=False),
         })
+    if starve:
+        client.max_tokens = 2000
     trial = TrialScorer().score(spec, cases, trial_id=uuid.uuid4().hex[:8],
                                 model_id=client.model_id, genome_id="gepa", prompt_id="gepa",
                                 dataset_id="gepa", dataset_version="real",
@@ -125,7 +131,7 @@ def reflect(client, parent: str, fails: list[dict]) -> str:
     return t
 
 
-def gepa_search(client, spec, val_samples, z0, budget, rng):
+def gepa_search(client, spec, val_samples, z0, budget, rng, starve=None):
     """GEPA Algorithm 1 核心：Pareto 加权采样候选 → minibatch 反思 → 改进入池。"""
     pool: list[dict] = [{"text": z0, "scores": {}}]  # scores: doc-hash → score
     best_inst: dict[str, int] = {}                    # doc-hash → 拥有最高分的 cand idx
@@ -158,7 +164,7 @@ def gepa_search(client, spec, val_samples, z0, budget, rng):
         parent_idx = rng.choices(range(len(pool)), weights=[w + 1 for w in counts])[0]  # 平滑
         parent = pool[parent_idx]["text"]
         mb = rng.sample(val_samples, 3)
-        p_score, p_cases = eval_cases(client, spec, mb, parent, budget)
+        p_score, p_cases = eval_cases(client, spec, mb, parent, budget, starve=starve)
         fails = [c for c in p_cases if c["accuracy"] + c["instruction_following"] < 1.8]
         iters += 1
         if budget.left < 9:
@@ -166,7 +172,7 @@ def gepa_search(client, spec, val_samples, z0, budget, rng):
         child = reflect(client, parent, fails) if fails else parent
         if child == parent:
             continue
-        c_score, c_cases = eval_cases(client, spec, mb, child, budget)
+        c_score, c_cases = eval_cases(client, spec, mb, child, budget, starve=starve)
         record(parent_idx, p_cases, 0.0)
         if any(nc["accuracy"] + nc["instruction_following"] >
                oc["accuracy"] + oc["instruction_following"]
@@ -180,7 +186,7 @@ def gepa_search(client, spec, val_samples, z0, budget, rng):
         for idx, c in enumerate(pool):
             if budget.left < len(val_samples):
                 break
-            sc, _ = eval_cases(client, spec, val_samples, c["text"], budget)
+            sc, _ = eval_cases(client, spec, val_samples, c["text"], budget, starve=starve)
             if sc > champ_val:
                 champ, champ_val = idx, sc
     else:
@@ -198,6 +204,7 @@ def main() -> int:
     ap.add_argument("--rollouts", type=int, default=48, help="0 = 纯 z0 同日复测对照(无搜索)")
     ap.add_argument("--seeds", default="42,43")
     ap.add_argument("--timeout", type=float, default=420.0)
+    ap.add_argument("--max-tokens", type=int, default=None, help="token-starved(输出隔离 _mtN)")
     args = ap.parse_args()
 
     client = create_client(args.model, prefer_mock=False)
@@ -215,6 +222,9 @@ def main() -> int:
     val = load_dataset(REPO / "datasets" / ds_name / "validation.jsonl").samples[:8]
     hold = load_dataset(REPO / "datasets" / ds_name / "holdout.jsonl").samples[:20]
 
+    global OUT
+    if args.max_tokens:
+        OUT = REPO / "experiments" / "apcbench" / f"real_gepa_mt{args.max_tokens}.json"
     doc = {"protocol": "real-gepa", "judge": judge_id,
            "note": "GEPA=官方 reflective-Pareto 基线;预算=task rollouts;holdout 同口径", "rows": []}
     if OUT.exists():
@@ -228,10 +238,10 @@ def main() -> int:
             ([{"text": z0, "scores": {}}], 0, 0.0, 0) if args.rollouts == 0
             else gepa_search(client, spec, val, z0, budget, rng))
         if args.rollouts == 0 and budget.left >= len(val):
-            champ_val, _ = eval_cases(client, spec, val, z0, budget)
+            champ_val, _ = eval_cases(client, spec, val, z0, budget, starve=args.max_tokens)
         champ = pool[champ_i]["text"]
         h_score, h_cases = eval_cases(client, spec, hold, champ,
-                                      RolloutBudget(10_000))  # 终测不计搜索预算(同 APC)
+                                      RolloutBudget(10_000), starve=args.max_tokens)  # 终测不计搜索预算(同 APC)
         row = {"task": args.task, "seed": seed, "method": "gepa",
                "holdout_score": round(h_score, 4), "validation_score": round(champ_val, 4),
                "pool_size": len(pool), "iterations": iters,
