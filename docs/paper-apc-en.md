@@ -82,8 +82,17 @@ therefore always runs two roots in parallel at equal budget — rule-root
 (apc-full) and base-root (apc-safe) — and deploys the winner. This makes the
 implicit assumption of DSPy-style per-model re-search explicit and measurable:
 prior value = Δ(rule-root, base-root), and it can be negative (measured here:
-2 of 3 tasks ≤ +0.001). The same principle governs migration: seeds must pass the
-holdout test before being carried (KR-6).
+2 of 3 tasks ≤ +0.001; independently corroborated by the capability-dependent
+compilation gains of arXiv 2608.02639). The principle does not arrive *ex nihilo*:
+the spirit of deterministic acceptance layers over free-form judging is now
+established in production-systems literature (PROCTOR catalogues 11 evaluation-
+signal failure modes with a judge-overridable-proof acceptance gate,
+arXiv 2609.02246; accept-or-revert gate family: TARA arXiv 2607.18724,
+arXiv 2606.30840, SSO arXiv 2607.28777; a measurable-prior Bayesian cousin:
+Textual Bayes arXiv 2506.10060). Our contribution is to *name and operationalize*
+this practice as a compiler design principle — both roots permanently in the
+pipeline — and to attach quantitative deficit readings (F2/F7). The same principle
+governs migration: seeds must pass the holdout test before being carried (KR-6).
 
 ## 3. Experiments (APCBench, `experiments/apcbench/`)
 
@@ -328,11 +337,17 @@ high judge-coverage" regime; GEPA's reflection path and APC's structured-mutatio
 path flatline alike here. (ii) APC's differentiated value holds beyond the null:
 the auditable decision trace (F4), zero-cost transfer (contract→math champion .9808),
 and the schema/robustness machinery (F3, the hardened external judges of F6) — none
-of which free-text mutation provides. (iii) **Methodological contribution**: we
-propose the paired same-day re-evaluation protocol — a reasoning-model evaluation
-paper that does not control day-drift risks having every conclusion inside ±.03
-flip; this paper's main four-arm table was run in one night under one protocol, and
-the GEPA/reeval batches are paired same-day supplementary measurements.
+of which free-text mutation provides. (iii) **Methodological action**: we adopt the
+established practice of same-day test-retest floors and matched controls
+(arXiv 2608.00705; arXiv 2608.08239, COLM 2026; temp-0 nondeterminism quantified
+in arXiv 2408.04667, 2606.26185; reporting standards in arXiv 2607.24372) and
+institutionalize it for APO arm comparisons: to our knowledge the first explicit
+variance decomposition (between-day .028 vs within-day ±.007) for reasoning-model
+prompt optimization, from which we draw the protocol clause that any arm-level
+claim within ±.01 must rest on paired same-day re-measurement — indistinguishability
+inside the noise band being an information-theoretic necessity under verification
+lower bounds (arXiv 2604.12951). Our main four-arm table was run in one night under
+one protocol; the GEPA/reeval batches are paired same-day supplementary measures.
 
 **F8 AutoAPC-Select: a deployment-time gating selector (`auto_apc_gate.py`,
 offline replay, zero additional rollouts).** F7's two negative findings
@@ -350,7 +365,18 @@ val .9822 > transfer-0 .8871 while holdout reverses, .9582 < .9778); the honest
 corollary is to bias noise-band ties toward the simpler arm or to draw val and
 holdout from a common pool. This upgrades F7's manual two-arm contrast into an
 automatic non-inferiority selector with a characterized failure mode — at zero
-extra evaluation cost, reusing existing validation scores.
+extra evaluation cost, reusing existing validation scores. Boundaries within the gating family:
+ESPO (arXiv 2609.04197, EMNLP 2026 main) buys selection stability with bootstrap
+re-sampling (extra evaluation budget); AutoAPC buys it with the *measured
+exogenous drift band* at zero extra calls, requiring only that same-day val
+scores exist. Pure-exploration bandits (arXiv 2605.14553, ICLR 2026) give
+best-feasible identification with sampling theory but consume budget; AutoAPC is
+its free-score degenerate case. PROCTOR's deterministic acceptance layer guards
+against judge hacking — orthogonal to, and stackable with, APC's variance guard
+(APC's own judges are deterministic checkers). Indistinguishability inside the
+band is not an engineering compromise: verification-tax lower bounds (arXiv
+2604.12951) show 23% of frontier-model pairwise comparisons are statistically
+unresolvable in principle.
 
 ## 4. Limitations
 
@@ -391,3 +417,21 @@ carrier, not the representation); DUALFIX (2607.05121) — rule-based evolution
 resurges: rules belong in the genome, not free text; CAPO (2608.16068) —
 constraint-aware optimization, baseline candidate for the constraint dimension;
 Atlas (2603.15666).
+2026Q3 GEPA-successor landscape (`docs/literature/frontier-2026.md`, 50-entry
+snapshot): the structural camp — SEPO (2608.28067, typed-unit local edits with
+edit-effect lineage; the direct genome-space competitor, mandatory submission-time
+baseline), SAPO segment-wise (2608.11219), PCO codebooks (2605.28360),
+control/data-flow separation (2609.00621, EMNLP 2026 Findings); GEPA-pathology
+cluster — ESPO (2609.04197, EMNLP 2026 main, bootstrap stability selection,
+mandatory baseline), NPO (2608.27266: complex search unnecessary under strong
+teachers — APC's reply: genome value is auditability/transfer/gating, not search
+size), MAGE (2607.11944: coupled-optimizer variance amplification; fixed good
+prompts beat all reflective optimizers at low data — in direct dialogue with our
+F1 null), p1 (2604.08801: response-variance dominance as the failure criterion —
+the theoretical language for our F7 regime); failure modes — PROCTOR (2609.02246)
+and RLMOpt (2608.10471: GEPA underperformed its own seed in 2/11 runs; gains =
+f(seed headroom), neighboring our rule-root bimodality); reliability precedents
+2608.00705 / 2608.08239 (COLM 2026) / 2408.04667 / 2606.26185 / 2607.24372 /
+2604.12951 (F7 clause chain); theoretical cousins Textual Bayes (2506.10060) and
+best-feasible bandits (2605.14553, ICLR 2026). GEPA itself is now ICLR 2026 Oral
+(v2, 2026-02-14).

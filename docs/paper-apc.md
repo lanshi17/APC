@@ -64,7 +64,7 @@ holdout 对比决策（adopt 当且仅当 ≥90% 源分数，KR-6）`。
 假设，不是默认可部署产物**。管线因此恒带双臂——rule-root（apc-full）与 base-root
 （apc-safe）在同等预算下并行评测，部署取优者。这把 DSPy 式"按模型重搜"的黑箱
 隐含假设显式化为可测量的先验质量：先验的价值 = Δ(rule-root, base-root)，
-可为负（本文实测：3 任务中 2 个 ≤ +0.001）。该原则同样约束迁移：adopt 判据（KR-6）
+可为负（本文实测：3 任务中 2 个 ≤ +0.001；独立复证见 arXiv 2608.02639 的编译收益能力依赖报告）。该原则并非凭空命名：确定性验收层优于自由判分的精神已在生产系统文献中确立（PROCTOR：arXiv 2609.02246 的 11 种评估信号失败通路 + judge-不可推翻验收门；accept-or-revert 门族：TARA arXiv 2607.18724、arXiv 2606.30840、SSO arXiv 2607.28777；先验可度量的贝叶斯同族：Textual Bayes arXiv 2506.10060）；本文的贡献是把这一实践**命名、操作化为编译器设计原则**（双臂恒置于管线），并以 F2/F7 给出先验负债的定量读数。该原则同样约束迁移：adopt 判据（KR-6）
 即"假设须过 holdout 检验才携带"。
 
 ## 3. 实验（APCBench，`experiments/apcbench/`）
@@ -250,7 +250,7 @@ rule-judge**；三任务完全同口径 dev_r/val/holdout=5/8/20；主对比预�
 
 搜索的 seed 稳定性（各 seed 自带当日内基线，天然配对）：APC-full s42/s43 = .5704/.5705（Δ.0001），s44 崩至 .1334（val .1452，错误 basin 锁定）——**rule-root 变异存在种子脆弱性**：债务（−.09）之外还有双峰风险。APC-safe 三 seed .6672/.6679/.6575（全距 .010，与日漂移同量级）稳定无差。contract 上的 GEPA（generic judge 口径，不可与 APC contract_case 口径互比）：.7491/.7495 vs 同口径 z0 .7500——饱和任务上无反思信号，零进展，作为 null 的旁证。
 
-三点结论：① **最强开源基线 GEPA 在强推理模型上同样零增益**（+.0024，噪声带内）——§3.4 的 null 不是 APC 表征的局部缺陷，而是"强模型 + 高判分器覆盖"regime 的属性；GEPA 的反思通路在此与 APC 的结构化变异通路同归于平。② APC 的差异化价值在 null 之外保持不变：可审计的决策链（F4）、零成本迁移（contract→math 冠军 .9808）、schema/鲁棒性机制（F3、§3.6 外部判分器硬化）——这些是 GEPA 自由文本变异不具备的。③ **方法学贡献**：提出配对同日复测协议（paired same-day re-evaluation）——推理模型评测论文若不控制日漂移，±.03 以内的全部结论都可能反转；本文主表四臂同夜同协议完成，GEPA/reeval 批为同日配对补测。
+三点结论：① **最强开源基线 GEPA 在强推理模型上同样零增益**（+.0024，噪声带内）——§3.4 的 null 不是 APC 表征的局部缺陷，而是"强模型 + 高判分器覆盖"regime 的属性；GEPA 的反思通路在此与 APC 的结构化变异通路同归于平。② APC 的差异化价值在 null 之外保持不变：可审计的决策链（F4）、零成本迁移（contract→math 冠军 .9808）、schema/鲁棒性机制（F3、§3.6 外部判分器硬化）——这些是 GEPA 自由文本变异不具备的。③ **方法学动作**：沿用同日重测作噪声地板的既有实践（same-day test-retest floor：arXiv 2608.00705；matched control forks：arXiv 2608.08239, COLM 2026；temp=0 非确定性定量：arXiv 2408.04667、2606.26185；报告标准：arXiv 2607.24372），并将其**协议化到 APO 臂间比较场景**——本文首次给出推理模型 × prompt 优化设定下的显式方差分解（跨日 .028 vs 同日 ±.007），据以下条款：一切 ±.01 级臂间结论必须以配对同日复测为准（噪声带内不可区分是验证税的信息论必然，arXiv 2604.12951）。本文主表四臂同夜同协议完成，GEPA/reeval 批为同日配对补测。
 
 **F8 AutoAPC-Select：部署期门控选择器（`auto_apc_gate.py`，离线回放，零额外 rollout）**
 
@@ -266,6 +266,13 @@ F7 的两个负面发现（rule-root 负债 + 种子脆弱性）合起来给出�
 | transfer math→contract | transfer-ws | .9582 | .9778 | +.0196（val 高估，见下） |
 
 6 组中 5 组落入噪声带、4 组精确命中 oracle；关键案例 s44 被门控从崩溃臂完整救回。唯一显著 regret（math→contract +.0196）暴露门控的适用边界：**val(8) 与 holdout(20) 分布差异可致 val 高估**（transfer-ws val .9822 > transfer-0 .8871，但 hold 反转 .9582 < .9778）——诚实推论：val 噪声带内 tie-break 偏保守臂（此处 cold/zero-shot 更简单），或 val/holdout 同分布采样。这把 F7 的"人工双臂对照"升级为"自动非劣选择 + 明确的失效模式刻画"，且零成本（复用既有 val 评估）。
+与门控家族的划界：ESPO（arXiv 2609.04197，EMNLP 2026 main）用 **bootstrap 重采样**做
+内生稳定性选择（需额外评估预算），AutoAPC 用**实测外生漂移带**做 tie-break 宽度（零额外
+调用，但要求同日 val 分数存在）；纯探索 bandit（arXiv 2605.14553，ICLR 2026）为 best-feasible
+识别提供采样理论但消费预算，APC 门控是其"分数免费"退化情形；PROCTOR（arXiv 2609.02246）的
+确定性验收层防的是判分器被 hack，与 APC 防优化器方差正交（两者可叠加：APC 的判分本身即
+确定性 checker 族）。带内不可区分并非工程妥协——verification-tax 下界（arXiv 2604.12951）
+证明前沿模型间 23% 的两两比较在与噪声统计不可分的意义下必然悬置。
 
 
 
@@ -329,3 +336,15 @@ Instruction Stacking Collapse（2608.02639）证编译价值 capability-dependen
 互为补集：**脆弱性在载体不在表示**；DUALFIX（2607.05121）规则演化回潮 vs 本文
 PGAM 零结果——规则应进 genome 而非自由文本；CAPO（2608.16068）约束感知优化，
 投稿时约束维度的最新基线候选。
+2026Q3 GEPA 后继全景（`docs/literature/frontier-2026.md`，50 条快照）：结构化阵营
+SEPO（2608.28067，typed 单元局部编辑+效应 lineage——genome 主张直系竞品，**投稿必比**）、
+SAPO 分段（2608.11219）、PCO 码本（2605.28360）、控制/数据流分离（2609.00621, EMNLP26
+Findings）；病理诊断簇 ESPO（2609.04197, EMNLP26 main，**投稿必比**：bootstrap 稳定选择）、
+NPO（2608.27266：强 teacher 下复杂搜索不必要——APC 回应：genome 价值在可审计/可迁移/
+可门控而非更大搜索）、MAGE（2607.11944：POCE 方差放大 ×3.7、低数据固定 prompt 全胜——
+与 F1 null 直接对话）、p1（2604.08801：响应方差主导 ⇒ 优化必败的判据化——F7 regime 的
+理论语言）；失败模式 PROCTOR（2609.02246：评估信号 11 失败通路+确定性验收层）、RLMOpt
+（2608.10471：GEPA 2/11 跌破种子、增益=f(seed headroom)——rule-root 双峰的近邻）；
+可靠性先例 2608.00705/2608.08239(COLM26)/2408.04667/2606.26185/2607.24372/2604.12951
+（F7 ③ 引用链）；理论同族 Textual Bayes（2506.10060）、best-feasible bandits（2605.14553,
+ICLR26）。GEPA 本体已升 ICLR 2026 Oral（v2 2026-02-14）。
