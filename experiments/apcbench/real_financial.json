@@ -1,8 +1,8 @@
 {
  "meta": {
   "protocol": "real-llm",
-  "partial": true,
-  "total_s": 1400.2,
+  "partial": false,
+  "total_s": 11160.5,
   "dev_r": 5,
   "val_n": 8,
   "hold_n": 20,
@@ -128,6 +128,46 @@
    "holdout_score": 0.6692,
    "budget_used": 0,
    "elapsed_s": 1400.2
+  },
+  {
+   "method": "manual",
+   "model_id": "qwen",
+   "model_version": "qwen3.8-flash",
+   "task": "financial",
+   "seed": 45,
+   "baseline_score": 0.678,
+   "validation_score": 0.6644,
+   "holdout_score": 0.6665,
+   "budget_used": 0,
+   "elapsed_s": 1335.4
+  },
+  {
+   "method": "apc-full",
+   "model_id": "qwen",
+   "model_version": "qwen3.8-flash",
+   "task": "financial",
+   "seed": 45,
+   "baseline_score": 0.1412,
+   "validation_score": 0.1708,
+   "holdout_score": 0.1318,
+   "budget_used": 8,
+   "elapsed_s": 5385.0,
+   "champion_genome_id": "genome_62f985109b1e",
+   "mutation_note": null
+  },
+  {
+   "method": "apc-safe",
+   "model_id": "qwen",
+   "model_version": "qwen3.8-flash",
+   "task": "financial",
+   "seed": 45,
+   "baseline_score": 0.6563,
+   "validation_score": 0.6687,
+   "holdout_score": 0.6657,
+   "budget_used": 8,
+   "elapsed_s": 3039.9,
+   "champion_genome_id": "genome_1c3d289ba90a",
+   "mutation_note": "verification.type: source_grounding_check -> format_check"
   }
  ]
 }

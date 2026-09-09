@@ -321,9 +321,11 @@ Same-day paired four arms (financial, completed within one hour window):
 | APC-full champion | .6082 | **−.090 (a real liability)** |
 
 Seed stability of the searches (each seed carries its own within-day baseline, hence
-naturally paired): APC-full s42/s43 = .5704/.5705 (Δ.0001), while s44 collapses to
-.1334 (val .1452, locked into the wrong basin) — **rule-root mutation exhibits seed
-fragility**: beyond the deficit (−.09) there is also bimodal risk. APC-safe's three
+naturally paired): APC-full across four seeds = .5704/.5705/.1334/.1318 — a
+**clean bimodal distribution** (a ~.57 deficit basin and a ~.13 collapse basin,
+2/4 collapse rate); collapsed arms show the failure in val too (.1452/.1708,
+visible to any selector) — **rule-root mutation exhibits seed fragility**:
+beyond the deficit (−.09) there is bimodal risk. APC-safe's three
 seeds .6672/.6679/.6575 (full range .010, same magnitude as the day-drift) are
 stably indistinguishable. GEPA on contract (generic-judge caliber — **not comparable
 with APC's contract_case caliber**): .7491/.7495 vs the same-caliber z0 .7500 — on a
@@ -356,9 +358,12 @@ validation scores are free on any given day, so deployment selection can be
 *automatically gated* — argmax over candidates {z0, manual, safe, full,
 transfer} on validation score, with ties inside the ±.007 noise band broken by
 Occam order (z0 < manual < safe < full). Offline replay over the 12 existing
-arm groups (6 comparable): 5/6 land within the noise band, 4/6 are exact
-oracles, and the key case — s44, where rule-root collapsed to .1334 — is fully
-rescued (gate picks safe, .6575, regret 0). The single large regret
+arm groups plus a prospective blind-test group: 6/7 land within the noise band,
+5/7 are exact oracles, and both collapsed rule-root arms (s44 → .1334, s45 →
+.1318) are fully rescued (gate picks safe .6575 / z0 .6692, regret 0). The s45
+group is **prospective**: the gate rule (val argmax + ±.007 Occam tie-break) was
+frozen before the group ran, and the gate's pick equalled that day's oracle —
+evidence, not post-hoc fitting. The single large regret
 (math→contract, +.0196) exposes the gate's failure mode: val(8)/holdout(20)
 distribution mismatch can inflate a candidate's validation score (transfer-ws
 val .9822 > transfer-0 .8871 while holdout reverses, .9582 < .9778); the honest

@@ -16,7 +16,7 @@ PGAM 与均匀变异无差异（pooled +0.0004，零结果）；迁移以 30% �
 外部真实基准（GSM8K/MATH-L5/AIME24+25，作者未造的任务）复现两结论：六个冠军-vs-base
 对比全部统计打平（零损耗迁移成立），且三数据集精度 0.96~1.00 无余量——AIME 三臂全对（饱和外推成立）。
 **GEPA 官方基线对垒与方差审计（§3.4 F7）**：复现 GEPA Algorithm 1（反思式 prompt 优化，最强开源基线）在同协议同预算下对比，其增益也在同日测量噪声带内（+.0024）——null 结果非 APC 表征的局部缺陷；同时发现 temp=0 推理模型存在跨日评分漂移（Δ.028），故全部对比以配对同日复测为准，rule-root 负债（−.090）在三 seed 下稳健复现（含一例种子崩至 .13 的双峰风险直证）。
-据此提出 F8 AutoAPC-Select 部署门控：val 分数 argmax + 噪声带内奥卡姆 tie-break，离线回放 6 组既有臂数据 5/6 落入噪声带、4/6 精确命中 oracle，种子崩溃案例零 regret 完整救回（唯一失效模式：val 小样本高估，已刻画）。多模型与 PGAM 验证待更多凭证。
+据此提出 F8 AutoAPC-Select 部署门控：val 分数 argmax + 噪声带内奥卡姆 tie-break，回放+前瞻共 7 组：6/7 落入噪声带、5/7 精确命中 oracle，两个种子崩溃臂（s44 .1334 / s45 .1318）均零 regret 救回，其中 s45 为门控规则冻结后的前瞻盲测（gate = 当日 oracle）；唯一失效模式（val 小样本高估，+.0196）已刻画。多模型与 PGAM 验证待更多凭证。
 
 ## 1. 问题与主张
 
@@ -248,7 +248,7 @@ rule-judge**；三任务完全同口径 dev_r/val/holdout=5/8/20；主对比预�
 | GEPA 冠军 | .7014 | +.0024（噪声带内） |
 | APC-full 冠军 | .6082 | **−.090（真实负债）** |
 
-搜索的 seed 稳定性（各 seed 自带当日内基线，天然配对）：APC-full s42/s43 = .5704/.5705（Δ.0001），s44 崩至 .1334（val .1452，错误 basin 锁定）——**rule-root 变异存在种子脆弱性**：债务（−.09）之外还有双峰风险。APC-safe 三 seed .6672/.6679/.6575（全距 .010，与日漂移同量级）稳定无差。contract 上的 GEPA（generic judge 口径，不可与 APC contract_case 口径互比）：.7491/.7495 vs 同口径 z0 .7500——饱和任务上无反思信号，零进展，作为 null 的旁证。
+搜索的 seed 稳定性（各 seed 自带当日内基线，天然配对）：APC-full 四 seed = .5704/.5705/.1334/.1318——**清晰双峰**（~.57 债务 basin / ~.13 崩溃 basin，崩溃率 2/4），崩溃臂的 val 同步塌（.1452/.1708，选择侧可见）——**rule-root 变异存在种子脆弱性**：债务（−.09）之外还有双峰风险。APC-safe 三 seed .6672/.6679/.6575（全距 .010，与日漂移同量级）稳定无差。contract 上的 GEPA（generic judge 口径，不可与 APC contract_case 口径互比）：.7491/.7495 vs 同口径 z0 .7500——饱和任务上无反思信号，零进展，作为 null 的旁证。
 
 三点结论：① **最强开源基线 GEPA 在强推理模型上同样零增益**（+.0024，噪声带内）——§3.4 的 null 不是 APC 表征的局部缺陷，而是"强模型 + 高判分器覆盖"regime 的属性；GEPA 的反思通路在此与 APC 的结构化变异通路同归于平。② APC 的差异化价值在 null 之外保持不变：可审计的决策链（F4）、零成本迁移（contract→math 冠军 .9808）、schema/鲁棒性机制（F3、§3.6 外部判分器硬化）——这些是 GEPA 自由文本变异不具备的。③ **方法学动作**：沿用同日重测作噪声地板的既有实践（same-day test-retest floor：arXiv 2608.00705；matched control forks：arXiv 2608.08239, COLM 2026；temp=0 非确定性定量：arXiv 2408.04667、2606.26185；报告标准：arXiv 2607.24372），并将其**协议化到 APO 臂间比较场景**——本文首次给出推理模型 × prompt 优化设定下的显式方差分解（跨日 .028 vs 同日 ±.007），据以下条款：一切 ±.01 级臂间结论必须以配对同日复测为准（噪声带内不可区分是验证税的信息论必然，arXiv 2604.12951）。本文主表四臂同夜同协议完成，GEPA/reeval 批为同日配对补测。
 
@@ -264,8 +264,9 @@ F7 的两个负面发现（rule-root 负债 + 种子脆弱性）合起来给出�
 | math s42 | zero-shot | .8436 | .8442 | +.0006（噪声带） |
 | transfer contract→math | transfer-ws | .8441 | .8441 | 0 |
 | transfer math→contract | transfer-ws | .9582 | .9778 | +.0196（val 高估，见下） |
+| **financial s45（prospective 盲测组）** | zero-shot | .6692 | .6692 | **0（避开 full 的 .1318）** |
 
-6 组中 5 组落入噪声带、4 组精确命中 oracle；关键案例 s44 被门控从崩溃臂完整救回。唯一显著 regret（math→contract +.0196）暴露门控的适用边界：**val(8) 与 holdout(20) 分布差异可致 val 高估**（transfer-ws val .9822 > transfer-0 .8871，但 hold 反转 .9582 < .9778）——诚实推论：val 噪声带内 tie-break 偏保守臂（此处 cold/zero-shot 更简单），或 val/holdout 同分布采样。这把 F7 的"人工双臂对照"升级为"自动非劣选择 + 明确的失效模式刻画"，且零成本（复用既有 val 评估）。
+7 组中 6 组落入噪声带、5 组精确命中 oracle；关键案例 s44/s45 两个崩溃臂均被门控完整救回。其中 s45 是**前瞻性盲测**：门控规则（val argmax + ±.007 奥卡姆 tie-break）冻结于该组运行之前，gate 选 z0 = 当日 oracle，与回放组同构——prospective evidence 而非 post-hoc fitting。唯一显著 regret（math→contract +.0196）暴露门控的适用边界：**val(8) 与 holdout(20) 分布差异可致 val 高估**（transfer-ws val .9822 > transfer-0 .8871，但 hold 反转 .9582 < .9778）——诚实推论：val 噪声带内 tie-break 偏保守臂（此处 cold/zero-shot 更简单），或 val/holdout 同分布采样。这把 F7 的"人工双臂对照"升级为"自动非劣选择 + 明确的失效模式刻画"，且零成本（复用既有 val 评估）。
 与门控家族的划界：ESPO（arXiv 2609.04197，EMNLP 2026 main）用 **bootstrap 重采样**做
 内生稳定性选择（需额外评估预算），AutoAPC 用**实测外生漂移带**做 tie-break 宽度（零额外
 调用，但要求同日 val 分数存在）；纯探索 bandit（arXiv 2605.14553，ICLR 2026）为 best-feasible
