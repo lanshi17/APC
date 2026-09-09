@@ -43,34 +43,16 @@ def main() -> int:
     task_yaml, ds_name, judge_id = TASK_CFG[args.task]
     spec = TaskSpec.from_yaml(REPO / task_yaml)
     compiler = DefaultPromptCompiler()
-    profile = real_profile(client)
-    hold = None
+    from apc.core.model_profile import ModelProfile
+    from apc.models.mock_client import MockClient as _MC
+    profile = (ModelProfile.from_json(Path(str(REPO / "artifacts/profiles/qwen_probe.json")).read_text(encoding="utf-8"))
+               if isinstance(client, _MC) else real_profile(client))
     from apc.evaluation.dataset import load_dataset
     hold = load_dataset(REPO / "datasets" / ds_name / "holdout.jsonl").samples[:20]
 
     doc = {"protocol": "real-gepa", "judge": judge_id, "rows": []}
     if OUT.exists():
         doc = json.loads(OUT.read_text(encoding="utf-8"))
-
-    arms = dict(GENOMES)
-    for method, mk in arms.items():
-        g = mk(REPO)
-        if "{t}" in getattr(mk, "__name__", "") or "_champ" in method or True:
-            g = PromptGenome.model_validate_json(g.model_dump_json().replace("{t}", args.task)) \
-                if "{t}" in g.genome_id or True else g
-        t0 = time.time()
-        text = compiler.compile(g, spec, profile, apply_rules=False).prompt_text
-        sc, cases = eval_cases(client, spec, hold, text, RolloutBudget(10_000))
-        row = {"task": args.task, "seed": args.seed, "method": method,
-               "holdout_score": round(sc, 4), "validation_score": None,
-               "pool_size": 1, "iterations": 0, "rollouts_used": len(cases),
-               "elapsed_s": round(time.time() - t0, 1), "model_version": client.model_version,
-               "prompt_chars": len(text),
-               "fail_sample": [c for c in cases if c["accuracy"] < 0.99][:8]}
-        doc["rows"] = [r for r in doc["rows"]
-                       if not (r["task"] == args.task and r.get("seed") == args.seed and r["method"] == method)] + [row]
-        OUT.write_text(json.dumps(doc, ensure_ascii=False, indent=1), encoding="utf-8")
-        print(f"{method} {args.task} hold={sc:.4f} ({row['elapsed_s']}s)", flush=True)
 
     def champ(safe: bool) -> PromptGenome:
         fn = f"real_{args.task}_champ_safe.json" if safe else f"real_{args.task}_champ.json"
