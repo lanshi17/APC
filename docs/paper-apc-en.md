@@ -383,6 +383,29 @@ band is not an engineering compromise: verification-tax lower bounds (arXiv
 2604.12951) show 23% of frontier-model pairwise comparisons are statistically
 unresolvable in principle.
 
+**F9 ESPO, the second strong baseline (`bench_real_espo.py`, faithful
+reproduction of EMNLP 2026 main's Diagnose/Propose/Select).** ESPO is currently
+the strongest published GEPA successor (its pitch: fix GEPA's prompt bloat and
+unreliable selection; +3.76pp over GEPA on 7 benchmarks). We reproduce its
+three steps: Diagnose clusters ALL validation failures into at most 4 error
+patterns in one pass (vs GEPA's incremental 3-case minibatch reflection);
+Propose draws one candidate from each of four independent bias strategies
+(root-cause abstraction / simplification / exemplification / constraint
+hardening); Select accepts a candidate only if it beats the incumbent in >=75%
+of B=200 bootstrap resamples of per-case validation scores. Budget matches the
+GEPA arm (48 rollouts, 40 used); bootstrap costs zero additional calls.
+Paired same-day result (seed-42 batch, z0 day band .6950-.7016): **ESPO .7009,
+inside the band and statistically indistinguishable from z0/safe/GEPA** — the
+fourth independent optimizer family (reflective GEPA, cluster-and-stabilize
+ESPO, APC genome search, manual) all null in the same regime. A second seed
+scored .7501 but its champion text was not persisted, there is no same-day z0
+pair, and it crossed a day boundary — under the F7 protocol clause it is
+excluded from conclusions and disclosed as a live case of why unpaired numbers
+are untrustworthy. Relationship to our F8 gate: ESPO's stability currency is
+endogenous (re-sampling its own evaluations); APC's is exogenous (a measured
+drift band, at zero extra cost) — orthogonal and stackable, and this run
+illustrates exactly that distinction.
+
 ## 4. Limitations
 
 1. Real-model phase is single-model (whitelist key); the seed axis is covered

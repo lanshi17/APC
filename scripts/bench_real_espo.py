@@ -199,6 +199,7 @@ def main() -> int:
         budget = RolloutBudget(args.rollouts)
         champ, cval, iters, used, biases = espo_run(client, spec, val, z0, budget, seed)
         sc, cases = eval_cases(client, spec, hold, champ, RolloutBudget(10_000))
+        (Path("/tmp") / f"espo_{args.task}_{seed}_champ.txt").write_text(champ, encoding="utf-8")
         row = {"task": args.task, "seed": seed, "method": "espo",
                "holdout_score": round(sc, 4), "validation_score": round(cval, 4),
                "pool_size": len(biases), "iterations": iters,
