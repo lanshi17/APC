@@ -195,7 +195,7 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--task", required=True, choices=list(TASK_CFG))
     ap.add_argument("--model", default="qwen")
-    ap.add_argument("--rollouts", type=int, default=48)
+    ap.add_argument("--rollouts", type=int, default=48, help="0 = 纯 z0 同日复测对照(无搜索)")
     ap.add_argument("--seeds", default="42,43")
     ap.add_argument("--timeout", type=float, default=420.0)
     args = ap.parse_args()
@@ -224,7 +224,11 @@ def main() -> int:
         rng = random.Random(seed)
         budget = RolloutBudget(args.rollouts)
         t0 = time.time()
-        pool, champ_i, champ_val, iters = gepa_search(client, spec, val, z0, budget, rng)
+        pool, champ_i, champ_val, iters = (
+            ([{"text": z0, "scores": {}}], 0, 0.0, 0) if args.rollouts == 0
+            else gepa_search(client, spec, val, z0, budget, rng))
+        if args.rollouts == 0 and budget.left >= len(val):
+            champ_val, _ = eval_cases(client, spec, val, z0, budget)
         champ = pool[champ_i]["text"]
         h_score, h_cases = eval_cases(client, spec, hold, champ,
                                       RolloutBudget(10_000))  # 终测不计搜索预算(同 APC)
