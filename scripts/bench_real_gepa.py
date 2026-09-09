@@ -69,7 +69,7 @@ class RolloutBudget:
 
 def eval_cases(client, spec: TaskSpec, samples: list[dict], prompt_text: str,
                budget: RolloutBudget, cap: int | None = None,
-               starve: int | None = None) -> tuple[float, list[dict]]:
+               starve: int | None = None, stream_path: str | None = None) -> tuple[float, list[dict]]:
     """与 EvaluationRunner.evaluate 完全同构的逐样本评分；rollout 计数。
     starve=任务评测的 token 预算(仅评测调用受限;优化器元调用不在此通路)。"""
     if starve:
@@ -98,6 +98,9 @@ def eval_cases(client, spec: TaskSpec, samples: list[dict], prompt_text: str,
             "instruction_following": round(float(j.get("constraint_following", 0.0)), 4),
             "output": call.text, "expected": json.dumps(smp.get("expected", {}), ensure_ascii=False),
         })
+        if stream_path:
+            with open(stream_path, "a", encoding="utf-8") as _sf:
+                _sf.write(json.dumps(cases[-1], ensure_ascii=False) + "\n")
     if starve:
         client.max_tokens = 2000
     trial = TrialScorer().score(spec, cases, trial_id=uuid.uuid4().hex[:8],
