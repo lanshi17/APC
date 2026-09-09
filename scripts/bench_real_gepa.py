@@ -173,14 +173,21 @@ def gepa_search(client, spec, val_samples, z0, budget, rng):
                for oc, nc in zip(p_cases, c_cases)):
             pool.append({"text": child, "scores": {}})
             record(len(pool) - 1, c_cases, 0.0)
-    # champion：池内每候选 val 全量复评（GEPA 官方 eval_full 相位）
+    # champion：预算余量足够则 val 全量复评（GEPA 官方 eval_full）；否则用池内
+    # minibatch 历史的实例均分选择（零成本降级，选择语义保持 per-instance feedback）
     champ, champ_val = 0, -1.0
-    for idx, c in enumerate(pool):
-        if budget.left < len(val_samples):
-            break
-        sc, _ = eval_cases(client, spec, val_samples, c["text"], budget)
-        if sc > champ_val:
-            champ, champ_val = idx, sc
+    if budget.left >= len(val_samples) * min(3, len(pool)):
+        for idx, c in enumerate(pool):
+            if budget.left < len(val_samples):
+                break
+            sc, _ = eval_cases(client, spec, val_samples, c["text"], budget)
+            if sc > champ_val:
+                champ, champ_val = idx, sc
+    else:
+        scored = [(idx, sum(c["scores"].values()) / max(1, len(c["scores"])))
+                  for idx, c in enumerate(pool) if c["scores"]]
+        if scored:
+            champ, champ_val = max(scored, key=lambda x: (x[1], len(pool[x[0]]["scores"])))
     return pool, champ, champ_val, iters
 
 
