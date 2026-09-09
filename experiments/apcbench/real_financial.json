@@ -1,8 +1,8 @@
 {
  "meta": {
   "protocol": "real-llm",
-  "partial": false,
-  "total_s": 8742.1,
+  "partial": true,
+  "total_s": 1400.2,
   "dev_r": 5,
   "val_n": 8,
   "hold_n": 20,
@@ -116,6 +116,18 @@
    "elapsed_s": 3055.2,
    "champion_genome_id": "genome_1f81f8069244",
    "mutation_note": "verification.enabled: True -> False"
+  },
+  {
+   "method": "zero-shot",
+   "model_id": "qwen",
+   "model_version": "qwen3.8-flash",
+   "task": "financial",
+   "seed": 45,
+   "baseline_score": 0.6655,
+   "validation_score": 0.6682,
+   "holdout_score": 0.6692,
+   "budget_used": 0,
+   "elapsed_s": 1400.2
   }
  ]
 }
