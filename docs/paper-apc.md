@@ -283,7 +283,7 @@ ESPO 是当前公开最强的 GEPA 后继（7 基准 +3.76pp，其卖点正是�
 
 同日配对结果（seed 42 批，z0 当日带 .6950–.7016）：**ESPO .7009，落在带内、与 z0/safe/GEPA 全部统计不可分**——第四个独立优化器（GEPA 反思、ESPO 聚类+稳定选择、APC genome 搜索、manual）在同一 regime 全部归零。s43 复测得 .7501，但该臂冠军文本未落盘、无同日 z0 配对、且跨日——**按 F7 协议条款不计入结论**（作为"未配对数字不可信"的活案例诚实披露）。ESPO 与本文 F8 门控的关系是其 bootstrap 选择消费重采样（内生稳定性货币），APC 门控吃实测漂移带（外生货币，零成本）——两者正交可叠加；本轮实测数据本身就是这个区别的演示。
 
-**F10（预注册，运行中）token-starved regime 判别实验**
+**F10 token-starved regime 判别实验（预注册后执行）**
 
 预注册（开跑前 commit 时间戳为证）：max_tokens 2000→150 使推理模型答案被思考预算耗尽，
 z0 holdout 从 .699 崩至 **.150** — 巨大 headroom 打开。判别命题：**APC 结构化 genome 与
@@ -323,6 +323,10 @@ format/constraint 维度归零，score=0.15 是判分器下限而非模型能力
 4. **SHA 消融两面**：财务任务 full≡no-halving（零结果）；约束任务上
    SHA 代价 −0.0235（显著），而 rules 消融仍为零（base 已满足规则）。
    SHA 的取舍与任务结构有关，非普适加速器。
+6. **SEPO 对垒留投稿期**：结构化直系竞品 SEPO（arXiv 2608.28067）未做真实 API 对垒——
+   F10 regime map 推定其在 financial（headroom 不存在）上同为 null；有判别力的对照需
+   弱模型或高难任务（依赖第二把 key，同 #1）。GEPA+ESPO 双强基线 + 四独立通路 null
+   已构成 §3.4 的基线覆盖主张。
 5. **Judge 可靠性（已量化,见 §3.4 F4）**：开放维度 rule-judge 与 self-LLM-judge
    系统性分歧（accuracy 0.21 vs 0.83），排序结论依赖同口径比较；独立第三方
    judge 与人工 spot-check（50–100 例）仍缺。
@@ -352,6 +356,12 @@ format/constraint 维度归零，score=0.15 是判分器下限而非模型能力
   `bench_real_full.py --seed 43|44`（method×seed 合并）；入库 `real_gepa.json`
 - [x] AutoAPC-Select（F8）：`auto_apc_gate.py` 纯离线回放 12 组臂数据（零 API），
   gate vs oracle vs worst 三列对照表 ⇒ §3.4 F8
+- [x] ESPO 基线（F9）：`bench_real_espo.py`（Diagnose 全失败聚类 / 4 偏置 Propose /
+  bootstrap-200@75% Select，复用案例级分数零额外调用）⇒ .7009 同日带内
+- [x] regime 判别（F10，预注册 git e8bd373）：`--max-tokens` starved 旗标贯穿
+  reeval/gepa/espo（仅任务评测受限、优化器元调用全预算），输出隔离 `real_gepa_mt150.json`
+- [x] 弱 regime 探路：`--no-thinking`（DashScope enable_thinking 透传；实测 financial
+  对思考模式不敏感 .6938 带内 → 方向闭合）
 - [ ] 第三方复现报告（待外部协作者）
 
 ## 6. Related Work（详见 `docs/literature/`）
