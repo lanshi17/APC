@@ -152,7 +152,7 @@ def gepa_search(client, spec, val_samples, z0, budget, rng):
         return counts
 
     iters = 0
-    while budget.left >= 6:  # 一次亲子迭代需 3+3 rollouts
+    while budget.left >= 18:  # 亲子迭代 3+3;预留 2 候选 × val-full(8) 给 eval_full 相位
         counts = best_counts()
         tot = sum(counts) or 1
         parent_idx = rng.choices(range(len(pool)), weights=[w + 1 for w in counts])[0]  # 平滑
@@ -161,7 +161,7 @@ def gepa_search(client, spec, val_samples, z0, budget, rng):
         p_score, p_cases = eval_cases(client, spec, mb, parent, budget)
         fails = [c for c in p_cases if c["accuracy"] + c["instruction_following"] < 1.8]
         iters += 1
-        if budget.left < 3:
+        if budget.left < 9:
             break
         child = reflect(client, parent, fails) if fails else parent
         if child == parent:
@@ -176,7 +176,7 @@ def gepa_search(client, spec, val_samples, z0, budget, rng):
     # champion：预算余量足够则 val 全量复评（GEPA 官方 eval_full）；否则用池内
     # minibatch 历史的实例均分选择（零成本降级，选择语义保持 per-instance feedback）
     champ, champ_val = 0, -1.0
-    if budget.left >= len(val_samples) * min(3, len(pool)):
+    if budget.left >= len(val_samples):
         for idx, c in enumerate(pool):
             if budget.left < len(val_samples):
                 break
