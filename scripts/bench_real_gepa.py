@@ -67,7 +67,7 @@ class RolloutBudget:
         return self.limit - self.used
 
 
-def _fresh_http_call(client, prompt: str, temperature: float = 0.0) -> "CallResult":
+def _fresh_http_call(client, prompt: str, temperature: float = 0.0, max_tokens: int | None = None) -> "CallResult":
     """单次全新 httpx POST:无连接池、无 keep-alive、无 tenacity。
 
     教训链(hle8/hle9/hle10 三连败根因):
@@ -84,7 +84,7 @@ def _fresh_http_call(client, prompt: str, temperature: float = 0.0) -> "CallResu
             headers={"Authorization": f"Bearer {client.api_key}"} if client.api_key else {},
             json={"model": client.model,
                   "messages": [{"role": "user", "content": prompt}],
-                  "temperature": temperature, "max_tokens": client.max_tokens})
+                  "temperature": temperature, "max_tokens": max_tokens or client.max_tokens})
         resp.raise_for_status()
         data = resp.json()
     choice = data["choices"][0]

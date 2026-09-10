@@ -138,7 +138,10 @@ def espo_run(client, spec, val, z0, budget: RolloutBudget, seed: int, starve=Non
     iters = 0
     if not fails or budget.left < 40:
         return z0, sc0, iters, budget.used, []
+    import time as _t
+    print(f"  [{_t.strftime('%H:%M:%S')}] espo r0={sc0:.3f} fails={len(fails)} used={budget.used}; diagnosing", flush=True)
     patterns = diagnose(client, z0, fails) or "(diagnosis failed)"
+    print(f"  [{_t.strftime('%H:%M:%S')}] espo patterns len={len(patterns)}", flush=True)
     cands, cscores = [], []
     for bname, binstr in BIASES:
         c = propose(client, z0, patterns, bname, binstr, spec)
@@ -147,6 +150,7 @@ def espo_run(client, spec, val, z0, budget: RolloutBudget, seed: int, starve=Non
         if budget.left < 8:
             break
         cs, ccases = eval_cases(client, spec, val, c, budget, starve=starve, hard=hard)
+        print(f"  [{_t.strftime('%H:%M:%S')}] espo cand {bname} score={cs:.3f} used={budget.used}", flush=True)
         cands.append((bname, c))
         cscores.append([x["accuracy"] for x in ccases])
         iters += 1
