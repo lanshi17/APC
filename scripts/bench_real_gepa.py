@@ -189,7 +189,7 @@ def reflect(client, parent: str, fails: list[dict]) -> str:
 
 
 def gepa_search(client, spec, val_samples, z0, budget, rng, starve=None, hard=None,
-                mb_size: int | None = None):
+                mb_size: int | None = None, final_val: list[dict] | None = None):
     """GEPA Algorithm 1 核心：Pareto 加权采样候选 → minibatch 反思 → 改进入池。
 
     mb_size=None → 3(原 financial/contract 协议);小 val 集(HLE val[:2])传实际大小,
@@ -250,12 +250,13 @@ def gepa_search(client, spec, val_samples, z0, budget, rng, starve=None, hard=No
             record(len(pool) - 1, c_cases, 0.0)
     # champion：预算余量足够则 val 全量复评（GEPA 官方 eval_full）；否则用池内
     # minibatch 历史的实例均分选择（零成本降级，选择语义保持 per-instance feedback）
+    sel_set = final_val if final_val else val_samples  # 选择相位可用更大集(防 val-2 单点过拟合)
     champ, champ_val = 0, -1.0
-    if budget.left >= len(val_samples):
+    if budget.left >= len(sel_set):
         for idx, c in enumerate(pool):
-            if budget.left < len(val_samples):
+            if budget.left < len(sel_set):
                 break
-            sc, _ = eval_cases(client, spec, val_samples, c["text"], budget, starve=starve, hard=hard)
+            sc, _ = eval_cases(client, spec, sel_set, c["text"], budget, starve=starve, hard=hard)
             if sc > champ_val:
                 champ, champ_val = idx, sc
     else:

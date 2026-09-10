@@ -290,8 +290,9 @@ def main() -> int:
 
     if "espo" in arms:
         from bench_real_espo import espo_run
-        t0 = time.time(); b = RolloutBudget(max(args.rollouts, 48))
-        champ, cval, iters, used, biases = espo_run(client, spec, val[:2], z0_text, b, args.seed, hard=args.hard)
+        t0 = time.time(); b = RolloutBudget(max(args.rollouts, 64))
+        print(f"[{time.strftime('%H:%M')}] espo search start (val[:8], rollouts {max(args.rollouts,64)})", flush=True)
+        champ, cval, iters, used, biases = espo_run(client, spec, val[:8], z0_text, b, args.seed, hard=args.hard)
         (Path("/tmp") / f"hle_espo_{args.seed}_champ.txt").write_text(champ, encoding="utf-8")
         b2 = RolloutBudget(10_000)
         sc, cases = run_eval(client, spec, hold, champ, b2, f"/tmp/hle_espo_{args.seed}.jsonl",
