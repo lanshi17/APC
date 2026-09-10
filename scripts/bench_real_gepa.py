@@ -234,8 +234,12 @@ def gepa_search(client, spec, val_samples, z0, budget, rng, starve=None, hard=No
         iters += 1
         if budget.left < 2 * mb_n:
             break
+        import time as _t
+        print(f"  [{_t.strftime('%H:%M:%S')}] gepa it{iters} p={p_score:.3f} fails={len(fails)} "
+              f"parent_chars={len(parent)} used={budget.used}", flush=True)
         child = reflect(client, parent, fails) if fails else parent
         if child == parent:
+            print(f"    no-op reflect (it{iters})", flush=True)
             continue
         c_score, c_cases = eval_cases(client, spec, mb, child, budget, starve=starve, hard=hard)
         record(parent_idx, p_cases, 0.0)
