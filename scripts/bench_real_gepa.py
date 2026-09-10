@@ -67,9 +67,38 @@ class RolloutBudget:
         return self.limit - self.used
 
 
+def _one_call(client, prompt: str, hard: float | None = None):
+    """单次 fresh-connection 调用 + 可选线程级硬超时。
+
+    HLE 类慢题教训:tenacity 在同一条被污染的 keep-alive 连接上连环重试
+    (首连被服务端静默丢弃后,后续 attempt 也发不出去)→ 4 次全烧在死连上,
+    外层还挂 read-timeout 未触发的半开 socket。fresh client = 全新连接池,
+    单题失败只花一次 timeout;hard 兜住 httpx read-timeout 对半开连接的失效。
+    """
+    from concurrent.futures import ThreadPoolExecutor
+    if getattr(client, "base_url", None):
+        from apc.models.openai_client import OpenAIClient, resolve_api_key
+        from apc.models.factory import load_model_config
+        cfg = load_model_config(getattr(client, "_model_id", "") or "qwen")
+        tmo = getattr(getattr(client, "client", None), "timeout", None)
+        fresh = OpenAIClient(model_id=cfg["model_id"], model=cfg["model"], base_url=cfg["api_base"],
+                             api_key=resolve_api_key(cfg), max_tokens=client.max_tokens,
+                             timeout=float(getattr(tmo, "read", None) or 640.0))
+    else:
+        fresh = client
+    if not hard:
+        return fresh.complete(prompt, 0.0)
+    ex = ThreadPoolExecutor(max_workers=1)
+    try:
+        return ex.submit(fresh.complete, prompt, 0.0).result(timeout=hard)
+    finally:
+        ex.shutdown(wait=False)
+
+
 def eval_cases(client, spec: TaskSpec, samples: list[dict], prompt_text: str,
                budget: RolloutBudget, cap: int | None = None,
-               starve: int | None = None, stream_path: str | None = None) -> tuple[float, list[dict]]:
+               starve: int | None = None, stream_path: str | None = None,
+               hard: float | None = None) -> tuple[float, list[dict]]:
     """与 EvaluationRunner.evaluate 完全同构的逐样本评分；rollout 计数。
     starve=任务评测的 token 预算(仅评测调用受限;优化器元调用不在此通路)。"""
     if starve:
@@ -82,7 +111,7 @@ def eval_cases(client, spec: TaskSpec, samples: list[dict], prompt_text: str,
         doc = document(smp)
         budget.used += 1
         try:
-            call = client.complete(prompt_text.replace("{{input}}", doc), temperature=0.0)
+            call = _one_call(client, prompt_text.replace("{{input}}", doc), hard)
         except Exception:
             cases.append({"sample_id": str(hash(doc))[:8], "doc": doc, "format_score": 0.0,
                           "constraint_score": 0.0, "accuracy": 0.0, "instruction_following": 0.0,
@@ -134,7 +163,7 @@ def reflect(client, parent: str, fails: list[dict]) -> str:
     return t
 
 
-def gepa_search(client, spec, val_samples, z0, budget, rng, starve=None):
+def gepa_search(client, spec, val_samples, z0, budget, rng, starve=None, hard=None):
     """GEPA Algorithm 1 核心：Pareto 加权采样候选 → minibatch 反思 → 改进入池。"""
     pool: list[dict] = [{"text": z0, "scores": {}}]  # scores: doc-hash → score
     best_inst: dict[str, int] = {}                    # doc-hash → 拥有最高分的 cand idx
@@ -167,7 +196,7 @@ def gepa_search(client, spec, val_samples, z0, budget, rng, starve=None):
         parent_idx = rng.choices(range(len(pool)), weights=[w + 1 for w in counts])[0]  # 平滑
         parent = pool[parent_idx]["text"]
         mb = rng.sample(val_samples, 3)
-        p_score, p_cases = eval_cases(client, spec, mb, parent, budget, starve=starve)
+        p_score, p_cases = eval_cases(client, spec, mb, parent, budget, starve=starve, hard=hard)
         fails = [c for c in p_cases if c["accuracy"] + c["instruction_following"] < 1.8
                  and c["output"] != "<call-error>"]  # 网络错误非提示词缺陷
         iters += 1
@@ -176,7 +205,7 @@ def gepa_search(client, spec, val_samples, z0, budget, rng, starve=None):
         child = reflect(client, parent, fails) if fails else parent
         if child == parent:
             continue
-        c_score, c_cases = eval_cases(client, spec, mb, child, budget, starve=starve)
+        c_score, c_cases = eval_cases(client, spec, mb, child, budget, starve=starve, hard=hard)
         record(parent_idx, p_cases, 0.0)
         if any(nc["accuracy"] + nc["instruction_following"] >
                oc["accuracy"] + oc["instruction_following"]
@@ -190,7 +219,7 @@ def gepa_search(client, spec, val_samples, z0, budget, rng, starve=None):
         for idx, c in enumerate(pool):
             if budget.left < len(val_samples):
                 break
-            sc, _ = eval_cases(client, spec, val_samples, c["text"], budget, starve=starve)
+            sc, _ = eval_cases(client, spec, val_samples, c["text"], budget, starve=starve, hard=hard)
             if sc > champ_val:
                 champ, champ_val = idx, sc
     else:
