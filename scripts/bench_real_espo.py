@@ -134,7 +134,7 @@ def espo_run(client, spec, val, z0, budget: RolloutBudget, seed: int, starve=Non
     rng = random.Random(seed)
     sc0, cases0 = eval_cases(client, spec, val, z0, budget, starve=starve)
     s0 = [c["accuracy"] for c in cases0]
-    fails = [c for c in cases0 if c["accuracy"] < 0.99]
+    fails = [c for c in cases0 if c["accuracy"] < 0.99 and c["output"] != "<call-error>"]
     iters = 0
     if not fails or budget.left < 40:
         return z0, sc0, iters, budget.used, []

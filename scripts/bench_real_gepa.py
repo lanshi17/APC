@@ -168,7 +168,8 @@ def gepa_search(client, spec, val_samples, z0, budget, rng, starve=None):
         parent = pool[parent_idx]["text"]
         mb = rng.sample(val_samples, 3)
         p_score, p_cases = eval_cases(client, spec, mb, parent, budget, starve=starve)
-        fails = [c for c in p_cases if c["accuracy"] + c["instruction_following"] < 1.8]
+        fails = [c for c in p_cases if c["accuracy"] + c["instruction_following"] < 1.8
+                 and c["output"] != "<call-error>"]  # 网络错误非提示词缺陷
         iters += 1
         if budget.left < 9:
             break
