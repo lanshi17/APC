@@ -260,8 +260,8 @@ def main() -> int:
             persist(row_of(nm, args.seed, sc, cases, t0, len(text), b))
 
     if "gepa" in arms:
-        t0 = time.time(); b = RolloutBudget(args.rollouts)
-        champ, cval, iters, used = gepa_search(client, spec, val[:8], z0_text, b,
+        t0 = time.time(); b = RolloutBudget(max(args.rollouts, 64))
+        champ, cval, iters, used = gepa_search(client, spec, val[:4], z0_text, b,
                                                random.Random(args.seed))
         (Path("/tmp") / f"hle_gepa_{args.seed}_champ.txt").write_text(champ, encoding="utf-8")
         b2 = RolloutBudget(10_000)
@@ -272,8 +272,8 @@ def main() -> int:
 
     if "espo" in arms:
         from bench_real_espo import espo_run
-        t0 = time.time(); b = RolloutBudget(args.rollouts)
-        champ, cval, iters, used, biases = espo_run(client, spec, val[:8], z0_text, b, args.seed)
+        t0 = time.time(); b = RolloutBudget(max(args.rollouts, 64))
+        champ, cval, iters, used, biases = espo_run(client, spec, val[:4], z0_text, b, args.seed)
         (Path("/tmp") / f"hle_espo_{args.seed}_champ.txt").write_text(champ, encoding="utf-8")
         b2 = RolloutBudget(10_000)
         sc, cases = run_eval(client, spec, hold, champ, b2, f"/tmp/hle_espo_{args.seed}.jsonl",
