@@ -1,15 +1,14 @@
 """HLE-exact 子集生成器(F11 数据可复现)。
 
-上游:Humanity's Last Exam (cais/hle, **CC-BY-NC-4.0**, Nguyen et al. 2025,
-arXiv 2501.14249)。官方 repo 为 gated(auto);本脚本经 ungated 文本镜像
-macabdul9/hle_text_only 的 datasets-server /rows API 拉取(只读公开端点,
-分页 100/页),筛 answer_type=='exactMatch' 且 len(answer)≤40。
+上游:Humanity's Last Exam (cais/hle, **MIT**(HF datasets API tags 实测,
+license:mit), Nguyen et al. 2025, arXiv 2501.14249)。官方 repo 为 gated(auto);
+本脚本经 ungated 文本镜像 macabdul9/hle_text_only 的 datasets-server /rows API
+拉取(只读公开端点,分页 100/页),筛 answer_type=='exactMatch' 且 len(answer)≤40。
 
 分层抽样:Mathematics/Physics/Chemistry/Other 各取 30(seed=2026),打乱后
 切 dev/validation/holdout = 30/30/30,写 datasets/hle_exact/*.jsonl。
 
-注意:因上游 CC-BY-NC,再分发受限 — 本仓库仅随仓**生成器**与派生子集;
-对外发布复现包时以脚本现场重建为准。
+许可:MIT 允许再分发,派生子集随仓提交;本脚本保证 bit 级可再生(seed=2026)。
 """
 from __future__ import annotations
 
