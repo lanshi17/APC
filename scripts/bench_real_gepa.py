@@ -68,45 +68,48 @@ class RolloutBudget:
 
 
 def _one_call(client, prompt: str, hard: float | None = None):
-    """单次 fresh 连接 + 硬超时。
+    """单次 fresh-connection HTTP POST + 硬超时。
 
-    教训链:① tenacity 在被服务端静默丢弃首包的 keep-alive 连接上连环重试
-    (4 次全发不出去,零响应头) → 每 call 新建 OpenAIClient(全新连接池);
-    ② httpx read-timeout 对半开连接不可靠(实测 145 分钟无事件) →
-    用 socket 层 SO_RCVTIMEO 做内核级兜底(extract 阶段即触发)。
+    教训链:① tenacity 在被服务端静默丢弃首包的 keep-alive 连接上连环重试,4 次全
+    烧在死连上(实测 0.72s CPU / 5.25h wall 后仍无响应头);② httpx read-timeout 与
+    自建池的 SO_RCVTIMEO 均不可靠(代理 CONNECT 隧道场景实测不触发);③ 线程级
+    hard 超时只能解联,死 HTTP/1.1 连接会在池里越积越多 → 第 2 题起全 wedged。
+    改为:每 call 全新 httpx.Client 直接 POST,无池、无 keep-alive、无 tenacity。
     """
-    import socket
     from concurrent.futures import ThreadPoolExecutor
+    import httpx as _hx
     if getattr(client, "base_url", None):
-        from apc.models.openai_client import OpenAIClient, resolve_api_key
-        from apc.models.factory import load_model_config
-        cfg = load_model_config(getattr(client, "_model_id", "") or "qwen")
-        fresh = OpenAIClient(model_id=cfg["model_id"], model=cfg["model"], base_url=cfg["api_base"],
-                             api_key=resolve_api_key(cfg), max_tokens=client.max_tokens, timeout=640.0)
+        from apc.models.base import CallResult as _CR
 
-        import socket as _sk, struct as _st
-        import httpcore._backends.sync as _hs
-        if not getattr(_hs.SyncStream, "_hle_patched", False):
-            _orig_read = _hs.SyncStream.read
-
-            def _read(self, max_bytes, timeout=None):
-                try:
-                    _raw = getattr(self._sock, "_sock", self._sock)
-                    _raw.setsockopt(_sk.SOL_SOCKET, _sk.SO_RCVTIMEO, _st.pack("#l", 700, 0))
-                except Exception:
-                    pass
-                return _orig_read(self, max_bytes, timeout)
-            _hs.SyncStream.read = _read
-            _hs.SyncStream._hle_patched = True
-            _hs.SyncStream._hle_patched = True
-        target = fresh
+        def _fresh_complete(prompt, temperature=0.0):
+            with _hx.Client(timeout=_hx.Timeout(640.0, connect=30.0)) as _cc:
+                resp = _cc.post(
+                    f"{client.base_url}/chat/completions",
+                    headers={"Authorization": f"Bearer {client.api_key}"} if client.api_key else {},
+                    json={"model": client.model,
+                          "messages": [{"role": "user", "content": prompt}],
+                          "temperature": temperature, "max_tokens": client.max_tokens})
+                resp.raise_for_status()
+                data = resp.json()
+            choice = data["choices"][0]
+            if hasattr(client, "_version"):
+                client._version = data.get("model")
+            if hasattr(client, "last_usage"):
+                client.last_usage = data.get("usage") or {}
+            u = data.get("usage") or {}
+            return _CR(text=choice["message"]["content"] or "",
+                       model_id=client.model, model_version=data.get("model"),
+                       finish_reason=choice.get("finish_reason"),
+                       input_tokens=u.get("prompt_tokens", 0),
+                       output_tokens=u.get("completion_tokens", 0))
+        target = _fresh_complete
     else:
-        target = client
+        target = client.complete
     if not hard:
-        return target.complete(prompt, 0.0)
+        return target(prompt, 0.0)
     ex = ThreadPoolExecutor(max_workers=1)
     try:
-        return ex.submit(target.complete, prompt, 0.0).result(timeout=hard)
+        return ex.submit(target, prompt, 0.0).result(timeout=hard)
     finally:
         ex.shutdown(wait=False)
 
