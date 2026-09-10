@@ -67,42 +67,45 @@ class RolloutBudget:
         return self.limit - self.used
 
 
-def _one_call(client, prompt: str, hard: float | None = None):
-    """单次 fresh-connection HTTP POST + 硬超时。
+def _fresh_http_call(client, prompt: str, temperature: float = 0.0) -> "CallResult":
+    """单次全新 httpx POST:无连接池、无 keep-alive、无 tenacity。
 
-    教训链:① tenacity 在被服务端静默丢弃首包的 keep-alive 连接上连环重试,4 次全
-    烧在死连上(实测 0.72s CPU / 5.25h wall 后仍无响应头);② httpx read-timeout 与
-    自建池的 SO_RCVTIMEO 均不可靠(代理 CONNECT 隧道场景实测不触发);③ 线程级
-    hard 超时只能解联,死 HTTP/1.1 连接会在池里越积越多 → 第 2 题起全 wedged。
-    改为:每 call 全新 httpx.Client 直接 POST,无池、无 keep-alive、无 tenacity。
+    教训链(hle8/hle9/hle10 三连败根因):
+    ① 共享 keep-alive 池被服务端静默丢包污染后,后续请求全烧在死连上(0.72s CPU/5.25h);
+    ② httpx read-timeout 与 SO_RCVTIMEO 对代理 CONNECT 隧道半开连接实测不可靠;
+    ③ OpenAIClient 构造会发版本探测请求 → 每次评测调用都探测 = 双倍请求 + 共享
+    十acity 路径。本函数零构造副作用、零状态。
     """
-    from concurrent.futures import ThreadPoolExecutor
     import httpx as _hx
-    if getattr(client, "base_url", None):
-        from apc.models.base import CallResult as _CR
+    from apc.models.base import CallResult as _CR
+    with _hx.Client(timeout=_hx.Timeout(660.0, connect=30.0)) as cc:
+        resp = cc.post(
+            f"{client.base_url}/chat/completions",
+            headers={"Authorization": f"Bearer {client.api_key}"} if client.api_key else {},
+            json={"model": client.model,
+                  "messages": [{"role": "user", "content": prompt}],
+                  "temperature": temperature, "max_tokens": client.max_tokens})
+        resp.raise_for_status()
+        data = resp.json()
+    choice = data["choices"][0]
+    u = data.get("usage") or {}
+    for attr, val in (("_version", data.get("model")), ("last_usage", u or None)):
+        try:
+            setattr(client, attr, val)
+        except Exception:
+            pass
+    return _CR(text=choice["message"]["content"] or "", model_id=client.model,
+               model_version=data.get("model"), temperature=temperature,
+               finish_reason=choice.get("finish_reason"),
+               input_tokens=u.get("prompt_tokens", 0), output_tokens=u.get("completion_tokens", 0))
 
-        def _fresh_complete(prompt, temperature=0.0):
-            with _hx.Client(timeout=_hx.Timeout(640.0, connect=30.0)) as _cc:
-                resp = _cc.post(
-                    f"{client.base_url}/chat/completions",
-                    headers={"Authorization": f"Bearer {client.api_key}"} if client.api_key else {},
-                    json={"model": client.model,
-                          "messages": [{"role": "user", "content": prompt}],
-                          "temperature": temperature, "max_tokens": client.max_tokens})
-                resp.raise_for_status()
-                data = resp.json()
-            choice = data["choices"][0]
-            if hasattr(client, "_version"):
-                client._version = data.get("model")
-            if hasattr(client, "last_usage"):
-                client.last_usage = data.get("usage") or {}
-            u = data.get("usage") or {}
-            return _CR(text=choice["message"]["content"] or "",
-                       model_id=client.model, model_version=data.get("model"),
-                       finish_reason=choice.get("finish_reason"),
-                       input_tokens=u.get("prompt_tokens", 0),
-                       output_tokens=u.get("completion_tokens", 0))
-        target = _fresh_complete
+
+def _one_call(client, prompt: str, hard: float | None = None):
+    """评测调用统一入口:真实客户端走无状态 HTTP;mock 走原接口。hard=线程级兜底。"""
+    from concurrent.futures import ThreadPoolExecutor
+    import functools
+    if getattr(client, "base_url", None) and getattr(client, "api_key", None) is not None:
+        target = functools.partial(_fresh_http_call, client)
     else:
         target = client.complete
     if not hard:
@@ -167,7 +170,10 @@ def reflect(client, parent: str, fails: list[dict]) -> str:
     msg = (f"CURRENT PROMPT:\n<<<\n{parent}\n>>>\n\nFAILING CASES:\n{ex}\n\n"
            "Now output the improved complete prompt.")
     try:
-        call = client.complete(msg, temperature=0.3)
+        if getattr(client, "base_url", None) and getattr(client, "api_key", None) is not None:
+            call = _fresh_http_call(client, msg, temperature=0.3)
+        else:
+            call = client.complete(msg, temperature=0.3)
     except Exception:
         return parent
     t = call.text.strip()
