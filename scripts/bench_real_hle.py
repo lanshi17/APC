@@ -133,6 +133,21 @@ def run_eval(client, spec, samples, prompt_text, budget, stream_path=None,
         finally:
             ex.shutdown(wait=False)
 
+    def _fresh(prompt, hard, temperature=0.0):
+        """无状态调用(hle 专用):不占池、不连环重试;独立硬超时 + 失败诊断。"""
+        from bench_real_gepa import _fresh_http_call
+        from concurrent.futures import ThreadPoolExecutor
+        ex = ThreadPoolExecutor(max_workers=1)
+        t0 = time.time()
+        try:
+            return ex.submit(_fresh_http_call, client, prompt, temperature).result(timeout=hard)
+        except Exception as e:
+            print(f"  fresh-fail {time.strftime('%H:%M:%S')} ({time.time()-t0:.0f}s): "
+                  f"{type(e).__name__}: {str(e)[:100]}", flush=True)
+            raise
+        finally:
+            ex.shutdown(wait=False)
+
     cases = []
     for smp in samples:
         sid = str(hash(smp["doc"]))[:8]
@@ -140,7 +155,7 @@ def run_eval(client, spec, samples, prompt_text, budget, stream_path=None,
             cases.append(done[sid]); continue
         prompt = prompt_text.replace("{{input}}", smp["doc"])
         try:
-            call = _hard_call(prompt, hard)
+            call = _fresh(prompt, hard)
         except Exception as e:
             print(f"  hard-fail {sid}: {type(e).__name__}: {str(e)[:120]}", flush=True)
             call = None
