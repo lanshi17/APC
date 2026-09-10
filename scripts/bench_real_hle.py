@@ -125,14 +125,6 @@ def run_eval(client, spec, samples, prompt_text, budget, stream_path=None,
     from concurrent.futures import ThreadPoolExecutor
     import uuid
 
-    def _hard_call(prompt, hard):
-        """每次调用独立 executor:future 超时后 shutdown(wait=False) 不阻塞主循环。"""
-        ex = ThreadPoolExecutor(max_workers=1)
-        try:
-            return ex.submit(client.complete, prompt, 0.0).result(timeout=hard)
-        finally:
-            ex.shutdown(wait=False)
-
     def _fresh(prompt, hard, temperature=0.0):
         """无状态调用(hle 专用):不占池、不连环重试;独立硬超时 + 失败诊断。"""
         from bench_real_gepa import _fresh_http_call
