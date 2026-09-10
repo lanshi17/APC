@@ -182,8 +182,15 @@ def reflect(client, parent: str, fails: list[dict]) -> str:
     return t
 
 
-def gepa_search(client, spec, val_samples, z0, budget, rng, starve=None, hard=None):
-    """GEPA Algorithm 1 核心：Pareto 加权采样候选 → minibatch 反思 → 改进入池。"""
+def gepa_search(client, spec, val_samples, z0, budget, rng, starve=None, hard=None,
+                mb_size: int | None = None):
+    """GEPA Algorithm 1 核心：Pareto 加权采样候选 → minibatch 反思 → 改进入池。
+
+    mb_size=None → 3(原 financial/contract 协议);小 val 集(HLE val[:2])传实际大小,
+    否则 rng.sample 过采样重复题浪费预算、18-rollout 预留也不匹配 eval_full 需求。
+    """
+    mb_n = mb_size or min(3, len(val_samples))
+    mb_reserve = max(len(val_samples) + 1, 2 * mb_n)
     pool: list[dict] = [{"text": z0, "scores": {}}]  # scores: doc-hash → score
     best_inst: dict[str, int] = {}                    # doc-hash → 拥有最高分的 cand idx
 
@@ -209,17 +216,17 @@ def gepa_search(client, spec, val_samples, z0, budget, rng, starve=None, hard=No
         return counts
 
     iters = 0
-    while budget.left >= 18:  # 亲子迭代 3+3;预留 2 候选 × val-full(8) 给 eval_full 相位
+    while budget.left >= mb_reserve:  # 亲子迭代;预留 eval_full 相位
         counts = best_counts()
         tot = sum(counts) or 1
         parent_idx = rng.choices(range(len(pool)), weights=[w + 1 for w in counts])[0]  # 平滑
         parent = pool[parent_idx]["text"]
-        mb = rng.sample(val_samples, 3)
+        mb = rng.sample(val_samples, mb_n)
         p_score, p_cases = eval_cases(client, spec, mb, parent, budget, starve=starve, hard=hard)
         fails = [c for c in p_cases if c["accuracy"] + c["instruction_following"] < 1.8
                  and c["output"] != "<call-error>"]  # 网络错误非提示词缺陷
         iters += 1
-        if budget.left < 9:
+        if budget.left < 2 * mb_n:
             break
         child = reflect(client, parent, fails) if fails else parent
         if child == parent:
