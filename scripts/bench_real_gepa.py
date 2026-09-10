@@ -68,29 +68,45 @@ class RolloutBudget:
 
 
 def _one_call(client, prompt: str, hard: float | None = None):
-    """单次 fresh-connection 调用 + 可选线程级硬超时。
+    """单次 fresh 连接 + 硬超时。
 
-    HLE 类慢题教训:tenacity 在同一条被污染的 keep-alive 连接上连环重试
-    (首连被服务端静默丢弃后,后续 attempt 也发不出去)→ 4 次全烧在死连上,
-    外层还挂 read-timeout 未触发的半开 socket。fresh client = 全新连接池,
-    单题失败只花一次 timeout;hard 兜住 httpx read-timeout 对半开连接的失效。
+    教训链:① tenacity 在被服务端静默丢弃首包的 keep-alive 连接上连环重试
+    (4 次全发不出去,零响应头) → 每 call 新建 OpenAIClient(全新连接池);
+    ② httpx read-timeout 对半开连接不可靠(实测 145 分钟无事件) →
+    用 socket 层 SO_RCVTIMEO 做内核级兜底(extract 阶段即触发)。
     """
+    import socket
     from concurrent.futures import ThreadPoolExecutor
     if getattr(client, "base_url", None):
         from apc.models.openai_client import OpenAIClient, resolve_api_key
         from apc.models.factory import load_model_config
         cfg = load_model_config(getattr(client, "_model_id", "") or "qwen")
-        tmo = getattr(getattr(client, "client", None), "timeout", None)
         fresh = OpenAIClient(model_id=cfg["model_id"], model=cfg["model"], base_url=cfg["api_base"],
-                             api_key=resolve_api_key(cfg), max_tokens=client.max_tokens,
-                             timeout=float(getattr(tmo, "read", None) or 640.0))
+                             api_key=resolve_api_key(cfg), max_tokens=client.max_tokens, timeout=640.0)
+
+        import socket as _sk, struct as _st
+        import httpcore._backends.sync as _hs
+        if not getattr(_hs.SyncStream, "_hle_patched", False):
+            _orig_read = _hs.SyncStream.read
+
+            def _read(self, max_bytes, timeout=None):
+                try:
+                    _raw = getattr(self._sock, "_sock", self._sock)
+                    _raw.setsockopt(_sk.SOL_SOCKET, _sk.SO_RCVTIMEO, _st.pack("#l", 700, 0))
+                except Exception:
+                    pass
+                return _orig_read(self, max_bytes, timeout)
+            _hs.SyncStream.read = _read
+            _hs.SyncStream._hle_patched = True
+            _hs.SyncStream._hle_patched = True
+        target = fresh
     else:
-        fresh = client
+        target = client
     if not hard:
-        return fresh.complete(prompt, 0.0)
+        return target.complete(prompt, 0.0)
     ex = ThreadPoolExecutor(max_workers=1)
     try:
-        return ex.submit(fresh.complete, prompt, 0.0).result(timeout=hard)
+        return ex.submit(target.complete, prompt, 0.0).result(timeout=hard)
     finally:
         ex.shutdown(wait=False)
 
