@@ -40,6 +40,16 @@ from bench_real_external import (answers_match, extract_pred, JUDGE_VERSION)  # 
 from bench_real_gepa import RolloutBudget, eval_cases, gepa_search  # noqa: E402
 import bench_real_gepa as G  # 用于 monkeypatch JUDGE/CHECKER 到 hle 语义
 
+
+def _trace(label):
+    def _f(client, *a, **kw):
+        import time as _t
+        b = a[2] if len(a) > 2 else kw.get("budget")
+        print(f"[{_t.strftime('%H:%M:%S')}] {label} used={getattr(b,'used','?')} left={getattr(b,'left','?')}",
+              flush=True)
+        return _orig[label](client, *a, **kw)
+    return _f
+
 import os
 OUT = Path(os.environ.get("HLE_OUT", str(REPO / "experiments" / "apcbench" / "real_hle.json")))
 SPEC_PATH = REPO / "apc-pipeline" / "configs" / "tasks" / "external_math.yaml"
@@ -261,7 +271,8 @@ def main() -> int:
 
     if "gepa" in arms:
         t0 = time.time(); b = RolloutBudget(max(args.rollouts, 64))
-        champ, cval, iters, used = gepa_search(client, spec, val[:4], z0_text, b,
+        print(f"[{time.strftime(chr(37)+chr(37)+chr(58)+chr(37)+chr(77))}] gepa search start (val[:2], rollouts {max(args.rollouts,48)})", flush=True)
+        champ, cval, iters, used = gepa_search(client, spec, val[:2], z0_text, b,
                                                random.Random(args.seed), hard=args.hard)
         (Path("/tmp") / f"hle_gepa_{args.seed}_champ.txt").write_text(champ, encoding="utf-8")
         b2 = RolloutBudget(10_000)
@@ -272,8 +283,8 @@ def main() -> int:
 
     if "espo" in arms:
         from bench_real_espo import espo_run
-        t0 = time.time(); b = RolloutBudget(max(args.rollouts, 64))
-        champ, cval, iters, used, biases = espo_run(client, spec, val[:4], z0_text, b, args.seed, hard=args.hard)
+        t0 = time.time(); b = RolloutBudget(max(args.rollouts, 48))
+        champ, cval, iters, used, biases = espo_run(client, spec, val[:2], z0_text, b, args.seed, hard=args.hard)
         (Path("/tmp") / f"hle_espo_{args.seed}_champ.txt").write_text(champ, encoding="utf-8")
         b2 = RolloutBudget(10_000)
         sc, cases = run_eval(client, spec, hold, champ, b2, f"/tmp/hle_espo_{args.seed}.jsonl",
