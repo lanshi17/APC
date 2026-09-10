@@ -130,9 +130,9 @@ def bootstrap_select(cand_scores: list[list[float]], champ_scores: list[float],
     return max(cands, key=lambda k: (float(np.mean(cand_scores[k])), wins[k]))
 
 
-def espo_run(client, spec, val, z0, budget: RolloutBudget, seed: int, starve=None):
+def espo_run(client, spec, val, z0, budget: RolloutBudget, seed: int, starve=None, hard=None):
     rng = random.Random(seed)
-    sc0, cases0 = eval_cases(client, spec, val, z0, budget, starve=starve)
+    sc0, cases0 = eval_cases(client, spec, val, z0, budget, starve=starve, hard=hard)
     s0 = [c["accuracy"] for c in cases0]
     fails = [c for c in cases0 if c["accuracy"] < 0.99 and c["output"] != "<call-error>"]
     iters = 0
@@ -146,7 +146,7 @@ def espo_run(client, spec, val, z0, budget: RolloutBudget, seed: int, starve=Non
             continue
         if budget.left < 8:
             break
-        cs, ccases = eval_cases(client, spec, val, c, budget, starve=starve)
+        cs, ccases = eval_cases(client, spec, val, c, budget, starve=starve, hard=hard)
         cands.append((bname, c))
         cscores.append([x["accuracy"] for x in ccases])
         iters += 1
