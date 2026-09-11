@@ -31,6 +31,23 @@ FLASK Ye et al. 2024：模型间技能短板不同）。现有评测画像（HEL
 不指导构造；现有编译器（DSPy）按模型重搜、但画像隐含不可解释（详见
 `docs/literature/lit-compiler.md` G1–G6）。
 
+**本文贡献**（按审稿人关切排序，非按时间）：
+- **C1 · 画像驱动的可追溯编译**：TaskSpec×PromptGenome×ModelProfile 三段式 IR 使每次
+  prompt 变更可归因到基因位点与画像维度（§2.1-2.3，F4 决策链审计）——DSPy 类隐式画像
+  不可提供的能力。
+- **C2 · 先验价值的定量负债证据**：rule-root 在真实模型上 −.090（三 seed 稳健含双峰
+  崩溃例），"编译先验可为负且可测"——Compile-as-Hypothesis 从原则变为量（§3.4 F2/F7）。
+- **C3 · APO 收益边界的完整判别式**：F7-F9 四独立通路饱和 regime 全平 → F10 物理截断
+  regime 全平 → F11 知识型 headroom 全平（含"反思学到内容规则但零迁移"机制证据）→
+  仿真弱模型协议型 headroom 结构化通路 +0.05——合并为 **headroom 类型学**：何时任何
+  APO 都不会强，先于"谁的表征更好"（§3.4 F10/§3.4m）。
+- **C4 · 零成本部署门控**：AutoAPC-Select 以实测同日漂移带为 tie-break 货币，回放+
+  前瞻 7 组 5/7 精确命中 oracle、种子崩溃臂零 regret 救回（§3.4 F8）。
+- **C5 · 评测方法学资产**：hardened exact-match 判分器 v3.2（F6）、配对同日复测协议
+  （F7）、val/holdout 同分布条款的双实证（F10/F11）、长跑 harness 的连接层可靠性
+  三修复（F11）——全部随仓。
+
+
 APC 的主张：**显式能力画像（15 维）作为编译器中间表示**——
 `TaskSpec → PromptGenome（10 基因）→ ModelProfile → PromptCompiler（规则编译）
 → TrialResult → 进化搜索（PGAM）→ 模型迁移`，全程可追溯（KR-3）。

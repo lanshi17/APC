@@ -44,6 +44,29 @@ representation** —
 compilation) → TrialResult → evolutionary search (PGAM) → model migration`,
 fully traceable end-to-end (KR-3).
 
+**Contributions** (ordered by reviewer concern, not chronology):
+- **C1 · Profile-driven traceable compilation**: the TaskSpec×PromptGenome×ModelProfile
+  IR attributes every prompt change to a gene locus and a profile dimension (§2.1-2.3,
+  F4 decision-chain audit) — a capability DSPy-style implicit profiles cannot offer.
+- **C2 · Quantified liability of priors**: the rule-root costs −.090 on a real model
+  (robust across three seeds, including a bimodal seed-collapse case); "compilation
+  priors can be negative and are measurable" — Compile-as-Hypothesis becomes a
+  quantity, not a slogan (§3.4 F2/F7).
+- **C3 · A complete discriminator for APO payoff**: four independent pathways tie in
+  the saturated regime (F7-F9) → all tie under physical truncation (F10) → all tie
+  under reachable knowledge-type headroom, with mechanism evidence that reflection
+  learned content rules yet transferred zero (F11) → while structured pathways win
+  +0.05 in simulated protocol-type headroom. Merged into a **headroom taxonomy**:
+  when no APO can win — prior to "whose representation is better" (§3.4 F10/§3.4m).
+- **C4 · Zero-cost deployment gate**: AutoAPC-Select spends measured same-day drift
+  bands as its tie-break currency; on 7 replay+blind groups, 5/7 exact-oracle, both
+  seed-collapse arms rescued at zero regret (§3.4 F8).
+- **C5 · Evaluation-methodology assets**: the hardened exact-match judge v3.2 (F6),
+  the paired same-day re-measurement protocol (F7), two empirical instances of the
+  val/holdout common-pool clause (F10/F11), and the connection-layer reliability
+  triad for long-run harnesses (F11) — all in-repo.
+
+
 ## 2. Method
 
 ### 2.1 PromptGenome: a discrete structural genome
