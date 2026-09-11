@@ -97,6 +97,26 @@ def main() -> int:
               f"fmt={fmt}/{n} json_hold={r.get('holdout_score')}")
         common_docs = set(st) if common_docs is None else (common_docs & set(st))
 
+    # 臂间逐题一致率矩阵 + 核心答对集/差集(机制证据,管线噪声由 espo==z0 文本自一致校准)
+    print("\n== cross-arm per-problem agreement (acc) ==")
+    for i in range(len(ARMS)):
+        for j in range(i + 1, len(ARMS)):
+            a, b = ARMS[i], ARMS[j]
+            if common_docs:
+                agree = sum(streams[a][d]["accuracy"] == streams[b][d]["accuracy"] for d in common_docs)
+                print(f"  {a} vs {b}: {agree}/{len(common_docs)}")
+    if common_docs:
+        core = [d for d in common_docs if all(float(streams[a][d]["accuracy"]) > .5 for a in ARMS if d in streams.get(a, {}))]
+        print(f"  core all-arm hits: {len(core)}")
+        for a in ARMS:
+            uniq = [d for d in common_docs
+                    if d in streams.get(a, {}) and float(streams[a][d]["accuracy"]) > .5
+                    and not all(d in streams[x] and float(streams[x][d]["accuracy"]) > .5 for x in ARMS if x != a and d in streams.get(x, {}))]
+            miss = [d for d in common_docs
+                    if d in streams.get(a, {}) and float(streams[a][d]["accuracy"]) <= .5
+                    and any(d in streams[x] and float(streams[x][d]["accuracy"]) > .5 for x in ARMS if x != a)]
+            print(f"  {a}: extra {len(uniq)} | missed-but-solvable {len(miss)}")
+
     print(f"\n== paired common-doc set: {len(common_docs or [])} problems ==")
     if common_docs and len(common_docs) >= 20:
         for a, b in combinations(["z0", "gepa", "espo"], 2):
