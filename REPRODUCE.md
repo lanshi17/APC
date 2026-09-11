@@ -62,3 +62,10 @@ Real-API notes learned the hard way (all implemented in the scripts):
 (`APC_<ID>_MODEL/BASE_URL/API_KEY`) runs the whole matrix on a new model with zero
 code changes. PGAM validation (paper §4 #3) and the weak-model + protocol-pressure
 cell (§4 #5) are gated on additional credentials.
+
+## Anonymized submission bundle
+
+`bash scripts/make_anon_bundle.sh` → `/tmp/apc-anon-bundle.zip`: git-HEAD snapshot
+with identity files stripped (LICENSE/frontier notes), README de-signed, and hard
+gates that abort on any residual author path/id or credential-shaped token
+(word-boundary `sk-…{16,}` scan). Run it before uploading supplementary material.

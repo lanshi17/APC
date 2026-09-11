@@ -414,6 +414,19 @@ financial 主战场属 (3) 但已饱和 → F1-F9 全 null 的自洽解释。
 AutoAPC-Select（F8）之外再加一层部署前诊断：**若 headroom 属知识型，
 正确动作是换模型/上检索，不是优化 prompt**。
 
+headroom 类型学一图（regime map）：
+
+```mermaid
+flowchart TD
+    A[部署前: headroom 类型诊断<br/>z0 逐题三分类] --> B{缺口在哪一维?}
+    B -->|acc 缺口 = 模型不会| K[知识型 F11·HLE acc .10<br/>六臂全平·反思学到内容规则仍零迁移]
+    B -->|acc 缺口 = 被 token 截断| T[物理截断型 F10·max_tokens 150<br/>六通路同钉 judge 地板 .15]
+    B -->|acc 达标·格式/协议违约| P[协议/格式型 F1-F9·financial<br/>饱和→全平; 未饱和弱模型→结构化 +0.05]
+    K --> X1[动作: 换模型 / 上检索 / 微调<br/>prompt 优化 = 零收益]
+    T --> X2[动作: 加预算 / 缩输入<br/>任何 prompt 通路不可达]
+    P --> X3[动作: APO 有效域<br/>AutoAPC-Select 门控 F8 选臂]
+```
+
 ## 4. Limitations（投稿前必须解决）
 
 1. **真实 LLM 验证为单模型**（§3.4）：qwen3.8-flash × 3 任务 + 跨任务迁移 +
