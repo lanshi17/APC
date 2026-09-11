@@ -44,6 +44,10 @@ AUDIT = [
     ("F7 gepa 903",       "real_gepa.json", lambda r: r["method"] == "gepa" and r.get("seed") == 903 and abs(r["holdout_score"] - .7016) < 1e-4, ".7016"),
     ("F10 floor",         "real_gepa_mt150.json", lambda r: abs(r["holdout_score"] - .15) < 1e-9, ".1500"),
     ("F11 no-thinking",   "real_hle_nt.json", lambda r: r.get("n_acc") == 0, "0/30"),
+    # F11-C 位点归因(real_hle_ablation.json,§3.4n 表)
+    ("ABL base",          "real_hle_ablation.json", lambda r: r["method"] == "base" and abs(r["holdout_score"] - .4531) < 1e-4, ".4531"),
+    ("ABL role",          "real_hle_ablation.json", lambda r: r["method"] == "minus-role" and abs(r["holdout_score"] - .4612) < 1e-4, ".4612"),
+    ("ABL minus-floor",   "real_hle_ablation.json", lambda r: r["method"] == "minus-output" and abs(r["holdout_score"] - .40) < 1e-4, ".4000"),
     # financial 同日带(散在 real_gepa.json 的 z0-control/reeval-z0 行)
     ("fin z0 band low",   "real_gepa.json", lambda r: r["method"] == "gepa" and r.get("seed") == 902 and abs(r["holdout_score"] - .695) < 1e-6, ".6950"),
     ("fin z0 band hi",    "real_gepa.json", lambda r: r["method"] == "z0-control" and r.get("seed") == 901 and abs(r["holdout_score"] - .6997) < 1e-6, ".6997"),
