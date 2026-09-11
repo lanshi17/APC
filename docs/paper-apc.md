@@ -16,7 +16,13 @@ PGAM 与均匀变异无差异（pooled +0.0004，零结果）；迁移以 30% �
 外部真实基准（GSM8K/MATH-L5/AIME24+25，作者未造的任务）复现两结论：六个冠军-vs-base
 对比全部统计打平（零损耗迁移成立），且三数据集精度 0.96~1.00 无余量——AIME 三臂全对（饱和外推成立）。
 **GEPA 官方基线对垒与方差审计（§3.4 F7）**：复现 GEPA Algorithm 1（反思式 prompt 优化，最强开源基线）在同协议同预算下对比，其增益也在同日测量噪声带内（+.0024）——null 结果非 APC 表征的局部缺陷；同时发现 temp=0 推理模型存在跨日评分漂移（Δ.028），故全部对比以配对同日复测为准，rule-root 负债（−.090）在三 seed 下稳健复现（含一例种子崩至 .13 的双峰风险直证）。
-据此提出 F8 AutoAPC-Select 部署门控：val 分数 argmax + 噪声带内奥卡姆 tie-break，回放+前瞻共 7 组：6/7 落入噪声带、5/7 精确命中 oracle，两个种子崩溃臂（s44 .1334 / s45 .1318）均零 regret 救回，其中 s45 为门控规则冻结后的前瞻盲测（gate = 当日 oracle）；唯一失效模式（val 小样本高估，+.0196）已刻画。第二强公开基线 ESPO（EMNLP 2026 main，Diagnose/Propose/bootstrap-Select 三步复现）同日配对同样落入噪声带（.7009）——四个独立优化器族在同一 regime 全部归零，null 的基线覆盖已闭环。判别实验 F10（预注册后执行）：token-starved regime（max_tokens 150，z0 崩至 .15）下六条通路同日全部钉死判分下限——headroom 存在但属物理截断墙、prompt 不可救，给出 APO 等价零结果的 regime 边界完整刻画。多模型与 PGAM 验证待更多凭证。
+据此提出 F8 AutoAPC-Select 部署门控：val 分数 argmax + 噪声带内奥卡姆 tie-break，回放+前瞻共 7 组：6/7 落入噪声带、5/7 精确命中 oracle，两个种子崩溃臂（s44 .1334 / s45 .1318）均零 regret 救回，其中 s45 为门控规则冻结后的前瞻盲测（gate = 当日 oracle）；唯一失效模式（val 小样本高估，+.0196）已刻画。第二强公开基线 ESPO（EMNLP 2026 main，Diagnose/Propose/bootstrap-Select 三步复现）同日配对同样落入噪声带（.7009）——四个独立优化器族在同一 regime 全部归零，null 的基线覆盖已闭环。判别实验 F10（预注册后执行）：token-starved regime（max_tokens 150，z0 崩至 .15）下六条通路同日全部钉死判分下限——headroom 存在但属物理截断墙、prompt 不可救，给出 APO 等价零结果的 regime 边界完整刻画。F11（预注册后执行，HLE-exact 90 题分层子集，MIT 上游）补上最后一块拼图：真实 API 上首个可达知识型
+headroom（z0 acc .10，余量 .3+）中六臂同日全部同带（.388–.412，acc 2–3/30）——GEPA 反思确实
+学到了领域内容规则（SMILES 规范、微扰理论 regime 限定词），holdout 仍零增益：**APO 收益的判别
+式不是 headroom 有无而是 headroom 类型**——物理截断型与知识型不可达（能力墙在权重），协议/
+格式型可达且结构化通路占优；部署前第一动作应是 headroom 类型诊断，知识型场景的正确动作是
+换模型而非优化 prompt（§3.4m）。
+多模型与 PGAM 验证待更多凭证。
 
 ## 1. 问题与主张
 
@@ -307,6 +313,83 @@ format/constraint 维度归零，score=0.15 是判分器下限而非模型能力
 称会让反思优化器对着错误 regime 优化**；这是 val/holdout 同分布采样条款（F8 失效模式段）
 的 starved 实例证明。
 
+### 3.4m F11 headroom 类型学：HLE-exact 高难对垒（预注册 P1 命中）
+
+F10 给出 regime 三分之后留下最后一个问题：**真实 API 上"可达 headroom"（headroom>噪声带
+且瓶颈不在生成机制）到底存不存在、存在时谁赢？** F11 在 Humanities' Last Exam 的
+exact-match 短答子集上直接检验该分支。
+
+**数据集**：HLE（cais/hle，MIT，arXiv 2501.14249）文本镜像（ungated，datasets-server
+分页拉取）筛 `answer_type=="exactMatch"` 且答案 ≤40 字符（排除证据指涉型长答），
+池 1710 题；按 Mathematics/Physics/Chemistry/Other 分层随机抽 90（seed 2026），
+切 dev/validation/holdout = 30/30/30（生成器 `scripts/gen_hle_dataset.py` 位级可复现，
+派生子集随仓提交）。判分用 hardened exact-match 判分器 v3.2（F6 §3.6 的归一化管线原样
+复用，判分单元 5 例先行通过）。任务规格复用 external_math strict-JSON 协议
+（输出 `{"answer": ...}`）。
+
+**预注册**（commit 262a39e，gepa/espo 任何 holdout 数字落盘之前锁定）：
+P1 tie——反思臂与 z0 差在带内 → headroom 类型学补全；P2 反思胜出——某臂 acc≥.24
+→ 报告胜出机制；P3 genome 反胜（pilot 数据已排除）。
+
+**Pilot 定案（四臂同日）**：z0 hold .3920（acc 3/30 = .10，fmt 25/30）；
+三个跨任务 transfer 冠军（math/contract/financial genome 原样直用）.3876–.4020，
+全部与 z0 同带。**两个先验假设同时被否**：(a) 协议余量不存在——强推理模型的 JSON
+协议合规率 ≈100%（fmt 缺口全部由网络错误行构成，非提示词缺陷）；(b) genome 结构先验
+在知识型任务上零增益——格式基因无的放矢。真实余量在 acc（.10 对上限 ≈.4），
+判别压力完全落在反思通路。
+
+**决胜矩阵（六臂，seed 921 同批配对，总 wall 12.5h）**：
+
+| 臂 | holdout | acc/30 | fmt/30 | 备注 |
+|---|---|---|---|---|
+| z0 (base genome) | .3920 | 3 | 25 | acc 口径 .10 |
+| math-champ | .3876 | 2 | 26 | transfer 先验 |
+| contract-champ | .4020 | 3 | 26 | transfer 先验 |
+| financial-champ | .3876 | 2 | 26 | transfer 先验 |
+| GEPA（val[:2]mb+val[:8]sel, 64 rollouts, 20 iters） | **.4120** | 3 | 27 | val=1.0（echo 史，见下） |
+| ESPO（val[:8] 全量评估, 4 biases, 64 rollouts） | .4020 | 3 | 26 | champ=z0（bootstrap 全拒） |
+
+六臂带宽 .024（.388–.412）；acc 维度全部 2-3/30（二项 SE=.055 @ p=.10, n=30——
+任何两臂 acc 差都在 1 题量化噪声内）。**判定：P1 命中——真实 API、可达知识型
+headroom、六条独立通路（结构先验 ×2、反思 ×2、迁移 ×2 口径）再次全平。**
+
+**机制证据（本实验最有信息量的部分）**：
+① **GEPA 真的学到了领域内容**：冠军 prompt（8103 字符）含反思自 val 失败案例抽取的
+实质规则——SMILES 输出规范、摩尔质量产物选择程序、first-order TDPT/高斯脉冲 regime
+限定词、符号表达式禁赘述……**这些是内容级启发式而非格式修饰**。但 holdout acc 与 z0
+逐题对齐（同 3 题对）：提示词层的领域规则无法跨越"模型解不出题"的能力墙——
+**反思通路的天花板是模型的先验知识，不是搜索**。
+② **ESPO 的保守选择器在 HLE 噪声上直接归零**：4 个有偏候选中最高分 abstraction
+val .512 > r0 .453，但 bootstrap-75% 稳定判据全拒 → champ = z0 原文。与 F9 financial
+行为一致：内生稳定性货币在信号≈噪声时输出"不行动"——这是正确行为。
+③ **val-2 单点过拟合的活案例**：GEPA 搜索中期曾收敛出一个 8103 字符、val[:2] 满分
+（1.000）的巨型 prompt——其中 echo 了该 val 题的近似全文。若选择相位沿用 val[:2]
+（GEPA 原始协议在我们的成本约束下的缩减形），冠军即此物，holdout 必然崩盘。
+协议 v2（搜索 minibatch + **选择相位全量 val[:8]**）将其拦下——**F10"小 val 集与
+holdout 难度不对称"教训的二次实证**，且这次是反思内容真被优化器吸进 prompt 的
+过拟合，比 starved 假象更典型。（协议修订发生在 gepa/espo 任何 holdout 数字落盘
+之前，属机制 bug 修复而非结果驱动；预注册判据未变。）
+
+**方法论副产物（真实 API 评测的可靠性工程）**：HLE 单题 full-thinking 成本 60-640s，
+暴露并修复了三个长跑 harness 的系统性缺陷——(a) tenacity 在"服务端静默丢弃首包的
+keep-alive 死连接"上连环重试（实测 0.72s CPU / 5.25h wall 零响应），修复为每请求
+无状态新连接（`_fresh_http_call`）；(b) httpx read-timeout 对代理 CONNECT 隧道的
+半开连接不触发，修复为线程级硬超时 + 每次调用独立 executor；(c) 评测循环无落盘点
+导致断点全毁，补 per-sample stream checkpoint + resume。三项修复对 F7-F10 结论无影响
+（financial 批次单题 <10s 未触发该域），但成为多模型轮的前置资产。
+
+**对论文主张的意义**：F11 与 F1-F10 合并得到完整的 **headroom 类型学**——
+APO 收益的判别式不是"headroom 是否存在"而是 **headroom 的类型**：
+(1) 物理截断型（F10 token-starved）——任何 prompt 不可达；
+(2) 知识型（F11 HLE）——任何 prompt 通路不可达（本文六臂 + 机制证据 ①），
+    能力墙在权重，提示词只能重排模型已会的分布；
+(3) 协议/格式型（F1-F9 饱和侧 + 仿真弱模型正例）——可达，且结构化 genome
+    在弱模型/强协议压力 regime 有机制优势（仿真 +0.05）。
+financial 主战场属 (3) 但已饱和 → F1-F9 全 null 的自洽解释。
+这把"APC vs X 谁强"的争论改写为**先验地判定何时任何 APO 都不会强**——
+AutoAPC-Select（F8）之外再加一层部署前诊断：**若 headroom 属知识型，
+正确动作是换模型/上检索，不是优化 prompt**。
+
 ## 4. Limitations（投稿前必须解决）
 
 1. **真实 LLM 验证为单模型**（§3.4）：qwen3.8-flash × 3 任务 + 跨任务迁移 +
@@ -362,6 +445,10 @@ format/constraint 维度归零，score=0.15 是判分器下限而非模型能力
   reeval/gepa/espo（仅任务评测受限、优化器元调用全预算），输出隔离 `real_gepa_mt150.json`
 - [x] 弱 regime 探路：`--no-thinking`（DashScope enable_thinking 透传；实测 financial
   对思考模式不敏感 .6938 带内 → 方向闭合）
+- [x] 高难对垒 F11（预注册 git 262a39e）：`bench_real_hle.py`（HLEJudge/HLEChecker 适配
+  hardened v3.2 + z0/champs/gepa/espo 臂 + per-sample stream 断点续跑 + 线程级硬超时 +
+  每请求无状态连接 `_fresh_http_call`）；`gen_hle_dataset.py`（MIT 上游、分层 30/30/30
+  seed=2026 位级可复现）；数据集随仓 `datasets/hle_exact/`；入库 `real_hle.json`(6 行)
 - [ ] 第三方复现报告（待外部协作者）
 
 ## 6. Related Work（详见 `docs/literature/`）

@@ -27,7 +27,7 @@ noise and the model saturates every benchmark (AIME: 60/60), bounding the room f
 prompt optimization on strong reasoners. We distill these into a methodological
 principle, *Compile-as-Hypothesis*: compiled artifacts are testable hypotheses,
 never default deployables, and prior value is a measured quantity that can be
-negative. Multi-model validation of PGAM awaits additional API credentials.
+On the same real API we then close the baseline and regime questions: the official GEPA baseline (Algorithm 1 reproduced) is also within the paired same-day noise band (+.0024), the second strong baseline ESPO likewise (.7009), and a pre-registered token-starved discriminative experiment (F10) pins six pathways at the judge floor (.1500) when headroom is physically unreachable. F11 completes the map on a stratified 90-problem HLE-exact subset — the first REAL reachable knowledge-type headroom (zero-shot accuracy .10): all six arms tie again (.388-.412), even though GEPA demonstrably learned domain content rules (SMILES conventions, perturbation-theory regime qualifiers). The discriminator for prompt-optimization payoff is not whether headroom exists but what kind: physical-truncation and knowledge-type headroom are out of reach for any prompt pathway (ability lives in weights), while protocol/format headroom is reachable and favors structured genomes — deployment should begin with a headroom-type diagnostic (§3.4m). A deployment gate (AutoAPC-Select, F8: val-argmax + noise-band Occam tie-break, 5/7 exact-oracle on 7 replay+blind groups) turns these findings into a selection rule. Multi-model validation of PGAM awaits additional API credentials.
 
 ## 1. Problem and Claim
 
@@ -256,6 +256,7 @@ Setup: whitelisted-key model, reasoning model (~29 s/sample), temp=0; scoring us
   than the self-evaluating LLM, and the two judges are strict along *different*
   dimensions. ⇒ All real-LLM ranking conclusions in this paper are valid under the
   same-protocol rule-judge, but **absolute scores must not be read as "human quality
+- [x] High-difficulty contest F11 (pre-reg git 262a39e): `bench_real_hle.py` (HLEJudge/HLEChecker atop hardened v3.2; z0/champs/gepa/espo arms; per-sample stream resume; thread-level hard timeout; stateless per-request `_fresh_http_call`); `gen_hle_dataset.py` (MIT upstream, stratified 30/30/30 seed=2026, bit-reproducible); subset committed at `datasets/hle_exact/`; results in `real_hle.json` (6 rows)
   scores"**; an independent third-party judge (not self-evaluation) remains a gap. The
   self-judge's leniency may also contain a model self-preference bias.
 - **F5 perturbation-robustness audit (first 20 cases of the financial
@@ -426,6 +427,90 @@ documents finish inside 150 tokens) while the starved holdout-20 scored .15 —
 truncation-difficulty asymmetry between a small validation set and holdout makes
 reflective optimizers adapt to the wrong regime; this is a concrete instance of
 the val/holdout common-pool clause of F8's failure-mode analysis.
+
+**F11 Headroom taxonomy: the HLE-exact high-difficulty contest (pre-registered P1
+branch hit).** `bench_real_hle.py`; pre-registration `docs/literature/F11-prereg.md`
+(git 262a39e, locked before any gepa/espo holdout number existed); dataset generator
+`scripts/gen_hle_dataset.py`.
+
+Motivation: after F1-F9 (no headroom) and F10 (physically unreachable headroom), one
+cell of the regime map remained untested on a real API — **reachable headroom**: does
+any optimizer family win when there is room and nothing structural blocks it? We strat-
+ify Humanities' Last Exam (cais/hle, MIT; arXiv 2501.14249) via its ungated text mirror
+(datasets-server pagination), filter to `exactMatch` answers of ≤40 chars (pool 1 710),
+draw 90 problems stratified over Mathematics/Physics/Chemistry/Other (seed 2026), and
+split 30/30/30 dev/validation/holdout. Grading reuses the hardened exact-match judge
+v3.2 from F6 verbatim; the task spec is the same strict-JSON `{answer}` protocol as
+external_math.
+
+Pilot (4 arms, same day, seed 921): zero-shot compiled base genome scores .3920
+(answer accuracy 3/30 = .10); the three cross-task transfer champions land at
+.3876–.4020 — statistically indistinguishable. Two priors die at once: (a) there is no
+protocol headroom — a strong reasoning model's JSON compliance is ~100% (the format
+gap is entirely network-error rows, not prompt defects); (b) genome structural priors
+transfer zero gain onto a knowledge-hard task — format genes have nothing to grab.
+The real headroom is accuracy (.10 against a ceiling near .4), putting all the
+discriminative pressure on the reflective pathways.
+
+Decisive matrix (6 arms, one paired batch, 12.5 h wall):
+
+| arm | holdout | acc/30 | fmt/30 | note |
+|---|---|---|---|---|
+| z0 (base genome) | .3920 | 3 | 25 | accuracy .10 |
+| math-champ (transfer) | .3876 | 2 | 26 | |
+| contract-champ | .4020 | 3 | 26 | |
+| financial-champ | .3876 | 2 | 26 | |
+| GEPA (val[:2] minibatch search + val[:8] selection, 64 rollouts, 20 iters) | .4120 | 3 | 27 | |
+| ESPO (val[:8] full evals, 4 biases, 64 rollouts) | .4020 | 3 | 26 | champion = z0 (bootstrap rejected all 4) |
+
+Arm spread .024; accuracy is 2–3/30 everywhere (binomial SE .055 at p=.10, n=30 —
+every pairwise accuracy difference is one-problem quantization noise). **Verdict:
+pre-registered branch P1 — under real-API reachable knowledge-type headroom, all six
+independent pathways tie again.**
+
+Mechanism evidence (the most informative part): (i) **GEPA genuinely learned domain
+content** — the 8 103-char champion prompt contains substantive rules distilled from
+validation failures (SMILES output conventions, molar-mass product-selection proce-
+dures, first-order-TDPT/Gaussian-pulse regime qualifiers, "no prose in symbolic
+answers"). Yet holdout accuracy is problem-identical to z0 (same 3 hits): prompt-level
+domain rules cannot cross the "the model cannot solve the problem" capability wall —
+**the reflective pathway's ceiling is the model's prior knowledge, not the search**.
+(ii) **ESPO's internal stability currency outputs "do nothing" when signal ≈ noise**:
+its best candidate (.512 on val-8) beat r0 (.453) but failed the bootstrap-75%
+stability test on all four → champion is the original prompt — consistent with F9,
+correct behavior. (iii) **A live case of single-point val overfitting**: mid-search
+GEPA converged to an 8 103-char prompt scoring 1.000 on the 2-problem validation
+minibatch by echoing that problem's near-full text. Had selection stayed on val[:2]
+(the compressed form of GEPA's original protocol under our cost budget), that would
+have shipped as champion. Protocol v2 (search on minibatch, **select on full val[:8]**)
+caught it — a second empirical instance of F10's small-val/holdout asymmetry lesson,
+this time with reflective content literally absorbed into the prompt. (The revision
+happened before any gepa/espo holdout number existed; it is a mechanism-bug fix, not
+outcome-driven; pre-registered verdict criteria unchanged.)
+
+Reliability engineering by-product: HLE full-thinking costs 60–640 s/problem and
+exposed three systemic defects in long-run harnesses — (a) tenacity retrying on a
+keep-alive connection whose first response packet the server silently drops (observed:
+0.72 s CPU across 5.25 h wall, zero response headers), fixed by stateless per-request
+connections (`_fresh_http_call`); (b) httpx read timeouts not firing on half-open
+proxy-CONNECT sockets, fixed by thread-level hard timeouts with detached executors;
+(c) no per-sample checkpointing, fixed by streamed append + resume. None of these
+affects F7-F10 conclusions (financial problems take <10 s and never entered the
+pathological regime); all three become prerequisite assets for the multi-model round.
+
+**Implication for the paper's claims.** Merging F11 with F1-F10 yields the complete
+headroom taxonomy — the discriminator for APO payoff is not whether headroom exists
+but **what kind**: (1) physical-truncation headroom (F10) is unreachable by any
+prompt; (2) knowledge-type headroom (F11) is unreachable by any prompt pathway
+(ability lives in weights; prompts can only reshuffle what the model already knows);
+(3) protocol/format headroom (F1-F9 saturated side + the weak-model simulation
+positive) is reachable and is exactly where structured genomes show their mechanism
+advantage (simulation +0.05). The financial battleground belongs to (3) but is
+saturated on a strong model — the self-consistent explanation of F1-F9's nulls. This
+reframes "APC vs X" into a prior judgement of **when no APO can win**: deployment
+procedure AutoAPC-Select (F8) gains a layer zero — run a headroom-type diagnostic
+first; if headroom is knowledge-type, the correct action is to change model or add
+retrieval, not to optimize the prompt.
 
 ## 4. Limitations
 

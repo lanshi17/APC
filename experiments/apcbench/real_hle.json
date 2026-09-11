@@ -97,6 +97,63 @@
     "-7686098",
     "-2945696"
    ]
+  },
+  {
+   "task": "hle_exact",
+   "seed": 921,
+   "method": "gepa",
+   "holdout_score": 0.412,
+   "n_acc": 3,
+   "n_format": 27,
+   "n": 30,
+   "rollouts_used": 62,
+   "elapsed_s": 26463.3,
+   "prompt_chars": 8103,
+   "fail_sample": [
+    "-1247604",
+    "-9064353",
+    "-3289604",
+    "71725146",
+    "45097283",
+    "-7974753",
+    "-3235032",
+    "-6471304",
+    "73968030",
+    "11804809"
+   ],
+   "validation_score": 1.0,
+   "iterations": 20
+  },
+  {
+   "task": "hle_exact",
+   "seed": 921,
+   "method": "espo",
+   "holdout_score": 0.402,
+   "n_acc": 3,
+   "n_format": 26,
+   "n": 30,
+   "rollouts_used": 40,
+   "elapsed_s": 18711.8,
+   "prompt_chars": 906,
+   "fail_sample": [
+    "-1247604",
+    "-9064353",
+    "-3289604",
+    "71725146",
+    "45097283",
+    "-7974753",
+    "-1949228",
+    "-3235032",
+    "-6471304",
+    "73968030"
+   ],
+   "validation_score": 0.4531,
+   "biases": [
+    "abstraction",
+    "simplification",
+    "exemplification",
+    "constraint-hardening"
+   ]
   }
  ]
 }
