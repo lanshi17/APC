@@ -278,9 +278,11 @@ def main() -> int:
 
     if "gepa" in arms:
         t0 = time.time(); b = RolloutBudget(max(args.rollouts, 64))
-        print(f"[{time.strftime(chr(37)+chr(37)+chr(58)+chr(37)+chr(77))}] gepa search start (val[:2], rollouts {max(args.rollouts,48)})", flush=True)
-        champ, cval, iters, used = gepa_search(client, spec, val[:2], z0_text, b,
-                                               random.Random(args.seed), hard=args.hard)
+        print(f"[{time.strftime('%H:%M')}] gepa search start (mb val[:2], select val[:8], rollouts {max(args.rollouts,64)})", flush=True)
+        pool, ci, cval, iters = gepa_search(client, spec, val[:2], z0_text, b,
+                                            random.Random(args.seed), hard=args.hard,
+                                            final_val=val[:8])
+        champ = pool[ci]["text"]
         (Path("/tmp") / f"hle_gepa_{args.seed}_champ.txt").write_text(champ, encoding="utf-8")
         b2 = RolloutBudget(10_000)
         sc, cases = run_eval(client, spec, hold, champ, b2, f"/tmp/hle_gepa_{args.seed}.jsonl",
