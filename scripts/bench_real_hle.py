@@ -113,12 +113,15 @@ def run_eval(client, spec, samples, prompt_text, budget, stream_path=None,
     if not stream_path:
         return eval_cases(client, spec, samples, prompt_text, budget)
     done = {}
+    done_by_doc = {}   # sid=hash(doc) 跨进程不稳定(PYTHONHASHSEED)——resume 以 doc 文本为准
     sp = Path(stream_path)
     if sp.exists():
         for line in sp.read_text(encoding="utf-8").splitlines():
             try:
                 c = json.loads(line)
                 done[c["sample_id"]] = c
+                if c.get("doc"):
+                    done_by_doc[c["doc"]] = c
             except Exception:
                 pass
     from apc.evaluation.runner import TrialScorer
@@ -145,6 +148,8 @@ def run_eval(client, spec, samples, prompt_text, budget, stream_path=None,
         sid = str(hash(smp["doc"]))[:8]
         if sid in done:
             cases.append(done[sid]); continue
+        if smp["doc"] in done_by_doc:
+            cases.append(done_by_doc[smp["doc"]]); continue
         prompt = prompt_text.replace("{{input}}", smp["doc"])
         try:
             call = _fresh(prompt, hard)
@@ -220,6 +225,8 @@ def main() -> int:
     ap.add_argument("--hard", type=float, default=330.0, help="thread 级硬超时(read timeout 对半开连接可失效)")
     ap.add_argument("--no-thinking", action="store_true",
                     help="关推理模型思考通路:题目仍难但单题成本 x10(协议余量主信号)")
+    ap.add_argument("--reuse-champs", action="store_true",
+                    help="gepa/espo 臂若 /tmp/hle_{arm}_{seed}_champ.txt 存在则跳过搜索直接评测(power 扩展轮用)")
     args = ap.parse_args()
 
     client = make_client(args.model, args.timeout)
@@ -278,29 +285,39 @@ def main() -> int:
 
     if "gepa" in arms:
         t0 = time.time(); b = RolloutBudget(max(args.rollouts, 64))
-        print(f"[{time.strftime('%H:%M')}] gepa search start (mb val[:2], select val[:8], rollouts {max(args.rollouts,64)})", flush=True)
-        pool, ci, cval, iters = gepa_search(client, spec, val[:2], z0_text, b,
-                                            random.Random(args.seed), hard=args.hard,
-                                            final_val=val[:8])
-        champ = pool[ci]["text"]
-        (Path("/tmp") / f"hle_gepa_{args.seed}_champ.txt").write_text(champ, encoding="utf-8")
+        cf = Path("/tmp") / f"hle_gepa_{args.seed}_champ.txt"
+        if args.reuse_champs and cf.exists():
+            champ, cval, iters = cf.read_text(encoding="utf-8"), None, None
+            print(f"[{time.strftime('%H:%M')}] gepa reuse champ {cf} ({len(champ)} chars), skip search", flush=True)
+        else:
+            print(f"[{time.strftime('%H:%M')}] gepa search start (mb val[:2], select val[:8], rollouts {max(args.rollouts,64)})", flush=True)
+            pool, ci, cval, iters = gepa_search(client, spec, val[:2], z0_text, b,
+                                                random.Random(args.seed), hard=args.hard,
+                                                final_val=val[:8])
+            champ = pool[ci]["text"]
+            cf.write_text(champ, encoding="utf-8")
         b2 = RolloutBudget(10_000)
         sc, cases = run_eval(client, spec, hold, champ, b2, f"/tmp/hle_gepa_{args.seed}.jsonl",
                            hard=args.hard, timeout=args.timeout)
-        persist(row_of("gepa", args.seed, sc, cases, t0, len(champ), b,
-                       {"validation_score": round(cval, 4), "iterations": iters}))
+        extra = {} if cval is None else {"validation_score": round(cval, 4), "iterations": iters}
+        persist(row_of("gepa", args.seed, sc, cases, t0, len(champ), b, extra))
 
     if "espo" in arms:
         from bench_real_espo import espo_run
         t0 = time.time(); b = RolloutBudget(max(args.rollouts, 64))
-        print(f"[{time.strftime('%H:%M')}] espo search start (val[:8], rollouts {max(args.rollouts,64)})", flush=True)
-        champ, cval, iters, used, biases = espo_run(client, spec, val[:8], z0_text, b, args.seed, hard=args.hard)
-        (Path("/tmp") / f"hle_espo_{args.seed}_champ.txt").write_text(champ, encoding="utf-8")
+        ef = Path("/tmp") / f"hle_espo_{args.seed}_champ.txt"
+        if args.reuse_champs and ef.exists():
+            champ, cval, biases = ef.read_text(encoding="utf-8"), None, []
+            print(f"[{time.strftime('%H:%M')}] espo reuse champ {ef} ({len(champ)} chars), skip search", flush=True)
+        else:
+            print(f"[{time.strftime('%H:%M')}] espo search start (val[:8], rollouts {max(args.rollouts,64)})", flush=True)
+            champ, cval, iters, used, biases = espo_run(client, spec, val[:8], z0_text, b, args.seed, hard=args.hard)
+            ef.write_text(champ, encoding="utf-8")
         b2 = RolloutBudget(10_000)
         sc, cases = run_eval(client, spec, hold, champ, b2, f"/tmp/hle_espo_{args.seed}.jsonl",
                            hard=args.hard, timeout=args.timeout)
-        persist(row_of("espo", args.seed, sc, cases, t0, len(champ), b,
-                       {"validation_score": round(cval, 4), "biases": biases}))
+        extra = {} if cval is None else {"validation_score": round(cval, 4), "biases": biases}
+        persist(row_of("espo", args.seed, sc, cases, t0, len(champ), b, extra))
 
     if "search" in arms:
         # 在线 genome 搜索臂留待多模型轮;F11 判别由 champs(预编译结构先验) vs
