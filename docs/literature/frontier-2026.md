@@ -121,6 +121,19 @@
 | **D-2** | **配对同日复测协议**（§3.4 F7：temp=0 推理模型跨日漂移 Δ.028 ⇒ 全部臂间比较以配对同日复测为准，同日带 ±.007） | **高（作为"提出协议"）／中（作为"移植+量化"）** | 同日重测作噪声地板已发表：[2608.00705]（same-day test-retest floor vs 11 周 κ 衰减，2026-08-01）；**matched same-model control forks 已发 COLM 2026**：[2608.08239]（含"temp=0 决定论依量化配置而变"）；"LLM 输出=分布抽样 + 报告标准"：[2607.24372]；"单 run 判分=噪声当安全属性"：[2606.26185]；版本时间戳协议：[2607.00297]；drift-aware protocol 措辞：[2511.04964]。temp=0 漂移存在性：[2408.04667]、[2604.27006]、Thinking Machines 2025-09。**未发现**的仅是：推理模型×APO 臂比较场景下的"跨日/同日显式分解 + 协议化条款"。 | **必改措辞**：全文（含摘要/贡献列表）"发现……故以配对同日复测为准"保留事实陈述，删除任何"首次提出协议"式表述；改为 "we quantify the drift/within-day split (.028 vs .007) for reasoning-model APO and institutionalize paired same-day reruns as a protocol clause, building on same-day-floor practice [2608.00705, 2608.08239]"。**必引 6 条**：2608.00705、2608.08239、2607.24372、2606.26185、2408.04667、2604.12951（verification floors 理论正名 tie-break）。**加分**：引 [2608.08239] 的"FP8/AWQ 决定论差异"提示 APC 应报告服务端精度/批配置（审稿人可查点）。 |
 | **D-3** | **AutoAPC-Select 门控**（F8：免费同日 val 分数 argmax + 噪声带内奥卡姆 tie-break；离线回放零额外 rollout；5/6 落带内、4/6 中 oracle、种子崩溃零 regret 救回；已刻画失效=val 小样本高估） | **中低** | 门控家族拥挤但无同组合：PROCTOR 确定性验收层（[2609.02246]）；RLMOpt 确定性 harness（regression constraints，[2608.10471]）；ESPO bootstrap stability selection（[2609.04197]——"重采样内稳"与 APC"外生漂移带内稳"是两种 tie-break 货币）；ICLR 2026 best-feasible/Pareto bandits（[2605.14553]——理论化选择但需采样预算）；TARA 单修复 accept-or-revert；SSO 无标签验证接受律。"以实测同日噪声带为 tie-break 宽度 + 奥卡姆序 + 零边际成本离线回放"三件套未见前例；verification-tax（[2604.12951]）给带内不可分以理论必然性。 | **必引 5 条**（PROCTOR、RLMOpt、ESPO、2605.14553、2604.12951），并在 §F8 加 3 行对比段：vs ESPO（外生漂移带 vs 内生重采样、零额外调用 vs 重评估预算）；vs bandits（免费分数 ⇒ 无需探索预算，但假设同日 val 分数存在——与 [2607.28777] 的无标签域互补划界）。**可安全主张**：零 regret 种子崩溃救回是 APC 独有的实证卖点（RLMOpt 只是"never underperformed seed"的顺带观察，无门控机制）。若预算允许，补一个小对照（AutoAPC vs 纯 argmax vs MIPROv2 式验证选择）把"奥卡姆 tie-break 起作用"变成受控证据——审稿人最可能点的软肋是 6 组回放样本量。 |
 
+### E. F11 新增引用锚（2026-09-12 补，HLE 对垒后）
+
+| 锚 | 用途 | 状态 |
+|---|---|---|
+| Nguyen et al., *Humanity's Last Exam*, arXiv 2501.14249（cais/hle, MIT） | F11 数据集主引 | 摘要级核实(HF API license:mit 实测 2026-09-11) |
+| gpqa (arXiv 2311.12022) | 高难知识任务先行者（F11 段可选引:知识墙现象在其 pilot 已有同向证据） | [未核实-旧文] |
+| MMLU-Pro (arXiv 2406.01376)? 同类 saturation 讨论 | Related Work headroom 段 | [未核实] |
+
+**F11 撞车自查**：检索"prompt optimization knowledge headroom / capability wall"（2026
+API 摘要级）未见同表述判据（"headroom 类型学 + 部署前诊断"组合）；GEPA 官方论文讨论
+反思在 reasoning 任务的收益但未给出不可达判据——本文 F11 的机制证据（反思学到内容
+规则仍零增益）是**对反思类 APO 的强约束性结果**，投稿版应在 §5 Discussion 首段立住。
+
 ### D 附. 冲刺清单（合并去重后）
 - **必须新增对比（同协议/同预算）**：① ESPO（EMNLP 2026 main、公开最强 GEPA 后继）；② SEPO（结构化编辑直系竞品）；③ GEPA v2/ICLR-Oral 版（复现更新）；④ MAGE 框架下稳定性双报（性能+方差）格式对齐；⑤（可选）p1 的组间/响应方差分解图——F7 regime 论证。
 - **必引**（正文按节布点）：A 节 = 2507.19457、2605.12484、2608.28067、2608.11219、2605.28360、2609.00621、2609.04197、2608.27266、2607.11944、2604.08801、2608.10471、2606.19605、2608.04336、2605.14553、2607.23982；B 节 = 2408.04667、2606.26185、2607.24372、2608.11803、2607.00297、2608.00705、2608.08239、2606.19544、2604.12951、2511.04964、Thinking Machines 2025-09；C 节 = 2609.02246、2607.11944、2604.08801、2607.16001、2601.21064、2603.28038。
