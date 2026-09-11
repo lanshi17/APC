@@ -560,6 +560,45 @@ flowchart TD
     P --> X3[Action: the APO-valid domain<br/>AutoAPC-Select gate (F8) picks the arm]
 ```
 
+### 3.4n F11-C locus attribution: which genes carry load on a knowledge-wall task
+(n=8, C1 auditability measured)
+
+Method: each of the six active base-genome loci (role / output-schema / verification /
+reasoning / layout / constraints) is switched to its inert value within the legal
+enumeration; variants (729-867 chars vs base 906) are re-evaluated on the same first
+8 holdout problems as the main table (same judge v3.2, same connection pipeline;
+`bench_hle_ablation.py`, results in `real_hle_ablation.json`).
+
+| arm | score | acc | fmt |
+|---|---|---|---|
+| base | .4531 | 1/8 | 8/8 |
+| minus-role | .4612 | 1/7 | 7/7 |
+| minus-layout | .4531 | 1/8 | 8/8 |
+| minus-output | .4000 | 0/8 | 8/8 |
+| minus-verification | .4000 | 0/7 | 7/7 |
+| minus-reasoning | .4000 | 0/7 | 7/7 |
+| minus-constraints | .4000 | 0/8 | 8/8 |
+
+Three readings. **(1) role and layout are zero-contribution loci** — the ±.008 is
+prompt-length efficiency plus one-problem jitter, with no directional signal; persona
+and delimiter structure carry no load on a strong model's knowledge task, the inert
+side of the compilation rule "JSON reliability > .96 ⇒ schema text may be relaxed".
+**(2) Four loci jointly carry the only solvable problem**: deleting output, verification,
+reasoning or constraints flips that problem's accuracy 1→0. The mechanism is answer
+extractability, not capability (e.g. removing the reasoning instruction slides the
+model from a JSON final answer into prose hedging that extract_pred cannot match):
+under a knowledge wall, structural genes earn their keep by *not losing problems the
+model can already do*, not by making more problems solvable. **(3) With the output
+schema removed, format compliance stays 8/8** — a strong model's protocol compliance
+does not come from the output locus; this drills F11's "protocol headroom ≈ 0" one
+layer deeper: the very gene the compiled prompt leans on is itself belt-and-braces
+redundancy. **Resolution statement**: at n=8 one problem is one full score step; this
+table is read for direction, not magnitude — the true locus-attribution regime is
+weak model + protocol pressure (multi-model round). For C1: every reading above comes
+from a three-layer auditable chain — locus → text diff → per-problem outcome. Even
+when the verdict is "the genes are worth exactly one bit," the attribution being
+auditable at all is the dividend structured representation pays over free-text prompts.
+
 ## 4. Limitations
 
 1. Real-model phase is single-model (whitelist key); the seed axis is covered

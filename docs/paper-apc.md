@@ -427,6 +427,36 @@ flowchart TD
     P --> X3[动作: APO 有效域<br/>AutoAPC-Select 门控 F8 选臂]
 ```
 
+### 3.4n F11-C 位点归因：知识墙任务上哪些基因在承重（n=8，C1 可审计性实测）
+
+方法：base genome 六个生效位点（role / output-schema / verification / reasoning /
+layout / constraints）各自关到合法枚举内的惰性值，编译成 729-867 字符变体（base 906），
+在主表同一 holdout 前 8 题重评（同判分器 v3.2、同连接管线；`bench_hle_ablation.py`，
+结果 `real_hle_ablation.json`）。
+
+| 臂 | score | acc | fmt |
+|---|---|---|---|
+| base | .4531 | 1/8 | 8/8 |
+| minus-role | .4612 | 1/7 | 7/7 |
+| minus-layout | .4531 | 1/8 | 8/8 |
+| minus-output | .4000 | 0/8 | 8/8 |
+| minus-verification | .4000 | 0/7 | 7/7 |
+| minus-reasoning | .4000 | 0/7 | 7/7 |
+| minus-constraints | .4000 | 0/8 | 8/8 |
+
+三个读数：**(1) role/layout 是零贡献位点**——±.008 由字符差的效率维与一题波动构成，
+无方向信号；persona 与分隔结构在强模型知识任务上不承重，与编译规则
+"JSON 可靠度 >.96 → 可降低 schema 描述"的惰性侧一致。**(2) 四个位点
+（output/verification/reasoning/constraints）共同承着唯一可答题**：任一删除后该题
+acc 1→0——机制是**答案可提取性**而非能力（如删 reasoning 使模型从 JSON 终答滑向
+散文对冲，extract_pred 难以命中）：知识墙下结构基因的价值 = 不错过模型已会的题，
+而非提高会题概率。**(3) 删 output schema 后 fmt 仍 8/8**——强模型的协议合规不来自
+output 位点，F11 pilot 的"协议余量≈0"再下钻一层：编译 prompt 所依赖的那条基因本身
+是双保险冗余件。**分辨率声明**：n=8 下 1 题即一档分值，本表读方向不读幅度；真正
+的位点归因主场在弱模型+协议压力格（多模型轮）。对 C1 的意义：以上每条读数都来自
+位点→文本 diff→逐题结果三层可审计联动——即便结论是"基因价值只有一个 bit"，
+归因本身可审计正是结构化表示相对自由文本 prompt 的红利。
+
 ## 4. Limitations（投稿前必须解决）
 
 1. **真实 LLM 验证为单模型**（§3.4）：qwen3.8-flash × 3 任务 + 跨任务迁移 +
@@ -481,6 +511,8 @@ flowchart TD
   对思考模式不敏感 .6938 带内 → 方向闭合）
 - [x] 论文数字审计脚本 `audit_paper_numbers.py`：核心引用值三方核对（json↔zh↔en），
   映射陷阱已固化（espo 行在 real_gepa.json、F10 在 `*_mt150.json`、同日带在 z0-control 行）
+- [x] 位点归因消融 `bench_hle_ablation.py`（六惰性位点 × holdout 前 8 题，双流写竞争后按
+  stream+TrialScorer 权威重建）→ §3.4n
 - [x] confirmatory n=100 扩展（holdout 追加 70 题 pool 比例配额 seed 2027、`--reuse-champs`、
   doc-keyed resume、三路批次 + `merge_hle_ext.py` Wilson/McNemar）；genome 位点归因消融
   （`bench_hle_ablation.py` 六惰性位点 × 前 8 题，C1 量化）——两批运行中
