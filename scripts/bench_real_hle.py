@@ -272,12 +272,14 @@ def main() -> int:
                            hard=args.hard, timeout=args.timeout)
         persist(row_of("z0", args.seed, sc, cases, t0, len(z0_text), b))
 
-    if "champs" in arms:
-        for nm, fn in (("math-champ", "real_math_champ.json"),
-                       ("contract-champ", "real_contract_champ.json"),
-                       ("financial-champ", "real_financial_champ.json")):
+    CHAMPS = {"math-champ": "real_math_champ.json",
+              "contract-champ": "real_contract_champ.json",
+              "financial-champ": "real_financial_champ.json"}
+    champ_arms = [nm for nm in arms if nm in CHAMPS]
+    if "champs" in arms or champ_arms:
+        for nm in (list(CHAMPS) if "champs" in arms else sorted(champ_arms)):
             t0 = time.time(); b = RolloutBudget(10_000)
-            g = PromptGenome.model_validate_json((CHAMPS_DIR / fn).read_text(encoding="utf-8"))
+            g = PromptGenome.model_validate_json((CHAMPS_DIR / CHAMPS[nm]).read_text(encoding="utf-8"))
             text = compile_for(g, spec, profile, compiler)
             sc, cases = run_eval(client, spec, hold, text, b, f"/tmp/hle_{nm}_{args.seed}.jsonl",
                                hard=args.hard, timeout=args.timeout)
