@@ -10,7 +10,7 @@
 [![Java](https://img.shields.io/badge/Java-17-007396?logo=openjdk&logoColor=white)](https://openjdk.org/)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.3-6DB33F?logo=springboot&logoColor=white)](https://spring.io/projects/spring-boot)
 [![LangGraph](https://img.shields.io/badge/LangGraph-1.0-1C3C3C)](https://github.com/langchain-ai/langgraph)
-[![Tests](https://img.shields.io/badge/tests-40%20passed-brightgreen)](apc-pipeline/tests/)
+[![Tests](https://img.shields.io/badge/tests-41%20passed-brightgreen)](apc-pipeline/tests/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 </div>
@@ -141,8 +141,10 @@ apc migrate run --task financial_report_analysis_v1 --source-model glm --target-
 ```
 
 结果入库 `experiments/apcbench/real_*.json`,冠军 genome 入库 `artifacts/optimizations/real_*_champ*.json`。
-真实模型发现(双饱和天花板、规则先验负债、无损失下限、迁移零损耗、判分器分歧)见
-[docs/paper-apc.md](docs/paper-apc.md) §3.4 F1–F5。
+真实模型发现(F1–F11:饱和天花板、规则先验负债、GEPA/ESPO 官方基线对垒全平、token-starved
+判别实验、HLE-exact 高难对垒与 headroom 类型学)见
+[docs/paper-apc.md](docs/paper-apc.md) §3.4。完整复现序列(离线层 + 真实 API 层、断点续跑
+与配对同日等坑位注记)见 [REPRODUCE.md](REPRODUCE.md)。
 
 ### 4. LangGraph 可视化
 
@@ -155,7 +157,7 @@ python -m apc.graph --visualize  # 输出 Mermaid 图
 
 ```bash
 cd apc-pipeline
-pytest tests/ -q     # 40 个测试,全 Mock,无网络
+pytest tests/ -q     # 41 个测试,全 Mock,无网络
 ```
 
 ## 核心概念
