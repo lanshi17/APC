@@ -468,6 +468,16 @@ every pairwise accuracy difference is one-problem quantization noise). **Verdict
 pre-registered branch P1 — under real-API reachable knowledge-type headroom, all six
 independent pathways tie again.**
 
+**Statistical power disclosure**: at n=30 the binomial resolution on accuracy is
+one problem = .033 (SE ≈ .055 at p≈.10); the "all-tie" verdict reliably excludes
+large effects (≥2SE ≈ .11 acc, i.e. +3 problems), not true gains of 1-2 problems.
+The conclusion's real strength is triple redundancy: the arm band (.024 wide),
+problem-level agreement (GEPA's 3 hits are z0's exact 3 hits), and the mechanism
+evidence (learned content rules with zero transfer). Any one alone would be
+underpowered; together they point the same way. Hardening paths for the camera-ready:
+expand holdout to n≥100 (pool of 1 710 suffices) or trade thinking budget for problem
+count — both can only strengthen, not reverse, the verdict.
+
 Mechanism evidence (the most informative part): (i) **GEPA genuinely learned domain
 content** — the 8 103-char champion prompt contains substantive rules distilled from
 validation failures (SMILES output conventions, molar-mass product-selection proce-
