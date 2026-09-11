@@ -1,8 +1,10 @@
 # APC: Profile-Guided Compilation and Evolution of Model-Specific Prompts
 
 *Working English manuscript v0.3 — full F1-F11 chain mirrored from
-`paper-apc.md` (Chinese master). Experiment numbers cited here are final as of
-v0.4; full English §3 (simulation + real-LLM F1-F7 incl. GEPA head-to-head & variance audit). Venue target: EMNLP/NeurIPS-style.*
+`paper-apc.md` (Chinese master): simulation §3.1-3.3, real-API §3.4 (zero-shot floor,
+transfer champions, GEPA/ESPO official baselines, F10 pre-registered discriminative
+experiment, F11 headroom-taxonomy contest), C1-C5 contributions, six-item limitations.
+Numbers traceable to `experiments/apcbench/*.json`. Venue target: EMNLP/NeurIPS-style.*
 
 **Abstract.** APC turns prompts from hand-written text into compilable engineering
 objects: a task specification (TaskSpec) compiles, together with an explicit
