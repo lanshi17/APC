@@ -633,3 +633,36 @@ Judge defensibility precedents: the Papers-with-Code official exact-match stack,
 NaturalQuestions extractive scoring, and GRADLE (2310.02839) on judge robustness
 metrics — our hardened v3.2 judge belongs to that lineage, and the F6 repair log
 contributes failure-mode instances to it.
+
+## 7. References (keys = in-text citations; titles abbreviated to in-text usage —
+camera-ready to re-verify each against the arXiv API)
+
+**Classic lineage** — APE (2211.01910) · OPRO (2309.03409) · APO/ProTeGi (2305.03495) ·
+PromptBreeder (2303.16199) · EvoPrompt (2309.08532) · PromptWizard (2405.18366) ·
+DSPy (2310.03714) / MIPROv2 (2406.11695) · FrugalGPT (2305.05176) · RouteLLM
+(2406.18665) · HELM (2211.09110) · FLASK (2307.10928) · Sclar et al. format sensitivity
+(2311.05661) · GEPA (2507.19457, ICLR 2026 Oral; official Algorithm 1 reproduced in F7).
+
+**Benchmarks** — GSM8K (2110.14168) · MATH (2103.03874) · AIME (MAA archives, no
+preprint) · GPQA (2311.12022) · MMLU-Pro (2406.01376) · HLE (2501.14249, MIT; F11
+source) · GRADLE (2310.02839, judge robustness).
+
+**2026 frontier (cited subset of the 50-entry frontier-2026.md snapshot)** —
+structured camp: SEPO typed-unit local editing (2608.28067) · SAPO segmentation
+(2608.11219) · PCO codebook (2605.28360) · control/data-flow separation (2609.00621,
+EMNLP26 Findings) · DUALFIX rule evolution (2607.05121). Pathology & selection: ESPO
+(2609.04197, EMNLP26 main; reproduced in F9) · NPO (2608.27266) · MAGE variance
+amplification (2607.11944) · p1 response-variance dominance (2604.08801) · Textual
+Bayes (2506.10060) · best-feasible bandits (2605.14553, ICLR26). Failure modes &
+gates: PROCTOR 11 evaluation-signal pathways (2609.02246) · RLMOpt seed-undercut
+(2608.10471) · TARA accept-or-revert (2607.18724) · SSO label-free acceptance
+(2607.28777) · Contrastive Reflection (2606.30840). Compilation & carriers:
+Instruction Stacking Collapse (2608.02639) · PromptBridge cross-model drift
+(2512.01420) · CAPO constraint-aware (2608.16068). Reliability: same-day retest floor
+(2608.00705) · matched-control forks (2608.08239, COLM26) · temp=0 nondeterminism
+(2408.04667) · scoring noise as safety property (2606.26185) · output-as-distribution
+sampling (2607.24372) · version-timestamp protocol (2604.12951).
+
+*All 2026 entries verified at abstract level via the arXiv API (docs/literature/
+frontier-2026.md, 2026-09-09/12); PDF-level re-verification is on the pre-submission
+checklist.*

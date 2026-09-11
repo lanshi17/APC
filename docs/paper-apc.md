@@ -527,3 +527,32 @@ ICLR26）。GEPA 本体已升 ICLR 2026 Oral（v2 2026-02-14）。
 判分器可辩护性先例：Papers with Code 官方 exact-match 代码、NaturalQuestions 抽取
 式判分、GRADLE（2310.02839）判分器鲁棒性度量学——本文 v3.2 hardened judge 属该
 谱系（§3.4 F6 修复记录为其提供故障模式实例）。
+
+## 7. References（键值即正文引用；标题为正文口径缩写，camera-ready 以 arXiv API 逐条二校）
+
+**经典谱系** — APE（2211.01910）· OPRO（2309.03409）· APO/ProTeGi（2305.03495）·
+PromptBreeder（2303.16199）· EvoPrompt（2309.08532）· PromptWizard（2405.18366）·
+DSPy（2310.03714）/ MIPROv2（2406.11695）· FrugalGPT（2305.05176）· RouteLLM
+（2406.18665）· HELM（2211.09110）· FLASK（2307.10928）· Sclar et al. 格式敏感
+（2311.05661）· GEPA（2507.19457，ICLR 2026 Oral；F7 官方 Algorithm 1 复现）。
+
+**评测集** — GSM8K（2110.14168）· MATH（2103.03874）· AIME（MAA 题库，无预印本）·
+GPQA（2311.12022）· MMLU-Pro（2406.01376）· HLE（2501.14249，MIT；F11 数据源）·
+GRADLE（2310.02839，判分器鲁棒性）。
+
+**2026 前沿（frontier-2026.md 50 条快照之被引子集）** —
+结构化阵营：SEPO typed 单元局部编辑（2608.28067）· SAPO 分段（2608.11219）·
+PCO 码本（2605.28360）· 控制/数据流分离（2609.00621，EMNLP26 Findings）·
+DUALFIX 规则演化（2607.05121）。病理与选择：ESPO（2609.04197，EMNLP26 main；F9
+复现）· NPO（2608.27266）· MAGE 方差放大（2607.11944）· p1 响应方差主导（2604.08801）·
+Textual Bayes（2506.10060）· best-feasible bandits（2605.14553，ICLR26）。失败模式与
+门控：PROCTOR 评估信号 11 通路（2609.02246）· RLMOpt 种子跌破（2608.10471）· TARA
+accept-or-revert（2607.18724）· SSO 无标签接受律（2607.28777）· Contrastive
+Reflection（2606.30840）。编译与载体：Instruction Stacking Collapse（2608.02639）·
+PromptBridge 跨模型漂移（2512.01420）· CAPO 约束感知（2608.16068）。可靠性：
+same-day retest floor（2608.00705）· matched-control forks（2608.08239，COLM26）·
+temp=0 非确定性（2408.04667）· 判分噪声当安全属性（2606.26185）· 输出=分布抽样
+（2607.24372）· 版本时间戳协议（2604.12951）。
+
+*全部 2026 条目经 arXiv API 摘要级核实（docs/literature/frontier-2026.md，2026-09-09/12）；
+PDF 级二校列入投稿前清单。*
