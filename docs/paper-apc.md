@@ -479,6 +479,12 @@ flowchart TD
   reeval/gepa/espo（仅任务评测受限、优化器元调用全预算），输出隔离 `real_gepa_mt150.json`
 - [x] 弱 regime 探路：`--no-thinking`（DashScope enable_thinking 透传；实测 financial
   对思考模式不敏感 .6938 带内 → 方向闭合）
+- [x] 论文数字审计脚本 `audit_paper_numbers.py`：核心引用值三方核对（json↔zh↔en），
+  映射陷阱已固化（espo 行在 real_gepa.json、F10 在 `*_mt150.json`、同日带在 z0-control 行）
+- [x] confirmatory n=100 扩展（holdout 追加 70 题 pool 比例配额 seed 2027、`--reuse-champs`、
+  doc-keyed resume、三路批次 + `merge_hle_ext.py` Wilson/McNemar）；genome 位点归因消融
+  （`bench_hle_ablation.py` 六惰性位点 × 前 8 题，C1 量化）——两批运行中
+- [x] 双盲打包 `make_anon_bundle.sh`：HEAD 快照+身份/密钥词边界硬扫描（误报已修两类）
 - [x] 高难对垒 F11（预注册 git 262a39e）：`bench_real_hle.py`（HLEJudge/HLEChecker 适配
   hardened v3.2 + z0/champs/gepa/espo 臂 + per-sample stream 断点续跑 + 线程级硬超时 +
   每请求无状态连接 `_fresh_http_call`）；`gen_hle_dataset.py`（MIT 上游、分层 30/30/30
