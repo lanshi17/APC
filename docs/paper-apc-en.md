@@ -618,3 +618,18 @@ f(seed headroom), neighboring our rule-root bimodality); reliability precedents
 2604.12951 (F7 clause chain); theoretical cousins Textual Bayes (2506.10060) and
 best-feasible bandits (2605.14553, ICLR 2026). GEPA itself is now ICLR 2026 Oral
 (v2, 2026-02-14).
+
+Hard benchmarks and the headroom lineage: HLE (2501.14249, MIT) reports ~10%
+frontier-model accuracy and explicitly notes the gap is not closable by prompting;
+GPQA (2311.12022) pioneered the graduate-level, no-internet difficulty design;
+MMLU-Pro (2406.01376) pushes saturated suites toward real discrimination. These
+works treat "the model cannot answer" as a capability measurement; F11 turns it into
+an APO-methodology criterion — knowledge-type headroom being unreachable by prompt
+pathways is a prior-diagnosable mechanistic fact (six arms + mechanism evidence),
+with physical-truncation (F10) and protocol-type (F1-F9/simulation) headroom each
+carrying their own diagnostic signal; the merged taxonomy is a systematic correction
+to the APO default assumption that "headroom exists ⇒ optimization is viable."
+Judge defensibility precedents: the Papers-with-Code official exact-match stack,
+NaturalQuestions extractive scoring, and GRADLE (2310.02839) on judge robustness
+metrics — our hardened v3.2 judge belongs to that lineage, and the F6 repair log
+contributes failure-mode instances to it.
