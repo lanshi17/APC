@@ -1,5 +1,5 @@
 # APC: Profile-Guided Compilation and Evolution of Model-Specific Prompts
-### （工作草稿 v0.2：方法 + 四任务受控实验 + 诚实局限；非投稿版）
+### （工作草稿 v0.3：方法 + 四任务受控实验 + 真实 API F1-F11 全闭环（含 headroom 类型学与 C1-C5 贡献重排）+ 诚实局限；多模型验证待第二把 key）
 
 **摘要**：APC 把 prompt 从手工文本变成可编译的工程对象：任务规格（TaskSpec）→
 离散基因组（PromptGenome，10 基因）→ 显式模型画像（ModelProfile，15 维）→
@@ -430,11 +430,8 @@ AutoAPC-Select（F8）之外再加一层部署前诊断：**若 headroom 属知�
 4. **SHA 消融两面**：财务任务 full≡no-halving（零结果）；约束任务上
    SHA 代价 −0.0235（显著），而 rules 消融仍为零（base 已满足规则）。
    SHA 的取舍与任务结构有关，非普适加速器。
-6. **SEPO 对垒留投稿期**：结构化直系竞品 SEPO（arXiv 2608.28067）未做真实 API 对垒——
-   F10 regime map 推定其在 financial（headroom 不存在）上同为 null；有判别力的对照需
-   弱模型或高难任务（依赖第二把 key，同 #1）。GEPA+ESPO 双强基线 + 四独立通路 null
-   已构成 §3.4 的基线覆盖主张。
-5. **Judge 可靠性（已量化,见 §3.4 F4）**：开放维度 rule-judge 与 self-LLM-judge
+5. **SEPO 对垒留投稿期**：结构化直系竞品 SEPO（arXiv 2608.28067）未做真实 API 对垒——F11 机制证据（反思通路学到领域内容规则仍零迁移）把同判据外推到一切编辑粒度变体：知识型 regime 下 SEPO 预期同为 tie，financial 饱和 regime 下预期为 null——两个 regime 的判别力均已被现有基线覆盖用完；对 SEPO 的增量检验只剩"弱模型+协议压力"格（依赖第二把 key，同 #1）。GEPA+ESPO 双强基线 + 四独立通路 null 已构成 §3.4 的基线覆盖主张。
+6. **Judge 可靠性（已量化,见 §3.4 F4）**：开放维度 rule-judge 与 self-LLM-judge
    系统性分歧（accuracy 0.21 vs 0.83），排序结论依赖同口径比较；独立第三方
    judge 与人工 spot-check（50–100 例）仍缺。
 

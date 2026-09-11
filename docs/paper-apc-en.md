@@ -1,6 +1,6 @@
 # APC: Profile-Guided Compilation and Evolution of Model-Specific Prompts
 
-*Working English manuscript v0.1 — sections with stable content translated from
+*Working English manuscript v0.3 — full F1-F11 chain mirrored from
 `paper-apc.md` (Chinese master). Experiment numbers cited here are final as of
 v0.4; full English §3 (simulation + real-LLM F1-F7 incl. GEPA head-to-head & variance audit). Venue target: EMNLP/NeurIPS-style.*
 
@@ -559,7 +559,8 @@ retrieval, not to optimize the prompt.
    multimodal real tasks with heterogeneous profiles.
 4. SHA is task-structure-dependent: −0.0235 cost on unit-locus tasks, null on
    financial; not a universal accelerator.
-5. Judge reliability quantified in F4/F6: ordering conclusions hold under a
+5. SEPO head-to-head deferred to submission: the structured-editing direct competitor SEPO (arXiv 2608.28067) has no real-API run. F11's mechanism evidence (reflection learned domain content rules, transferred zero) extends the same argument to every editing-granularity variant: under knowledge-type headroom SEPO is predicted to tie, under the saturated financial regime to be null — both cells' discriminative power is already consumed by the GEPA+ESPO four-pathway coverage. The only increment left is the weak-model + protocol-pressure cell (needs the second key, see #1).
+6. Judge reliability quantified in F4/F6: ordering conclusions hold under a
    fixed judge; absolute scores are not human-quality scores; independent
    third-party judge and 50–100-case human spot-check still missing.
 
