@@ -547,6 +547,19 @@ procedure AutoAPC-Select (F8) gains a layer zero — run a headroom-type diagnos
 first; if headroom is knowledge-type, the correct action is to change model or add
 retrieval, not to optimize the prompt.
 
+The taxonomy as one regime map:
+
+```mermaid
+flowchart TD
+    A[Before deployment: headroom-type diagnostic<br/>per-problem z0 triage] --> B{Which dimension is missing?}
+    B -->|acc gap = model cannot| K[Knowledge-type F11 HLE acc .10<br/>all six arms tie; reflection learned content rules, transferred zero]
+    B -->|acc gap = token truncation| T[Physical-truncation F10 max_tokens 150<br/>six pathways pinned at judge floor .15]
+    B -->|acc fine, protocol violated| P[Protocol/format F1-F9 financial<br/>saturated -> all tie; unsaturated weak model -> structured +0.05]
+    K --> X1[Action: change model / add retrieval / fine-tune<br/>prompt optimization = zero payoff]
+    T --> X2[Action: raise budget / shrink input<br/>unreachable by any prompt pathway]
+    P --> X3[Action: the APO-valid domain<br/>AutoAPC-Select gate (F8) picks the arm]
+```
+
 ## 4. Limitations
 
 1. Real-model phase is single-model (whitelist key); the seed axis is covered
