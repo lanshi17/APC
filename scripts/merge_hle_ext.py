@@ -69,12 +69,16 @@ def main() -> int:
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
 
-    if EXT.exists():
-        ext = json.loads(EXT.read_text(encoding="utf-8"))
-        rows = {r["method"]: r for r in ext["rows"]}
-    else:
-        rows = {}
-        print("(ext json 未生成——批次未跑完,仅 stream 分析)")
+    rows = {}
+    for f in sorted(REPO.glob("experiments/apcbench/real_hle_ext.json")) + sorted(
+            REPO.glob("experiments/apcbench/ext_*.json")):
+        try:
+            for r in json.loads(f.read_text(encoding="utf-8")).get("rows", []):
+                rows[r["method"]] = r   # per-arm 文件布局:一臂一文件,z0 在 real_hle_ext.json
+        except FileNotFoundError:
+            pass
+    if not rows:
+        print("(ext 行未生成——批次未跑完,仅 stream 分析)")
     streams = load_streams()
 
     print("== per-arm (n per stream, err-rows excluded) ==")
