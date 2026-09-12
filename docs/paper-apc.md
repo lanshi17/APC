@@ -414,6 +414,12 @@ keep-alive 死连接"上连环重试（实测 0.72s CPU / 5.25h wall 零响应�
 导致断点全毁，补 per-sample stream checkpoint + resume。三项修复对 F7-F10 结论无影响
 （financial 批次单题 <10s 未触发该域），但成为多模型轮的前置资产。
 
+**F11-R 可复现性扩展（seed 923 批次附带）**：同一 `real_hle.json` 现含双层数字——
+n=30 预注册主判定（seed 921）+ n=100 confirmatory（seed 923，行内 `n`/`seed` 字段区分）；
+per-arm 文件布局（`ext_<arm>.json`）+ `merge_hle_ext.py` 6 行完整性断言守卫 +
+stream-authoritative 重建（run_eval 行含全部分数维，`TrialScorer` 可精确复算
+holdout——消融轮的双流写竞争实际发生、被该路径完全恢复，重建即入 harness 标准流程）。
+
 **对论文主张的意义**：F11 与 F1-F10 合并得到完整的 **headroom 类型学**——
 APO 收益的判别式不是"headroom 是否存在"而是 **headroom 的类型**：
 (1) 物理截断型（F10 token-starved）——任何 prompt 不可达；
