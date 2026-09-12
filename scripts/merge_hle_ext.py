@@ -51,7 +51,7 @@ def load_streams() -> dict[str, dict[str, dict]]:
             out[arm] = {}
             continue
         by_doc: dict[str, dict] = {}
-        for line in sp.read_text(encoding="utf-8").splitlines():
+        for line in sp.read_text(encoding="utf-8").split("\n"):
             try:
                 r = json.loads(line)
             except json.JSONDecodeError:
