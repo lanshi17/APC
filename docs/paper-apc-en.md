@@ -521,11 +521,18 @@ content-rule mechanism evidence (learned TDPT/SMILES rules), it stays below the
 significance bar — exactly the magnitude the taxonomy predicts: content learning
 can drift a few individual problems but cannot buy systematic capability;
 (ii) an ERROR-TYPE STRATIFICATION — network failures were recovered by the backfill
-(18-25% → 6-19% residual), and the final six problems fail on ALL six arms:
-long-derivation items (Go-board life-and-death, n×n grid combinatorics) whose
-reasoning chains exceed the client-side 640 s / 2000-token budget — physical-
-truncation headroom projected INSIDE individual problems of a knowledge-wall task,
-a decidable timeout cell within the taxonomy. The conclusion stands unrewritten:
+(18-25% → 6-19% residual), and the final six problems fail on ALL six arms with a
+non-random pattern: free-group commutator length, percolation-on-a-grid proof,
+point-tuple counting, a Minecraft acquisition ordering, a triangle-mesh item (its
+diagram is not rendered in text), and Go-board life-and-death coordinates — three
+families in full: STATE-SPACE SEARCH / SPATIAL REASONING / COMBINATORIAL PROOF.
+Short exact answers (≤40 chars) atop unboundedly long derivation chains necessarily
+exceed the 640 s / 2000-token client budget, and their input lengths are NOT
+materially larger than solved problems (median 470 vs 409), ruling out the surface
+long-stem explanation. This is physical-truncation headroom projected INSIDE
+individual problems of a knowledge-wall task: the two taxonomy walls can stack onto
+one problem, and the stacked cell is recognizable a priori from problem type
+(search/spatial/combinatorial → budget-class; pure-fact → knowledge-class). The conclusion stands unrewritten:
 six arms statistically tie under knowledge-type headroom, and "reflection learns
 rules at the wall but cannot buy capability" is now independently confirmed in two
 rounds (n=30 primary, n=100 confirmatory).
@@ -585,6 +592,7 @@ flowchart TD
     K --> X1[Action: change model / add retrieval / fine-tune<br/>prompt optimization = zero payoff]
     T --> X2[Action: raise budget / shrink input<br/>unreachable by any prompt pathway]
     P --> X3[Action: the APO-valid domain<br/>AutoAPC-Select gate (F8) picks the arm]
+    K -.->|stacked in-problem, F11-R| S[Budget-truncation stacked cell<br/>search/spatial/combinatorial types, all 6 arms fail, short answer long chain<br/>a priori: problem type -> timeout risk]
 ```
 
 ### 3.4n F11-C locus attribution: which genes carry load on a knowledge-wall task
