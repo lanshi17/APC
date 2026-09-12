@@ -29,7 +29,7 @@ noise and the model saturates every benchmark (AIME: 60/60), bounding the room f
 prompt optimization on strong reasoners. We distill these into a methodological
 principle, *Compile-as-Hypothesis*: compiled artifacts are testable hypotheses,
 never default deployables, and prior value is a measured quantity that can be
-On the same real API we then close the baseline and regime questions: the official GEPA baseline (Algorithm 1 reproduced) is also within the paired same-day noise band (+.0024), the second strong baseline ESPO likewise (.7009), and a pre-registered token-starved discriminative experiment (F10) pins six pathways at the judge floor (.1500) when headroom is physically unreachable. F11 completes the map on a stratified 90-problem HLE-exact subset — the first REAL reachable knowledge-type headroom (zero-shot accuracy .10): all six arms tie again (.388-.412), even though GEPA demonstrably learned domain content rules (SMILES conventions, perturbation-theory regime qualifiers). The discriminator for prompt-optimization payoff is not whether headroom exists but what kind: physical-truncation and knowledge-type headroom are out of reach for any prompt pathway (ability lives in weights), while protocol/format headroom is reachable and favors structured genomes — deployment should begin with a headroom-type diagnostic (§3.4m). A deployment gate (AutoAPC-Select, F8: val-argmax + noise-band Occam tie-break, 5/7 exact-oracle on 7 replay+blind groups) turns these findings into a selection rule. Multi-model validation of PGAM awaits additional API credentials.
+On the same real API we then close the baseline and regime questions: the official GEPA baseline (Algorithm 1 reproduced) is also within the paired same-day noise band (+.0024), the second strong baseline ESPO likewise (.7009), and a pre-registered token-starved discriminative experiment (F10) pins six pathways at the judge floor (.1500) when headroom is physically unreachable. F11 completes the map on a stratified 90-problem HLE-exact subset — the first REAL reachable knowledge-type headroom (zero-shot accuracy .10): all six arms tie again (.388-.412); a confirmatory n=100 round replicates the tie (gepa vs z0 McNemar p=.219) and measures the same-text nondeterminism floor at 2.7%, even though GEPA demonstrably learned domain content rules (SMILES conventions, perturbation-theory regime qualifiers). The discriminator for prompt-optimization payoff is not whether headroom exists but what kind: physical-truncation and knowledge-type headroom are out of reach for any prompt pathway (ability lives in weights), while protocol/format headroom is reachable and favors structured genomes — deployment should begin with a headroom-type diagnostic (§3.4m). A deployment gate (AutoAPC-Select, F8: val-argmax + noise-band Occam tie-break, 5/7 exact-oracle on 7 replay+blind groups) turns these findings into a selection rule. Multi-model validation of PGAM awaits additional API credentials.
 
 ## 1. Problem and Claim
 
@@ -506,20 +506,29 @@ count; the confirmatory extension (below) has since run, replicating P1 at n=100
 **Confirmatory extension (n=100, seed 923, same-day; pre-registered primary verdict
 unchanged)**: 70 problems appended to holdout (pool-proportional quota, seed 2027,
 original 30 rows byte-identical); all six arms RE-evaluate the first-round champions
-with SEARCH DISABLED (`--reuse-champs`), eliminating second-search selection bias.
-Accuracies (Wilson 95% CI): z0 **.159** [.095,.253] (13/82), math-champ .146,
-contract-champ .169, financial-champ .127, **gepa .212** [.137,.314] (17/80),
-espo .147. **Paired McNemar on the 62-problem common set (post network-error
-exclusion): gepa vs z0 = +4/−1, p=.375 — P1 replicates at n=100.** Two reusable
-calibration quantities come out of this round: (i) a MEASURED pipeline-nondeterminism
-floor — ESPO's champion is byte-identical text to z0, yet cross-process re-evaluation
-disagrees on 2/62 = 3.2% of problems (the real temp=0 reasoning-API noise), so gepa's
-net +3 sits only one problem above the floor; (ii) gepa's positive drift DIRECTIONALLY
-matches mechanism evidence (i) (learned TDPT/SMILES content rules) — below the
-significance bar, with new-problem error rates of 17-25% shrinking the common set to
-62. The conclusion stands unrewritten: six arms statistically tie under knowledge-type
-headroom, and "reflection learns rules at the wall but cannot buy capability" is now
-independently confirmed in two rounds (n=30 primary, n=100 confirmatory).
+with SEARCH DISABLED (`--reuse-champs`), eliminating second-search selection bias,
+followed by a second checkpointed backfill pass for network-failed problems
+(per-arm parallel, stream-rebuilt; final per-arm n = 81-87/100). Final accuracies
+(Wilson 95% CI): z0 .161 [.098,.252] (14/87), math-champ .151 (13/86),
+contract-champ .184 (16/87), financial-champ .141 (12/85), **gepa .200 [.129,.297]
+(17/85)**, espo .148 (12/81). **Paired McNemar on the 74-problem common set:
+gepa vs z0 = +5/−1, p=.219 — P1 replicates at n=100.** Two reusable calibrations
+emerge: (i) a MEASURED pipeline-nondeterminism floor — ESPO's champion is
+byte-identical text to z0, yet cross-process re-evaluation still disagrees on
+2/74 = 2.7% of problems (the real temp=0 reasoning-API noise); gepa's net +4 sits
+about two problems above that floor and, while directionally consistent with the
+content-rule mechanism evidence (learned TDPT/SMILES rules), it stays below the
+significance bar — exactly the magnitude the taxonomy predicts: content learning
+can drift a few individual problems but cannot buy systematic capability;
+(ii) an ERROR-TYPE STRATIFICATION — network failures were recovered by the backfill
+(18-25% → 6-19% residual), and the final six problems fail on ALL six arms:
+long-derivation items (Go-board life-and-death, n×n grid combinatorics) whose
+reasoning chains exceed the client-side 640 s / 2000-token budget — physical-
+truncation headroom projected INSIDE individual problems of a knowledge-wall task,
+a decidable timeout cell within the taxonomy. The conclusion stands unrewritten:
+six arms statistically tie under knowledge-type headroom, and "reflection learns
+rules at the wall but cannot buy capability" is now independently confirmed in two
+rounds (n=30 primary, n=100 confirmatory).
 
 Mechanism evidence (the most informative part): (i) **GEPA genuinely learned domain
 content** — the 8 103-char champion prompt contains substantive rules distilled from

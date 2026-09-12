@@ -6,12 +6,12 @@
    "task": "hle_exact",
    "seed": 923,
    "method": "gepa",
-   "holdout_score": 0.4138,
+   "holdout_score": 0.4288,
    "n_acc": 17,
-   "n_format": 80,
+   "n_format": 85,
    "n": 100,
    "rollouts_used": 0,
-   "elapsed_s": 23016.6,
+   "elapsed_s": 12469.6,
    "prompt_chars": 8103,
    "fail_sample": [
     "-1247604",
@@ -23,7 +23,7 @@
     "-3235032",
     "-6471304",
     "73968030",
-    "17422329"
+    "-8375470"
    ]
   }
  ]
