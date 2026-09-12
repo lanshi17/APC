@@ -42,6 +42,19 @@ idempotent — the `--seed`/`--part` keys dedupe rows):
 #   upstream cais/hle via ungated mirror, MIT; stratified 30/30/30, seed 2026)
 .venv/bin/python scripts/bench_real_hle.py --arms z0,champs --hold-n 30 --seed 921 --timeout 600 --hard 640
 .venv/bin/python scripts/bench_real_hle.py --arms gepa,espo  --hold-n 30 --seed 921 --timeout 600 --hard 640
+# confirmatory n=100 (seed 923): per-arm files, one process per arm (parallel-safe), then merge
+.venv/bin/python scripts/gen_hle_dataset.py --extend-holdout 70          # append-only (needs mirror reach)
+for arm in z0 math-champ contract-champ financial-champ; do
+  HLE_OUT=experiments/apcbench/ext_$arm.json .venv/bin/python scripts/bench_real_hle.py \
+    --arms $arm --hold-n 100 --seed 923 --timeout 600 --hard 640 &
+done
+HLE_OUT=experiments/apcbench/ext_gepa.json .venv/bin/python scripts/bench_real_hle.py --arms gepa --reuse-champs --hold-n 100 --seed 923 --timeout 600 --hard 640 &
+HLE_OUT=experiments/apcbench/ext_espo.json .venv/bin/python scripts/bench_real_hle.py --arms espo --reuse-champs --hold-n 100 --seed 923 --timeout 600 --hard 640 &
+wait; .venv/bin/python scripts/merge_hle_ext.py                          # guards: 6 rows required
+# F11-C locus ablation (8 problems x 6 inert loci; rebuild-from-stream if processes raced)
+.venv/bin/python scripts/bench_hle_ablation.py --emit                     # offline text construction
+.venv/bin/python scripts/bench_hle_ablation.py --loci role,output,verification --seed 924
+.venv/bin/python scripts/bench_hle_ablation.py --loci reasoning,layout,constraints --seed 924
 ```
 
 Real-API notes learned the hard way (all implemented in the scripts):
