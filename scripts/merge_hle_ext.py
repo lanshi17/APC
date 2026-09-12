@@ -93,8 +93,9 @@ def main() -> int:
         n = len(st)
         lo, hi = wilson(acc, n)
         r = rows.get(arm, {})
+        sc = r.get("holdout_score")
         print(f"{arm:16s} n={n:3d} acc={acc:2d} ({acc/n:.3f} CI[{lo:.3f},{hi:.3f}]) "
-              f"fmt={fmt}/{n} json_hold={r.get('holdout_score')}")
+              f"fmt={fmt}/{n} json_hold={sc if sc is None else f'{sc:.4f}'}")
         common_docs = set(st) if common_docs is None else (common_docs & set(st))
 
     # 臂间逐题一致率矩阵 + 核心答对集/差集(机制证据,管线噪声由 espo==z0 文本自一致校准)
@@ -136,9 +137,11 @@ def main() -> int:
     for arm, r in rows.items():
         doc["rows"] = [x for x in doc["rows"]
                        if not (x["method"] == r["method"] and x.get("seed") == r.get("seed"))] + [r]
-    doc.setdefault("notes", []).append(
-        f"confirmatory n=100 extension (seed 923, reuse champs) merged {len(rows)} rows; "
-        f"pre-registered primary verdict remains the n=30 seed-921 batch")
+    note = (f"confirmatory n=100 extension (seed 923, reuse champs) merged {len(rows)} rows; "
+            f"pre-registered primary verdict remains the n=30 seed-921 batch")
+    notes = doc.setdefault("notes", [])
+    if note not in notes:
+        notes.append(note)
     MAIN.write_text(json.dumps(doc, ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"\nmerged {len(rows)} rows -> {MAIN.name}")
     return 0
