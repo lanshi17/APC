@@ -71,7 +71,7 @@ def extend_holdout(n_extra: int) -> None:
     used: set[str] = set()
     existing = []
     for part in ("dev", "validation", "holdout"):
-        for line in (OUT / f"{part}.jsonl").read_text(encoding="utf-8").splitlines():
+        for line in (OUT / f"{part}.jsonl").read_text(encoding="utf-8").split("\n"):
             rec = json.loads(line)
             used.add(hashlib.sha256(rec["input"].encode()).hexdigest())
             if part == "holdout":
