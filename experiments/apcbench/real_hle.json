@@ -301,22 +301,19 @@
   },
   {
    "task": "hle_exact",
-   "seed": 925,
+   "seed": 926,
    "method": "z0",
-   "holdout_score": 0.3625,
-   "n_acc": 2,
-   "n_format": 4,
+   "holdout_score": 0.6531,
+   "n_acc": 5,
+   "n_format": 6,
    "n": 8,
    "rollouts_used": 0,
-   "elapsed_s": 1281.1,
-   "prompt_chars": 906,
+   "elapsed_s": 2963.0,
+   "prompt_chars": 931,
    "fail_sample": [
-    "-6209140",
-    "-8902041",
-    "-2682554",
-    "-6023603",
-    "-6477554",
-    "-5149658"
+    "54769426",
+    "29219353",
+    "-2928555"
    ]
   }
  ],

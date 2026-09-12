@@ -83,7 +83,7 @@ class HLEChecker:
 
 
 def load(part: str, n: int) -> list[dict]:
-    rows = [json.loads(l) for l in (DS / f"{part}.jsonl").read_text(encoding="utf-8").splitlines() if l.strip()]
+    rows = [json.loads(l) for l in (DS / f"{part}.jsonl").read_text(encoding="utf-8").split("\n") if l.strip()]  # JSONL: 禁 splitlines(U+2028/29 题干内字符会撕行)
     return [{"doc": r["input"], "expected": {"answer": r["expected"]["answer"]},
              "question": r["input"]} for r in rows[:n]]
 
@@ -118,7 +118,7 @@ def run_eval(client, spec, samples, prompt_text, budget, stream_path=None,
     done_by_doc = {}   # sid=hash(doc) 跨进程不稳定(PYTHONHASHSEED)——resume 以 doc 文本为准
     sp = Path(stream_path)
     if sp.exists():
-        for line in sp.read_text(encoding="utf-8").splitlines():
+        for line in sp.read_text(encoding="utf-8").split("\n"):
             try:
                 c = json.loads(line)
                 done[c["sample_id"]] = c
