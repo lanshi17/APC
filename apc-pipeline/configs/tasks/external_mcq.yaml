@@ -1,0 +1,36 @@
+task_id: external_mcq_v1
+name: External multiple-choice benchmark (GPQA-Diamond)
+version: 1.0.0
+objective: |
+  Solve the given graduate-level multiple-choice question. Reason carefully,
+  then output the chosen option in the required JSON format. The answer field
+  must contain exactly one option letter (A, B, C, or D).
+input:
+  type: document
+  format: text
+  max_tokens: 25000
+  language: en
+output:
+  type: json
+  strict: true
+  schema:
+    answer: string
+constraints:
+  - Do not restate the problem; provide only the structured answer
+  - The answer field must contain exactly one capital option letter A-D
+reasoning:
+  required: true
+  visibility: hidden
+quality_weights:
+  accuracy: 0.60
+  instruction_following: 0.15
+  format: 0.15
+  robustness: 0.05
+  efficiency: 0.05
+cost_limits:
+  max_input_tokens: 25000
+  max_output_tokens: 3000
+  max_latency_ms: 120000
+evaluation:
+  gold_set_required: true
+  perturbation_required: false
