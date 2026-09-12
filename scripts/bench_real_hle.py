@@ -17,6 +17,7 @@ bench_real_external)+ TrialScorer 权重(accuracy .60 / if .15 / format .15 / �
 from __future__ import annotations
 
 import argparse
+import pathlib
 import json
 import random
 import sys
@@ -52,8 +53,8 @@ def _trace(label):
 
 import os
 OUT = Path(os.environ.get("HLE_OUT", str(REPO / "experiments" / "apcbench" / "real_hle.json")))
-SPEC_PATH = REPO / "apc-pipeline" / "configs" / "tasks" / "external_math.yaml"
-DS = REPO / "datasets" / "hle_exact"
+SPEC_PATH = pathlib.Path(os.environ.get("APC_HLE_SPEC", str(REPO / "apc-pipeline" / "configs" / "tasks" / "external_math.yaml")))  # MCQ spec 可换
+DS = pathlib.Path(os.environ.get("APC_HLE_DS", str(REPO / "datasets" / "hle_exact")))  # 换数据集零代码(GPQA 半开带用)
 
 
 class HLEJudge:
