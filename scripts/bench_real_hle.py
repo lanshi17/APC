@@ -55,6 +55,7 @@ import os
 OUT = Path(os.environ.get("HLE_OUT", str(REPO / "experiments" / "apcbench" / "real_hle.json")))
 SPEC_PATH = pathlib.Path(os.environ.get("APC_HLE_SPEC", str(REPO / "apc-pipeline" / "configs" / "tasks" / "external_math.yaml")))  # MCQ spec 可换
 DS = pathlib.Path(os.environ.get("APC_HLE_DS", str(REPO / "datasets" / "hle_exact")))  # 换数据集零代码(GPQA 半开带用)
+TAG = os.environ.get("APC_HLE_TAG", "hle")  # stream/champ 文件前缀:跨数据集进程零碰撞
 
 
 class HLEJudge:
@@ -227,7 +228,7 @@ def main() -> int:
     ap.add_argument("--no-thinking", action="store_true",
                     help="关推理模型思考通路:题目仍难但单题成本 x10(协议余量主信号)")
     ap.add_argument("--reuse-champs", action="store_true",
-                    help="gepa/espo 臂若 /tmp/hle_{arm}_{seed}_champ.txt 存在则跳过搜索直接评测(power 扩展轮用)")
+                    help="gepa/espo 臂若 /tmp/{TAG}_{arm}_{seed}_champ.txt 存在则跳过搜索直接评测(power 扩展轮用)")
     args = ap.parse_args()
 
     client = make_client(args.model, args.timeout)
@@ -269,7 +270,7 @@ def main() -> int:
 
     if "z0" in arms:
         t0 = time.time(); b = RolloutBudget(10_000)
-        sc, cases = run_eval(client, spec, hold, z0_text, b, f"/tmp/hle_z0_{args.seed}.jsonl",
+        sc, cases = run_eval(client, spec, hold, z0_text, b, f"/tmp/{TAG}_z0_{args.seed}.jsonl",
                            hard=args.hard, timeout=args.timeout)
         persist(row_of("z0", args.seed, sc, cases, t0, len(z0_text), b))
 
@@ -282,13 +283,13 @@ def main() -> int:
             t0 = time.time(); b = RolloutBudget(10_000)
             g = PromptGenome.model_validate_json((CHAMPS_DIR / CHAMPS[nm]).read_text(encoding="utf-8"))
             text = compile_for(g, spec, profile, compiler)
-            sc, cases = run_eval(client, spec, hold, text, b, f"/tmp/hle_{nm}_{args.seed}.jsonl",
+            sc, cases = run_eval(client, spec, hold, text, b, f"/tmp/{TAG}_{nm}_{args.seed}.jsonl",
                                hard=args.hard, timeout=args.timeout)
             persist(row_of(nm, args.seed, sc, cases, t0, len(text), b))
 
     if "gepa" in arms:
         t0 = time.time(); b = RolloutBudget(max(args.rollouts, 64))
-        cf = Path("/tmp") / f"hle_gepa_{args.seed}_champ.txt"
+        cf = Path("/tmp") / f"{TAG}_gepa_{args.seed}_champ.txt"
         if args.reuse_champs and cf.exists():
             champ, cval, iters = cf.read_text(encoding="utf-8"), None, None
             print(f"[{time.strftime('%H:%M')}] gepa reuse champ {cf} ({len(champ)} chars), skip search", flush=True)
@@ -300,7 +301,7 @@ def main() -> int:
             champ = pool[ci]["text"]
             cf.write_text(champ, encoding="utf-8")
         b2 = RolloutBudget(10_000)
-        sc, cases = run_eval(client, spec, hold, champ, b2, f"/tmp/hle_gepa_{args.seed}.jsonl",
+        sc, cases = run_eval(client, spec, hold, champ, b2, f"/tmp/{TAG}_gepa_{args.seed}.jsonl",
                            hard=args.hard, timeout=args.timeout)
         extra = {} if cval is None else {"validation_score": round(cval, 4), "iterations": iters}
         persist(row_of("gepa", args.seed, sc, cases, t0, len(champ), b, extra))
@@ -308,7 +309,7 @@ def main() -> int:
     if "espo" in arms:
         from bench_real_espo import espo_run
         t0 = time.time(); b = RolloutBudget(max(args.rollouts, 64))
-        ef = Path("/tmp") / f"hle_espo_{args.seed}_champ.txt"
+        ef = Path("/tmp") / f"{TAG}_espo_{args.seed}_champ.txt"
         if args.reuse_champs and ef.exists():
             champ, cval, biases = ef.read_text(encoding="utf-8"), None, []
             print(f"[{time.strftime('%H:%M')}] espo reuse champ {ef} ({len(champ)} chars), skip search", flush=True)
@@ -317,7 +318,7 @@ def main() -> int:
             champ, cval, iters, used, biases = espo_run(client, spec, val[:8], z0_text, b, args.seed, hard=args.hard)
             ef.write_text(champ, encoding="utf-8")
         b2 = RolloutBudget(10_000)
-        sc, cases = run_eval(client, spec, hold, champ, b2, f"/tmp/hle_espo_{args.seed}.jsonl",
+        sc, cases = run_eval(client, spec, hold, champ, b2, f"/tmp/{TAG}_espo_{args.seed}.jsonl",
                            hard=args.hard, timeout=args.timeout)
         extra = {} if cval is None else {"validation_score": round(cval, 4), "biases": biases}
         persist(row_of("espo", args.seed, sc, cases, t0, len(champ), b, extra))
