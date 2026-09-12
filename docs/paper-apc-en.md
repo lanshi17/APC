@@ -592,7 +592,7 @@ flowchart TD
     K --> X1[Action: change model / add retrieval / fine-tune<br/>prompt optimization = zero payoff]
     T --> X2[Action: raise budget / shrink input<br/>unreachable by any prompt pathway]
     P --> X3[Action: the APO-valid domain<br/>AutoAPC-Select gate (F8) picks the arm]
-    K -.->|stacked in-problem, F11-R| S[Budget-truncation stacked cell<br/>search/spatial/combinatorial types, all 6 arms fail, short answer long chain<br/>a priori: problem type -> timeout risk]
+    K -.->|stacked in-problem, F11| S[Budget-truncation stacked cell<br/>search/spatial/combinatorial types, all 6 arms fail, short answer long chain<br/>a priori: problem type -> timeout risk]
 ```
 
 ### 3.4n F11-C locus attribution: which genes carry load on a knowledge-wall task
