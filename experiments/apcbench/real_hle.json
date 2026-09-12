@@ -154,6 +154,153 @@
     "exemplification",
     "constraint-hardening"
    ]
+  },
+  {
+   "task": "hle_exact",
+   "seed": 923,
+   "method": "z0",
+   "holdout_score": 0.4014,
+   "n_acc": 13,
+   "n_format": 82,
+   "n": 100,
+   "rollouts_used": 0,
+   "elapsed_s": 27300.6,
+   "prompt_chars": 906,
+   "fail_sample": [
+    "16150240",
+    "62968336",
+    "10293254",
+    "32638482",
+    "17069909",
+    "54161255",
+    "77042782",
+    "-7686098",
+    "-2945696",
+    "-6305653"
+   ]
+  },
+  {
+   "task": "hle_exact",
+   "seed": 923,
+   "method": "contract-champ",
+   "holdout_score": 0.4089,
+   "n_acc": 14,
+   "n_format": 83,
+   "n": 100,
+   "rollouts_used": 0,
+   "elapsed_s": 28317.4,
+   "prompt_chars": 919,
+   "fail_sample": [
+    "16150240",
+    "62968336",
+    "10293254",
+    "32638482",
+    "17069909",
+    "-7904714",
+    "-1637971",
+    "-7686098",
+    "-2945696",
+    "-6305653"
+   ]
+  },
+  {
+   "task": "hle_exact",
+   "seed": 923,
+   "method": "espo",
+   "holdout_score": 0.3714,
+   "n_acc": 11,
+   "n_format": 75,
+   "n": 100,
+   "rollouts_used": 0,
+   "elapsed_s": 28963.1,
+   "prompt_chars": 906,
+   "fail_sample": [
+    "-1247604",
+    "-9064353",
+    "-3289604",
+    "71725146",
+    "45097283",
+    "-7974753",
+    "-1949228",
+    "-3235032",
+    "-6471304",
+    "73968030"
+   ]
+  },
+  {
+   "task": "hle_exact",
+   "seed": 923,
+   "method": "financial-champ",
+   "holdout_score": 0.379,
+   "n_acc": 10,
+   "n_format": 79,
+   "n": 100,
+   "rollouts_used": 0,
+   "elapsed_s": 27429.4,
+   "prompt_chars": 919,
+   "fail_sample": [
+    "-6410423",
+    "16150240",
+    "62968336",
+    "10293254",
+    "32638482",
+    "17069909",
+    "-7904714",
+    "77042782",
+    "-7686098",
+    "-2945696"
+   ]
+  },
+  {
+   "task": "hle_exact",
+   "seed": 923,
+   "method": "gepa",
+   "holdout_score": 0.4138,
+   "n_acc": 17,
+   "n_format": 80,
+   "n": 100,
+   "rollouts_used": 0,
+   "elapsed_s": 23016.6,
+   "prompt_chars": 8103,
+   "fail_sample": [
+    "-1247604",
+    "-9064353",
+    "-3289604",
+    "71725146",
+    "45097283",
+    "-7974753",
+    "-3235032",
+    "-6471304",
+    "73968030",
+    "17422329"
+   ]
+  },
+  {
+   "task": "hle_exact",
+   "seed": 923,
+   "method": "math-champ",
+   "holdout_score": 0.3969,
+   "n_acc": 12,
+   "n_format": 82,
+   "n": 100,
+   "rollouts_used": 0,
+   "elapsed_s": 23184.6,
+   "prompt_chars": 919,
+   "fail_sample": [
+    "16150240",
+    "62968336",
+    "10293254",
+    "32638482",
+    "17069909",
+    "-7904714",
+    "77042782",
+    "-7686098",
+    "-2945696",
+    "-6305653"
+   ]
   }
+ ],
+ "notes": [
+  "confirmatory n=100 extension (seed 923, reuse champs) merged 6 rows; pre-registered primary verdict remains the n=30 seed-921 batch"
  ]
 }

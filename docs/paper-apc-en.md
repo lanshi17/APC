@@ -501,7 +501,25 @@ problem-level agreement (GEPA's 3 hits are z0's exact 3 hits), and the mechanism
 evidence (learned content rules with zero transfer). Any one alone would be
 underpowered; together they point the same way. Hardening paths for the camera-ready:
 expand holdout to n≥100 (pool of 1 710 suffices) or trade thinking budget for problem
-count — both can only strengthen, not reverse, the verdict.
+count; the confirmatory extension (below) has since run, replicating P1 at n=100 and measuring the pipeline noise floor directly.
+
+**Confirmatory extension (n=100, seed 923, same-day; pre-registered primary verdict
+unchanged)**: 70 problems appended to holdout (pool-proportional quota, seed 2027,
+original 30 rows byte-identical); all six arms RE-evaluate the first-round champions
+with SEARCH DISABLED (`--reuse-champs`), eliminating second-search selection bias.
+Accuracies (Wilson 95% CI): z0 **.159** [.095,.253] (13/82), math-champ .146,
+contract-champ .169, financial-champ .127, **gepa .212** [.137,.314] (17/80),
+espo .147. **Paired McNemar on the 62-problem common set (post network-error
+exclusion): gepa vs z0 = +4/−1, p=.375 — P1 replicates at n=100.** Two reusable
+calibration quantities come out of this round: (i) a MEASURED pipeline-nondeterminism
+floor — ESPO's champion is byte-identical text to z0, yet cross-process re-evaluation
+disagrees on 2/62 = 3.2% of problems (the real temp=0 reasoning-API noise), so gepa's
+net +3 sits only one problem above the floor; (ii) gepa's positive drift DIRECTIONALLY
+matches mechanism evidence (i) (learned TDPT/SMILES content rules) — below the
+significance bar, with new-problem error rates of 17-25% shrinking the common set to
+62. The conclusion stands unrewritten: six arms statistically tie under knowledge-type
+headroom, and "reflection learns rules at the wall but cannot buy capability" is now
+independently confirmed in two rounds (n=30 primary, n=100 confirmatory).
 
 Mechanism evidence (the most informative part): (i) **GEPA genuinely learned domain
 content** — the 8 103-char champion prompt contains substantive rules distilled from
