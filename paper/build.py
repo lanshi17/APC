@@ -107,7 +107,7 @@ TIKZ = r"""\begin{figure*}[t]
   edge/.style={->, thick}, dedge/.style={->, thick, dashed}]
 \node[box] (A) {Before deployment: headroom-type diagnostic\\ per-problem z0 triage};
 \node[draw, rounded corners, inner sep=3pt, below=4mm of A] (B) {Which dimension is missing?};
-\node[box, below left=9mm and 1mm of B] (K) {Knowledge-type (F11, HLE, acc .10)\\ all six arms tie; reflection learned\\ content rules, transferred zero};
+\node[box, below left=9mm and 1mm of B] (K) {Knowledge-type (F11, HLE, acc .10)\\ all six arms tie; reflection learned\\ content rules, zero transfer};
 \node[box, below=9mm of B] (T) {Physical truncation (F10, max\_tokens 150)\\ six pathways pinned at judge floor .15};
 \node[box, below right=9mm and 1mm of B] (P) {Protocol/format (F1--F9, financial)\\ saturated $\rightarrow$ all tie; unsaturated\\ weak model $\rightarrow$ structured $+0.05$};
 \node[act, below=6mm of K] (X1) {Action: change model / add retrieval / fine-tune\\ prompt optimization = zero payoff};
@@ -115,9 +115,9 @@ TIKZ = r"""\begin{figure*}[t]
 \node[act, below=6mm of P] (X3) {Action: the APO-valid domain\\ AutoAPC-Select gate (F8) picks the arm};
 \node[box, below=52mm of T, dashed] (S) {Budget-truncation stacked cell (F11)\\ search/spatial/combinatorial types; all 6 arms fail;\\ short answer, long chain; a priori: type $\rightarrow$ timeout risk};
 \draw[edge] (A) -- (B);
-\draw[edge] (B) -- node[lab, left] {acc gap = cannot} (K);
-\draw[edge] (B) -- node[lab, right] {acc gap = truncation} (T);
-\draw[edge] (B) -- node[lab, right] {acc fine, protocol} (P);
+\draw[edge] (B) -- node[lab, left, pos=0.35] {acc gap = cannot} (K);
+\draw[edge] (B) -- node[lab, right, pos=0.35] {acc gap = truncation} (T);
+\draw[edge] (B) -- node[lab, right, pos=0.3] {acc fine, protocol} (P);
 \draw[edge] (K) -- (X1); \draw[edge] (T) -- (X2); \draw[edge] (P) -- (X3);
 \draw[dedge] (K) -- node[lab] {stacked in-problem} (S);
 \end{tikzpicture}
@@ -162,9 +162,9 @@ def main() -> int:
            + lt2tab(body[j:]) + "\n\\end{document}\n")
     while "-\\/-" in tex:  # pandoc 连字转义归一
         tex = tex.replace("-\\/-", "--")
+    tex = tex.replace("{[}{[}REGIME-MAP-TIKZ{]}{]}", TIKZ)
     tex = tex.replace("[[REGIME-MAP-TIKZ]]", TIKZ)
     OUT.write_text(tex, encoding="utf-8")
-    tmp.unlink()
     OUT.with_suffix(".body.tex").unlink()
     print(f"wrote {OUT} ({len(tex)} chars)")
     return 0

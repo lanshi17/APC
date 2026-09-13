@@ -333,7 +333,34 @@ Reliability engineering by-product: HLE full-thinking costs 60--640 s/problem an
 
 The taxonomy as one regime map:
 
-{[}{[}REGIME-MAP-TIKZ{]}{]}
+\begin{figure*}[t]
+\centering
+\begin{tikzpicture}[
+  every node/.style={font=\small, align=center},
+  box/.style={draw, rounded corners, fill=blue!4, inner sep=4pt},
+  act/.style={draw, rounded corners, fill=green!6, inner sep=4pt},
+  lab/.style={font=\scriptsize\itshape},
+  edge/.style={->, thick}, dedge/.style={->, thick, dashed}]
+\node[box] (A) {Before deployment: headroom-type diagnostic\\ per-problem z0 triage};
+\node[draw, rounded corners, inner sep=3pt, below=4mm of A] (B) {Which dimension is missing?};
+\node[box, below left=9mm and 1mm of B] (K) {Knowledge-type (F11, HLE, acc .10)\\ all six arms tie; reflection learned\\ content rules, zero transfer};
+\node[box, below=9mm of B] (T) {Physical truncation (F10, max\_tokens 150)\\ six pathways pinned at judge floor .15};
+\node[box, below right=9mm and 1mm of B] (P) {Protocol/format (F1--F9, financial)\\ saturated $\rightarrow$ all tie; unsaturated\\ weak model $\rightarrow$ structured $+0.05$};
+\node[act, below=6mm of K] (X1) {Action: change model / add retrieval / fine-tune\\ prompt optimization = zero payoff};
+\node[act, below=6mm of T] (X2) {Action: raise budget / shrink input\\ unreachable by any prompt pathway};
+\node[act, below=6mm of P] (X3) {Action: the APO-valid domain\\ AutoAPC-Select gate (F8) picks the arm};
+\node[box, below=52mm of T, dashed] (S) {Budget-truncation stacked cell (F11)\\ search/spatial/combinatorial types; all 6 arms fail;\\ short answer, long chain; a priori: type $\rightarrow$ timeout risk};
+\draw[edge] (A) -- (B);
+\draw[edge] (B) -- node[lab, left, pos=0.35] {acc gap = cannot} (K);
+\draw[edge] (B) -- node[lab, right, pos=0.35] {acc gap = truncation} (T);
+\draw[edge] (B) -- node[lab, right, pos=0.3] {acc fine, protocol} (P);
+\draw[edge] (K) -- (X1); \draw[edge] (T) -- (X2); \draw[edge] (P) -- (X3);
+\draw[dedge] (K) -- node[lab] {stacked in-problem} (S);
+\end{tikzpicture}
+\caption{Headroom typology decision map. The stacked budget cell (\S3.4m, GPQA \S3.4o)
+is recognizable a priori from problem type.}
+\label{fig:regime}
+\end{figure*}
 
 \subsubsection{3.4n F11-C locus attribution: which genes carry load on a knowledge-wall task}\label{34n-f11-c-locus-attribution-which-genes-carry-load-on-a-knowledge-wall-task}
 
