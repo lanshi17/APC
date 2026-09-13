@@ -1,0 +1,30 @@
+{
+ "protocol": "real-hle",
+ "judge": "exact-match-normalized-v3.2",
+ "rows": [
+  {
+   "task": "hle_exact",
+   "seed": 926,
+   "method": "financial-champ",
+   "holdout_score": 0.873,
+   "n_acc": 163,
+   "n_format": 179,
+   "n": 190,
+   "rollouts_used": 0,
+   "elapsed_s": 26978.5,
+   "prompt_chars": 944,
+   "fail_sample": [
+    "65711828",
+    "54104692",
+    "54140163",
+    "61041898",
+    "73527251",
+    "33895345",
+    "29929314",
+    "60149038",
+    "60874921",
+    "-4336017"
+   ]
+  }
+ ]
+}
