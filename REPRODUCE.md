@@ -57,6 +57,22 @@ wait; .venv/bin/python scripts/merge_hle_ext.py                          # guard
 .venv/bin/python scripts/bench_hle_ablation.py --loci reasoning,layout,constraints --seed 924
 ```
 
+# F11-o GPQA-Diamond second dataset (seed 926, MCQ letter spec; rebuild dataset if mirror moved)
+#   dataset: datasets/gpqa_exact/{dev,validation,holdout}.jsonl from fingertap/GPQA-Diamond via
+#   datasets-server rows API (198 rows, seed-2027 split dev8/holdout190, zero overlap)
+for arm in z0 math-champ contract-champ financial-champ; do
+  APC_HLE_DS=$PWD/datasets/gpqa_exact APC_HLE_SPEC=$PWD/apc-pipeline/configs/tasks/external_mcq.yaml \
+  APC_HLE_TAG=gpqa HLE_OUT=experiments/apcbench/gpqa_$arm.json \
+  .venv/bin/python scripts/bench_real_hle.py --arms $arm --hold-n 190 --seed 926 --timeout 600 --hard 640 &
+done
+APC_HLE_TAG=gpqa HLE_OUT=experiments/apcbench/gpqa_espo.json .venv/bin/python scripts/bench_real_hle.py \
+  --arms espo --hold-n 190 --seed 926 --timeout 600 --hard 640
+APC_HLE_TAG=gpqa HLE_OUT=experiments/apcbench/gpqa_gepa.json .venv/bin/python scripts/bench_real_hle.py \
+  --arms gepa --hold-n 190 --seed 926 --timeout 600 --hard 640      # search + holdout
+.venv/bin/python scripts/merge_gpqa.py                              # Wilson + paired stats (needs streams)
+# pending recharge (DashScope Arrearage 2026-09-13): gepa holdout eval (champ=z0_text verified 931 chars,
+#   /tmp/gpqa_gepa_926_champ.txt + --reuse-champs) and z0-927 same-text floor (seed 927, gpqa_z0_927.json)
+
 Real-API notes learned the hard way (all implemented in the scripts):
 - **Pair same-day.** temp=0 reasoning APIs drift ±.007 within a day and ~.028 across
   days; every verdict in §3.4 uses paired same-day bands (F7 protocol).

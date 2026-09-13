@@ -1,0 +1,140 @@
+{
+ "protocol": "real-gpqa-mcq",
+ "judge": "exact-match-normalized-v3.2",
+ "dataset": "GPQA-Diamond (fingertap mirror, 198 rows; dev8/holdout190, seed-2027 split, zero overlap)",
+ "spec": "external_mcq_v1",
+ "notes": [
+  "gepa arm: search completed (28 iters, 46+ rollouts, ZERO candidate acceptance, parent_chars constant 931 = seed z0_text length) -> champion identified with z0 prompt by construction; its separate holdout evaluation is pending account recharge (DashScope Arrearage 2026-09-13 ~12:20 killed the resume run: 400/empty-content after row ~10; corrupt rows purged)",
+  "pre-registered verdicts remain HLE n=30 (seed 921); GPQA round is a second-dataset replication of the saturated-band tie (P0)",
+  "streams for the five valid arms lost in host reboot (tmpfs); per-row pairing impossible for them — marginal Wilson CIs only; GPQA same-text floor pending z0-927 rerun"
+ ],
+ "rows": [
+  {
+   "task": "hle_exact",
+   "seed": 926,
+   "method": "z0",
+   "holdout_score": 0.8729,
+   "n_acc": 165,
+   "n_format": 174,
+   "n": 190,
+   "rollouts_used": 0,
+   "elapsed_s": 27327.3,
+   "prompt_chars": 931,
+   "fail_sample": [
+    "-5965434",
+    "72657417",
+    "-4586898",
+    "68974405",
+    "42969239",
+    "50553907",
+    "16943447",
+    "-6701472",
+    "37674881",
+    "-1095725"
+   ]
+  },
+  {
+   "task": "hle_exact",
+   "seed": 926,
+   "method": "math-champ",
+   "holdout_score": 0.8714,
+   "n_acc": 165,
+   "n_format": 173,
+   "n": 190,
+   "rollouts_used": 0,
+   "elapsed_s": 28038.1,
+   "prompt_chars": 944,
+   "fail_sample": [
+    "-6872398",
+    "83393643",
+    "88401873",
+    "-4302318",
+    "-5873805",
+    "-3898116",
+    "-5976167",
+    "-3748212",
+    "45979527",
+    "-2105256"
+   ]
+  },
+  {
+   "task": "hle_exact",
+   "seed": 926,
+   "method": "contract-champ",
+   "holdout_score": 0.8628,
+   "n_acc": 162,
+   "n_format": 175,
+   "n": 190,
+   "rollouts_used": 0,
+   "elapsed_s": 26558.9,
+   "prompt_chars": 944,
+   "fail_sample": [
+    "-6701813",
+    "-6090317",
+    "70230836",
+    "-2248529",
+    "-1817968",
+    "42938501",
+    "-1407119",
+    "-5539258",
+    "-5171243",
+    "55831546"
+   ]
+  },
+  {
+   "task": "hle_exact",
+   "seed": 926,
+   "method": "financial-champ",
+   "holdout_score": 0.873,
+   "n_acc": 163,
+   "n_format": 179,
+   "n": 190,
+   "rollouts_used": 0,
+   "elapsed_s": 26978.5,
+   "prompt_chars": 944,
+   "fail_sample": [
+    "65711828",
+    "54104692",
+    "54140163",
+    "61041898",
+    "73527251",
+    "33895345",
+    "29929314",
+    "60149038",
+    "60874921",
+    "-4336017"
+   ]
+  },
+  {
+   "task": "hle_exact",
+   "seed": 926,
+   "method": "espo",
+   "holdout_score": 0.8745,
+   "n_acc": 165,
+   "n_format": 175,
+   "n": 190,
+   "rollouts_used": 40,
+   "elapsed_s": 35466.8,
+   "prompt_chars": 931,
+   "fail_sample": [
+    "77987573",
+    "-4592581",
+    "-2672207",
+    "51506535",
+    "62190037",
+    "54138575",
+    "52815969",
+    "-7652659",
+    "55057501",
+    "34688578"
+   ],
+   "validation_score": 0.775,
+   "biases": [
+    "abstraction",
+    "simplification",
+    "exemplification",
+    "constraint-hardening"
+   ]
+  }
+ ]
+}

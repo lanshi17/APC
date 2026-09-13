@@ -44,6 +44,11 @@ AUDIT = [
     ("F7 gepa 903",       "real_gepa.json", lambda r: r["method"] == "gepa" and r.get("seed") == 903 and abs(r["holdout_score"] - .7016) < 1e-4, ".7016"),
     ("F10 floor",         "real_gepa_mt150.json", lambda r: abs(r["holdout_score"] - .15) < 1e-9, ".1500"),
     ("F11 no-thinking",   "real_hle_nt.json", lambda r: r.get("n_acc") == 0, "0/30"),
+    # GPQA-Diamond 第二数据集(real_gpqa.json,§3.4o)
+    ("GPQA z0",       "real_gpqa.json", lambda r: r["method"] == "z0" and r["n_acc"] == 165 and r["n"] == 190, ".868"),
+    ("GPQA espo",     "real_gpqa.json", lambda r: r["method"] == "espo" and r["n_acc"] == 165, ".868"),
+    ("GPQA contract", "real_gpqa.json", lambda r: r["method"] == "contract-champ" and r["n_acc"] == 162, ".853"),
+    ("GPQA band",     "real_gpqa.json", lambda r: abs(r["holdout_score"] - .8628) < 1e-4, ".8628-.8745"),
     # F11-C 位点归因(real_hle_ablation.json,§3.4n 表)
     ("ABL base",          "real_hle_ablation.json", lambda r: r["method"] == "base" and abs(r["holdout_score"] - .4531) < 1e-4, ".4531"),
     ("ABL role",          "real_hle_ablation.json", lambda r: r["method"] == "minus-role" and abs(r["holdout_score"] - .4612) < 1e-4, ".4612"),
