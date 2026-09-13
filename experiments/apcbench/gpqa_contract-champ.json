@@ -1,0 +1,30 @@
+{
+ "protocol": "real-hle",
+ "judge": "exact-match-normalized-v3.2",
+ "rows": [
+  {
+   "task": "hle_exact",
+   "seed": 926,
+   "method": "contract-champ",
+   "holdout_score": 0.8628,
+   "n_acc": 162,
+   "n_format": 175,
+   "n": 190,
+   "rollouts_used": 0,
+   "elapsed_s": 26558.9,
+   "prompt_chars": 944,
+   "fail_sample": [
+    "-6701813",
+    "-6090317",
+    "70230836",
+    "-2248529",
+    "-1817968",
+    "42938501",
+    "-1407119",
+    "-5539258",
+    "-5171243",
+    "55831546"
+   ]
+  }
+ ]
+}

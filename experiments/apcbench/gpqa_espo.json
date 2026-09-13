@@ -1,0 +1,37 @@
+{
+ "protocol": "real-hle",
+ "judge": "exact-match-normalized-v3.2",
+ "rows": [
+  {
+   "task": "hle_exact",
+   "seed": 926,
+   "method": "espo",
+   "holdout_score": 0.8745,
+   "n_acc": 165,
+   "n_format": 175,
+   "n": 190,
+   "rollouts_used": 40,
+   "elapsed_s": 35466.8,
+   "prompt_chars": 931,
+   "fail_sample": [
+    "77987573",
+    "-4592581",
+    "-2672207",
+    "51506535",
+    "62190037",
+    "54138575",
+    "52815969",
+    "-7652659",
+    "55057501",
+    "34688578"
+   ],
+   "validation_score": 0.775,
+   "biases": [
+    "abstraction",
+    "simplification",
+    "exemplification",
+    "constraint-hardening"
+   ]
+  }
+ ]
+}

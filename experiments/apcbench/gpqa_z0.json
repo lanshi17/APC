@@ -1,0 +1,30 @@
+{
+ "protocol": "real-hle",
+ "judge": "exact-match-normalized-v3.2",
+ "rows": [
+  {
+   "task": "hle_exact",
+   "seed": 926,
+   "method": "z0",
+   "holdout_score": 0.8729,
+   "n_acc": 165,
+   "n_format": 174,
+   "n": 190,
+   "rollouts_used": 0,
+   "elapsed_s": 27327.3,
+   "prompt_chars": 931,
+   "fail_sample": [
+    "-5965434",
+    "72657417",
+    "-4586898",
+    "68974405",
+    "42969239",
+    "50553907",
+    "16943447",
+    "-6701472",
+    "37674881",
+    "-1095725"
+   ]
+  }
+ ]
+}
