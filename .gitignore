@@ -46,3 +46,4 @@ artifacts/profiles/*.json
 # Logs
 logs/
 *.log
+paper_body.tex
