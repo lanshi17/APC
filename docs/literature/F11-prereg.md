@@ -26,3 +26,14 @@ P3(genome 反胜分支,不预期):search/champ 臂 acc 高出于所有反思臂 
   作保守地板,HLE 题目方差更大)
 - call-error 行按零分计入(所有臂同一网络环境,公平);错误率报出
 - 反思内容 diff 定性分析随结果附
+
+
+## Addendum(GPQA-Diamond 第二数据集轮,2026-09-13)
+
+本预注册覆盖 HLE n=30(主判定)与 n=100(confirmatory)。GPQA-Diamond 轮为
+**探索性复认**:设计(198 题未门禁镜像、seed-2027 切分 dev8/holdout190、
+MCQ 字母 spec external_mcq_v1、六臂、640s 硬超时)先于其自身 holdout 评测固定,
+但未预注册判定门槛;其读数(五臂 .853-.868 同带、gepa 搜索零接受)作类型学
+P0 的跨数据集佐证,不改变 HLE 主判定地位。轮内可靠性事件(host 重启清 tmpfs
+stream、DashScope Arrearage 中断续跑)如实记录于 `real_gpqa.json` notes 与
+论文 §3.4o。待补:gepa holdout 评测、z0-927 同文本地板(充值后执行)。
