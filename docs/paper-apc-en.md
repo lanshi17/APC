@@ -29,7 +29,7 @@ noise and the model saturates every benchmark (AIME: 60/60), bounding the room f
 prompt optimization on strong reasoners. We distill these into a methodological
 principle, *Compile-as-Hypothesis*: compiled artifacts are testable hypotheses,
 never default deployables, and prior value is a measured quantity that can be
-On the same real API we then close the baseline and regime questions: the official GEPA baseline (Algorithm 1 reproduced) is also within the paired same-day noise band (+.0024), the second strong baseline ESPO likewise (.7009), and a pre-registered token-starved discriminative experiment (F10) pins six pathways at the judge floor (.1500) when headroom is physically unreachable. F11 completes the map on a stratified 90-problem HLE-exact subset — the first REAL reachable knowledge-type headroom (zero-shot accuracy .10): all six arms tie again (.388-.412); a confirmatory n=100 round replicates the tie (gepa vs z0 McNemar p=.219) and measures the same-text nondeterminism floor at 2.7%, even though GEPA demonstrably learned domain content rules (SMILES conventions, perturbation-theory regime qualifiers). The discriminator for prompt-optimization payoff is not whether headroom exists but what kind: physical-truncation and knowledge-type headroom are out of reach for any prompt pathway (ability lives in weights), while protocol/format headroom is reachable and favors structured genomes — deployment should begin with a headroom-type diagnostic (§3.4m). A deployment gate (AutoAPC-Select, F8: val-argmax + noise-band Occam tie-break, 5/7 exact-oracle on 7 replay+blind groups) turns these findings into a selection rule. Multi-model validation of PGAM awaits additional API credentials.
+On the same real API we then close the baseline and regime questions: the official GEPA baseline (Algorithm 1 reproduced) is also within the paired same-day noise band (+.0024), the second strong baseline ESPO likewise (.7009), and a pre-registered token-starved discriminative experiment (F10) pins six pathways at the judge floor (.1500) when headroom is physically unreachable. F11 completes the map on a stratified 90-problem HLE-exact subset — the first REAL reachable knowledge-type headroom (zero-shot accuracy .10): all six arms tie again (.388-.412); a confirmatory n=100 round replicates the tie (gepa vs z0 McNemar p=.219) and measures the same-text nondeterminism floor at 2.7%, a GPQA-Diamond round (n=190) replicates the tie on a second real dataset (five arms .853-.868; reflective search accepts zero candidates), even though GEPA demonstrably learned domain content rules (SMILES conventions, perturbation-theory regime qualifiers). The discriminator for prompt-optimization payoff is not whether headroom exists but what kind: physical-truncation and knowledge-type headroom are out of reach for any prompt pathway (ability lives in weights), while protocol/format headroom is reachable and favors structured genomes — deployment should begin with a headroom-type diagnostic (§3.4m). A deployment gate (AutoAPC-Select, F8: val-argmax + noise-band Occam tie-break, 5/7 exact-oracle on 7 replay+blind groups) turns these findings into a selection rule. Multi-model validation of PGAM awaits additional API credentials.
 
 ## 1. Problem and Claim
 
@@ -633,6 +633,47 @@ weak model + protocol pressure (multi-model round). For C1: every reading above 
 from a three-layer auditable chain — locus → text diff → per-problem outcome. Even
 when the verdict is "the genes are worth exactly one bit," the attribution being
 auditable at all is the dividend structured representation pays over free-text prompts.
+
+### 3.4o GPQA-Diamond second-dataset replication: saturated-band tie + zero-acceptance reflective search (n=190)
+
+If the F11 taxonomy is true, it must assign the same cells on a different dataset.
+GPQA-Diamond (198 problems, ungated fingertap mirror, row-verified) is split by
+seed 2027 into dev 8 / holdout 190 (zero overlap), with a multiple-choice
+letter-answer spec (`external_mcq_v1`, answer = one capital letter), the same
+judge line as HLE (exact-match-normalized-v3.2), a 640 s thread-level hard
+timeout, and the six-arm protocol of F11.
+
+**Five-arm finals (nominal n=190, Wilson 95% CI)**: z0 165/190 (.868 [.813,.909]),
+math-champ 165 (.868), contract-champ 162 (.853), financial-champ 163 (.858),
+espo 165 (.868); holdout_score range .8628-.8745 (spread .0117) — **all arms in
+one band: taxonomy P0 (saturated cell ⇒ tie) replicates on a second real
+dataset**. The model is near ceiling on GPQA (community figures put reasoning
+models at ~.65-.78; .87 suggests possible pretraining exposure — noted as such,
+no attribution claimed).
+
+**The gepa arm's reading comes from its search**: across 28 iterations and 46+
+rollouts, **zero candidates were accepted** (parent_chars constant at 931 = the
+seed z0_text length, auditable in the log) — reflective search in a saturated
+band found NOTHING worth accepting, and its champion is identical to z0 by
+construction. This is stronger than "another tie": in the nothing-to-learn cell,
+the reflective pathway's optimal action is to stand still. Its separate holdout
+evaluation and the z0-927 same-text floor measurement were cut short by account
+arrears (below); both are queued and expected to fluctuate only within the noise
+floor.
+
+**Error stratification replicates**: 6-9% timeouts per arm (9-13/190),
+concentrated in multi-step mechanism/spatial problems (organic stereochemistry,
+EM-field geometry) — consistent with the F11-R "search/spatial/combinatorial →
+budget cell" prior; the stacked-cell signature is reproducible on a second
+dataset.
+
+**Reliability incidents (recorded as they happened)**: (a) a host reboot wiped
+the tmpfs per-row streams of the five valid arms — this section reports marginal
+Wilson CIs only, no paired statistics; (b) DashScope account arrears (Arrearage,
+from 2026-09-13 12:20) turned the resume run into 400/empty-content after row
+~10; corrupt rows were purged (`real_gpqa.json` keeps the 5 valid rows, incident
+in notes). Two items pend recharge: the gepa holdout evaluation and the z0-927
+same-text floor.
 
 ## 4. Limitations
 

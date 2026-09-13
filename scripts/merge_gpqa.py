@@ -70,7 +70,10 @@ def main() -> int:
         except FileNotFoundError:
             print(f"stream {nm}: MISSING (skip paired stats)")
 
-    if "gepa" in streams and "z0-927" in streams:
+    def _valid(st: dict) -> bool:
+        return len(st) >= 180 and sum(1 for r in st.values() if str(r.get("output", "")).strip()) >= 150
+
+    if "gepa" in streams and "z0-927" in streams and _valid(streams["gepa"]) and _valid(streams["z0-927"]):
         g, z = streams["gepa"], streams["z0-927"]
         common = set(g) & set(z)
         print(f"\n== paired common docs: {len(common)} ==")
@@ -81,6 +84,8 @@ def main() -> int:
         print(f"McNemar gepa vs z0: +{g_only}/-{z_only} p={p:.3f} both-right={both}")
         print(f"same-text floor (gepa-926 == z0_text; z0-927 same text): "
               f"{g_only + z_only}/{len(common)} = {(g_only + z_only) / len(common):.3f}")
+    elif streams:
+        print("\n(paired stats skipped: stream(s) invalid — Arrearage incident 2026-09-13 / reboot loss)")
 
     if dry:
         print("\n(dry-run, nothing merged)")
@@ -93,9 +98,14 @@ def main() -> int:
         "dataset": "GPQA-Diamond (fingertap mirror, 198 rows; dev8/holdout190, seed-2027 split, zero overlap)",
         "spec": "external_mcq_v1",
         "notes": [
-            "gepa-926 champion reconstructed as z0_text (931 chars) — search accepted zero candidates in 28 iters "
-            "(parent_chars constant in search log); stream loss in host reboot, seed identity verified by length",
-            "pre-registered verdicts remain HLE n=30 (seed 921); GPQA round is a second-dataset replication",
+            "gepa arm: search completed (28 iters, 46+ rollouts, ZERO candidate acceptance, parent_chars constant 931 "
+            "= seed z0_text length) -> champion identified with z0 prompt by construction; its separate holdout "
+            "evaluation is pending account recharge (DashScope Arrearage 2026-09-13 ~12:20 killed the resume run: "
+            "400/empty-content after row ~10; corrupt rows purged)",
+            "pre-registered verdicts remain HLE n=30 (seed 921); GPQA round is a second-dataset replication of the "
+            "saturated-band tie (P0)",
+            "streams for the five valid arms lost in host reboot (tmpfs); per-row pairing impossible for them — "
+            "marginal Wilson CIs only; GPQA same-text floor pending z0-927 rerun",
         ],
         "rows": [json.loads(JSONS[a].read_text(encoding="utf-8"))["rows"][-1]
                  for a in ARMS if JSONS[a].exists()],
