@@ -281,7 +281,6 @@ Setup: whitelisted-key model, reasoning model (~29 s/sample), temp=0; scoring us
   than the self-evaluating LLM, and the two judges are strict along *different*
   dimensions. ⇒ All real-LLM ranking conclusions in this paper are valid under the
   same-protocol rule-judge, but **absolute scores must not be read as "human quality
-- [x] High-difficulty contest F11 (pre-reg git 262a39e): `bench_real_hle.py` (HLEJudge/HLEChecker atop hardened v3.2; z0/champs/gepa/espo arms; per-sample stream resume; thread-level hard timeout; stateless per-request `_fresh_http_call`); `gen_hle_dataset.py` (MIT upstream, stratified 30/30/30 seed=2026, bit-reproducible); subset committed at `datasets/hle_exact/`; results in `real_hle.json` (6 rows)
   scores"**; an independent third-party judge (not self-evaluation) remains a gap. The
   self-judge's leniency may also contain a model self-preference bias.
 - **F5 perturbation-robustness audit (first 20 cases of the financial
