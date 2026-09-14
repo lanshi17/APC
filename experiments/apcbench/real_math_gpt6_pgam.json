@@ -1,0 +1,27 @@
+{
+ "meta": {
+  "protocol": "real-pgam",
+  "model": "gpt6",
+  "task": "math",
+  "budget": 8,
+  "seed": 42,
+  "judge": "math_rule_v1",
+  "note": "PGAM=ProfileGuidedMutator(画像先验+bandit); uniform 对照=real_transfer_*_to_*.json 的 cold 行(同 task/model/budget/seed)"
+ },
+ "rows": [
+  {
+   "method": "pgam-cold",
+   "model_id": "gpt6",
+   "model_version": "gpt-6",
+   "task": "math",
+   "seed": 42,
+   "baseline_score": 0.6462,
+   "validation_score": 0.6459,
+   "holdout_score": 0.596,
+   "budget_used": 8,
+   "elapsed_s": 535.2,
+   "champion_genome_id": "genome_62f985109b1e",
+   "model": "gpt6"
+  }
+ ]
+}
