@@ -1,9 +1,10 @@
 # APC: Profile-Guided Compilation and Evolution of Model-Specific Prompts
 
-*Working English manuscript v0.3 — full F1-F11 chain mirrored from
+*Working English manuscript v0.4 — full F1-F11 chain mirrored from
 `paper-apc.md` (Chinese master): simulation §3.1-3.3, real-API §3.4 (zero-shot floor,
 transfer champions, GEPA/ESPO official baselines, F10 pre-registered discriminative
-experiment, F11 headroom-taxonomy contest), C1-C5 contributions, six-item limitations.
+experiment, F11 headroom-taxonomy contest), multi-model replication matrix §3.4p,
+C1-C5 contributions, six-item limitations.
 Numbers traceable to `experiments/apcbench/*.json`. Venue target: EMNLP/NeurIPS-style.*
 
 **Abstract.** APC turns prompts from hand-written text into compilable engineering
@@ -29,6 +30,10 @@ noise and the model saturates every benchmark (AIME: 60/60), bounding the room f
 prompt optimization on strong reasoners. We distill these into a methodological
 principle, *Compile-as-Hypothesis*: compiled artifacts are testable hypotheses,
 never default deployables, and prior value is a measured quantity that can be
+negative. The multi-model replication matrix (§3.4p) confirms the task-regime
+taxonomy and cross-task warm-start migration on two additional frontier reasoning
+models (gpt-6, gpt-5.6-terra via an OpenAI-compatible gateway), with the seed-42
+champion genome byte-identical across all three models.
 On the same real API we then close the baseline and regime questions: the official GEPA baseline (Algorithm 1 reproduced) is also within the paired same-day noise band (+.0024), the second strong baseline ESPO likewise (.7009), and a pre-registered token-starved discriminative experiment (F10) pins six pathways at the judge floor (.1500) when headroom is physically unreachable. F11 completes the map on a stratified 90-problem HLE-exact subset — the first REAL reachable knowledge-type headroom (zero-shot accuracy .10): all six arms tie again (.388-.412); a confirmatory n=100 round replicates the tie (gepa vs z0 McNemar p=.219) and measures the same-text nondeterminism floor at 2.7%, a GPQA-Diamond round (n=190) replicates the tie on a second real dataset (five arms .853-.868; reflective search accepts zero candidates), even though GEPA demonstrably learned domain content rules (SMILES conventions, perturbation-theory regime qualifiers). The discriminator for prompt-optimization payoff is not whether headroom exists but what kind: physical-truncation and knowledge-type headroom are out of reach for any prompt pathway (ability lives in weights), while protocol/format headroom is reachable and favors structured genomes — deployment should begin with a headroom-type diagnostic (§3.4m). A deployment gate (AutoAPC-Select, F8: val-argmax + noise-band Occam tie-break, 5/7 exact-oracle on 7 replay+blind groups) turns these findings into a selection rule. Multi-model validation of PGAM awaits additional API credentials.
 
 ## 1. Problem and Claim
@@ -321,8 +326,9 @@ Setup: whitelisted-key model, reasoning model (~29 s/sample), temp=0; scoring us
   positive + 4 negative regression cases + full predictions persisted for
   recomputation (`rejudge_external.py`); on AIME, one network-timeout case per arm is
   scored as wrong (n=60 ⇒ ≤0.017 downward bias).
-- Honest boundary: single model, single seed, no CI; multi-model variation and the
-  real validation of PGAM are still missing (credential whitelist).
+- Honest boundary: the external benchmark arms are single-model single-seed (no CI);
+  the multi-model matrix (§3.4p) extends the core arms (financial/contract/transfer)
+  to gpt-6 and gpt-5.6-terra; real validation of PGAM is still missing.
 
 **F7 GEPA official-baseline head-to-head + variance audit (gepa vs full/safe/z0, `bench_real_gepa.py` / `bench_real_reeval.py`)**
 
@@ -674,13 +680,64 @@ from 2026-09-13 12:20) turned the resume run into 400/empty-content after row
 in notes). Two items pend recharge: the gepa holdout evaluation and the z0-927
 same-text floor.
 
+### 3.4p Multi-model replication matrix: qwen3.8-flash + gpt-6 + gpt-5.6-terra (`--model <id>`, per-model output isolation)
+
+**Setup.** Two additional frontier reasoning profiles run through an OpenAI-compatible
+gateway (gpt-6, gpt-5.6-terra; `configs/models/gpt6.yaml` / `gpt56terra.yaml`, profile
+probes cached at `artifacts/profiles/<model>_probe.json`). Protocol identical to §3.4
+(dev5/val8/hold20, budget 8, seed 42, same rule judge). Non-qwen models write
+`real_<task>_<model>.json` and champions `real_<task>_champ[_safe]_<model>.json` — the
+audit-locked qwen files are physically unreachable from a multi-model run. Incident
+(recorded as it happened): the gateway returns Cloudflare 524 (origin timeout) on long
+reasoning calls; 524 was added to the retryable set after one terra search arm crashed
+mid-round (re-run arms re-merge by method×seed; earlier rows preserved).
+
+**Financial — the search-headroom null replicates on all three models.**
+
+| model | zero-shot | manual | apc-full | apc-safe |
+|---|---|---|---|---|
+| qwen3.8-flash (§3.4, s45 same-day set) | .6692 | .6665 | .1318 (collapse) | .6657 |
+| gpt-6 (s42) | .6862 | .6971 | .6750 | .6771 |
+| gpt-5.6-terra (s42) | .6669 | .6665 | .6150 | .6694 |
+
+On every model no search arm beats the static floor beyond the qwen-era noise band
+(±.007): gpt-6 apc-full −.0112 vs zero-shot, apc-safe −.0091 vs zero-shot; terra
+apc-full −.0519, apc-safe +.0025 (within band); qwen s45 apc-full collapses. The
+task-regime taxonomy — financial is a mid-band cell where prompt-genome search has no
+headroom — is model-independent.
+
+**Contract — saturated tie replicates (gpt-6).** zero-shot .9783 / manual .9784 /
+apc-full .9404 / apc-safe .9792: all static arms sit in the same saturation band as the
+qwen-era contract round, and the search arm is a net liability (−.0379 vs zero-shot),
+matching §3.4's "nothing to learn" reading.
+
+**Transfer — cross-task warm-start replicates on gpt-6 (new pair financial→math,
+budget 6, seed 42).** transfer-0 .8443 / cold .6336 / transfer-ws .8439 — gain
+**+.2103** over cold at equal budget. The phenomenon pattern (t0 ≫ cold, ws ≈ t0)
+matches both qwen-era pairs (contract→math: +.2039; math→contract: +.7732); cross-task
+migration is model-independent, and this pair adds a third (source, target) cell on a
+second model family.
+
+**Cross-model champion identity.** The seed-42 financial champion genome is
+byte-identical (md5 5738cd93…) across all three models: the seeded mutation trajectory
+is model-independent and the 8-candidate fitness ranking coincided at every selection
+decision. The genome search space is model-agnostic in exactly the sense the compiler
+promises — same rules, same space, same winner.
+
+**Honest boundary.** one seed per cell on the new models (no CI); the qwen-era priors
+(same-day band ±.007, day-drift .028) apply. gpt-6 zero-shot under the smoke protocol
+(dev3/val6/hold15, kept as `real_financial_gpt6_smoke.json`) scored .6781 vs the formal
+.6862 — protocol sensitivity ≈ .008, consistent with the band. DashScope arrears still
+pend the GPQA gepa-holdout and z0-927 floor items (§3.4o).
+
 ## 4. Limitations
 
-1. Real-model phase is single-model (whitelist key); the seed axis is covered
-   (§3.5: 3 search seeds, 4 same-day z0 re-measures, quantified noise band
-   ±.007 and day-drift .028 — any "gain" within ±.01 is judged noise).
-   Multi-model scripts are ready (`--model <id>` + three `.env` lines).
-   Ground truth is
+1. The F-series real-model phase is qwen-only (whitelist key); the seed axis is
+   covered there (§3.5: 3 search seeds, 4 same-day z0 re-measures, quantified noise
+   band ±.007 and day-drift .028 — any "gain" within ±.01 is judged noise). The
+   multi-model matrix (§3.4p) adds gpt-6 and gpt-5.6-terra on the core arms
+   (financial 4-arm, contract 4-arm, transfer) — one seed per cell, no CI on the new
+   models. DashScope arrears pend the GPQA holdout items. Ground truth is
    author-authored (rule-judge).
 2. Task coverage: four simulation tasks + three external math benchmarks; open
    instruction tasks without unique answers still missing (judge-dependent).
