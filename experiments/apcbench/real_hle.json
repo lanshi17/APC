@@ -298,23 +298,6 @@
     "-2945696",
     "-6305653"
    ]
-  },
-  {
-   "task": "hle_exact",
-   "seed": 926,
-   "method": "z0",
-   "holdout_score": 0.6531,
-   "n_acc": 5,
-   "n_format": 6,
-   "n": 8,
-   "rollouts_used": 0,
-   "elapsed_s": 2963.0,
-   "prompt_chars": 931,
-   "fail_sample": [
-    "54769426",
-    "29219353",
-    "-2928555"
-   ]
   }
  ],
  "notes": [

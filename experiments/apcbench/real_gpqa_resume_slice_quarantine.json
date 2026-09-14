@@ -1,0 +1,68 @@
+{
+ "meta": {
+  "protocol": "real-hle-gpqa-resume-slice",
+  "note": "隔离:欠费时代 z0/926/8 残片 + 2026-09-14 夜间 resume 两行(n=30 切片,协议与 §3.4o n=190 不可比,不入论文);正式重跑见 real_gpqa.json",
+  "incident": "HLE_OUT 未设导致写入 real_hle.json + hold-n 默认 30"
+ },
+ "rows": [
+  {
+   "task": "hle_exact",
+   "seed": 926,
+   "method": "z0",
+   "holdout_score": 0.6531,
+   "n_acc": 5,
+   "n_format": 6,
+   "n": 8,
+   "rollouts_used": 0,
+   "elapsed_s": 2963.0,
+   "prompt_chars": 931,
+   "fail_sample": [
+    "54769426",
+    "29219353",
+    "-2928555"
+   ]
+  },
+  {
+   "task": "hle_exact",
+   "seed": 926,
+   "method": "gepa",
+   "holdout_score": 0.8569,
+   "n_acc": 26,
+   "n_format": 26,
+   "n": 30,
+   "rollouts_used": 0,
+   "elapsed_s": 1387.3,
+   "prompt_chars": 931,
+   "fail_sample": [
+    "-3835687",
+    "-6458309",
+    "68967568",
+    "-1596928"
+   ]
+  },
+  {
+   "task": "hle_exact",
+   "seed": 927,
+   "method": "z0",
+   "holdout_score": 0.6202,
+   "n_acc": 14,
+   "n_format": 29,
+   "n": 30,
+   "rollouts_used": 0,
+   "elapsed_s": 3707.3,
+   "prompt_chars": 906,
+   "fail_sample": [
+    "-6527539",
+    "-7151422",
+    "57796284",
+    "-4822519",
+    "80914216",
+    "-6426060",
+    "15819366",
+    "-9492518",
+    "20461539",
+    "28537385"
+   ]
+  }
+ ]
+}
