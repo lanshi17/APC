@@ -17,7 +17,8 @@ financial/contract/math/constraint-following × 3 simulated model profiles): sea
 significantly beats zero-shot (+0.009 to +0.029); evolution beats random search on
 compositional tasks (+0.003) but loses on single-locus tasks (−0.013, successive-halving
 selection noise); PGAM is indistinguishable from uniform mutation (pooled +0.0004,
-a null result); migration reaches native-quality at 30% of the re-search budget
+a null result; its first real-model test, gpt-6 math, runs −.0376 vs uniform);
+migration reaches native-quality at 30% of the re-search budget
 (KR-6 passed 12/12). On a real frontier reasoning model (qwen3.8-flash, four arms ×
 three tasks, identical rule-judge): accuracy gains of genome search are ≈0 — the
 base-root arm holds the zero-shot floor on all three tasks (within −0.004) while the
@@ -324,11 +325,10 @@ Setup: whitelisted-key model, reasoning model (~29 s/sample), temp=0; scoring us
   multiset; policy: sacrifice the strictness that (1,2)≠(2,1) in exchange for
   equivalence of all notation variants, and judge as wrong when in doubt) → 27
   positive + 4 negative regression cases + full predictions persisted for
-  recomputation (`rejudge_external.py`); on AIME, one network-timeout case per arm is
-  scored as wrong (n=60 ⇒ ≤0.017 downward bias).
 - Honest boundary: the external benchmark arms are single-model single-seed (no CI);
   the multi-model matrix (§3.4p) extends the core arms (financial/contract/transfer)
-  to gpt-6 and gpt-5.6-terra; real validation of PGAM is still missing.
+  to gpt-6 and gpt-5.6-terra, with the PGAM real validation run on the discriminative
+  math cell (single seed).
 
 **F7 GEPA official-baseline head-to-head + variance audit (gepa vs full/safe/z0, `bench_real_gepa.py` / `bench_real_reeval.py`)**
 
@@ -724,13 +724,23 @@ is model-independent and the 8-candidate fitness ranking coincided at every sele
 decision. The genome search space is model-agnostic in exactly the sense the compiler
 promises — same rules, same space, same winner.
 
+**PGAM real validation (gpt-6 math, discriminative cell).** The simulator's pooled
+PGAM-vs-uniform null (+0.0004) is now tested on a real frontier reasoner in the one
+cell with search variance (math: uniform cold .6336 vs champion transplant .8443).
+ProfileGuidedMutator (defect-compensation prior + elite bandit) cold-searches to
+**.5960** — −.0376 vs uniform at equal budget 8/seed 42, outside the ±.007 band. The
+gpt-6 profile marks few_shot_benefit 0.0 and information_extraction 0.0, so the prior
+up-weights examples.* genes 3.0× — and examples hurt on a frontier reasoner that needs
+none; two generations of bandit correction cannot undo a wrong prior inside budget 8.
+Reading: profile-weak dimensions are not mutation-productive dimensions on strong
+models; the defect-compensation prior is a simulator-era hypothesis that fails its
+first real-model test in the negative direction.
+
 **Honest boundary.** one seed per cell on the new models (no CI); the qwen-era priors
 (same-day band ±.007, day-drift .028) apply. gpt-6 zero-shot under the smoke protocol
 (dev3/val6/hold15, kept as `real_financial_gpt6_smoke.json`) scored .6781 vs the formal
 .6862 — protocol sensitivity ≈ .008, consistent with the band. DashScope arrears still
 pend the GPQA gepa-holdout and z0-927 floor items (§3.4o).
-
-## 4. Limitations
 
 1. The F-series real-model phase is qwen-only (whitelist key); the seed axis is
    covered there (§3.5: 3 search seeds, 4 same-day z0 re-measures, quantified noise
@@ -741,8 +751,10 @@ pend the GPQA gepa-holdout and z0-927 floor items (§3.4o).
    author-authored (rule-judge).
 2. Task coverage: four simulation tasks + three external math benchmarks; open
    instruction tasks without unique answers still missing (judge-dependent).
-3. PGAM pooled null on the simulator; confirmation requires genuinely
-   multimodal real tasks with heterogeneous profiles.
+3. PGAM pooled null on the simulator; its first real-model test (gpt-6 math) runs
+   negative (−.0376 vs uniform, single seed) — the defect-compensation prior does not
+   transfer to frontier reasoners; multimodal-real-task confirmation is moot for the
+   strong-model regime.
 4. SHA is task-structure-dependent: −0.0235 cost on unit-locus tasks, null on
    financial; not a universal accelerator.
 5. SEPO head-to-head deferred to submission: the structured-editing direct competitor SEPO (arXiv 2608.28067) has no real-API run. F11's mechanism evidence (reflection learned domain content rules, transferred zero) extends the same argument to every editing-granularity variant: under knowledge-type headroom SEPO is predicted to tie, under the saturated financial regime to be null — both cells' discriminative power is already consumed by the GEPA+ESPO four-pathway coverage. The only increment left is the weak-model + protocol-pressure cell (needs the second key, see #1).

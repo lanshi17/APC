@@ -7,7 +7,8 @@
 在自带确定性仿真器的四任务基准（APCBench：财务/合同/数学/约束遵循 × 3 模型）
 上：搜索显著超越 zero-shot（+0.009 ~ +0.029）；进化在组合任务上超越随机搜索
 （+0.003），在单位点任务上被随机搜索超越（−0.013，SHA 筛选噪声所致）；
-PGAM 与均匀变异无差异（pooled +0.0004，零结果）；迁移以 30% 预算达到原生质量
+PGAM 与均匀变异无差异（pooled +0.0004，零结果；首个真实验证 gpt-6 math 对 uniform
+−.0376，负向）；迁移以 30% 预算达到原生质量
 （KR-6 12/12）。真实 LLM 第一阶段验证（§3.4，四臂 × 3 任务，单模型 qwen3.8-flash）：
 结构 genome 搜索的 accuracy 增益 ≈ 0（扰动鲁棒性同样饱和，|drop|≤0.013）——
 **base-root 臂三任务全部守住 zero-shot −0.004 下限；profile 规则先验是净负债**
@@ -254,9 +255,9 @@ rule-judge**；三任务完全同口径 dev_r/val/holdout=5/8/20；主对比预�
   判分器可信度：fail 样本 12 例人工审计 → v2→v3.1→v3.2 三轮修复（矩阵/解集/单位/
   前导零拍平 + 加法交换律符号项 multiset；政策：牺牲 (1,2)≠(2,1) 严格性换全部记法
   变体等价，判不准按错）→ 27 正 4 负回归 + 全量 preds 落盘可复算（`rejudge_external.py`）；
-  AIME 两臂各 1 例网络超时按错计（n=60 ⇒ ≤0.017 下偏）。
 - 诚实边界：外部基准臂单模型单 seed（无 CI）；多模型矩阵（§3.4p）将核心臂
-  （financial/contract/transfer）扩展到 gpt-6 与 gpt-5.6-terra；PGAM 的真实验证仍缺。
+  （financial/contract/transfer）扩展到 gpt-6 与 gpt-5.6-terra，PGAM 真实验证已在
+  判别格 math 上完成（单 seed，负向）。
 
 **F7 GEPA 官方基线对垒 + 方差审计（gepa vs full/safe/z0，`bench_real_gepa.py` / `bench_real_reeval.py`）**
 
@@ -554,8 +555,16 @@ genome 搜索空间以编译器承诺的方式模型无关——同一规则、�
 `real_financial_gpt6_smoke.json`）.6781 对正式 .6862——协议敏感度 ≈ .008，与噪声带
 一致。DashScope 欠费仍挂起 GPQA gepa-holdout 与 z0-927 地板两项（§3.4o）。
 
-## 4. Limitations（投稿前必须解决）
+**PGAM 真实验证（gpt-6 math，判别格）**。仿真器的 pooled null（+0.0004）如今在
+有搜索方差的真实前沿推理模型格上受测（math：uniform 冷搜 .6336 对冠军直迁
+.8443）。ProfileGuidedMutator（缺陷补偿先验 + 精英 bandit）冷搜得 **.5960**——同
+budget 8/seed 42 下对 uniform −.0376，超出 ±.007 带。gpt-6 画像标记 few_shot_benefit
+0.0 与 information_extraction 0.0，先验将 examples.* 基因权重抬到 3.0×——而 few-shot
+对一个不需要它的前沿推理器有害；budget 8 内两代 bandit 修正无法纠正错误先验。读数：
+强模型上"画像弱维"≠"变异高产维"；缺陷补偿先验是仿真器时代的假设，首次真实模型
+受测即负向失败。
 
+## 4. Limitations（投稿前必须解决）
 1. **F 系列 real-model 阶段为 qwen 单模型**（白名单 key）；seed 维度已补（APC 搜索
    3 seeds、z0 同日 4 复测，量化了配对噪声带 ±.007 与跨日漂移 .028——±.01 级"增益"
    一律判为噪声）。多模型矩阵（§3.4p）在核心臂（financial 4 臂、contract 4 臂、
@@ -565,8 +574,9 @@ genome 搜索空间以编译器承诺的方式模型无关——同一规则、�
 2. **任务覆盖**：财务 + 合同 + 数学 + 约束遵循四任务（仿真）+ 外部真实基准
    GSM8K/MATH-L5/AIME24+25（§3.4 F6，判分为唯一可自动核验的 exact-match）；
    仍缺开放式无唯一答案任务（只能靠 judge，见 #5）与 BBH 类非数学推理任务。
-3. **PGAM 跨任务 pooled 零结果**：+0.0004 [−0.0029, 0.0038]（n=42）；
-   画像先验的价值未被证实也不该被夸大。投稿级 claim 必须等待真实多峰任务。
+3. **PGAM 跨任务 pooled 零结果**：+0.0004 [−0.0029, 0.0038]（n=42）；首个真实模型
+   受测（gpt-6 math）负向（对 uniform −.0376，单 seed）——缺陷补偿先验不迁移到
+   前沿推理器；强模型 regime 下多模态真实任务确认已无必要。
 4. **SHA 消融两面**：财务任务 full≡no-halving（零结果）；约束任务上
    SHA 代价 −0.0235（显著），而 rules 消融仍为零（base 已满足规则）。
    SHA 的取舍与任务结构有关，非普适加速器。

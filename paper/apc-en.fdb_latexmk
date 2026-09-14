@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1789278679.74141 "apc-en.tex" "apc-en.pdf" "apc-en" 1789278680.26545 0
+["pdflatex"] 1789395275.66421 "apc-en.tex" "apc-en.pdf" "apc-en" 1789395276.19654 0
   "/etc/texmf/web2c/texmf.cnf" 1777183940.27478 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -31,6 +31,7 @@
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmmi6.tfm" 1136768653 1512 f21f83efb36853c0b70002322c1ab3ad ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmmi8.tfm" 1136768653 1520 eccf95517727cb11801f4f1aee3a21b4 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmmi9.tfm" 1136768653 1524 d89e2d087a9828407a196f428428ef4a ""
+  "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmmib10.tfm" 1136768653 1524 554068197b70979a55370e6c6495f441 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr10.tfm" 1136768653 1296 45809c5a464d5f32c8f98ba97c1bb47f ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr12.tfm" 1136768653 1288 655e228510b4c2a1abe905c368440826 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr6.tfm" 1136768653 1300 b62933e007d01cfd073f79b963c01526 ""
@@ -48,6 +49,7 @@
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/latex-fonts/lasy9.tfm" 1136768653 520 1cc7cc05f4d7bae5c23bf7516f88fa52 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1248133631 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb" 1248133631 36094 798f80770b3b148ceedd006d487db67c ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb" 1248133631 36912 b448ef9ad9d7228ec3c6e71005136d55 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1248133631 35752 024fb6c41858982481f6968b5fc26508 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb" 1248133631 33993 9b89b85fd2d9df0482bd47194d1d3bf3 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1248133631 32569 5e5ddc8df908dea60932f3c484a54c0d ""
@@ -212,9 +214,9 @@
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1777186483 5541477 3118940318599480888143717dd32d64 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1777186534 3639334 90a7a4fc762fef77665f65598c27ab50 ""
   "acl.sty" 1789276237.7892 11615 e2c027f483aa40e577ed34264c8b0655 ""
-  "apc-en.aux" 1789278680.20912 7665 765d882242d8d1ebb62134ef5962080e "pdflatex"
-  "apc-en.out" 1789278680.20912 7629 a8ec6939cc4408087ae9116d4b47bb3c "pdflatex"
-  "apc-en.tex" 1789278679.67797 65466 405c9da8e5628346936aeb86442e20e1 ""
+  "apc-en.aux" 1789395276.1372 8198 e4751ad33f5eac439cb73159066ff96e "pdflatex"
+  "apc-en.out" 1789395276.1372 8194 1454683c58629d7ed60f05e19d47e135 "pdflatex"
+  "apc-en.tex" 1789395275.04465 71030 c181378fc637aaee54026da2c7ff81f6 ""
   (generated)
   "apc-en.aux"
   "apc-en.log"
