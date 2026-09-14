@@ -56,6 +56,18 @@ AUDIT = [
     # financial 同日带(散在 real_gepa.json 的 z0-control/reeval-z0 行)
     ("fin z0 band low",   "real_gepa.json", lambda r: r["method"] == "gepa" and r.get("seed") == 902 and abs(r["holdout_score"] - .695) < 1e-6, ".6950"),
     ("fin z0 band hi",    "real_gepa.json", lambda r: r["method"] == "z0-control" and r.get("seed") == 901 and abs(r["holdout_score"] - .6997) < 1e-6, ".6997"),
+    # §3.4p 多模型复认矩阵(gpt-6 / gpt-5.6-terra, per-model 输出文件)
+    ("MM gpt6 fin z0",    "real_financial_gpt6.json", lambda r: r["method"] == "zero-shot" and r.get("seed") == 42, ".6862"),
+    ("MM gpt6 fin man",   "real_financial_gpt6.json", lambda r: r["method"] == "manual" and r.get("seed") == 42, ".6971"),
+    ("MM gpt6 fin full",  "real_financial_gpt6.json", lambda r: r["method"] == "apc-full" and r.get("seed") == 42, ".6750"),
+    ("MM gpt6 fin safe",  "real_financial_gpt6.json", lambda r: r["method"] == "apc-safe" and r.get("seed") == 42, ".6771"),
+    ("MM gpt6 ct z0",     "real_contract_gpt6.json", lambda r: r["method"] == "zero-shot" and r.get("seed") == 42, ".9783"),
+    ("MM gpt6 ct full",   "real_contract_gpt6.json", lambda r: r["method"] == "apc-full" and r.get("seed") == 42, ".9404"),
+    ("MM terra fin z0",   "real_financial_gpt56terra.json", lambda r: r["method"] == "zero-shot" and r.get("seed") == 42, ".6669"),
+    ("MM terra fin full", "real_financial_gpt56terra.json", lambda r: r["method"] == "apc-full" and r.get("seed") == 42, ".6150"),
+    ("MM gpt6 tr t0",     "real_transfer_financial_to_math_gpt6.json", lambda r: r["method"] == "transfer-0", ".8443"),
+    ("MM gpt6 tr cold",   "real_transfer_financial_to_math_gpt6.json", lambda r: r["method"] == "cold", ".6336"),
+    ("MM gpt6 tr ws",     "real_transfer_financial_to_math_gpt6.json", lambda r: r["method"] == "transfer-ws", ".8439"),
 ]
 
 fails = []
