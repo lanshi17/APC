@@ -1,0 +1,50 @@
+{
+ "meta": {
+  "protocol": "real-llm",
+  "model": "gpt6",
+  "note": "multi-model smoke seed42 b8 dev3 val6 hold15"
+ },
+ "rows": [
+  {
+   "method": "zero-shot",
+   "model_id": "gpt6",
+   "model_version": "gpt-6",
+   "task": "financial",
+   "seed": 42,
+   "baseline_score": 0.6935,
+   "validation_score": 0.6789,
+   "holdout_score": 0.6781,
+   "budget_used": 0,
+   "elapsed_s": 557.4,
+   "model": "gpt6"
+  },
+  {
+   "method": "manual",
+   "model_id": "gpt6",
+   "model_version": "gpt-6",
+   "task": "financial",
+   "seed": 42,
+   "baseline_score": 0.6689,
+   "validation_score": 0.6895,
+   "holdout_score": 0.6788,
+   "budget_used": 0,
+   "elapsed_s": 584.1,
+   "model": "gpt6"
+  },
+  {
+   "method": "apc-full",
+   "model_id": "gpt6",
+   "model_version": "glm-5.3-flash",
+   "task": "financial",
+   "seed": 42,
+   "baseline_score": 0.136,
+   "validation_score": 0.6828,
+   "holdout_score": 0.6747,
+   "budget_used": 8,
+   "elapsed_s": 1713.4,
+   "champion_genome_id": "genome_73a57db38597",
+   "mutation_note": "examples.enabled: False -> True",
+   "model": "gpt6"
+  }
+ ]
+}

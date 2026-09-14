@@ -1,0 +1,56 @@
+{
+ "meta": {
+  "source": "financial",
+  "target": "math",
+  "model": "gpt6",
+  "model_version": "glm-5.3-flash",
+  "budget": 6,
+  "seed": 42,
+  "judge": "math_rule_v1"
+ },
+ "transfer_gain_vs_cold": 0.2103,
+ "rows": [
+  {
+   "method": "transfer-0",
+   "model_id": "gpt6",
+   "model_version": "gpt-6",
+   "task": "math",
+   "seed": 42,
+   "baseline_score": 0.8389,
+   "validation_score": 0.8388,
+   "holdout_score": 0.8443,
+   "budget_used": 0,
+   "elapsed_s": 171.5,
+   "source_genome_id": "genome_73a57db38597",
+   "model": "gpt6"
+  },
+  {
+   "method": "cold",
+   "model_id": "gpt6",
+   "model_version": "gpt-6",
+   "task": "math",
+   "seed": 42,
+   "baseline_score": 0.651,
+   "validation_score": 0.6564,
+   "holdout_score": 0.6336,
+   "budget_used": 6,
+   "elapsed_s": 322.1,
+   "model": "gpt6"
+  },
+  {
+   "method": "transfer-ws",
+   "model_id": "gpt6",
+   "model_version": "glm-5.3-flash",
+   "task": "math",
+   "seed": 42,
+   "baseline_score": 0.8393,
+   "validation_score": 0.839,
+   "holdout_score": 0.8439,
+   "budget_used": 6,
+   "elapsed_s": 298.7,
+   "source_genome_id": "genome_73a57db38597",
+   "champion_genome_id": "genome_73a57db38597",
+   "model": "gpt6"
+  }
+ ]
+}
