@@ -112,6 +112,7 @@ class RealEnv:
                                      population_size=8, elite_k=3, budget=budget, seed=seed).optimize()
 
     def row(self, method, baseline, validation, holdout, budget, t0, **extra):
+        extra.setdefault("model", self.model)
         d = {"method": method, "model_id": self.client.model_id, "model_version": self.client.model_version,
              "task": self.task, "seed": getattr(self, "seed", 42), "baseline_score": round(float(baseline), 4),
              "validation_score": round(float(validation), 4), "holdout_score": round(float(holdout), 4),
@@ -139,7 +140,8 @@ def main() -> int:
         env.client.enable_thinking = False
     env.seed = args.seed
     rows, t_start = [], time.time()
-    out = REPO / "experiments" / "apcbench" / (f"real_{args.task}_nt.json" if args.no_thinking else f"real_{args.task}.json")
+    _suffix = ("_nt" if args.no_thinking else "") if args.model == "qwen" else f"_{args.model}" + ("_nt" if args.no_thinking else "")
+    out = REPO / "experiments" / "apcbench" / f"real_{args.task}{_suffix}.json"
     out.parent.mkdir(parents=True, exist_ok=True)
     if out.exists():  # 同 task 文件按 method 合并:未跑的方法行保留,跑过的替换
         rows = [r for r in json.loads(out.read_text(encoding="utf-8"))["rows"]
@@ -148,7 +150,7 @@ def main() -> int:
     def dump(partial: bool):
         out.write_text(json.dumps({"meta": {"protocol": "real-llm", "partial": partial,
                                             "total_s": round(time.time() - t_start, 1), "dev_r": args.dev_r,
-                                            "val_n": args.val_n, "hold_n": args.hold_n, "judge": env.judge_id},
+                                            "val_n": args.val_n, "hold_n": args.hold_n, "judge": env.judge_id, "model": args.model},
                                    "rows": rows}, ensure_ascii=False, indent=1), encoding="utf-8")
 
     for method in ("zero-shot", "manual"):
