@@ -7,7 +7,7 @@ from apc.models.base import BaseModelClient, CallResult
 
 # 凭证解析不设供应商特例:模型配置(api_key / api_key_env)或全局 APC_API_KEY,三选一。
 # 重试策略:超时/网络/5xx/429 重试;4xx(鉴权/坏请求)立即失败不浪费预算。
-_RETRY_STATUS = {408, 409, 429, 500, 502, 503, 504}
+_RETRY_STATUS = {408, 409, 429, 500, 502, 503, 504, 524}  # 524 = Cloudflare 源站超时(lanshi 网关长推理常见)
 
 
 def _retryable(exc: BaseException) -> bool:
