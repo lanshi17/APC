@@ -72,7 +72,7 @@ class OpenAIClient(BaseModelClient):
         self._version = data.get("model")
         self.last_usage = usage
         return CallResult(
-            text=choice["message"]["content"] or "",
+            text=(choice["message"].get("content") or ""),
             model_id=self._model_id, model_version=self._version, temperature=temperature,
             input_tokens=int(usage.get("prompt_tokens", 0)), output_tokens=int(usage.get("completion_tokens", 0)),
             latency_ms=latency_ms, retries=attempts["n"], finish_reason=choice.get("finish_reason"),
