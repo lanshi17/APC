@@ -293,9 +293,12 @@ def main() -> int:
     hold = load_dataset(REPO / "datasets" / ds_name / "holdout.jsonl").samples[:20]
 
     global OUT
+    _mtag = "" if args.model == "qwen" else f"_{args.model}"
     if args.max_tokens:
-        OUT = REPO / "experiments" / "apcbench" / f"real_gepa_mt{args.max_tokens}.json"
-    doc = {"protocol": "real-gepa", "judge": judge_id,
+        OUT = REPO / "experiments" / "apcbench" / f"real_gepa_mt{args.max_tokens}{_mtag}.json"
+    elif _mtag:
+        OUT = REPO / "experiments" / "apcbench" / f"real_gepa{_mtag}.json"
+    doc = {"protocol": "real-gepa", "judge": judge_id, "model": args.model,
            "note": "GEPA=官方 reflective-Pareto 基线;预算=task rollouts;holdout 同口径", "rows": []}
     if OUT.exists():
         doc = json.loads(OUT.read_text(encoding="utf-8"))

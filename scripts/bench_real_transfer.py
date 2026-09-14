@@ -30,8 +30,12 @@ from apc.core.genome import PromptGenome
 from bench_real_full import CHAMPS_DIR, RealEnv, BASE_GENOME
 
 
-def load_champ(task: str) -> PromptGenome:
+def load_champ(task: str, model: str = "qwen") -> PromptGenome:
     p = CHAMPS_DIR / f"real_{task}_champ.json"
+    if model != "qwen":  # 非 qwen 模型优先模型后缀冠军(如 real_financial_champ_gpt6.json)
+        cand = sorted(CHAMPS_DIR.glob(f"real_{task}_champ*_{model}.json"))
+        if cand:
+            p = cand[-1]
     if not p.exists():
         raise FileNotFoundError(f"源任务冠军不存在: {p}（先跑 bench_real_full --task {task}）")
     return PromptGenome.from_json(p)
@@ -49,7 +53,7 @@ def main() -> int:
         print("source 与 target 必须不同"); return 2
 
     tenv = RealEnv(args.target, args.model)
-    champ_a = load_champ(args.source)
+    champ_a = load_champ(args.source, args.model)
     rows = []
 
     # ---- transfer-0：A 冠军零适配直评 B ----
@@ -86,7 +90,8 @@ def main() -> int:
 
     gain = round(rw["holdout_score"] - rc["holdout_score"], 4)
     print(f"\n迁移收益 transfer-ws - cold = {gain:+.4f}（同预算 {args.budget}）")
-    out = REPO / "experiments" / "apcbench" / f"real_transfer_{args.source}_to_{args.target}.json"
+    _mtag = "" if args.model == "qwen" else f"_{args.model}"
+    out = REPO / "experiments" / "apcbench" / f"real_transfer_{args.source}_to_{args.target}{_mtag}.json"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps({"meta": {"source": args.source, "target": args.target,
                                         "model": tenv.client.model_id, "model_version": tenv.client.model_version,
