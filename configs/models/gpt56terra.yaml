@@ -1,0 +1,9 @@
+model_id: gpt56terra
+provider: lanshi
+name: gpt-5.6-terra
+api_base: https://api.lanshi.dev/v1
+model: gpt-5.6-terra
+temperature: 0.0
+max_tokens: 8000  # 推理模型:reasoning 链计入 completion,2000 会被吃光致 content 缺失
+
+api_key_env: LANSHI_API_KEY
