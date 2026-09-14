@@ -173,7 +173,8 @@ def main() -> int:
         champ = PromptGenome.model_validate(rep.champion_genome)
         CHAMPS_DIR.mkdir(parents=True, exist_ok=True)
         suffix = ("_champ" if arm == "apc-full" else "_champ_safe") + ("" if args.seed == 42 else f"_s{args.seed}") + ("_nt" if args.no_thinking else "")
-        (CHAMPS_DIR / f"real_{args.task}{suffix}.json").write_text(champ.model_dump_json(indent=1), encoding="utf-8")
+        _mtag = "" if args.model == "qwen" else f"_{args.model}"
+        (CHAMPS_DIR / f"real_{args.task}{suffix}{_mtag}.json").write_text(champ.model_dump_json(indent=1), encoding="utf-8")
         r = env.row(arm, rep.baseline_score, env.score_of(champ, env.val),
                     env.score_of(champ, env.hold), rep.budget_used, t0,
                     champion_genome_id=champ.genome_id, mutation_note=champ.mutation_note)
