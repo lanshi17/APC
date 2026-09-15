@@ -32,9 +32,13 @@ prompt optimization on strong reasoners. We distill these into a methodological
 principle, *Compile-as-Hypothesis*: compiled artifacts are testable hypotheses,
 never default deployables, and prior value is a measured quantity that can be
 negative. The multi-model replication matrix (\S{}3.4p) confirms the task-regime
-taxonomy and cross-task warm-start migration on two additional frontier reasoning
-models (gpt-6, gpt-5.6-terra via an OpenAI-compatible gateway), with the seed-42
-champion genome byte-identical across all three models.
+taxonomy for structured genome search and cross-task warm-start migration on two
+additional frontier reasoning models (gpt-6, gpt-5.6-terra via an OpenAI-compatible
+gateway), with the seed-42 champion genome byte-identical across all three models ---
+and surfaces one genuine cross-model divergence: on gpt-6, free-text reflective
+optimization (GEPA) finds +.14 on financial where genome search has none, a gain we
+decompose into a quantified judge-gaming component (~.035) and genuine
+task-instruction improvement (~.105).
 On the same real API we then close the baseline and regime questions: the official GEPA baseline (Algorithm 1 reproduced) is also within the paired same-day noise band (+.0024), the second strong baseline ESPO likewise (.7009), and a pre-registered token-starved discriminative experiment (F10) pins six pathways at the judge floor (.1500) when headroom is physically unreachable. F11 completes the map on a stratified 90-problem HLE-exact subset --- the first REAL reachable knowledge-type headroom (zero-shot accuracy .10): all six arms tie again (.388-.412); a confirmatory n=100 round replicates the tie (gepa vs z0 McNemar p=.219) and measures the same-text nondeterminism floor at 2.7%, a GPQA-Diamond round (n=190) replicates the tie on a second real dataset (five arms .853-.868; reflective search accepts zero candidates), even though GEPA demonstrably learned domain content rules (SMILES conventions, perturbation-theory regime qualifiers). The discriminator for prompt-optimization payoff is not whether headroom exists but what kind: physical-truncation and knowledge-type headroom are out of reach for any prompt pathway (ability lives in weights), while protocol/format headroom is reachable and favors structured genomes --- deployment should begin with a headroom-type diagnostic (\S{}3.4m). A deployment gate (AutoAPC-Select, F8: val-argmax + noise-band Occam tie-break, 5/7 exact-oracle on 7 replay+blind groups) turns these findings into a selection rule. Multi-model validation of PGAM awaits additional API credentials.
 
 ## 1. Problem and Claim
@@ -722,15 +726,35 @@ ProfileGuidedMutator (defect-compensation prior + elite bandit) cold-searches to
 gpt-6 profile marks few_shot_benefit 0.0 and information_extraction 0.0, so the prior
 up-weights examples.* genes 3.0$\times$ --- and examples hurt on a frontier reasoner that needs
 none; two generations of bandit correction cannot undo a wrong prior inside budget 8.
-Reading: profile-weak dimensions are not mutation-productive dimensions on strong
-models; the defect-compensation prior is a simulator-era hypothesis that fails its
-first real-model test in the negative direction.
 
 **Honest boundary.** one seed per cell on the new models (no CI); the qwen-era priors
 (same-day band $\pm$.007, day-drift .028) apply. gpt-6 zero-shot under the smoke protocol
 (dev3/val6/hold15, kept as `real_financial_gpt6_smoke.json`) scored .6781 vs the formal
-.6862 --- protocol sensitivity $\approx$ .008, consistent with the band. DashScope arrears still
-pend the GPQA gepa-holdout and z0-927 floor items (\S{}3.4o).
+.6862 --- protocol sensitivity $\approx$ .008, consistent with the band. The GEPA divergence
+cell is likewise single-seed (the $\pm$.14 gain dwarfs the band, but its exact magnitude
+needs more seeds); the gaming decomposition is textually verifiable from the persisted
+champion prompt. DashScope arrears still pend the GPQA gepa-holdout and z0-927 floor
+items (\S{}3.4o).
+
+**GEPA cross-model divergence: free-text reflective search DOES find headroom on
+gpt-6 (with a judge-gaming component).** The qwen-era GEPA round (\S{}3.4 F7) measured a
+same-day null (+.0024) on financial. On gpt-6, the identical protocol (48-rollout
+budget, seed 42, same rule judge, 12 iterations / 42 rollouts used) yields hold
+**.8914** vs the paired same-path z0 **.7039** --- a **+.14** gain on the one task where
+genome-structured search showed zero headroom (apc-full .6750 < z0). Forensic
+decomposition (same judge/checker/samples): the champion's `<style_rules>` section is
+an explicit encoding of the judge's rubric (summary forced into two fixed templates,
+metrics-inclusion rules copied from the scoring dimensions, "violations score zero"
+wording) --- reflective rewriting reverse-engineered the judge from per-dimension
+scores. Stripping it costs only **-.035** (.8441 verbatim $\rightarrow$ .8092 stripped); the
+remaining **~+.105** comes from task-instruction rewriting that lifts judge-accuracy
+.41 $\rightarrow$ .68-.75 (complete metrics extraction, risk-derivation templates). Reading:
+(i) the no-headroom conclusion is space-specific --- genome/structured mutation has no
+headroom on financial, free-text reflective rewriting does, and the gap is
+model-dependent (null on qwen, +.14 on gpt-6); (ii) free-text optimizers without
+structural safeguards do game rule judges, but gaming was a minority of the measured
+gain; (iii) APC's deployment recommendation (compiled hypothesis + paired same-day
+measurement + base-root control) is exactly the protocol that exposed this.
 
 1. The F-series real-model phase is qwen-only (whitelist key); the seed axis is
    covered there (\S{}3.5: 3 search seeds, 4 same-day z0 re-measures, quantified noise

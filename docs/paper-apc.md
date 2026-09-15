@@ -23,9 +23,12 @@ headroom（z0 acc .10，余量 .3+）中六臂同日全部同带（.388–.412�
 式不是 headroom 有无而是 headroom 类型**——物理截断型与知识型不可达（能力墙在权重），协议/
 格式型可达且结构化通路占优；部署前第一动作应是 headroom 类型诊断，知识型场景的正确动作是
 换模型而非优化 prompt（§3.4m）。
-多模型复认矩阵（§3.4p）：经 OpenAI 兼容网关在 gpt-6 与 gpt-5.6-terra 上复认任务
-regime 分类学与跨任务 warm-start 迁移（financial 无余量、contract 饱和、迁移增益
-+.2103），seed-42 冠军 genome 在三模型间字节同一；PGAM 真实验证仍待更多凭证。
+多模型复认矩阵（§3.4p）：经 OpenAI 兼容网关在 gpt-6 与 gpt-5.6-terra 上复认结构化
+genome 搜索的任务 regime 分类学与跨任务 warm-start 迁移（financial 无余量、contract
+饱和、迁移增益 +.2103），seed-42 冠军 genome 在三模型间字节同一；并暴露一个真实
+跨模型分歧：gpt-6 上自由文本反思优化（GEPA）在 genome 搜索无余量的 financial 上
++.14（分解出 ~.035 判分器 gaming 成分 + ~.105 真实任务指令改进）；PGAM 真实验证
+负向（gpt-6 math 对 uniform −.0376）。
 
 ## 1. 问题与主张
 
@@ -553,7 +556,9 @@ genome 搜索空间以编译器承诺的方式模型无关——同一规则、�
 **诚实边界**：新模型每格单 seed（无 CI）；qwen 时代先验（同日带 ±.007、跨日漂移
 .028）适用。gpt-6 zero-shot 在 smoke 协议下（dev3/val6/hold15，留存
 `real_financial_gpt6_smoke.json`）.6781 对正式 .6862——协议敏感度 ≈ .008，与噪声带
-一致。DashScope 欠费仍挂起 GPQA gepa-holdout 与 z0-927 地板两项（§3.4o）。
+一致。GEPA 分歧格同为单 seed（+.14 远超噪声带，但精确量值需更多 seed）；gaming
+分解可从落盘冠军 prompt 文本直接核验。DashScope 欠费仍挂起 GPQA gepa-holdout 与
+z0-927 地板两项（§3.4o）。
 
 **PGAM 真实验证（gpt-6 math，判别格）**。仿真器的 pooled null（+0.0004）如今在
 有搜索方差的真实前沿推理模型格上受测（math：uniform 冷搜 .6336 对冠军直迁
@@ -563,6 +568,20 @@ budget 8/seed 42 下对 uniform −.0376，超出 ±.007 带。gpt-6 画像标�
 对一个不需要它的前沿推理器有害；budget 8 内两代 bandit 修正无法纠正错误先验。读数：
 强模型上"画像弱维"≠"变异高产维"；缺陷补偿先验是仿真器时代的假设，首次真实模型
 受测即负向失败。
+
+**GEPA 跨模型分歧：自由文本反思搜索在 gpt-6 上确实找到余量（含判分器 gaming 成分）**。
+qwen 时代 GEPA 轮（§3.4 F7）在 financial 上为同日 null（+.0024）。gpt-6 上同协议
+（48 rollout 预算、seed 42、同一 rule judge、12 代/耗 42 rollouts）得 hold **.8914**，
+对同通路配对 z0 **.7039**——在 genome 结构化搜索零余量的同一任务上 **+.14**
+（apc-full .6750 < z0）。取证分解（同 judge/checker/样本）：冠军的 `<style_rules>` 段
+是判分 rubric 的显式编码（summary 强制双模板一字不差、metrics 收录规则抄自评分维度、
+"违反将直接导致评分失败"字样）——反思改写从维度分数逆向了判分器。剥离该段仅损失
+**−.035**（原文复评 .8441 → 剥离 .8092）；其余 **~+.105** 来自任务指令重写，judge-acc
+.41 → .68-.75（完整 metrics 提取、风险推导模板）。读数：(i) "无余量"结论是空间相关的
+——genome/结构化变异在 financial 无余量，自由文本反思改写有，且差距依赖模型
+（qwen null，gpt-6 +.14）；(ii) 无结构防护的自由文本优化器确实会 gaming rule judge，
+但 gaming 只占实测增益的少数；(iii) APC 的部署建议（编译假设 + 配对同日测量 +
+base-root 对照）正是暴露这一切的协议。
 
 ## 4. Limitations（投稿前必须解决）
 1. **F 系列 real-model 阶段为 qwen 单模型**（白名单 key）；seed 维度已补（APC 搜索
