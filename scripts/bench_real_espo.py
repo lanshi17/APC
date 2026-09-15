@@ -196,9 +196,12 @@ def main() -> int:
         apply_rules=False).prompt_text
 
     global OUT
+    _mtag = "" if args.model == "qwen" else f"_{args.model}"
     if args.max_tokens:
-        OUT = REPO / "experiments" / "apcbench" / f"real_gepa_mt{args.max_tokens}.json"
-    doc = {"protocol": "real-gepa", "judge": judge_id, "rows": []}
+        OUT = REPO / "experiments" / "apcbench" / f"real_gepa_mt{args.max_tokens}{_mtag}.json"
+    elif _mtag:
+        OUT = REPO / "experiments" / "apcbench" / f"real_gepa{_mtag}.json"
+    doc = {"protocol": "real-gepa", "judge": judge_id, "model": args.model, "rows": []}
     if OUT.exists():
         doc = json.loads(OUT.read_text(encoding="utf-8"))
 
