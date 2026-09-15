@@ -1,0 +1,29 @@
+{
+ "meta": {
+  "protocol": "gepa-gaming-recheck",
+  "model": "gpt6",
+  "note": "剥离 <style_rules>(judge 口径编码段) 后增益应消失 → free-text 反思优化器逆向 rule-judge 的直接证据"
+ },
+ "rows": [
+  {
+   "method": "champ-verbatim",
+   "holdout_score": 0.8441,
+   "accuracy": 0.7502,
+   "format": 0.95,
+   "n": 20,
+   "elapsed_s": 380.0,
+   "model_id": "gpt6",
+   "chars": 2358
+  },
+  {
+   "method": "champ-stripped",
+   "holdout_score": 0.8092,
+   "accuracy": 0.6781,
+   "format": 0.95,
+   "n": 20,
+   "elapsed_s": 443.5,
+   "model_id": "gpt6",
+   "chars": 1494
+  }
+ ]
+}
