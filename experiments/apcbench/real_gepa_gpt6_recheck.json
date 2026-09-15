@@ -2,7 +2,7 @@
  "meta": {
   "protocol": "gepa-gaming-recheck",
   "model": "gpt6",
-  "note": "剥离 <style_rules>(judge 口径编码段) 后增益应消失 → free-text 反思优化器逆向 rule-judge 的直接证据"
+  "note": "剥离 <style_rules>(judge 口径编码段) 后增益应消失 → free-text 反思优化器逆向 rule-judge 的直接证据; z0-paired 为同日配对基线(2026-09-15)"
  },
  "rows": [
   {
@@ -24,6 +24,17 @@
    "elapsed_s": 443.5,
    "model_id": "gpt6",
    "chars": 1494
+  },
+  {
+   "method": "z0-paired",
+   "holdout_score": 0.7039,
+   "accuracy": 0.4084,
+   "format": 1.0,
+   "n": 20,
+   "elapsed_s": 446,
+   "model_id": "gpt6",
+   "chars": 958,
+   "note": "同通路配对 z0(apply_rules=False 编译文本,958 字符)——GEPA 分歧的基线锚点"
   }
  ]
 }
