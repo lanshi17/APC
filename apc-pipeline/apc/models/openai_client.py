@@ -10,21 +10,29 @@ from apc.models.base import BaseModelClient, CallResult
 _RETRY_STATUS = {408, 409, 429, 500, 502, 503, 504, 524}  # 524 = Cloudflare 源站超时(lanshi 网关长推理常见)
 
 
+class _BackendMismatch(Exception):
+    """网关返回的后端与端点声明不符(聚合网关故障切换/混路由)——可重试。"""
+
+
 def _retryable(exc: BaseException) -> bool:
     if isinstance(exc, httpx.TimeoutException | httpx.TransportError):
         return True
     if isinstance(exc, httpx.HTTPStatusError):
         return exc.response.status_code in _RETRY_STATUS
-    return isinstance(exc, KeyError)
+    return isinstance(exc, KeyError | _BackendMismatch)
+
+
 
 
 class OpenAIClient(BaseModelClient):
     """OpenAI-compatible 调用通路（GPT / DashScope compatible-mode / Zhipu compatible API）。"""
 
     def __init__(self, model_id: str, model: str, base_url: str, api_key: str | None = None,
-                 max_tokens: int = 2000, timeout: float = 180.0, enable_thinking: bool | None = None):
+                 max_tokens: int = 2000, timeout: float = 180.0, enable_thinking: bool | None = None,
+                 expect_backend: str | None = None):
         self._model_id = model_id
         self.enable_thinking = enable_thinking
+        self.expect_backend = expect_backend
         self.model = model
         self.max_tokens = max_tokens
         self.base_url = base_url.rstrip("/")
@@ -70,6 +78,17 @@ class OpenAIClient(BaseModelClient):
         choice = data["choices"][0]
         usage = data.get("usage") or {}
         self._version = data.get("model")
+        try:  # 后端审计流:聚合网关可能按时间窗把端点路由到别的后端,逐调用记录响应 model 供行级核验
+            import json as _json, pathlib as _pl
+            _d = _pl.Path(__file__).resolve().parents[3] / "artifacts" / "backend_audit"
+            _d.mkdir(parents=True, exist_ok=True)
+            with open(_d / f"{self._model_id}.jsonl", "a", encoding="utf-8") as _f:
+                _f.write(_json.dumps({"ts": round(time.time(), 1), "backend": data.get("model")}) + "\n")
+        except Exception:
+            pass
+        if self.expect_backend and data.get("model") != self.expect_backend:
+            raise _BackendMismatch(
+                f"端点 {self._model_id} 期望后端 {self.expect_backend}, 实际 {data.get('model')}")
         self.last_usage = usage
         return CallResult(
             text=(choice["message"].get("content") or ""),
@@ -96,4 +115,5 @@ def build_openai_client(model_config: dict, api_key: str | None = None) -> OpenA
     return OpenAIClient(
         model_id=model_config["model_id"], model=model_config["model"], base_url=model_config["api_base"],
         api_key=key, max_tokens=int(model_config.get("max_tokens", 2000)),
+        expect_backend=model_config.get("expect_backend"),
     )

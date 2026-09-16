@@ -7,3 +7,4 @@ temperature: 0.0
 max_tokens: 8000  # 推理模型:reasoning 链计入 completion,2000 会被吃光致 content 缺失
 
 api_key_env: LANSHI_API_KEY
+expect_backend: gpt-6  # 聚合网关防混路由:响应 model 不符即重试(后端审计流 artifacts/backend_audit/)
