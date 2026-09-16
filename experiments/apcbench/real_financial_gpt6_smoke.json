@@ -2,7 +2,8 @@
  "meta": {
   "protocol": "real-llm",
   "model": "gpt6",
-  "note": "multi-model smoke seed42 b8 dev3 val6 hold15"
+  "note": "multi-model smoke seed42 b8 dev3 val6 hold15",
+  "backend_incident": "backend_incident: 2026-09-15 lanshi 网关故障窗口将部分行路由到后备后端(见行级 model_version 与 artifacts/backend_audit/);受影响行以 §3.4p 事故段为准,正在 expect_backend 强制下重跑"
  },
  "rows": [
   {

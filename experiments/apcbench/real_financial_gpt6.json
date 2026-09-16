@@ -7,7 +7,8 @@
   "val_n": 8,
   "hold_n": 20,
   "judge": "financial_rule_v1",
-  "model": "gpt6"
+  "model": "gpt6",
+  "backend_incident": "backend_incident: 2026-09-15 lanshi 网关故障窗口将部分行路由到后备后端(见行级 model_version 与 artifacts/backend_audit/);受影响行以 §3.4p 事故段为准,正在 expect_backend 强制下重跑"
  },
  "rows": [
   {

@@ -99,5 +99,8 @@
     }
    ]
   }
- ]
+ ],
+ "meta": {
+  "backend_incident": "backend_incident: 2026-09-15 探针证实 lanshi gpt-5.6-terra 端点实为 qwen3.8-flash 别名(响应 model 3/3 + 分值与 DashScope qwen 历史全同)——本文件为 qwen 跨供应商复测,非第三模型"
+ }
 }
