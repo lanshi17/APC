@@ -7,3 +7,4 @@ temperature: 0.0
 max_tokens: 8000  # 推理模型:reasoning 链计入 completion,2000 会被吃光致 content 缺失
 
 api_key_env: LANSHI_API_KEY
+expect_backend: qwen3.8-flash  # 实测 2026-09-15:该端点实为 qwen3.8-flash 别名(响应 model 3/3 + 分值与 DashScope qwen 历史全同),不是独立新模型
