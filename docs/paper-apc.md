@@ -583,6 +583,19 @@ qwen 时代 GEPA 轮（§3.4 F7）在 financial 上为同日 null（+.0024）。
 但 gaming 只占实测增益的少数；(iii) APC 的部署建议（编译假设 + 配对同日测量 +
 base-root 对照）正是暴露这一切的协议。
 
+**网关污染事故（如实记录；上行受影响格以此为准，待重跑）**。gpt-6 背后的
+OpenAI 兼容网关是多后端聚合器，故障窗口内会把端点重路由：响应 `model` 字段证明
+本节部分格由匿名后备后端服务（financial apc-full/apc-safe、contract apc-safe、
+transfer-ws、espo），其余为干净 gpt-6（zero-shot/manual、gepa、pgam、
+transfer-0/cold）。"gpt-5.6-terra" 端点更严重：探针显示它是 **qwen3.8-flash 别名**
+（3/3 响应 model + 分值与 DashScope qwen 历史全同，如 manual .6665 完全一致）
+——上表该行是 qwen 的跨供应商复测，不是第三个模型。已交付补救：逐调用响应 model
+审计流（`artifacts/backend_audit/`）+ `expect_backend` 强制（不符即抛可重试异常，
+4 次尝试）。全部受污染格正在强制条件下重跑；terra 别名将在下一数据修订中重标。
+仅凭干净格即成立的主张：gpt-6 financial 的 genome 搜索 null（zero-shot/manual 干净，
+搜索臂待重跑）、GEPA 分歧方向（+.14 对配对 z0 .7039——但搜索轨迹本身可能混后端，
+精确量值待强制重跑）、PGAM 负结果（干净 gpt-6）。
+
 ## 4. Limitations（投稿前必须解决）
 1. **F 系列 real-model 阶段为 qwen 单模型**（白名单 key）；seed 维度已补（APC 搜索
    3 seeds、z0 同日 4 复测，量化了配对噪声带 ±.007 与跨日漂移 .028——±.01 级"增益"

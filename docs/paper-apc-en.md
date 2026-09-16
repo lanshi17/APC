@@ -766,6 +766,23 @@ structural safeguards do game rule judges, but gaming was a minority of the meas
 gain; (iii) APC's deployment recommendation (compiled hypothesis + paired same-day
 measurement + base-root control) is exactly the protocol that exposed this.
 
+**Gateway contamination incident (recorded as it happened; supersedes affected cells
+above pending re-run).** The OpenAI-compatible gateway behind gpt-6 is a multi-backend
+aggregator that re-routes the endpoint during failure windows: response `model` fields
+prove cells of this section were served by an anonymous fallback backend (financial
+apc-full/apc-safe, contract apc-safe, transfer-ws, espo) while others are clean gpt-6
+(zero-shot/manual, gepa, pgam, transfer-0/cold). The "gpt-5.6-terra" endpoint is worse:
+probes show it is a **qwen3.8-flash alias** (3/3 response model + score parity with the
+DashScope qwen history, e.g. manual .6665 identical) — its row above is a cross-provider
+qwen replication, not a third model. Remediation shipped: per-call response-model audit
+stream (`artifacts/backend_audit/`) plus `expect_backend` enforcement (mismatch →
+retryable error, 4 attempts). All contaminated cells are being re-run under
+enforcement; the terra alias is relabelled in the next data revision. Claims that
+survive on clean cells alone: genome-search null on gpt-6 financial (zero-shot/manual
+clean; search arms pending), GEPA divergence direction (+.14 vs paired z0 .7039 —
+though the search trajectory may itself be backend-mixed, so the exact magnitude is
+provisional until an enforced re-run), PGAM negative result (clean gpt-6).
+
 1. The F-series real-model phase is qwen-only (whitelist key); the seed axis is
    covered there (§3.5: 3 search seeds, 4 same-day z0 re-measures, quantified noise
    band ±.007 and day-drift .028 — any "gain" within ±.01 is judged noise). The
