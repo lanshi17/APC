@@ -766,6 +766,18 @@ structural safeguards do game rule judges, but gaming was a minority of the meas
 gain; (iii) APC's deployment recommendation (compiled hypothesis + paired same-day
 measurement + base-root control) is exactly the protocol that exposed this.
 
+**Gated-baseline contrast and reliability notes.** The ESPO baseline re-run under full
+backend enforcement on the same gpt-6 financial cell **declines to adopt any candidate**
+(best candidate .789 below the adoption bar) and holds the z0 line: hold **.7021** vs
+paired z0 .7039 — the divergence is GEPA-specific: unconditional best-of-search takes
+the judge-gamed text, while ESPO's explicit adoption gate and APC's structured genome
+both stay null. Reliability: the gpt-6 GEPA champion text (2358 chars) was lost to a
+champ-file naming collision (model-unqualified filename; overwritten by the terra run's
+zero-accept champion = z0 text); the gaming decomposition (.8441 verbatim → .8092
+stripped) survives as the archived first recheck and is not re-runnable; the follow-up
+recheck that read the overwritten file measured z0-text repeatability instead
+(.7055/.7013 vs .7039 paired — the z0 baseline is reproducible).
+
 **Gateway contamination incident (recorded as it happened; supersedes affected cells
 above pending re-run).** The OpenAI-compatible gateway behind gpt-6 is a multi-backend
 aggregator that re-routes the endpoint during failure windows: response `model` fields

@@ -135,6 +135,33 @@
     "exemplification",
     "constraint-hardening"
    ]
+  },
+  {
+   "task": "hle_exact",
+   "seed": 926,
+   "method": "gepa",
+   "holdout_score": 0.8856,
+   "n_acc": 167,
+   "n_format": 177,
+   "n": 190,
+   "rollouts_used": 0,
+   "elapsed_s": 24885.1,
+   "prompt_chars": 931,
+   "fail_sample": [
+    "-2971659",
+    "20712598",
+    "44565173",
+    "65888445",
+    "-5708110",
+    "89187908",
+    "51039726",
+    "68595545",
+    "68153412",
+    "-2916279"
+   ]
   }
- ]
+ ],
+ "meta": {
+  "gpqa_holdout_resolution": "gepa-926 holdout .8856 有效(Sep-16 健康窗口,冠军文本==931 字符 z0 原文);z0-927 .6501 隔离:DashScope 服务漂移窗口(同文本单侧翻转 74:6,实时探针 4/4 恢复旧行为)"
+ }
 }

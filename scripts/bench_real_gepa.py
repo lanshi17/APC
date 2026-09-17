@@ -325,7 +325,7 @@ def main() -> int:
         doc["rows"] = [r for r in doc["rows"] if not (r["task"] == args.task and r["seed"] == seed)] + [row]
         OUT.parent.mkdir(parents=True, exist_ok=True)
         OUT.write_text(json.dumps(doc, ensure_ascii=False, indent=1), encoding="utf-8")
-        Path(f"/tmp/gepa_{args.task}_{seed}_champ.txt").write_text(champ, encoding="utf-8")
+        Path(f"/tmp/gepa_{args.task}_{args.model}_{seed}_champ.txt").write_text(champ, encoding="utf-8")
         print(f"{args.task} seed{seed}: hold={row['holdout_score']:.4f} val={champ_val:.4f} "
               f"pool={len(pool)} iters={iters} rollouts={budget.used} ({row['elapsed_s']}s)", flush=True)
     return 0
