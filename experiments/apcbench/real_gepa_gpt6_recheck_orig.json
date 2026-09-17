@@ -1,0 +1,30 @@
+{
+ "meta": {
+  "protocol": "gepa-gaming-recheck",
+  "model": "gpt6",
+  "note": "剥离 <style_rules>(judge 口径编码段) 后增益应消失 → free-text 反思优化器逆向 rule-judge 的直接证据",
+  "provenance": "从 git 90b39d8 恢复:首次 gaming 复测(2026-09-15 上午 gpt-6 健康窗口,当时无逐调用审计)。GEPA 冠军文本(2358 字符)后被 espo 运行覆盖丢失(champ 文件名共享缺陷,已修)——verbatim/stripped 臂不可复现,本文件为其唯一存档"
+ },
+ "rows": [
+  {
+   "method": "champ-verbatim",
+   "holdout_score": 0.8441,
+   "accuracy": 0.7502,
+   "format": 0.95,
+   "n": 20,
+   "elapsed_s": 380.0,
+   "model_id": "gpt6",
+   "chars": 2358
+  },
+  {
+   "method": "champ-stripped",
+   "holdout_score": 0.8092,
+   "accuracy": 0.6781,
+   "format": 0.95,
+   "n": 20,
+   "elapsed_s": 443.5,
+   "model_id": "gpt6",
+   "chars": 1494
+  }
+ ]
+}

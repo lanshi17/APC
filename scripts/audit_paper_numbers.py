@@ -72,7 +72,8 @@ AUDIT = [
     ("MM gpt6 gepa",      "real_gepa_gpt6.json", lambda r: r["method"] == "gepa" and r.get("seed") == 42, ".8914"),
     ("MM gpt6 vr",        "real_gepa_gpt6_recheck.json", lambda r: r["method"] == "champ-verbatim", ".8441"),
     ("MM gpt6 strip",     "real_gepa_gpt6_recheck.json", lambda r: r["method"] == "champ-stripped", ".8092"),
-    ("MM gpt6 z0pair",    "real_gepa_gpt6_recheck.json", lambda r: r["method"] == "z0-paired", ".7039"),
+    ("MM gpt6 z0pair",    "real_gepa_gpt6_recheck_orig.json", lambda r: r["method"] == "z0-paired", ".7039"),
+    ("MM gpt6 espo",      "real_gepa_gpt6.json", lambda r: r["method"] == "espo" and r.get("seed") == 42, ".7021"),
 ]
 
 fails = []

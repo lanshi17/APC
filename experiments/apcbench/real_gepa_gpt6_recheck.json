@@ -2,39 +2,28 @@
  "meta": {
   "protocol": "gepa-gaming-recheck",
   "model": "gpt6",
-  "note": "剥离 <style_rules>(judge 口径编码段) 后增益应消失 → free-text 反思优化器逆向 rule-judge 的直接证据; z0-paired 为同日配对基线(2026-09-15)"
+  "note": "2026-09-16 重跑:champ 文件已被 espo 覆盖为 z0 文本(958 chars,剥离无效果),故本文件实为 z0 文本同日复测——.7055/.7013 与 z0-paired .7039 一致,验证 z0 配对基线可复现;非 GEPA 冠军数据"
  },
  "rows": [
   {
    "method": "champ-verbatim",
-   "holdout_score": 0.8441,
-   "accuracy": 0.7502,
-   "format": 0.95,
+   "holdout_score": 0.7055,
+   "accuracy": 0.4118,
+   "format": 1.0,
    "n": 20,
-   "elapsed_s": 380.0,
+   "elapsed_s": 670.5,
    "model_id": "gpt6",
-   "chars": 2358
+   "chars": 958
   },
   {
    "method": "champ-stripped",
-   "holdout_score": 0.8092,
-   "accuracy": 0.6781,
-   "format": 0.95,
-   "n": 20,
-   "elapsed_s": 443.5,
-   "model_id": "gpt6",
-   "chars": 1494
-  },
-  {
-   "method": "z0-paired",
-   "holdout_score": 0.7039,
-   "accuracy": 0.4084,
+   "holdout_score": 0.7013,
+   "accuracy": 0.4034,
    "format": 1.0,
    "n": 20,
-   "elapsed_s": 446,
+   "elapsed_s": 533.3,
    "model_id": "gpt6",
-   "chars": 958,
-   "note": "同通路配对 z0(apply_rules=False 编译文本,958 字符)——GEPA 分歧的基线锚点"
+   "chars": 958
   }
  ]
 }
