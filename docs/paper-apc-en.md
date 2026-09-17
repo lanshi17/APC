@@ -681,8 +681,20 @@ the tmpfs per-row streams of the five valid arms — this section reports margin
 Wilson CIs only, no paired statistics; (b) DashScope account arrears (Arrearage,
 from 2026-09-13 12:20) turned the resume run into 400/empty-content after row
 ~10; corrupt rows were purged (`real_gpqa.json` keeps the 5 valid rows, incident
-in notes). Two items pend recharge: the gepa holdout evaluation and the z0-927
-same-text floor.
+in notes).
+
+**Both pending items closed (executed 2026-09-16 after recharge).** (1) The gepa
+holdout evaluation completed: **.8856** (167/190, 13 timeout-fails scored wrong,
+6.9h). The champion text IS the 931-char z0 text (the search accepted zero
+candidates), so Δ(z0-926 .8729) = **+.0127** is the GPQA same-text repeatability
+estimate (including timeout-composition variance) — nominally the band top but within
+same-text fluctuation; the zero-acceptance tie conclusion stands. (2) The dedicated
+z0-927 floor run is **discarded**: .6501 (99/190) agrees with the same-text gepa-926
+run on only 57.7% of common problems with one-sided flips 74:6, and a live probe
+reproduced the Sep-16 correct behavior 4/4 — a DashScope service-drift window
+(2026-09-17, silent qwen3.8-flash degradation); data moved to
+`real_gpqa_z0927_servicedrift_quarantine.json`. The floor is carried by the Δ+.0127
+from (1).
 
 ### 3.4p Multi-model replication matrix: qwen3.8-flash + gpt-6 + gpt-5.6-terra (`--model <id>`, per-model output isolation)
 

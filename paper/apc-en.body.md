@@ -671,8 +671,20 @@ the tmpfs per-row streams of the five valid arms --- this section reports margin
 Wilson CIs only, no paired statistics; (b) DashScope account arrears (Arrearage,
 from 2026-09-13 12:20) turned the resume run into 400/empty-content after row
 ~10; corrupt rows were purged (`real_gpqa.json` keeps the 5 valid rows, incident
-in notes). Two items pend recharge: the gepa holdout evaluation and the z0-927
-same-text floor.
+in notes).
+
+**Both pending items closed (executed 2026-09-16 after recharge).** (1) The gepa
+holdout evaluation completed: **.8856** (167/190, 13 timeout-fails scored wrong,
+6.9h). The champion text IS the 931-char z0 text (the search accepted zero
+candidates), so $\Delta$(z0-926 .8729) = **+.0127** is the GPQA same-text repeatability
+estimate (including timeout-composition variance) --- nominally the band top but within
+same-text fluctuation; the zero-acceptance tie conclusion stands. (2) The dedicated
+z0-927 floor run is **discarded**: .6501 (99/190) agrees with the same-text gepa-926
+run on only 57.7% of common problems with one-sided flips 74:6, and a live probe
+reproduced the Sep-16 correct behavior 4/4 --- a DashScope service-drift window
+(2026-09-17, silent qwen3.8-flash degradation); data moved to
+`real_gpqa_z0927_servicedrift_quarantine.json`. The floor is carried by the $\Delta$+.0127
+from (1).
 
 ### 3.4p Multi-model replication matrix: qwen3.8-flash + gpt-6 + gpt-5.6-terra (`--model <id>`, per-model output isolation)
 
@@ -755,6 +767,35 @@ model-dependent (null on qwen, +.14 on gpt-6); (ii) free-text optimizers without
 structural safeguards do game rule judges, but gaming was a minority of the measured
 gain; (iii) APC's deployment recommendation (compiled hypothesis + paired same-day
 measurement + base-root control) is exactly the protocol that exposed this.
+
+**Gated-baseline contrast and reliability notes.** The ESPO baseline re-run under full
+backend enforcement on the same gpt-6 financial cell **declines to adopt any candidate**
+(best candidate .789 below the adoption bar) and holds the z0 line: hold **.7021** vs
+paired z0 .7039 --- the divergence is GEPA-specific: unconditional best-of-search takes
+the judge-gamed text, while ESPO's explicit adoption gate and APC's structured genome
+both stay null. Reliability: the gpt-6 GEPA champion text (2358 chars) was lost to a
+champ-file naming collision (model-unqualified filename; overwritten by the terra run's
+zero-accept champion = z0 text); the gaming decomposition (.8441 verbatim $\rightarrow$ .8092
+stripped) survives as the archived first recheck and is not re-runnable; the follow-up
+recheck that read the overwritten file measured z0-text repeatability instead
+(.7055/.7013 vs .7039 paired --- the z0 baseline is reproducible).
+
+**Gateway contamination incident (recorded as it happened; supersedes affected cells
+above pending re-run).** The OpenAI-compatible gateway behind gpt-6 is a multi-backend
+aggregator that re-routes the endpoint during failure windows: response `model` fields
+prove cells of this section were served by an anonymous fallback backend (financial
+apc-full/apc-safe, contract apc-safe, transfer-ws, espo) while others are clean gpt-6
+(zero-shot/manual, gepa, pgam, transfer-0/cold). The "gpt-5.6-terra" endpoint is worse:
+probes show it is a **qwen3.8-flash alias** (3/3 response model + score parity with the
+DashScope qwen history, e.g. manual .6665 identical) --- its row above is a cross-provider
+qwen replication, not a third model. Remediation shipped: per-call response-model audit
+stream (`artifacts/backend_audit/`) plus `expect_backend` enforcement (mismatch $\rightarrow$
+retryable error, 4 attempts). All contaminated cells are being re-run under
+enforcement; the terra alias is relabelled in the next data revision. Claims that
+survive on clean cells alone: genome-search null on gpt-6 financial (zero-shot/manual
+clean; search arms pending), GEPA divergence direction (+.14 vs paired z0 .7039 ---
+though the search trajectory may itself be backend-mixed, so the exact magnitude is
+provisional until an enforced re-run), PGAM negative result (clean gpt-6).
 
 1. The F-series real-model phase is qwen-only (whitelist key); the seed axis is
    covered there (\S{}3.5: 3 search seeds, 4 same-day z0 re-measures, quantified noise
