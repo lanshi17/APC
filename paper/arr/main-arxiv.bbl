@@ -1,0 +1,110 @@
+\begin{thebibliography}{17}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Agrawal et~al.(2025)}]{agrawal2025gepa}
+Shashank Agrawal et~al. 2025.
+\newblock {GEPA}: Reflective prompt evolution can outperform reinforcement
+  learning.
+\newblock \emph{arXiv preprint arXiv:2507.19457}.
+
+\bibitem[{Anonymous(2026{\natexlab{a}})}]{zhang2026capability}
+Anonymous. 2026{\natexlab{a}}.
+\newblock Capability-dependent compilation gains for instruction-following
+  language models.
+\newblock \emph{arXiv preprint arXiv:2608.02639}.
+
+\bibitem[{Anonymous(2026{\natexlab{b}})}]{espo2026}
+Anonymous. 2026{\natexlab{b}}.
+\newblock {ESPO}: Entropy-based selective prompt optimization.
+\newblock \emph{EMNLP}.
+\newblock ArXiv:2608.28067.
+
+\bibitem[{Chen et~al.(2023)Chen, Tworek et~al.}]{chen2023flask}
+Mirac Chen, Jerry Tworek, et~al. 2023.
+\newblock {FLASK}: Fine-grained language model evaluation.
+\newblock In \emph{NeurIPS}.
+\newblock ArXiv:2307.10928.
+
+\bibitem[{Cobbe et~al.(2021)Cobbe, Kosaraju, Bavarian
+  et~al.}]{cobbe2021training}
+Karl Cobbe, Vineet Kosaraju, Mohammad Bavarian, et~al. 2021.
+\newblock Training verifiers to solve math word problems.
+\newblock \emph{arXiv preprint arXiv:2110.14168}.
+
+\bibitem[{Hendrycks et~al.(2021)Hendrycks, Burns, Kadavath
+  et~al.}]{hendrycks2021measuring_math}
+Dan Hendrycks, Collin Burns, Saurav Kadavath, et~al. 2021.
+\newblock Measuring mathematical problem solving with the {MATH} dataset.
+\newblock In \emph{NeurIPS Datasets and Benchmarks}.
+\newblock ArXiv:2103.03874.
+
+\bibitem[{Khattab et~al.(2024)Khattab, Singhvi, Maheshwari
+  et~al.}]{khattab2024dspy}
+Omar Khattab, Arnav Singhvi, Paridhi Maheshwari, et~al. 2024.
+\newblock {DSPy}: Compiling declarative self-improving language programs.
+\newblock In \emph{ICLR}.
+\newblock ArXiv:2310.03714.
+
+\bibitem[{Liang et~al.(2023)Liang, Bommasani, Lee et~al.}]{liang2023holistic}
+Percy Liang, Rishi Bommasani, Tony Lee, et~al. 2023.
+\newblock Holistic evaluation of language models.
+\newblock \emph{Transactions on Machine Learning Research}.
+\newblock ArXiv:2211.09110.
+
+\bibitem[{Phan et~al.(2025)Phan, Gao, Le et~al.}]{phan2025humanity}
+Long Phan, Alice Gao, Bach Le, et~al. 2025.
+\newblock Humanity's last exam.
+\newblock \emph{arXiv preprint arXiv:2501.14249}.
+
+\bibitem[{Prasad et~al.(2023)Prasad, Koller, Hartmann et~al.}]{prasad2023grips}
+Archiki Prasad, Alexander Koller, Mareike Hartmann, et~al. 2023.
+\newblock {GriPS}: Gradient-free, edit-based instruction search for greedy
+  prompt optimization.
+\newblock In \emph{EMNLP}.
+\newblock ArXiv:2305.03495.
+
+\bibitem[{Rein et~al.(2024)Rein, Hou, Stickland et~al.}]{rein2024gpqa}
+David Rein, Betty~Li Hou, Asa~Cooper Stickland, et~al. 2024.
+\newblock {GPQA}: A graduate-level google-proof q\&a benchmark.
+\newblock \emph{arXiv preprint arXiv:2311.12022}.
+
+\bibitem[{Sclar et~al.(2024)Sclar, Choi, Tsvetkov, and
+  Suhr}]{sclar2024quantifying}
+Melanie Sclar, Yejin Choi, Yulia Tsvetkov, and Alane Suhr. 2024.
+\newblock Quantifying language models' sensitivity to spurious features in
+  prompt design or: How i learned to worry about prompt formatting.
+\newblock In \emph{ICLR}.
+\newblock ArXiv:2310.11324.
+
+\bibitem[{Snell et~al.(2024)Snell, Lee, Xu, and Kumar}]{snell2024scaling}
+Charlie Snell, Jaehoon Lee, Kelvin Xu, and Aviral Kumar. 2024.
+\newblock Scaling {LLM} test-time compute optimally can be more effective than
+  scaling model parameters.
+\newblock \emph{arXiv preprint arXiv:2408.03314}.
+
+\bibitem[{Wu et~al.(2024)}]{wu2024style}
+Yixuan Wu et~al. 2024.
+\newblock Style over substance: Evaluations of large language model
+  explanations by human and automatic evaluators.
+\newblock In \emph{ACL}.
+\newblock ArXiv:2310.12773.
+
+\bibitem[{Yang et~al.(2024)Yang, Wang, Lu et~al.}]{yang2024large}
+Chengrun Yang, Xuezhi Wang, Yifeng Lu, et~al. 2024.
+\newblock Large language models as optimizers.
+\newblock In \emph{ICLR}.
+\newblock ArXiv:2309.03409.
+
+\bibitem[{Zheng et~al.(2023)Zheng, Chiang, Sheng et~al.}]{zheng2023judging}
+Lianmin Zheng, Wei-Lin Chiang, Ying Sheng, et~al. 2023.
+\newblock Judging {LLM}-as-a-judge with {MT-Bench} and chatbot arena.
+\newblock In \emph{NeurIPS}.
+\newblock ArXiv:2306.05685.
+
+\bibitem[{Zhou et~al.(2023)Zhou, Muresanu, Han et~al.}]{zhou2023large}
+Yongchao Zhou, Andrei~Ioan Muresanu, Ziwen Han, et~al. 2023.
+\newblock Large language models are human-level prompt engineers.
+\newblock In \emph{ICLR}.
+\newblock ArXiv:2211.01910.
+
+\end{thebibliography}

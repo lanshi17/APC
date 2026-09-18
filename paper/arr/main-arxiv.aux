@@ -1,0 +1,119 @@
+\relax 
+\bibstyle{acl_natbib}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{sclar2024quantifying}
+\citation{chen2023flask,liang2023holistic}
+\citation{khattab2024dspy}
+\citation{cobbe2021training}
+\citation{hendrycks2021measuring_math}
+\citation{rein2024gpqa}
+\citation{phan2025humanity}
+\citation{agrawal2025gepa}
+\citation{espo2026}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{zhou2023large}
+\citation{yang2024large}
+\citation{prasad2023grips}
+\citation{khattab2024dspy}
+\citation{agrawal2025gepa}
+\citation{espo2026}
+\citation{zhang2026capability}
+\citation{sclar2024quantifying}
+\citation{wu2024style}
+\citation{snell2024scaling}
+\@writefile{toc}{\contentsline {paragraph}{Contributions.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Prompt optimization.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Prompt sensitivity and evaluation reliability.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Test-time compute.}{2}{section*.4}\protected@file@percent }
+\citation{cobbe2021training}
+\citation{hendrycks2021measuring_math}
+\citation{rein2024gpqa}
+\citation{phan2025humanity}
+\citation{liang2023holistic}
+\citation{chen2023flask}
+\@writefile{toc}{\contentsline {paragraph}{Benchmarks.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Structural genome and task specification}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Two-root compilation}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Search}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Judge}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Simulator}{3}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{3}{section.4}\protected@file@percent }
+\newlabel{sec:setup}{{4}{3}{Experimental Setup}{section.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Real APIs.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Protocol.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Arms.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{External benchmarks.}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contamination control.}{3}{section*.10}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Real qwen3.8-flash, same-day arm sets (s45; financial search arms at s42 parity protocol). $^{*}$seed-collapse: two of four search seeds collapse bimodally (\S  \ref {sec:results-collapse}). gpt-6 clean-cell analogues: zero-shot{} .6862, \textsc  {manual} .6971 (search arms withdrawn, \S  \ref {sec:analysis-infra}).}}{4}{table.caption.11}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:real-qwen}{{1}{4}{Real qwen3.8-flash, same-day arm sets (s45; financial search arms at s42 parity protocol). $^{*}$seed-collapse: two of four search seeds collapse bimodally (\S \ref {sec:results-collapse}). gpt-6 clean-cell analogues: \zs {} .6862, \textsc {manual} .6971 (search arms withdrawn, \S \ref {sec:analysis-infra})}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\newlabel{sec:results}{{5}{4}{Results}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Simulator: structured search helps exactly where it should}{4}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:results-sim}{{5.1}{4}{Simulator: structured search helps exactly where it should}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Real qwen3.8-flash: the base-root holds the floor}{4}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:results-real}{{5.2}{4}{Real qwen3.8-flash: the base-root holds the floor}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Cross-task transfer}{4}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:results-transfer}{{5.3}{4}{Cross-task transfer}{subsection.5.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Cross-task transfer holdout scores. $^{\dagger }$withdrawn: served by a fallback backend during a gateway failure window (\S  \ref {sec:analysis-infra}).}}{4}{table.caption.12}\protected@file@percent }
+\newlabel{tab:transfer}{{2}{4}{Cross-task transfer holdout scores. $^{\dagger }$withdrawn: served by a fallback backend during a gateway failure window (\S \ref {sec:analysis-infra})}{table.caption.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Baselines and the deployment gate}{4}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:baselines}{{5.4}{4}{Baselines and the deployment gate}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Headroom-type discrimination}{4}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:taxonomy}{{5.5}{4}{Headroom-type discrimination}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{F10: token-starved (pre-registered).}{4}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{F11: reachable knowledge-type headroom.}{4}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{GPQA-Diamond ($n{=}190$).}{4}{section*.15}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Financial holdout across providers. $^{\dagger }$withdrawn: served by an anonymous fallback backend during a gateway failure window; re-runs abandoned per decision (\S  \ref {sec:analysis-infra}).}}{5}{table.caption.16}\protected@file@percent }
+\newlabel{tab:multi}{{3}{5}{Financial holdout across providers. $^{\dagger }$withdrawn: served by an anonymous fallback backend during a gateway failure window; re-runs abandoned per decision (\S \ref {sec:analysis-infra})}{table.caption.16}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Multi-provider replication}{5}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:results-multi}{{5.6}{5}{Multi-provider replication}{subsection.5.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Analysis}{5}{section.6}\protected@file@percent }
+\newlabel{sec:analysis}{{6}{5}{Analysis}{section.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}A cross-model divergence: free-text search finds what structured search cannot}{5}{subsection.6.1}\protected@file@percent }
+\newlabel{sec:analysis-divergence}{{6.1}{5}{A cross-model divergence: free-text search finds what structured search cannot}{subsection.6.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}PGAM's prior fails to transfer}{5}{subsection.6.2}\protected@file@percent }
+\newlabel{sec:analysis-pgam}{{6.2}{5}{PGAM's prior fails to transfer}{subsection.6.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Evaluation infrastructure: two contamination forensics}{5}{subsection.6.3}\protected@file@percent }
+\newlabel{sec:analysis-infra}{{6.3}{5}{Evaluation infrastructure: two contamination forensics}{subsection.6.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Gateway backend mixing.}{5}{section*.17}\protected@file@percent }
+\citation{zheng2023judging}
+\bibdata{refs}
+\bibcite{agrawal2025gepa}{{1}{2025}{{Agrawal et~al.}}{{}}}
+\@writefile{toc}{\contentsline {paragraph}{Service drift.}{6}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}A Deployment Gate}{6}{section.7}\protected@file@percent }
+\newlabel{sec:gate}{{7}{6}{A Deployment Gate}{section.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Limitations}{6}{section.8}\protected@file@percent }
+\newlabel{sec:limitations}{{8}{6}{Limitations}{section.8}{}}
+\@writefile{toc}{\contentsline {paragraph}{Ground truth.}{6}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Seeds and cells.}{6}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Baselines and models.}{6}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Internal validity of simulation.}{6}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {9}Ethical Considerations}{6}{section.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {10}Conclusion}{6}{section.10}\protected@file@percent }
+\newlabel{sec:bib}{{10}{6}{Conclusion}{section.10}{}}
+\bibcite{zhang2026capability}{{2}{2026{a}}{{Anonymous}}{{}}}
+\bibcite{espo2026}{{3}{2026{b}}{{Anonymous}}{{}}}
+\bibcite{chen2023flask}{{4}{2023}{{Chen et~al.}}{{Chen, Tworek et~al.}}}
+\bibcite{cobbe2021training}{{5}{2021}{{Cobbe et~al.}}{{Cobbe, Kosaraju, Bavarian et~al.}}}
+\bibcite{hendrycks2021measuring_math}{{6}{2021}{{Hendrycks et~al.}}{{Hendrycks, Burns, Kadavath et~al.}}}
+\bibcite{khattab2024dspy}{{7}{2024}{{Khattab et~al.}}{{Khattab, Singhvi, Maheshwari et~al.}}}
+\bibcite{liang2023holistic}{{8}{2023}{{Liang et~al.}}{{Liang, Bommasani, Lee et~al.}}}
+\bibcite{phan2025humanity}{{9}{2025}{{Phan et~al.}}{{Phan, Gao, Le et~al.}}}
+\bibcite{prasad2023grips}{{10}{2023}{{Prasad et~al.}}{{Prasad, Koller, Hartmann et~al.}}}
+\bibcite{rein2024gpqa}{{11}{2024}{{Rein et~al.}}{{Rein, Hou, Stickland et~al.}}}
+\bibcite{sclar2024quantifying}{{12}{2024}{{Sclar et~al.}}{{Sclar, Choi, Tsvetkov, and Suhr}}}
+\bibcite{snell2024scaling}{{13}{2024}{{Snell et~al.}}{{Snell, Lee, Xu, and Kumar}}}
+\bibcite{wu2024style}{{14}{2024}{{Wu et~al.}}{{}}}
+\bibcite{yang2024large}{{15}{2024}{{Yang et~al.}}{{Yang, Wang, Lu et~al.}}}
+\bibcite{zheng2023judging}{{16}{2023}{{Zheng et~al.}}{{Zheng, Chiang, Sheng et~al.}}}
+\bibcite{zhou2023large}{{17}{2023}{{Zhou et~al.}}{{Zhou, Muresanu, Han et~al.}}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Reproducibility Summary}{7}{appendix.A}\protected@file@percent }
+\newlabel{app:repro}{{A}{7}{Reproducibility Summary}{appendix.A}{}}
+\gdef \@abspage@last{7}
