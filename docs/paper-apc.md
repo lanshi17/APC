@@ -23,11 +23,11 @@ headroom（z0 acc .10，余量 .3+）中六臂同日全部同带（.388–.412�
 式不是 headroom 有无而是 headroom 类型**——物理截断型与知识型不可达（能力墙在权重），协议/
 格式型可达且结构化通路占优；部署前第一动作应是 headroom 类型诊断，知识型场景的正确动作是
 换模型而非优化 prompt（§3.4m）。
-多模型复认矩阵（§3.4p）：经 OpenAI 兼容网关在 gpt-6 与 gpt-5.6-terra 上复认结构化
-genome 搜索的任务 regime 分类学与跨任务 warm-start 迁移（financial 无余量、contract
-饱和、迁移增益 +.2103），seed-42 冠军 genome 在三模型间字节同一；并暴露一个真实
-跨模型分歧：gpt-6 上自由文本反思优化（GEPA）在 genome 搜索无余量的 financial 上
-+.14（分解出 ~.035 判分器 gaming 成分 + ~.105 真实任务指令改进）；PGAM 真实验证
+多模型复认矩阵（§3.4p）：结构化 genome 搜索的任务 regime 分类学跨两个独立 qwen
+供应商复认，gpt-6 上跨任务零适配迁移复认（financial→math 零预算对冷搜 +.2107），
+seed-42 冠军 genome 跨两个 qwen 供应商字节同一；并暴露一个真实跨模型分歧：gpt-6 上
+自由文本反思优化（GEPA）在 genome 搜索无余量的 financial 上 +.14（分解出 ~.035 判分
+器 gaming 成分 + ~.105 真实任务指令改进），门控的 ESPO 基线同格 null；PGAM 真实验证
 负向（gpt-6 math 对 uniform −.0376）。
 
 ## 1. 问题与主张
@@ -534,39 +534,39 @@ budget 8、seed 42、同一 rule judge）。非 qwen 模型写 `real_<task>_<mod
 terra 一个搜索臂中途崩溃后将 524 加入可重试集合（重跑臂按 method×seed 合并，先行
 行保留）。
 
-**Financial——搜索无余量的 null 在三模型上复认**。
+**Financial——搜索无余量的 null 跨两个独立 qwen 供应商复认；gpt-6 搜索臂撤回（网关污染，见下）**。
 
-| 模型 | zero-shot | manual | apc-full | apc-safe |
+| 模型 / 供应商 | zero-shot | manual | apc-full | apc-safe |
 |---|---|---|---|---|
-| qwen3.8-flash（§3.4，s45 同日组） | .6692 | .6665 | .1318（崩溃） | .6657 |
-| gpt-6（s42） | .6862 | .6971 | .6750 | .6771 |
-| gpt-5.6-terra（s42） | .6669 | .6665 | .6150 | .6694 |
+| qwen3.8-flash 经 DashScope（§3.4，s45 同日组） | .6692 | .6665 | .1318（崩溃） | .6657 |
+| qwen3.8-flash 经 lanshi "gpt-5.6-terra" 别名（s42） | .6669 | .6665 | .6150 | .6694 |
+| gpt-6（s42） | .6862 | .6971 | —† | —† |
 
-任何模型上都没有搜索臂超出 qwen 时代噪声带（±.007）地击败静态下限：gpt-6 apc-full
-对 z0 −.0112、apc-safe −.0091；terra apc-full −.0519、apc-safe +.0025（带内）；qwen
-s45 apc-full 崩溃。任务 regime 分类学——financial 是 prompt-genome 搜索无余量的中带
-格——与模型无关。
+两个 qwen 供应商上都没有搜索臂超出噪声带（±.007）地击败静态下限：DashScope
+apc-full 崩溃；别名供应商 apc-full −.0519、apc-safe +.0025（带内）。任务 regime
+分类学——financial 是 prompt-genome 搜索无余量的中带格——对 qwen3.8-flash 与供应商
+无关；gpt-6 搜索格在网关故障窗口内由匿名后备后端服务，已撤回（†）而非主张。
 
 **Contract——饱和格平局复认（gpt-6）**：zero-shot .9783 / manual .9784 / apc-full
-.9404 / apc-safe .9792：静态臂与 qwen 时代 contract 轮同处饱和带，搜索臂净负债（对
-z0 −.0379），与 §3.4 的"无可学"读数一致。
+.9404（apc-safe 格撤回，†）：幸存臂与 qwen 时代 contract 轮同处饱和带，搜索臂净负债
+（对 z0 −.0379），与 §3.4 的"无可学"读数一致。
 
-**Transfer——跨任务 warm-start 在 gpt-6 上复认（新对 financial→math，budget 6，seed
-42）**：transfer-0 .8443 / cold .6336 / transfer-ws .8439——同预算下对 cold 增益
-**+.2103**。现象模式（t0 ≫ cold、ws ≈ t0）与 qwen 时代两对（contract→math：+.2039；
-math→contract：+.7732）一致；跨任务迁移与模型无关，本对在第二个模型族上加入第三个
-(source, target) 格。
+**Transfer——跨任务零适配在 gpt-6 上复认（新对 financial→math，budget 6，seed 42）**：
+transfer-0 **.8443** 对冷启动重搜 **.6336**——**零适配预算下 +.2107**（两格均为干净
+gpt-6）；warm-start 臂撤回（†）。现象（t0 ≫ cold）与 qwen 时代两对（contract→math：
++.2039；math→contract：+.7732）一致；跨任务迁移与模型无关，本对在第二个模型族上
+加入第三个 (source, target) 格。
 
-**跨模型冠军同一性**：seed-42 financial 冠军 genome 在三个模型上字节同一（md5
-5738cd93…）：种子化突变轨迹与模型无关，8 候选适应度排名在每次选择决策上都重合。
-genome 搜索空间以编译器承诺的方式模型无关——同一规则、同一空间、同一胜者。
+**跨供应商冠军同一性**：seed-42 financial 冠军 genome 在两个 qwen 供应商（DashScope
+与 lanshi 别名）间字节同一（md5 5738cd93…）：种子化突变轨迹与供应商无关，8 候选
+适应度排名在每次选择决策上都重合。genome 搜索空间以编译器承诺的方式供应商无关
+——同一规则、同一空间、同一胜者。（gpt-6 冠军同一性不可证：其搜索运行于污染窗口内。）
 
 **诚实边界**：新模型每格单 seed（无 CI）；qwen 时代先验（同日带 ±.007、跨日漂移
 .028）适用。gpt-6 zero-shot 在 smoke 协议下（dev3/val6/hold15，留存
 `real_financial_gpt6_smoke.json`）.6781 对正式 .6862——协议敏感度 ≈ .008，与噪声带
-一致。GEPA 分歧格同为单 seed（+.14 远超噪声带，但精确量值需更多 seed）；gaming
-分解可从落盘冠军 prompt 文本直接核验。DashScope 欠费仍挂起 GPQA gepa-holdout 与
-z0-927 地板两项（§3.4o）。
+一致。GEPA 分歧格同为单 seed（+.14 远超噪声带，但精确量值需更多 seed）。GPQA 挂起
+项已在 §3.4o 终结（gepa holdout .8856；z0-927 地板轮作废为服务漂移窗口）。
 
 **PGAM 真实验证（gpt-6 math，判别格）**。仿真器的 pooled null（+0.0004）如今在
 有搜索方差的真实前沿推理模型格上受测（math：uniform 冷搜 .6336 对冠军直迁
@@ -591,18 +591,18 @@ qwen 时代 GEPA 轮（§3.4 F7）在 financial 上为同日 null（+.0024）。
 但 gaming 只占实测增益的少数；(iii) APC 的部署建议（编译假设 + 配对同日测量 +
 base-root 对照）正是暴露这一切的协议。
 
-**网关污染事故（如实记录；上行受影响格以此为准，待重跑）**。gpt-6 背后的
-OpenAI 兼容网关是多后端聚合器，故障窗口内会把端点重路由：响应 `model` 字段证明
-本节部分格由匿名后备后端服务（financial apc-full/apc-safe、contract apc-safe、
-transfer-ws、espo），其余为干净 gpt-6（zero-shot/manual、gepa、pgam、
-transfer-0/cold）。"gpt-5.6-terra" 端点更严重：探针显示它是 **qwen3.8-flash 别名**
-（3/3 响应 model + 分值与 DashScope qwen 历史全同，如 manual .6665 完全一致）
-——上表该行是 qwen 的跨供应商复测，不是第三个模型。已交付补救：逐调用响应 model
-审计流（`artifacts/backend_audit/`）+ `expect_backend` 强制（不符即抛可重试异常，
-4 次尝试）。全部受污染格正在强制条件下重跑；terra 别名将在下一数据修订中重标。
-仅凭干净格即成立的主张：gpt-6 financial 的 genome 搜索 null（zero-shot/manual 干净，
-搜索臂待重跑）、GEPA 分歧方向（+.14 对配对 z0 .7039——但搜索轨迹本身可能混后端，
-精确量值待强制重跑）、PGAM 负结果（干净 gpt-6）。
+**网关污染事故（终版；如实记录）**。gpt-6 背后的 OpenAI 兼容网关是多后端聚合器，
+故障窗口内会把端点重路由：响应 `model` 字段证明 financial apc-full/apc-safe、
+contract apc-safe 与 transfer-ws 格由匿名后备后端服务，其余（zero-shot/manual、
+gepa、pgam、transfer-0/cold）为干净 gpt-6。"gpt-5.6-terra" 端点是 **qwen3.8-flash
+别名**（3/3 探针响应 model + 分值与 DashScope qwen 历史全同，如 manual .6665 完全
+一致）——上表该行是 qwen 的跨供应商复测，不是第三个模型。已交付补救：逐调用响应
+model 审计流（`artifacts/backend_audit/`）+ `expect_backend` 强制（不符即抛可重试
+异常）。受污染格的强制重跑在后备窗口内正确中止（三次 _BackendMismatch 中止，零污染
+行写入）；此后 gpt-6 窗口 >24h 不可用，经决定放弃重跑——受影响格撤回（†），非挂起。
+仅凭干净格成立的主张：gpt-6 contract 饱和与搜索负债（三臂）、gpt-6 零适配迁移
+++.2107（t0/cold）、GEPA 分歧方向（+.14 对配对 z0 .7039；搜索轨迹可能混后端，量值
+暂定）、PGAM 负结果、以及完整 qwen 双供应商 financial/contract 矩阵。
 
 **门控基线对照与可靠性注记**。ESPO 基线在完全后端强制下重跑同一 gpt-6 financial 格
 **拒绝采纳一切候选**（最佳候选 .789 低于采纳线），守住 z0 线：hold **.7021** 对配对
@@ -613,13 +613,12 @@ z0 .7039——分歧为 GEPA 特异：无条件的搜索最优会采纳判分器
 不可复现；读到被覆盖文件的那次复测实际测的是 z0 文本可重复性（.7055/.7013 对配对
 .7039——z0 基线可复现）。
 
-## 4. Limitations（投稿前必须解决）
 1. **F 系列 real-model 阶段为 qwen 单模型**（白名单 key）；seed 维度已补（APC 搜索
    3 seeds、z0 同日 4 复测，量化了配对噪声带 ±.007 与跨日漂移 .028——±.01 级"增益"
-   一律判为噪声）。多模型矩阵（§3.4p）在核心臂（financial 4 臂、contract 4 臂、
-   transfer）上加入 gpt-6 与 gpt-5.6-terra——每格单 seed、新模型无 CI。DashScope
-   欠费挂起 GPQA holdout 两项。ground truth 仍由作者编写（rule-judge；外部基准
-   GSM8K/MATH 除外）。
+   一律判为噪声）。多模型矩阵（§3.4p）加入 gpt-6（干净格：zero-shot/manual、contract
+   三臂、transfer t0/cold、gepa、espo、pgam）与第二个 qwen 供应商；gpt-6 搜索格因
+   网关后端混路由撤回（§3.4p 事故段）——每格单 seed、新模型无 CI。GPQA 挂起项已
+   终结（§3.4o）。ground truth 仍由作者编写（rule-judge；外部基准 GSM8K/MATH 除外）。
 2. **任务覆盖**：财务 + 合同 + 数学 + 约束遵循四任务（仿真）+ 外部真实基准
    GSM8K/MATH-L5/AIME24+25（§3.4 F6，判分为唯一可自动核验的 exact-match）；
    仍缺开放式无唯一答案任务（只能靠 judge，见 #5）与 BBH 类非数学推理任务。

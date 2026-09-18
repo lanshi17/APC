@@ -32,14 +32,14 @@ prompt optimization on strong reasoners. We distill these into a methodological
 principle, *Compile-as-Hypothesis*: compiled artifacts are testable hypotheses,
 never default deployables, and prior value is a measured quantity that can be
 negative. The multi-model replication matrix (\S{}3.4p) confirms the task-regime
-taxonomy for structured genome search and cross-task warm-start migration on two
-additional frontier reasoning models (gpt-6, gpt-5.6-terra via an OpenAI-compatible
-gateway), with the seed-42 champion genome byte-identical across all three models ---
-and surfaces one genuine cross-model divergence: on gpt-6, free-text reflective
-optimization (GEPA) finds +.14 on financial where genome search has none, a gain we
-decompose into a quantified judge-gaming component (~.035) and genuine
-task-instruction improvement (~.105).
-On the same real API we then close the baseline and regime questions: the official GEPA baseline (Algorithm 1 reproduced) is also within the paired same-day noise band (+.0024), the second strong baseline ESPO likewise (.7009), and a pre-registered token-starved discriminative experiment (F10) pins six pathways at the judge floor (.1500) when headroom is physically unreachable. F11 completes the map on a stratified 90-problem HLE-exact subset --- the first REAL reachable knowledge-type headroom (zero-shot accuracy .10): all six arms tie again (.388-.412); a confirmatory n=100 round replicates the tie (gepa vs z0 McNemar p=.219) and measures the same-text nondeterminism floor at 2.7%, a GPQA-Diamond round (n=190) replicates the tie on a second real dataset (five arms .853-.868; reflective search accepts zero candidates), even though GEPA demonstrably learned domain content rules (SMILES conventions, perturbation-theory regime qualifiers). The discriminator for prompt-optimization payoff is not whether headroom exists but what kind: physical-truncation and knowledge-type headroom are out of reach for any prompt pathway (ability lives in weights), while protocol/format headroom is reachable and favors structured genomes --- deployment should begin with a headroom-type diagnostic (\S{}3.4m). A deployment gate (AutoAPC-Select, F8: val-argmax + noise-band Occam tie-break, 5/7 exact-oracle on 7 replay+blind groups) turns these findings into a selection rule. Multi-model validation of PGAM awaits additional API credentials.
+taxonomy for structured genome search across two independent qwen providers and the
+cross-task zero-adaptation migration on gpt-6 (financial$\rightarrow$math +.2107 over cold
+re-search at zero budget), with the seed-42 champion genome byte-identical across
+both qwen providers --- and surfaces one genuine cross-model divergence: on gpt-6,
+free-text reflective optimization (GEPA) finds +.14 on financial where genome search
+has none, decomposed into a quantified judge-gaming component (~.035) and genuine
+task-instruction improvement (~.105), while the gated ESPO baseline stays null.
+On the same real API we then close the baseline and regime questions: the official GEPA baseline (Algorithm 1 reproduced) is also within the paired same-day noise band (+.0024), the second strong baseline ESPO likewise (.7009), and a pre-registered token-starved discriminative experiment (F10) pins six pathways at the judge floor (.1500) when headroom is physically unreachable. F11 completes the map on a stratified 90-problem HLE-exact subset --- the first REAL reachable knowledge-type headroom (zero-shot accuracy .10): all six arms tie again (.388-.412); a confirmatory n=100 round replicates the tie (gepa vs z0 McNemar p=.219) and measures the same-text nondeterminism floor at 2.7%, a GPQA-Diamond round (n=190) replicates the tie on a second real dataset (five arms .853-.868; reflective search accepts zero candidates), even though GEPA demonstrably learned domain content rules (SMILES conventions, perturbation-theory regime qualifiers). The discriminator for prompt-optimization payoff is not whether headroom exists but what kind: physical-truncation and knowledge-type headroom are out of reach for any prompt pathway (ability lives in weights), while protocol/format headroom is reachable and favors structured genomes --- deployment should begin with a headroom-type diagnostic (\S{}3.4m). A deployment gate (AutoAPC-Select, F8: val-argmax + noise-band Occam tie-break, 5/7 exact-oracle on 7 replay+blind groups) turns these findings into a selection rule.
 
 ## 1. Problem and Claim
 
@@ -698,37 +698,41 @@ audit-locked qwen files are physically unreachable from a multi-model run. Incid
 reasoning calls; 524 was added to the retryable set after one terra search arm crashed
 mid-round (re-run arms re-merge by method$\times$seed; earlier rows preserved).
 
-**Financial --- the search-headroom null replicates on all three models.**
+**Financial --- the search-headroom null replicates across two independent qwen
+providers; gpt-6 search arms withdrawn (gateway contamination, below).**
 
-| model | zero-shot | manual | apc-full | apc-safe |
+| model / provider | zero-shot | manual | apc-full | apc-safe |
 |---|---|---|---|---|
-| qwen3.8-flash (\S{}3.4, s45 same-day set) | .6692 | .6665 | .1318 (collapse) | .6657 |
-| gpt-6 (s42) | .6862 | .6971 | .6750 | .6771 |
-| gpt-5.6-terra (s42) | .6669 | .6665 | .6150 | .6694 |
+| qwen3.8-flash via DashScope (\S{}3.4, s45 same-day set) | .6692 | .6665 | .1318 (collapse) | .6657 |
+| qwen3.8-flash via lanshi "gpt-5.6-terra" alias (s42) | .6669 | .6665 | .6150 | .6694 |
+| gpt-6 (s42) | .6862 | .6971 | ---† | ---† |
 
-On every model no search arm beats the static floor beyond the qwen-era noise band
-($\pm$.007): gpt-6 apc-full -.0112 vs zero-shot, apc-safe -.0091 vs zero-shot; terra
-apc-full -.0519, apc-safe +.0025 (within band); qwen s45 apc-full collapses. The
-task-regime taxonomy --- financial is a mid-band cell where prompt-genome search has no
-headroom --- is model-independent.
+Across both qwen providers no search arm beats the static floor beyond the noise band
+($\pm$.007): DashScope apc-full collapses; alias-provider apc-full -.0519, apc-safe
++.0025 (within band). The task-regime taxonomy --- financial is a mid-band cell where
+prompt-genome search has no headroom --- is provider-independent for qwen3.8-flash; the
+gpt-6 search cells were served by an anonymous fallback backend during a gateway
+failure window and are withdrawn rather than claimed (†).
 
 **Contract --- saturated tie replicates (gpt-6).** zero-shot .9783 / manual .9784 /
-apc-full .9404 / apc-safe .9792: all static arms sit in the same saturation band as the
-qwen-era contract round, and the search arm is a net liability (-.0379 vs zero-shot),
-matching \S{}3.4's "nothing to learn" reading.
+apc-full .9404 (apc-safe cell withdrawn, †): all surviving arms sit in the same
+saturation band as the qwen-era contract round, and the search arm is a net liability
+(-.0379 vs zero-shot), matching \S{}3.4's "nothing to learn" reading.
 
-**Transfer --- cross-task warm-start replicates on gpt-6 (new pair financial$\rightarrow$math,
-budget 6, seed 42).** transfer-0 .8443 / cold .6336 / transfer-ws .8439 --- gain
-**+.2103** over cold at equal budget. The phenomenon pattern (t0 $\gg$ cold, ws $\approx$ t0)
-matches both qwen-era pairs (contract$\rightarrow$math: +.2039; math$\rightarrow$contract: +.7732); cross-task
-migration is model-independent, and this pair adds a third (source, target) cell on a
-second model family.
+**Transfer --- cross-task zero-adaptation replicates on gpt-6 (new pair financial$\rightarrow$math,
+budget 6, seed 42).** transfer-0 **.8443** vs cold re-search **.6336** --- a **+.2107**
+gain at ZERO adaptation budget (both cells clean gpt-6); the warm-start arm is
+withdrawn (†). The phenomenon (t0 $\gg$ cold) matches both qwen-era pairs (contract$\rightarrow$math:
+++.2039; math$\rightarrow$contract: +.7732); cross-task migration is model-independent, and this
+pair adds a third (source, target) cell on a second model family.
 
-**Cross-model champion identity.** The seed-42 financial champion genome is
-byte-identical (md5 5738cd93$\ldots$) across all three models: the seeded mutation trajectory
-is model-independent and the 8-candidate fitness ranking coincided at every selection
-decision. The genome search space is model-agnostic in exactly the sense the compiler
-promises --- same rules, same space, same winner.
+**Cross-provider champion identity.** The seed-42 financial champion genome is
+byte-identical (md5 5738cd93$\ldots$) across both qwen providers (DashScope and the lanshi
+alias): the seeded mutation trajectory is provider-independent and the 8-candidate
+fitness ranking coincided at every selection decision. The genome search space is
+provider-agnostic in exactly the sense the compiler promises --- same rules, same space,
+same winner. (The gpt-6 champion identity is unprovable: its search ran inside the
+contaminated window.)
 
 **PGAM real validation (gpt-6 math, discriminative cell).** The simulator's pooled
 PGAM-vs-uniform null (+0.0004) is now tested on a real frontier reasoner in the one
@@ -745,15 +749,14 @@ none; two generations of bandit correction cannot undo a wrong prior inside budg
 .6862 --- protocol sensitivity $\approx$ .008, consistent with the band. The GEPA divergence
 cell is likewise single-seed (the $\pm$.14 gain dwarfs the band, but its exact magnitude
 needs more seeds); the gaming decomposition is textually verifiable from the persisted
-champion prompt. DashScope arrears still pend the GPQA gepa-holdout and z0-927 floor
-items (\S{}3.4o).
+champion prompt. The GPQA pending items are closed in \S{}3.4o (gepa holdout .8856; the
+z0-927 floor run discarded as a service-drift window).
 
 **GEPA cross-model divergence: free-text reflective search DOES find headroom on
 gpt-6 (with a judge-gaming component).** The qwen-era GEPA round (\S{}3.4 F7) measured a
 same-day null (+.0024) on financial. On gpt-6, the identical protocol (48-rollout
 budget, seed 42, same rule judge, 12 iterations / 42 rollouts used) yields hold
-**.8914** vs the paired same-path z0 **.7039** --- a **+.14** gain on the one task where
-genome-structured search showed zero headroom (apc-full .6750 < z0). Forensic
+**.8914** vs the paired same-path z0 **.7039** --- a **+.14** gain. Forensic
 decomposition (same judge/checker/samples): the champion's `<style_rules>` section is
 an explicit encoding of the judge's rubric (summary forced into two fixed templates,
 metrics-inclusion rules copied from the scoring dimensions, "violations score zero"
@@ -780,30 +783,33 @@ stripped) survives as the archived first recheck and is not re-runnable; the fol
 recheck that read the overwritten file measured z0-text repeatability instead
 (.7055/.7013 vs .7039 paired --- the z0 baseline is reproducible).
 
-**Gateway contamination incident (recorded as it happened; supersedes affected cells
-above pending re-run).** The OpenAI-compatible gateway behind gpt-6 is a multi-backend
-aggregator that re-routes the endpoint during failure windows: response `model` fields
-prove cells of this section were served by an anonymous fallback backend (financial
-apc-full/apc-safe, contract apc-safe, transfer-ws, espo) while others are clean gpt-6
-(zero-shot/manual, gepa, pgam, transfer-0/cold). The "gpt-5.6-terra" endpoint is worse:
-probes show it is a **qwen3.8-flash alias** (3/3 response model + score parity with the
-DashScope qwen history, e.g. manual .6665 identical) --- its row above is a cross-provider
-qwen replication, not a third model. Remediation shipped: per-call response-model audit
-stream (`artifacts/backend_audit/`) plus `expect_backend` enforcement (mismatch $\rightarrow$
-retryable error, 4 attempts). All contaminated cells are being re-run under
-enforcement; the terra alias is relabelled in the next data revision. Claims that
-survive on clean cells alone: genome-search null on gpt-6 financial (zero-shot/manual
-clean; search arms pending), GEPA divergence direction (+.14 vs paired z0 .7039 ---
-though the search trajectory may itself be backend-mixed, so the exact magnitude is
-provisional until an enforced re-run), PGAM negative result (clean gpt-6).
+**Gateway contamination incident (final; recorded as it happened).** The
+OpenAI-compatible gateway behind gpt-6 is a multi-backend aggregator that re-routes
+the endpoint during failure windows: response `model` fields prove the financial
+apc-full/apc-safe, contract apc-safe and transfer-ws cells of this section were served
+by an anonymous fallback backend, while zero-shot/manual, gepa, pgam and
+transfer-0/cold are clean gpt-6. The "gpt-5.6-terra" endpoint is a **qwen3.8-flash
+alias** (3/3 probe response model + score parity with the DashScope qwen history,
+e.g. manual .6665 identical) --- its row above is a cross-provider qwen replication,
+not a third model. Remediation shipped: per-call response-model audit stream
+(`artifacts/backend_audit/`) plus `expect_backend` enforcement (mismatch $\rightarrow$ retryable
+error). The enforced re-run of the contaminated cells aborted correctly inside a
+fallback window (three _BackendMismatch aborts, zero contaminated rows written); the
+gpt-6 window then remained unavailable for >24h, and per decision the re-runs are
+abandoned --- the affected cells are withdrawn (†), not pending. Claims that stand on
+clean cells alone: contract saturation and search liability on gpt-6 (three arms),
+zero-adaptation transfer +.2107 on gpt-6 (t0/cold), GEPA divergence direction (+.14
+vs paired z0 .7039; search trajectory may be backend-mixed, magnitude provisional),
+PGAM negative result, and the full qwen two-provider financial/contract matrix.
 
 1. The F-series real-model phase is qwen-only (whitelist key); the seed axis is
    covered there (\S{}3.5: 3 search seeds, 4 same-day z0 re-measures, quantified noise
    band $\pm$.007 and day-drift .028 --- any "gain" within $\pm$.01 is judged noise). The
-   multi-model matrix (\S{}3.4p) adds gpt-6 and gpt-5.6-terra on the core arms
-   (financial 4-arm, contract 4-arm, transfer) --- one seed per cell, no CI on the new
-   models. DashScope arrears pend the GPQA holdout items. Ground truth is
-   author-authored (rule-judge).
+   multi-model matrix (\S{}3.4p) adds gpt-6 (clean cells: zero-shot/manual, contract
+   three arms, transfer t0/cold, gepa, espo, pgam) and a second qwen provider; the
+   gpt-6 search cells were withdrawn after gateway backend mixing (\S{}3.4p incident) ---
+   one seed per cell, no CI on the new models. GPQA pending items closed (\S{}3.4o).
+   Ground truth is author-authored (rule-judge).
 2. Task coverage: four simulation tasks + three external math benchmarks; open
    instruction tasks without unique answers still missing (judge-dependent).
 3. PGAM pooled null on the simulator; its first real-model test (gpt-6 math) runs
