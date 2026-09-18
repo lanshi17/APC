@@ -1,0 +1,231 @@
+% ARR October 2026 submission — anonymous
+% Built directly in LaTeX (submission-grade); content distilled from docs/paper-apc-en.md v0.4
+\documentclass[11pt]{article}
+\usepackage[review]{acl}
+\usepackage{times,latexsym,amsmath,amssymb}
+\usepackage{booktabs,array,multirow,calc}
+\usepackage{graphicx,microtype,url,xcolor}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=red,citecolor=blue,urlcolor=magenta}
+\sloppy
+
+\newcommand{\zs}{zero-shot}
+\newcommand{\noiseband}{\pm\.007}
+
+\title{Compile as Hypothesis: A Headroom Typology for Prompt Optimization\\ on Real Reasoning Models}
+
+\author{Anonymous submission\\
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Prompt compilers re-search or re-write prompts per model, implicitly assuming the compiled artifact is a deployable improvement. We evaluate this assumption under paired, same-day measurement on real reasoning models and find it mostly false---and we characterize \emph{when} it fails. We present APC (Adaptive Prompt Compiler), a profile-guided prompt compiler whose outputs are treated as testable hypotheses rather than defaults: every compiled prompt runs in parallel with the uncompiled base at equal budget, and the deployment prior is a measured quantity that can be negative. Across a four-task deterministic simulator and a real-LLM phase spanning three tasks, five external benchmarks, and four independent optimizer families (APC genome search, its profile-guided variant, GEPA, ESPO), accuracy gains of structured prompt search on strong reasoners are statistically null, while a discrete structural genome robustly prevents seed-collapse. From 190-problem runs on a reachable knowledge-type benchmark we distill a \emph{headroom-type taxonomy}: physical-truncation and knowledge-type headroom are unreachable by any prompt pathway, protocol/format headroom is reachable and favors structured genomes, and the discriminator should run before any prompt optimization is attempted. We then surface a genuine cross-model divergence: on gpt-6, free-text reflective optimization (GEPA) gains $+$.14 on a task where structured search has none---decomposed into a quantified judge-gaming component ($\sim$.035) and genuine task-instruction improvement ($\sim$.105)---while the gated ESPO baseline stays null on the same cell. A deployment gate (AutoAPC-Select) turns these findings into a selection rule with zero-regret rescue of seed-collapse arms. We release the full harness, all row-level traces, and a per-call backend-verification mechanism motivated by a multi-backend gateway contamination incident we document in detail.
+\end{abstract}
+
+\section{Introduction}
+
+The same business task requires different prompts on different LLMs: format sensitivity is model-specific \citep{sclar2024quantifying}, and skill profiles differ per model \citep{chen2023flask,liang2023holistic}. Existing evaluation suites rank models but do not guide prompt construction; existing prompt compilers such as DSPy \citep{khattab2024dspy} re-search prompts per model but keep the compilation prior implicit and uninterpretable. In practice, a deployed compiled prompt is an untested bet: if the compilation was harmful, nothing in the pipeline notices.
+
+This paper makes the compilation prior \emph{explicit, measurable, and falsifiable}. Our principle, \textbf{Compile-as-Hypothesis}, states that the output of a prompt compiler is a hypothesis to be tested, not a deployable default: prior value is a measured quantity that can be negative. Operationally, the pipeline always runs two roots in parallel at equal budget---a profile-rule root (\textsc{apc-full}) and the uncompiled base root (\textsc{apc-safe})---and deploys the winner. The prior value is $\Delta(\text{rule-root}, \text{base-root})$, and it can be negative.
+
+We evaluate this protocol at three levels. (1) A deterministic four-task simulator (APCBench) with three model profiles, giving exact ground truth and statistically powerful paired comparisons. (2) A real-LLM phase on qwen3.8-flash spanning three business tasks, five external author-unseen benchmarks (GSM8K \citep{cobbe2021training}, MATH Level-5 \citep{hendrycks2021measuring_math}, AIME 2024+25, GPQA-Diamond \citep{rein2024gpqa}, HLE-exact \citep{phan2025humanity}), and official reproductions of the two strongest public baselines: GEPA \citep{agrawal2025gepa} and ESPO \citep{espo2026}. (3) A multi-provider replication matrix on gpt-6 and a second qwen provider, with per-call backend verification.
+
+Our findings are largely \emph{negative, and the negatives are the contribution}. On strong reasoners, accuracy gains of structured prompt search are statistically null: the base-root arm holds the zero-shot floor on all three real tasks, the profile-rule root is a net liability (robust across three seeds, including a bimodal collapse to $.13$), official GEPA and ESPO reproductions land within the same-day noise band, and a token-starved discriminative experiment pins six optimization pathways at the judge floor simultaneously. External author-unseen benchmarks reproduce both findings, with the model saturating every benchmark (AIME: 60/60). What survives is structural: a discrete genome prevents seed-collapse, cross-task zero-adaptation transfer reaches zero-shot quality at zero budget (up to $+$.79 over cold re-search), and a pre-registered deployment gate (AutoAPC-Select) rescues both seed-collapse arms at zero regret.
+
+The decisive finding is a \textbf{headroom-type taxonomy}. In a 190-problem HLE-exact subset with genuinely reachable knowledge-type headroom, all six optimization arms tie; on GPQA-Diamond ($n{=}190$) the tie replicates and reflective search accepts zero candidates in 28 iterations---even though reflection demonstrably learned domain content rules. Prompt-optimization payoff is discriminated not by whether headroom exists but by \emph{what kind}: physical-truncation and knowledge-type headroom are out of reach for any prompt pathway (the ability lives in weights), while protocol/format headroom is reachable and favors structured genomes. Deployment should begin with a headroom-type diagnostic, and in knowledge-type scenarios the correct action is to change the model, not the prompt.
+
+We then report a genuine \textbf{cross-model divergence} that sharpens the taxonomy: on gpt-6, free-text reflective optimization (GEPA) gains $+$.14 on financial where structured search has none. Forensic decomposition of the evolved prompt shows the reflective optimizer reverse-engineered our rule judge from per-dimension scores (a judge-gaming component worth only $\sim$.035 of the gain), while the remainder comes from genuine task-instruction improvement. The gated ESPO baseline, run under full backend enforcement on the same cell, stays null---so the divergence is specific to unconditional best-of-search. Finally, a multi-backend gateway routed some evaluation calls to a different model during failure windows; we detect this from response metadata, ship a per-call backend-verification mechanism, and withdraw the affected cells rather than claim them.
+
+\paragraph{Contributions.}
+\begin{itemize}\itemsep0pt
+\item \textbf{C1} Two-root compilation protocol that makes the compilation prior measurable and negative-capable (\S\ref{sec:method}), with 41 unit tests and CI-ordered analyses.
+\item \textbf{C2} A headroom-type taxonomy distilled from 190-problem runs, with a pre-deployment diagnostic (\S\ref{sec:taxonomy}).
+\item \textbf{C3} Baseline null coverage closed by official GEPA/ESPO reproductions plus a pre-registered token-starved discriminative experiment (\S\ref{sec:baselines}).
+\item \textbf{C4} A cross-model divergence discovery with judge-gaming decomposition, and an evaluation-infrastructure forensics protocol (per-call backend audit) (\S\ref{sec:analysis}).
+\item \textbf{C5} AutoAPC-Select, a deployment gate with 5/7 exact-oracle and zero-regret rescue of seed-collapse arms (\S\ref{sec:gate}).
+\end{itemize}
+
+\section{Related Work}
+\label{sec:related}
+
+\paragraph{Prompt optimization.} APE \citep{zhou2023large}, OPRO \citep{yang2024large}, and ProTeGi/textual gradients \citep{prasad2023grips} search free-text instruction spaces; DSPy \citep{khattab2024dspy} compiles declarative pipelines per model; GEPA \citep{agrawal2025gepa} performs reflective prompt evolution from failure minibatches; ESPO \citep{espo2026} selects among strategy-typed rewrites via bootstrap. These systems implicitly treat the optimized prompt as a deployable. We invert this: the artifact is a hypothesis tested against the uncompiled base under paired measurement, and the interesting quantity is the \emph{prior} of compilation. \citet{zhang2026capability} report capability-dependent compilation gains consistent with our profile-liability finding.
+
+\paragraph{Prompt sensitivity and evaluation reliability.} \citet{sclar2024quantifying} quantify format sensitivity; \citet{wu2024style} show evaluators reward style over substance. Both motivate our hardened exact-match judge and the paired same-day design: with temp$=0$ reasoning models exhibiting cross-day score drift, all comparisons in this paper are paired same-day within a quantified noise band.
+
+\paragraph{Test-time compute.} \citet{snell2024scaling} study optimal test-time budget allocation for reasoning. Our budget accounting is the prompt-side analogue: optimizer meta-calls are not charged, and the budget currency is task rollouts, mirroring GEPA's protocol for comparability.
+
+\paragraph{Benchmarks.} We use GSM8K \citep{cobbe2021training}, MATH \citep{hendrycks2021measuring_math}, MMLU-style MCQ constraints, GPQA-Diamond \citep{rein2024gpqa}, HLE-exact \citep{phan2025humanity}, and rank-oriented suites (HELM \citep{liang2023holistic}, FLASK \citep{chen2023flask}) only as context: they rank models but do not decide whether to deploy a compiled prompt.
+
+\section{Method}
+\label{sec:method}
+
+\subsection{Structural genome and task specification}
+A \textsc{PromptGenome} is a discrete, re-compilable prompt representation: role, constraints, reasoning directives, few-shot example blocks, output directives (schema strictness, inclusion of schema in prompt), and verification hooks. A \textsc{TaskSpec} declares the task contract (input mapping, gold schema, per-dimension scoring weights). Unlike continuous soft prompts, a discrete genome is model-agnostic: it renders to any renderer and can be transferred across models zero-shot (\S\ref{sec:results-transfer}).
+
+\subsection{Two-root compilation}
+The compiler (\textsc{apc-full}) applies profile-derived rules to the base genome: loci are set from capability-gated priors (e.g., few-shot blocks added only when the profile's few-shot benefit is low; schema directives strengthened when JSON reliability is weak). The base root (\textsc{apc-safe}) is the uncompiled genome. Both run in parallel at equal budget on dev, the winner deploys. This makes the compilation prior $= \Delta(\text{rule-root},\text{base-root})$ a measured, signed quantity.
+
+\subsection{Search}
+Evolution runs two generations with population 8, elite 3, and a seeded RNG; mutation selects a locus from the genome's search space and an alternative value uniformly (\textsc{GenomeMutator}), or roulette-sampled with profile-prior weights plus elite-reinforced bandit correction (\textsc{ProfileGuidedMutator}, PGAM). Successive halving is available for large search spaces. The budget currency is task rollouts (dev examples scored); optimizer meta-calls are not charged, matching GEPA's accounting.
+
+\subsection{Judge}
+Ground truth is a hardened exact-match judge (v3.2): answer normalization, multiset comparison for notation-variant equivalence, adversarial format checks; 27 positive and 4 negative regression cases with full prediction traces persisted for recomputation. Human auditing of 12 failure samples drove three judge revisions. Judge reliability is quantified in \S\ref{sec:gate}.
+
+\subsection{Simulator}
+APCBench is a deterministic four-task simulator (financial analysis, contract extraction, math reasoning, constraint following) $\times$ three model profiles, giving exact ground truth for powerful paired comparisons without API noise. All simulation seeds are fixed; analyses are CI-ordered (adding analyses does not change existing confidence intervals).
+
+\section{Experimental Setup}
+\label{sec:setup}
+
+\paragraph{Real APIs.} qwen3.8-flash via DashScope (the primary model; whitelist credential) and gpt-6 via an OpenAI-compatible gateway. All runs are temp$=0$ with model-side reasoning enabled.
+
+\paragraph{Protocol.} dev 5 / val 8 / holdout 20 examples, search budget 8, seed 42 unless stated. Every comparison is \emph{paired same-day}: a quantified same-day noise band of $\pm$.007 and a cross-day drift of .028 were measured from repeated z0 evaluations; any ``gain'' within $\pm$.01 is judged noise.
+
+\paragraph{Arms.} \zs{} (base genome, no compilation), \textsc{manual} (hand-written prompt), \textsc{apc-full} (rule-root search), \textsc{apc-safe} (base-root search). Baselines: GEPA (official Algorithm 1 reproduction: failure-driven reflective rewriting, per-instance Pareto parent sampling, full-val champion selection) and ESPO (Diagnose/Propose/bootstrap-Select).
+
+\paragraph{External benchmarks.} GSM8K, MATH Level-5, AIME 2024+25 (60 problems), GPQA-Diamond (190 holdout problems), and a stratified 90-problem HLE-exact subset selected for reachable knowledge-type headroom (zero-shot accuracy $\approx$.10).
+
+\paragraph{Contamination control.} For the multi-provider phase, every API call's response \texttt{model} field is audited to a per-call stream, and a configured expectation (\texttt{expect\_backend}) raises a retryable error on mismatch; cells that cannot be verified are withdrawn from claims (\S\ref{sec:analysis-infra}).
+
+\section{Results}
+\label{sec:results}
+
+\subsection{Simulator: structured search helps exactly where it should}
+\label{sec:results-sim}
+
+Table~\ref{tab:sim} summarizes the simulator phase. Genome search significantly beats \zs{} on all four tasks ($+$.009 to $+$.029, CIs excluding zero); evolution beats random search on compositional tasks ($+$.003) but loses on single-locus tasks ($-$.013, successive-halving selection noise); PGAM is indistinguishable from uniform mutation (pooled $+$.0004, a null result); migration reaches native quality at 30\% of the re-search budget.
+
+\begin{table}[t]
+\centering\small
+\begin{tabular}{lccc}
+\toprule
+Task & \zs{} & apc-full & apc-safe \\
+\midrule
+financial  & .6692 & .1318$^{*}$ & .6657 \\
+contract   & .9773 & .9404 & .9792 \\
+math       & .8436 & .5705 & .8442 \\
+\bottomrule
+\end{tabular}
+\caption{Real qwen3.8-flash, same-day arm sets (s45; financial search arms at s42 parity protocol). $^{*}$seed-collapse: two of four search seeds collapse bimodally (\S\ref{sec:results-collapse}). gpt-6 clean-cell analogues: \zs{} .6862, \textsc{manual} .6971 (search arms withdrawn, \S\ref{sec:analysis-infra}).}
+\label{tab:real-qwen}
+\end{table}
+
+\subsection{Real qwen3.8-flash: the base-root holds the floor}
+\label{sec:results-real}
+
+On all three real tasks (Table~\ref{tab:real-qwen}), the base-root arm holds the zero-shot floor within $-$.004, while the profile-rule root is a net liability: dev-score deficits of 0.2--0.53 that are only partially recovered within budget. The liability is seed-robust ($-$.090 across three seeds) and bimodal: across four seeds, financial \textsc{apc-full} scores .5704/.5705/.1334/.1318---two seeds collapse to the judge floor. A discrete structural genome is what prevents this collapse: the base-root arm never collapses. Under the headline protocol, the strongest deployment policy is \emph{zero-adaptation transfer} of a cross-task champion genome: 0 budget, $\geq$ same-task zero-shot, up to $+$.79 over cold re-search.
+
+\subsection{Cross-task transfer}
+\label{sec:results-transfer}
+
+Table~\ref{tab:transfer} shows the two qwen-era transfer pairs. Zero-adaptation (\textsc{transfer-0}, the source champion evaluated directly on the target) reaches or exceeds target zero-shot in both directions, while cold re-search at the same budget recovers only part of the gap; warm-start recovers the rest. On gpt-6, the new pair financial$\to$math replicates the phenomenon with clean cells only: \textsc{transfer-0} .8443 vs cold .6336 ($+$.2107 at zero adaptation budget).
+
+\begin{table}[t]
+\centering\small
+\begin{tabular}{lccc}
+\toprule
+Pair (b6, s42) & cold & t0 & warm-start \\
+\midrule
+contract$\to$math & .6402 & .8439 & .8441 \\
+math$\to$contract & .1850 & .9778 & .9582 \\
+fin$\to$math (gpt-6) & .6336 & .8443 & ---$^{\dagger}$ \\
+\bottomrule
+\end{tabular}
+\caption{Cross-task transfer holdout scores. $^{\dagger}$withdrawn: served by a fallback backend during a gateway failure window (\S\ref{sec:analysis-infra}).}
+\label{tab:transfer}
+\end{table}
+
+\subsection{Baselines and the deployment gate}
+\label{sec:baselines}
+
+The official GEPA reproduction lands within the paired same-day noise band on financial ($+$.0024), and ESPO likewise (.7009)---four independent optimizer families (APC genome, PGAM, GEPA, ESPO) all null in the same regime, so the null is not an artifact of APC's representation. AutoAPC-Select (F8) deploys \texttt{val}-argmax with an Occam tie-break inside the noise band: on 7 replay+blind groups it is 5/7 exact-oracle, and both seed-collapse arms are rescued at zero regret (the s45 rescue is a forward blind test under the frozen gate). The gate's only failure mode (small-val overestimation, $+$.0196) is characterized.
+
+\subsection{Headroom-type discrimination}
+\label{sec:taxonomy}
+
+Three real experiments discriminate \emph{which} headroom is reachable:
+
+\paragraph{F10: token-starved (pre-registered).} With \texttt{max\_tokens} 150 the model collapses to $.15$; all six optimization pathways---structured, reflective, free-text---score at the judge floor on the same day. When output capacity is physically truncated, no prompt pathway can win: the ability lives in weights, not the prompt.
+
+\paragraph{F11: reachable knowledge-type headroom.} On a 90-problem HLE-exact subset with genuine headroom (\zs{} accuracy .10, ceiling .3+), all six arms tie (.388--.412, 2--3/30). A confirmatory $n{=}100$ round replicates the tie (GEPA vs \zs{} McNemar $p{=}.219$) and measures the same-text nondeterminism floor at 2.7\%. GEPA's reflection demonstrably learned domain content rules (SMILES conventions, perturbation-theory regime qualifiers) that \emph{transferred zero} to the holdout.
+
+\paragraph{GPQA-Diamond ($n{=}190$).} The tie replicates on a second real dataset: five arms .853--.868, reflective search accepts zero candidates in 28 iterations ($p{=}.219$ class evidence); the champ holdout re-evaluation lands at .8856, within same-text repeatability ($+$.0127) of \zs{} .8729. Synthesis: with knowledge-type headroom, prompt optimization is the wrong lever; the correct deployment action is a model change.
+
+\subsection{Multi-provider replication}
+\label{sec:results-multi}
+
+Table~\ref{tab:multi} replicates the financial matrix across two independent qwen providers (DashScope; and a gateway endpoint that probe-verified as a qwen3.8-flash alias) plus clean gpt-6 cells. Across both qwen providers no search arm beats the static floor beyond the noise band, confirming the regime classification is provider-independent for this model. The seed-42 financial champion genome is byte-identical (md5-verified) across both providers: the seeded mutation trajectory is provider-independent and the fitness ranking coincided at every selection decision.
+
+\begin{table}[t]
+\centering\small
+\begin{tabular}{lcccc}
+\toprule
+Provider & \zs{} & manual & full & safe \\
+\midrule
+DashScope (s45) & .6692 & .6665 & .1318 & .6657 \\
+alias provider (s42) & .6669 & .6665 & .6150 & .6694 \\
+gpt-6 (s42) & .6862 & .6971 & ---$^{\dagger}$ & ---$^{\dagger}$ \\
+\bottomrule
+\end{tabular}
+\caption{Financial holdout across providers. $^{\dagger}$withdrawn: served by an anonymous fallback backend during a gateway failure window; re-runs abandoned per decision (\S\ref{sec:analysis-infra}).}
+\label{tab:multi}
+\end{table}
+
+\section{Analysis}
+\label{sec:analysis}
+
+\subsection{A cross-model divergence: free-text search finds what structured search cannot}
+\label{sec:analysis-divergence}
+
+The qwen-era GEPA round measured a same-day null on financial ($+$.0024). On gpt-6, the identical protocol yields hold \textbf{.8914} vs the paired same-path z0 \textbf{.7039}---a $+$.14 gain on the one task where structured search showed zero headroom. Forensic decomposition of the evolved prompt: its style-rules section is an explicit encoding of the judge's rubric (a two-template summary constraint copied from the scoring dimensions, metrics-inclusion rules, and ``violations score zero'' wording)---the reflective optimizer reverse-engineered the judge from per-dimension failure traces. Stripping that section costs only $-$.035 (.8441 verbatim $\to$ .8092 stripped); the remaining $\sim$+.105 comes from task-instruction rewriting that lifts judge-accuracy .41$\to$.68--.75. Three readings follow. (i) The no-headroom conclusion is \emph{space-specific}: structured mutation has no headroom, free-text reflective rewriting does, and the gap is model-dependent (null on qwen, $+$.14 on gpt-6). (ii) Free-text optimizers without structural safeguards do game rule judges, but gaming was a minority of the measured gain. (iii) The two-root paired protocol is exactly what exposed this: an unconditional deploy would have shipped a partially gamed prompt. The gated ESPO baseline, re-run under full backend enforcement on the same cell, declines to adopt any candidate and stays null (.7021 vs .7039)---the divergence is specific to unconditional best-of-search.
+
+\subsection{PGAM's prior fails to transfer}
+\label{sec:analysis-pgam}
+
+The simulator's pooled PGAM-vs-uniform null ($+$.0004) was tested on gpt-6 in the one cell with search variance (math). The profile-guided mutator cold-searches to \textbf{.5960} vs uniform .6336 ($-$.0376, outside the band). The gpt-6 profile marks few-shot benefit 0.0, so the prior up-weights example genes 3$\times$---and few-shot examples hurt a frontier reasoner that needs none; two generations of bandit correction cannot undo a wrong prior inside budget 8. Profile-weak dimensions are not mutation-productive dimensions on strong models: the defect-compensation prior is a simulator-era hypothesis that fails its first real-model test in the negative direction.
+
+\subsection{Evaluation infrastructure: two contamination forensics}
+\label{sec:analysis-infra}
+
+\paragraph{Gateway backend mixing.} The gpt-6 gateway is a multi-backend aggregator: during failure windows it re-routes the endpoint, and response \texttt{model} fields prove five evaluation cells in our matrix were served by an anonymous fallback backend while others were clean gpt-6. A dedicated endpoint that we had treated as a second frontier model probe-verified as a qwen3.8-flash alias (3/3 response models; score parity with the DashScope history, e.g.\ manual .6665 identical). Remediation: a per-call response-model audit stream and \texttt{expect\_backend} enforcement (mismatch raises a retryable error). The enforced re-run of the contaminated cells aborted correctly inside a fallback window (three mismatch aborts, zero contaminated rows written); the clean gpt-6 window then remained unavailable for over 24 hours, and per decision the re-runs were abandoned---the affected cells are withdrawn ($\dagger$), not claimed. The clean-cell claims that stand: contract saturation and search liability, zero-adaptation transfer ($+$.2107), GEPA divergence direction, and the PGAM negative result.
+
+\paragraph{Service drift.} A dedicated same-text floor run on GPQA (seed 927) scored .6501 vs .8729/.8856 for the same 931-char text measured two days earlier. Same-problem agreement was 57.7\% with one-sided flips 74:6, uniform across the run; a live probe reproduced the earlier correct behavior 4/4. We therefore attribute the drop to a provider-side serving change, not to prompt nondeterminism, quarantine the run, and carry the floor as the $+$.0127 same-text repeatability from the two healthy-window runs. This is the same class of risk \citet{zheng2023judging} document for judge stability, here on the serving side.
+
+\section{A Deployment Gate}
+\label{sec:gate}
+
+AutoAPC-Select (F8) operationalizes the findings: deploy \texttt{val}-argmax, break ties inside the noise band toward Occam (fewer moving parts), and never deploy a compiled artifact that failed its paired test. On 7 replay+blind groups the gate is 5/7 exact-oracle, both seed-collapse arms are rescued at zero regret (including one forward blind test under the frozen gate), and the single failure mode (small-val overestimation, $+$.0196) is characterized. Combined with the headroom-type diagnostic---run \emph{before} any optimization: if the regime is knowledge-type or truncation-type, change the model instead---this converts the taxonomy into a deployment procedure: (1) diagnose headroom type; (2) if protocol/format-type, run two-root compilation with paired measurement; (3) deploy only gate-passing artifacts; (4) audit serving backends per call.
+
+\section{Limitations}
+\label{sec:limitations}
+
+\paragraph{Ground truth.} Rule-judge ground truth is author-authored; an independent third-party judge and a 50--100-case human spot-check are missing (the judge's 27+4 regression suite and full prediction traces mitigate but do not eliminate this). Open-instruction tasks without unique answers (judge-dependent) are out of scope.
+
+\paragraph{Seeds and cells.} Simulator cells are multi-seed; real-LLM new-model cells are single-seed with no CI (the $\pm$.007 band is a qwen-era prior). The gpt-6 search cells were withdrawn after gateway backend mixing (\S\ref{sec:analysis-infra}) and are not replaced: the genome-search null on gpt-6 is therefore \emph{untested}, not established---only the qwen null (two providers) is established. The GEPA divergence is single-seed; its direction is robust but its exact magnitude needs more seeds.
+
+\paragraph{Baselines and models.} The SEPO head-to-head is deferred (no real-API run); the structured-editing family is covered indirectly by mechanism argument. A second frontier provider with per-call-verified identity is required to complete the multi-model search matrix. PGAM's negative result is one cell; genuinely multimodal real tasks with heterogeneous profiles remain untested.
+
+\paragraph{Internal validity of simulation.} APCBench is self-built; its role is controlled comparison, not external validity, which is carried by the real-API phase and external benchmarks.
+
+\section{Ethical Considerations}
+
+All ground truth in the judge path is author-authored; we flag this as the paper's principal validity risk rather than burying it, and release the full prediction traces so any reader can re-judge. The evaluation-infrastructure forensics (\S\ref{sec:analysis-infra}) documents third-party serving instability without identifying vendors beyond what response metadata discloses. No human subjects, no personal data, and no model training are involved.
+
+\section{Conclusion}
+
+Treating compiled prompts as hypotheses rather than defaults changes what an evaluation finds. Under paired same-day measurement, structured prompt search on strong reasoners is statistically null across four optimizer families, and the profile-rule prior is a net liability that only a discrete base-root parallel run prevents from collapsing. The payoff question is decided by headroom type, not headroom existence: a pre-deployment diagnostic, a gate that never ships a failed hypothesis, and per-call backend verification are the components we release. Free-text reflective search on gpt-6 breaks the null---and its forensic decomposition shows exactly why unconditional adoption is dangerous: part of the gain was our own judge, reverse-engineered. We believe this evaluation protocol, with its negatives intact, is the deployable contribution.
+
+\label{sec:bib}
+\bibliography{refs}
+
+\appendix
+
+\section{Reproducibility Summary}
+\label{app:repro}
+One-command reproduction: \texttt{bench\_apc.py [25|50|100]} plus \texttt{bench\_contract/math/follow/transfer.py} and \texttt{eval\_robustness.py} (fixed seeds, deterministic, no network). Real-API harness: \texttt{bench\_real\_full.py} / \texttt{bench\_real\_transfer.py} / \texttt{bench\_real\_gepa.py} / \texttt{bench\_real\_espo.py} / \texttt{bench\_real\_hle.py} / \texttt{bench\_real\_pgam.py}, with row-level streams, per-call backend audit (\texttt{artifacts/backend\_audit/}), and judge regression suite persisted. 41 unit tests green; results audited by a three-way (JSON/zh/en) consistency script over every number cited.
+
+\end{document}
