@@ -50,28 +50,27 @@
 \@writefile{toc}{\contentsline {paragraph}{Arms.}{3}{section*.8}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{External benchmarks.}{3}{section*.9}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Contamination control.}{3}{section*.10}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Real qwen3.8-flash, same-day arm sets (s45; financial search arms at s42 parity protocol). $^{*}$seed-collapse: two of four search seeds collapse bimodally (\S  \ref {sec:results-collapse}). gpt-6 clean-cell analogues: zero-shot{} .6862, \textsc  {manual} .6971 (search arms withdrawn, \S  \ref {sec:analysis-infra}).}}{4}{table.caption.11}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Real qwen3.8-flash, multiseed mean$\pm $SD (holdout; $n{=}3$--$6$ seeds per cell, seeds 43--47 + s45 statics). $^{*}$bimodal collapse: rule-root search falls toward the judge floor in 3/5 (financial) and 1/3 (contract) seeds; base-root never collapses in 12/12 runs. gpt-6 clean-cell analogues: zero-shot{} .6862, \textsc  {manual} .6971 (search arms withdrawn, \S  \ref {sec:analysis-infra}).}}{4}{table.caption.11}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{tab:real-qwen}{{1}{4}{Real qwen3.8-flash, same-day arm sets (s45; financial search arms at s42 parity protocol). $^{*}$seed-collapse: two of four search seeds collapse bimodally (\S \ref {sec:results-collapse}). gpt-6 clean-cell analogues: \zs {} .6862, \textsc {manual} .6971 (search arms withdrawn, \S \ref {sec:analysis-infra})}{table.caption.11}{}}
+\newlabel{tab:real-qwen}{{1}{4}{Real qwen3.8-flash, multiseed mean$\pm $SD (holdout; $n{=}3$--$6$ seeds per cell, seeds 43--47 + s45 statics). $^{*}$bimodal collapse: rule-root search falls toward the judge floor in 3/5 (financial) and 1/3 (contract) seeds; base-root never collapses in 12/12 runs. gpt-6 clean-cell analogues: \zs {} .6862, \textsc {manual} .6971 (search arms withdrawn, \S \ref {sec:analysis-infra})}{table.caption.11}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
 \newlabel{sec:results}{{5}{4}{Results}{section.5}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Simulator: structured search helps exactly where it should}{4}{subsection.5.1}\protected@file@percent }
 \newlabel{sec:results-sim}{{5.1}{4}{Simulator: structured search helps exactly where it should}{subsection.5.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Real qwen3.8-flash: the base-root holds the floor}{4}{subsection.5.2}\protected@file@percent }
-\newlabel{sec:results-real}{{5.2}{4}{Real qwen3.8-flash: the base-root holds the floor}{subsection.5.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Cross-task transfer}{4}{subsection.5.3}\protected@file@percent }
-\newlabel{sec:results-transfer}{{5.3}{4}{Cross-task transfer}{subsection.5.3}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Cross-task transfer holdout scores. $^{\dagger }$withdrawn: served by a fallback backend during a gateway failure window (\S  \ref {sec:analysis-infra}).}}{4}{table.caption.12}\protected@file@percent }
 \newlabel{tab:transfer}{{2}{4}{Cross-task transfer holdout scores. $^{\dagger }$withdrawn: served by a fallback backend during a gateway failure window (\S \ref {sec:analysis-infra})}{table.caption.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Cross-task transfer}{4}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:results-transfer}{{5.3}{4}{Cross-task transfer}{subsection.5.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Baselines and the deployment gate}{4}{subsection.5.4}\protected@file@percent }
 \newlabel{sec:baselines}{{5.4}{4}{Baselines and the deployment gate}{subsection.5.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Headroom-type discrimination}{4}{subsection.5.5}\protected@file@percent }
 \newlabel{sec:taxonomy}{{5.5}{4}{Headroom-type discrimination}{subsection.5.5}{}}
 \@writefile{toc}{\contentsline {paragraph}{F10: token-starved (pre-registered).}{4}{section*.13}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{F11: reachable knowledge-type headroom.}{4}{section*.14}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{GPQA-Diamond ($n{=}190$).}{4}{section*.15}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Financial holdout across providers. $^{\dagger }$withdrawn: served by an anonymous fallback backend during a gateway failure window; re-runs abandoned per decision (\S  \ref {sec:analysis-infra}).}}{5}{table.caption.16}\protected@file@percent }
 \newlabel{tab:multi}{{3}{5}{Financial holdout across providers. $^{\dagger }$withdrawn: served by an anonymous fallback backend during a gateway failure window; re-runs abandoned per decision (\S \ref {sec:analysis-infra})}{table.caption.16}{}}
+\@writefile{toc}{\contentsline {paragraph}{GPQA-Diamond ($n{=}190$).}{5}{section*.15}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Multi-provider replication}{5}{subsection.5.6}\protected@file@percent }
 \newlabel{sec:results-multi}{{5.6}{5}{Multi-provider replication}{subsection.5.6}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {6}Analysis}{5}{section.6}\protected@file@percent }
@@ -84,8 +83,6 @@
 \newlabel{sec:analysis-infra}{{6.3}{5}{Evaluation infrastructure: two contamination forensics}{subsection.6.3}{}}
 \@writefile{toc}{\contentsline {paragraph}{Gateway backend mixing.}{5}{section*.17}\protected@file@percent }
 \citation{zheng2023judging}
-\bibdata{refs}
-\bibcite{agrawal2025gepa}{{1}{2025}{{Agrawal et~al.}}{{}}}
 \@writefile{toc}{\contentsline {paragraph}{Service drift.}{6}{section*.18}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {7}A Deployment Gate}{6}{section.7}\protected@file@percent }
 \newlabel{sec:gate}{{7}{6}{A Deployment Gate}{section.7}{}}
@@ -97,7 +94,8 @@
 \@writefile{toc}{\contentsline {paragraph}{Internal validity of simulation.}{6}{section*.22}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {9}Ethical Considerations}{6}{section.9}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {10}Conclusion}{6}{section.10}\protected@file@percent }
-\newlabel{sec:bib}{{10}{6}{Conclusion}{section.10}{}}
+\bibdata{refs}
+\bibcite{agrawal2025gepa}{{1}{2025}{{Agrawal et~al.}}{{}}}
 \bibcite{zhang2026capability}{{2}{2026{a}}{{Anonymous}}{{}}}
 \bibcite{espo2026}{{3}{2026{b}}{{Anonymous}}{{}}}
 \bibcite{chen2023flask}{{4}{2023}{{Chen et~al.}}{{Chen, Tworek et~al.}}}
@@ -114,6 +112,7 @@
 \bibcite{yang2024large}{{15}{2024}{{Yang et~al.}}{{Yang, Wang, Lu et~al.}}}
 \bibcite{zheng2023judging}{{16}{2023}{{Zheng et~al.}}{{Zheng, Chiang, Sheng et~al.}}}
 \bibcite{zhou2023large}{{17}{2023}{{Zhou et~al.}}{{Zhou, Muresanu, Han et~al.}}}
+\newlabel{sec:bib}{{10}{7}{Conclusion}{section.10}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {A}Reproducibility Summary}{7}{appendix.A}\protected@file@percent }
 \newlabel{app:repro}{{A}{7}{Reproducibility Summary}{appendix.A}{}}
 \gdef \@abspage@last{7}

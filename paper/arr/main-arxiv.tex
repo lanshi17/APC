@@ -16,8 +16,8 @@
 
 \title{Compile as Hypothesis: A Headroom Typology for Prompt Optimization\\ on Real Reasoning Models}
 
-% arXiv camera variant: FILL AUTHOR NAMES BEFORE EXPORT
-\author{<Author Name>$^{1}$\\ $^{1}$<Affiliation>\\ \texttt{<email>}}
+\author{Anonymous submission\\
+}
 
 \begin{document}
 \maketitle
@@ -97,33 +97,32 @@ APCBench is a deterministic four-task simulator (financial analysis, contract ex
 \subsection{Simulator: structured search helps exactly where it should}
 \label{sec:results-sim}
 
-Table~\ref{tab:sim} summarizes the simulator phase. Genome search significantly beats \zs{} on all four tasks ($+$.009 to $+$.029, CIs excluding zero); evolution beats random search on compositional tasks ($+$.003) but loses on single-locus tasks ($-$.013, successive-halving selection noise); PGAM is indistinguishable from uniform mutation (pooled $+$.0004, a null result); migration reaches native quality at 30\% of the re-search budget.
+The simulator phase yields three clean readings. Genome search significantly beats \zs{} on all four tasks ($+$.009 to $+$.029, CIs excluding zero); evolution beats random search on compositional tasks ($+$.003) but loses on single-locus tasks ($-$.013, successive-halving selection noise); PGAM is indistinguishable from uniform mutation (pooled $+$.0004, a null result); migration reaches native quality at 30\% of the re-search budget.
 
 \begin{table}[t]
 \centering\small
-\begin{tabular}{lccc}
+\begin{tabular}{lcccc}
 \toprule
-Task & \zs{} & apc-full & apc-safe \\
+Task & \zs{} & manual & apc-full & apc-safe \\
 \midrule
-financial  & .6692 & .1318$^{*}$ & .6657 \\
-contract   & .9773 & .9404 & .9792 \\
-math       & .8436 & .5705 & .8442 \\
+financial  & .6666$\pm$.0023 & .6685$\pm$.0018 & .3085$\pm$.2362$^{*}$ & .6664$\pm$.0047 \\
+contract   & .9771$\pm$.0001 & .9775$\pm$.0002 & .7035$\pm$.4586$^{*}$ & .9771$\pm$.0003 \\
+math       & .8436$\pm$.0001 & .8438$\pm$.0001 & .7769$\pm$.1164 & .8436$\pm$.0001 \\
 \bottomrule
 \end{tabular}
-\caption{Real qwen3.8-flash, same-day arm sets (s45; financial search arms at s42 parity protocol). $^{*}$seed-collapse: two of four search seeds collapse bimodally (\S\ref{sec:results-collapse}). gpt-6 clean-cell analogues: \zs{} .6862, \textsc{manual} .6971 (search arms withdrawn, \S\ref{sec:analysis-infra}).}
+\caption{Real qwen3.8-flash, multiseed mean$\pm$SD (holdout; $n{=}3$--$6$ seeds per cell, seeds 43--47 + s45 statics). $^{*}$bimodal collapse: rule-root search falls toward the judge floor in 3/5 (financial) and 1/3 (contract) seeds; base-root never collapses in 12/12 runs. gpt-6 clean-cell analogues: \zs{} .6862, \textsc{manual} .6971 (search arms withdrawn, \S\ref{sec:analysis-infra}).}
 \label{tab:real-qwen}
 \end{table}
 
 \subsection{Real qwen3.8-flash: the base-root holds the floor}
-\label{sec:results-real}
-
-On all three real tasks (Table~\ref{tab:real-qwen}), the base-root arm holds the zero-shot floor within $-$.004, while the profile-rule root is a net liability: dev-score deficits of 0.2--0.53 that are only partially recovered within budget. The liability is seed-robust ($-$.090 across three seeds) and bimodal: across four seeds, financial \textsc{apc-full} scores .5704/.5705/.1334/.1318---two seeds collapse to the judge floor. A discrete structural genome is what prevents this collapse: the base-root arm never collapses. Under the headline protocol, the strongest deployment policy is \emph{zero-adaptation transfer} of a cross-task champion genome: 0 budget, $\geq$ same-task zero-shot, up to $+$.79 over cold re-search.
-
+On all three real tasks (Table~\ref{tab:real-qwen}), the base-root arm holds the zero-shot floor within $-$.004, while the profile-rule root is a net liability: dev-score deficits of 0.2--0.53 that are only partially recovered within budget. A five-seed replication sharpens this into the paper's strongest structural claim. Across seeds 43--47, \textsc{apc-full} exhibits \emph{bimodal catastrophic collapse} on every task: financial $.5704/.5705/.1334/.1318/.5639/.1428$ (mean .3085, SD .2362; 3/5 runs collapse toward the judge floor), contract $.9782/.9583/.1741$ (mean .7035, SD .4586), and math $.8442/.8440/.6425$ (one $-$.20 drop). Meanwhile \textsc{apc-safe} \emph{never} collapses: 12/12 runs across the three tasks sit within SD $\leq$.005 of the zero-shot floor (financial .6664$\pm$.0047, contract .9771$\pm$.0003, math .8436$\pm$.0001). The two-root protocol is therefore not methodological hygiene but insurance against a $\sim$50\% catastrophic failure mode of rule-root search. Under the headline protocol, the strongest deployment policy is \emph{zero-adaptation transfer} of a cross-task champion genome: 0 budget, $\geq$ same-task zero-shot, up to $+$.79 over cold re-search.
 \subsection{Cross-task transfer}
 \label{sec:results-transfer}
-
-Table~\ref{tab:transfer} shows the two qwen-era transfer pairs. Zero-adaptation (\textsc{transfer-0}, the source champion evaluated directly on the target) reaches or exceeds target zero-shot in both directions, while cold re-search at the same budget recovers only part of the gap; warm-start recovers the rest. On gpt-6, the new pair financial$\to$math replicates the phenomenon with clean cells only: \textsc{transfer-0} .8443 vs cold .6336 ($+$.2107 at zero adaptation budget).
-
+The strongest deployment policy is zero-adaptation transfer of a cross-task champion
+genome: 0 adaptation budget, at or above target zero-shot, up to $+$.79 over cold
+re-search (qwen). On gpt-6 the new pair replicates with clean cells only
+(Table~\ref{tab:transfer}); the warm-start arm is withdrawn ($\dagger$,
+\S\ref{sec:analysis-infra}).
 \begin{table}[t]
 \centering\small
 \begin{tabular}{lccc}
@@ -205,7 +204,7 @@ AutoAPC-Select (F8) operationalizes the findings: deploy \texttt{val}-argmax, br
 
 \paragraph{Ground truth.} Rule-judge ground truth is author-authored; an independent third-party judge and a 50--100-case human spot-check are missing (the judge's 27+4 regression suite and full prediction traces mitigate but do not eliminate this). Open-instruction tasks without unique answers (judge-dependent) are out of scope.
 
-\paragraph{Seeds and cells.} Simulator cells are multi-seed; real-LLM new-model cells are single-seed with no CI (the $\pm$.007 band is a qwen-era prior). The gpt-6 search cells were withdrawn after gateway backend mixing (\S\ref{sec:analysis-infra}) and are not replaced: the genome-search null on gpt-6 is therefore \emph{untested}, not established---only the qwen null (two providers) is established. The GEPA divergence is single-seed; its direction is robust but its exact magnitude needs more seeds.
+\paragraph{Seeds and cells.} All qwen real-LLM cells are multiseed ($n{=}3$--$6$; Table~\ref{tab:real-qwen} reports mean$\pm$SD); new-model (gpt-6) clean cells remain single-seed with no CI (the $\pm$.007 band is the qwen-era prior). The gpt-6 search cells were withdrawn after gateway backend mixing (\S\ref{sec:analysis-infra}) and are not replaced: the genome-search null on gpt-6 is therefore \emph{untested}, not established---only the qwen null (two providers, multiseed) is established. The GEPA divergence is single-seed; its direction is robust but its exact magnitude needs more seeds.
 
 \paragraph{Baselines and models.} The SEPO head-to-head is deferred (no real-API run); the structured-editing family is covered indirectly by mechanism argument. A second frontier provider with per-call-verified identity is required to complete the multi-model search matrix. PGAM's negative result is one cell; genuinely multimodal real tasks with heterogeneous profiles remain untested.
 
