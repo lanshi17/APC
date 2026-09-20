@@ -1,6 +1,6 @@
 """GEPA 官方基线（arXiv 2507.19457, arXiv 2507.19457 reflective prompt evolution +
-instance-wise Pareto selection）——真实 qwen 上对 APC 的直接对比（论文 §6 标注的
-"投稿必含最强基线"，本实验补上）。
+instance-wise Pareto selection）——真实 qwen 上对 APC 的直接对比（投稿必含
+最强基线，本实验补上）。
 
 与 APC 严格同口径：同一任务数据(dev/val/hold 8/20 切分)、同一 rule-judge + checker +
 TrialScorer 权重、temp=0、z0 编译文本为共同起点、holdout 20 终测。预算按 **task

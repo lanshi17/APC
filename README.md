@@ -136,15 +136,14 @@ apc migrate run --task financial_report_analysis_v1 --source-model glm --target-
 # 扰动鲁棒性(4 genome × financial perturbation 集)与 LLM-Judge 一致性抽检
 .venv/bin/python scripts/bench_real_robust.py --task financial --n 20
 .venv/bin/python scripts/real_judge_check.py --task financial --genome champ
-# 汇总成论文表格
+# 汇总结果表
 .venv/bin/python scripts/analyze_real.py
 ```
 
 结果入库 `experiments/apcbench/real_*.json`,冠军 genome 入库 `artifacts/optimizations/real_*_champ*.json`。
 真实模型发现(F1–F11:饱和天花板、规则先验负债、GEPA/ESPO 官方基线对垒全平、token-starved
-判别实验、HLE-exact 高难对垒与 headroom 类型学、GPQA-Diamond 第二数据集复认)见
-[docs/paper-apc.md](docs/paper-apc.md) §3.4。完整复现序列(离线层 + 真实 API 层、断点续跑
-与配对同日等坑位注记)见 [REPRODUCE.md](REPRODUCE.md)。
+判别实验、HLE-exact 高难对垒与 headroom 类型学、GPQA-Diamond 第二数据集复认)以实验 JSON 为准;
+完整复现序列(离线层 + 真实 API 层、断点续跑与配对同日等坑位注记)见 [REPRODUCE.md](REPRODUCE.md)。
 
 ### 4. LangGraph 可视化
 

@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-"""聚合真实 LLM 基准结果 → 论文表格(markdown)。
+"""聚合真实 LLM 基准结果 → 结果表格(markdown)。
 
 输入: experiments/apcbench/real_<task>.json (bench_real_full.py)
       experiments/apcbench/real_transfer_<src>_to_<tgt>.json (bench_real_transfer.py)
-输出: stdout markdown(直接贴进 docs/paper-apc.md §3.4)
+输出: stdout markdown(供报告/稿件引用)
 """
 from __future__ import annotations
 

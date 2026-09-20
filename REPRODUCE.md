@@ -1,7 +1,6 @@
-# Reproducing the APC Paper Experiments
+# Reproducing the APC Experiments
 
-All numbers in `docs/paper-apc.md` (Chinese master) / `docs/paper-apc-en.md` are
-traceable to `experiments/apcbench/*.json`. Two tiers:
+All reported numbers are traceable to `experiments/apcbench/*.json`. Two tiers:
 
 ## Tier 0 — deterministic, no network, no credentials
 
@@ -36,8 +35,8 @@ idempotent — the `--seed`/`--part` keys dedupe rows):
 .venv/bin/python scripts/bench_real_gepa.py                   # F7: official GEPA baseline + paired re-measure
 .venv/bin/python scripts/bench_real_espo.py                   # F9: ESPO reproduction (Diagnose/Propose/Select)
 .venv/bin/python scripts/auto_apc_gate.py                     # F8: zero-cost deployment gate (replay + blind lookahead)
-.venv/bin/python scripts/bench_real_reeval.py --task financial --max-tokens 150 --gepa-champ <file>   # F10 arms; see paper §3.4 for the six-pathway paired batch
-# F11: HLE contest (pre-reg docs/literature/F11-prereg.md). Dataset already in-repo:
+.venv/bin/python scripts/bench_real_reeval.py --task financial --max-tokens 150 --gepa-champ <file>   # F10 arms; six-pathway paired batch
+# F11: HLE contest (pre-reg ../apc_paper/literature/F11-prereg.md). Dataset already in-repo:
 #   datasets/hle_exact/{dev,validation,holdout}.jsonl  (regenerate: scripts/gen_hle_dataset.py,
 #   upstream cais/hle via ungated mirror, MIT; stratified 30/30/30, seed 2026)
 .venv/bin/python scripts/bench_real_hle.py --arms z0,champs --hold-n 30 --seed 921 --timeout 600 --hard 640
@@ -75,7 +74,7 @@ APC_HLE_TAG=gpqa HLE_OUT=experiments/apcbench/gpqa_gepa.json .venv/bin/python sc
 
 Real-API notes learned the hard way (all implemented in the scripts):
 - **Pair same-day.** temp=0 reasoning APIs drift ±.007 within a day and ~.028 across
-  days; every verdict in §3.4 uses paired same-day bands (F7 protocol).
+  days; every verdict uses paired same-day bands (F7 protocol).
 - **Resume after network faults.** `bench_real_hle.py` checkpoints each sample to
   `/tmp/hle_{arm}_{seed}.jsonl`; before resuming, delete rows whose `pred` contains
   `<call-error>` (they count as done otherwise).
@@ -89,12 +88,7 @@ Real-API notes learned the hard way (all implemented in the scripts):
 
 `bench_real_full.py --model <id>` with three extra `.env` lines
 (`APC_<ID>_MODEL/BASE_URL/API_KEY`) runs the whole matrix on a new model with zero
-code changes. PGAM validation (paper §4 #3) and the weak-model + protocol-pressure
-cell (§4 #5) are gated on additional credentials.
+code changes. PGAM validation and the weak-model + protocol-pressure cell are gated
+on additional credentials.
 
-## Anonymized submission bundle
-
-`bash scripts/make_anon_bundle.sh` → `/tmp/apc-anon-bundle.zip`: git-HEAD snapshot
-with identity files stripped (LICENSE/frontier notes), README de-signed, and hard
-gates that abort on any residual author path/id or credential-shaped token
-(word-boundary `sk-…{16,}` scan). Run it before uploading supplementary material.
+word-boundary `sk-…{16,}` scan). Run it before uploading supplementary material.

@@ -1,6 +1,6 @@
 """ESPO 基线（arXiv 2609.04197, EMNLP 2026 main）— 与 APC/GEPA 同协议对垒。
 
-ESPO 三步核心（论文 §3 忠实复现，评测货币与预算对齐 GEPA 臂）：
+ESPO 三步核心（忠实复现原方法，评测货币与预算对齐 GEPA 臂）：
   Diagnose: 一轮聚类**全部**失败案例 → 结构化错误模式（对比 GEPA 的 3-例 minibatch）
   Propose : 4 个独立偏置策略各出一个候选（抽象根因/简化/范例化/约束硬化）
   Select  : bootstrap 稳定选择 — val 案例分数重采样 B 次，候选须以 ≥75% 频率
@@ -8,7 +8,7 @@ ESPO 三步核心（论文 §3 忠实复现，评测货币与预算对齐 GEPA �
 预算口径：task rollout 48（r0 全 val 8 + 一轮 [4 候选×8 + 收编确认 8] = 48）；
 diagnose/propose 是反思类调用，不计 rollouts（与 APC 编译开销、GEPA reflect 同逻辑）。
 bootstrap 复用已评案例分数，零额外调用 — ESPO 的稳定性货币是重采样，与 APC F8 的
-外生漂移带货币互补（论文 F9 划界段）。
+外生漂移带货币互补。
 
 用法：.venv/bin/python scripts/bench_real_espo.py --task financial --seeds 42,43
 输出并入 experiments/apcbench/real_gepa.json，method="espo"。

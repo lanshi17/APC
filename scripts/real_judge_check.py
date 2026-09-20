@@ -1,6 +1,6 @@
 """真实 LLM 上的 Judge 一致性抽检：rule-judge vs LLM-judge（同一被评模型 ⇒ 非独立，
 诚实标注 self-judge 弱效度）。对每个样本比较两个 judge 的 accuracy/constraint 分数，
-输出 Pearson + Spearman 与分歧样本清单，供论文 §3.4 判分有效性论证。
+输出 Pearson + Spearman 与分歧样本清单，供判分有效性论证。
 
 用法（仓库根目录）：
   .venv/bin/python scripts/real_judge_check.py --task financial --model qwen --genome champ
