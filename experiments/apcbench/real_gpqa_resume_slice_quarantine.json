@@ -1,7 +1,7 @@
 {
  "meta": {
   "protocol": "real-hle-gpqa-resume-slice",
-  "note": "隔离:欠费时代 z0/926/8 残片 + 2026-09-14 夜间 resume 两行(n=30 切片,协议与 §3.4o n=190 不可比,不入论文);正式重跑见 real_gpqa.json",
+  "note": "隔离:欠费时代 z0/926/8 残片 + 2026-09-14 夜间 resume 两行(n=30 切片,协议与主跑 n=190 不可比);正式重跑见 real_gpqa.json",
   "incident": "HLE_OUT 未设导致写入 real_hle.json + hold-n 默认 30"
  },
  "rows": [

@@ -4,7 +4,7 @@
 > `MockClient` 确定性仿真器。仿真器的 ground-truth 基因效应如下表所示——
 > **阅读本说明即可复现全部"最优解"**，因此本基准衡量的是*优化器效率*
 > （给定结构化搜索空间，谁用更少评估找到最优），而非绝对任务精度。
-> 真实 LLM 验证是明确的未来工作（见 `docs/paper-apc.md` §Limitations）。
+> 真实 LLM 验证是明确的未来工作。
 ## 搜索空间（`configs/genomes/base.json`，13 位点）
 
 | 位点 | 取值数 | 仿真器中的真实效应 |
@@ -82,7 +82,7 @@
 ## 真实 LLM 烟囱（`scripts/bench_real.py`）
 
 同口径 2 样本链路（factory → client → runner → scorer），
-无凭证时明确 SKIP，有 key 后即跑。投稿复现入口。
+无凭证时明确 SKIP，有 key 后即跑。
 
 ## 任务 D：可验证约束遵循（第四任务，b50，9 runs/方法）
 
