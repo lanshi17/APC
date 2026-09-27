@@ -2,11 +2,12 @@
  "meta": {
   "protocol": "real-llm",
   "partial": false,
-  "total_s": 2854.9,
-  "dev_r": 3,
-  "val_n": 6,
-  "hold_n": 15,
-  "judge": "financial_rule_v1"
+  "total_s": 11326.6,
+  "dev_r": 5,
+  "val_n": 8,
+  "hold_n": 20,
+  "judge": "financial_rule_v1",
+  "model": "qwen"
  },
  "rows": [
   {
@@ -130,6 +131,118 @@
    "elapsed_s": 3039.9,
    "champion_genome_id": "genome_1c3d289ba90a",
    "mutation_note": "verification.type: source_grounding_check -> format_check"
+  },
+  {
+   "method": "zero-shot",
+   "model_id": "qwen",
+   "model_version": "qwen3.8-flash",
+   "task": "financial",
+   "seed": 46,
+   "baseline_score": 0.6692,
+   "validation_score": 0.6605,
+   "holdout_score": 0.6659,
+   "budget_used": 0,
+   "elapsed_s": 1249.2,
+   "model": "qwen"
+  },
+  {
+   "method": "manual",
+   "model_id": "qwen",
+   "model_version": "qwen3.8-flash",
+   "task": "financial",
+   "seed": 46,
+   "baseline_score": 0.669,
+   "validation_score": 0.6664,
+   "holdout_score": 0.6697,
+   "budget_used": 0,
+   "elapsed_s": 1295.2,
+   "model": "qwen"
+  },
+  {
+   "method": "apc-full",
+   "model_id": "qwen",
+   "model_version": "qwen3.8-flash",
+   "task": "financial",
+   "seed": 46,
+   "baseline_score": 0.1357,
+   "validation_score": 0.5836,
+   "holdout_score": 0.5639,
+   "budget_used": 8,
+   "elapsed_s": 3951.3,
+   "champion_genome_id": "genome_73a57db38597",
+   "mutation_note": "examples.enabled: False -> True",
+   "model": "qwen"
+  },
+  {
+   "method": "apc-safe",
+   "model_id": "qwen",
+   "model_version": "qwen3.8-flash",
+   "task": "financial",
+   "seed": 46,
+   "baseline_score": 0.6593,
+   "validation_score": 0.6657,
+   "holdout_score": 0.6696,
+   "budget_used": 8,
+   "elapsed_s": 2754.8,
+   "champion_genome_id": "genome_e8bedadebb3c",
+   "mutation_note": "goal.explicitness: high -> low",
+   "model": "qwen"
+  },
+  {
+   "method": "zero-shot",
+   "model_id": "qwen",
+   "model_version": "qwen3.8-flash",
+   "task": "financial",
+   "seed": 47,
+   "baseline_score": 0.6581,
+   "validation_score": 0.6546,
+   "holdout_score": 0.6648,
+   "budget_used": 0,
+   "elapsed_s": 1278.2,
+   "model": "qwen"
+  },
+  {
+   "method": "manual",
+   "model_id": "qwen",
+   "model_version": "qwen3.8-flash",
+   "task": "financial",
+   "seed": 47,
+   "baseline_score": 0.6607,
+   "validation_score": 0.6681,
+   "holdout_score": 0.6694,
+   "budget_used": 0,
+   "elapsed_s": 1279.6,
+   "model": "qwen"
+  },
+  {
+   "method": "apc-full",
+   "model_id": "qwen",
+   "model_version": "qwen3.8-flash",
+   "task": "financial",
+   "seed": 47,
+   "baseline_score": 0.1286,
+   "validation_score": 0.1279,
+   "holdout_score": 0.1428,
+   "budget_used": 8,
+   "elapsed_s": 5818.2,
+   "champion_genome_id": "genome_25b5d0ec4d1c",
+   "mutation_note": "output.strictness: medium -> low",
+   "model": "qwen"
+  },
+  {
+   "method": "apc-safe",
+   "model_id": "qwen",
+   "model_version": "qwen3.8-flash",
+   "task": "financial",
+   "seed": 47,
+   "baseline_score": 0.6552,
+   "validation_score": 0.6744,
+   "holdout_score": 0.6705,
+   "budget_used": 8,
+   "elapsed_s": 2950.6,
+   "champion_genome_id": "genome_62f985109b1e",
+   "mutation_note": null,
+   "model": "qwen"
   }
  ]
 }

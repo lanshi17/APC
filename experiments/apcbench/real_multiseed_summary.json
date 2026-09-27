@@ -1,0 +1,392 @@
+{
+ "meta": {
+  "protocol": "multiseed-summary",
+  "model": "qwen3.8-flash",
+  "note": "s46/s47 新增 4 臂全跑;历史 s42-s45 行合并;collapse = 搜索臂跌向 judge 地板的双峰事件"
+ },
+ "summary": {
+  "real_financial": {
+   "apc-full": {
+    "n": 5,
+    "seeds": [
+     43,
+     44,
+     45,
+     46,
+     47
+    ],
+    "mean": 0.3085,
+    "sd": 0.2362,
+    "values": [
+     0.5705,
+     0.1334,
+     0.1318,
+     0.5639,
+     0.1428
+    ],
+    "collapse": true
+   },
+   "apc-safe": {
+    "n": 6,
+    "seeds": [
+     42,
+     43,
+     44,
+     45,
+     46,
+     47
+    ],
+    "mean": 0.6664,
+    "sd": 0.0047,
+    "values": [
+     0.6672,
+     0.6679,
+     0.6575,
+     0.6657,
+     0.6696,
+     0.6705
+    ],
+    "collapse": false
+   },
+   "manual": {
+    "n": 3,
+    "seeds": [
+     45,
+     46,
+     47
+    ],
+    "mean": 0.6685,
+    "sd": 0.0018,
+    "values": [
+     0.6665,
+     0.6697,
+     0.6694
+    ],
+    "collapse": false
+   },
+   "zero-shot": {
+    "n": 3,
+    "seeds": [
+     45,
+     46,
+     47
+    ],
+    "mean": 0.6666,
+    "sd": 0.0023,
+    "values": [
+     0.6692,
+     0.6659,
+     0.6648
+    ],
+    "collapse": false
+   }
+  },
+  "real_contract": {
+   "apc-full": {
+    "n": 3,
+    "seeds": [
+     42,
+     46,
+     47
+    ],
+    "mean": 0.7035,
+    "sd": 0.4586,
+    "values": [
+     0.9782,
+     0.9583,
+     0.1741
+    ],
+    "collapse": true
+   },
+   "apc-safe": {
+    "n": 3,
+    "seeds": [
+     42,
+     46,
+     47
+    ],
+    "mean": 0.9771,
+    "sd": 0.0003,
+    "values": [
+     0.9773,
+     0.9772,
+     0.9768
+    ],
+    "collapse": false
+   },
+   "manual": {
+    "n": 3,
+    "seeds": [
+     42,
+     46,
+     47
+    ],
+    "mean": 0.9775,
+    "sd": 0.0002,
+    "values": [
+     0.9773,
+     0.9775,
+     0.9777
+    ],
+    "collapse": false
+   },
+   "zero-shot": {
+    "n": 3,
+    "seeds": [
+     42,
+     46,
+     47
+    ],
+    "mean": 0.9771,
+    "sd": 0.0001,
+    "values": [
+     0.977,
+     0.9771,
+     0.9771
+    ],
+    "collapse": false
+   }
+  },
+  "real_math": {
+   "apc-full": {
+    "n": 3,
+    "seeds": [
+     42,
+     46,
+     47
+    ],
+    "mean": 0.7769,
+    "sd": 0.1164,
+    "values": [
+     0.8442,
+     0.844,
+     0.6425
+    ],
+    "collapse": false
+   },
+   "apc-safe": {
+    "n": 3,
+    "seeds": [
+     42,
+     46,
+     47
+    ],
+    "mean": 0.8436,
+    "sd": 0.0001,
+    "values": [
+     0.8436,
+     0.8436,
+     0.8435
+    ],
+    "collapse": false
+   },
+   "manual": {
+    "n": 3,
+    "seeds": [
+     42,
+     46,
+     47
+    ],
+    "mean": 0.8438,
+    "sd": 0.0001,
+    "values": [
+     0.8439,
+     0.8437,
+     0.8438
+    ],
+    "collapse": false
+   },
+   "zero-shot": {
+    "n": 3,
+    "seeds": [
+     42,
+     46,
+     47
+    ],
+    "mean": 0.8436,
+    "sd": 0.0001,
+    "values": [
+     0.8436,
+     0.8435,
+     0.8436
+    ],
+    "collapse": false
+   }
+  }
+ },
+ "rows": [
+  {
+   "task": "real_financial",
+   "method": "apc-full",
+   "n_seeds": 5,
+   "mean": 0.3085,
+   "sd": 0.2362,
+   "values": [
+    0.5705,
+    0.1334,
+    0.1318,
+    0.5639,
+    0.1428
+   ],
+   "collapse": true,
+   "model": "qwen3.8-flash"
+  },
+  {
+   "task": "real_financial",
+   "method": "apc-safe",
+   "n_seeds": 6,
+   "mean": 0.6664,
+   "sd": 0.0047,
+   "values": [
+    0.6672,
+    0.6679,
+    0.6575,
+    0.6657,
+    0.6696,
+    0.6705
+   ],
+   "collapse": false,
+   "model": "qwen3.8-flash"
+  },
+  {
+   "task": "real_financial",
+   "method": "manual",
+   "n_seeds": 3,
+   "mean": 0.6685,
+   "sd": 0.0018,
+   "values": [
+    0.6665,
+    0.6697,
+    0.6694
+   ],
+   "collapse": false,
+   "model": "qwen3.8-flash"
+  },
+  {
+   "task": "real_financial",
+   "method": "zero-shot",
+   "n_seeds": 3,
+   "mean": 0.6666,
+   "sd": 0.0023,
+   "values": [
+    0.6692,
+    0.6659,
+    0.6648
+   ],
+   "collapse": false,
+   "model": "qwen3.8-flash"
+  },
+  {
+   "task": "real_contract",
+   "method": "apc-full",
+   "n_seeds": 3,
+   "mean": 0.7035,
+   "sd": 0.4586,
+   "values": [
+    0.9782,
+    0.9583,
+    0.1741
+   ],
+   "collapse": true,
+   "model": "qwen3.8-flash"
+  },
+  {
+   "task": "real_contract",
+   "method": "apc-safe",
+   "n_seeds": 3,
+   "mean": 0.9771,
+   "sd": 0.0003,
+   "values": [
+    0.9773,
+    0.9772,
+    0.9768
+   ],
+   "collapse": false,
+   "model": "qwen3.8-flash"
+  },
+  {
+   "task": "real_contract",
+   "method": "manual",
+   "n_seeds": 3,
+   "mean": 0.9775,
+   "sd": 0.0002,
+   "values": [
+    0.9773,
+    0.9775,
+    0.9777
+   ],
+   "collapse": false,
+   "model": "qwen3.8-flash"
+  },
+  {
+   "task": "real_contract",
+   "method": "zero-shot",
+   "n_seeds": 3,
+   "mean": 0.9771,
+   "sd": 0.0001,
+   "values": [
+    0.977,
+    0.9771,
+    0.9771
+   ],
+   "collapse": false,
+   "model": "qwen3.8-flash"
+  },
+  {
+   "task": "real_math",
+   "method": "apc-full",
+   "n_seeds": 3,
+   "mean": 0.7769,
+   "sd": 0.1164,
+   "values": [
+    0.8442,
+    0.844,
+    0.6425
+   ],
+   "collapse": false,
+   "model": "qwen3.8-flash"
+  },
+  {
+   "task": "real_math",
+   "method": "apc-safe",
+   "n_seeds": 3,
+   "mean": 0.8436,
+   "sd": 0.0001,
+   "values": [
+    0.8436,
+    0.8436,
+    0.8435
+   ],
+   "collapse": false,
+   "model": "qwen3.8-flash"
+  },
+  {
+   "task": "real_math",
+   "method": "manual",
+   "n_seeds": 3,
+   "mean": 0.8438,
+   "sd": 0.0001,
+   "values": [
+    0.8439,
+    0.8437,
+    0.8438
+   ],
+   "collapse": false,
+   "model": "qwen3.8-flash"
+  },
+  {
+   "task": "real_math",
+   "method": "zero-shot",
+   "n_seeds": 3,
+   "mean": 0.8436,
+   "sd": 0.0001,
+   "values": [
+    0.8436,
+    0.8435,
+    0.8436
+   ],
+   "collapse": false,
+   "model": "qwen3.8-flash"
+  }
+ ]
+}

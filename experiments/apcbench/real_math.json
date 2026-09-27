@@ -2,11 +2,12 @@
  "meta": {
   "protocol": "real-llm",
   "partial": false,
-  "total_s": 278.5,
+  "total_s": 1388.2,
   "dev_r": 5,
   "val_n": 8,
   "hold_n": 20,
-  "judge": "math_rule_v1"
+  "judge": "math_rule_v1",
+  "model": "qwen"
  },
  "rows": [
   {
@@ -60,6 +61,118 @@
    "elapsed_s": 278.5,
    "champion_genome_id": "genome_62f985109b1e",
    "mutation_note": null
+  },
+  {
+   "method": "zero-shot",
+   "model_id": "qwen",
+   "model_version": "qwen3.8-flash",
+   "task": "math",
+   "seed": 46,
+   "baseline_score": 0.8387,
+   "validation_score": 0.8388,
+   "holdout_score": 0.8435,
+   "budget_used": 0,
+   "elapsed_s": 179.1,
+   "model": "qwen"
+  },
+  {
+   "method": "manual",
+   "model_id": "qwen",
+   "model_version": "qwen3.8-flash",
+   "task": "math",
+   "seed": 46,
+   "baseline_score": 0.8387,
+   "validation_score": 0.8391,
+   "holdout_score": 0.8437,
+   "budget_used": 0,
+   "elapsed_s": 156.3,
+   "model": "qwen"
+  },
+  {
+   "method": "apc-full",
+   "model_id": "qwen",
+   "model_version": "qwen3.8-flash",
+   "task": "math",
+   "seed": 46,
+   "baseline_score": 0.6285,
+   "validation_score": 0.8393,
+   "holdout_score": 0.844,
+   "budget_used": 8,
+   "elapsed_s": 721.1,
+   "champion_genome_id": "genome_73a57db38597",
+   "mutation_note": "examples.enabled: False -> True",
+   "model": "qwen"
+  },
+  {
+   "method": "apc-safe",
+   "model_id": "qwen",
+   "model_version": "qwen3.8-flash",
+   "task": "math",
+   "seed": 46,
+   "baseline_score": 0.8392,
+   "validation_score": 0.8388,
+   "holdout_score": 0.8436,
+   "budget_used": 8,
+   "elapsed_s": 410.8,
+   "champion_genome_id": "genome_f4357c01eb60",
+   "mutation_note": "examples.count: 0 -> 2",
+   "model": "qwen"
+  },
+  {
+   "method": "zero-shot",
+   "model_id": "qwen",
+   "model_version": "qwen3.8-flash",
+   "task": "math",
+   "seed": 47,
+   "baseline_score": 0.8387,
+   "validation_score": 0.8388,
+   "holdout_score": 0.8436,
+   "budget_used": 0,
+   "elapsed_s": 140.6,
+   "model": "qwen"
+  },
+  {
+   "method": "manual",
+   "model_id": "qwen",
+   "model_version": "qwen3.8-flash",
+   "task": "math",
+   "seed": 47,
+   "baseline_score": 0.8387,
+   "validation_score": 0.8388,
+   "holdout_score": 0.8438,
+   "budget_used": 0,
+   "elapsed_s": 167.0,
+   "model": "qwen"
+  },
+  {
+   "method": "apc-full",
+   "model_id": "qwen",
+   "model_version": "qwen3.8-flash",
+   "task": "math",
+   "seed": 47,
+   "baseline_score": 0.6022,
+   "validation_score": 0.6227,
+   "holdout_score": 0.6425,
+   "budget_used": 8,
+   "elapsed_s": 674.1,
+   "champion_genome_id": "genome_a3542fe185ce",
+   "mutation_note": "constraints.explicitness: high -> medium",
+   "model": "qwen"
+  },
+  {
+   "method": "apc-safe",
+   "model_id": "qwen",
+   "model_version": "qwen3.8-flash",
+   "task": "math",
+   "seed": 47,
+   "baseline_score": 0.8392,
+   "validation_score": 0.8388,
+   "holdout_score": 0.8435,
+   "budget_used": 8,
+   "elapsed_s": 406.6,
+   "champion_genome_id": "genome_62f985109b1e",
+   "mutation_note": null,
+   "model": "qwen"
   }
  ]
 }

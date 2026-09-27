@@ -2,11 +2,12 @@
  "meta": {
   "protocol": "real-llm",
   "partial": false,
-  "total_s": 497.9,
+  "total_s": 2058.4,
   "dev_r": 5,
   "val_n": 8,
   "hold_n": 20,
-  "judge": "contract_rule_v1"
+  "judge": "contract_rule_v1",
+  "model": "qwen"
  },
  "rows": [
   {
@@ -60,6 +61,118 @@
    "elapsed_s": 497.9,
    "champion_genome_id": "genome_62f985109b1e",
    "mutation_note": null
+  },
+  {
+   "method": "zero-shot",
+   "model_id": "qwen",
+   "model_version": "qwen3.8-flash",
+   "task": "contract",
+   "seed": 46,
+   "baseline_score": 0.9761,
+   "validation_score": 0.9814,
+   "holdout_score": 0.9771,
+   "budget_used": 0,
+   "elapsed_s": 272.0,
+   "model": "qwen"
+  },
+  {
+   "method": "manual",
+   "model_id": "qwen",
+   "model_version": "qwen3.8-flash",
+   "task": "contract",
+   "seed": 46,
+   "baseline_score": 0.9759,
+   "validation_score": 0.9822,
+   "holdout_score": 0.9775,
+   "budget_used": 0,
+   "elapsed_s": 260.3,
+   "model": "qwen"
+  },
+  {
+   "method": "apc-full",
+   "model_id": "qwen",
+   "model_version": "qwen3.8-flash",
+   "task": "contract",
+   "seed": 46,
+   "baseline_score": 0.1778,
+   "validation_score": 0.9819,
+   "holdout_score": 0.9583,
+   "budget_used": 8,
+   "elapsed_s": 1129.3,
+   "champion_genome_id": "genome_73a57db38597",
+   "mutation_note": "examples.enabled: False -> True",
+   "model": "qwen"
+  },
+  {
+   "method": "apc-safe",
+   "model_id": "qwen",
+   "model_version": "qwen3.8-flash",
+   "task": "contract",
+   "seed": 46,
+   "baseline_score": 0.9734,
+   "validation_score": 0.9828,
+   "holdout_score": 0.9772,
+   "budget_used": 8,
+   "elapsed_s": 537.1,
+   "champion_genome_id": "genome_e8bedadebb3c",
+   "mutation_note": "goal.explicitness: high -> low",
+   "model": "qwen"
+  },
+  {
+   "method": "zero-shot",
+   "model_id": "qwen",
+   "model_version": "qwen3.8-flash",
+   "task": "contract",
+   "seed": 47,
+   "baseline_score": 0.9755,
+   "validation_score": 0.9812,
+   "holdout_score": 0.9771,
+   "budget_used": 0,
+   "elapsed_s": 252.3,
+   "model": "qwen"
+  },
+  {
+   "method": "manual",
+   "model_id": "qwen",
+   "model_version": "qwen3.8-flash",
+   "task": "contract",
+   "seed": 47,
+   "baseline_score": 0.9759,
+   "validation_score": 0.9823,
+   "holdout_score": 0.9777,
+   "budget_used": 0,
+   "elapsed_s": 219.5,
+   "model": "qwen"
+  },
+  {
+   "method": "apc-full",
+   "model_id": "qwen",
+   "model_version": "qwen3.8-flash",
+   "task": "contract",
+   "seed": 47,
+   "baseline_score": 0.1778,
+   "validation_score": 0.1928,
+   "holdout_score": 0.1741,
+   "budget_used": 8,
+   "elapsed_s": 1010.2,
+   "champion_genome_id": "genome_62f985109b1e",
+   "mutation_note": null,
+   "model": "qwen"
+  },
+  {
+   "method": "apc-safe",
+   "model_id": "qwen",
+   "model_version": "qwen3.8-flash",
+   "task": "contract",
+   "seed": 47,
+   "baseline_score": 0.9738,
+   "validation_score": 0.9822,
+   "holdout_score": 0.9768,
+   "budget_used": 8,
+   "elapsed_s": 576.3,
+   "champion_genome_id": "genome_09ee1279d7e6",
+   "mutation_note": "instructions.style: imperative -> conversational",
+   "model": "qwen"
   }
  ]
 }
