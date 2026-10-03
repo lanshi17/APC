@@ -20,18 +20,25 @@ class JevClient:
         self,
         api_base: Optional[str] = None,
         api_key: Optional[str] = None,
+        model: Optional[str] = None,
+        timeout: float = 60.0,
         fallback_mode: str = "heuristic"
     ):
         """
         Args:
-            api_base: API 端点基础 URL
+            api_base: API 端点基础 URL（聚合服务的 /v1，如
+                ``https://opencode.ai/zen/v1``）；客户端 POST 到 ``<base>/systemone``。
             api_key: API 密钥
+            model: Jev 模型名；默认取 ``JEV_MODEL``（如 ``jev-1.13`` / ``jev-1.13-free``）
+            timeout: 单次请求超时（秒）
             fallback_mode: API 不可用时的回退模式
                 - "heuristic": 启发式决策（贝叶斯后验）
                 - "error": 抛出错误
         """
         self.api_base = api_base or os.getenv("JEV_API_BASE")
         self.api_key = api_key or os.getenv("JEV_API_KEY")
+        self.model = model or os.getenv("JEV_MODEL", "jev-1.13")
+        self.timeout = timeout
         self.fallback_mode = fallback_mode
 
     def select_best_arm(
@@ -70,129 +77,140 @@ class JevClient:
         return self._heuristic_decision(arms, task_context)
 
     def _call_jev_api(self, arms: List[Dict], task_context: Dict) -> Dict[str, Any]:
-        """调用真实 jev-1.13.0 API"""
+        """调用真实 Jev（原生 System One 协议）。
+
+        请求体为 ``{state, model, questions}``，与官方 curl 示例一致；响应体为
+        ``{model, answers, usage}``。此前实现误用 OpenAI chat 格式
+        （``messages`` / ``temperature`` / ``max_tokens``），真实端点会拒绝为
+        400 ``Invalid request``。
+        """
         import requests
 
-        prompt = self._build_jev_prompt(arms, task_context)
-
-        # 确保 API base 不以 /v1 结尾，避免重复
-        api_base = self.api_base.rstrip('/')
-        if api_base.endswith('/v1'):
+        api_base = self.api_base.rstrip("/")
+        if api_base.endswith("/v1"):
             api_base = api_base[:-3]
+        url = f"{api_base}/v1/systemone"
 
-        # 调用 /v1/systemone 端点
+        state, criteria = self._build_native_state(arms, task_context)
+        payload = {
+            "state": state,
+            "model": self.model,
+            "questions": {
+                "best_arm": {
+                    "type": "choice",
+                    "instructions": (
+                        "Which arm maximizes expected holdout performance? Validation "
+                        "is only 8 samples, so treat gaps inside the +/-0.007 noise band "
+                        "as ties and prefer the simpler genome when they tie."
+                    ),
+                    "criteria": criteria,
+                },
+                "seed_collapse": {
+                    "type": "noul",
+                    "instructions": (
+                        "Is it likely that at least one arm's validation score collapsed "
+                        "because of an unlucky seed rather than a genuinely worse genome?"
+                    ),
+                },
+                "signal_quality": {
+                    "type": "score",
+                    "instructions": "How reliable is this validation signal for ranking the arms?",
+                    "criteria": [
+                        "unreliable - differences are within measurement noise",
+                        "weakly informative",
+                        "moderately informative",
+                        "strongly informative",
+                        "decisive - clearly separates the arms",
+                    ],
+                },
+            },
+        }
+
         response = requests.post(
-            f"{api_base}/v1/systemone",
+            url,
             headers={
                 "Authorization": f"Bearer {self.api_key}",
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
             },
-            json={
-                "model": "jev-1.13.0",
-                "messages": [
-                    {
-                        "role": "system",
-                        "content": "You are TypeSafe Jev, a System One structured decision model."
-                    },
-                    {
-                        "role": "user",
-                        "content": prompt
-                    }
-                ],
-                "temperature": 0.0,  # 结构化决策，温度为 0
-                "max_tokens": 800
-            },
-            timeout=30
+            json=payload,
+            timeout=self.timeout,
         )
 
         if response.status_code != 200:
-            raise RuntimeError(f"Jev API error: {response.status_code} {response.text}")
+            raise RuntimeError(f"Jev API error: {response.status_code} {response.text[:300]}")
 
         result = response.json()
-        content = result["choices"][0]["message"]["content"]
-
-        # 解析 JSON 响应
-        parsed = self._parse_jev_response(content, arms)
-        parsed['method'] = 'jev'
-
+        parsed = self._parse_native_response(result, arms)
+        parsed["method"] = "jev"
+        parsed["model"] = result.get("model", self.model)
+        parsed["usage"] = result.get("usage", {})
         return parsed
 
-    def _build_jev_prompt(self, arms: List[Dict], task_context: Dict) -> str:
-        """构建 Jev System One 风格的 prompt"""
+    @staticmethod
+    def _build_native_state(arms: List[Dict], task_context: Dict):
+        """把臂列表渲染成 Jev 的 ``state`` 文本与 choice 的 ``criteria`` 映射。"""
+        lines = []
+        for a in arms:
+            suffix = ""
+            if a.get("rank") is not None:
+                suffix = f" (simplicity rank {a['rank']})"
+            lines.append(f"  - {a['name']}: val_score={a['val_score']:.4f} (n=8){suffix}")
+        state = (
+            "Deciding which compiled prompt genome to deploy.\n"
+            f"Task family: {task_context.get('task', 'unknown')}. "
+            f"Seed: {task_context.get('seed', 42)}.\n"
+            "Every arm was scored on the same 8-sample validation set; score "
+            "differences inside +/-0.007 are within measured noise.\n"
+            "Arms and validation scores:\n" + "\n".join(lines)
+        )
+        criteria = {}
+        for a in arms:
+            bits = [f"validation score {a['val_score']:.4f}"]
+            if a.get("rank") is not None:
+                bits.append(f"simplicity rank {a['rank']}")
+            criteria[a["name"]] = "; ".join(bits)
+        return state, criteria
 
-        arms_text = "\n".join([
-            f"  - {a['name']}: val_score={a['val_score']:.4f} (n=8)"
-            for a in arms
-        ])
+    def _parse_native_response(self, result: Dict, arms: List[Dict]) -> Dict[str, Any]:
+        """把原生 ``answers`` 映射回本客户端既有的返回契约。"""
+        answers = result.get("answers", {}) or {}
 
-        prompt = f"""**State**:
-Task: {task_context.get('task', 'unknown')}
-Seed: {task_context.get('seed', 42)}
+        best = answers.get("best_arm", {}) or {}
+        choice = best.get("choice") or max(arms, key=lambda a: a["val_score"])["name"]
+        probs = {str(k): float(v) for k, v in (best.get("probabilities") or {}).items()}
+        total = sum(probs.values())
+        if total > 0:
+            probs = {k: v / total for k, v in probs.items()}
+        else:
+            probs = {a["name"]: 1.0 / len(arms) for a in arms}
+        confidence = best.get("confidence")
+        confidence = float(confidence) if confidence is not None else max(probs.values())
 
-**Arms (validation performance on n=8 samples)**:
-{arms_text}
+        noul = answers.get("seed_collapse", {}) or {}
+        collapse_noul = float(noul.get("noul", 0.0))
 
-**Questions** (answer in JSON format):
+        sq = answers.get("signal_quality", {}) or {}
+        legend = sq.get("legend") or {}
+        raw_score = float(sq.get("score", 0.0))
+        # 原生 score 是 0..len(legend)-1 的等级均值，归一到 0..1
+        alignment = 0.0
+        if legend:
+            top = max(len(legend) - 1, 1)
+            alignment = max(0.0, min(1.0, raw_score / top))
 
-1. **Choice**: Which arm maximizes expected holdout performance?
-   Consider: validation scores, uncertainty (n=8 is small), simplicity as tie-breaker
-
-2. **Noul** (Seed Collapse): Probability that one arm collapsed due to bad seed?
-   Evidence: extreme score gap (e.g. 0.13 vs 0.67) indicates collapse
-
-3. **Score** (Val-Holdout Alignment): How much trust validation scores (0-1)?
-   Low trust if: small n, tight gaps, high variance expected
-
-**Required JSON output**:
-```json
-{{
-  "choice": "<arm_name>",
-  "probabilities": {{"arm1": 0.5, "arm2": 0.3, ...}},
-  "confidence": 0.85,
-  "collapse_noul": 0.05,
-  "alignment_score": 0.80,
-  "reasoning": "<brief explanation>"
-}}
-```
-
-Respond with ONLY the JSON object, no additional text."""
-
-        return prompt
-
-    def _parse_jev_response(self, content: str, arms: List[Dict]) -> Dict[str, Any]:
-        """解析 Jev 返回的 JSON"""
-        try:
-            # 提取 JSON
-            start = content.find('{')
-            end = content.rfind('}') + 1
-            if start == -1 or end == 0:
-                raise ValueError("No JSON found in response")
-
-            json_str = content[start:end]
-            parsed = json.loads(json_str)
-
-            # 验证必需字段
-            required = ['choice', 'probabilities', 'confidence', 'collapse_noul', 'alignment_score']
-            for field in required:
-                if field not in parsed:
-                    raise ValueError(f"Missing field: {field}")
-
-            # 归一化概率
-            probs = parsed['probabilities']
-            total = sum(probs.values())
-            if total > 0:
-                parsed['probabilities'] = {k: v/total for k, v in probs.items()}
-
-            # 限制范围
-            parsed['confidence'] = max(0.0, min(1.0, float(parsed['confidence'])))
-            parsed['collapse_noul'] = max(0.0, min(1.0, float(parsed['collapse_noul'])))
-            parsed['alignment_score'] = max(0.0, min(1.0, float(parsed['alignment_score'])))
-
-            return parsed
-
-        except Exception as e:
-            print(f"[JevClient] Parse error: {e}, content: {content[:200]}")
-            raise
+        return {
+            "choice": choice,
+            "confidence": max(0.0, min(1.0, confidence)),
+            "probabilities": probs,
+            "collapse_noul": max(0.0, min(1.0, collapse_noul)),
+            "alignment_score": alignment,
+            "signal_score_raw": raw_score,
+            "reasoning": (
+                f"native /v1/systemone: choice={choice}, "
+                f"noul={collapse_noul:.3f}, signal_score={raw_score:.2f}"
+            ),
+            "raw_answers": answers,
+        }
 
     def _heuristic_decision(self, arms: List[Dict], task_context: Dict) -> Dict[str, Any]:
         """启发式决策（贝叶斯后验 + 崩溃检测）"""
