@@ -500,7 +500,9 @@ def historical_reproduction(h: Harness) -> dict:
     groups = [by[HIST_MAP[r["group"]]] for r in art["results"]
               if HIST_MAP.get(r["group"]) in by]
     return {
-        "source_artifact": str(art_path),
+        # Repository-relative, not absolute: keeps the artifact byte-identical
+        # across checkouts (a fresh clone must reproduce it exactly).
+        "source_artifact": str(art_path.relative_to(APC_ROOT)),
         "frozen_artifact": art["summary"],
         "replayed": {
             "heuristic": summarize(groups, h.evaluate("heuristic", groups)),
