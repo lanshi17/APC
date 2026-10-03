@@ -6328,7 +6328,7 @@
     }
   },
   "historical_reproduction": {
-    "source_artifact": "/mnt/data/Projects/DataScience/Analysis/02_apc_paper/APC/experiments/jev_vs_heuristic_comparison.json",
+    "source_artifact": "/mnt/data/Projects/DataScience/Analysis/02_APC/experiments/jev_vs_heuristic_comparison.json",
     "frozen_artifact": {
       "total_groups": 6,
       "heuristic": {

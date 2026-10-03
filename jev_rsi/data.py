@@ -17,8 +17,16 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Dict, List, Optional
 
-PAPER_ROOT = Path(__file__).resolve().parents[1]
-APC_ROOT = PAPER_ROOT / "APC"          # symlink -> ../02_APC (read-only)
+# Location-robust root resolution: the harness works both inside the paper
+# workspace (``apc_paper/jev_rsi`` with the dataset at ``apc_paper/APC/...``)
+# and directly inside the APC code repo (``02_APC/jev_rsi`` with the dataset at
+# ``02_APC/experiments/...``).  A stale ``APC`` sub-directory must not shadow
+# the real dataset.
+_HOME = Path(__file__).resolve().parents[1]
+PAPER_ROOT = _HOME
+APC_ROOT = (_HOME / "APC"
+            if (_HOME / "APC" / "experiments" / "apc_full_dataset.json").exists()
+            else _HOME)
 DATASET = APC_ROOT / "experiments" / "apc_full_dataset.json"
 
 # ---------------------------------------------------------------------------
