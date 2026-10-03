@@ -1,0 +1,2963 @@
+{
+  "protocol": "F12 gate over frozen corpus, three features supplied by a live POST /v1/systemone; rules and metrics identical to the offline run",
+  "endpoint": "https://opencode.ai/zen/v1/systemone",
+  "noise_band": 0.007,
+  "meta_params": {
+    "collapse_threshold": 0.7,
+    "alignment_threshold": 0.5,
+    "confidence_floor": 0.6
+  },
+  "n_decision_groups": 32,
+  "models": {
+    "jev-1.13-free": {
+      "model_requested": "jev-1.13-free",
+      "models_returned": [
+        "jev-1.13-free"
+      ],
+      "live_calls": 32,
+      "fallback_calls": 0,
+      "usage": {
+        "input_tokens": 21779,
+        "output_tokens": 2623,
+        "est_cost_usd": 0.000915
+      },
+      "raw_choice_exact_oracle": 14,
+      "raw_choice_exact_rate": 0.4375,
+      "summary": {
+        "n_groups": 32,
+        "exact_oracle": 12,
+        "exact_rate": 0.375,
+        "within_noise": 25,
+        "within_noise_rate": 0.7812,
+        "avg_regret": 0.01315,
+        "max_regret": 0.2038,
+        "total_regret": 0.4208,
+        "n_collapse_cases": 6,
+        "collapse_avoided": 4
+      },
+      "groups": [
+        {
+          "gid": "contract-s42",
+          "task": "contract",
+          "n_arms": 4,
+          "oracle": "apc-full",
+          "greedy": "apc-full",
+          "val_scores": {
+            "zero-shot": 0.9818,
+            "manual": 0.9818,
+            "apc-full": 0.9833,
+            "apc-safe": 0.9822
+          },
+          "holdout_scores": {
+            "zero-shot": 0.977,
+            "manual": 0.9773,
+            "apc-full": 0.9782,
+            "apc-safe": 0.9773
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13-free",
+          "jev_raw_choice": "zero-shot",
+          "jev_raw_correct": false,
+          "probabilities": {
+            "zero-shot": 0.52,
+            "manual": 0.02,
+            "apc-full": 0.36,
+            "apc-safe": 0.1
+          },
+          "features": {
+            "confidence": 0.37,
+            "collapse_noul": 0.19,
+            "alignment": 0.0925,
+            "margin": 0.0011,
+            "n_arms": 4.0
+          },
+          "gate_choice": "zero-shot",
+          "gate_reason": "low_val_alignment",
+          "gate_correct": false,
+          "regret": 0.0012,
+          "usage": {
+            "input_tokens": 691,
+            "output_tokens": 85
+          },
+          "latency_s": 0.787
+        },
+        {
+          "gid": "contract-s46",
+          "task": "contract",
+          "n_arms": 4,
+          "oracle": "manual",
+          "greedy": "apc-safe",
+          "val_scores": {
+            "zero-shot": 0.9814,
+            "manual": 0.9822,
+            "apc-full": 0.9819,
+            "apc-safe": 0.9828
+          },
+          "holdout_scores": {
+            "zero-shot": 0.9771,
+            "manual": 0.9775,
+            "apc-full": 0.9583,
+            "apc-safe": 0.9772
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13-free",
+          "jev_raw_choice": "apc-safe",
+          "jev_raw_correct": false,
+          "probabilities": {
+            "apc-full": 0.0,
+            "manual": 0.19,
+            "zero-shot": 0.36,
+            "apc-safe": 0.45
+          },
+          "features": {
+            "confidence": 0.26,
+            "collapse_noul": 0.2,
+            "alignment": 0.03,
+            "margin": 0.0006,
+            "n_arms": 4.0
+          },
+          "gate_choice": "zero-shot",
+          "gate_reason": "low_val_alignment",
+          "gate_correct": false,
+          "regret": 0.0004,
+          "usage": {
+            "input_tokens": 691,
+            "output_tokens": 86
+          },
+          "latency_s": 0.762
+        },
+        {
+          "gid": "contract-s47",
+          "task": "contract",
+          "n_arms": 4,
+          "oracle": "manual",
+          "greedy": "manual",
+          "val_scores": {
+            "zero-shot": 0.9812,
+            "manual": 0.9823,
+            "apc-full": 0.1928,
+            "apc-safe": 0.9822
+          },
+          "holdout_scores": {
+            "zero-shot": 0.9771,
+            "manual": 0.9777,
+            "apc-full": 0.1741,
+            "apc-safe": 0.9768
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13-free",
+          "jev_raw_choice": "manual",
+          "jev_raw_correct": true,
+          "probabilities": {
+            "apc-full": 0.0,
+            "manual": 0.48,
+            "zero-shot": 0.49,
+            "apc-safe": 0.03
+          },
+          "features": {
+            "confidence": 0.31,
+            "collapse_noul": 0.37,
+            "alignment": 0.4975,
+            "margin": 0.0001,
+            "n_arms": 4.0
+          },
+          "gate_choice": "zero-shot",
+          "gate_reason": "low_val_alignment",
+          "gate_correct": false,
+          "regret": 0.0006,
+          "usage": {
+            "input_tokens": 691,
+            "output_tokens": 84
+          },
+          "latency_s": 0.865
+        },
+        {
+          "gid": "contract_gpt6-s42",
+          "task": "contract_gpt6",
+          "n_arms": 4,
+          "oracle": "apc-safe",
+          "greedy": "manual",
+          "val_scores": {
+            "zero-shot": 0.9827,
+            "manual": 0.9831,
+            "apc-full": 0.9354,
+            "apc-safe": 0.9831
+          },
+          "holdout_scores": {
+            "zero-shot": 0.9783,
+            "manual": 0.9784,
+            "apc-full": 0.9404,
+            "apc-safe": 0.9792
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13-free",
+          "jev_raw_choice": "zero-shot",
+          "jev_raw_correct": false,
+          "probabilities": {
+            "apc-safe": 0.03,
+            "apc-full": 0.0,
+            "zero-shot": 0.91,
+            "manual": 0.06
+          },
+          "features": {
+            "confidence": 0.88,
+            "collapse_noul": 0.37,
+            "alignment": 0.2575,
+            "margin": 0.0,
+            "n_arms": 4.0
+          },
+          "gate_choice": "zero-shot",
+          "gate_reason": "low_val_alignment",
+          "gate_correct": false,
+          "regret": 0.0009,
+          "usage": {
+            "input_tokens": 696,
+            "output_tokens": 85
+          },
+          "latency_s": 0.69
+        },
+        {
+          "gid": "financial-s43",
+          "task": "financial",
+          "n_arms": 2,
+          "oracle": "apc-safe",
+          "greedy": "apc-safe",
+          "val_scores": {
+            "apc-full": 0.5705,
+            "apc-safe": 0.6642
+          },
+          "holdout_scores": {
+            "apc-full": 0.5705,
+            "apc-safe": 0.6679
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13-free",
+          "jev_raw_choice": "apc-safe",
+          "jev_raw_correct": true,
+          "probabilities": {
+            "apc-full": 0.0,
+            "apc-safe": 1.0
+          },
+          "features": {
+            "confidence": 1.0,
+            "collapse_noul": 0.32,
+            "alignment": 0.765,
+            "margin": 0.0937,
+            "n_arms": 2.0
+          },
+          "gate_choice": "apc-safe",
+          "gate_reason": "normal_selection",
+          "gate_correct": true,
+          "regret": 0.0,
+          "usage": {
+            "input_tokens": 589,
+            "output_tokens": 71
+          },
+          "latency_s": 1.245
+        },
+        {
+          "gid": "financial-s44",
+          "task": "financial",
+          "n_arms": 2,
+          "oracle": "apc-safe",
+          "greedy": "apc-safe",
+          "val_scores": {
+            "apc-full": 0.1452,
+            "apc-safe": 0.6683
+          },
+          "holdout_scores": {
+            "apc-full": 0.1334,
+            "apc-safe": 0.6575
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13-free",
+          "jev_raw_choice": "apc-safe",
+          "jev_raw_correct": true,
+          "probabilities": {
+            "apc-safe": 1.0,
+            "apc-full": 0.0
+          },
+          "features": {
+            "confidence": 0.99,
+            "collapse_noul": 0.36,
+            "alignment": 0.8875,
+            "margin": 0.5231,
+            "n_arms": 2.0
+          },
+          "gate_choice": "apc-safe",
+          "gate_reason": "normal_selection",
+          "gate_correct": true,
+          "regret": 0.0,
+          "usage": {
+            "input_tokens": 589,
+            "output_tokens": 71
+          },
+          "latency_s": 1.042
+        },
+        {
+          "gid": "financial-s45",
+          "task": "financial",
+          "n_arms": 4,
+          "oracle": "zero-shot",
+          "greedy": "apc-safe",
+          "val_scores": {
+            "zero-shot": 0.6682,
+            "manual": 0.6644,
+            "apc-full": 0.1708,
+            "apc-safe": 0.6687
+          },
+          "holdout_scores": {
+            "zero-shot": 0.6692,
+            "manual": 0.6665,
+            "apc-full": 0.1318,
+            "apc-safe": 0.6657
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13-free",
+          "jev_raw_choice": "zero-shot",
+          "jev_raw_correct": true,
+          "probabilities": {
+            "manual": 0.01,
+            "apc-safe": 0.24,
+            "zero-shot": 0.75,
+            "apc-full": 0.0
+          },
+          "features": {
+            "confidence": 0.67,
+            "collapse_noul": 0.46,
+            "alignment": 0.43,
+            "margin": 0.0005,
+            "n_arms": 4.0
+          },
+          "gate_choice": "zero-shot",
+          "gate_reason": "low_val_alignment",
+          "gate_correct": true,
+          "regret": 0.0,
+          "usage": {
+            "input_tokens": 691,
+            "output_tokens": 85
+          },
+          "latency_s": 1.277
+        },
+        {
+          "gid": "financial-s46",
+          "task": "financial",
+          "n_arms": 4,
+          "oracle": "manual",
+          "greedy": "manual",
+          "val_scores": {
+            "zero-shot": 0.6605,
+            "manual": 0.6664,
+            "apc-full": 0.5836,
+            "apc-safe": 0.6657
+          },
+          "holdout_scores": {
+            "zero-shot": 0.6659,
+            "manual": 0.6697,
+            "apc-full": 0.5639,
+            "apc-safe": 0.6696
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13-free",
+          "jev_raw_choice": "manual",
+          "jev_raw_correct": true,
+          "probabilities": {
+            "apc-full": 0.0,
+            "manual": 0.83,
+            "zero-shot": 0.06,
+            "apc-safe": 0.11
+          },
+          "features": {
+            "confidence": 0.77,
+            "collapse_noul": 0.48,
+            "alignment": 0.23,
+            "margin": 0.0007,
+            "n_arms": 4.0
+          },
+          "gate_choice": "zero-shot",
+          "gate_reason": "low_val_alignment",
+          "gate_correct": false,
+          "regret": 0.0038,
+          "usage": {
+            "input_tokens": 691,
+            "output_tokens": 84
+          },
+          "latency_s": 0.765
+        },
+        {
+          "gid": "financial-s47",
+          "task": "financial",
+          "n_arms": 4,
+          "oracle": "apc-safe",
+          "greedy": "apc-safe",
+          "val_scores": {
+            "zero-shot": 0.6546,
+            "manual": 0.6681,
+            "apc-full": 0.1279,
+            "apc-safe": 0.6744
+          },
+          "holdout_scores": {
+            "zero-shot": 0.6648,
+            "manual": 0.6694,
+            "apc-full": 0.1428,
+            "apc-safe": 0.6705
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13-free",
+          "jev_raw_choice": "apc-safe",
+          "jev_raw_correct": true,
+          "probabilities": {
+            "apc-safe": 0.77,
+            "manual": 0.2,
+            "apc-full": 0.0,
+            "zero-shot": 0.03
+          },
+          "features": {
+            "confidence": 0.69,
+            "collapse_noul": 0.42,
+            "alignment": 0.4525,
+            "margin": 0.0063,
+            "n_arms": 4.0
+          },
+          "gate_choice": "zero-shot",
+          "gate_reason": "low_val_alignment",
+          "gate_correct": false,
+          "regret": 0.0057,
+          "usage": {
+            "input_tokens": 691,
+            "output_tokens": 86
+          },
+          "latency_s": 0.942
+        },
+        {
+          "gid": "financial_gpt56terra-s42",
+          "task": "financial_gpt56terra",
+          "n_arms": 4,
+          "oracle": "apc-safe",
+          "greedy": "manual",
+          "val_scores": {
+            "zero-shot": 0.6672,
+            "manual": 0.6777,
+            "apc-full": 0.6131,
+            "apc-safe": 0.6631
+          },
+          "holdout_scores": {
+            "zero-shot": 0.6669,
+            "manual": 0.6665,
+            "apc-full": 0.615,
+            "apc-safe": 0.6694
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13-free",
+          "jev_raw_choice": "manual",
+          "jev_raw_correct": false,
+          "probabilities": {
+            "zero-shot": 0.23,
+            "apc-safe": 0.03,
+            "manual": 0.74,
+            "apc-full": 0.0
+          },
+          "features": {
+            "confidence": 0.65,
+            "collapse_noul": 0.36,
+            "alignment": 0.2825,
+            "margin": 0.0105,
+            "n_arms": 4.0
+          },
+          "gate_choice": "zero-shot",
+          "gate_reason": "low_val_alignment",
+          "gate_correct": false,
+          "regret": 0.0025,
+          "usage": {
+            "input_tokens": 698,
+            "output_tokens": 84
+          },
+          "latency_s": 0.812
+        },
+        {
+          "gid": "financial_gpt6-s42",
+          "task": "financial_gpt6",
+          "n_arms": 4,
+          "oracle": "manual",
+          "greedy": "manual",
+          "val_scores": {
+            "zero-shot": 0.6866,
+            "manual": 0.6934,
+            "apc-full": 0.6734,
+            "apc-safe": 0.6849
+          },
+          "holdout_scores": {
+            "zero-shot": 0.6862,
+            "manual": 0.6971,
+            "apc-full": 0.675,
+            "apc-safe": 0.6771
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13-free",
+          "jev_raw_choice": "manual",
+          "jev_raw_correct": true,
+          "probabilities": {
+            "manual": 0.64,
+            "zero-shot": 0.3,
+            "apc-safe": 0.06,
+            "apc-full": 0.0
+          },
+          "features": {
+            "confidence": 0.52,
+            "collapse_noul": 0.31,
+            "alignment": 0.15,
+            "margin": 0.0068,
+            "n_arms": 4.0
+          },
+          "gate_choice": "zero-shot",
+          "gate_reason": "low_val_alignment",
+          "gate_correct": false,
+          "regret": 0.0109,
+          "usage": {
+            "input_tokens": 696,
+            "output_tokens": 84
+          },
+          "latency_s": 0.884
+        },
+        {
+          "gid": "financial_gpt6_smoke-s42",
+          "task": "financial_gpt6_smoke",
+          "n_arms": 3,
+          "oracle": "manual",
+          "greedy": "manual",
+          "val_scores": {
+            "zero-shot": 0.6789,
+            "manual": 0.6895,
+            "apc-full": 0.6828
+          },
+          "holdout_scores": {
+            "zero-shot": 0.6781,
+            "manual": 0.6788,
+            "apc-full": 0.6747
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13-free",
+          "jev_raw_choice": "manual",
+          "jev_raw_correct": true,
+          "probabilities": {
+            "zero-shot": 0.07,
+            "manual": 0.85,
+            "apc-full": 0.08
+          },
+          "features": {
+            "confidence": 0.78,
+            "collapse_noul": 0.25,
+            "alignment": 0.16,
+            "margin": 0.0067,
+            "n_arms": 3.0
+          },
+          "gate_choice": "zero-shot",
+          "gate_reason": "low_val_alignment",
+          "gate_correct": false,
+          "regret": 0.0007,
+          "usage": {
+            "input_tokens": 644,
+            "output_tokens": 75
+          },
+          "latency_s": 0.683
+        },
+        {
+          "gid": "gepa-s42",
+          "task": "gepa",
+          "n_arms": 3,
+          "oracle": "gepa",
+          "greedy": "gepa",
+          "val_scores": {
+            "gepa": 0.6978,
+            "espo": 0.6992
+          },
+          "holdout_scores": {
+            "gepa": 0.7045,
+            "espo": 0.7009
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13-free",
+          "jev_raw_choice": "gepa",
+          "jev_raw_correct": true,
+          "probabilities": {
+            "gepa": 0.78,
+            "espo": 0.22
+          },
+          "features": {
+            "confidence": 0.56,
+            "collapse_noul": 0.43,
+            "alignment": 0.3775,
+            "margin": 0.0752,
+            "n_arms": 3.0
+          },
+          "gate_choice": "gepa",
+          "gate_reason": "low_val_alignment",
+          "gate_correct": true,
+          "regret": 0.0,
+          "usage": {
+            "input_tokens": 612,
+            "output_tokens": 68
+          },
+          "latency_s": 0.694
+        },
+        {
+          "gid": "gepa-s43",
+          "task": "gepa",
+          "n_arms": 3,
+          "oracle": "espo",
+          "greedy": "gepa",
+          "val_scores": {
+            "gepa": 0.7068,
+            "espo": 0.5154
+          },
+          "holdout_scores": {
+            "gepa": 0.6975,
+            "espo": 0.7501
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13-free",
+          "jev_raw_choice": "gepa",
+          "jev_raw_correct": false,
+          "probabilities": {
+            "gepa": 1.0,
+            "espo": 0.0
+          },
+          "features": {
+            "confidence": 1.0,
+            "collapse_noul": 0.39,
+            "alignment": 0.6425,
+            "margin": 0.0678,
+            "n_arms": 3.0
+          },
+          "gate_choice": "gepa",
+          "gate_reason": "normal_selection",
+          "gate_correct": false,
+          "regret": 0.0006,
+          "usage": {
+            "input_tokens": 612,
+            "output_tokens": 68
+          },
+          "latency_s": 0.956
+        },
+        {
+          "gid": "gepa-s901",
+          "task": "gepa",
+          "n_arms": 2,
+          "oracle": "z0-control",
+          "greedy": "z0-control",
+          "val_scores": {
+            "z0-control": 0.0
+          },
+          "holdout_scores": {
+            "z0-control": 0.6997
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13-free",
+          "jev_raw_choice": "z0-control",
+          "jev_raw_correct": true,
+          "probabilities": {
+            "z0-control": 1.0
+          },
+          "features": {
+            "confidence": 1.0,
+            "collapse_noul": 0.41,
+            "alignment": 0.0075,
+            "margin": 0.0,
+            "n_arms": 2.0
+          },
+          "gate_choice": "z0-control",
+          "gate_reason": "low_val_alignment",
+          "gate_correct": true,
+          "regret": 0.0,
+          "usage": {
+            "input_tokens": 570,
+            "output_tokens": 62
+          },
+          "latency_s": 1.131
+        },
+        {
+          "gid": "gepa_gpt6-s42",
+          "task": "gepa_gpt6",
+          "n_arms": 2,
+          "oracle": "gepa",
+          "greedy": "gepa",
+          "val_scores": {
+            "gepa": 0.9533,
+            "espo": 0.7077
+          },
+          "holdout_scores": {
+            "gepa": 0.8914,
+            "espo": 0.7021
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13-free",
+          "jev_raw_choice": "gepa",
+          "jev_raw_correct": true,
+          "probabilities": {
+            "espo": 0.0,
+            "gepa": 1.0
+          },
+          "features": {
+            "confidence": 1.0,
+            "collapse_noul": 0.21,
+            "alignment": 0.855,
+            "margin": 0.2456,
+            "n_arms": 2.0
+          },
+          "gate_choice": "gepa",
+          "gate_reason": "normal_selection",
+          "gate_correct": true,
+          "regret": 0.0,
+          "usage": {
+            "input_tokens": 589,
+            "output_tokens": 68
+          },
+          "latency_s": 0.832
+        },
+        {
+          "gid": "gepa_gpt6_recheck-s42",
+          "task": "gepa_gpt6_recheck",
+          "n_arms": 2,
+          "oracle": "champ-verbatim",
+          "greedy": "champ-verbatim",
+          "val_scores": {
+            "champ-verbatim": 0.0,
+            "champ-stripped": 0.0
+          },
+          "holdout_scores": {
+            "champ-verbatim": 0.7055,
+            "champ-stripped": 0.7013
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13-free",
+          "jev_raw_choice": "champ-stripped",
+          "jev_raw_correct": false,
+          "probabilities": {
+            "champ-stripped": 0.65,
+            "champ-verbatim": 0.35
+          },
+          "features": {
+            "confidence": 0.29,
+            "collapse_noul": 0.4,
+            "alignment": 0.0125,
+            "margin": 0.0,
+            "n_arms": 2.0
+          },
+          "gate_choice": "champ-verbatim",
+          "gate_reason": "low_val_alignment",
+          "gate_correct": true,
+          "regret": 0.0,
+          "usage": {
+            "input_tokens": 608,
+            "output_tokens": 73
+          },
+          "latency_s": 0.753
+        },
+        {
+          "gid": "gepa_gpt6_recheck_orig-s42",
+          "task": "gepa_gpt6_recheck_orig",
+          "n_arms": 3,
+          "oracle": "champ-verbatim",
+          "greedy": "z0-paired",
+          "val_scores": {
+            "champ-verbatim": 0.0,
+            "champ-stripped": 0.0,
+            "z0-paired": 0.0
+          },
+          "holdout_scores": {
+            "champ-verbatim": 0.8441,
+            "champ-stripped": 0.8092,
+            "z0-paired": 0.7039
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13-free",
+          "jev_raw_choice": "z0-paired",
+          "jev_raw_correct": false,
+          "probabilities": {
+            "champ-verbatim": 0.01,
+            "champ-stripped": 0.01,
+            "z0-paired": 0.98
+          },
+          "features": {
+            "confidence": 0.98,
+            "collapse_noul": 0.48,
+            "alignment": 0.0025,
+            "margin": 0.0,
+            "n_arms": 3.0
+          },
+          "gate_choice": "z0-paired",
+          "gate_reason": "low_val_alignment",
+          "gate_correct": false,
+          "regret": 0.1402,
+          "usage": {
+            "input_tokens": 669,
+            "output_tokens": 84
+          },
+          "latency_s": 0.683
+        },
+        {
+          "gid": "gepa_mt150-s911",
+          "task": "gepa_mt150",
+          "n_arms": 2,
+          "oracle": "gepa",
+          "greedy": "gepa",
+          "val_scores": {
+            "gepa": 0.6961,
+            "espo": 0.15
+          },
+          "holdout_scores": {
+            "gepa": 0.15,
+            "espo": 0.15
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13-free",
+          "jev_raw_choice": "gepa",
+          "jev_raw_correct": true,
+          "probabilities": {
+            "espo": 0.0,
+            "gepa": 1.0
+          },
+          "features": {
+            "confidence": 1.0,
+            "collapse_noul": 0.23,
+            "alignment": 0.9175,
+            "margin": 0.5461,
+            "n_arms": 2.0
+          },
+          "gate_choice": "gepa",
+          "gate_reason": "normal_selection",
+          "gate_correct": true,
+          "regret": 0.0,
+          "usage": {
+            "input_tokens": 591,
+            "output_tokens": 68
+          },
+          "latency_s": 1.487
+        },
+        {
+          "gid": "gpqa-s926",
+          "task": "gpqa",
+          "n_arms": 6,
+          "oracle": "gepa",
+          "greedy": "espo",
+          "val_scores": {
+            "z0": 0.0,
+            "math-champ": 0.0,
+            "contract-champ": 0.0,
+            "financial-champ": 0.0,
+            "espo": 0.775,
+            "gepa": 0.0
+          },
+          "holdout_scores": {
+            "z0": 0.8729,
+            "math-champ": 0.8714,
+            "contract-champ": 0.8628,
+            "financial-champ": 0.873,
+            "espo": 0.8745,
+            "gepa": 0.8856
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13-free",
+          "jev_raw_choice": "espo",
+          "jev_raw_correct": false,
+          "probabilities": {
+            "espo": 0.99,
+            "contract-champ": 0.0,
+            "gepa": 0.0,
+            "z0": 0.01,
+            "math-champ": 0.0,
+            "financial-champ": 0.0
+          },
+          "features": {
+            "confidence": 0.99,
+            "collapse_noul": 0.42,
+            "alignment": 0.705,
+            "margin": 0.775,
+            "n_arms": 6.0
+          },
+          "gate_choice": "espo",
+          "gate_reason": "normal_selection",
+          "gate_correct": false,
+          "regret": 0.0111,
+          "usage": {
+            "input_tokens": 801,
+            "output_tokens": 103
+          },
+          "latency_s": 0.695
+        },
+        {
+          "gid": "gpqa_resume_slice_quarantine-s926",
+          "task": "gpqa_resume_slice_quarantine",
+          "n_arms": 2,
+          "oracle": "gepa",
+          "greedy": "z0",
+          "val_scores": {
+            "z0": 0.0,
+            "gepa": 0.0
+          },
+          "holdout_scores": {
+            "z0": 0.6531,
+            "gepa": 0.8569
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13-free",
+          "jev_raw_choice": "z0",
+          "jev_raw_correct": false,
+          "probabilities": {
+            "z0": 1.0,
+            "gepa": 0.0
+          },
+          "features": {
+            "confidence": 1.0,
+            "collapse_noul": 0.49,
+            "alignment": 0.01,
+            "margin": 0.0,
+            "n_arms": 2.0
+          },
+          "gate_choice": "z0",
+          "gate_reason": "low_val_alignment",
+          "gate_correct": false,
+          "regret": 0.2038,
+          "usage": {
+            "input_tokens": 592,
+            "output_tokens": 68
+          },
+          "latency_s": 0.685
+        },
+        {
+          "gid": "hle-s921",
+          "task": "hle",
+          "n_arms": 6,
+          "oracle": "gepa",
+          "greedy": "gepa",
+          "val_scores": {
+            "z0": 0.0,
+            "math-champ": 0.0,
+            "contract-champ": 0.0,
+            "financial-champ": 0.0,
+            "gepa": 1.0,
+            "espo": 0.4531
+          },
+          "holdout_scores": {
+            "z0": 0.392,
+            "math-champ": 0.3876,
+            "contract-champ": 0.402,
+            "financial-champ": 0.3876,
+            "gepa": 0.412,
+            "espo": 0.402
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13-free",
+          "jev_raw_choice": "gepa",
+          "jev_raw_correct": true,
+          "probabilities": {
+            "z0": 0.05,
+            "financial-champ": 0.0,
+            "espo": 0.01,
+            "math-champ": 0.0,
+            "contract-champ": 0.0,
+            "gepa": 0.94
+          },
+          "features": {
+            "confidence": 0.93,
+            "collapse_noul": 0.47,
+            "alignment": 0.64,
+            "margin": 0.5469,
+            "n_arms": 6.0
+          },
+          "gate_choice": "gepa",
+          "gate_reason": "normal_selection",
+          "gate_correct": true,
+          "regret": 0.0,
+          "usage": {
+            "input_tokens": 801,
+            "output_tokens": 103
+          },
+          "latency_s": 0.726
+        },
+        {
+          "gid": "hle-s923",
+          "task": "hle",
+          "n_arms": 6,
+          "oracle": "contract-champ",
+          "greedy": "z0",
+          "val_scores": {
+            "z0": 0.0,
+            "contract-champ": 0.0,
+            "espo": 0.0,
+            "financial-champ": 0.0,
+            "gepa": 0.0,
+            "math-champ": 0.0
+          },
+          "holdout_scores": {
+            "z0": 0.4209,
+            "contract-champ": 0.4301,
+            "espo": 0.3939,
+            "financial-champ": 0.4059,
+            "gepa": 0.4288,
+            "math-champ": 0.4134
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13-free",
+          "jev_raw_choice": "z0",
+          "jev_raw_correct": false,
+          "probabilities": {
+            "z0": 0.99,
+            "financial-champ": 0.0,
+            "gepa": 0.0,
+            "contract-champ": 0.0,
+            "espo": 0.0,
+            "math-champ": 0.01
+          },
+          "features": {
+            "confidence": 0.98,
+            "collapse_noul": 0.53,
+            "alignment": 0.0,
+            "margin": 0.0,
+            "n_arms": 6.0
+          },
+          "gate_choice": "z0",
+          "gate_reason": "low_val_alignment",
+          "gate_correct": false,
+          "regret": 0.0092,
+          "usage": {
+            "input_tokens": 801,
+            "output_tokens": 103
+          },
+          "latency_s": 1.086
+        },
+        {
+          "gid": "hle_ablation-s924",
+          "task": "hle_ablation",
+          "n_arms": 7,
+          "oracle": "minus-role",
+          "greedy": "base",
+          "val_scores": {
+            "base": 0.0,
+            "minus-role": 0.0,
+            "minus-output": 0.0,
+            "minus-verification": 0.0,
+            "minus-reasoning": 0.0,
+            "minus-layout": 0.0,
+            "minus-constraints": 0.0
+          },
+          "holdout_scores": {
+            "base": 0.4531,
+            "minus-role": 0.4612,
+            "minus-output": 0.4,
+            "minus-verification": 0.4,
+            "minus-reasoning": 0.4,
+            "minus-layout": 0.4531,
+            "minus-constraints": 0.4
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13-free",
+          "jev_raw_choice": "base",
+          "jev_raw_correct": false,
+          "probabilities": {
+            "minus-role": 0.0,
+            "minus-verification": 0.0,
+            "minus-reasoning": 0.0,
+            "minus-layout": 0.0,
+            "minus-output": 0.0,
+            "minus-constraints": 0.0,
+            "base": 1.0
+          },
+          "features": {
+            "confidence": 1.0,
+            "collapse_noul": 0.45,
+            "alignment": 0.0,
+            "margin": 0.0,
+            "n_arms": 7.0
+          },
+          "gate_choice": "base",
+          "gate_reason": "low_val_alignment",
+          "gate_correct": false,
+          "regret": 0.0081,
+          "usage": {
+            "input_tokens": 864,
+            "output_tokens": 114
+          },
+          "latency_s": 1.132
+        },
+        {
+          "gid": "hle_nt-s922",
+          "task": "hle_nt",
+          "n_arms": 4,
+          "oracle": "z0",
+          "greedy": "z0",
+          "val_scores": {
+            "z0": 0.0,
+            "math-champ": 0.0,
+            "contract-champ": 0.0,
+            "financial-champ": 0.0
+          },
+          "holdout_scores": {
+            "z0": 0.1,
+            "math-champ": 0.1,
+            "contract-champ": 0.1,
+            "financial-champ": 0.1
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13-free",
+          "jev_raw_choice": "z0",
+          "jev_raw_correct": true,
+          "probabilities": {
+            "contract-champ": 0.0,
+            "math-champ": 0.0,
+            "financial-champ": 0.0,
+            "z0": 1.0
+          },
+          "features": {
+            "confidence": 1.0,
+            "collapse_noul": 0.47,
+            "alignment": 0.0,
+            "margin": 0.0,
+            "n_arms": 4.0
+          },
+          "gate_choice": "z0",
+          "gate_reason": "low_val_alignment",
+          "gate_correct": true,
+          "regret": 0.0,
+          "usage": {
+            "input_tokens": 698,
+            "output_tokens": 87
+          },
+          "latency_s": 0.927
+        },
+        {
+          "gid": "math-s42",
+          "task": "math",
+          "n_arms": 4,
+          "oracle": "apc-full",
+          "greedy": "apc-full",
+          "val_scores": {
+            "zero-shot": 0.839,
+            "manual": 0.8388,
+            "apc-full": 0.8395,
+            "apc-safe": 0.8388
+          },
+          "holdout_scores": {
+            "zero-shot": 0.8436,
+            "manual": 0.8439,
+            "apc-full": 0.8442,
+            "apc-safe": 0.8436
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13-free",
+          "jev_raw_choice": "zero-shot",
+          "jev_raw_correct": false,
+          "probabilities": {
+            "apc-full": 0.16,
+            "zero-shot": 0.8,
+            "manual": 0.03,
+            "apc-safe": 0.01
+          },
+          "features": {
+            "confidence": 0.74,
+            "collapse_noul": 0.19,
+            "alignment": 0.005,
+            "margin": 0.0005,
+            "n_arms": 4.0
+          },
+          "gate_choice": "zero-shot",
+          "gate_reason": "low_val_alignment",
+          "gate_correct": false,
+          "regret": 0.0006,
+          "usage": {
+            "input_tokens": 691,
+            "output_tokens": 85
+          },
+          "latency_s": 0.77
+        },
+        {
+          "gid": "math-s46",
+          "task": "math",
+          "n_arms": 4,
+          "oracle": "apc-full",
+          "greedy": "apc-full",
+          "val_scores": {
+            "zero-shot": 0.8388,
+            "manual": 0.8391,
+            "apc-full": 0.8393,
+            "apc-safe": 0.8388
+          },
+          "holdout_scores": {
+            "zero-shot": 0.8435,
+            "manual": 0.8437,
+            "apc-full": 0.844,
+            "apc-safe": 0.8436
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13-free",
+          "jev_raw_choice": "zero-shot",
+          "jev_raw_correct": false,
+          "probabilities": {
+            "manual": 0.25,
+            "apc-safe": 0.01,
+            "apc-full": 0.13,
+            "zero-shot": 0.61
+          },
+          "features": {
+            "confidence": 0.48,
+            "collapse_noul": 0.2,
+            "alignment": 0.01,
+            "margin": 0.0002,
+            "n_arms": 4.0
+          },
+          "gate_choice": "zero-shot",
+          "gate_reason": "low_val_alignment",
+          "gate_correct": false,
+          "regret": 0.0005,
+          "usage": {
+            "input_tokens": 691,
+            "output_tokens": 85
+          },
+          "latency_s": 0.815
+        },
+        {
+          "gid": "math-s47",
+          "task": "math",
+          "n_arms": 4,
+          "oracle": "manual",
+          "greedy": "zero-shot",
+          "val_scores": {
+            "zero-shot": 0.8388,
+            "manual": 0.8388,
+            "apc-full": 0.6227,
+            "apc-safe": 0.8388
+          },
+          "holdout_scores": {
+            "zero-shot": 0.8436,
+            "manual": 0.8438,
+            "apc-full": 0.6425,
+            "apc-safe": 0.8435
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13-free",
+          "jev_raw_choice": "zero-shot",
+          "jev_raw_correct": false,
+          "probabilities": {
+            "apc-safe": 0.0,
+            "apc-full": 0.0,
+            "zero-shot": 1.0,
+            "manual": 0.0
+          },
+          "features": {
+            "confidence": 1.0,
+            "collapse_noul": 0.38,
+            "alignment": 0.475,
+            "margin": 0.0,
+            "n_arms": 4.0
+          },
+          "gate_choice": "zero-shot",
+          "gate_reason": "low_val_alignment",
+          "gate_correct": false,
+          "regret": 0.0002,
+          "usage": {
+            "input_tokens": 691,
+            "output_tokens": 85
+          },
+          "latency_s": 0.693
+        },
+        {
+          "gid": "multiseed_summary-s42",
+          "task": "multiseed_summary",
+          "n_arms": 12,
+          "oracle": "apc-full",
+          "greedy": "zero-shot",
+          "val_scores": {
+            "apc-full": 0.0,
+            "apc-safe": 0.0,
+            "manual": 0.0,
+            "zero-shot": 0.0
+          },
+          "holdout_scores": {
+            "apc-full": 0.0,
+            "apc-safe": 0.0,
+            "manual": 0.0,
+            "zero-shot": 0.0
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13-free",
+          "jev_raw_choice": "zero-shot",
+          "jev_raw_correct": false,
+          "probabilities": {
+            "apc-safe": 0.0,
+            "manual": 0.0,
+            "apc-full": 0.0,
+            "zero-shot": 1.0
+          },
+          "features": {
+            "confidence": 1.0,
+            "collapse_noul": 0.49,
+            "alignment": 0.0,
+            "margin": 0.0,
+            "n_arms": 12.0
+          },
+          "gate_choice": "zero-shot",
+          "gate_reason": "low_val_alignment",
+          "gate_correct": true,
+          "regret": 0.0,
+          "usage": {
+            "input_tokens": 908,
+            "output_tokens": 85
+          },
+          "latency_s": 1.046
+        },
+        {
+          "gid": "transfer_contract_to_math-s42",
+          "task": "transfer_contract_to_math",
+          "n_arms": 3,
+          "oracle": "transfer-ws",
+          "greedy": "transfer-0",
+          "val_scores": {
+            "transfer-0": 0.8395,
+            "cold": 0.6589,
+            "transfer-ws": 0.8392
+          },
+          "holdout_scores": {
+            "transfer-0": 0.8439,
+            "cold": 0.6402,
+            "transfer-ws": 0.8441
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13-free",
+          "jev_raw_choice": "transfer-0",
+          "jev_raw_correct": false,
+          "probabilities": {
+            "transfer-ws": 0.2,
+            "cold": 0.0,
+            "transfer-0": 0.8
+          },
+          "features": {
+            "confidence": 0.7,
+            "collapse_noul": 0.44,
+            "alignment": 0.34,
+            "margin": 0.0003,
+            "n_arms": 3.0
+          },
+          "gate_choice": "transfer-0",
+          "gate_reason": "low_val_alignment",
+          "gate_correct": false,
+          "regret": 0.0002,
+          "usage": {
+            "input_tokens": 642,
+            "output_tokens": 78
+          },
+          "latency_s": 1.247
+        },
+        {
+          "gid": "transfer_financial_to_math_gpt6-s42",
+          "task": "transfer_financial_to_math_gpt6",
+          "n_arms": 3,
+          "oracle": "transfer-0",
+          "greedy": "transfer-ws",
+          "val_scores": {
+            "transfer-0": 0.8388,
+            "cold": 0.6564,
+            "transfer-ws": 0.839
+          },
+          "holdout_scores": {
+            "transfer-0": 0.8443,
+            "cold": 0.6336,
+            "transfer-ws": 0.8439
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13-free",
+          "jev_raw_choice": "transfer-ws",
+          "jev_raw_correct": false,
+          "probabilities": {
+            "transfer-ws": 0.53,
+            "cold": 0.0,
+            "transfer-0": 0.47
+          },
+          "features": {
+            "confidence": 0.28,
+            "collapse_noul": 0.45,
+            "alignment": 0.33,
+            "margin": 0.0002,
+            "n_arms": 3.0
+          },
+          "gate_choice": "transfer-0",
+          "gate_reason": "low_val_alignment",
+          "gate_correct": true,
+          "regret": 0.0,
+          "usage": {
+            "input_tokens": 648,
+            "output_tokens": 78
+          },
+          "latency_s": 0.684
+        },
+        {
+          "gid": "transfer_math_to_contract-s42",
+          "task": "transfer_math_to_contract",
+          "n_arms": 3,
+          "oracle": "transfer-0",
+          "greedy": "transfer-ws",
+          "val_scores": {
+            "transfer-0": 0.8871,
+            "cold": 0.1965,
+            "transfer-ws": 0.9822
+          },
+          "holdout_scores": {
+            "transfer-0": 0.9778,
+            "cold": 0.185,
+            "transfer-ws": 0.9582
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13-free",
+          "jev_raw_choice": "transfer-ws",
+          "jev_raw_correct": false,
+          "probabilities": {
+            "transfer-ws": 0.98,
+            "cold": 0.0,
+            "transfer-0": 0.02
+          },
+          "features": {
+            "confidence": 0.97,
+            "collapse_noul": 0.42,
+            "alignment": 0.67,
+            "margin": 0.0951,
+            "n_arms": 3.0
+          },
+          "gate_choice": "transfer-ws",
+          "gate_reason": "normal_selection",
+          "gate_correct": false,
+          "regret": 0.0196,
+          "usage": {
+            "input_tokens": 642,
+            "output_tokens": 78
+          },
+          "latency_s": 0.898
+        }
+      ]
+    },
+    "jev-1.13": {
+      "model_requested": "jev-1.13",
+      "models_returned": [
+        "jev-1.13"
+      ],
+      "live_calls": 32,
+      "fallback_calls": 0,
+      "usage": {
+        "input_tokens": 21779,
+        "output_tokens": 2622,
+        "est_cost_usd": 0.000915
+      },
+      "raw_choice_exact_oracle": 14,
+      "raw_choice_exact_rate": 0.4375,
+      "summary": {
+        "n_groups": 32,
+        "exact_oracle": 12,
+        "exact_rate": 0.375,
+        "within_noise": 25,
+        "within_noise_rate": 0.7812,
+        "avg_regret": 0.01315,
+        "max_regret": 0.2038,
+        "total_regret": 0.4208,
+        "n_collapse_cases": 6,
+        "collapse_avoided": 4
+      },
+      "groups": [
+        {
+          "gid": "contract-s42",
+          "task": "contract",
+          "n_arms": 4,
+          "oracle": "apc-full",
+          "greedy": "apc-full",
+          "val_scores": {
+            "zero-shot": 0.9818,
+            "manual": 0.9818,
+            "apc-full": 0.9833,
+            "apc-safe": 0.9822
+          },
+          "holdout_scores": {
+            "zero-shot": 0.977,
+            "manual": 0.9773,
+            "apc-full": 0.9782,
+            "apc-safe": 0.9773
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13",
+          "jev_raw_choice": "zero-shot",
+          "jev_raw_correct": false,
+          "probabilities": {
+            "apc-full": 0.29,
+            "zero-shot": 0.57,
+            "apc-safe": 0.12,
+            "manual": 0.02
+          },
+          "features": {
+            "confidence": 0.43,
+            "collapse_noul": 0.2,
+            "alignment": 0.0925,
+            "margin": 0.0011,
+            "n_arms": 4.0
+          },
+          "gate_choice": "zero-shot",
+          "gate_reason": "low_val_alignment",
+          "gate_correct": false,
+          "regret": 0.0012,
+          "usage": {
+            "input_tokens": 691,
+            "output_tokens": 85
+          },
+          "latency_s": 1.348
+        },
+        {
+          "gid": "contract-s46",
+          "task": "contract",
+          "n_arms": 4,
+          "oracle": "manual",
+          "greedy": "apc-safe",
+          "val_scores": {
+            "zero-shot": 0.9814,
+            "manual": 0.9822,
+            "apc-full": 0.9819,
+            "apc-safe": 0.9828
+          },
+          "holdout_scores": {
+            "zero-shot": 0.9771,
+            "manual": 0.9775,
+            "apc-full": 0.9583,
+            "apc-safe": 0.9772
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13",
+          "jev_raw_choice": "zero-shot",
+          "jev_raw_correct": false,
+          "probabilities": {
+            "zero-shot": 0.43,
+            "apc-safe": 0.34,
+            "manual": 0.23,
+            "apc-full": 0.0
+          },
+          "features": {
+            "confidence": 0.23,
+            "collapse_noul": 0.19,
+            "alignment": 0.025,
+            "margin": 0.0006,
+            "n_arms": 4.0
+          },
+          "gate_choice": "zero-shot",
+          "gate_reason": "low_val_alignment",
+          "gate_correct": false,
+          "regret": 0.0004,
+          "usage": {
+            "input_tokens": 691,
+            "output_tokens": 85
+          },
+          "latency_s": 0.792
+        },
+        {
+          "gid": "contract-s47",
+          "task": "contract",
+          "n_arms": 4,
+          "oracle": "manual",
+          "greedy": "manual",
+          "val_scores": {
+            "zero-shot": 0.9812,
+            "manual": 0.9823,
+            "apc-full": 0.1928,
+            "apc-safe": 0.9822
+          },
+          "holdout_scores": {
+            "zero-shot": 0.9771,
+            "manual": 0.9777,
+            "apc-full": 0.1741,
+            "apc-safe": 0.9768
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13",
+          "jev_raw_choice": "manual",
+          "jev_raw_correct": true,
+          "probabilities": {
+            "manual": 0.56,
+            "zero-shot": 0.41,
+            "apc-full": 0.0,
+            "apc-safe": 0.03
+          },
+          "features": {
+            "confidence": 0.42,
+            "collapse_noul": 0.36,
+            "alignment": 0.5,
+            "margin": 0.0001,
+            "n_arms": 4.0
+          },
+          "gate_choice": "zero-shot",
+          "gate_reason": "low_confidence_occam",
+          "gate_correct": false,
+          "regret": 0.0006,
+          "usage": {
+            "input_tokens": 691,
+            "output_tokens": 84
+          },
+          "latency_s": 1.124
+        },
+        {
+          "gid": "contract_gpt6-s42",
+          "task": "contract_gpt6",
+          "n_arms": 4,
+          "oracle": "apc-safe",
+          "greedy": "manual",
+          "val_scores": {
+            "zero-shot": 0.9827,
+            "manual": 0.9831,
+            "apc-full": 0.9354,
+            "apc-safe": 0.9831
+          },
+          "holdout_scores": {
+            "zero-shot": 0.9783,
+            "manual": 0.9784,
+            "apc-full": 0.9404,
+            "apc-safe": 0.9792
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13",
+          "jev_raw_choice": "zero-shot",
+          "jev_raw_correct": false,
+          "probabilities": {
+            "manual": 0.09,
+            "zero-shot": 0.88,
+            "apc-full": 0.0,
+            "apc-safe": 0.03
+          },
+          "features": {
+            "confidence": 0.84,
+            "collapse_noul": 0.41,
+            "alignment": 0.29,
+            "margin": 0.0,
+            "n_arms": 4.0
+          },
+          "gate_choice": "zero-shot",
+          "gate_reason": "low_val_alignment",
+          "gate_correct": false,
+          "regret": 0.0009,
+          "usage": {
+            "input_tokens": 696,
+            "output_tokens": 85
+          },
+          "latency_s": 0.809
+        },
+        {
+          "gid": "financial-s43",
+          "task": "financial",
+          "n_arms": 2,
+          "oracle": "apc-safe",
+          "greedy": "apc-safe",
+          "val_scores": {
+            "apc-full": 0.5705,
+            "apc-safe": 0.6642
+          },
+          "holdout_scores": {
+            "apc-full": 0.5705,
+            "apc-safe": 0.6679
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13",
+          "jev_raw_choice": "apc-safe",
+          "jev_raw_correct": true,
+          "probabilities": {
+            "apc-full": 0.0,
+            "apc-safe": 1.0
+          },
+          "features": {
+            "confidence": 1.0,
+            "collapse_noul": 0.3,
+            "alignment": 0.7525,
+            "margin": 0.0937,
+            "n_arms": 2.0
+          },
+          "gate_choice": "apc-safe",
+          "gate_reason": "normal_selection",
+          "gate_correct": true,
+          "regret": 0.0,
+          "usage": {
+            "input_tokens": 589,
+            "output_tokens": 71
+          },
+          "latency_s": 1.021
+        },
+        {
+          "gid": "financial-s44",
+          "task": "financial",
+          "n_arms": 2,
+          "oracle": "apc-safe",
+          "greedy": "apc-safe",
+          "val_scores": {
+            "apc-full": 0.1452,
+            "apc-safe": 0.6683
+          },
+          "holdout_scores": {
+            "apc-full": 0.1334,
+            "apc-safe": 0.6575
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13",
+          "jev_raw_choice": "apc-safe",
+          "jev_raw_correct": true,
+          "probabilities": {
+            "apc-safe": 1.0,
+            "apc-full": 0.0
+          },
+          "features": {
+            "confidence": 1.0,
+            "collapse_noul": 0.35,
+            "alignment": 0.9025,
+            "margin": 0.5231,
+            "n_arms": 2.0
+          },
+          "gate_choice": "apc-safe",
+          "gate_reason": "normal_selection",
+          "gate_correct": true,
+          "regret": 0.0,
+          "usage": {
+            "input_tokens": 589,
+            "output_tokens": 71
+          },
+          "latency_s": 0.799
+        },
+        {
+          "gid": "financial-s45",
+          "task": "financial",
+          "n_arms": 4,
+          "oracle": "zero-shot",
+          "greedy": "apc-safe",
+          "val_scores": {
+            "zero-shot": 0.6682,
+            "manual": 0.6644,
+            "apc-full": 0.1708,
+            "apc-safe": 0.6687
+          },
+          "holdout_scores": {
+            "zero-shot": 0.6692,
+            "manual": 0.6665,
+            "apc-full": 0.1318,
+            "apc-safe": 0.6657
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13",
+          "jev_raw_choice": "zero-shot",
+          "jev_raw_correct": true,
+          "probabilities": {
+            "manual": 0.01,
+            "apc-full": 0.0,
+            "zero-shot": 0.7,
+            "apc-safe": 0.29
+          },
+          "features": {
+            "confidence": 0.61,
+            "collapse_noul": 0.45,
+            "alignment": 0.4175,
+            "margin": 0.0005,
+            "n_arms": 4.0
+          },
+          "gate_choice": "zero-shot",
+          "gate_reason": "low_val_alignment",
+          "gate_correct": true,
+          "regret": 0.0,
+          "usage": {
+            "input_tokens": 691,
+            "output_tokens": 85
+          },
+          "latency_s": 0.747
+        },
+        {
+          "gid": "financial-s46",
+          "task": "financial",
+          "n_arms": 4,
+          "oracle": "manual",
+          "greedy": "manual",
+          "val_scores": {
+            "zero-shot": 0.6605,
+            "manual": 0.6664,
+            "apc-full": 0.5836,
+            "apc-safe": 0.6657
+          },
+          "holdout_scores": {
+            "zero-shot": 0.6659,
+            "manual": 0.6697,
+            "apc-full": 0.5639,
+            "apc-safe": 0.6696
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13",
+          "jev_raw_choice": "manual",
+          "jev_raw_correct": true,
+          "probabilities": {
+            "manual": 0.87,
+            "apc-safe": 0.09,
+            "apc-full": 0.0,
+            "zero-shot": 0.04
+          },
+          "features": {
+            "confidence": 0.83,
+            "collapse_noul": 0.46,
+            "alignment": 0.2125,
+            "margin": 0.0007,
+            "n_arms": 4.0
+          },
+          "gate_choice": "zero-shot",
+          "gate_reason": "low_val_alignment",
+          "gate_correct": false,
+          "regret": 0.0038,
+          "usage": {
+            "input_tokens": 691,
+            "output_tokens": 84
+          },
+          "latency_s": 0.941
+        },
+        {
+          "gid": "financial-s47",
+          "task": "financial",
+          "n_arms": 4,
+          "oracle": "apc-safe",
+          "greedy": "apc-safe",
+          "val_scores": {
+            "zero-shot": 0.6546,
+            "manual": 0.6681,
+            "apc-full": 0.1279,
+            "apc-safe": 0.6744
+          },
+          "holdout_scores": {
+            "zero-shot": 0.6648,
+            "manual": 0.6694,
+            "apc-full": 0.1428,
+            "apc-safe": 0.6705
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13",
+          "jev_raw_choice": "apc-safe",
+          "jev_raw_correct": true,
+          "probabilities": {
+            "apc-safe": 0.77,
+            "zero-shot": 0.03,
+            "apc-full": 0.0,
+            "manual": 0.2
+          },
+          "features": {
+            "confidence": 0.69,
+            "collapse_noul": 0.45,
+            "alignment": 0.49,
+            "margin": 0.0063,
+            "n_arms": 4.0
+          },
+          "gate_choice": "zero-shot",
+          "gate_reason": "low_val_alignment",
+          "gate_correct": false,
+          "regret": 0.0057,
+          "usage": {
+            "input_tokens": 691,
+            "output_tokens": 86
+          },
+          "latency_s": 0.705
+        },
+        {
+          "gid": "financial_gpt56terra-s42",
+          "task": "financial_gpt56terra",
+          "n_arms": 4,
+          "oracle": "apc-safe",
+          "greedy": "manual",
+          "val_scores": {
+            "zero-shot": 0.6672,
+            "manual": 0.6777,
+            "apc-full": 0.6131,
+            "apc-safe": 0.6631
+          },
+          "holdout_scores": {
+            "zero-shot": 0.6669,
+            "manual": 0.6665,
+            "apc-full": 0.615,
+            "apc-safe": 0.6694
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13",
+          "jev_raw_choice": "manual",
+          "jev_raw_correct": false,
+          "probabilities": {
+            "zero-shot": 0.2,
+            "manual": 0.76,
+            "apc-full": 0.0,
+            "apc-safe": 0.04
+          },
+          "features": {
+            "confidence": 0.67,
+            "collapse_noul": 0.39,
+            "alignment": 0.28,
+            "margin": 0.0105,
+            "n_arms": 4.0
+          },
+          "gate_choice": "zero-shot",
+          "gate_reason": "low_val_alignment",
+          "gate_correct": false,
+          "regret": 0.0025,
+          "usage": {
+            "input_tokens": 698,
+            "output_tokens": 84
+          },
+          "latency_s": 1.037
+        },
+        {
+          "gid": "financial_gpt6-s42",
+          "task": "financial_gpt6",
+          "n_arms": 4,
+          "oracle": "manual",
+          "greedy": "manual",
+          "val_scores": {
+            "zero-shot": 0.6866,
+            "manual": 0.6934,
+            "apc-full": 0.6734,
+            "apc-safe": 0.6849
+          },
+          "holdout_scores": {
+            "zero-shot": 0.6862,
+            "manual": 0.6971,
+            "apc-full": 0.675,
+            "apc-safe": 0.6771
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13",
+          "jev_raw_choice": "manual",
+          "jev_raw_correct": true,
+          "probabilities": {
+            "apc-safe": 0.05,
+            "zero-shot": 0.33,
+            "apc-full": 0.0,
+            "manual": 0.62
+          },
+          "features": {
+            "confidence": 0.49,
+            "collapse_noul": 0.31,
+            "alignment": 0.145,
+            "margin": 0.0068,
+            "n_arms": 4.0
+          },
+          "gate_choice": "zero-shot",
+          "gate_reason": "low_val_alignment",
+          "gate_correct": false,
+          "regret": 0.0109,
+          "usage": {
+            "input_tokens": 696,
+            "output_tokens": 84
+          },
+          "latency_s": 0.716
+        },
+        {
+          "gid": "financial_gpt6_smoke-s42",
+          "task": "financial_gpt6_smoke",
+          "n_arms": 3,
+          "oracle": "manual",
+          "greedy": "manual",
+          "val_scores": {
+            "zero-shot": 0.6789,
+            "manual": 0.6895,
+            "apc-full": 0.6828
+          },
+          "holdout_scores": {
+            "zero-shot": 0.6781,
+            "manual": 0.6788,
+            "apc-full": 0.6747
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13",
+          "jev_raw_choice": "manual",
+          "jev_raw_correct": true,
+          "probabilities": {
+            "zero-shot": 0.08,
+            "manual": 0.85,
+            "apc-full": 0.07
+          },
+          "features": {
+            "confidence": 0.78,
+            "collapse_noul": 0.24,
+            "alignment": 0.1825,
+            "margin": 0.0067,
+            "n_arms": 3.0
+          },
+          "gate_choice": "zero-shot",
+          "gate_reason": "low_val_alignment",
+          "gate_correct": false,
+          "regret": 0.0007,
+          "usage": {
+            "input_tokens": 644,
+            "output_tokens": 75
+          },
+          "latency_s": 0.962
+        },
+        {
+          "gid": "gepa-s42",
+          "task": "gepa",
+          "n_arms": 3,
+          "oracle": "gepa",
+          "greedy": "gepa",
+          "val_scores": {
+            "gepa": 0.6978,
+            "espo": 0.6992
+          },
+          "holdout_scores": {
+            "gepa": 0.7045,
+            "espo": 0.7009
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13",
+          "jev_raw_choice": "gepa",
+          "jev_raw_correct": true,
+          "probabilities": {
+            "espo": 0.24,
+            "gepa": 0.76
+          },
+          "features": {
+            "confidence": 0.53,
+            "collapse_noul": 0.41,
+            "alignment": 0.3475,
+            "margin": 0.0752,
+            "n_arms": 3.0
+          },
+          "gate_choice": "gepa",
+          "gate_reason": "low_val_alignment",
+          "gate_correct": true,
+          "regret": 0.0,
+          "usage": {
+            "input_tokens": 612,
+            "output_tokens": 68
+          },
+          "latency_s": 0.806
+        },
+        {
+          "gid": "gepa-s43",
+          "task": "gepa",
+          "n_arms": 3,
+          "oracle": "espo",
+          "greedy": "gepa",
+          "val_scores": {
+            "gepa": 0.7068,
+            "espo": 0.5154
+          },
+          "holdout_scores": {
+            "gepa": 0.6975,
+            "espo": 0.7501
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13",
+          "jev_raw_choice": "gepa",
+          "jev_raw_correct": false,
+          "probabilities": {
+            "espo": 0.0,
+            "gepa": 1.0
+          },
+          "features": {
+            "confidence": 1.0,
+            "collapse_noul": 0.38,
+            "alignment": 0.635,
+            "margin": 0.0678,
+            "n_arms": 3.0
+          },
+          "gate_choice": "gepa",
+          "gate_reason": "normal_selection",
+          "gate_correct": false,
+          "regret": 0.0006,
+          "usage": {
+            "input_tokens": 612,
+            "output_tokens": 68
+          },
+          "latency_s": 0.788
+        },
+        {
+          "gid": "gepa-s901",
+          "task": "gepa",
+          "n_arms": 2,
+          "oracle": "z0-control",
+          "greedy": "z0-control",
+          "val_scores": {
+            "z0-control": 0.0
+          },
+          "holdout_scores": {
+            "z0-control": 0.6997
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13",
+          "jev_raw_choice": "z0-control",
+          "jev_raw_correct": true,
+          "probabilities": {
+            "z0-control": 1.0
+          },
+          "features": {
+            "confidence": 1.0,
+            "collapse_noul": 0.4,
+            "alignment": 0.0075,
+            "margin": 0.0,
+            "n_arms": 2.0
+          },
+          "gate_choice": "z0-control",
+          "gate_reason": "low_val_alignment",
+          "gate_correct": true,
+          "regret": 0.0,
+          "usage": {
+            "input_tokens": 570,
+            "output_tokens": 62
+          },
+          "latency_s": 2.456
+        },
+        {
+          "gid": "gepa_gpt6-s42",
+          "task": "gepa_gpt6",
+          "n_arms": 2,
+          "oracle": "gepa",
+          "greedy": "gepa",
+          "val_scores": {
+            "gepa": 0.9533,
+            "espo": 0.7077
+          },
+          "holdout_scores": {
+            "gepa": 0.8914,
+            "espo": 0.7021
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13",
+          "jev_raw_choice": "gepa",
+          "jev_raw_correct": true,
+          "probabilities": {
+            "gepa": 1.0,
+            "espo": 0.0
+          },
+          "features": {
+            "confidence": 1.0,
+            "collapse_noul": 0.2,
+            "alignment": 0.85,
+            "margin": 0.2456,
+            "n_arms": 2.0
+          },
+          "gate_choice": "gepa",
+          "gate_reason": "normal_selection",
+          "gate_correct": true,
+          "regret": 0.0,
+          "usage": {
+            "input_tokens": 589,
+            "output_tokens": 68
+          },
+          "latency_s": 0.717
+        },
+        {
+          "gid": "gepa_gpt6_recheck-s42",
+          "task": "gepa_gpt6_recheck",
+          "n_arms": 2,
+          "oracle": "champ-verbatim",
+          "greedy": "champ-verbatim",
+          "val_scores": {
+            "champ-verbatim": 0.0,
+            "champ-stripped": 0.0
+          },
+          "holdout_scores": {
+            "champ-verbatim": 0.7055,
+            "champ-stripped": 0.7013
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13",
+          "jev_raw_choice": "champ-stripped",
+          "jev_raw_correct": false,
+          "probabilities": {
+            "champ-verbatim": 0.42,
+            "champ-stripped": 0.58
+          },
+          "features": {
+            "confidence": 0.16,
+            "collapse_noul": 0.43,
+            "alignment": 0.01,
+            "margin": 0.0,
+            "n_arms": 2.0
+          },
+          "gate_choice": "champ-verbatim",
+          "gate_reason": "low_val_alignment",
+          "gate_correct": true,
+          "regret": 0.0,
+          "usage": {
+            "input_tokens": 608,
+            "output_tokens": 73
+          },
+          "latency_s": 0.782
+        },
+        {
+          "gid": "gepa_gpt6_recheck_orig-s42",
+          "task": "gepa_gpt6_recheck_orig",
+          "n_arms": 3,
+          "oracle": "champ-verbatim",
+          "greedy": "z0-paired",
+          "val_scores": {
+            "champ-verbatim": 0.0,
+            "champ-stripped": 0.0,
+            "z0-paired": 0.0
+          },
+          "holdout_scores": {
+            "champ-verbatim": 0.8441,
+            "champ-stripped": 0.8092,
+            "z0-paired": 0.7039
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13",
+          "jev_raw_choice": "z0-paired",
+          "jev_raw_correct": false,
+          "probabilities": {
+            "z0-paired": 0.99,
+            "champ-verbatim": 0.0,
+            "champ-stripped": 0.01
+          },
+          "features": {
+            "confidence": 0.99,
+            "collapse_noul": 0.48,
+            "alignment": 0.0025,
+            "margin": 0.0,
+            "n_arms": 3.0
+          },
+          "gate_choice": "z0-paired",
+          "gate_reason": "low_val_alignment",
+          "gate_correct": false,
+          "regret": 0.1402,
+          "usage": {
+            "input_tokens": 669,
+            "output_tokens": 84
+          },
+          "latency_s": 0.758
+        },
+        {
+          "gid": "gepa_mt150-s911",
+          "task": "gepa_mt150",
+          "n_arms": 2,
+          "oracle": "gepa",
+          "greedy": "gepa",
+          "val_scores": {
+            "gepa": 0.6961,
+            "espo": 0.15
+          },
+          "holdout_scores": {
+            "gepa": 0.15,
+            "espo": 0.15
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13",
+          "jev_raw_choice": "gepa",
+          "jev_raw_correct": true,
+          "probabilities": {
+            "gepa": 1.0,
+            "espo": 0.0
+          },
+          "features": {
+            "confidence": 1.0,
+            "collapse_noul": 0.25,
+            "alignment": 0.93,
+            "margin": 0.5461,
+            "n_arms": 2.0
+          },
+          "gate_choice": "gepa",
+          "gate_reason": "normal_selection",
+          "gate_correct": true,
+          "regret": 0.0,
+          "usage": {
+            "input_tokens": 591,
+            "output_tokens": 68
+          },
+          "latency_s": 1.066
+        },
+        {
+          "gid": "gpqa-s926",
+          "task": "gpqa",
+          "n_arms": 6,
+          "oracle": "gepa",
+          "greedy": "espo",
+          "val_scores": {
+            "z0": 0.0,
+            "math-champ": 0.0,
+            "contract-champ": 0.0,
+            "financial-champ": 0.0,
+            "espo": 0.775,
+            "gepa": 0.0
+          },
+          "holdout_scores": {
+            "z0": 0.8729,
+            "math-champ": 0.8714,
+            "contract-champ": 0.8628,
+            "financial-champ": 0.873,
+            "espo": 0.8745,
+            "gepa": 0.8856
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13",
+          "jev_raw_choice": "espo",
+          "jev_raw_correct": false,
+          "probabilities": {
+            "z0": 0.01,
+            "espo": 0.99,
+            "contract-champ": 0.0,
+            "math-champ": 0.0,
+            "financial-champ": 0.0,
+            "gepa": 0.0
+          },
+          "features": {
+            "confidence": 0.98,
+            "collapse_noul": 0.39,
+            "alignment": 0.72,
+            "margin": 0.775,
+            "n_arms": 6.0
+          },
+          "gate_choice": "espo",
+          "gate_reason": "normal_selection",
+          "gate_correct": false,
+          "regret": 0.0111,
+          "usage": {
+            "input_tokens": 801,
+            "output_tokens": 103
+          },
+          "latency_s": 0.718
+        },
+        {
+          "gid": "gpqa_resume_slice_quarantine-s926",
+          "task": "gpqa_resume_slice_quarantine",
+          "n_arms": 2,
+          "oracle": "gepa",
+          "greedy": "z0",
+          "val_scores": {
+            "z0": 0.0,
+            "gepa": 0.0
+          },
+          "holdout_scores": {
+            "z0": 0.6531,
+            "gepa": 0.8569
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13",
+          "jev_raw_choice": "z0",
+          "jev_raw_correct": false,
+          "probabilities": {
+            "gepa": 0.0,
+            "z0": 1.0
+          },
+          "features": {
+            "confidence": 0.99,
+            "collapse_noul": 0.46,
+            "alignment": 0.01,
+            "margin": 0.0,
+            "n_arms": 2.0
+          },
+          "gate_choice": "z0",
+          "gate_reason": "low_val_alignment",
+          "gate_correct": false,
+          "regret": 0.2038,
+          "usage": {
+            "input_tokens": 592,
+            "output_tokens": 68
+          },
+          "latency_s": 1.085
+        },
+        {
+          "gid": "hle-s921",
+          "task": "hle",
+          "n_arms": 6,
+          "oracle": "gepa",
+          "greedy": "gepa",
+          "val_scores": {
+            "z0": 0.0,
+            "math-champ": 0.0,
+            "contract-champ": 0.0,
+            "financial-champ": 0.0,
+            "gepa": 1.0,
+            "espo": 0.4531
+          },
+          "holdout_scores": {
+            "z0": 0.392,
+            "math-champ": 0.3876,
+            "contract-champ": 0.402,
+            "financial-champ": 0.3876,
+            "gepa": 0.412,
+            "espo": 0.402
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13",
+          "jev_raw_choice": "gepa",
+          "jev_raw_correct": true,
+          "probabilities": {
+            "espo": 0.01,
+            "gepa": 0.96,
+            "math-champ": 0.0,
+            "financial-champ": 0.0,
+            "contract-champ": 0.0,
+            "z0": 0.03
+          },
+          "features": {
+            "confidence": 0.95,
+            "collapse_noul": 0.5,
+            "alignment": 0.65,
+            "margin": 0.5469,
+            "n_arms": 6.0
+          },
+          "gate_choice": "gepa",
+          "gate_reason": "normal_selection",
+          "gate_correct": true,
+          "regret": 0.0,
+          "usage": {
+            "input_tokens": 801,
+            "output_tokens": 103
+          },
+          "latency_s": 1.2
+        },
+        {
+          "gid": "hle-s923",
+          "task": "hle",
+          "n_arms": 6,
+          "oracle": "contract-champ",
+          "greedy": "z0",
+          "val_scores": {
+            "z0": 0.0,
+            "contract-champ": 0.0,
+            "espo": 0.0,
+            "financial-champ": 0.0,
+            "gepa": 0.0,
+            "math-champ": 0.0
+          },
+          "holdout_scores": {
+            "z0": 0.4209,
+            "contract-champ": 0.4301,
+            "espo": 0.3939,
+            "financial-champ": 0.4059,
+            "gepa": 0.4288,
+            "math-champ": 0.4134
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13",
+          "jev_raw_choice": "z0",
+          "jev_raw_correct": false,
+          "probabilities": {
+            "z0": 0.99,
+            "espo": 0.0,
+            "contract-champ": 0.0,
+            "financial-champ": 0.0,
+            "gepa": 0.0,
+            "math-champ": 0.01
+          },
+          "features": {
+            "confidence": 0.99,
+            "collapse_noul": 0.53,
+            "alignment": 0.0,
+            "margin": 0.0,
+            "n_arms": 6.0
+          },
+          "gate_choice": "z0",
+          "gate_reason": "low_val_alignment",
+          "gate_correct": false,
+          "regret": 0.0092,
+          "usage": {
+            "input_tokens": 801,
+            "output_tokens": 103
+          },
+          "latency_s": 0.774
+        },
+        {
+          "gid": "hle_ablation-s924",
+          "task": "hle_ablation",
+          "n_arms": 7,
+          "oracle": "minus-role",
+          "greedy": "base",
+          "val_scores": {
+            "base": 0.0,
+            "minus-role": 0.0,
+            "minus-output": 0.0,
+            "minus-verification": 0.0,
+            "minus-reasoning": 0.0,
+            "minus-layout": 0.0,
+            "minus-constraints": 0.0
+          },
+          "holdout_scores": {
+            "base": 0.4531,
+            "minus-role": 0.4612,
+            "minus-output": 0.4,
+            "minus-verification": 0.4,
+            "minus-reasoning": 0.4,
+            "minus-layout": 0.4531,
+            "minus-constraints": 0.4
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13",
+          "jev_raw_choice": "base",
+          "jev_raw_correct": false,
+          "probabilities": {
+            "minus-reasoning": 0.0,
+            "base": 1.0,
+            "minus-role": 0.0,
+            "minus-layout": 0.0,
+            "minus-verification": 0.0,
+            "minus-constraints": 0.0,
+            "minus-output": 0.0
+          },
+          "features": {
+            "confidence": 0.99,
+            "collapse_noul": 0.46,
+            "alignment": 0.0,
+            "margin": 0.0,
+            "n_arms": 7.0
+          },
+          "gate_choice": "base",
+          "gate_reason": "low_val_alignment",
+          "gate_correct": false,
+          "regret": 0.0081,
+          "usage": {
+            "input_tokens": 864,
+            "output_tokens": 114
+          },
+          "latency_s": 0.75
+        },
+        {
+          "gid": "hle_nt-s922",
+          "task": "hle_nt",
+          "n_arms": 4,
+          "oracle": "z0",
+          "greedy": "z0",
+          "val_scores": {
+            "z0": 0.0,
+            "math-champ": 0.0,
+            "contract-champ": 0.0,
+            "financial-champ": 0.0
+          },
+          "holdout_scores": {
+            "z0": 0.1,
+            "math-champ": 0.1,
+            "contract-champ": 0.1,
+            "financial-champ": 0.1
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13",
+          "jev_raw_choice": "z0",
+          "jev_raw_correct": true,
+          "probabilities": {
+            "math-champ": 0.0,
+            "contract-champ": 0.0,
+            "z0": 1.0,
+            "financial-champ": 0.0
+          },
+          "features": {
+            "confidence": 0.99,
+            "collapse_noul": 0.5,
+            "alignment": 0.0,
+            "margin": 0.0,
+            "n_arms": 4.0
+          },
+          "gate_choice": "z0",
+          "gate_reason": "low_val_alignment",
+          "gate_correct": true,
+          "regret": 0.0,
+          "usage": {
+            "input_tokens": 698,
+            "output_tokens": 87
+          },
+          "latency_s": 1.181
+        },
+        {
+          "gid": "math-s42",
+          "task": "math",
+          "n_arms": 4,
+          "oracle": "apc-full",
+          "greedy": "apc-full",
+          "val_scores": {
+            "zero-shot": 0.839,
+            "manual": 0.8388,
+            "apc-full": 0.8395,
+            "apc-safe": 0.8388
+          },
+          "holdout_scores": {
+            "zero-shot": 0.8436,
+            "manual": 0.8439,
+            "apc-full": 0.8442,
+            "apc-safe": 0.8436
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13",
+          "jev_raw_choice": "zero-shot",
+          "jev_raw_correct": false,
+          "probabilities": {
+            "apc-safe": 0.0,
+            "manual": 0.03,
+            "apc-full": 0.17,
+            "zero-shot": 0.8
+          },
+          "features": {
+            "confidence": 0.72,
+            "collapse_noul": 0.21,
+            "alignment": 0.005,
+            "margin": 0.0005,
+            "n_arms": 4.0
+          },
+          "gate_choice": "zero-shot",
+          "gate_reason": "low_val_alignment",
+          "gate_correct": false,
+          "regret": 0.0006,
+          "usage": {
+            "input_tokens": 691,
+            "output_tokens": 85
+          },
+          "latency_s": 0.9
+        },
+        {
+          "gid": "math-s46",
+          "task": "math",
+          "n_arms": 4,
+          "oracle": "apc-full",
+          "greedy": "apc-full",
+          "val_scores": {
+            "zero-shot": 0.8388,
+            "manual": 0.8391,
+            "apc-full": 0.8393,
+            "apc-safe": 0.8388
+          },
+          "holdout_scores": {
+            "zero-shot": 0.8435,
+            "manual": 0.8437,
+            "apc-full": 0.844,
+            "apc-safe": 0.8436
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13",
+          "jev_raw_choice": "zero-shot",
+          "jev_raw_correct": false,
+          "probabilities": {
+            "zero-shot": 0.72,
+            "manual": 0.21,
+            "apc-safe": 0.01,
+            "apc-full": 0.06
+          },
+          "features": {
+            "confidence": 0.63,
+            "collapse_noul": 0.19,
+            "alignment": 0.0075,
+            "margin": 0.0002,
+            "n_arms": 4.0
+          },
+          "gate_choice": "zero-shot",
+          "gate_reason": "low_val_alignment",
+          "gate_correct": false,
+          "regret": 0.0005,
+          "usage": {
+            "input_tokens": 691,
+            "output_tokens": 85
+          },
+          "latency_s": 0.803
+        },
+        {
+          "gid": "math-s47",
+          "task": "math",
+          "n_arms": 4,
+          "oracle": "manual",
+          "greedy": "zero-shot",
+          "val_scores": {
+            "zero-shot": 0.8388,
+            "manual": 0.8388,
+            "apc-full": 0.6227,
+            "apc-safe": 0.8388
+          },
+          "holdout_scores": {
+            "zero-shot": 0.8436,
+            "manual": 0.8438,
+            "apc-full": 0.6425,
+            "apc-safe": 0.8435
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13",
+          "jev_raw_choice": "zero-shot",
+          "jev_raw_correct": false,
+          "probabilities": {
+            "zero-shot": 1.0,
+            "manual": 0.0,
+            "apc-full": 0.0,
+            "apc-safe": 0.0
+          },
+          "features": {
+            "confidence": 1.0,
+            "collapse_noul": 0.39,
+            "alignment": 0.5125,
+            "margin": 0.0,
+            "n_arms": 4.0
+          },
+          "gate_choice": "zero-shot",
+          "gate_reason": "normal_selection",
+          "gate_correct": false,
+          "regret": 0.0002,
+          "usage": {
+            "input_tokens": 691,
+            "output_tokens": 85
+          },
+          "latency_s": 0.785
+        },
+        {
+          "gid": "multiseed_summary-s42",
+          "task": "multiseed_summary",
+          "n_arms": 12,
+          "oracle": "apc-full",
+          "greedy": "zero-shot",
+          "val_scores": {
+            "apc-full": 0.0,
+            "apc-safe": 0.0,
+            "manual": 0.0,
+            "zero-shot": 0.0
+          },
+          "holdout_scores": {
+            "apc-full": 0.0,
+            "apc-safe": 0.0,
+            "manual": 0.0,
+            "zero-shot": 0.0
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13",
+          "jev_raw_choice": "zero-shot",
+          "jev_raw_correct": false,
+          "probabilities": {
+            "zero-shot": 1.0,
+            "apc-full": 0.0,
+            "apc-safe": 0.0,
+            "manual": 0.0
+          },
+          "features": {
+            "confidence": 1.0,
+            "collapse_noul": 0.47,
+            "alignment": 0.0,
+            "margin": 0.0,
+            "n_arms": 12.0
+          },
+          "gate_choice": "zero-shot",
+          "gate_reason": "low_val_alignment",
+          "gate_correct": true,
+          "regret": 0.0,
+          "usage": {
+            "input_tokens": 908,
+            "output_tokens": 85
+          },
+          "latency_s": 0.78
+        },
+        {
+          "gid": "transfer_contract_to_math-s42",
+          "task": "transfer_contract_to_math",
+          "n_arms": 3,
+          "oracle": "transfer-ws",
+          "greedy": "transfer-0",
+          "val_scores": {
+            "transfer-0": 0.8395,
+            "cold": 0.6589,
+            "transfer-ws": 0.8392
+          },
+          "holdout_scores": {
+            "transfer-0": 0.8439,
+            "cold": 0.6402,
+            "transfer-ws": 0.8441
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13",
+          "jev_raw_choice": "transfer-0",
+          "jev_raw_correct": false,
+          "probabilities": {
+            "transfer-ws": 0.26,
+            "cold": 0.0,
+            "transfer-0": 0.74
+          },
+          "features": {
+            "confidence": 0.61,
+            "collapse_noul": 0.44,
+            "alignment": 0.365,
+            "margin": 0.0003,
+            "n_arms": 3.0
+          },
+          "gate_choice": "transfer-0",
+          "gate_reason": "low_val_alignment",
+          "gate_correct": false,
+          "regret": 0.0002,
+          "usage": {
+            "input_tokens": 642,
+            "output_tokens": 78
+          },
+          "latency_s": 0.796
+        },
+        {
+          "gid": "transfer_financial_to_math_gpt6-s42",
+          "task": "transfer_financial_to_math_gpt6",
+          "n_arms": 3,
+          "oracle": "transfer-0",
+          "greedy": "transfer-ws",
+          "val_scores": {
+            "transfer-0": 0.8388,
+            "cold": 0.6564,
+            "transfer-ws": 0.839
+          },
+          "holdout_scores": {
+            "transfer-0": 0.8443,
+            "cold": 0.6336,
+            "transfer-ws": 0.8439
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13",
+          "jev_raw_choice": "transfer-ws",
+          "jev_raw_correct": false,
+          "probabilities": {
+            "cold": 0.0,
+            "transfer-0": 0.42,
+            "transfer-ws": 0.58
+          },
+          "features": {
+            "confidence": 0.37,
+            "collapse_noul": 0.42,
+            "alignment": 0.315,
+            "margin": 0.0002,
+            "n_arms": 3.0
+          },
+          "gate_choice": "transfer-0",
+          "gate_reason": "low_val_alignment",
+          "gate_correct": true,
+          "regret": 0.0,
+          "usage": {
+            "input_tokens": 648,
+            "output_tokens": 78
+          },
+          "latency_s": 0.99
+        },
+        {
+          "gid": "transfer_math_to_contract-s42",
+          "task": "transfer_math_to_contract",
+          "n_arms": 3,
+          "oracle": "transfer-0",
+          "greedy": "transfer-ws",
+          "val_scores": {
+            "transfer-0": 0.8871,
+            "cold": 0.1965,
+            "transfer-ws": 0.9822
+          },
+          "holdout_scores": {
+            "transfer-0": 0.9778,
+            "cold": 0.185,
+            "transfer-ws": 0.9582
+          },
+          "live": true,
+          "method": "jev",
+          "model": "jev-1.13",
+          "jev_raw_choice": "transfer-ws",
+          "jev_raw_correct": false,
+          "probabilities": {
+            "transfer-ws": 0.98,
+            "transfer-0": 0.02,
+            "cold": 0.0
+          },
+          "features": {
+            "confidence": 0.97,
+            "collapse_noul": 0.4,
+            "alignment": 0.705,
+            "margin": 0.0951,
+            "n_arms": 3.0
+          },
+          "gate_choice": "transfer-ws",
+          "gate_reason": "normal_selection",
+          "gate_correct": false,
+          "regret": 0.0196,
+          "usage": {
+            "input_tokens": 642,
+            "output_tokens": 78
+          },
+          "latency_s": 1.328
+        }
+      ]
+    }
+  },
+  "baselines": {
+    "greedy": {
+      "n_groups": 32,
+      "exact_oracle": 18,
+      "exact_rate": 0.5625,
+      "within_noise": 26,
+      "within_noise_rate": 0.8125,
+      "avg_regret": 0.012528,
+      "max_regret": 0.2038,
+      "total_regret": 0.4009,
+      "n_collapse_cases": 6,
+      "collapse_avoided": 4
+    },
+    "heuristic": {
+      "n_groups": 32,
+      "exact_oracle": 13,
+      "exact_rate": 0.4062,
+      "within_noise": 25,
+      "within_noise_rate": 0.7812,
+      "avg_regret": 0.013003,
+      "max_regret": 0.2038,
+      "total_regret": 0.4161,
+      "n_collapse_cases": 6,
+      "collapse_avoided": 4
+    },
+    "jev_mock": {
+      "n_groups": 32,
+      "exact_oracle": 11,
+      "exact_rate": 0.3438,
+      "within_noise": 24,
+      "within_noise_rate": 0.75,
+      "avg_regret": 0.013825,
+      "max_regret": 0.2038,
+      "total_regret": 0.4424,
+      "n_collapse_cases": 6,
+      "collapse_avoided": 4
+    }
+  }
+}
