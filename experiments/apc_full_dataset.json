@@ -1,0 +1,1666 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "description": "APC Benchmark - Full Dataset for Jev + RSI Experiments",
+    "num_tasks": 44,
+    "num_arms": 141
+  },
+  "tasks": {
+    "contract-s42": {
+      "task": "contract",
+      "seed": 42,
+      "source_file": "real_contract.json",
+      "arms": [
+        {
+          "name": "zero-shot",
+          "val_score": 0.9818,
+          "holdout_score": 0.977,
+          "seed": 42,
+          "task": "contract",
+          "baseline_score": 0.975
+        },
+        {
+          "name": "manual",
+          "val_score": 0.9818,
+          "holdout_score": 0.9773,
+          "seed": 42,
+          "task": "contract",
+          "baseline_score": 0.9765
+        },
+        {
+          "name": "apc-full",
+          "val_score": 0.9833,
+          "holdout_score": 0.9782,
+          "seed": 42,
+          "task": "contract",
+          "baseline_score": 0.1778
+        },
+        {
+          "name": "apc-safe",
+          "val_score": 0.9822,
+          "holdout_score": 0.9773,
+          "seed": 42,
+          "task": "contract",
+          "baseline_score": 0.9739
+        }
+      ],
+      "oracle": {
+        "best_arm": "apc-full",
+        "holdout_score": 0.9782
+      },
+      "num_arms": 4
+    },
+    "contract-s46": {
+      "task": "contract",
+      "seed": 46,
+      "source_file": "real_contract.json",
+      "arms": [
+        {
+          "name": "zero-shot",
+          "val_score": 0.9814,
+          "holdout_score": 0.9771,
+          "seed": 46,
+          "task": "contract",
+          "baseline_score": 0.9761
+        },
+        {
+          "name": "manual",
+          "val_score": 0.9822,
+          "holdout_score": 0.9775,
+          "seed": 46,
+          "task": "contract",
+          "baseline_score": 0.9759
+        },
+        {
+          "name": "apc-full",
+          "val_score": 0.9819,
+          "holdout_score": 0.9583,
+          "seed": 46,
+          "task": "contract",
+          "baseline_score": 0.1778
+        },
+        {
+          "name": "apc-safe",
+          "val_score": 0.9828,
+          "holdout_score": 0.9772,
+          "seed": 46,
+          "task": "contract",
+          "baseline_score": 0.9734
+        }
+      ],
+      "oracle": {
+        "best_arm": "manual",
+        "holdout_score": 0.9775
+      },
+      "num_arms": 4
+    },
+    "contract-s47": {
+      "task": "contract",
+      "seed": 47,
+      "source_file": "real_contract.json",
+      "arms": [
+        {
+          "name": "zero-shot",
+          "val_score": 0.9812,
+          "holdout_score": 0.9771,
+          "seed": 47,
+          "task": "contract",
+          "baseline_score": 0.9755
+        },
+        {
+          "name": "manual",
+          "val_score": 0.9823,
+          "holdout_score": 0.9777,
+          "seed": 47,
+          "task": "contract",
+          "baseline_score": 0.9759
+        },
+        {
+          "name": "apc-full",
+          "val_score": 0.1928,
+          "holdout_score": 0.1741,
+          "seed": 47,
+          "task": "contract",
+          "baseline_score": 0.1778
+        },
+        {
+          "name": "apc-safe",
+          "val_score": 0.9822,
+          "holdout_score": 0.9768,
+          "seed": 47,
+          "task": "contract",
+          "baseline_score": 0.9738
+        }
+      ],
+      "oracle": {
+        "best_arm": "manual",
+        "holdout_score": 0.9777
+      },
+      "num_arms": 4
+    },
+    "contract_gpt6-s42": {
+      "task": "contract_gpt6",
+      "seed": 42,
+      "source_file": "real_contract_gpt6.json",
+      "arms": [
+        {
+          "name": "zero-shot",
+          "val_score": 0.9827,
+          "holdout_score": 0.9783,
+          "seed": 42,
+          "task": "contract",
+          "baseline_score": 0.9767
+        },
+        {
+          "name": "manual",
+          "val_score": 0.9831,
+          "holdout_score": 0.9784,
+          "seed": 42,
+          "task": "contract",
+          "baseline_score": 0.9773
+        },
+        {
+          "name": "apc-full",
+          "val_score": 0.9354,
+          "holdout_score": 0.9404,
+          "seed": 42,
+          "task": "contract",
+          "baseline_score": 0.2206
+        },
+        {
+          "name": "apc-safe",
+          "val_score": 0.9831,
+          "holdout_score": 0.9792,
+          "seed": 42,
+          "task": "contract",
+          "baseline_score": 0.974
+        }
+      ],
+      "oracle": {
+        "best_arm": "apc-safe",
+        "holdout_score": 0.9792
+      },
+      "num_arms": 4
+    },
+    "financial-s42": {
+      "task": "financial",
+      "seed": 42,
+      "source_file": "real_financial.json",
+      "arms": [
+        {
+          "name": "apc-safe",
+          "val_score": 0.6734,
+          "holdout_score": 0.6672,
+          "seed": 42,
+          "task": "financial",
+          "baseline_score": 0.6604
+        }
+      ],
+      "oracle": {
+        "best_arm": "apc-safe",
+        "holdout_score": 0.6672
+      },
+      "num_arms": 1
+    },
+    "financial-s43": {
+      "task": "financial",
+      "seed": 43,
+      "source_file": "real_financial.json",
+      "arms": [
+        {
+          "name": "apc-full",
+          "val_score": 0.5705,
+          "holdout_score": 0.5705,
+          "seed": 43,
+          "task": "financial",
+          "baseline_score": 0.1521
+        },
+        {
+          "name": "apc-safe",
+          "val_score": 0.6642,
+          "holdout_score": 0.6679,
+          "seed": 43,
+          "task": "financial",
+          "baseline_score": 0.6672
+        }
+      ],
+      "oracle": {
+        "best_arm": "apc-safe",
+        "holdout_score": 0.6679
+      },
+      "num_arms": 2
+    },
+    "financial-s44": {
+      "task": "financial",
+      "seed": 44,
+      "source_file": "real_financial.json",
+      "arms": [
+        {
+          "name": "apc-full",
+          "val_score": 0.1452,
+          "holdout_score": 0.1334,
+          "seed": 44,
+          "task": "financial",
+          "baseline_score": 0.1214
+        },
+        {
+          "name": "apc-safe",
+          "val_score": 0.6683,
+          "holdout_score": 0.6575,
+          "seed": 44,
+          "task": "financial",
+          "baseline_score": 0.6585
+        }
+      ],
+      "oracle": {
+        "best_arm": "apc-safe",
+        "holdout_score": 0.6575
+      },
+      "num_arms": 2
+    },
+    "financial-s45": {
+      "task": "financial",
+      "seed": 45,
+      "source_file": "real_financial.json",
+      "arms": [
+        {
+          "name": "zero-shot",
+          "val_score": 0.6682,
+          "holdout_score": 0.6692,
+          "seed": 45,
+          "task": "financial",
+          "baseline_score": 0.6655
+        },
+        {
+          "name": "manual",
+          "val_score": 0.6644,
+          "holdout_score": 0.6665,
+          "seed": 45,
+          "task": "financial",
+          "baseline_score": 0.678
+        },
+        {
+          "name": "apc-full",
+          "val_score": 0.1708,
+          "holdout_score": 0.1318,
+          "seed": 45,
+          "task": "financial",
+          "baseline_score": 0.1412
+        },
+        {
+          "name": "apc-safe",
+          "val_score": 0.6687,
+          "holdout_score": 0.6657,
+          "seed": 45,
+          "task": "financial",
+          "baseline_score": 0.6563
+        }
+      ],
+      "oracle": {
+        "best_arm": "zero-shot",
+        "holdout_score": 0.6692
+      },
+      "num_arms": 4
+    },
+    "financial-s46": {
+      "task": "financial",
+      "seed": 46,
+      "source_file": "real_financial.json",
+      "arms": [
+        {
+          "name": "zero-shot",
+          "val_score": 0.6605,
+          "holdout_score": 0.6659,
+          "seed": 46,
+          "task": "financial",
+          "baseline_score": 0.6692
+        },
+        {
+          "name": "manual",
+          "val_score": 0.6664,
+          "holdout_score": 0.6697,
+          "seed": 46,
+          "task": "financial",
+          "baseline_score": 0.669
+        },
+        {
+          "name": "apc-full",
+          "val_score": 0.5836,
+          "holdout_score": 0.5639,
+          "seed": 46,
+          "task": "financial",
+          "baseline_score": 0.1357
+        },
+        {
+          "name": "apc-safe",
+          "val_score": 0.6657,
+          "holdout_score": 0.6696,
+          "seed": 46,
+          "task": "financial",
+          "baseline_score": 0.6593
+        }
+      ],
+      "oracle": {
+        "best_arm": "manual",
+        "holdout_score": 0.6697
+      },
+      "num_arms": 4
+    },
+    "financial-s47": {
+      "task": "financial",
+      "seed": 47,
+      "source_file": "real_financial.json",
+      "arms": [
+        {
+          "name": "zero-shot",
+          "val_score": 0.6546,
+          "holdout_score": 0.6648,
+          "seed": 47,
+          "task": "financial",
+          "baseline_score": 0.6581
+        },
+        {
+          "name": "manual",
+          "val_score": 0.6681,
+          "holdout_score": 0.6694,
+          "seed": 47,
+          "task": "financial",
+          "baseline_score": 0.6607
+        },
+        {
+          "name": "apc-full",
+          "val_score": 0.1279,
+          "holdout_score": 0.1428,
+          "seed": 47,
+          "task": "financial",
+          "baseline_score": 0.1286
+        },
+        {
+          "name": "apc-safe",
+          "val_score": 0.6744,
+          "holdout_score": 0.6705,
+          "seed": 47,
+          "task": "financial",
+          "baseline_score": 0.6552
+        }
+      ],
+      "oracle": {
+        "best_arm": "apc-safe",
+        "holdout_score": 0.6705
+      },
+      "num_arms": 4
+    },
+    "financial_gpt56terra-s42": {
+      "task": "financial_gpt56terra",
+      "seed": 42,
+      "source_file": "real_financial_gpt56terra.json",
+      "arms": [
+        {
+          "name": "zero-shot",
+          "val_score": 0.6672,
+          "holdout_score": 0.6669,
+          "seed": 42,
+          "task": "financial",
+          "baseline_score": 0.6603
+        },
+        {
+          "name": "manual",
+          "val_score": 0.6777,
+          "holdout_score": 0.6665,
+          "seed": 42,
+          "task": "financial",
+          "baseline_score": 0.668
+        },
+        {
+          "name": "apc-full",
+          "val_score": 0.6131,
+          "holdout_score": 0.615,
+          "seed": 42,
+          "task": "financial",
+          "baseline_score": 0.141
+        },
+        {
+          "name": "apc-safe",
+          "val_score": 0.6631,
+          "holdout_score": 0.6694,
+          "seed": 42,
+          "task": "financial",
+          "baseline_score": 0.6631
+        }
+      ],
+      "oracle": {
+        "best_arm": "apc-safe",
+        "holdout_score": 0.6694
+      },
+      "num_arms": 4
+    },
+    "financial_gpt6-s42": {
+      "task": "financial_gpt6",
+      "seed": 42,
+      "source_file": "real_financial_gpt6.json",
+      "arms": [
+        {
+          "name": "zero-shot",
+          "val_score": 0.6866,
+          "holdout_score": 0.6862,
+          "seed": 42,
+          "task": "financial",
+          "baseline_score": 0.6856
+        },
+        {
+          "name": "manual",
+          "val_score": 0.6934,
+          "holdout_score": 0.6971,
+          "seed": 42,
+          "task": "financial",
+          "baseline_score": 0.7015
+        },
+        {
+          "name": "apc-full",
+          "val_score": 0.6734,
+          "holdout_score": 0.675,
+          "seed": 42,
+          "task": "financial",
+          "baseline_score": 0.139
+        },
+        {
+          "name": "apc-safe",
+          "val_score": 0.6849,
+          "holdout_score": 0.6771,
+          "seed": 42,
+          "task": "financial",
+          "baseline_score": 0.6943
+        }
+      ],
+      "oracle": {
+        "best_arm": "manual",
+        "holdout_score": 0.6971
+      },
+      "num_arms": 4
+    },
+    "financial_gpt6_smoke-s42": {
+      "task": "financial_gpt6_smoke",
+      "seed": 42,
+      "source_file": "real_financial_gpt6_smoke.json",
+      "arms": [
+        {
+          "name": "zero-shot",
+          "val_score": 0.6789,
+          "holdout_score": 0.6781,
+          "seed": 42,
+          "task": "financial",
+          "baseline_score": 0.6935
+        },
+        {
+          "name": "manual",
+          "val_score": 0.6895,
+          "holdout_score": 0.6788,
+          "seed": 42,
+          "task": "financial",
+          "baseline_score": 0.6689
+        },
+        {
+          "name": "apc-full",
+          "val_score": 0.6828,
+          "holdout_score": 0.6747,
+          "seed": 42,
+          "task": "financial",
+          "baseline_score": 0.136
+        }
+      ],
+      "oracle": {
+        "best_arm": "manual",
+        "holdout_score": 0.6788
+      },
+      "num_arms": 3
+    },
+    "gepa-s901": {
+      "task": "gepa",
+      "seed": 901,
+      "source_file": "real_gepa.json",
+      "arms": [
+        {
+          "name": "z0-control",
+          "val_score": 0.0,
+          "holdout_score": 0.75,
+          "seed": 901,
+          "task": "contract",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "z0-control",
+          "val_score": 0.0,
+          "holdout_score": 0.6997,
+          "seed": 901,
+          "task": "financial",
+          "baseline_score": 0.0
+        }
+      ],
+      "oracle": {
+        "best_arm": "z0-control",
+        "holdout_score": 0.75
+      },
+      "num_arms": 2
+    },
+    "gepa-s902": {
+      "task": "gepa",
+      "seed": 902,
+      "source_file": "real_gepa.json",
+      "arms": [
+        {
+          "name": "gepa",
+          "val_score": 0.0,
+          "holdout_score": 0.695,
+          "seed": 902,
+          "task": "financial",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "reeval-z0",
+          "val_score": null,
+          "holdout_score": 0.6983,
+          "seed": 902,
+          "task": "financial",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "reeval-safe",
+          "val_score": null,
+          "holdout_score": 0.7008,
+          "seed": 902,
+          "task": "financial",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "reeval-full",
+          "val_score": null,
+          "holdout_score": 0.6082,
+          "seed": 902,
+          "task": "financial",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "reeval-gepa",
+          "val_score": null,
+          "holdout_score": 0.7014,
+          "seed": 902,
+          "task": "financial",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "reeval-manual",
+          "val_score": null,
+          "holdout_score": 0.7012,
+          "seed": 902,
+          "task": "financial",
+          "baseline_score": 0.0
+        }
+      ],
+      "oracle": {
+        "best_arm": "reeval-gepa",
+        "holdout_score": 0.7014
+      },
+      "num_arms": 6
+    },
+    "gepa-s903": {
+      "task": "gepa",
+      "seed": 903,
+      "source_file": "real_gepa.json",
+      "arms": [
+        {
+          "name": "gepa",
+          "val_score": 0.0,
+          "holdout_score": 0.7016,
+          "seed": 903,
+          "task": "financial",
+          "baseline_score": 0.0
+        }
+      ],
+      "oracle": {
+        "best_arm": "gepa",
+        "holdout_score": 0.7016
+      },
+      "num_arms": 1
+    },
+    "gepa-s904": {
+      "task": "gepa",
+      "seed": 904,
+      "source_file": "real_gepa.json",
+      "arms": [
+        {
+          "name": "gepa",
+          "val_score": 0.0,
+          "holdout_score": 0.6998,
+          "seed": 904,
+          "task": "financial",
+          "baseline_score": 0.0
+        }
+      ],
+      "oracle": {
+        "best_arm": "gepa",
+        "holdout_score": 0.6998
+      },
+      "num_arms": 1
+    },
+    "gepa-s42": {
+      "task": "gepa",
+      "seed": 42,
+      "source_file": "real_gepa.json",
+      "arms": [
+        {
+          "name": "gepa",
+          "val_score": 0.7744,
+          "holdout_score": 0.7491,
+          "seed": 42,
+          "task": "contract",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "gepa",
+          "val_score": 0.6978,
+          "holdout_score": 0.7045,
+          "seed": 42,
+          "task": "financial",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "espo",
+          "val_score": 0.6992,
+          "holdout_score": 0.7009,
+          "seed": 42,
+          "task": "financial",
+          "baseline_score": 0.0
+        }
+      ],
+      "oracle": {
+        "best_arm": "gepa",
+        "holdout_score": 0.7491
+      },
+      "num_arms": 3
+    },
+    "gepa-s43": {
+      "task": "gepa",
+      "seed": 43,
+      "source_file": "real_gepa.json",
+      "arms": [
+        {
+          "name": "gepa",
+          "val_score": 0.7746,
+          "holdout_score": 0.7495,
+          "seed": 43,
+          "task": "contract",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "gepa",
+          "val_score": 0.7068,
+          "holdout_score": 0.6975,
+          "seed": 43,
+          "task": "financial",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "espo",
+          "val_score": 0.5154,
+          "holdout_score": 0.7501,
+          "seed": 43,
+          "task": "financial",
+          "baseline_score": 0.0
+        }
+      ],
+      "oracle": {
+        "best_arm": "espo",
+        "holdout_score": 0.7501
+      },
+      "num_arms": 3
+    },
+    "gepa_gpt56terra-s42": {
+      "task": "gepa_gpt56terra",
+      "seed": 42,
+      "source_file": "real_gepa_gpt56terra.json",
+      "arms": [
+        {
+          "name": "gepa",
+          "val_score": -1.0,
+          "holdout_score": 0.6969,
+          "seed": 42,
+          "task": "financial",
+          "baseline_score": 0.0
+        }
+      ],
+      "oracle": {
+        "best_arm": "gepa",
+        "holdout_score": 0.6969
+      },
+      "num_arms": 1
+    },
+    "gepa_gpt6-s42": {
+      "task": "gepa_gpt6",
+      "seed": 42,
+      "source_file": "real_gepa_gpt6.json",
+      "arms": [
+        {
+          "name": "gepa",
+          "val_score": 0.9533,
+          "holdout_score": 0.8914,
+          "seed": 42,
+          "task": "financial",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "espo",
+          "val_score": 0.7077,
+          "holdout_score": 0.7021,
+          "seed": 42,
+          "task": "financial",
+          "baseline_score": 0.0
+        }
+      ],
+      "oracle": {
+        "best_arm": "gepa",
+        "holdout_score": 0.8914
+      },
+      "num_arms": 2
+    },
+    "gepa_gpt6_recheck-s42": {
+      "task": "gepa_gpt6_recheck",
+      "seed": 42,
+      "source_file": "real_gepa_gpt6_recheck.json",
+      "arms": [
+        {
+          "name": "champ-verbatim",
+          "val_score": 0.0,
+          "holdout_score": 0.7055,
+          "seed": 42,
+          "task": "gepa_gpt6_recheck",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "champ-stripped",
+          "val_score": 0.0,
+          "holdout_score": 0.7013,
+          "seed": 42,
+          "task": "gepa_gpt6_recheck",
+          "baseline_score": 0.0
+        }
+      ],
+      "oracle": {
+        "best_arm": "champ-verbatim",
+        "holdout_score": 0.7055
+      },
+      "num_arms": 2
+    },
+    "gepa_gpt6_recheck_orig-s42": {
+      "task": "gepa_gpt6_recheck_orig",
+      "seed": 42,
+      "source_file": "real_gepa_gpt6_recheck_orig.json",
+      "arms": [
+        {
+          "name": "champ-verbatim",
+          "val_score": 0.0,
+          "holdout_score": 0.8441,
+          "seed": 42,
+          "task": "gepa_gpt6_recheck_orig",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "champ-stripped",
+          "val_score": 0.0,
+          "holdout_score": 0.8092,
+          "seed": 42,
+          "task": "gepa_gpt6_recheck_orig",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "z0-paired",
+          "val_score": 0.0,
+          "holdout_score": 0.7039,
+          "seed": 42,
+          "task": "gepa_gpt6_recheck_orig",
+          "baseline_score": 0.0
+        }
+      ],
+      "oracle": {
+        "best_arm": "champ-verbatim",
+        "holdout_score": 0.8441
+      },
+      "num_arms": 3
+    },
+    "gepa_mt150-s911": {
+      "task": "gepa_mt150",
+      "seed": 911,
+      "source_file": "real_gepa_mt150.json",
+      "arms": [
+        {
+          "name": "gepa",
+          "val_score": 0.6961,
+          "holdout_score": 0.15,
+          "seed": 911,
+          "task": "financial",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "espo",
+          "val_score": 0.15,
+          "holdout_score": 0.15,
+          "seed": 911,
+          "task": "financial",
+          "baseline_score": 0.0
+        }
+      ],
+      "oracle": {
+        "best_arm": "gepa",
+        "holdout_score": 0.15
+      },
+      "num_arms": 2
+    },
+    "gepa_nt-s910": {
+      "task": "gepa_nt",
+      "seed": 910,
+      "source_file": "real_gepa_nt.json",
+      "arms": [
+        {
+          "name": "reeval-z0",
+          "val_score": null,
+          "holdout_score": 0.6938,
+          "seed": 910,
+          "task": "financial",
+          "baseline_score": 0.0
+        }
+      ],
+      "oracle": {
+        "best_arm": "reeval-z0",
+        "holdout_score": 0.6938
+      },
+      "num_arms": 1
+    },
+    "gpqa-s926": {
+      "task": "gpqa",
+      "seed": 926,
+      "source_file": "real_gpqa.json",
+      "arms": [
+        {
+          "name": "z0",
+          "val_score": 0.0,
+          "holdout_score": 0.8729,
+          "seed": 926,
+          "task": "hle_exact",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "math-champ",
+          "val_score": 0.0,
+          "holdout_score": 0.8714,
+          "seed": 926,
+          "task": "hle_exact",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "contract-champ",
+          "val_score": 0.0,
+          "holdout_score": 0.8628,
+          "seed": 926,
+          "task": "hle_exact",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "financial-champ",
+          "val_score": 0.0,
+          "holdout_score": 0.873,
+          "seed": 926,
+          "task": "hle_exact",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "espo",
+          "val_score": 0.775,
+          "holdout_score": 0.8745,
+          "seed": 926,
+          "task": "hle_exact",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "gepa",
+          "val_score": 0.0,
+          "holdout_score": 0.8856,
+          "seed": 926,
+          "task": "hle_exact",
+          "baseline_score": 0.0
+        }
+      ],
+      "oracle": {
+        "best_arm": "gepa",
+        "holdout_score": 0.8856
+      },
+      "num_arms": 6
+    },
+    "gpqa_resume_arrears_quarantine-s926": {
+      "task": "gpqa_resume_arrears_quarantine",
+      "seed": 926,
+      "source_file": "real_gpqa_resume_arrears_quarantine.json",
+      "arms": [
+        {
+          "name": "gepa",
+          "val_score": 0.0,
+          "holdout_score": 0.5884,
+          "seed": 926,
+          "task": "hle_exact",
+          "baseline_score": 0.0
+        }
+      ],
+      "oracle": {
+        "best_arm": "gepa",
+        "holdout_score": 0.5884
+      },
+      "num_arms": 1
+    },
+    "gpqa_resume_arrears_quarantine-s927": {
+      "task": "gpqa_resume_arrears_quarantine",
+      "seed": 927,
+      "source_file": "real_gpqa_resume_arrears_quarantine.json",
+      "arms": [
+        {
+          "name": "z0",
+          "val_score": 0.0,
+          "holdout_score": 0.1763,
+          "seed": 927,
+          "task": "hle_exact",
+          "baseline_score": 0.0
+        }
+      ],
+      "oracle": {
+        "best_arm": "z0",
+        "holdout_score": 0.1763
+      },
+      "num_arms": 1
+    },
+    "gpqa_resume_slice_quarantine-s926": {
+      "task": "gpqa_resume_slice_quarantine",
+      "seed": 926,
+      "source_file": "real_gpqa_resume_slice_quarantine.json",
+      "arms": [
+        {
+          "name": "z0",
+          "val_score": 0.0,
+          "holdout_score": 0.6531,
+          "seed": 926,
+          "task": "hle_exact",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "gepa",
+          "val_score": 0.0,
+          "holdout_score": 0.8569,
+          "seed": 926,
+          "task": "hle_exact",
+          "baseline_score": 0.0
+        }
+      ],
+      "oracle": {
+        "best_arm": "gepa",
+        "holdout_score": 0.8569
+      },
+      "num_arms": 2
+    },
+    "gpqa_resume_slice_quarantine-s927": {
+      "task": "gpqa_resume_slice_quarantine",
+      "seed": 927,
+      "source_file": "real_gpqa_resume_slice_quarantine.json",
+      "arms": [
+        {
+          "name": "z0",
+          "val_score": 0.0,
+          "holdout_score": 0.6202,
+          "seed": 927,
+          "task": "hle_exact",
+          "baseline_score": 0.0
+        }
+      ],
+      "oracle": {
+        "best_arm": "z0",
+        "holdout_score": 0.6202
+      },
+      "num_arms": 1
+    },
+    "gpqa_z0927_servicedrift_quarantine-s927": {
+      "task": "gpqa_z0927_servicedrift_quarantine",
+      "seed": 927,
+      "source_file": "real_gpqa_z0927_servicedrift_quarantine.json",
+      "arms": [
+        {
+          "name": "z0",
+          "val_score": 0.0,
+          "holdout_score": 0.6501,
+          "seed": 927,
+          "task": "hle_exact",
+          "baseline_score": 0.0
+        }
+      ],
+      "oracle": {
+        "best_arm": "z0",
+        "holdout_score": 0.6501
+      },
+      "num_arms": 1
+    },
+    "hle-s921": {
+      "task": "hle",
+      "seed": 921,
+      "source_file": "real_hle.json",
+      "arms": [
+        {
+          "name": "z0",
+          "val_score": 0.0,
+          "holdout_score": 0.392,
+          "seed": 921,
+          "task": "hle_exact",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "math-champ",
+          "val_score": 0.0,
+          "holdout_score": 0.3876,
+          "seed": 921,
+          "task": "hle_exact",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "contract-champ",
+          "val_score": 0.0,
+          "holdout_score": 0.402,
+          "seed": 921,
+          "task": "hle_exact",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "financial-champ",
+          "val_score": 0.0,
+          "holdout_score": 0.3876,
+          "seed": 921,
+          "task": "hle_exact",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "gepa",
+          "val_score": 1.0,
+          "holdout_score": 0.412,
+          "seed": 921,
+          "task": "hle_exact",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "espo",
+          "val_score": 0.4531,
+          "holdout_score": 0.402,
+          "seed": 921,
+          "task": "hle_exact",
+          "baseline_score": 0.0
+        }
+      ],
+      "oracle": {
+        "best_arm": "gepa",
+        "holdout_score": 0.412
+      },
+      "num_arms": 6
+    },
+    "hle-s923": {
+      "task": "hle",
+      "seed": 923,
+      "source_file": "real_hle.json",
+      "arms": [
+        {
+          "name": "z0",
+          "val_score": 0.0,
+          "holdout_score": 0.4209,
+          "seed": 923,
+          "task": "hle_exact",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "contract-champ",
+          "val_score": 0.0,
+          "holdout_score": 0.4301,
+          "seed": 923,
+          "task": "hle_exact",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "espo",
+          "val_score": 0.0,
+          "holdout_score": 0.3939,
+          "seed": 923,
+          "task": "hle_exact",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "financial-champ",
+          "val_score": 0.0,
+          "holdout_score": 0.4059,
+          "seed": 923,
+          "task": "hle_exact",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "gepa",
+          "val_score": 0.0,
+          "holdout_score": 0.4288,
+          "seed": 923,
+          "task": "hle_exact",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "math-champ",
+          "val_score": 0.0,
+          "holdout_score": 0.4134,
+          "seed": 923,
+          "task": "hle_exact",
+          "baseline_score": 0.0
+        }
+      ],
+      "oracle": {
+        "best_arm": "contract-champ",
+        "holdout_score": 0.4301
+      },
+      "num_arms": 6
+    },
+    "hle_ablation-s924": {
+      "task": "hle_ablation",
+      "seed": 924,
+      "source_file": "real_hle_ablation.json",
+      "arms": [
+        {
+          "name": "base",
+          "val_score": 0.0,
+          "holdout_score": 0.4531,
+          "seed": 924,
+          "task": "hle-abl",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "minus-role",
+          "val_score": 0.0,
+          "holdout_score": 0.4612,
+          "seed": 924,
+          "task": "hle-abl",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "minus-output",
+          "val_score": 0.0,
+          "holdout_score": 0.4,
+          "seed": 924,
+          "task": "hle-abl",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "minus-verification",
+          "val_score": 0.0,
+          "holdout_score": 0.4,
+          "seed": 924,
+          "task": "hle-abl",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "minus-reasoning",
+          "val_score": 0.0,
+          "holdout_score": 0.4,
+          "seed": 924,
+          "task": "hle-abl",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "minus-layout",
+          "val_score": 0.0,
+          "holdout_score": 0.4531,
+          "seed": 924,
+          "task": "hle-abl",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "minus-constraints",
+          "val_score": 0.0,
+          "holdout_score": 0.4,
+          "seed": 924,
+          "task": "hle-abl",
+          "baseline_score": 0.0
+        }
+      ],
+      "oracle": {
+        "best_arm": "minus-role",
+        "holdout_score": 0.4612
+      },
+      "num_arms": 7
+    },
+    "hle_ext-s923": {
+      "task": "hle_ext",
+      "seed": 923,
+      "source_file": "real_hle_ext.json",
+      "arms": [
+        {
+          "name": "z0",
+          "val_score": 0.0,
+          "holdout_score": 0.4209,
+          "seed": 923,
+          "task": "hle_exact",
+          "baseline_score": 0.0
+        }
+      ],
+      "oracle": {
+        "best_arm": "z0",
+        "holdout_score": 0.4209
+      },
+      "num_arms": 1
+    },
+    "hle_nt-s922": {
+      "task": "hle_nt",
+      "seed": 922,
+      "source_file": "real_hle_nt.json",
+      "arms": [
+        {
+          "name": "z0",
+          "val_score": 0.0,
+          "holdout_score": 0.1,
+          "seed": 922,
+          "task": "hle_exact",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "math-champ",
+          "val_score": 0.0,
+          "holdout_score": 0.1,
+          "seed": 922,
+          "task": "hle_exact",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "contract-champ",
+          "val_score": 0.0,
+          "holdout_score": 0.1,
+          "seed": 922,
+          "task": "hle_exact",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "financial-champ",
+          "val_score": 0.0,
+          "holdout_score": 0.1,
+          "seed": 922,
+          "task": "hle_exact",
+          "baseline_score": 0.0
+        }
+      ],
+      "oracle": {
+        "best_arm": "z0",
+        "holdout_score": 0.1
+      },
+      "num_arms": 4
+    },
+    "math-s42": {
+      "task": "math",
+      "seed": 42,
+      "source_file": "real_math.json",
+      "arms": [
+        {
+          "name": "zero-shot",
+          "val_score": 0.839,
+          "holdout_score": 0.8436,
+          "seed": 42,
+          "task": "math",
+          "baseline_score": 0.8387
+        },
+        {
+          "name": "manual",
+          "val_score": 0.8388,
+          "holdout_score": 0.8439,
+          "seed": 42,
+          "task": "math",
+          "baseline_score": 0.8387
+        },
+        {
+          "name": "apc-full",
+          "val_score": 0.8395,
+          "holdout_score": 0.8442,
+          "seed": 42,
+          "task": "math",
+          "baseline_score": 0.6335
+        },
+        {
+          "name": "apc-safe",
+          "val_score": 0.8388,
+          "holdout_score": 0.8436,
+          "seed": 42,
+          "task": "math",
+          "baseline_score": 0.8393
+        }
+      ],
+      "oracle": {
+        "best_arm": "apc-full",
+        "holdout_score": 0.8442
+      },
+      "num_arms": 4
+    },
+    "math-s46": {
+      "task": "math",
+      "seed": 46,
+      "source_file": "real_math.json",
+      "arms": [
+        {
+          "name": "zero-shot",
+          "val_score": 0.8388,
+          "holdout_score": 0.8435,
+          "seed": 46,
+          "task": "math",
+          "baseline_score": 0.8387
+        },
+        {
+          "name": "manual",
+          "val_score": 0.8391,
+          "holdout_score": 0.8437,
+          "seed": 46,
+          "task": "math",
+          "baseline_score": 0.8387
+        },
+        {
+          "name": "apc-full",
+          "val_score": 0.8393,
+          "holdout_score": 0.844,
+          "seed": 46,
+          "task": "math",
+          "baseline_score": 0.6285
+        },
+        {
+          "name": "apc-safe",
+          "val_score": 0.8388,
+          "holdout_score": 0.8436,
+          "seed": 46,
+          "task": "math",
+          "baseline_score": 0.8392
+        }
+      ],
+      "oracle": {
+        "best_arm": "apc-full",
+        "holdout_score": 0.844
+      },
+      "num_arms": 4
+    },
+    "math-s47": {
+      "task": "math",
+      "seed": 47,
+      "source_file": "real_math.json",
+      "arms": [
+        {
+          "name": "zero-shot",
+          "val_score": 0.8388,
+          "holdout_score": 0.8436,
+          "seed": 47,
+          "task": "math",
+          "baseline_score": 0.8387
+        },
+        {
+          "name": "manual",
+          "val_score": 0.8388,
+          "holdout_score": 0.8438,
+          "seed": 47,
+          "task": "math",
+          "baseline_score": 0.8387
+        },
+        {
+          "name": "apc-full",
+          "val_score": 0.6227,
+          "holdout_score": 0.6425,
+          "seed": 47,
+          "task": "math",
+          "baseline_score": 0.6022
+        },
+        {
+          "name": "apc-safe",
+          "val_score": 0.8388,
+          "holdout_score": 0.8435,
+          "seed": 47,
+          "task": "math",
+          "baseline_score": 0.8392
+        }
+      ],
+      "oracle": {
+        "best_arm": "manual",
+        "holdout_score": 0.8438
+      },
+      "num_arms": 4
+    },
+    "math_gpt6_pgam-s42": {
+      "task": "math_gpt6_pgam",
+      "seed": 42,
+      "source_file": "real_math_gpt6_pgam.json",
+      "arms": [
+        {
+          "name": "pgam-cold",
+          "val_score": 0.6459,
+          "holdout_score": 0.596,
+          "seed": 42,
+          "task": "math",
+          "baseline_score": 0.6462
+        }
+      ],
+      "oracle": {
+        "best_arm": "pgam-cold",
+        "holdout_score": 0.596
+      },
+      "num_arms": 1
+    },
+    "multiseed_summary-s42": {
+      "task": "multiseed_summary",
+      "seed": 42,
+      "source_file": "real_multiseed_summary.json",
+      "arms": [
+        {
+          "name": "apc-full",
+          "val_score": 0.0,
+          "holdout_score": 0.0,
+          "seed": 42,
+          "task": "real_financial",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "apc-safe",
+          "val_score": 0.0,
+          "holdout_score": 0.0,
+          "seed": 42,
+          "task": "real_financial",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "manual",
+          "val_score": 0.0,
+          "holdout_score": 0.0,
+          "seed": 42,
+          "task": "real_financial",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "zero-shot",
+          "val_score": 0.0,
+          "holdout_score": 0.0,
+          "seed": 42,
+          "task": "real_financial",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "apc-full",
+          "val_score": 0.0,
+          "holdout_score": 0.0,
+          "seed": 42,
+          "task": "real_contract",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "apc-safe",
+          "val_score": 0.0,
+          "holdout_score": 0.0,
+          "seed": 42,
+          "task": "real_contract",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "manual",
+          "val_score": 0.0,
+          "holdout_score": 0.0,
+          "seed": 42,
+          "task": "real_contract",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "zero-shot",
+          "val_score": 0.0,
+          "holdout_score": 0.0,
+          "seed": 42,
+          "task": "real_contract",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "apc-full",
+          "val_score": 0.0,
+          "holdout_score": 0.0,
+          "seed": 42,
+          "task": "real_math",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "apc-safe",
+          "val_score": 0.0,
+          "holdout_score": 0.0,
+          "seed": 42,
+          "task": "real_math",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "manual",
+          "val_score": 0.0,
+          "holdout_score": 0.0,
+          "seed": 42,
+          "task": "real_math",
+          "baseline_score": 0.0
+        },
+        {
+          "name": "zero-shot",
+          "val_score": 0.0,
+          "holdout_score": 0.0,
+          "seed": 42,
+          "task": "real_math",
+          "baseline_score": 0.0
+        }
+      ],
+      "oracle": {
+        "best_arm": "apc-full",
+        "holdout_score": 0.0
+      },
+      "num_arms": 12
+    },
+    "transfer_contract_to_math-s42": {
+      "task": "transfer_contract_to_math",
+      "seed": 42,
+      "source_file": "real_transfer_contract_to_math.json",
+      "arms": [
+        {
+          "name": "transfer-0",
+          "val_score": 0.8395,
+          "holdout_score": 0.8439,
+          "seed": 42,
+          "task": "math",
+          "baseline_score": 0.8393
+        },
+        {
+          "name": "cold",
+          "val_score": 0.6589,
+          "holdout_score": 0.6402,
+          "seed": 42,
+          "task": "math",
+          "baseline_score": 0.6285
+        },
+        {
+          "name": "transfer-ws",
+          "val_score": 0.8392,
+          "holdout_score": 0.8441,
+          "seed": 42,
+          "task": "math",
+          "baseline_score": 0.8395
+        }
+      ],
+      "oracle": {
+        "best_arm": "transfer-ws",
+        "holdout_score": 0.8441
+      },
+      "num_arms": 3
+    },
+    "transfer_financial_to_math_gpt6-s42": {
+      "task": "transfer_financial_to_math_gpt6",
+      "seed": 42,
+      "source_file": "real_transfer_financial_to_math_gpt6.json",
+      "arms": [
+        {
+          "name": "transfer-0",
+          "val_score": 0.8388,
+          "holdout_score": 0.8443,
+          "seed": 42,
+          "task": "math",
+          "baseline_score": 0.8389
+        },
+        {
+          "name": "cold",
+          "val_score": 0.6564,
+          "holdout_score": 0.6336,
+          "seed": 42,
+          "task": "math",
+          "baseline_score": 0.651
+        },
+        {
+          "name": "transfer-ws",
+          "val_score": 0.839,
+          "holdout_score": 0.8439,
+          "seed": 42,
+          "task": "math",
+          "baseline_score": 0.8393
+        }
+      ],
+      "oracle": {
+        "best_arm": "transfer-0",
+        "holdout_score": 0.8443
+      },
+      "num_arms": 3
+    },
+    "transfer_math_to_contract-s42": {
+      "task": "transfer_math_to_contract",
+      "seed": 42,
+      "source_file": "real_transfer_math_to_contract.json",
+      "arms": [
+        {
+          "name": "transfer-0",
+          "val_score": 0.8871,
+          "holdout_score": 0.9778,
+          "seed": 42,
+          "task": "contract",
+          "baseline_score": 0.9763
+        },
+        {
+          "name": "cold",
+          "val_score": 0.1965,
+          "holdout_score": 0.185,
+          "seed": 42,
+          "task": "contract",
+          "baseline_score": 0.1778
+        },
+        {
+          "name": "transfer-ws",
+          "val_score": 0.9822,
+          "holdout_score": 0.9582,
+          "seed": 42,
+          "task": "contract",
+          "baseline_score": 0.9739
+        }
+      ],
+      "oracle": {
+        "best_arm": "transfer-0",
+        "holdout_score": 0.9778
+      },
+      "num_arms": 3
+    }
+  }
+}
