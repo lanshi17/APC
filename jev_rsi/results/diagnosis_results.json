@@ -38,18 +38,24 @@
         "n": 10,
         "greedy_correct": 9,
         "greedy_accuracy": 0.9,
+        "heuristic_accuracy": 0.3,
+        "jev_accuracy": 0.3,
         "share_informative": 0.1
       },
       "0.3 <= rho < 0.8": {
         "n": 11,
         "greedy_correct": 4,
         "greedy_accuracy": 0.3636,
+        "heuristic_accuracy": 0.4545,
+        "jev_accuracy": 0.2727,
         "share_informative": 0.6364
       },
       "rho < 0.3": {
         "n": 2,
         "greedy_correct": 0,
         "greedy_accuracy": 0.0,
+        "heuristic_accuracy": 0.0,
+        "jev_accuracy": 0.0,
         "share_informative": 1.0
       }
     },
@@ -63,6 +69,8 @@
         "rho": 0.8333,
         "tie_share": 0.5,
         "greedy_correct": true,
+        "heuristic_correct": false,
+        "jev_correct": false,
         "greedy_regret": 0.0,
         "is_informative": false,
         "informative": false
@@ -74,6 +82,8 @@
         "rho": 0.6,
         "tie_share": 0.25,
         "greedy_correct": false,
+        "heuristic_correct": false,
+        "jev_correct": false,
         "greedy_regret": 0.0003,
         "is_informative": true,
         "informative": true
@@ -85,6 +95,8 @@
         "rho": 0.8,
         "tie_share": 0.25,
         "greedy_correct": true,
+        "heuristic_correct": false,
+        "jev_correct": false,
         "greedy_regret": 0.0,
         "is_informative": false,
         "informative": false
@@ -96,6 +108,8 @@
         "rho": 0.9487,
         "tie_share": 0.5,
         "greedy_correct": false,
+        "heuristic_correct": false,
+        "jev_correct": false,
         "greedy_regret": 0.0008,
         "is_informative": true,
         "informative": true
@@ -107,6 +121,8 @@
         "rho": 1.0,
         "tie_share": 0.5,
         "greedy_correct": true,
+        "heuristic_correct": true,
+        "jev_correct": true,
         "greedy_regret": 0.0,
         "is_informative": false,
         "informative": false
@@ -118,6 +134,8 @@
         "rho": 1.0,
         "tie_share": 0.5,
         "greedy_correct": true,
+        "heuristic_correct": true,
+        "jev_correct": true,
         "greedy_regret": 0.0,
         "is_informative": false,
         "informative": false
@@ -129,6 +147,8 @@
         "rho": 0.4,
         "tie_share": 0.25,
         "greedy_correct": false,
+        "heuristic_correct": true,
+        "jev_correct": true,
         "greedy_regret": 0.0035,
         "is_informative": true,
         "informative": true
@@ -140,6 +160,8 @@
         "rho": 1.0,
         "tie_share": 0.25,
         "greedy_correct": true,
+        "heuristic_correct": false,
+        "jev_correct": false,
         "greedy_regret": 0.0,
         "is_informative": false,
         "informative": false
@@ -151,6 +173,8 @@
         "rho": 1.0,
         "tie_share": 0.25,
         "greedy_correct": true,
+        "heuristic_correct": false,
+        "jev_correct": false,
         "greedy_regret": 0.0,
         "is_informative": false,
         "informative": false
@@ -162,6 +186,8 @@
         "rho": 0.2,
         "tie_share": 0.25,
         "greedy_correct": false,
+        "heuristic_correct": false,
+        "jev_correct": false,
         "greedy_regret": 0.0029,
         "is_informative": true,
         "informative": true
@@ -173,6 +199,8 @@
         "rho": 1.0,
         "tie_share": 0.25,
         "greedy_correct": true,
+        "heuristic_correct": false,
+        "jev_correct": false,
         "greedy_regret": 0.0,
         "is_informative": false,
         "informative": false
@@ -184,6 +212,8 @@
         "rho": 0.5,
         "tie_share": 0.3333,
         "greedy_correct": true,
+        "heuristic_correct": true,
+        "jev_correct": false,
         "greedy_regret": 0.0,
         "is_informative": false,
         "informative": false
@@ -195,6 +225,8 @@
         "rho": 0.5,
         "tie_share": 0.3333,
         "greedy_correct": true,
+        "heuristic_correct": true,
+        "jev_correct": true,
         "greedy_regret": 0.0,
         "is_informative": false,
         "informative": false
@@ -206,6 +238,8 @@
         "rho": -0.5,
         "tie_share": 0.3333,
         "greedy_correct": false,
+        "heuristic_correct": false,
+        "jev_correct": false,
         "greedy_regret": 0.0006,
         "is_informative": true,
         "informative": true
@@ -217,6 +251,8 @@
         "rho": null,
         "tie_share": 1.0,
         "greedy_correct": true,
+        "heuristic_correct": true,
+        "jev_correct": true,
         "greedy_regret": 0.0,
         "is_informative": false,
         "informative": false
@@ -228,6 +264,8 @@
         "rho": 1.0,
         "tie_share": 0.5,
         "greedy_correct": true,
+        "heuristic_correct": true,
+        "jev_correct": true,
         "greedy_regret": 0.0,
         "is_informative": false,
         "informative": false
@@ -239,6 +277,8 @@
         "rho": null,
         "tie_share": 1.0,
         "greedy_correct": true,
+        "heuristic_correct": true,
+        "jev_correct": true,
         "greedy_regret": 0.0,
         "is_informative": false,
         "informative": false
@@ -250,6 +290,8 @@
         "rho": null,
         "tie_share": 1.0,
         "greedy_correct": false,
+        "heuristic_correct": false,
+        "jev_correct": false,
         "greedy_regret": 0.1402,
         "is_informative": true,
         "informative": true
@@ -261,6 +303,8 @@
         "rho": null,
         "tie_share": 0.5,
         "greedy_correct": true,
+        "heuristic_correct": true,
+        "jev_correct": true,
         "greedy_regret": 0.0,
         "is_informative": false,
         "informative": false
@@ -272,6 +316,8 @@
         "rho": 0.3928,
         "tie_share": 0.8333,
         "greedy_correct": false,
+        "heuristic_correct": false,
+        "jev_correct": false,
         "greedy_regret": 0.0111,
         "is_informative": true,
         "informative": true
@@ -283,6 +329,8 @@
         "rho": null,
         "tie_share": 1.0,
         "greedy_correct": false,
+        "heuristic_correct": false,
+        "jev_correct": false,
         "greedy_regret": 0.2038,
         "is_informative": true,
         "informative": true
@@ -294,6 +342,8 @@
         "rho": 0.7833,
         "tie_share": 0.6667,
         "greedy_correct": true,
+        "heuristic_correct": true,
+        "jev_correct": false,
         "greedy_regret": 0.0,
         "is_informative": false,
         "informative": false
@@ -305,6 +355,8 @@
         "rho": null,
         "tie_share": 1.0,
         "greedy_correct": false,
+        "heuristic_correct": false,
+        "jev_correct": false,
         "greedy_regret": 0.0092,
         "is_informative": true,
         "informative": true
@@ -316,6 +368,8 @@
         "rho": null,
         "tie_share": 1.0,
         "greedy_correct": false,
+        "heuristic_correct": false,
+        "jev_correct": false,
         "greedy_regret": 0.0081,
         "is_informative": true,
         "informative": true
@@ -327,6 +381,8 @@
         "rho": null,
         "tie_share": 1.0,
         "greedy_correct": true,
+        "heuristic_correct": true,
+        "jev_correct": true,
         "greedy_regret": 0.0,
         "is_informative": false,
         "informative": false
@@ -338,6 +394,8 @@
         "rho": 0.5,
         "tie_share": 0.5,
         "greedy_correct": true,
+        "heuristic_correct": false,
+        "jev_correct": false,
         "greedy_regret": 0.0,
         "is_informative": false,
         "informative": false
@@ -349,6 +407,8 @@
         "rho": 0.9487,
         "tie_share": 0.5,
         "greedy_correct": true,
+        "heuristic_correct": false,
+        "jev_correct": false,
         "greedy_regret": 0.0,
         "is_informative": false,
         "informative": false
@@ -360,6 +420,8 @@
         "rho": 0.7746,
         "tie_share": 0.75,
         "greedy_correct": false,
+        "heuristic_correct": false,
+        "jev_correct": false,
         "greedy_regret": 0.0002,
         "is_informative": true,
         "informative": true
@@ -371,6 +433,8 @@
         "rho": null,
         "tie_share": 1.0,
         "greedy_correct": false,
+        "heuristic_correct": true,
+        "jev_correct": true,
         "greedy_regret": 0.0,
         "is_informative": false,
         "informative": false
@@ -382,6 +446,8 @@
         "rho": 0.5,
         "tie_share": 0.3333,
         "greedy_correct": false,
+        "heuristic_correct": true,
+        "jev_correct": false,
         "greedy_regret": 0.0002,
         "is_informative": true,
         "informative": true
@@ -393,6 +459,8 @@
         "rho": 0.5,
         "tie_share": 0.3333,
         "greedy_correct": false,
+        "heuristic_correct": false,
+        "jev_correct": true,
         "greedy_regret": 0.0004,
         "is_informative": true,
         "informative": true
@@ -404,6 +472,8 @@
         "rho": 0.5,
         "tie_share": 0.3333,
         "greedy_correct": false,
+        "heuristic_correct": false,
+        "jev_correct": false,
         "greedy_regret": 0.0196,
         "is_informative": true,
         "informative": true
@@ -829,7 +899,8 @@
         "effective_signal": 0,
         "tie_share": 0,
         "is_transfer": 0,
-        "is_champion": 0
+        "is_champion": 0,
+        "collapse_noul": 0
       },
       "picks": [
         "val_holdout_gap <= 0.0245 AND n_arms >= 3.0",
@@ -888,8 +959,51 @@
       "effective_signal",
       "tie_share",
       "is_transfer",
-      "is_champion"
+      "is_champion",
+      "collapse_noul"
     ],
+    "named_ood_groups": {
+      "gpqa_resume_slice_quarantine-s926": {
+        "gid": "gpqa_resume_slice_quarantine-s926",
+        "val_variance": 0.0,
+        "val_holdout_gap": -0.8569,
+        "top2_val_margin": 0.0,
+        "n_arms": 2.0,
+        "effective_signal": 1.0,
+        "tie_share": 1.0,
+        "is_transfer": 0.0,
+        "is_champion": 0.0,
+        "collapse_noul": 0.0,
+        "unsolvable_by_val": true,
+        "flagged_by": {
+          "all arms tie on val (var == 0)": true,
+          "any arm has val == 0": true,
+          "n_arms >= 6": false,
+          "effective_signal <= 1": true
+        },
+        "n_rules_flagging": 3
+      },
+      "gepa_gpt6_recheck_orig-s42": {
+        "gid": "gepa_gpt6_recheck_orig-s42",
+        "val_variance": 0.0,
+        "val_holdout_gap": -0.8441,
+        "top2_val_margin": 0.0,
+        "n_arms": 3.0,
+        "effective_signal": 1.0,
+        "tie_share": 1.0,
+        "is_transfer": 0.0,
+        "is_champion": 0.0,
+        "collapse_noul": 0.0,
+        "unsolvable_by_val": true,
+        "flagged_by": {
+          "all arms tie on val (var == 0)": true,
+          "any arm has val == 0": true,
+          "n_arms >= 6": false,
+          "effective_signal <= 1": true
+        },
+        "n_rules_flagging": 3
+      }
+    },
     "hypothesis": "an identifiable OOD rule flags the groups where val cannot work",
     "rows": [
       {
@@ -902,6 +1016,7 @@
         "tie_share": 0.5,
         "is_transfer": 0.0,
         "is_champion": 0.0,
+        "collapse_noul": 0.0,
         "unsolvable_by_val": false
       },
       {
@@ -914,6 +1029,7 @@
         "tie_share": 0.25,
         "is_transfer": 0.0,
         "is_champion": 0.0,
+        "collapse_noul": 0.0,
         "unsolvable_by_val": true
       },
       {
@@ -926,6 +1042,7 @@
         "tie_share": 0.25,
         "is_transfer": 0.0,
         "is_champion": 0.0,
+        "collapse_noul": 0.6144,
         "unsolvable_by_val": false
       },
       {
@@ -938,6 +1055,7 @@
         "tie_share": 0.5,
         "is_transfer": 0.0,
         "is_champion": 0.0,
+        "collapse_noul": 0.0,
         "unsolvable_by_val": true
       },
       {
@@ -950,6 +1068,7 @@
         "tie_share": 0.5,
         "is_transfer": 0.0,
         "is_champion": 0.0,
+        "collapse_noul": 0.0,
         "unsolvable_by_val": false
       },
       {
@@ -962,6 +1081,7 @@
         "tie_share": 0.5,
         "is_transfer": 0.0,
         "is_champion": 0.0,
+        "collapse_noul": 0.7096,
         "unsolvable_by_val": false
       },
       {
@@ -974,6 +1094,7 @@
         "tie_share": 0.25,
         "is_transfer": 0.0,
         "is_champion": 0.0,
+        "collapse_noul": 0.655635,
         "unsolvable_by_val": true
       },
       {
@@ -986,6 +1107,7 @@
         "tie_share": 0.25,
         "is_transfer": 0.0,
         "is_champion": 0.0,
+        "collapse_noul": 0.0,
         "unsolvable_by_val": false
       },
       {
@@ -998,6 +1120,7 @@
         "tie_share": 0.25,
         "is_transfer": 0.0,
         "is_champion": 0.0,
+        "collapse_noul": 0.7442,
         "unsolvable_by_val": false
       },
       {
@@ -1010,6 +1133,7 @@
         "tie_share": 0.25,
         "is_transfer": 0.0,
         "is_champion": 0.0,
+        "collapse_noul": 0.0,
         "unsolvable_by_val": true
       },
       {
@@ -1022,6 +1146,7 @@
         "tie_share": 0.25,
         "is_transfer": 0.0,
         "is_champion": 0.0,
+        "collapse_noul": 0.0,
         "unsolvable_by_val": false
       },
       {
@@ -1034,6 +1159,7 @@
         "tie_share": 0.333333,
         "is_transfer": 0.0,
         "is_champion": 0.0,
+        "collapse_noul": 0.0,
         "unsolvable_by_val": false
       },
       {
@@ -1046,6 +1172,7 @@
         "tie_share": 0.333333,
         "is_transfer": 0.0,
         "is_champion": 0.0,
+        "collapse_noul": 0.0,
         "unsolvable_by_val": false
       },
       {
@@ -1058,6 +1185,7 @@
         "tie_share": 0.333333,
         "is_transfer": 0.0,
         "is_champion": 0.0,
+        "collapse_noul": 0.0,
         "unsolvable_by_val": true
       },
       {
@@ -1070,6 +1198,7 @@
         "tie_share": 1.0,
         "is_transfer": 0.0,
         "is_champion": 0.0,
+        "collapse_noul": 0.0,
         "unsolvable_by_val": false
       },
       {
@@ -1082,6 +1211,7 @@
         "tie_share": 0.5,
         "is_transfer": 0.0,
         "is_champion": 0.0,
+        "collapse_noul": 0.0,
         "unsolvable_by_val": false
       },
       {
@@ -1094,6 +1224,7 @@
         "tie_share": 1.0,
         "is_transfer": 0.0,
         "is_champion": 0.0,
+        "collapse_noul": 0.0,
         "unsolvable_by_val": false
       },
       {
@@ -1106,6 +1237,7 @@
         "tie_share": 1.0,
         "is_transfer": 0.0,
         "is_champion": 0.0,
+        "collapse_noul": 0.0,
         "unsolvable_by_val": true
       },
       {
@@ -1118,6 +1250,7 @@
         "tie_share": 0.5,
         "is_transfer": 0.0,
         "is_champion": 0.0,
+        "collapse_noul": 0.7,
         "unsolvable_by_val": false
       },
       {
@@ -1130,6 +1263,7 @@
         "tie_share": 0.833333,
         "is_transfer": 0.0,
         "is_champion": 0.0,
+        "collapse_noul": 1.0,
         "unsolvable_by_val": true
       },
       {
@@ -1142,6 +1276,7 @@
         "tie_share": 1.0,
         "is_transfer": 0.0,
         "is_champion": 0.0,
+        "collapse_noul": 0.0,
         "unsolvable_by_val": true
       },
       {
@@ -1154,6 +1289,7 @@
         "tie_share": 0.666667,
         "is_transfer": 0.0,
         "is_champion": 0.0,
+        "collapse_noul": 1.0,
         "unsolvable_by_val": false
       },
       {
@@ -1166,6 +1302,7 @@
         "tie_share": 1.0,
         "is_transfer": 0.0,
         "is_champion": 0.0,
+        "collapse_noul": 0.0,
         "unsolvable_by_val": true
       },
       {
@@ -1178,6 +1315,7 @@
         "tie_share": 1.0,
         "is_transfer": 0.0,
         "is_champion": 0.0,
+        "collapse_noul": 0.0,
         "unsolvable_by_val": true
       },
       {
@@ -1190,6 +1328,7 @@
         "tie_share": 1.0,
         "is_transfer": 0.0,
         "is_champion": 0.0,
+        "collapse_noul": 0.0,
         "unsolvable_by_val": false
       },
       {
@@ -1202,6 +1341,7 @@
         "tie_share": 0.5,
         "is_transfer": 0.0,
         "is_champion": 0.0,
+        "collapse_noul": 0.0,
         "unsolvable_by_val": false
       },
       {
@@ -1214,6 +1354,7 @@
         "tie_share": 0.5,
         "is_transfer": 0.0,
         "is_champion": 0.0,
+        "collapse_noul": 0.0,
         "unsolvable_by_val": false
       },
       {
@@ -1226,6 +1367,7 @@
         "tie_share": 0.75,
         "is_transfer": 0.0,
         "is_champion": 0.0,
+        "collapse_noul": 0.0,
         "unsolvable_by_val": true
       },
       {
@@ -1238,6 +1380,7 @@
         "tie_share": 1.0,
         "is_transfer": 0.0,
         "is_champion": 0.0,
+        "collapse_noul": 0.0,
         "unsolvable_by_val": false
       },
       {
@@ -1250,6 +1393,7 @@
         "tie_share": 0.333333,
         "is_transfer": 1.0,
         "is_champion": 0.0,
+        "collapse_noul": 0.0,
         "unsolvable_by_val": true
       },
       {
@@ -1262,6 +1406,7 @@
         "tie_share": 0.333333,
         "is_transfer": 1.0,
         "is_champion": 0.0,
+        "collapse_noul": 0.0,
         "unsolvable_by_val": true
       },
       {
@@ -1274,6 +1419,7 @@
         "tie_share": 0.333333,
         "is_transfer": 1.0,
         "is_champion": 0.0,
+        "collapse_noul": 0.607,
         "unsolvable_by_val": true
       }
     ]

@@ -33,7 +33,7 @@ from typing import Any, Dict, List, Optional, Sequence, Tuple
 import numpy as np
 from scipy.stats import rankdata, spearmanr
 
-from .core import NOISE_BAND, Decision, JevGate, MetaParams, get_policy
+from .core import NOISE_BAND, Decision, JevGate, MetaParams, collapse_noul, get_policy
 from .data import Group, load_groups
 from .experiments import summarize
 
@@ -89,6 +89,7 @@ def _features(g: Group) -> Dict[str, float]:
         "tie_share": float(max(np.unique(val, return_counts=True)[1]) / len(val)),
         "is_transfer": float("transfer_" in g.gid),
         "is_champion": float("champ" in g.gid),
+        "collapse_noul": float(collapse_noul(g.arms)),
     }
 
 
@@ -107,13 +108,19 @@ def _auc(scores: Sequence[float], labels: Sequence[bool]) -> float:
 # experiment 1 -- val/holdout rank alignment
 # ---------------------------------------------------------------------------
 def experiment_alignment(groups: Sequence[Group]) -> Dict[str, Any]:
+    gate = JevGate(meta=MetaParams())
+    heuristic = get_policy("heuristic")
     rows = []
     for g in groups:
         rho, tie_share = _rho(g)
+        d_jev = gate.act(g)
+        d_heur = heuristic(g)
         rows.append({"gid": g.gid, "task": g.task, "n_arms": g.n_arms,
                      "rho": None if np.isnan(rho) else round(rho, 4),
                      "tie_share": round(tie_share, 4),
                      "greedy_correct": _greedy_correct(g),
+                     "heuristic_correct": d_heur.regret < 1e-9,
+                     "jev_correct": d_jev.regret < 1e-9,
                      "greedy_regret": round(g.oracle.hold - g.greedy.hold, 6),
                      "is_informative": g.is_informative,
                      "informative": bool(g.is_informative)})
@@ -130,14 +137,17 @@ def experiment_alignment(groups: Sequence[Group]) -> Dict[str, Any]:
 
     bucket_stats = {}
     for k, rs in buckets.items():
-        if not rs:
+        n = len(rs)
+        if not n:
             bucket_stats[k] = {"n": 0}
             continue
         bucket_stats[k] = {
-            "n": len(rs),
+            "n": n,
             "greedy_correct": sum(1 for r in rs if r["greedy_correct"]),
-            "greedy_accuracy": round(sum(1 for r in rs if r["greedy_correct"]) / len(rs), 4),
-            "share_informative": round(sum(1 for r in rs if r["informative"]) / len(rs), 4),
+            "greedy_accuracy": round(sum(1 for r in rs if r["greedy_correct"]) / n, 4),
+            "heuristic_accuracy": round(sum(1 for r in rs if r["heuristic_correct"]) / n, 4),
+            "jev_accuracy": round(sum(1 for r in rs if r["jev_correct"]) / n, 4),
+            "share_informative": round(sum(1 for r in rs if r["informative"]) / n, 4),
         }
 
     zero_spread = [g.gid for g in groups if np.var([a.val for a in g.arms]) == 0]
@@ -277,7 +287,8 @@ def _confusion(pred: np.ndarray, y: np.ndarray) -> Dict[str, Any]:
 
 def experiment_ood(groups: Sequence[Group]) -> Dict[str, Any]:
     feats = ["val_variance", "val_holdout_gap", "top2_val_margin", "n_arms",
-             "effective_signal", "tie_share", "is_transfer", "is_champion"]
+             "effective_signal", "tie_share", "is_transfer", "is_champion",
+             "collapse_noul"]
     X = np.array([[float(_features(g)[f]) for f in feats] for g in groups])
     # "unsolvable by val" == val-argmax is wrong by more than the noise band
     y = np.array([g.is_informative for g in groups], dtype=bool)
@@ -329,6 +340,17 @@ def experiment_ood(groups: Sequence[Group]) -> Dict[str, Any]:
                     or (fit["balanced_accuracy"], fit["accuracy"]) > (in_sample_fit["balanced_accuracy"], in_sample_fit["accuracy"])):
             in_sample_best, in_sample_fit = r, fit
 
+    # the document names two groups as having identifiable OOD signatures
+    named = {}
+    for gid in ("gpqa_resume_slice_quarantine-s926", "gepa_gpt6_recheck_orig-s42"):
+        hit = next((r for r in rows if r["gid"] == gid), None)
+        if hit is None:
+            continue
+        flagged = {name: bool(pred[[r["gid"] for r in rows].index(gid)])
+                   for name, pred in unfitted.items()}
+        named[gid] = {**hit, "flagged_by": flagged,
+                      "n_rules_flagging": sum(flagged.values())}
+
     loo_conf = _confusion(loo_pred, y)
     return {
         "n_groups": len(groups),
@@ -346,6 +368,7 @@ def experiment_ood(groups: Sequence[Group]) -> Dict[str, Any]:
                                                            in_sample_fit["thresholds"])),
             **in_sample_fit},
         "features": feats,
+        "named_ood_groups": named,
         "hypothesis": "an identifiable OOD rule flags the groups where val cannot work",
         "rows": rows,
     }
@@ -378,8 +401,9 @@ def _print(report: Dict[str, Any]) -> None:
           f"  of which unsolvable-by-val: {e1['n_zero_val_spread_unsolvable']}")
     for k, v in e1["buckets"].items():
         if v.get("n"):
-            print(f"    {k:<18} n={v['n']:<3} greedy-correct {v['greedy_correct']}/{v['n']} "
-                  f"({v['greedy_accuracy']:.0%})  informative-share {v['share_informative']:.0%}")
+            print(f"    {k:<18} n={v['n']:<3} greedy {v['greedy_accuracy']:.0%}  "
+                  f"heuristic {v['heuristic_accuracy']:.0%}  jev {v['jev_accuracy']:.0%}  "
+                  f"informative-share {v['share_informative']:.0%}")
     print(f"  AUC(rho -> greedy correct) = {e1['auc_rho_predicts_greedy_correct']}")
 
     e2 = report["experiment_2_sparsity"]
@@ -402,6 +426,11 @@ def _print(report: Dict[str, Any]) -> None:
           f"   ({nl['n_distinct_rules_picked']} distinct rules across folds)")
     top = sorted(nl["feature_frequency"].items(), key=lambda kv: -kv[1])[:4]
     print(f"    most-picked features: {top}")
+    if e3.get("named_ood_groups"):
+        print("  the two groups the document names as OOD:")
+        for gid, info in e3["named_ood_groups"].items():
+            print(f"    {gid:<34} unsolvable={info['unsolvable_by_val']} "
+                  f"flagged by {info['n_rules_flagging']}/{len(e3['unfitted_rules'])} unfitted rules")
     if e3["in_sample_best_rule"]:
         r = e3["in_sample_best_rule"]
         print(f"  in-sample best (optimistic): {r['description']}  bal-acc {r['balanced_accuracy']}")
