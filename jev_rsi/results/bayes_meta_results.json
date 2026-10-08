@@ -1,0 +1,1787 @@
+{
+  "protocol": "FUTURE_DIRECTIONS.md Priority 5: GP surrogate over the three gate thresholds, mean training regret, leave-one-group-out",
+  "budget": 50,
+  "n_init": 12,
+  "boxes": {
+    "grid_box": [
+      [
+        0.2,
+        0.9
+      ],
+      [
+        0.05,
+        0.7
+      ],
+      [
+        0.05,
+        0.8
+      ]
+    ],
+    "document_box": [
+      [
+        0.5,
+        0.9
+      ],
+      [
+        0.3,
+        0.7
+      ],
+      [
+        0.5,
+        0.9
+      ]
+    ]
+  },
+  "greedy": {
+    "n_groups": 32,
+    "exact_oracle": 18,
+    "exact_rate": 0.5625,
+    "within_noise": 26,
+    "within_noise_rate": 0.8125,
+    "avg_regret": 0.012528,
+    "max_regret": 0.2038,
+    "total_regret": 0.4009,
+    "n_collapse_cases": 6,
+    "collapse_avoided": 4
+  },
+  "existing_grid_loo": {
+    "n_groups": 32,
+    "exact_oracle": 14,
+    "exact_rate": 0.4375,
+    "within_noise": 25,
+    "within_noise_rate": 0.7812,
+    "avg_regret": 0.013438,
+    "max_regret": 0.2038,
+    "total_regret": 0.43,
+    "n_collapse_cases": 6,
+    "collapse_avoided": 4,
+    "n_points": 175
+  },
+  "landscape": {
+    "n_samples": 400,
+    "box": "grid_box",
+    "n_distinct_objectives": 12,
+    "n_distinct_decision_vectors": 12,
+    "objective_min": 0.012862,
+    "objective_max": 0.013837,
+    "objective_median": 0.013225
+  },
+  "strategies": {
+    "grid_box": {
+      "bayes_loo": {
+        "strategy": "bayes",
+        "box": "grid_box",
+        "budget": 50,
+        "summary": {
+          "n_groups": 32,
+          "exact_oracle": 13,
+          "exact_rate": 0.4062,
+          "within_noise": 25,
+          "within_noise_rate": 0.7812,
+          "avg_regret": 0.013475,
+          "max_regret": 0.2038,
+          "total_regret": 0.4312,
+          "n_collapse_cases": 6,
+          "collapse_avoided": 4
+        },
+        "vs_static": {
+          "wins": 2,
+          "losses": 1,
+          "ties": 29
+        },
+        "rows": [
+          {
+            "gid": "contract-s42",
+            "meta": {
+              "collapse_threshold": 0.405846693366766,
+              "alignment_threshold": 0.1652080758474767,
+              "confidence_floor": 0.2528449100907892
+            },
+            "deployed": "zero-shot",
+            "reason": "low_val_alignment",
+            "regret": 0.0012,
+            "static_regret": 0.0012
+          },
+          {
+            "gid": "contract-s46",
+            "meta": {
+              "collapse_threshold": 0.405846693366766,
+              "alignment_threshold": 0.1652080758474767,
+              "confidence_floor": 0.2528449100907892
+            },
+            "deployed": "zero-shot",
+            "reason": "low_val_alignment",
+            "regret": 0.0004,
+            "static_regret": 0.0004
+          },
+          {
+            "gid": "contract-s47",
+            "meta": {
+              "collapse_threshold": 0.405846693366766,
+              "alignment_threshold": 0.1652080758474767,
+              "confidence_floor": 0.2528449100907892
+            },
+            "deployed": "zero-shot",
+            "reason": "collapse_detected",
+            "regret": 0.0006,
+            "static_regret": 0.0006
+          },
+          {
+            "gid": "contract_gpt6-s42",
+            "meta": {
+              "collapse_threshold": 0.405846693366766,
+              "alignment_threshold": 0.1652080758474767,
+              "confidence_floor": 0.2528449100907892
+            },
+            "deployed": "zero-shot",
+            "reason": "low_val_alignment",
+            "regret": 0.0009,
+            "static_regret": 0.0009
+          },
+          {
+            "gid": "financial-s43",
+            "meta": {
+              "collapse_threshold": 0.405846693366766,
+              "alignment_threshold": 0.1652080758474767,
+              "confidence_floor": 0.2528449100907892
+            },
+            "deployed": "apc-safe",
+            "reason": "normal_selection",
+            "regret": 0.0,
+            "static_regret": 0.0
+          },
+          {
+            "gid": "financial-s44",
+            "meta": {
+              "collapse_threshold": 0.405846693366766,
+              "alignment_threshold": 0.1652080758474767,
+              "confidence_floor": 0.2528449100907892
+            },
+            "deployed": "apc-safe",
+            "reason": "collapse_detected",
+            "regret": 0.0,
+            "static_regret": 0.0
+          },
+          {
+            "gid": "financial-s45",
+            "meta": {
+              "collapse_threshold": 0.405846693366766,
+              "alignment_threshold": 0.1652080758474767,
+              "confidence_floor": 0.2528449100907892
+            },
+            "deployed": "zero-shot",
+            "reason": "collapse_detected",
+            "regret": 0.0,
+            "static_regret": 0.0
+          },
+          {
+            "gid": "financial-s46",
+            "meta": {
+              "collapse_threshold": 0.405846693366766,
+              "alignment_threshold": 0.1652080758474767,
+              "confidence_floor": 0.2528449100907892
+            },
+            "deployed": "zero-shot",
+            "reason": "low_val_alignment",
+            "regret": 0.0038,
+            "static_regret": 0.0038
+          },
+          {
+            "gid": "financial-s47",
+            "meta": {
+              "collapse_threshold": 0.405846693366766,
+              "alignment_threshold": 0.1652080758474767,
+              "confidence_floor": 0.2528449100907892
+            },
+            "deployed": "zero-shot",
+            "reason": "collapse_detected",
+            "regret": 0.0057,
+            "static_regret": 0.0057
+          },
+          {
+            "gid": "financial_gpt56terra-s42",
+            "meta": {
+              "collapse_threshold": 0.405846693366766,
+              "alignment_threshold": 0.1652080758474767,
+              "confidence_floor": 0.2528449100907892
+            },
+            "deployed": "manual",
+            "reason": "normal_selection",
+            "regret": 0.0029,
+            "static_regret": 0.0025
+          },
+          {
+            "gid": "financial_gpt6-s42",
+            "meta": {
+              "collapse_threshold": 0.405846693366766,
+              "alignment_threshold": 0.1652080758474767,
+              "confidence_floor": 0.2528449100907892
+            },
+            "deployed": "manual",
+            "reason": "normal_selection",
+            "regret": 0.0,
+            "static_regret": 0.0109
+          },
+          {
+            "gid": "financial_gpt6_smoke-s42",
+            "meta": {
+              "collapse_threshold": 0.405846693366766,
+              "alignment_threshold": 0.1652080758474767,
+              "confidence_floor": 0.2528449100907892
+            },
+            "deployed": "manual",
+            "reason": "normal_selection",
+            "regret": 0.0,
+            "static_regret": 0.0007
+          },
+          {
+            "gid": "gepa-s42",
+            "meta": {
+              "collapse_threshold": 0.405846693366766,
+              "alignment_threshold": 0.1652080758474767,
+              "confidence_floor": 0.2528449100907892
+            },
+            "deployed": "gepa",
+            "reason": "normal_selection",
+            "regret": 0.0,
+            "static_regret": 0.0
+          },
+          {
+            "gid": "gepa-s43",
+            "meta": {
+              "collapse_threshold": 0.405846693366766,
+              "alignment_threshold": 0.1652080758474767,
+              "confidence_floor": 0.2528449100907892
+            },
+            "deployed": "gepa",
+            "reason": "normal_selection",
+            "regret": 0.0006,
+            "static_regret": 0.0006
+          },
+          {
+            "gid": "gepa-s901",
+            "meta": {
+              "collapse_threshold": 0.405846693366766,
+              "alignment_threshold": 0.1652080758474767,
+              "confidence_floor": 0.2528449100907892
+            },
+            "deployed": "z0-control",
+            "reason": "low_val_alignment",
+            "regret": 0.0,
+            "static_regret": 0.0
+          },
+          {
+            "gid": "gepa_gpt6-s42",
+            "meta": {
+              "collapse_threshold": 0.405846693366766,
+              "alignment_threshold": 0.1652080758474767,
+              "confidence_floor": 0.2528449100907892
+            },
+            "deployed": "gepa",
+            "reason": "normal_selection",
+            "regret": 0.0,
+            "static_regret": 0.0
+          },
+          {
+            "gid": "gepa_gpt6_recheck-s42",
+            "meta": {
+              "collapse_threshold": 0.405846693366766,
+              "alignment_threshold": 0.1652080758474767,
+              "confidence_floor": 0.2528449100907892
+            },
+            "deployed": "champ-verbatim",
+            "reason": "low_val_alignment",
+            "regret": 0.0,
+            "static_regret": 0.0
+          },
+          {
+            "gid": "gepa_gpt6_recheck_orig-s42",
+            "meta": {
+              "collapse_threshold": 0.405846693366766,
+              "alignment_threshold": 0.1652080758474767,
+              "confidence_floor": 0.2528449100907892
+            },
+            "deployed": "z0-paired",
+            "reason": "low_val_alignment",
+            "regret": 0.1402,
+            "static_regret": 0.1402
+          },
+          {
+            "gid": "gepa_mt150-s911",
+            "meta": {
+              "collapse_threshold": 0.405846693366766,
+              "alignment_threshold": 0.1652080758474767,
+              "confidence_floor": 0.2528449100907892
+            },
+            "deployed": "gepa",
+            "reason": "collapse_detected",
+            "regret": 0.0,
+            "static_regret": 0.0
+          },
+          {
+            "gid": "gpqa-s926",
+            "meta": {
+              "collapse_threshold": 0.405846693366766,
+              "alignment_threshold": 0.1652080758474767,
+              "confidence_floor": 0.2528449100907892
+            },
+            "deployed": "z0",
+            "reason": "collapse_detected",
+            "regret": 0.0127,
+            "static_regret": 0.0127
+          },
+          {
+            "gid": "gpqa_resume_slice_quarantine-s926",
+            "meta": {
+              "collapse_threshold": 0.405846693366766,
+              "alignment_threshold": 0.1652080758474767,
+              "confidence_floor": 0.2528449100907892
+            },
+            "deployed": "z0",
+            "reason": "low_val_alignment",
+            "regret": 0.2038,
+            "static_regret": 0.2038
+          },
+          {
+            "gid": "hle-s921",
+            "meta": {
+              "collapse_threshold": 0.405846693366766,
+              "alignment_threshold": 0.1652080758474767,
+              "confidence_floor": 0.2528449100907892
+            },
+            "deployed": "z0",
+            "reason": "collapse_detected",
+            "regret": 0.02,
+            "static_regret": 0.02
+          },
+          {
+            "gid": "hle-s923",
+            "meta": {
+              "collapse_threshold": 0.405846693366766,
+              "alignment_threshold": 0.1652080758474767,
+              "confidence_floor": 0.2528449100907892
+            },
+            "deployed": "z0",
+            "reason": "low_val_alignment",
+            "regret": 0.0092,
+            "static_regret": 0.0092
+          },
+          {
+            "gid": "hle_ablation-s924",
+            "meta": {
+              "collapse_threshold": 0.405846693366766,
+              "alignment_threshold": 0.1652080758474767,
+              "confidence_floor": 0.2528449100907892
+            },
+            "deployed": "base",
+            "reason": "low_val_alignment",
+            "regret": 0.0081,
+            "static_regret": 0.0081
+          },
+          {
+            "gid": "hle_nt-s922",
+            "meta": {
+              "collapse_threshold": 0.405846693366766,
+              "alignment_threshold": 0.1652080758474767,
+              "confidence_floor": 0.2528449100907892
+            },
+            "deployed": "z0",
+            "reason": "low_val_alignment",
+            "regret": 0.0,
+            "static_regret": 0.0
+          },
+          {
+            "gid": "math-s42",
+            "meta": {
+              "collapse_threshold": 0.405846693366766,
+              "alignment_threshold": 0.1652080758474767,
+              "confidence_floor": 0.2528449100907892
+            },
+            "deployed": "zero-shot",
+            "reason": "low_val_alignment",
+            "regret": 0.0006,
+            "static_regret": 0.0006
+          },
+          {
+            "gid": "math-s46",
+            "meta": {
+              "collapse_threshold": 0.405846693366766,
+              "alignment_threshold": 0.1652080758474767,
+              "confidence_floor": 0.2528449100907892
+            },
+            "deployed": "zero-shot",
+            "reason": "low_val_alignment",
+            "regret": 0.0005,
+            "static_regret": 0.0005
+          },
+          {
+            "gid": "math-s47",
+            "meta": {
+              "collapse_threshold": 0.405846693366766,
+              "alignment_threshold": 0.1652080758474767,
+              "confidence_floor": 0.2528449100907892
+            },
+            "deployed": "zero-shot",
+            "reason": "low_val_alignment",
+            "regret": 0.0002,
+            "static_regret": 0.0002
+          },
+          {
+            "gid": "multiseed_summary-s42",
+            "meta": {
+              "collapse_threshold": 0.405846693366766,
+              "alignment_threshold": 0.1652080758474767,
+              "confidence_floor": 0.2528449100907892
+            },
+            "deployed": "zero-shot",
+            "reason": "low_val_alignment",
+            "regret": 0.0,
+            "static_regret": 0.0
+          },
+          {
+            "gid": "transfer_contract_to_math-s42",
+            "meta": {
+              "collapse_threshold": 0.405846693366766,
+              "alignment_threshold": 0.1652080758474767,
+              "confidence_floor": 0.2528449100907892
+            },
+            "deployed": "transfer-0",
+            "reason": "low_val_alignment",
+            "regret": 0.0002,
+            "static_regret": 0.0002
+          },
+          {
+            "gid": "transfer_financial_to_math_gpt6-s42",
+            "meta": {
+              "collapse_threshold": 0.405846693366766,
+              "alignment_threshold": 0.1652080758474767,
+              "confidence_floor": 0.2528449100907892
+            },
+            "deployed": "transfer-0",
+            "reason": "low_val_alignment",
+            "regret": 0.0,
+            "static_regret": 0.0
+          },
+          {
+            "gid": "transfer_math_to_contract-s42",
+            "meta": {
+              "collapse_threshold": 0.8744104526005685,
+              "alignment_threshold": 0.05153235238976777,
+              "confidence_floor": 0.23636678485199808
+            },
+            "deployed": "transfer-ws",
+            "reason": "normal_selection",
+            "regret": 0.0196,
+            "static_regret": 0.0196
+          }
+        ]
+      },
+      "random_loo": {
+        "strategy": "random",
+        "box": "grid_box",
+        "budget": 50,
+        "summary": {
+          "n_groups": 32,
+          "exact_oracle": 12,
+          "exact_rate": 0.375,
+          "within_noise": 24,
+          "within_noise_rate": 0.75,
+          "avg_regret": 0.013816,
+          "max_regret": 0.2038,
+          "total_regret": 0.4421,
+          "n_collapse_cases": 6,
+          "collapse_avoided": 4
+        },
+        "vs_static": {
+          "wins": 1,
+          "losses": 1,
+          "ties": 30
+        },
+        "rows": [
+          {
+            "gid": "contract-s42",
+            "meta": {
+              "collapse_threshold": 0.36072458904236554,
+              "alignment_threshold": 0.17311268085613846,
+              "confidence_floor": 0.2152728230692446
+            },
+            "deployed": "zero-shot",
+            "reason": "low_val_alignment",
+            "regret": 0.0012,
+            "static_regret": 0.0012
+          },
+          {
+            "gid": "contract-s46",
+            "meta": {
+              "collapse_threshold": 0.36072458904236554,
+              "alignment_threshold": 0.17311268085613846,
+              "confidence_floor": 0.2152728230692446
+            },
+            "deployed": "zero-shot",
+            "reason": "low_val_alignment",
+            "regret": 0.0004,
+            "static_regret": 0.0004
+          },
+          {
+            "gid": "contract-s47",
+            "meta": {
+              "collapse_threshold": 0.36072458904236554,
+              "alignment_threshold": 0.17311268085613846,
+              "confidence_floor": 0.2152728230692446
+            },
+            "deployed": "zero-shot",
+            "reason": "collapse_detected",
+            "regret": 0.0006,
+            "static_regret": 0.0006
+          },
+          {
+            "gid": "contract_gpt6-s42",
+            "meta": {
+              "collapse_threshold": 0.36072458904236554,
+              "alignment_threshold": 0.17311268085613846,
+              "confidence_floor": 0.2152728230692446
+            },
+            "deployed": "zero-shot",
+            "reason": "low_val_alignment",
+            "regret": 0.0009,
+            "static_regret": 0.0009
+          },
+          {
+            "gid": "financial-s43",
+            "meta": {
+              "collapse_threshold": 0.36072458904236554,
+              "alignment_threshold": 0.17311268085613846,
+              "confidence_floor": 0.2152728230692446
+            },
+            "deployed": "apc-safe",
+            "reason": "normal_selection",
+            "regret": 0.0,
+            "static_regret": 0.0
+          },
+          {
+            "gid": "financial-s44",
+            "meta": {
+              "collapse_threshold": 0.36072458904236554,
+              "alignment_threshold": 0.17311268085613846,
+              "confidence_floor": 0.2152728230692446
+            },
+            "deployed": "apc-safe",
+            "reason": "collapse_detected",
+            "regret": 0.0,
+            "static_regret": 0.0
+          },
+          {
+            "gid": "financial-s45",
+            "meta": {
+              "collapse_threshold": 0.36072458904236554,
+              "alignment_threshold": 0.17311268085613846,
+              "confidence_floor": 0.2152728230692446
+            },
+            "deployed": "zero-shot",
+            "reason": "collapse_detected",
+            "regret": 0.0,
+            "static_regret": 0.0
+          },
+          {
+            "gid": "financial-s46",
+            "meta": {
+              "collapse_threshold": 0.36072458904236554,
+              "alignment_threshold": 0.17311268085613846,
+              "confidence_floor": 0.2152728230692446
+            },
+            "deployed": "zero-shot",
+            "reason": "low_val_alignment",
+            "regret": 0.0038,
+            "static_regret": 0.0038
+          },
+          {
+            "gid": "financial-s47",
+            "meta": {
+              "collapse_threshold": 0.36072458904236554,
+              "alignment_threshold": 0.17311268085613846,
+              "confidence_floor": 0.2152728230692446
+            },
+            "deployed": "zero-shot",
+            "reason": "collapse_detected",
+            "regret": 0.0057,
+            "static_regret": 0.0057
+          },
+          {
+            "gid": "financial_gpt56terra-s42",
+            "meta": {
+              "collapse_threshold": 0.36072458904236554,
+              "alignment_threshold": 0.17311268085613846,
+              "confidence_floor": 0.2152728230692446
+            },
+            "deployed": "manual",
+            "reason": "normal_selection",
+            "regret": 0.0029,
+            "static_regret": 0.0025
+          },
+          {
+            "gid": "financial_gpt6-s42",
+            "meta": {
+              "collapse_threshold": 0.49722304549068214,
+              "alignment_threshold": 0.2851575048174709,
+              "confidence_floor": 0.7042116978671402
+            },
+            "deployed": "zero-shot",
+            "reason": "low_confidence_occam",
+            "regret": 0.0109,
+            "static_regret": 0.0109
+          },
+          {
+            "gid": "financial_gpt6_smoke-s42",
+            "meta": {
+              "collapse_threshold": 0.36072458904236554,
+              "alignment_threshold": 0.17311268085613846,
+              "confidence_floor": 0.2152728230692446
+            },
+            "deployed": "manual",
+            "reason": "normal_selection",
+            "regret": 0.0,
+            "static_regret": 0.0007
+          },
+          {
+            "gid": "gepa-s42",
+            "meta": {
+              "collapse_threshold": 0.36072458904236554,
+              "alignment_threshold": 0.17311268085613846,
+              "confidence_floor": 0.2152728230692446
+            },
+            "deployed": "gepa",
+            "reason": "normal_selection",
+            "regret": 0.0,
+            "static_regret": 0.0
+          },
+          {
+            "gid": "gepa-s43",
+            "meta": {
+              "collapse_threshold": 0.36072458904236554,
+              "alignment_threshold": 0.17311268085613846,
+              "confidence_floor": 0.2152728230692446
+            },
+            "deployed": "gepa",
+            "reason": "normal_selection",
+            "regret": 0.0006,
+            "static_regret": 0.0006
+          },
+          {
+            "gid": "gepa-s901",
+            "meta": {
+              "collapse_threshold": 0.36072458904236554,
+              "alignment_threshold": 0.17311268085613846,
+              "confidence_floor": 0.2152728230692446
+            },
+            "deployed": "z0-control",
+            "reason": "low_val_alignment",
+            "regret": 0.0,
+            "static_regret": 0.0
+          },
+          {
+            "gid": "gepa_gpt6-s42",
+            "meta": {
+              "collapse_threshold": 0.36072458904236554,
+              "alignment_threshold": 0.17311268085613846,
+              "confidence_floor": 0.2152728230692446
+            },
+            "deployed": "gepa",
+            "reason": "normal_selection",
+            "regret": 0.0,
+            "static_regret": 0.0
+          },
+          {
+            "gid": "gepa_gpt6_recheck-s42",
+            "meta": {
+              "collapse_threshold": 0.36072458904236554,
+              "alignment_threshold": 0.17311268085613846,
+              "confidence_floor": 0.2152728230692446
+            },
+            "deployed": "champ-verbatim",
+            "reason": "low_val_alignment",
+            "regret": 0.0,
+            "static_regret": 0.0
+          },
+          {
+            "gid": "gepa_gpt6_recheck_orig-s42",
+            "meta": {
+              "collapse_threshold": 0.36072458904236554,
+              "alignment_threshold": 0.17311268085613846,
+              "confidence_floor": 0.2152728230692446
+            },
+            "deployed": "z0-paired",
+            "reason": "low_val_alignment",
+            "regret": 0.1402,
+            "static_regret": 0.1402
+          },
+          {
+            "gid": "gepa_mt150-s911",
+            "meta": {
+              "collapse_threshold": 0.36072458904236554,
+              "alignment_threshold": 0.17311268085613846,
+              "confidence_floor": 0.2152728230692446
+            },
+            "deployed": "gepa",
+            "reason": "collapse_detected",
+            "regret": 0.0,
+            "static_regret": 0.0
+          },
+          {
+            "gid": "gpqa-s926",
+            "meta": {
+              "collapse_threshold": 0.36072458904236554,
+              "alignment_threshold": 0.17311268085613846,
+              "confidence_floor": 0.2152728230692446
+            },
+            "deployed": "z0",
+            "reason": "collapse_detected",
+            "regret": 0.0127,
+            "static_regret": 0.0127
+          },
+          {
+            "gid": "gpqa_resume_slice_quarantine-s926",
+            "meta": {
+              "collapse_threshold": 0.36072458904236554,
+              "alignment_threshold": 0.17311268085613846,
+              "confidence_floor": 0.2152728230692446
+            },
+            "deployed": "z0",
+            "reason": "low_val_alignment",
+            "regret": 0.2038,
+            "static_regret": 0.2038
+          },
+          {
+            "gid": "hle-s921",
+            "meta": {
+              "collapse_threshold": 0.36072458904236554,
+              "alignment_threshold": 0.17311268085613846,
+              "confidence_floor": 0.2152728230692446
+            },
+            "deployed": "z0",
+            "reason": "collapse_detected",
+            "regret": 0.02,
+            "static_regret": 0.02
+          },
+          {
+            "gid": "hle-s923",
+            "meta": {
+              "collapse_threshold": 0.36072458904236554,
+              "alignment_threshold": 0.17311268085613846,
+              "confidence_floor": 0.2152728230692446
+            },
+            "deployed": "z0",
+            "reason": "low_val_alignment",
+            "regret": 0.0092,
+            "static_regret": 0.0092
+          },
+          {
+            "gid": "hle_ablation-s924",
+            "meta": {
+              "collapse_threshold": 0.36072458904236554,
+              "alignment_threshold": 0.17311268085613846,
+              "confidence_floor": 0.2152728230692446
+            },
+            "deployed": "base",
+            "reason": "low_val_alignment",
+            "regret": 0.0081,
+            "static_regret": 0.0081
+          },
+          {
+            "gid": "hle_nt-s922",
+            "meta": {
+              "collapse_threshold": 0.36072458904236554,
+              "alignment_threshold": 0.17311268085613846,
+              "confidence_floor": 0.2152728230692446
+            },
+            "deployed": "z0",
+            "reason": "low_val_alignment",
+            "regret": 0.0,
+            "static_regret": 0.0
+          },
+          {
+            "gid": "math-s42",
+            "meta": {
+              "collapse_threshold": 0.36072458904236554,
+              "alignment_threshold": 0.17311268085613846,
+              "confidence_floor": 0.2152728230692446
+            },
+            "deployed": "zero-shot",
+            "reason": "low_val_alignment",
+            "regret": 0.0006,
+            "static_regret": 0.0006
+          },
+          {
+            "gid": "math-s46",
+            "meta": {
+              "collapse_threshold": 0.36072458904236554,
+              "alignment_threshold": 0.17311268085613846,
+              "confidence_floor": 0.2152728230692446
+            },
+            "deployed": "zero-shot",
+            "reason": "low_val_alignment",
+            "regret": 0.0005,
+            "static_regret": 0.0005
+          },
+          {
+            "gid": "math-s47",
+            "meta": {
+              "collapse_threshold": 0.36072458904236554,
+              "alignment_threshold": 0.17311268085613846,
+              "confidence_floor": 0.2152728230692446
+            },
+            "deployed": "zero-shot",
+            "reason": "low_val_alignment",
+            "regret": 0.0002,
+            "static_regret": 0.0002
+          },
+          {
+            "gid": "multiseed_summary-s42",
+            "meta": {
+              "collapse_threshold": 0.36072458904236554,
+              "alignment_threshold": 0.17311268085613846,
+              "confidence_floor": 0.2152728230692446
+            },
+            "deployed": "zero-shot",
+            "reason": "low_val_alignment",
+            "regret": 0.0,
+            "static_regret": 0.0
+          },
+          {
+            "gid": "transfer_contract_to_math-s42",
+            "meta": {
+              "collapse_threshold": 0.36072458904236554,
+              "alignment_threshold": 0.17311268085613846,
+              "confidence_floor": 0.2152728230692446
+            },
+            "deployed": "transfer-0",
+            "reason": "low_val_alignment",
+            "regret": 0.0002,
+            "static_regret": 0.0002
+          },
+          {
+            "gid": "transfer_financial_to_math_gpt6-s42",
+            "meta": {
+              "collapse_threshold": 0.36072458904236554,
+              "alignment_threshold": 0.17311268085613846,
+              "confidence_floor": 0.2152728230692446
+            },
+            "deployed": "transfer-0",
+            "reason": "low_val_alignment",
+            "regret": 0.0,
+            "static_regret": 0.0
+          },
+          {
+            "gid": "transfer_math_to_contract-s42",
+            "meta": {
+              "collapse_threshold": 0.7826127028092742,
+              "alignment_threshold": 0.16126203155145047,
+              "confidence_floor": 0.6571327885147185
+            },
+            "deployed": "transfer-ws",
+            "reason": "normal_selection",
+            "regret": 0.0196,
+            "static_regret": 0.0196
+          }
+        ]
+      },
+      "bayes_in_sample": {
+        "strategy": "bayes",
+        "box": "grid_box",
+        "meta": {
+          "collapse_threshold": 0.405846693366766,
+          "alignment_threshold": 0.1652080758474767,
+          "confidence_floor": 0.2528449100907892
+        },
+        "best_obj": 0.012862499999999994,
+        "n_groups": 32,
+        "exact_oracle": 14,
+        "exact_rate": 0.4375,
+        "within_noise": 26,
+        "within_noise_rate": 0.8125,
+        "avg_regret": 0.012862,
+        "max_regret": 0.2038,
+        "total_regret": 0.4116,
+        "n_collapse_cases": 6,
+        "collapse_avoided": 5
+      },
+      "random_in_sample": {
+        "strategy": "random",
+        "box": "grid_box",
+        "meta": {
+          "collapse_threshold": 0.36072458904236554,
+          "alignment_threshold": 0.17311268085613846,
+          "confidence_floor": 0.2152728230692446
+        },
+        "best_obj": 0.012862499999999994,
+        "n_groups": 32,
+        "exact_oracle": 14,
+        "exact_rate": 0.4375,
+        "within_noise": 26,
+        "within_noise_rate": 0.8125,
+        "avg_regret": 0.012862,
+        "max_regret": 0.2038,
+        "total_regret": 0.4116,
+        "n_collapse_cases": 6,
+        "collapse_avoided": 5
+      }
+    },
+    "document_box": {
+      "bayes_loo": {
+        "strategy": "bayes",
+        "box": "document_box",
+        "budget": 50,
+        "summary": {
+          "n_groups": 32,
+          "exact_oracle": 11,
+          "exact_rate": 0.3438,
+          "within_noise": 24,
+          "within_noise_rate": 0.75,
+          "avg_regret": 0.013825,
+          "max_regret": 0.2038,
+          "total_regret": 0.4424,
+          "n_collapse_cases": 6,
+          "collapse_avoided": 4
+        },
+        "vs_static": {
+          "wins": 0,
+          "losses": 0,
+          "ties": 32
+        },
+        "rows": [
+          {
+            "gid": "contract-s42",
+            "meta": {
+              "collapse_threshold": 0.5089130762964487,
+              "alignment_threshold": 0.3114145506173372,
+              "confidence_floor": 0.7712237164378166
+            },
+            "deployed": "zero-shot",
+            "reason": "low_val_alignment",
+            "regret": 0.0012,
+            "static_regret": 0.0012
+          },
+          {
+            "gid": "contract-s46",
+            "meta": {
+              "collapse_threshold": 0.5089130762964487,
+              "alignment_threshold": 0.3114145506173372,
+              "confidence_floor": 0.7712237164378166
+            },
+            "deployed": "zero-shot",
+            "reason": "low_val_alignment",
+            "regret": 0.0004,
+            "static_regret": 0.0004
+          },
+          {
+            "gid": "contract-s47",
+            "meta": {
+              "collapse_threshold": 0.5089130762964487,
+              "alignment_threshold": 0.3114145506173372,
+              "confidence_floor": 0.7712237164378166
+            },
+            "deployed": "zero-shot",
+            "reason": "collapse_detected",
+            "regret": 0.0006,
+            "static_regret": 0.0006
+          },
+          {
+            "gid": "contract_gpt6-s42",
+            "meta": {
+              "collapse_threshold": 0.5089130762964487,
+              "alignment_threshold": 0.3114145506173372,
+              "confidence_floor": 0.7712237164378166
+            },
+            "deployed": "zero-shot",
+            "reason": "low_val_alignment",
+            "regret": 0.0009,
+            "static_regret": 0.0009
+          },
+          {
+            "gid": "financial-s43",
+            "meta": {
+              "collapse_threshold": 0.5089130762964487,
+              "alignment_threshold": 0.3114145506173372,
+              "confidence_floor": 0.7712237164378166
+            },
+            "deployed": "apc-safe",
+            "reason": "normal_selection",
+            "regret": 0.0,
+            "static_regret": 0.0
+          },
+          {
+            "gid": "financial-s44",
+            "meta": {
+              "collapse_threshold": 0.5089130762964487,
+              "alignment_threshold": 0.3114145506173372,
+              "confidence_floor": 0.7712237164378166
+            },
+            "deployed": "apc-safe",
+            "reason": "collapse_detected",
+            "regret": 0.0,
+            "static_regret": 0.0
+          },
+          {
+            "gid": "financial-s45",
+            "meta": {
+              "collapse_threshold": 0.5089130762964487,
+              "alignment_threshold": 0.3114145506173372,
+              "confidence_floor": 0.7712237164378166
+            },
+            "deployed": "zero-shot",
+            "reason": "collapse_detected",
+            "regret": 0.0,
+            "static_regret": 0.0
+          },
+          {
+            "gid": "financial-s46",
+            "meta": {
+              "collapse_threshold": 0.5089130762964487,
+              "alignment_threshold": 0.3114145506173372,
+              "confidence_floor": 0.7712237164378166
+            },
+            "deployed": "zero-shot",
+            "reason": "low_val_alignment",
+            "regret": 0.0038,
+            "static_regret": 0.0038
+          },
+          {
+            "gid": "financial-s47",
+            "meta": {
+              "collapse_threshold": 0.5089130762964487,
+              "alignment_threshold": 0.3114145506173372,
+              "confidence_floor": 0.7712237164378166
+            },
+            "deployed": "zero-shot",
+            "reason": "collapse_detected",
+            "regret": 0.0057,
+            "static_regret": 0.0057
+          },
+          {
+            "gid": "financial_gpt56terra-s42",
+            "meta": {
+              "collapse_threshold": 0.5352634102106094,
+              "alignment_threshold": 0.6374841157346963,
+              "confidence_floor": 0.7328831005841494
+            },
+            "deployed": "zero-shot",
+            "reason": "low_val_alignment",
+            "regret": 0.0025,
+            "static_regret": 0.0025
+          },
+          {
+            "gid": "financial_gpt6-s42",
+            "meta": {
+              "collapse_threshold": 0.5089130762964487,
+              "alignment_threshold": 0.3114145506173372,
+              "confidence_floor": 0.7712237164378166
+            },
+            "deployed": "zero-shot",
+            "reason": "low_confidence_occam",
+            "regret": 0.0109,
+            "static_regret": 0.0109
+          },
+          {
+            "gid": "financial_gpt6_smoke-s42",
+            "meta": {
+              "collapse_threshold": 0.5352634102106094,
+              "alignment_threshold": 0.6374841157346963,
+              "confidence_floor": 0.7328831005841494
+            },
+            "deployed": "zero-shot",
+            "reason": "low_val_alignment",
+            "regret": 0.0007,
+            "static_regret": 0.0007
+          },
+          {
+            "gid": "gepa-s42",
+            "meta": {
+              "collapse_threshold": 0.5089130762964487,
+              "alignment_threshold": 0.3114145506173372,
+              "confidence_floor": 0.7712237164378166
+            },
+            "deployed": "gepa",
+            "reason": "normal_selection",
+            "regret": 0.0,
+            "static_regret": 0.0
+          },
+          {
+            "gid": "gepa-s43",
+            "meta": {
+              "collapse_threshold": 0.5089130762964487,
+              "alignment_threshold": 0.3114145506173372,
+              "confidence_floor": 0.7712237164378166
+            },
+            "deployed": "gepa",
+            "reason": "normal_selection",
+            "regret": 0.0006,
+            "static_regret": 0.0006
+          },
+          {
+            "gid": "gepa-s901",
+            "meta": {
+              "collapse_threshold": 0.5089130762964487,
+              "alignment_threshold": 0.3114145506173372,
+              "confidence_floor": 0.7712237164378166
+            },
+            "deployed": "z0-control",
+            "reason": "low_val_alignment",
+            "regret": 0.0,
+            "static_regret": 0.0
+          },
+          {
+            "gid": "gepa_gpt6-s42",
+            "meta": {
+              "collapse_threshold": 0.5089130762964487,
+              "alignment_threshold": 0.3114145506173372,
+              "confidence_floor": 0.7712237164378166
+            },
+            "deployed": "gepa",
+            "reason": "normal_selection",
+            "regret": 0.0,
+            "static_regret": 0.0
+          },
+          {
+            "gid": "gepa_gpt6_recheck-s42",
+            "meta": {
+              "collapse_threshold": 0.5089130762964487,
+              "alignment_threshold": 0.3114145506173372,
+              "confidence_floor": 0.7712237164378166
+            },
+            "deployed": "champ-verbatim",
+            "reason": "low_val_alignment",
+            "regret": 0.0,
+            "static_regret": 0.0
+          },
+          {
+            "gid": "gepa_gpt6_recheck_orig-s42",
+            "meta": {
+              "collapse_threshold": 0.5089130762964487,
+              "alignment_threshold": 0.3114145506173372,
+              "confidence_floor": 0.7712237164378166
+            },
+            "deployed": "z0-paired",
+            "reason": "low_val_alignment",
+            "regret": 0.1402,
+            "static_regret": 0.1402
+          },
+          {
+            "gid": "gepa_mt150-s911",
+            "meta": {
+              "collapse_threshold": 0.5089130762964487,
+              "alignment_threshold": 0.3114145506173372,
+              "confidence_floor": 0.7712237164378166
+            },
+            "deployed": "gepa",
+            "reason": "collapse_detected",
+            "regret": 0.0,
+            "static_regret": 0.0
+          },
+          {
+            "gid": "gpqa-s926",
+            "meta": {
+              "collapse_threshold": 0.5089130762964487,
+              "alignment_threshold": 0.3114145506173372,
+              "confidence_floor": 0.7712237164378166
+            },
+            "deployed": "z0",
+            "reason": "collapse_detected",
+            "regret": 0.0127,
+            "static_regret": 0.0127
+          },
+          {
+            "gid": "gpqa_resume_slice_quarantine-s926",
+            "meta": {
+              "collapse_threshold": 0.5089130762964487,
+              "alignment_threshold": 0.3114145506173372,
+              "confidence_floor": 0.7712237164378166
+            },
+            "deployed": "z0",
+            "reason": "low_val_alignment",
+            "regret": 0.2038,
+            "static_regret": 0.2038
+          },
+          {
+            "gid": "hle-s921",
+            "meta": {
+              "collapse_threshold": 0.5089130762964487,
+              "alignment_threshold": 0.3114145506173372,
+              "confidence_floor": 0.7712237164378166
+            },
+            "deployed": "z0",
+            "reason": "collapse_detected",
+            "regret": 0.02,
+            "static_regret": 0.02
+          },
+          {
+            "gid": "hle-s923",
+            "meta": {
+              "collapse_threshold": 0.5089130762964487,
+              "alignment_threshold": 0.3114145506173372,
+              "confidence_floor": 0.7712237164378166
+            },
+            "deployed": "z0",
+            "reason": "low_val_alignment",
+            "regret": 0.0092,
+            "static_regret": 0.0092
+          },
+          {
+            "gid": "hle_ablation-s924",
+            "meta": {
+              "collapse_threshold": 0.5089130762964487,
+              "alignment_threshold": 0.3114145506173372,
+              "confidence_floor": 0.7712237164378166
+            },
+            "deployed": "base",
+            "reason": "low_val_alignment",
+            "regret": 0.0081,
+            "static_regret": 0.0081
+          },
+          {
+            "gid": "hle_nt-s922",
+            "meta": {
+              "collapse_threshold": 0.5089130762964487,
+              "alignment_threshold": 0.3114145506173372,
+              "confidence_floor": 0.7712237164378166
+            },
+            "deployed": "z0",
+            "reason": "low_val_alignment",
+            "regret": 0.0,
+            "static_regret": 0.0
+          },
+          {
+            "gid": "math-s42",
+            "meta": {
+              "collapse_threshold": 0.5089130762964487,
+              "alignment_threshold": 0.3114145506173372,
+              "confidence_floor": 0.7712237164378166
+            },
+            "deployed": "zero-shot",
+            "reason": "low_val_alignment",
+            "regret": 0.0006,
+            "static_regret": 0.0006
+          },
+          {
+            "gid": "math-s46",
+            "meta": {
+              "collapse_threshold": 0.5089130762964487,
+              "alignment_threshold": 0.3114145506173372,
+              "confidence_floor": 0.7712237164378166
+            },
+            "deployed": "zero-shot",
+            "reason": "low_val_alignment",
+            "regret": 0.0005,
+            "static_regret": 0.0005
+          },
+          {
+            "gid": "math-s47",
+            "meta": {
+              "collapse_threshold": 0.5089130762964487,
+              "alignment_threshold": 0.3114145506173372,
+              "confidence_floor": 0.7712237164378166
+            },
+            "deployed": "zero-shot",
+            "reason": "low_val_alignment",
+            "regret": 0.0002,
+            "static_regret": 0.0002
+          },
+          {
+            "gid": "multiseed_summary-s42",
+            "meta": {
+              "collapse_threshold": 0.5089130762964487,
+              "alignment_threshold": 0.3114145506173372,
+              "confidence_floor": 0.7712237164378166
+            },
+            "deployed": "zero-shot",
+            "reason": "low_val_alignment",
+            "regret": 0.0,
+            "static_regret": 0.0
+          },
+          {
+            "gid": "transfer_contract_to_math-s42",
+            "meta": {
+              "collapse_threshold": 0.5089130762964487,
+              "alignment_threshold": 0.3114145506173372,
+              "confidence_floor": 0.7712237164378166
+            },
+            "deployed": "transfer-0",
+            "reason": "low_val_alignment",
+            "regret": 0.0002,
+            "static_regret": 0.0002
+          },
+          {
+            "gid": "transfer_financial_to_math_gpt6-s42",
+            "meta": {
+              "collapse_threshold": 0.5089130762964487,
+              "alignment_threshold": 0.3114145506173372,
+              "confidence_floor": 0.7712237164378166
+            },
+            "deployed": "transfer-0",
+            "reason": "low_val_alignment",
+            "regret": 0.0,
+            "static_regret": 0.0
+          },
+          {
+            "gid": "transfer_math_to_contract-s42",
+            "meta": {
+              "collapse_threshold": 0.7674234468489886,
+              "alignment_threshold": 0.30050833299756047,
+              "confidence_floor": 0.6294641837477684
+            },
+            "deployed": "transfer-ws",
+            "reason": "normal_selection",
+            "regret": 0.0196,
+            "static_regret": 0.0196
+          }
+        ]
+      },
+      "random_loo": {
+        "strategy": "random",
+        "box": "document_box",
+        "budget": 50,
+        "summary": {
+          "n_groups": 32,
+          "exact_oracle": 11,
+          "exact_rate": 0.3438,
+          "within_noise": 24,
+          "within_noise_rate": 0.75,
+          "avg_regret": 0.013825,
+          "max_regret": 0.2038,
+          "total_regret": 0.4424,
+          "n_collapse_cases": 6,
+          "collapse_avoided": 4
+        },
+        "vs_static": {
+          "wins": 0,
+          "losses": 0,
+          "ties": 32
+        },
+        "rows": [
+          {
+            "gid": "contract-s42",
+            "meta": {
+              "collapse_threshold": 0.5331753671169281,
+              "alignment_threshold": 0.5747480686753987,
+              "confidence_floor": 0.6146702814847231
+            },
+            "deployed": "zero-shot",
+            "reason": "low_val_alignment",
+            "regret": 0.0012,
+            "static_regret": 0.0012
+          },
+          {
+            "gid": "contract-s46",
+            "meta": {
+              "collapse_threshold": 0.5331753671169281,
+              "alignment_threshold": 0.5747480686753987,
+              "confidence_floor": 0.6146702814847231
+            },
+            "deployed": "zero-shot",
+            "reason": "low_val_alignment",
+            "regret": 0.0004,
+            "static_regret": 0.0004
+          },
+          {
+            "gid": "contract-s47",
+            "meta": {
+              "collapse_threshold": 0.5331753671169281,
+              "alignment_threshold": 0.5747480686753987,
+              "confidence_floor": 0.6146702814847231
+            },
+            "deployed": "zero-shot",
+            "reason": "collapse_detected",
+            "regret": 0.0006,
+            "static_regret": 0.0006
+          },
+          {
+            "gid": "contract_gpt6-s42",
+            "meta": {
+              "collapse_threshold": 0.5331753671169281,
+              "alignment_threshold": 0.5747480686753987,
+              "confidence_floor": 0.6146702814847231
+            },
+            "deployed": "zero-shot",
+            "reason": "low_val_alignment",
+            "regret": 0.0009,
+            "static_regret": 0.0009
+          },
+          {
+            "gid": "financial-s43",
+            "meta": {
+              "collapse_threshold": 0.5331753671169281,
+              "alignment_threshold": 0.5747480686753987,
+              "confidence_floor": 0.6146702814847231
+            },
+            "deployed": "apc-safe",
+            "reason": "normal_selection",
+            "regret": 0.0,
+            "static_regret": 0.0
+          },
+          {
+            "gid": "financial-s44",
+            "meta": {
+              "collapse_threshold": 0.5331753671169281,
+              "alignment_threshold": 0.5747480686753987,
+              "confidence_floor": 0.6146702814847231
+            },
+            "deployed": "apc-safe",
+            "reason": "collapse_detected",
+            "regret": 0.0,
+            "static_regret": 0.0
+          },
+          {
+            "gid": "financial-s45",
+            "meta": {
+              "collapse_threshold": 0.5331753671169281,
+              "alignment_threshold": 0.5747480686753987,
+              "confidence_floor": 0.6146702814847231
+            },
+            "deployed": "zero-shot",
+            "reason": "collapse_detected",
+            "regret": 0.0,
+            "static_regret": 0.0
+          },
+          {
+            "gid": "financial-s46",
+            "meta": {
+              "collapse_threshold": 0.5331753671169281,
+              "alignment_threshold": 0.5747480686753987,
+              "confidence_floor": 0.6146702814847231
+            },
+            "deployed": "zero-shot",
+            "reason": "low_val_alignment",
+            "regret": 0.0038,
+            "static_regret": 0.0038
+          },
+          {
+            "gid": "financial-s47",
+            "meta": {
+              "collapse_threshold": 0.5331753671169281,
+              "alignment_threshold": 0.5747480686753987,
+              "confidence_floor": 0.6146702814847231
+            },
+            "deployed": "zero-shot",
+            "reason": "collapse_detected",
+            "regret": 0.0057,
+            "static_regret": 0.0057
+          },
+          {
+            "gid": "financial_gpt56terra-s42",
+            "meta": {
+              "collapse_threshold": 0.5331753671169281,
+              "alignment_threshold": 0.5747480686753987,
+              "confidence_floor": 0.6146702814847231
+            },
+            "deployed": "zero-shot",
+            "reason": "low_val_alignment",
+            "regret": 0.0025,
+            "static_regret": 0.0025
+          },
+          {
+            "gid": "financial_gpt6-s42",
+            "meta": {
+              "collapse_threshold": 0.5331753671169281,
+              "alignment_threshold": 0.5747480686753987,
+              "confidence_floor": 0.6146702814847231
+            },
+            "deployed": "zero-shot",
+            "reason": "low_val_alignment",
+            "regret": 0.0109,
+            "static_regret": 0.0109
+          },
+          {
+            "gid": "financial_gpt6_smoke-s42",
+            "meta": {
+              "collapse_threshold": 0.5331753671169281,
+              "alignment_threshold": 0.5747480686753987,
+              "confidence_floor": 0.6146702814847231
+            },
+            "deployed": "zero-shot",
+            "reason": "low_val_alignment",
+            "regret": 0.0007,
+            "static_regret": 0.0007
+          },
+          {
+            "gid": "gepa-s42",
+            "meta": {
+              "collapse_threshold": 0.5331753671169281,
+              "alignment_threshold": 0.5747480686753987,
+              "confidence_floor": 0.6146702814847231
+            },
+            "deployed": "gepa",
+            "reason": "normal_selection",
+            "regret": 0.0,
+            "static_regret": 0.0
+          },
+          {
+            "gid": "gepa-s43",
+            "meta": {
+              "collapse_threshold": 0.5331753671169281,
+              "alignment_threshold": 0.5747480686753987,
+              "confidence_floor": 0.6146702814847231
+            },
+            "deployed": "gepa",
+            "reason": "normal_selection",
+            "regret": 0.0006,
+            "static_regret": 0.0006
+          },
+          {
+            "gid": "gepa-s901",
+            "meta": {
+              "collapse_threshold": 0.5331753671169281,
+              "alignment_threshold": 0.5747480686753987,
+              "confidence_floor": 0.6146702814847231
+            },
+            "deployed": "z0-control",
+            "reason": "low_val_alignment",
+            "regret": 0.0,
+            "static_regret": 0.0
+          },
+          {
+            "gid": "gepa_gpt6-s42",
+            "meta": {
+              "collapse_threshold": 0.5331753671169281,
+              "alignment_threshold": 0.5747480686753987,
+              "confidence_floor": 0.6146702814847231
+            },
+            "deployed": "gepa",
+            "reason": "normal_selection",
+            "regret": 0.0,
+            "static_regret": 0.0
+          },
+          {
+            "gid": "gepa_gpt6_recheck-s42",
+            "meta": {
+              "collapse_threshold": 0.5331753671169281,
+              "alignment_threshold": 0.5747480686753987,
+              "confidence_floor": 0.6146702814847231
+            },
+            "deployed": "champ-verbatim",
+            "reason": "low_val_alignment",
+            "regret": 0.0,
+            "static_regret": 0.0
+          },
+          {
+            "gid": "gepa_gpt6_recheck_orig-s42",
+            "meta": {
+              "collapse_threshold": 0.5331753671169281,
+              "alignment_threshold": 0.5747480686753987,
+              "confidence_floor": 0.6146702814847231
+            },
+            "deployed": "z0-paired",
+            "reason": "low_val_alignment",
+            "regret": 0.1402,
+            "static_regret": 0.1402
+          },
+          {
+            "gid": "gepa_mt150-s911",
+            "meta": {
+              "collapse_threshold": 0.5331753671169281,
+              "alignment_threshold": 0.5747480686753987,
+              "confidence_floor": 0.6146702814847231
+            },
+            "deployed": "gepa",
+            "reason": "collapse_detected",
+            "regret": 0.0,
+            "static_regret": 0.0
+          },
+          {
+            "gid": "gpqa-s926",
+            "meta": {
+              "collapse_threshold": 0.5331753671169281,
+              "alignment_threshold": 0.5747480686753987,
+              "confidence_floor": 0.6146702814847231
+            },
+            "deployed": "z0",
+            "reason": "collapse_detected",
+            "regret": 0.0127,
+            "static_regret": 0.0127
+          },
+          {
+            "gid": "gpqa_resume_slice_quarantine-s926",
+            "meta": {
+              "collapse_threshold": 0.5331753671169281,
+              "alignment_threshold": 0.5747480686753987,
+              "confidence_floor": 0.6146702814847231
+            },
+            "deployed": "z0",
+            "reason": "low_val_alignment",
+            "regret": 0.2038,
+            "static_regret": 0.2038
+          },
+          {
+            "gid": "hle-s921",
+            "meta": {
+              "collapse_threshold": 0.5331753671169281,
+              "alignment_threshold": 0.5747480686753987,
+              "confidence_floor": 0.6146702814847231
+            },
+            "deployed": "z0",
+            "reason": "collapse_detected",
+            "regret": 0.02,
+            "static_regret": 0.02
+          },
+          {
+            "gid": "hle-s923",
+            "meta": {
+              "collapse_threshold": 0.5331753671169281,
+              "alignment_threshold": 0.5747480686753987,
+              "confidence_floor": 0.6146702814847231
+            },
+            "deployed": "z0",
+            "reason": "low_val_alignment",
+            "regret": 0.0092,
+            "static_regret": 0.0092
+          },
+          {
+            "gid": "hle_ablation-s924",
+            "meta": {
+              "collapse_threshold": 0.5331753671169281,
+              "alignment_threshold": 0.5747480686753987,
+              "confidence_floor": 0.6146702814847231
+            },
+            "deployed": "base",
+            "reason": "low_val_alignment",
+            "regret": 0.0081,
+            "static_regret": 0.0081
+          },
+          {
+            "gid": "hle_nt-s922",
+            "meta": {
+              "collapse_threshold": 0.5331753671169281,
+              "alignment_threshold": 0.5747480686753987,
+              "confidence_floor": 0.6146702814847231
+            },
+            "deployed": "z0",
+            "reason": "low_val_alignment",
+            "regret": 0.0,
+            "static_regret": 0.0
+          },
+          {
+            "gid": "math-s42",
+            "meta": {
+              "collapse_threshold": 0.5331753671169281,
+              "alignment_threshold": 0.5747480686753987,
+              "confidence_floor": 0.6146702814847231
+            },
+            "deployed": "zero-shot",
+            "reason": "low_val_alignment",
+            "regret": 0.0006,
+            "static_regret": 0.0006
+          },
+          {
+            "gid": "math-s46",
+            "meta": {
+              "collapse_threshold": 0.5331753671169281,
+              "alignment_threshold": 0.5747480686753987,
+              "confidence_floor": 0.6146702814847231
+            },
+            "deployed": "zero-shot",
+            "reason": "low_val_alignment",
+            "regret": 0.0005,
+            "static_regret": 0.0005
+          },
+          {
+            "gid": "math-s47",
+            "meta": {
+              "collapse_threshold": 0.5331753671169281,
+              "alignment_threshold": 0.5747480686753987,
+              "confidence_floor": 0.6146702814847231
+            },
+            "deployed": "zero-shot",
+            "reason": "low_val_alignment",
+            "regret": 0.0002,
+            "static_regret": 0.0002
+          },
+          {
+            "gid": "multiseed_summary-s42",
+            "meta": {
+              "collapse_threshold": 0.5331753671169281,
+              "alignment_threshold": 0.5747480686753987,
+              "confidence_floor": 0.6146702814847231
+            },
+            "deployed": "zero-shot",
+            "reason": "low_val_alignment",
+            "regret": 0.0,
+            "static_regret": 0.0
+          },
+          {
+            "gid": "transfer_contract_to_math-s42",
+            "meta": {
+              "collapse_threshold": 0.5331753671169281,
+              "alignment_threshold": 0.5747480686753987,
+              "confidence_floor": 0.6146702814847231
+            },
+            "deployed": "transfer-0",
+            "reason": "low_val_alignment",
+            "regret": 0.0002,
+            "static_regret": 0.0002
+          },
+          {
+            "gid": "transfer_financial_to_math_gpt6-s42",
+            "meta": {
+              "collapse_threshold": 0.5331753671169281,
+              "alignment_threshold": 0.5747480686753987,
+              "confidence_floor": 0.6146702814847231
+            },
+            "deployed": "transfer-0",
+            "reason": "low_val_alignment",
+            "regret": 0.0,
+            "static_regret": 0.0
+          },
+          {
+            "gid": "transfer_math_to_contract-s42",
+            "meta": {
+              "collapse_threshold": 0.6303174614906311,
+              "alignment_threshold": 0.3057962231338024,
+              "confidence_floor": 0.6827281814068555
+            },
+            "deployed": "transfer-ws",
+            "reason": "normal_selection",
+            "regret": 0.0196,
+            "static_regret": 0.0196
+          }
+        ]
+      },
+      "bayes_in_sample": {
+        "strategy": "bayes",
+        "box": "document_box",
+        "meta": {
+          "collapse_threshold": 0.5089130762964487,
+          "alignment_threshold": 0.3114145506173372,
+          "confidence_floor": 0.7712237164378166
+        },
+        "best_obj": 0.013203124999999994,
+        "n_groups": 32,
+        "exact_oracle": 13,
+        "exact_rate": 0.4062,
+        "within_noise": 25,
+        "within_noise_rate": 0.7812,
+        "avg_regret": 0.013203,
+        "max_regret": 0.2038,
+        "total_regret": 0.4225,
+        "n_collapse_cases": 6,
+        "collapse_avoided": 5
+      },
+      "random_in_sample": {
+        "strategy": "random",
+        "box": "document_box",
+        "meta": {
+          "collapse_threshold": 0.5331753671169281,
+          "alignment_threshold": 0.5747480686753987,
+          "confidence_floor": 0.6146702814847231
+        },
+        "best_obj": 0.01321249999999999,
+        "n_groups": 32,
+        "exact_oracle": 12,
+        "exact_rate": 0.375,
+        "within_noise": 25,
+        "within_noise_rate": 0.7812,
+        "avg_regret": 0.013212,
+        "max_regret": 0.2038,
+        "total_regret": 0.4228,
+        "n_collapse_cases": 6,
+        "collapse_avoided": 5
+      }
+    }
+  }
+}
