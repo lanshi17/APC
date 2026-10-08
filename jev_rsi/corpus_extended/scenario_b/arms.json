@@ -1,0 +1,1220 @@
+{
+  "provenance": {
+    "generator_model": "qwen3.8-flash",
+    "temperature": 0.8,
+    "enable_thinking": false,
+    "styles": [
+      "factual",
+      "verbose",
+      "concise",
+      "technical",
+      "poetic",
+      "child_like"
+    ],
+    "n_generations": 90,
+    "n_llm_calls": 0,
+    "source": "nlphuji/flickr30k TEST (15 images, 75 human captions)"
+  },
+  "groups": {
+    "caption_img_001": [
+      {
+        "id": "factual",
+        "name": "factual",
+        "style": "factual",
+        "caption": "Two men stand outdoors near a sunburst-patterned gate surrounded by greenery, with one in a teal shirt holding an object while the other in a dark shirt looks on.",
+        "prompt": "Describe this image factually and objectively in one sentence.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 198,
+          "completion_tokens": 36
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "verbose",
+        "name": "verbose",
+        "style": "verbose",
+        "caption": "Two people stand close together in a sunlit garden, one in a teal shirt and jeans holding the other’s hand as they examine something small. Lush green ivy climbs a white lattice gate behind them, while neatly trimmed shrubs and vibrant grass frame the scene. Bright daylight casts soft shadows, creating a calm, intimate mood amid nature’s tranquility.",
+        "prompt": "Describe this image in rich detail - subjects, setting, colours, lighting and mood. About 60 words.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 210,
+          "completion_tokens": 73
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "concise",
+        "name": "concise",
+        "style": "concise",
+        "caption": "Two men, one holding a small white object.",
+        "prompt": "Describe this image in as few words as possible (3-6 words).",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 202,
+          "completion_tokens": 11
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "technical",
+        "name": "technical",
+        "style": "technical",
+        "caption": "**Subject(s):** Two human figures, appearing to be male adolescents or young adults. One wears a light teal short-sleeved t-shirt and grey trousers; the other wears a dark olive-green t-shirt and black trousers. Both are wearing athletic-style footwear. They are standing in close proximity, facing each other slightly, with hands extended toward one another near waist level.\n\n**Setting:** Outdoor residential garden environment. Dominant vegetation includes dense green shrubbery flanking both sides of the frame, low ground-cover plants along a curved border, and manicured lawn in foreground. A white lattice gate or fence panel is visible behind the subjects, partially obscured by foliage. Stepping stones embedded in grass lead toward the central area where subjects stand.\n\n**Lighting:** Bright, direct daylight consistent with midday sun. Strong highlights on upper surfaces of clothing and skin; defined shadows cast beneath feet and along plant bases suggest overhead illumination. No artificial lighting sources present.\n\n**Composition:** Vertical orientation. Subjects positioned centrally within middle third of frame, framed symmetrically by vertical masses of foliage on left and right. Foreground features diagonal curve of planted bed leading eye upward toward subjects. Background elements (gate, trees) provide depth without distraction. Camera angle appears at approximately subject chest height, creating neutral perspective. Focus sharp across entire scene; no motion blur detected.",
+        "prompt": "Describe this image in a technical cataloguing style: subjects, setting, lighting, composition. No emotion words.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 209,
+          "completion_tokens": 273
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "poetic",
+        "name": "poetic",
+        "style": "poetic",
+        "caption": "Two figures stand in a sunlit garden, their shadows stretching like ink across stone paths. They hold something fragile between them—a moment suspended, delicate as a leaf trembling on the edge of falling. Greenery whispers around them, guarding this quiet exchange beneath summer’s bright eye.",
+        "prompt": "Describe this image poetically, using metaphor and lyricism. About 40 words.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 205,
+          "completion_tokens": 56
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "child_like",
+        "name": "child_like",
+        "style": "child_like",
+        "caption": "OH WOW OH WOW LOOK LOOK LOOK!!! 🌳✨\n\nThere’s a SECRET DOOR in the bushes!! Like, a REAL one! It’s all shiny and twisty like a snail shell or a magic wand made of glass!! 🔮🌀\n\nAnd guess what?? TWO PEOPLE are standing there!!! One is wearing a BLUE SHIRT that says “I ❤️…” (I can’t read it but I bet it says something COOL!) And he’s holding his hands up like he’s about to CAST A SPELL!! ✨🧙‍️ Or maybe he’s trying to open the door with his MIND POWER!! 😱💥\n\nThe other person? They’re wearing BLACK PANTS and a DARK SHIRT and they’re looking down at their phone… probably texting the wizard friend: “DUDE THE MAGIC ISN’T WORKING.” 📱😂\n\nAnd look at the GRASS!! It’s so GREEN and FLUFFY like a giant pillow for fairies!! And there are STEPPING STONES leading to the secret door — like you have to hop-hop-hop on them or else you’ll fall into a hole full of dragon eggs!! 🐉\n\nAlso, THERE’S A BUSH ON THE LEFT THAT LOOKS LIKE A GIANT BROCCOLI MONSTER!! 🥦 He might be guarding the door! You gotta say “please” before you knock!",
+        "prompt": "Describe this image the way an excited five-year-old would.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 199,
+          "completion_tokens": 300
+        },
+        "model_returned": "qwen3.8-flash"
+      }
+    ],
+    "caption_img_002": [
+      {
+        "id": "factual",
+        "name": "factual",
+        "style": "factual",
+        "caption": "A man wearing high-visibility clothing and ear protection operates a green John Deere tractor equipped with a rear-mounted attachment on a paved road bordered by a metal fence and vegetation.",
+        "prompt": "Describe this image factually and objectively in one sentence.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 214,
+          "completion_tokens": 36
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "verbose",
+        "name": "verbose",
+        "style": "verbose",
+        "caption": "A man in high-visibility gear and ear protection operates a green John Deere tractor, towing blue machinery on an asphalt road. Behind him, a chain-link fence borders grassy fields under bright daylight. The scene blends industrial labor with rural tranquility, its vivid colors contrasting against muted greens and grays — evoking focused productivity amid open countryside calmness.",
+        "prompt": "Describe this image in rich detail - subjects, setting, colours, lighting and mood. About 60 words.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 226,
+          "completion_tokens": 73
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "concise",
+        "name": "concise",
+        "style": "concise",
+        "caption": "Man operating green John Deere tractor",
+        "prompt": "Describe this image in as few words as possible (3-6 words).",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 218,
+          "completion_tokens": 8
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "technical",
+        "name": "technical",
+        "style": "technical",
+        "caption": "**Subject:**\n- Primary subject: Adult male operator seated on a John Deere utility tractor.\n- Operator attire: High-visibility lime green jacket with reflective stripes, orange high-visibility trousers with reflective bands, red ear protection (earmuffs), dark footwear.\n- Vehicle: Green and yellow John Deere compact/utility tractor, model designation “450” visible on hood side. Equipped with roll-over protective structure (ROPS) frame behind seat. Rear-mounted implement attachment (blue hydraulic unit with hoses and couplers).\n\n**Setting:**\n- Outdoor paved surface (asphalt or concrete roadway/parking area).\n- Background: Metal mesh fence with vertical posts; beyond fence: leafy trees, shrubs, partial view of residential roofline under clear sky.\n- Time context: Daylight hours, likely late afternoon based on shadow angle and warm tone.\n\n**Lighting:**\n- Natural sunlight from upper left/right (directional, casting shadows to right/rear).\n- Bright illumination on operator’s back and vehicle surfaces; slight lens flare or glare near top center.\n- Color temperature: Warm daylight tones dominate.\n\n**Composition:**\n- Medium shot, eye-level perspective slightly angled toward driver’s side.\n- Tractor occupies central-left foreground; rear attachment extends into mid-right frame.\n- Horizontal alignment: Ground plane cuts across lower third; horizon/fence line at upper third.\n- Focus sharp on operator and tractor;",
+        "prompt": "Describe this image in a technical cataloguing style: subjects, setting, lighting, composition. No emotion words.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 225,
+          "completion_tokens": 300
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "poetic",
+        "name": "poetic",
+        "style": "poetic",
+        "caption": "A knight in neon armor rides his emerald steed, yellow wheels spinning like sunflowers chasing light. Behind him drags a blue plow-tail, carving order from chaos's edge—a humble chariot of labor beneath sky's open canvas.",
+        "prompt": "Describe this image poetically, using metaphor and lyricism. About 40 words.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 221,
+          "completion_tokens": 51
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "child_like",
+        "name": "child_like",
+        "style": "child_like",
+        "caption": "WOW!!! LOOK AT THAT BIG GREEN TRACTOR!!! 🚜💚 It’s SO COOL!!! The man is wearing a super bright yellow jacket and ORANGE pants like a fireman! And he has big red earmuffs on his ears—maybe so the tractor doesn’t go “VROOM VROOM” too loud?! 😂\n\nHe’s sitting up HIGH in the driver’s seat, holding the steering wheel like he’s racing to win first place! The wheels are HUGE with black tires and yellow centers—they look like giant donuts! 🍩🚗\n\nAnd guess what?? There’s something BLUE attached to the back—it looks like a magic arm or maybe a scoop for digging stuff!! Is it gonna pick up cars? Or make mountains of dirt?! I wanna ride on it!!! 🤘\n\nThe sky is blue, there are trees behind the fence, and even a little house peeking out—but ALL I care about is that AWESOME TRACTOR!!! Can we go see one in real life please?? Pleeease?? I’ll share my cookies if you say yes!! 🍪\n\n#TractorLove #BigGreenMachine #FutureFarmer",
+        "prompt": "Describe this image the way an excited five-year-old would.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 215,
+          "completion_tokens": 245
+        },
+        "model_returned": "qwen3.8-flash"
+      }
+    ],
+    "caption_img_003": [
+      {
+        "id": "factual",
+        "name": "factual",
+        "style": "factual",
+        "caption": "This image shows an outdoor art market or street fair, where a person wearing a hooded jacket and cap is viewing a colorful painting of a cityscape on an easel, while other individuals browse nearby artworks under umbrellas.",
+        "prompt": "Describe this image factually and objectively in one sentence.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 198,
+          "completion_tokens": 46
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "verbose",
+        "name": "verbose",
+        "style": "verbose",
+        "caption": "A street artist in a blue jacket and beige cap paints a vibrant cityscape on an easel, surrounded by other artworks. The scene is lively with people walking past under umbrellas, suggesting rain. Colors are rich—reds, blues, greens—with soft lighting enhancing the artistic mood amidst urban bustle.",
+        "prompt": "Describe this image in rich detail - subjects, setting, colours, lighting and mood. About 60 words.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 210,
+          "completion_tokens": 62
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "concise",
+        "name": "concise",
+        "style": "concise",
+        "caption": "Artist painting street scene outdoors.",
+        "prompt": "Describe this image in as few words as possible (3-6 words).",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 202,
+          "completion_tokens": 7
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "technical",
+        "name": "technical",
+        "style": "technical",
+        "caption": "**Subjects:**  \n- Primary subject: Adult figure viewed from posterior, wearing navy hooded jacket and beige-and-white baseball cap; gray hair visible at nape. Holding red-handled paintbrush or palette knife near canvas edge.\n- Secondary subject: Partially visible adult to left, clad in light-gray puffer jacket, black hat with brim, facing away; holding wooden-framed artwork vertically.\n- Tertiary subjects (background): Blurred pedestrians under umbrellas; one individual in tan coat walking rightward.\n\n**Setting:**  \n- Outdoor urban environment, likely public square or street market.\n- Background features multi-story buildings with arched windows, stone facades, green foliage on trees.\n- Red awnings and blue/white striped umbrella indicate commercial stalls or cafes.\n- Ground surface appears paved; scattered art supplies suggest open-air painting activity.\n\n**Lighting:**  \n- Diffuse natural daylight, consistent with overcast conditions.\n- Even illumination across scene; no harsh shadows.\n- Canvas reflects ambient light without glare; pigments remain saturated but not specularly brightened.\n\n**Composition:**  \n- Foreground dominated by upright rectangular canvas mounted on easel (wooden top rail visible), angled slightly toward viewer’s right.\n- Canvas depicts impressionistic cityscape: pale domed building, leafy tree, cobblestone street with small figures, red-roofed structures.\n- Viewer positioned behind primary artist, creating layered depth",
+        "prompt": "Describe this image in a technical cataloguing style: subjects, setting, lighting, composition. No emotion words.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 209,
+          "completion_tokens": 300
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "poetic",
+        "name": "poetic",
+        "style": "poetic",
+        "caption": "In the bustling heart of a city, an artist’s canvas blooms with vibrant life—a window into another world. Raindrops dance on umbrellas, while brushstrokes whisper tales of distant streets and sunlit spires, capturing moments that linger long after they fade.",
+        "prompt": "Describe this image poetically, using metaphor and lyricism. About 40 words.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 205,
+          "completion_tokens": 54
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "child_like",
+        "name": "child_like",
+        "style": "child_like",
+        "caption": "OH WOW LOOK AT THAT PICTURE IT’S SO COOL!!!\n\nThere’s a big, big painting on a wooden stand and it’s like… a whole town with pointy towers and red roofs and LOTS of little people walking around!! And there’s trees with green leaves and blue sky peeking through!! It looks like magic land!!\n\nAnd guess what?? There’s a person wearing a super funny hat — it’s beige and white and looks like a pirate hat or maybe a chef hat that got squished!! They’re looking at the picture and I bet they’re thinking “WOW THIS IS AWESOME” just like me!!\n\nOh oh oh! Behind them are more paintings and umbrellas and buildings and everything is so colorful and busy like a carnival but quieter and nicer!!\n\nI wanna paint something like that!! With all the colors!! And maybe add dinosaurs!! Or unicorns!! Wait no — this is already perfect!! 🎨✨",
+        "prompt": "Describe this image the way an excited five-year-old would.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 199,
+          "completion_tokens": 195
+        },
+        "model_returned": "qwen3.8-flash"
+      }
+    ],
+    "caption_img_004": [
+      {
+        "id": "factual",
+        "name": "factual",
+        "style": "factual",
+        "caption": "In an outdoor courtyard of a traditional Japanese building with a green-tiled roof, a man in light blue hakama and white kimono sweeps the ground with a long-handled broom while two others—one in white ceremonial attire and another in dark clothing—walk nearby, with additional people visible in the background near stacked wooden crates.",
+        "prompt": "Describe this image factually and objectively in one sentence.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 198,
+          "completion_tokens": 67
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "verbose",
+        "name": "verbose",
+        "style": "verbose",
+        "caption": "This image captures a scene at what appears to be a traditional Japanese temple or shrine. A person dressed in white robes and a head covering is sweeping the stone-paved courtyard with a broom, while another individual stands nearby holding an object. The setting includes wooden structures and greenery under soft lighting, creating a serene atmosphere",
+        "prompt": "Describe this image in rich detail - subjects, setting, colours, lighting and mood. About 60 words.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 210,
+          "completion_tokens": 65
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "concise",
+        "name": "concise",
+        "style": "concise",
+        "caption": "Shinto priests sweeping courtyard",
+        "prompt": "Describe this image in as few words as possible (3-6 words).",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 202,
+          "completion_tokens": 6
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "technical",
+        "name": "technical",
+        "style": "technical",
+        "caption": "**Subjects:**\n- Foreground left: Adult male, wearing white short-sleeved top and light blue hakama (traditional trousers), holding a long-handled broom with natural bristles; mid-stride, sweeping motion.\n- Center-right: Two figures in ceremonial attire — one draped in white hooded robe over red undergarment, the other in dark kimono with obi sash; walking side-by-side, facing forward.\n- Background right: Three distant adults standing near stacked wooden crates or shelves; two appear to be observing, one partially obscured.\n- Ground objects: Small wooden box-like structure with vertical handles; transparent plastic bag containing indistinct contents; scattered reddish-brown debris on pavement.\n\n**Setting:**\n- Outdoor courtyard of traditional Japanese architectural complex.\n- Structure features green-tiled roof with exposed eaves, dark timber columns, and open veranda.\n- Paved stone ground surface.\n- Stacked wooden units visible behind pillars suggest storage or ritual equipment area.\n- Daytime scene; no artificial lighting apparent.\n\n**Lighting:**\n- Natural daylight, diffuse illumination suggesting overcast sky or shaded environment.\n- Soft shadows cast beneath subjects and objects.\n- Even tonal distribution across frame; minimal contrast highlights or deep blacks.\n\n**Composition:**\n- Horizontal orientation.\n- Rule-of-thirds alignment: foreground sweeper occupies lower-left third; central procession aligned vertically along center axis.\n- Depth",
+        "prompt": "Describe this image in a technical cataloguing style: subjects, setting, lighting, composition. No emotion words.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 209,
+          "completion_tokens": 300
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "poetic",
+        "name": "poetic",
+        "style": "poetic",
+        "caption": "In the courtyard of ancient wisdom, a dancer in white robes sweeps away yesterday's whispers, while another, veiled like a moonlit secret, tends to the earth's quiet breath—two souls painting stillness on stone, where time dissolves into dust motes dancing in sacred light.",
+        "prompt": "Describe this image poetically, using metaphor and lyricism. About 40 words.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 205,
+          "completion_tokens": 59
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "child_like",
+        "name": "child_like",
+        "style": "child_like",
+        "caption": "WOW! LOOK AT THAT MAN SWEEPING THE YARD!! 🧹✨ He’s got a BIG, BIG broom made of sticks and he’s sweeping SO HARD his arm is all the way UP in the sky!! Like he’s trying to high-five the clouds!! ☁️🙌\n\nAnd look at those people walking behind him!!! One lady is wearing a HUGE white robe like she’s a GHOST but a NICE ghost!!! 👻 And another person has a RED thing on their back—maybe it’s a backpack or maybe it’s a DRAGON?? 🐉 Whoa!!\n\nThere’s even a little wooden box with a handle—like a toy chest for giants!!! And a big bag full of… STUFF?! Maybe treasure? Or leaves? I dunno but it looks IMPORTANT. 💼🍂\n\nThe building behind them is sooo long and green-roofed—it looks like a castle from a fairy tale!! But instead of knights, there are monks and sweepers!! So cool!!!\n\nI wanna go there and help sweep!! And wear the white robe!! And ride the dragon-backpack guy!! WOOO-HOOO!!! 🎉👣",
+        "prompt": "Describe this image the way an excited five-year-old would.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 199,
+          "completion_tokens": 249
+        },
+        "model_returned": "qwen3.8-flash"
+      }
+    ],
+    "caption_img_005": [
+      {
+        "id": "factual",
+        "name": "factual",
+        "style": "factual",
+        "caption": "This image captures a dynamic scene of people leaning out from balconies above a narrow urban street, with one individual in a red hoodie holding a green bottle and another person below gripping a long wooden pole.",
+        "prompt": "Describe this image factually and objectively in one sentence.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 198,
+          "completion_tokens": 41
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "verbose",
+        "name": "verbose",
+        "style": "verbose",
+        "caption": "Three young men engage in playful chaos on a sunlit urban balcony, one leaning over the railing holding a green bottle while another below reaches up with an object. The scene bursts with casual energy against beige walls and ornate black railings, capturing spontaneous youthful mischief under bright daylight.",
+        "prompt": "Describe this image in rich detail - subjects, setting, colours, lighting and mood. About 60 words.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 210,
+          "completion_tokens": 57
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "concise",
+        "name": "concise",
+        "style": "concise",
+        "caption": "Bottles thrown from balconies.",
+        "prompt": "Describe this image in as few words as possible (3-6 words).",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 202,
+          "completion_tokens": 9
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "technical",
+        "name": "technical",
+        "style": "technical",
+        "caption": "**Subjects:**  \n- Primary subject: Male, mid-teens to early 20s, curly brown hair, wearing red hooded sweatshirt and light-colored shorts. Leaning over balcony railing, extending right arm downward holding green glass bottle (partially obscured label).  \n- Secondary subject: Male, late teens to early 30s, short dark hair, white t-shirt with red collar trim, khaki cargo pants. Standing below on ground level, looking upward toward primary subject; left hand near waist, possibly holding small object or adjusting clothing.  \n- Background group: Four individuals visible on upper balcony — two females (one blonde, one brunette), one male with beard, one partially obscured person. All leaning forward, observing interaction between primary and secondary subjects.\n\n**Setting:**  \nUrban residential exterior. Multi-story building with stucco facade, ornate wrought-iron balconies featuring scrollwork railings. Architectural details include recessed window frames, decorative cornice moldings, louvered vent panel on wall adjacent to lower doorway. Ground-level entrance has weathered teal-painted door frame.\n\n**Lighting:**  \nNatural daylight, diffuse overhead illumination. Shadows cast beneath balconies and along vertical surfaces indicate sun positioned high and slightly behind camera plane. No artificial lighting sources visible. Contrast moderate; highlights on skin and fabric suggest clear sky conditions.\n\n**Composition:**  \nVertical orientation. Diagonal visual flow created by line of sight from upper balcony down to street level",
+        "prompt": "Describe this image in a technical cataloguing style: subjects, setting, lighting, composition. No emotion words.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 209,
+          "completion_tokens": 300
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "poetic",
+        "name": "poetic",
+        "style": "poetic",
+        "caption": "Balconies bloom with curious faces, leaning like sunflowers toward the street’s drama below. A red-shirted youth pours green liquid skyward—gravity reversed, laughter spilling downward—as if joy itself were a potion shared between floors in this urban theater of light and life.",
+        "prompt": "Describe this image poetically, using metaphor and lyricism. About 40 words.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 205,
+          "completion_tokens": 57
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "child_like",
+        "name": "child_like",
+        "style": "child_like",
+        "caption": "OH MY GOSH LOOK!!! IT’S LIKE A GIANT WATER BALLOON FIGHT BUT WITH BOTTLES!!! \n\nThe boy in the RED HOODIE is leaning SO FAR OVER the balcony like a superhero saving the day (or trying to hit someone with a bottle! *giggles*) and he’s holding a GREEN BOTTLE that looks kinda squishy? Maybe it’s juice? Or maybe… SPLASHY STUFF?!\n\nAnd look at the man below! He’s wearing white and he’s got his arm up like he’s gonna CATCH it or DUCK! His face is all scrunched up like when you try not to laugh too hard!\n\nUP TOP THERE ARE EVEN MORE PEOPLE ON THE OTHER BALCONY! They’re watching like it’s the BEST SHOW EVER! One guy has a beard and one girl has her hand on her head like “OH NOOOO!” And another person is taking a PICTURE with their phone!! Everyone is excited!!\n\nIt’s like a giant game of tag but from different floors! I wanna join! Can we throw bottles? Wait no—can we throw WATER? YES PLEASE!! This is the COOLEST THING I’VE EVER SEEN!!! *jumps up and down*",
+        "prompt": "Describe this image the way an excited five-year-old would.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 199,
+          "completion_tokens": 259
+        },
+        "model_returned": "qwen3.8-flash"
+      }
+    ],
+    "caption_img_006": [
+      {
+        "id": "factual",
+        "name": "factual",
+        "style": "factual",
+        "caption": "A person wearing a dark t-shirt and light blue jeans is pushing a red toy wagon across a grassy yard, with an inflatable pool featuring a blue rim and multicolored side panels in the foreground.",
+        "prompt": "Describe this image factually and objectively in one sentence.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 294,
+          "completion_tokens": 42
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "verbose",
+        "name": "verbose",
+        "style": "verbose",
+        "caption": "A child in a black shirt and blue jeans pushes a red toy car across a sunlit grassy yard. Beside them, a vibrant inflatable pool with rainbow panels gleams under natural daylight. Lush green trees frame the scene, casting soft shadows. The mood is playful and carefree, evoking summer leisure and childhood exploration outdoors.",
+        "prompt": "Describe this image in rich detail - subjects, setting, colours, lighting and mood. About 60 words.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 306,
+          "completion_tokens": 69
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "concise",
+        "name": "concise",
+        "style": "concise",
+        "caption": "child pushing toy car",
+        "prompt": "Describe this image in as few words as possible (3-6 words).",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 298,
+          "completion_tokens": 5
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "technical",
+        "name": "technical",
+        "style": "technical",
+        "caption": "**Subject:** Human figure (juvenile/young adult), short dark hair, wearing black t-shirt and light blue jeans. Interacting with a red plastic ride-on toy vehicle featuring large black wheels.\n**Setting:** Outdoor residential lawn. Foreground left contains a circular inflatable pool with blue trim and multicolored vertical panels (pink, yellow, green, purple). Extreme bottom-left corner shows partial view of a bright green object. Background consists of dense mature trees and foliage; a hammock is suspended in the mid-background right.\n**Lighting:** Natural daylight. Bright, directional sunlight creates high contrast and distinct shadows on the grass. Dappled light patterns visible on the ground due to tree canopy.\n**Composition:** Asymmetrical arrangement. Inflatable pool dominates the left foreground/mid-ground. The human subject and toy vehicle are positioned in the right mid-ground, angled away from the camera. Deep background filled with vegetation. Framed by a thin black border.",
+        "prompt": "Describe this image in a technical cataloguing style: subjects, setting, lighting, composition. No emotion words.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 305,
+          "completion_tokens": 198
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "poetic",
+        "name": "poetic",
+        "style": "poetic",
+        "caption": "In a sun-dappled garden, childhood dreams take flight—a vibrant pool of rainbows beside a toy tractor’s red chariot. A child bends low, pulling like a tiny farmer tending fields of laughter, where every blade of grass hums with the joy of endless summer afternoons.",
+        "prompt": "Describe this image poetically, using metaphor and lyricism. About 40 words.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 301,
+          "completion_tokens": 61
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "child_like",
+        "name": "child_like",
+        "style": "child_like",
+        "caption": "OH MY GOSH LOOK!!!\n\nThere’s a HUGE rainbow pool! It’s like a magical circle of sparkly colors—pink and blue and yellow and green and PURPLE! I want to jump in it right now but wait!! Look at the boy!! He’s pushing the RED TRUCK!!! VROOM VROOM!!! The wheels are so big and black and bumpy!! He’s leaning SO FAR forward, he looks like he’s trying really super hard!! Maybe he’s racing?! Or maybe he’s bringing the truck to me?! \n\nAnd look behind him there’s a tree with leaves that go whoosh-whoosh when the wind blows!! And grass!! Soft green grass for running!! And oh my gosh is that a HAMMOCK?? Can we swing in it after?? Please please please can we play with the red truck AND splash in the rainbow pool AND swing in the hammock ALL AT ONCE??? THIS IS THE BEST DAY EVER!!! 🌈💦",
+        "prompt": "Describe this image the way an excited five-year-old would.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 295,
+          "completion_tokens": 202
+        },
+        "model_returned": "qwen3.8-flash"
+      }
+    ],
+    "caption_img_007": [
+      {
+        "id": "factual",
+        "name": "factual",
+        "style": "factual",
+        "caption": "A woman in a black sleeveless top and a man in a light-colored t-shirt sit outdoors on grass near a body of water, with the man holding a baby who is looking toward the camera; to their left stands an empty stroller with dark fabric and gold trim, and a tree trunk occupies the right edge of the frame.",
+        "prompt": "Describe this image factually and objectively in one sentence.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 230,
+          "completion_tokens": 68
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "verbose",
+        "name": "verbose",
+        "style": "verbose",
+        "caption": "A woman with dark hair in a bun, wearing black, sits beside a man holding a baby near a tree. A stroller stands nearby. The scene unfolds by water under soft daylight, surrounded by greenery. Calm and intimate, the family shares quiet time outdoors, bathed in gentle natural light that enhances the peaceful mood of togetherness.",
+        "prompt": "Describe this image in rich detail - subjects, setting, colours, lighting and mood. About 60 words.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 242,
+          "completion_tokens": 73
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "concise",
+        "name": "concise",
+        "style": "concise",
+        "caption": "Family with baby by lake",
+        "prompt": "Describe this image in as few words as possible (3-6 words).",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 234,
+          "completion_tokens": 6
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "technical",
+        "name": "technical",
+        "style": "technical",
+        "caption": "**Subjects:**\n- Three individuals: one adult female (back view, black sleeveless top, hair in bun), one adult male (side/back view, light-colored short-sleeve shirt), and one infant (held by male, facing outward).\n- One stroller: dark canopy with gold/yellow trim; visible wheels and frame structure.\n\n**Setting:**\n- Outdoor park environment adjacent to a body of water (lake or pond).\n- Background features blurred trees and distant structures under bright daylight.\n- Foreground includes grassy ground and partial trunk of tree on right edge.\n\n**Lighting:**\n- Natural daylight, high-key illumination from upper left.\n- Shadows cast toward lower right; subjects partially shaded by tree canopy.\n- Bright highlights on water surface and foliage.\n\n**Composition:**\n- Asymmetrical framing: stroller occupies left third; human group centered-right; tree trunk vertical element at far right.\n- Depth layers: foreground (stroller/tree), midground (people), background (water/trees).\n- Subjects oriented away from camera except infant; gaze direction implied toward water.\n- Framed through negative space between stroller and tree trunk.",
+        "prompt": "Describe this image in a technical cataloguing style: subjects, setting, lighting, composition. No emotion words.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 241,
+          "completion_tokens": 246
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "poetic",
+        "name": "poetic",
+        "style": "poetic",
+        "caption": "Beneath the tree’s ancient embrace, two souls sit in quiet communion. The woman’s dark hair a crown of night, the man’s light shirt like dawn’s first glow. Between them, life unfolds—soft whispers and tiny breaths blending with rustling leaves above.",
+        "prompt": "Describe this image poetically, using metaphor and lyricism. About 40 words.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 237,
+          "completion_tokens": 57
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "child_like",
+        "name": "child_like",
+        "style": "child_like",
+        "caption": "Oh my gosh, look at that! There’s a baby!! And the man is holding him up high like he’s flying! I bet he’s gonna tickle him soon!\n\nAnd there’s a lady sitting right next to them with her hair all bunched up in a bun—she looks super comfy. She’s wearing black and she’s watching the baby too! Maybe they’re family? Or friends having a picnic day?\n\nOhhh—and LOOK!!! There’s a stroller! It’s big and black and has wheels and a canopy! Is the baby gonna get in it later? Or did he just come out of it? Maybe there’s snacks inside! Or toys! Or even a secret compartment for cookies!!\n\nThey’re all sitting under a tree—it’s sooo tall and brown and twisty! The grass is green and soft and perfect for rolling around if you want to join them!\n\nI wanna go play with the baby! Can we wave? Can we say hi?! He looks so cute when he’s being held up like that! Maybe he’ll laugh! Babies love laughing!\n\nThis is the BEST DAY EVER outside!!! 🌞👶",
+        "prompt": "Describe this image the way an excited five-year-old would.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 231,
+          "completion_tokens": 243
+        },
+        "model_returned": "qwen3.8-flash"
+      }
+    ],
+    "caption_img_008": [
+      {
+        "id": "factual",
+        "name": "factual",
+        "style": "factual",
+        "caption": "A blonde-haired person wearing a gray-and-white striped long-sleeve shirt and blue jeans is mid-air on a skateboard, with their knees bent and one arm extended for balance, while several people stand in the background near trees and a concrete structure.",
+        "prompt": "Describe this image factually and objectively in one sentence.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 230,
+          "completion_tokens": 51
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "verbose",
+        "name": "verbose",
+        "style": "verbose",
+        "caption": "A young blond skateboarder mid-air performs a trick above concrete ramps, wearing striped gray-and-white long-sleeve shirt and blue jeans. Behind him, blurred spectators watch against lush green trees under bright daylight. The scene captures dynamic motion, youthful energy, and casual outdoor recreation in a skatepark setting — vibrant yet relaxed.",
+        "prompt": "Describe this image in rich detail - subjects, setting, colours, lighting and mood. About 60 words.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 242,
+          "completion_tokens": 66
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "concise",
+        "name": "concise",
+        "style": "concise",
+        "caption": "Skateboarder performing mid-air trick",
+        "prompt": "Describe this image in as few words as possible (3-6 words).",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 234,
+          "completion_tokens": 9
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "technical",
+        "name": "technical",
+        "style": "technical",
+        "caption": "**Subject:**\n*   Primary: Male adolescent, light blond hair. Wearing gray and white horizontal-striped long-sleeve shirt, blue denim jeans, black skate shoes. Captured mid-air performing a skateboard trick; knees bent, arms extended laterally for balance. Skateboard angled beneath feet, wheels visible.\n*   Secondary: Group of 8–10 spectators seated/standing in background. Clothing includes red hoodie, brown jacket, white shirts, dark jackets. Faces partially obscured by depth-of-field blur.\n\n**Setting:**\n*   Outdoor skatepark. Concrete ledge/ramp structure in foreground right, marked with faded red spray-paint graffiti. Background consists of dense green deciduous trees under overcast sky. No artificial structures or signage visible.\n\n**Lighting:**\n*   Diffuse natural daylight. Even illumination across subject and scene. Minimal shadow contrast. No direct sunlight or harsh highlights. Ambient light source appears to be cloud-filtered solar radiation.\n\n**Composition:**\n*   Vertical orientation. Subject centered horizontally, occupying upper-middle frame. Low-angle perspective emphasizes elevation during jump. Shallow depth of field renders background spectators and foliage softly out of focus, isolating primary subject. Foreground concrete edge anchors bottom-right quadrant. Diagonal line formed by skateboard’s tilt adds dynamic tension. Color palette dominated by muted grays, blues, greens; accented by red clothing and graffiti mark.",
+        "prompt": "Describe this image in a technical cataloguing style: subjects, setting, lighting, composition. No emotion words.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 241,
+          "completion_tokens": 288
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "poetic",
+        "name": "poetic",
+        "style": "poetic",
+        "caption": "Golden hair like sunlit wheat, he dances mid-air on wheels of wild freedom. The world blurs below—faces watching like distant stars—as gravity bends to his will, a fleeting god soaring over concrete dreams and green whispers.",
+        "prompt": "Describe this image poetically, using metaphor and lyricism. About 40 words.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 237,
+          "completion_tokens": 47
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "child_like",
+        "name": "child_like",
+        "style": "child_like",
+        "caption": "WOW WOW WOW!!! LOOK AT HIM GO!!!\n\nHe’s FLYING in the air!! Like a birdie! But with a skateboard!! And his hair is all spiky and blonde like sunshine!! He’s wearing stripes and jeans and he looks SO COOL doing that trick!!!\n\nThe board is flipping under him — whoa!! — and he’s gonna land it, I know it!! Everyone’s watching!! Look at their faces!! They’re like “OH MY GOSH!” just like me!!!\n\nAnd there’s trees behind him and concrete ramps and red spray paint — so many colors!! This is the BEST DAY EVER!! Can I have a skateboard?? Please please pleeease?? I wanna fly too!! 🛹✨💥",
+        "prompt": "Describe this image the way an excited five-year-old would.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 231,
+          "completion_tokens": 153
+        },
+        "model_returned": "qwen3.8-flash"
+      }
+    ],
+    "caption_img_009": [
+      {
+        "id": "factual",
+        "name": "factual",
+        "style": "factual",
+        "caption": "A young boy with brown hair, wearing a red jacket featuring an Italian flag patch and Kappa logo, crouches on a wooden floor while holding a hockey stick in front of a red-framed net.",
+        "prompt": "Describe this image factually and objectively in one sentence.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 230,
+          "completion_tokens": 43
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "verbose",
+        "name": "verbose",
+        "style": "verbose",
+        "caption": "A young child crouches beside a red hockey net, wearing a vibrant red Kappa jersey with an Italian flag patch and blue emblem. Smiling warmly, they grip a hockey stick on the textured pavement. The white mesh backdrop contrasts with their denim jeans and dark shoes, creating a cheerful, active outdoor scene bathed in soft natural light.",
+        "prompt": "Describe this image in rich detail - subjects, setting, colours, lighting and mood. About 60 words.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 242,
+          "completion_tokens": 70
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "concise",
+        "name": "concise",
+        "style": "concise",
+        "caption": "Child hockey player crouching",
+        "prompt": "Describe this image in as few words as possible (3-6 words).",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 234,
+          "completion_tokens": 7
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "technical",
+        "name": "technical",
+        "style": "technical",
+        "caption": "**Subject:**\n- Primary: Juvenile human (approx. 8–12 years), short brown hair, wearing red zip-up jacket with Italian flag patch on left sleeve and Kappa logo on right chest; dark blue jeans; black sneakers. Right hand gripping shaft of hockey stick; left hand resting flat on ground for balance. Body in crouched position, knees bent, torso leaning forward slightly.\n\n**Setting:**\n- Outdoor or semi-outdoor sports facility. Background consists of white synthetic mesh netting stretched over red-painted metal frame (goal structure). Ground surface is composite material — light gray concrete slab adjacent to darker reddish-brown rubberized matting. No visible spectators, equipment beyond stick/net, or signage.\n\n**Lighting:**\n- Diffuse natural daylight. Even illumination across subject and background. Minimal shadowing under body or objects suggests overcast sky or shaded environment. No artificial highlights or directional glare.\n\n**Composition:**\n- Medium shot, eye-level perspective. Subject centered horizontally, occupying lower two-thirds vertically. Hockey stick extends diagonally from bottom-right toward center-left, creating leading line. Netting fills upper half, providing textural contrast and depth. Framing includes partial view of goalpost edges on left and right margins. Depth of field shallow enough to keep subject sharp while softly blurring distant netting layers.",
+        "prompt": "Describe this image in a technical cataloguing style: subjects, setting, lighting, composition. No emotion words.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 241,
+          "completion_tokens": 277
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "poetic",
+        "name": "poetic",
+        "style": "poetic",
+        "caption": "Behind the mesh’s ghostly veil, a young guardian crouches—red jersey like autumn flame, Italian flag stitched to his sleeve. Hockey stick becomes sword; smile, his shield. In this frozen arena, he dreams not of goals, but of glory yet unspoken.",
+        "prompt": "Describe this image poetically, using metaphor and lyricism. About 40 words.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 237,
+          "completion_tokens": 57
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "child_like",
+        "name": "child_like",
+        "style": "child_like",
+        "caption": "OH WOW OH WOW LOOK AT THAT BOY!!! 🤩🤩\n\nHe’s wearing a SUPER COOL RED JACKET with an ITALIAN FLAG on his arm!! 🇮 And he has jeans that look like they’ve been in mud or something—so FUNNY! 😂\n\nAnd guess what?? He’s holding a HOCKEY STICK!!! ⛸️ Like, real ones from the ice rink!! But wait—he’s not on ice!! He’s crouching down by this big red net like it’s a GOALIE’S LAIR!! 🕳️⚽ (but for hockey!)\n\nHis face is so HAPPY—he’s smiling like he just won the WORLD CUP OF SMILES!! 🌍😄 And one hand is on the ground like “I’m ready to pounce!” and the other is gripping that stick like “Gimme the puck, I got this!”\n\nIs he pretending? Is he practicing? IS HE A SECRET HOCKEY HERO?! 👑🏒\n\nAlso… why is there a weird yellow thing behind the net?? Looks like a banana peel or maybe a toy?? 🍌❓ Who left that there?!\n\nTHIS IS THE BEST PICTURE EVER. I wanna be him. Or at least borrow his jacket. And maybe try to hit a puck with that stick even if we’re not on ice!! LET’S PLAY HOCK",
+        "prompt": "Describe this image the way an excited five-year-old would.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 231,
+          "completion_tokens": 300
+        },
+        "model_returned": "qwen3.8-flash"
+      }
+    ],
+    "caption_img_010": [
+      {
+        "id": "factual",
+        "name": "factual",
+        "style": "factual",
+        "caption": "A man in a black shirt and cap is crouching on a sidewalk near an open utility access point, surrounded by construction tools, planters, traffic cones, and yellow caution tape.",
+        "prompt": "Describe this image factually and objectively in one sentence.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 198,
+          "completion_tokens": 39
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "verbose",
+        "name": "verbose",
+        "style": "verbose",
+        "caption": "A worker in dark clothing crouches near a broken sidewalk, surrounded by construction tools and planters. Yellow caution tape stretches across the foreground, framing an orange traffic cone on the right. The scene is set outdoors under overcast lighting, with muted earth tones dominating—concrete grays, rusty oranges, and faded greens—evoking a gritty, urban mood of ongoing repair amidst decay.",
+        "prompt": "Describe this image in rich detail - subjects, setting, colours, lighting and mood. About 60 words.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 210,
+          "completion_tokens": 80
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "concise",
+        "name": "concise",
+        "style": "concise",
+        "caption": "Worker on sidewalk with caution tape.",
+        "prompt": "Describe this image in as few words as possible (3-6 words).",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 202,
+          "completion_tokens": 8
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "technical",
+        "name": "technical",
+        "style": "technical",
+        "caption": "**Subject:**  \nA person in dark clothing and cap is crouched on a concrete sidewalk, interacting with an open utility access panel. Nearby: orange traffic cones (one upright, one tipped), yellow caution tape stretched across foreground, red-and-white striped bollard with circular top, planters with greenery, wheelbarrow loaded with tools/materials, broom leaning against tree trunk, metal trash receptacle, scattered debris including what appears to be a discarded shoe or boot.\n\n**Setting:**  \nUrban outdoor environment — likely a commercial or mixed-use street corner. Background includes brick building facade, glass doors/windows, signage partially visible (“...GARDEN”), pavement transitions between concrete slabs and tiled sections. Tree planted within sidewalk area. Scene suggests active maintenance or construction work.\n\n**Lighting:**  \nDiffuse daylight; no harsh shadows indicating overcast sky or shaded location. Even illumination across scene with slight contrast from wet-looking surfaces reflecting ambient light.\n\n**Composition:**  \nForeground dominated by diagonal stretch of yellow caution tape creating visual barrier. Central subject positioned slightly left-of-center, angled toward viewer’s right. Vertical elements (bollard, tree, cone) anchor frame edges. Depth created through layering: tape → worker → planters/tools → background architecture. Slight high-angle perspective looking down onto activity zone. Color palette muted earth tones punctuated by safety orange/yellow/red accents.",
+        "prompt": "Describe this image in a technical cataloguing style: subjects, setting, lighting, composition. No emotion words.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 209,
+          "completion_tokens": 284
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "poetic",
+        "name": "poetic",
+        "style": "poetic",
+        "caption": "A worker kneels, mending the city’s fractured skin—concrete bones exposed beneath caution tape like yellow veins. Orange sentinels guard the wound where tools rest idle; life flows around this quiet repair, as if time paused to stitch sidewalk scars with careful hands.",
+        "prompt": "Describe this image poetically, using metaphor and lyricism. About 40 words.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 205,
+          "completion_tokens": 56
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "child_like",
+        "name": "child_like",
+        "style": "child_like",
+        "caption": "WOW WOW WOW!!! Look look LOOK!!!\n\nThere’s a man in BLACK clothes and he’s CROUCHING down like a froggy!! He’s playing with the sidewalk!! Is he building something?? Or is he looking for treasure?! 🕵️♂️💎\n\nAnd there are CONES everywhere!! Orange ones! Red ones! One even has a LID on top like a giant candy jar!! 🍬\n\nLook at the yellow tape!! It says “CAUTION” but I think it means “DON’T TOUCH OR YOU’LL GET IN TROUBLE!!” (But maybe we can peek under it… just a little!) 👀⚠️\n\nThere’s a tree right next to him — did he plant flowers around it?? They’re so pretty!! Pink and white!! Like birthday cake sprinkles!! 🌸🌼\n\nOhhh and there’s a SHOVEL leaning against the tree!! And another one near the cart!! Are they digging for dinosaurs?? 🦖\n\nThe ground looks all broken up like a puzzle!! Maybe he’s fixing it!! Or making a secret tunnel!! 🕳️\n\nI wanna help!! Can I wear a hard hat too?? And bring my toy truck?? VROOM VROOM!! 🚛\n\nThis is the BEST construction site EVER!! Even better than the park!! (But don’t tell Mommy.)",
+        "prompt": "Describe this image the way an excited five-year-old would.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 199,
+          "completion_tokens": 300
+        },
+        "model_returned": "qwen3.8-flash"
+      }
+    ],
+    "caption_img_011": [
+      {
+        "id": "factual",
+        "name": "factual",
+        "style": "factual",
+        "caption": "A group of people wearing winter clothing, including hats and backpacks, stand on snowshoes outside a small igloo with an open wooden door in a snowy forested area.",
+        "prompt": "Describe this image factually and objectively in one sentence.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 230,
+          "completion_tokens": 37
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "verbose",
+        "name": "verbose",
+        "style": "verbose",
+        "caption": "A group of people in winter gear gathers around a small igloo made of ice blocks, with snow piled on its roof. The setting is a snowy forest under soft daylight, creating a cool, crisp mood. Individuals wear colorful jackets—red, blue, black—and some carry backpacks. A wooden door in the igloo invites entry, suggesting curiosity and communal exploration amidst serene natural beauty.",
+        "prompt": "Describe this image in rich detail - subjects, setting, colours, lighting and mood. About 60 words.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 242,
+          "completion_tokens": 79
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "concise",
+        "name": "concise",
+        "style": "concise",
+        "caption": "People at an igloo",
+        "prompt": "Describe this image in as few words as possible (3-6 words).",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 234,
+          "completion_tokens": 6
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "technical",
+        "name": "technical",
+        "style": "technical",
+        "caption": "**Subjects:**  \nGroup of approximately 12 individuals, dressed in cold-weather outdoor attire including insulated jackets, hats (beanies, hoods), gloves, and snowshoes. Several carry backpacks; one wears a red jacket with green pack, another has purple beanie with gray jacket and black pack. One individual near entrance wears blue parka; others are positioned around or approaching the structure. Facial expressions not discernible due to distance or angle.\n\n**Setting:**  \nExterior winter environment. Central subject is an igloo-like structure constructed from translucent ice blocks, topped with accumulated snow. Wooden door frame visible at entrance. Ground surface partially cleared of snow, revealing brown earth or gravel beneath feet and snowshoes. Background consists of bare deciduous trees under overcast sky. No artificial structures or signage present.\n\n**Lighting:**  \nDiffuse natural daylight consistent with cloudy conditions. Even illumination across scene without harsh shadows. Ice blocks exhibit slight internal refraction but no directional highlights. Overall low contrast.\n\n**Composition:**  \nHorizontal orientation. Igloo occupies central-right third of frame, serving as focal point. Subjects arranged asymmetrically — cluster on left foreground, two figures flanking right side of entrance, one person mid-stride entering doorway. Depth created by layering: front-row subjects sharply defined, background trees softly blurred. Snow-covered ground extends horizontally across lower half. Framing suggests candid documentation rather than staged arrangement.",
+        "prompt": "Describe this image in a technical cataloguing style: subjects, setting, lighting, composition. No emotion words.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 241,
+          "completion_tokens": 292
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "poetic",
+        "name": "poetic",
+        "style": "poetic",
+        "caption": "Snow-block igloo gleams like a frozen cathedral, its wooden door a golden mouth whispering warmth. Bundled pilgrims gather on red snowshoes—bright berries against winter’s gray hush—awaiting entry into ice’s sacred embrace.",
+        "prompt": "Describe this image poetically, using metaphor and lyricism. About 40 words.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 237,
+          "completion_tokens": 51
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "child_like",
+        "name": "child_like",
+        "style": "child_like",
+        "caption": "Oh my gosh, look! It’s a SNOW HOUSE! 🏠️\n\nIt’s made of BIG, BLOOMING ICE BRICKS like Lego but way cooler because it’s COLD and SHINY! And there’s a DOOR! A real wooden door! Like you can walk right in and play hide-and-seek inside with your friends!\n\nAnd look at ALL the people! They’re all bundled up like marshmallows! 🧸 Some have red backpacks, some have blue hats, and one guy has a green backpack that looks like a turtle shell! One person is even wearing snowshoes—those are for walking on top of the snow so you don’t sink! Whoa!\n\nThere’s a little chimney on top! Is someone making hot cocoa inside? Or maybe roasting marshmallows?! I hope they saved me some!\n\nThe trees behind are bare and sleepy, but WE’RE WIDE AWAKE AND EXCITED! This is the BEST DAY EVER! Can we go inside? Please please please?? I wanna touch the ice walls! They probably feel like frozen jellybeans! 😋\n\nWait—is that Santa Claus hiding in there?? Nooo… just grown-ups. But still! So fun! Let’s build our own igloo tomorrow!! 🛷✨",
+        "prompt": "Describe this image the way an excited five-year-old would.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 231,
+          "completion_tokens": 277
+        },
+        "model_returned": "qwen3.8-flash"
+      }
+    ],
+    "caption_img_012": [
+      {
+        "id": "factual",
+        "name": "factual",
+        "style": "factual",
+        "caption": "This image shows a person with dark skin, adorned with corn cobs on their head, red and yellow beaded headbands, white face paint around the eyes, long beaded earrings, multiple necklaces (including beaded strands and cowrie shell necklaces), and a thin stick held between their lips.",
+        "prompt": "Describe this image factually and objectively in one sentence.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 198,
+          "completion_tokens": 63
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "verbose",
+        "name": "verbose",
+        "style": "verbose",
+        "caption": "A striking portrait of an African woman adorned with vibrant red and yellow beaded headgear, corn cobs as ceremonial ornaments, and intricate necklaces. Her face bears traditional white markings, while long beaded earrings frame her solemn expression. Set against a hazy savanna backdrop under soft daylight, the image radiates cultural pride, ancestral heritage, and quiet dignity in earthy tones.",
+        "prompt": "Describe this image in rich detail - subjects, setting, colours, lighting and mood. About 60 words.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 210,
+          "completion_tokens": 78
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "concise",
+        "name": "concise",
+        "style": "concise",
+        "caption": "Woman with corn headdress",
+        "prompt": "Describe this image in as few words as possible (3-6 words).",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 202,
+          "completion_tokens": 6
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "technical",
+        "name": "technical",
+        "style": "technical",
+        "caption": "**Subject:**  \nSingle human subject, adult female (based on facial structure and adornment), facing camera in frontal orientation. Head decorated with two dried maize cobs positioned horizontally above forehead, secured by beaded headband composed of red and yellow glass beads arranged in parallel horizontal bands. Additional feather-like plant material affixed to apex of headpiece. Face bears white pigment applied symmetrically across cheeks, nose bridge, and chin. Ears fitted with long dangling earrings constructed from orange-red seed or bead strands terminating in small cowrie shells. Neck encircled by multiple layered necklaces: thick coils of brown wooden or clay beads; thinner strands of cream-colored cylindrical beads; additional yellow-beaded choker at throat base. Lower chest area displays draped garlands of large oval cowrie shells alternating with vertical strings of red and yellow beads.\n\n**Setting:**  \nOutdoor environment under clear sky. Background consists of flat, arid terrain with sparse low vegetation visible along horizon line. No man-made structures present. Ground surface appears sandy or dusty. Sky occupies upper third of frame, uniformly pale blue-gray without cloud formation.\n\n**Lighting:**  \nNatural daylight illumination, diffuse and even. Shadows minimal, suggesting overcast conditions or indirect sun. Highlights visible on forehead, nasal tip, and glossy bead surfaces indicate soft directional light source from front-left quadrant. No artificial lighting evident.\n\n**Composition:**  \nVertical portrait format. Subject centered vertically and horizontally within frame. Cropping begins at mid-chest",
+        "prompt": "Describe this image in a technical cataloguing style: subjects, setting, lighting, composition. No emotion words.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 209,
+          "completion_tokens": 300
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "poetic",
+        "name": "poetic",
+        "style": "poetic",
+        "caption": "Crowned with corn like golden horns, she wears the earth’s bounty as a halo. Beads cascade down her neck, each one a whispered prayer to ancient rhythms. Her gaze holds the horizon—vast, timeless, and unbroken by wind or war.",
+        "prompt": "Describe this image poetically, using metaphor and lyricism. About 40 words.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 205,
+          "completion_tokens": 53
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "child_like",
+        "name": "child_like",
+        "style": "child_like",
+        "caption": "OH WOW!!! LOOK AT HER!!! SHE’S SO COOL!!! 🌟\n\nShe’s got CORN ON HER HEAD — like, actual yellow corn cobs with fluffy white bits sticking out! It’s like a crown made of snack food!! 😱👑\n\nAnd her face? She painted it with SILVER STUFF — sparkly and shiny like magic glitter from space! ✨✨ And she has a little silver stick poking out of her lip?! Is that a toothpick?? Or a tiny sword?? I don’t know but it’s AWESOME.\n\nHer earrings are LONG LONG LONG strings of orange beads with seashells dangling at the end — clack-clack-clack when she moves! 🔔\n\nAround her neck? SO MANY NECKLACES! Brown ones, red ones, yellow ones, white shell ones — they’re all stacked up like a giant bead tower! She looks like she raided a jewelry store AND a beach AND a farm all at once!! 🏺🌊🌽\n\nShe’s smiling… kinda… in a serious way. Like she’s guarding treasure or about to tell a secret story under the stars. 🌌\n\nI wanna be just like her when I grow up! Can we go find some corn and paint our faces too?? PLEASE?? 🥺💖\n\n#CrownOfCorn #GlitterFace #BeadTowerQueen #AdventureTime",
+        "prompt": "Describe this image the way an excited five-year-old would.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 199,
+          "completion_tokens": 296
+        },
+        "model_returned": "qwen3.8-flash"
+      }
+    ],
+    "caption_img_013": [
+      {
+        "id": "factual",
+        "name": "factual",
+        "style": "factual",
+        "caption": "A young girl with braided hair, wearing a pink tank top and brown shorts, stands in shallow ocean water while splashing around.",
+        "prompt": "Describe this image factually and objectively in one sentence.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 198,
+          "completion_tokens": 28
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "verbose",
+        "name": "verbose",
+        "style": "verbose",
+        "caption": "A young girl with pigtails, wearing a pink tank top and brown shorts, joyfully runs through shallow ocean water. Her arms are bent as she splashes forward, creating white foam around her legs. The background shows gentle waves rolling toward shore under bright daylight. The scene captures carefree summer fun, with natural lighting highlighting the turquoise sea and sandy beach tones.",
+        "prompt": "Describe this image in rich detail - subjects, setting, colours, lighting and mood. About 60 words.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 210,
+          "completion_tokens": 75
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "concise",
+        "name": "concise",
+        "style": "concise",
+        "caption": "Girl jumping in ocean waves.",
+        "prompt": "Describe this image in as few words as possible (3-6 words).",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 202,
+          "completion_tokens": 7
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "technical",
+        "name": "technical",
+        "style": "technical",
+        "caption": "**Subject:**  \nSingle pre-adolescent female, approximately 8–12 years old. Hair styled in two high pigtails with visible braiding or twist texture; ends flared outward due to motion. Wearing a sleeveless halter-style top (pink/white patterned) and dark brown shorts. Mid-stride pose: right leg lifted, left foot contacting shallow water surface, generating splash. Arms bent at elbows, hands near hips.\n\n**Setting:**  \nCoastal marine environment. Foreground: shallow surf zone, wet sand submerged under ~5–10 cm of clear water. Background: ocean extending to horizon line. Multiple wave crests visible — one breaking mid-frame, others rolling toward shore. No structures, vegetation, or other persons present.\n\n**Lighting:**  \nNatural daylight, likely direct sun from above and slightly behind camera position. High-key illumination on subject’s front torso and face; minimal shadowing beneath arms and legs. Water surface reflects ambient light, creating bright specular highlights on splashes and ripples. Color temperature appears neutral to slightly cool.\n\n**Composition:**  \nVertical orientation. Subject centered horizontally, occupying lower-middle third of frame. Horizon line placed near upper third, dividing sky/ocean boundary. Splash at feet anchors foreground action. Shallow depth of field — background waves softly blurred, emphasizing subject clarity. Framing excludes sky; focus remains on human-water interaction within coastal context.",
+        "prompt": "Describe this image in a technical cataloguing style: subjects, setting, lighting, composition. No emotion words.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 209,
+          "completion_tokens": 294
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "poetic",
+        "name": "poetic",
+        "style": "poetic",
+        "caption": "She dances with the tide, a flicker of joy against the endless blue. Her laughter scatters like seashells in the foam, as waves whisper secrets to her feet—nature’s lullaby sung just for her.",
+        "prompt": "Describe this image poetically, using metaphor and lyricism. About 40 words.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 205,
+          "completion_tokens": 47
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "child_like",
+        "name": "child_like",
+        "style": "child_like",
+        "caption": "OH WOW LOOK AT THAT GIRL!!! She’s in the OCEAN and her pigtails are FLYING UP IN THE AIR like two little bird wings!! Look look look—she’s making a HUGE SPLASH with her foot!! *SPLASH SPLASH!* Water is going EVERYWHERE!\n\nShe’s wearing a pink swirly tank top and brown shorts and she looks SO HAPPY and SNEAKY like she’s doing a secret dance move!! Her hands are on her hips and she’s smiling BIG!! I wanna do that too!! Can we go to the beach NOW?? Please please please?? I wanna make my hair fly up and splash water everywhere!! WHEEEEE!!! 🌊👧",
+        "prompt": "Describe this image the way an excited five-year-old would.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 199,
+          "completion_tokens": 151
+        },
+        "model_returned": "qwen3.8-flash"
+      }
+    ],
+    "caption_img_014": [
+      {
+        "id": "factual",
+        "name": "factual",
+        "style": "factual",
+        "caption": "A shirtless man with a beard and mustache is reclining in a large wooden barrel filled with water, holding a small yellow object in his right hand while covered from the waist down by a white cloth.",
+        "prompt": "Describe this image factually and objectively in one sentence.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 230,
+          "completion_tokens": 43
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "verbose",
+        "name": "verbose",
+        "style": "verbose",
+        "caption": "A bearded man relaxes shirtless in a large wooden tub filled with murky water, holding an apple and smiling slightly. His legs are covered by a white cloth. The scene is brightly lit by natural sunlight, casting sharp shadows on the cobblestone ground. A person in red robes stands nearby, suggesting a historical or festival setting with a casual, cheerful mood.",
+        "prompt": "Describe this image in rich detail - subjects, setting, colours, lighting and mood. About 60 words.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 242,
+          "completion_tokens": 75
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "concise",
+        "name": "concise",
+        "style": "concise",
+        "caption": "Man bathing in wooden barrel outdoors.",
+        "prompt": "Describe this image in as few words as possible (3-6 words).",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 234,
+          "completion_tokens": 8
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "technical",
+        "name": "technical",
+        "style": "technical",
+        "caption": "Subject: Adult male, shirtless, seated in a large wooden barrel filled with water. A white towel or cloth is draped across his lower torso and thighs. He holds a small yellow-green fruit (possibly an apple or pear) in his right hand; left arm rests on the barrel’s rim. Facial hair present. No other individuals fully visible — partial view of person in dark clothing to left, another in red robe to upper right.\n\nSetting: Outdoor cobblestone surface under direct sunlight. Barrel constructed from staved wood with metal bands; two cutout handles visible on sides. Background includes wooden stool leg and shadowed ground area.\n\nLighting: High-contrast natural daylight. Strong highlights on wet skin, water surface, and towel. Deep shadows within barrel interior and beneath rim. Sun angle suggests midday or early afternoon.\n\nComposition: Central framing of subject within circular barrel. Camera positioned slightly above eye level, looking down into tub. Foreground dominated by curved barrel edge; background elements cropped at periphery. Waterline bisects frame horizontally. Fruit held near center-right draws secondary focal point.",
+        "prompt": "Describe this image in a technical cataloguing style: subjects, setting, lighting, composition. No emotion words.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 241,
+          "completion_tokens": 225
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "poetic",
+        "name": "poetic",
+        "style": "poetic",
+        "caption": "A man floats in a wooden tub, sun-kissed and serene, like a king on liquid throne. His smile blooms gentle as dawn; water whispers secrets to his skin. Robes of red stand guard nearby—this is no bath, but baptism into joy.",
+        "prompt": "Describe this image poetically, using metaphor and lyricism. About 40 words.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 237,
+          "completion_tokens": 55
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "child_like",
+        "name": "child_like",
+        "style": "child_like",
+        "caption": "Oh WOW! Look look LOOK!!! There’s a MAN in a BIG WOODEN TUB!!! Like, a HUGE tub!! And he’s all wet and smiling like he’s having the BEST DAY EVER!!! He’s got a towel on his legs — it’s white and fluffy like a cloud!! And he’s holding something yellow… is it a LEMON?? Or maybe a tiny ball?? I think it’s a lemon because lemons are fun to squeeze!!\n\nAnd guess what?? His feet are sticking out!! One foot is RIGHT THERE by the edge of the tub!! So silly!! He looks so happy!! Like he’s at a spa or a magic bath from a fairy tale!!\n\nThere’s also a person in a RED ROBE standing behind him!! Are they a wizard?? Or a king?? Maybe they’re waiting for their turn in the tub too!!\n\nThe ground is made of stones and there’s sunlight everywhere!! It’s warm and bright and perfect for bathing outside!!\n\nI wanna jump in with him!! Can we? Pleeeease?? We can bring rubber ducks and bubbles and sing songs!! This is the COOLEST THING I’VE EVER SEEN!!! 🦆✨",
+        "prompt": "Describe this image the way an excited five-year-old would.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 231,
+          "completion_tokens": 248
+        },
+        "model_returned": "qwen3.8-flash"
+      }
+    ],
+    "caption_img_015": [
+      {
+        "id": "factual",
+        "name": "factual",
+        "style": "factual",
+        "caption": "Several silhouetted individuals are gathered on a rocky shoreline beneath overhanging tree branches, with calm water and a small boat visible in the background under bright, low-angle sunlight.",
+        "prompt": "Describe this image factually and objectively in one sentence.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 198,
+          "completion_tokens": 38
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "verbose",
+        "name": "verbose",
+        "style": "verbose",
+        "caption": "Four silhouetted figures rest on a rocky shore beneath leafy branches, gazing toward calm waters where a small boat drifts. The golden-hour light bathes the scene in warm amber tones, casting deep shadows and creating a serene, contemplative mood. Distant hills fade into soft haze, enhancing the tranquil, timeless atmosphere of quiet companionship by the sea.",
+        "prompt": "Describe this image in rich detail - subjects, setting, colours, lighting and mood. About 60 words.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 210,
+          "completion_tokens": 76
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "concise",
+        "name": "concise",
+        "style": "concise",
+        "caption": "Silhouetted figures by water under tree.",
+        "prompt": "Describe this image in as few words as possible (3-6 words).",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 202,
+          "completion_tokens": 11
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "technical",
+        "name": "technical",
+        "style": "technical",
+        "caption": "**Subjects:**\n- Four human figures, silhouetted against a bright background.\n- All appear to be male; one standing on the left, three seated or crouching in foreground/midground.\n- Clothing: Minimal — likely swimwear or bare-chested; no discernible fabric texture due to backlighting.\n\n**Setting:**\n- Outdoor lakeside or coastal environment.\n- Foreground: Rocky or uneven shoreline with scattered stones and debris.\n- Midground: Calm water surface extending to horizon.\n- Background: Distant landmass or hills under pale sky; small boat visible near center-right of waterline.\n- Overhead: Branches and leaves from tree(s) frame top portion of image, partially obscuring sky.\n\n**Lighting:**\n- Strong backlighting (sun behind subjects), creating high-contrast silhouettes.\n- Light source appears low on horizon (suggesting dawn/dusk).\n- Ambient illumination minimal; facial features, clothing details, and ground textures obscured by shadow.\n- Sky gradient: Brightest near horizon, fading upward into muted tones through foliage gaps.\n\n**Composition:**\n- Horizontal orientation.\n- Rule-of-thirds placement: Standing figure at left third; central seated figure near vertical midline; others distributed across lower half.\n- Framing element: Tree branches occupy upper right quadrant, adding depth and visual boundary.\n- Depth layers: Foreground rocks → seated/standing",
+        "prompt": "Describe this image in a technical cataloguing style: subjects, setting, lighting, composition. No emotion words.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 209,
+          "completion_tokens": 300
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "poetic",
+        "name": "poetic",
+        "style": "poetic",
+        "caption": "Beneath the canopy’s gentle embrace, silhouettes rest like shadows cast by time. The sea whispers secrets to those who listen, as day surrenders to dusk’s tender veil. Here, stillness blooms—a quiet hymn sung between earth and sky.",
+        "prompt": "Describe this image poetically, using metaphor and lyricism. About 40 words.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 205,
+          "completion_tokens": 55
+        },
+        "model_returned": "qwen3.8-flash"
+      },
+      {
+        "id": "child_like",
+        "name": "child_like",
+        "style": "child_like",
+        "caption": "OH WOW LOOK!!! \n\nThere are SILHOUETTE PEOPLE by the BIG WATER! 🌊✨\n\nLook look look—there’s a TREE above them and it looks like they’re hiding in the shadows!! 👀🌳 And one guy is STANDING UP with his hands on his hips like he’s SUPERHERO MODE!! 💪😎\n\nAnd there’s a LITTLE BOAT out there!! With someone IN IT!! Are they fishing?? Or just vibing?? 🚤🐟\n\nThe sun is going DOWN behind everything so everyone looks like BLACK PENCIL DRAWINGS!! ✏️🖤 It’s so COOL!! Like magic!!\n\nI wanna be there!! I’d splash water and yell “WHEEE!” and maybe climb the tree!! 🌞💦🌳\n\nDO YOU THINK THEY’RE WATCHING THE SUN GO NIGHT-NIGHT?? ☀️➡️\n\nIT’S SO BEAUTIFUL AND MYSTERY-Y!!",
+        "prompt": "Describe this image the way an excited five-year-old would.",
+        "temperature": 0.8,
+        "usage": {
+          "prompt_tokens": 199,
+          "completion_tokens": 209
+        },
+        "model_returned": "qwen3.8-flash"
+      }
+    ]
+  }
+}

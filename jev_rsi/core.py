@@ -37,7 +37,6 @@ def choice_posterior(arms: Sequence[Arm], sigma: float = VAL_SIGMA,
     probs = counts / counts.sum()
     return {a.key: float(p) for a, p in zip(arms, probs)}
 
-
 def collapse_noul(arms: Sequence[Arm]) -> float:
     """Noul: evidence that a validated arm has suffered seed collapse (0..1).
 
@@ -54,17 +53,18 @@ def collapse_noul(arms: Sequence[Arm]) -> float:
     return float(low * _clip(spread / 0.5))
 
 
-def alignment_score(arms: Sequence[Arm]) -> float:
+def alignment_score(arms: Sequence[Arm], align_scale: float = ALIGN_SCALE) -> float:
     """Score: how much the val ranking deserves to be trusted (0..1).
 
     Driven by the top-1/top-2 margin relative to the noise band.  A margin of
-    three noise bands is treated as a fully trustworthy ordering.
+    three noise bands (``align_scale``) is treated as a fully trustworthy
+    ordering.
     """
     if len(arms) < 2:
         return 1.0
     vals = sorted((a.val for a in arms), reverse=True)
     margin = vals[0] - vals[1]
-    return float(_clip(margin / ALIGN_SCALE))
+    return float(_clip(margin / align_scale)) if align_scale else 1.0
 
 
 def _clip(x: float, lo: float = 0.0, hi: float = 1.0) -> float:
@@ -128,38 +128,50 @@ class JevGate:
     ``enabled`` lets ablations switch individual rules off; the gate then falls
     through to the next rule exactly as if the removed primitive returned a
     permissive value.
+
+    ``val_sigma`` / ``align_scale`` default to the frozen-corpus calibration
+    (``VAL_SIGMA`` / ``ALIGN_SCALE``); passing corpus-specific values realises the
+    "scale-calibrated" sensitivity analysis without touching the default
+    behaviour that the frozen artifact was produced with.
     """
 
     ALL = ("collapse", "alignment", "confidence")
 
     def __init__(self, meta: Optional[MetaParams] = None,
-                 enabled: Sequence[str] = ALL, fallback: str = "base"):
+                 enabled: Sequence[str] = ALL, fallback: str = "base",
+                 val_sigma: float = VAL_SIGMA, align_scale: float = ALIGN_SCALE,
+                 noise_band: float = NOISE_BAND):
         self.meta = meta or MetaParams()
         self.enabled = tuple(enabled)
         # "base"  -> fall back to the no-adaptation arm (faithful to the
         #            original hard-coded 'z0' fallback)
         # "occam" -> fall back to the family's Occam-minimum arm
         self.fallback = fallback
+        self.val_sigma = val_sigma
+        self.align_scale = align_scale
+        self.noise_band = noise_band
 
     def _safe(self, g: Group) -> Arm:
         return g.base if self.fallback == "base" else g.conservative
 
     # -- features ---------------------------------------------------------
     @staticmethod
-    def features(g: Group) -> Dict[str, float]:
-        probs = choice_posterior(g.arms)
+    def features(g: Group, val_sigma: float = VAL_SIGMA,
+                 align_scale: float = ALIGN_SCALE) -> Dict[str, float]:
+        probs = choice_posterior(g.arms, sigma=val_sigma)
         greedy = g.greedy
         return {
             "confidence": probs[greedy.key],
             "collapse_noul": collapse_noul(g.arms),
-            "alignment": alignment_score(g.arms),
+            "alignment": alignment_score(g.arms, align_scale=align_scale),
             "margin": _margin(g),
             "n_arms": float(g.n_arms),
         }
 
     # -- decision ---------------------------------------------------------
     def act(self, g: Group, feats: Optional[Dict[str, float]] = None) -> Decision:
-        f = feats if feats is not None else self.features(g)
+        f = feats if feats is not None else self.features(
+            g, self.val_sigma, self.align_scale)
         m = self.meta
 
         if "collapse" in self.enabled and f["collapse_noul"] > m.collapse_threshold:
@@ -170,7 +182,7 @@ class JevGate:
 
         if "confidence" in self.enabled and f["confidence"] < m.confidence_floor:
             best = max(a.val for a in g.arms)
-            tol = [a for a in g.arms if a.val >= best - NOISE_BAND]
+            tol = [a for a in g.arms if a.val >= best - self.noise_band]
             return self._emit(g, min(tol, key=lambda x: (x.rank,)),
                               "low_confidence_occam", f)
 

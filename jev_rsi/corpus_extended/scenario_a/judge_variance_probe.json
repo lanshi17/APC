@@ -1,0 +1,836 @@
+{
+  "protocol": "6 independent judge draws at temperature 1.0 on identical (prompt, completion) pairs; first 5 Scenario A groups",
+  "group_ids": [
+    "creative_dialogue_01",
+    "creative_dialogue_02",
+    "creative_dialogue_03",
+    "creative_dialogue_04",
+    "creative_fable_01"
+  ],
+  "models": {
+    "qwen3.8-flash": {
+      "n_arms": 50,
+      "draws": 6,
+      "temperature": 1.0,
+      "mean_arm_std_10": 0.5557,
+      "median_arm_std_10": 0.4714,
+      "max_arm_std_10": 1.3744,
+      "n_arms_std_gt_2": 0,
+      "frac_arms_std_gt_2": 0.0,
+      "per_arm": {
+        "creative_dialogue_01/zero_shot": [
+          5.0,
+          6.0,
+          6.0,
+          6.0,
+          6.5,
+          6.0
+        ],
+        "creative_dialogue_01/few_shot_2ex": [
+          3.0,
+          6.0,
+          7.0,
+          5.0,
+          6.0,
+          7.0
+        ],
+        "creative_dialogue_01/cot": [
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          4.0,
+          5.0
+        ],
+        "creative_dialogue_01/persona_author": [
+          6.0,
+          6.0,
+          6.0,
+          6.0,
+          7.0,
+          6.0
+        ],
+        "creative_dialogue_01/persona_child": [
+          3.0,
+          3.0,
+          4.0,
+          2.0,
+          2.0,
+          2.0
+        ],
+        "creative_dialogue_01/step_by_step": [
+          6.0,
+          4.0,
+          5.0,
+          3.0,
+          4.0,
+          3.0
+        ],
+        "creative_dialogue_01/creative_mode": [
+          5.0,
+          3.0,
+          3.0,
+          5.0,
+          3.0,
+          2.0
+        ],
+        "creative_dialogue_01/constrained": [
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0
+        ],
+        "creative_dialogue_01/temperature_high": [
+          4.0,
+          6.0,
+          6.0,
+          6.0,
+          5.0,
+          6.0
+        ],
+        "creative_dialogue_01/temperature_low": [
+          6.0,
+          6.0,
+          6.0,
+          6.0,
+          5.0,
+          6.0
+        ],
+        "creative_dialogue_02/zero_shot": [
+          6.0,
+          6.0,
+          6.0,
+          5.0,
+          6.0,
+          6.0
+        ],
+        "creative_dialogue_02/few_shot_2ex": [
+          8.0,
+          7.0,
+          7.0,
+          7.0,
+          8.0,
+          8.0
+        ],
+        "creative_dialogue_02/cot": [
+          8.0,
+          8.0,
+          8.0,
+          8.0,
+          8.0,
+          7.5
+        ],
+        "creative_dialogue_02/persona_author": [
+          6.0,
+          6.0,
+          6.0,
+          6.0,
+          6.0,
+          6.0
+        ],
+        "creative_dialogue_02/persona_child": [
+          4.0,
+          4.0,
+          4.0,
+          4.0,
+          5.0,
+          7.0
+        ],
+        "creative_dialogue_02/step_by_step": [
+          7.0,
+          7.0,
+          6.8,
+          6.0,
+          6.0,
+          6.0
+        ],
+        "creative_dialogue_02/creative_mode": [
+          4.0,
+          6.0,
+          5.0,
+          4.0,
+          6.0,
+          4.0
+        ],
+        "creative_dialogue_02/constrained": [
+          4.0,
+          4.0,
+          3.0,
+          3.0,
+          3.0,
+          3.0
+        ],
+        "creative_dialogue_02/temperature_high": [
+          6.0,
+          5.0,
+          6.0,
+          6.0,
+          6.0,
+          6.0
+        ],
+        "creative_dialogue_02/temperature_low": [
+          6.0,
+          6.0,
+          5.0,
+          6.0,
+          6.5,
+          5.0
+        ],
+        "creative_dialogue_03/zero_shot": [
+          5.0,
+          5.0,
+          6.0,
+          6.0,
+          5.0,
+          6.0
+        ],
+        "creative_dialogue_03/few_shot_2ex": [
+          3.0,
+          6.0,
+          6.0,
+          6.0,
+          6.0,
+          6.0
+        ],
+        "creative_dialogue_03/cot": [
+          6.0,
+          5.0,
+          7.0,
+          6.0,
+          6.0,
+          6.0
+        ],
+        "creative_dialogue_03/persona_author": [
+          6.0,
+          6.0,
+          6.0,
+          6.0,
+          6.0,
+          5.0
+        ],
+        "creative_dialogue_03/persona_child": [
+          6.5,
+          7.0,
+          6.0,
+          7.0,
+          7.0,
+          6.0
+        ],
+        "creative_dialogue_03/step_by_step": [
+          4.0,
+          5.0,
+          5.0,
+          4.0,
+          5.0,
+          6.0
+        ],
+        "creative_dialogue_03/creative_mode": [
+          4.0,
+          6.0,
+          3.0,
+          4.0,
+          6.0,
+          6.0
+        ],
+        "creative_dialogue_03/constrained": [
+          2.0,
+          2.0,
+          1.0,
+          2.0,
+          2.0,
+          2.0
+        ],
+        "creative_dialogue_03/temperature_high": [
+          6.0,
+          6.0,
+          5.0,
+          4.0,
+          5.0,
+          5.0
+        ],
+        "creative_dialogue_03/temperature_low": [
+          5.0,
+          6.0,
+          6.5,
+          6.0,
+          6.0,
+          6.0
+        ],
+        "creative_dialogue_04/zero_shot": [
+          5.0,
+          6.0,
+          5.0,
+          6.0,
+          6.0,
+          5.0
+        ],
+        "creative_dialogue_04/few_shot_2ex": [
+          5.0,
+          5.0,
+          6.5,
+          5.0,
+          5.0,
+          4.0
+        ],
+        "creative_dialogue_04/cot": [
+          6.0,
+          6.0,
+          6.0,
+          6.0,
+          6.0,
+          6.0
+        ],
+        "creative_dialogue_04/persona_author": [
+          7.0,
+          6.5,
+          6.0,
+          6.5,
+          6.0,
+          6.0
+        ],
+        "creative_dialogue_04/persona_child": [
+          4.0,
+          3.0,
+          4.0,
+          4.0,
+          2.0,
+          4.0
+        ],
+        "creative_dialogue_04/step_by_step": [
+          3.0,
+          3.0,
+          3.0,
+          2.0,
+          3.0,
+          3.0
+        ],
+        "creative_dialogue_04/creative_mode": [
+          6.0,
+          6.0,
+          6.0,
+          6.0,
+          6.0,
+          4.0
+        ],
+        "creative_dialogue_04/constrained": [
+          3.0,
+          4.0,
+          3.0,
+          3.0,
+          4.0,
+          3.0
+        ],
+        "creative_dialogue_04/temperature_high": [
+          6.0,
+          7.0,
+          6.0,
+          6.0,
+          6.0,
+          6.0
+        ],
+        "creative_dialogue_04/temperature_low": [
+          6.5,
+          8.0,
+          6.0,
+          7.0,
+          7.0,
+          7.0
+        ],
+        "creative_fable_01/zero_shot": [
+          8.0,
+          8.0,
+          7.0,
+          7.0,
+          7.0,
+          7.0
+        ],
+        "creative_fable_01/few_shot_2ex": [
+          7.0,
+          7.0,
+          8.0,
+          8.0,
+          7.0,
+          8.0
+        ],
+        "creative_fable_01/cot": [
+          7.0,
+          8.0,
+          6.5,
+          8.4,
+          7.0,
+          8.0
+        ],
+        "creative_fable_01/persona_author": [
+          8.0,
+          8.0,
+          8.0,
+          8.0,
+          8.5,
+          8.0
+        ],
+        "creative_fable_01/persona_child": [
+          8.0,
+          7.0,
+          7.0,
+          7.0,
+          7.0,
+          8.0
+        ],
+        "creative_fable_01/step_by_step": [
+          8.0,
+          7.0,
+          8.0,
+          7.0,
+          7.5,
+          8.0
+        ],
+        "creative_fable_01/creative_mode": [
+          8.0,
+          7.0,
+          7.0,
+          8.0,
+          7.0,
+          8.0
+        ],
+        "creative_fable_01/constrained": [
+          6.5,
+          6.0,
+          6.5,
+          6.0,
+          6.0,
+          7.0
+        ],
+        "creative_fable_01/temperature_high": [
+          6.0,
+          6.0,
+          6.0,
+          7.0,
+          6.0,
+          7.0
+        ],
+        "creative_fable_01/temperature_low": [
+          7.0,
+          8.0,
+          7.0,
+          7.0,
+          7.0,
+          7.0
+        ]
+      }
+    },
+    "qwen3.8-27b": {
+      "n_arms": 50,
+      "draws": 6,
+      "temperature": 1.0,
+      "mean_arm_std_10": 0.6747,
+      "median_arm_std_10": 0.6897,
+      "max_arm_std_10": 1.3437,
+      "n_arms_std_gt_2": 0,
+      "frac_arms_std_gt_2": 0.0,
+      "per_arm": {
+        "creative_dialogue_01/zero_shot": [
+          6.0,
+          6.0,
+          6.0,
+          6.2,
+          6.0,
+          6.0
+        ],
+        "creative_dialogue_01/few_shot_2ex": [
+          8.0,
+          9.0,
+          6.0,
+          8.5,
+          8.0,
+          9.0
+        ],
+        "creative_dialogue_01/cot": [
+          8.0,
+          6.0,
+          6.0,
+          6.2,
+          6.0,
+          6.0
+        ],
+        "creative_dialogue_01/persona_author": [
+          6.0,
+          6.0,
+          6.0,
+          6.2,
+          6.0,
+          6.0
+        ],
+        "creative_dialogue_01/persona_child": [
+          4.0,
+          3.0,
+          3.0,
+          3.0,
+          4.0,
+          4.0
+        ],
+        "creative_dialogue_01/step_by_step": [
+          3.0,
+          3.0,
+          3.0,
+          6.0,
+          4.0,
+          4.0
+        ],
+        "creative_dialogue_01/creative_mode": [
+          6.0,
+          3.0,
+          3.0,
+          6.0,
+          4.0,
+          4.0
+        ],
+        "creative_dialogue_01/constrained": [
+          5.0,
+          6.0,
+          6.0,
+          6.2,
+          5.0,
+          6.0
+        ],
+        "creative_dialogue_01/temperature_high": [
+          5.0,
+          6.0,
+          6.0,
+          6.5,
+          5.0,
+          6.0
+        ],
+        "creative_dialogue_01/temperature_low": [
+          8.0,
+          9.0,
+          6.0,
+          8.5,
+          8.0,
+          8.0
+        ],
+        "creative_dialogue_02/zero_shot": [
+          6.0,
+          6.0,
+          6.0,
+          6.2,
+          6.0,
+          6.0
+        ],
+        "creative_dialogue_02/few_shot_2ex": [
+          8.0,
+          9.0,
+          9.0,
+          8.5,
+          9.0,
+          9.0
+        ],
+        "creative_dialogue_02/cot": [
+          8.0,
+          9.0,
+          9.0,
+          8.5,
+          9.0,
+          9.0
+        ],
+        "creative_dialogue_02/persona_author": [
+          8.0,
+          8.0,
+          6.0,
+          8.5,
+          8.0,
+          8.0
+        ],
+        "creative_dialogue_02/persona_child": [
+          3.0,
+          3.0,
+          3.0,
+          1.0,
+          4.0,
+          4.0
+        ],
+        "creative_dialogue_02/step_by_step": [
+          8.0,
+          6.0,
+          6.0,
+          7.2,
+          7.0,
+          8.0
+        ],
+        "creative_dialogue_02/creative_mode": [
+          4.0,
+          3.0,
+          3.0,
+          6.5,
+          4.0,
+          4.0
+        ],
+        "creative_dialogue_02/constrained": [
+          3.0,
+          3.0,
+          3.0,
+          4.0,
+          4.0,
+          4.0
+        ],
+        "creative_dialogue_02/temperature_high": [
+          6.0,
+          6.0,
+          6.0,
+          7.2,
+          7.0,
+          6.0
+        ],
+        "creative_dialogue_02/temperature_low": [
+          6.0,
+          6.0,
+          6.0,
+          6.2,
+          6.0,
+          6.0
+        ],
+        "creative_dialogue_03/zero_shot": [
+          6.0,
+          6.0,
+          6.0,
+          6.2,
+          5.0,
+          6.0
+        ],
+        "creative_dialogue_03/few_shot_2ex": [
+          8.0,
+          9.0,
+          6.0,
+          8.5,
+          8.0,
+          9.0
+        ],
+        "creative_dialogue_03/cot": [
+          8.0,
+          6.0,
+          6.0,
+          7.5,
+          7.0,
+          7.0
+        ],
+        "creative_dialogue_03/persona_author": [
+          6.0,
+          6.0,
+          6.0,
+          6.0,
+          6.0,
+          6.0
+        ],
+        "creative_dialogue_03/persona_child": [
+          2.0,
+          3.0,
+          3.0,
+          1.0,
+          4.0,
+          4.0
+        ],
+        "creative_dialogue_03/step_by_step": [
+          6.0,
+          4.0,
+          3.0,
+          6.0,
+          4.0,
+          4.0
+        ],
+        "creative_dialogue_03/creative_mode": [
+          6.0,
+          3.0,
+          3.0,
+          6.0,
+          5.0,
+          6.0
+        ],
+        "creative_dialogue_03/constrained": [
+          2.0,
+          3.0,
+          3.0,
+          1.0,
+          2.0,
+          2.0
+        ],
+        "creative_dialogue_03/temperature_high": [
+          6.0,
+          6.0,
+          6.0,
+          6.5,
+          6.0,
+          6.0
+        ],
+        "creative_dialogue_03/temperature_low": [
+          7.0,
+          6.0,
+          6.0,
+          7.0,
+          7.0,
+          6.0
+        ],
+        "creative_dialogue_04/zero_shot": [
+          8.0,
+          7.0,
+          6.0,
+          7.2,
+          7.0,
+          8.0
+        ],
+        "creative_dialogue_04/few_shot_2ex": [
+          6.0,
+          3.0,
+          3.0,
+          6.2,
+          4.0,
+          4.0
+        ],
+        "creative_dialogue_04/cot": [
+          8.0,
+          9.0,
+          6.0,
+          8.5,
+          8.0,
+          9.0
+        ],
+        "creative_dialogue_04/persona_author": [
+          8.0,
+          6.0,
+          6.0,
+          7.2,
+          7.0,
+          8.0
+        ],
+        "creative_dialogue_04/persona_child": [
+          2.0,
+          3.0,
+          3.0,
+          1.0,
+          2.0,
+          1.0
+        ],
+        "creative_dialogue_04/step_by_step": [
+          3.0,
+          3.0,
+          3.0,
+          5.0,
+          4.0,
+          4.0
+        ],
+        "creative_dialogue_04/creative_mode": [
+          3.0,
+          3.0,
+          3.0,
+          6.2,
+          4.0,
+          4.0
+        ],
+        "creative_dialogue_04/constrained": [
+          4.0,
+          3.0,
+          3.0,
+          3.0,
+          4.0,
+          4.0
+        ],
+        "creative_dialogue_04/temperature_high": [
+          8.0,
+          7.0,
+          6.0,
+          7.5,
+          7.0,
+          8.0
+        ],
+        "creative_dialogue_04/temperature_low": [
+          8.0,
+          9.0,
+          7.0,
+          8.5,
+          8.0,
+          9.0
+        ],
+        "creative_fable_01/zero_shot": [
+          8.0,
+          9.0,
+          9.0,
+          8.5,
+          8.0,
+          8.0
+        ],
+        "creative_fable_01/few_shot_2ex": [
+          8.0,
+          9.0,
+          9.0,
+          8.5,
+          9.0,
+          9.0
+        ],
+        "creative_fable_01/cot": [
+          8.0,
+          9.0,
+          9.0,
+          8.5,
+          8.0,
+          9.0
+        ],
+        "creative_fable_01/persona_author": [
+          8.0,
+          9.0,
+          9.0,
+          8.5,
+          9.0,
+          9.0
+        ],
+        "creative_fable_01/persona_child": [
+          8.0,
+          9.0,
+          6.0,
+          8.0,
+          8.0,
+          9.0
+        ],
+        "creative_fable_01/step_by_step": [
+          8.0,
+          9.0,
+          9.0,
+          8.5,
+          8.0,
+          9.0
+        ],
+        "creative_fable_01/creative_mode": [
+          8.0,
+          9.0,
+          9.0,
+          8.5,
+          8.0,
+          9.0
+        ],
+        "creative_fable_01/constrained": [
+          8.0,
+          9.0,
+          6.0,
+          8.5,
+          8.0,
+          9.0
+        ],
+        "creative_fable_01/temperature_high": [
+          8.0,
+          7.0,
+          6.0,
+          8.5,
+          8.0,
+          8.0
+        ],
+        "creative_fable_01/temperature_low": [
+          8.0,
+          9.0,
+          9.0,
+          8.5,
+          8.0,
+          9.0
+        ]
+      }
+    }
+  }
+}

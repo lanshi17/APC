@@ -26,7 +26,8 @@ from typing import Dict, List, Optional, Sequence, Tuple
 import numpy as np
 
 from .core import (N_MC, NOISE_BAND, Decision, JevGate, MetaParams, get_policy)
-from .data import Arm, Group, load_groups
+from .data import (Arm, Group, corpus_audit, load_all_groups, load_groups,
+                   scenario_of)
 from .rsi import RSILearner, replay
 from . import cross_task as cross_task_mod
 
@@ -37,8 +38,13 @@ RESULTS = Path(__file__).resolve().parent / "results"
 # Harness
 # ---------------------------------------------------------------------------
 class Harness:
-    def __init__(self, groups: Optional[List[Group]] = None):
-        self.groups = groups if groups is not None else load_groups()
+    def __init__(self, groups: Optional[List[Group]] = None,
+                 corpus: str = "extended"):
+        """``corpus``: ``extended`` (43 frozen + 45 P3 groups) or ``frozen``."""
+        if groups is None:
+            groups = load_all_groups() if corpus == "extended" else load_groups()
+        self.corpus = corpus
+        self.groups = groups
         self.feats: Dict[str, Dict[str, float]] = {
             g.gid: JevGate.features(g) for g in self.groups
         }
@@ -111,7 +117,7 @@ def main_table(h: Harness) -> dict:
 
 
 def dataset_audit(h: Harness) -> dict:
-    return {
+    audit = {
         "n_groups": len(h.groups),
         "n_arms": sum(g.n_arms for g in h.groups),
         "n_decision_groups": len(h.decision_groups),
@@ -121,7 +127,15 @@ def dataset_audit(h: Harness) -> dict:
             sum(g.oracle.hold - g.greedy.hold for g in h.groups), 6),
         "oracle_headroom_groups": [g.gid for g in h.informative_groups],
         "collapse_group_ids": [g.gid for g in h.collapse_groups],
+        "corpus": h.corpus,
     }
+    if h.corpus == "extended":
+        ca = corpus_audit()
+        audit["by_scenario"] = {
+            k: v for k, v in ca["by_scenario"].items()}
+        audit["n_frozen"] = ca["n_frozen"]
+        audit["n_extended"] = ca["n_extended"]
+    return audit
 
 
 # ---------------------------------------------------------------------------
@@ -566,10 +580,12 @@ def _drop_arms(groups: List[Group], rng, frac: float) -> List[Group]:
 # ---------------------------------------------------------------------------
 # CLI
 # ---------------------------------------------------------------------------
-def run_all(outdir: Path = RESULTS) -> dict:
+def run_all(outdir: Path = RESULTS, corpus: str = "extended",
+            filename: Optional[str] = None, h: Optional[Harness] = None) -> dict:
     outdir.mkdir(parents=True, exist_ok=True)
-    h = Harness()
+    h = h or Harness(corpus=corpus)
     payload = {
+        "corpus": corpus,
         "main_table": main_table(h),
         "loo_rsi": loo_rsi(h),
         "learning_curve": learning_curve(h),
@@ -580,7 +596,10 @@ def run_all(outdir: Path = RESULTS) -> dict:
         "historical_reproduction": historical_reproduction(h),
         "cross_task": cross_task_mod.run(h.groups),
     }
-    (outdir / "jev_rsi_results.json").write_text(
+    if filename is None:
+        filename = ("jev_rsi_extended_results.json" if corpus == "extended"
+                    else "jev_rsi_results.json")
+    (outdir / filename).write_text(
         json.dumps(payload, indent=2, ensure_ascii=False))
     return payload
 
@@ -589,9 +608,13 @@ def _fmt(payload: dict) -> str:
     L = []
     a = payload["main_table"]["dataset"]
     L.append("=== DATASET ===")
-    L.append(f"groups={a['n_groups']} arms={a['n_arms']} "
+    L.append(f"corpus={a.get('corpus','frozen')} "
+             f"groups={a['n_groups']} arms={a['n_arms']} "
              f"decision={a['n_decision_groups']} informative={a['n_informative_groups']} "
              f"collapse={a['n_collapse_groups']} greedy_regret={a['greedy_total_regret']}")
+    for scen, info in (a.get("by_scenario") or {}).items():
+        L.append(f"  {scen:12s} groups={info['n_groups']:<3d} arms={info['n_arms']:<4d} "
+                 f"{info['description']}")
     L.append("")
     L.append("=== MAIN TABLE ===")
     for p, sets in payload["main_table"]["policies"].items():
@@ -667,6 +690,11 @@ def _fmt(payload: dict) -> str:
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default=str(RESULTS))
+    ap.add_argument("--corpus", choices=["extended", "frozen"], default="extended",
+                    help="extended = 43 frozen + 45 P3 groups (default); "
+                         "frozen = reproduce the pre-P3 artifact")
+    ap.add_argument("--out-name", default=None,
+                    help="result filename (default depends on --corpus)")
     args = ap.parse_args()
-    payload = run_all(Path(args.out))
+    payload = run_all(Path(args.out), corpus=args.corpus, filename=args.out_name)
     print(_fmt(payload))

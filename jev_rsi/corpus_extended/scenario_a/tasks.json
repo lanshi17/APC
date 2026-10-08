@@ -1,0 +1,135 @@
+{
+  "provenance": {
+    "authored": "hand-written task bank (no API calls)",
+    "n_tasks": 20,
+    "types": [
+      "dialogue",
+      "fable",
+      "poem_sonnet",
+      "scene_description",
+      "story_continuation"
+    ]
+  },
+  "tasks": {
+    "creative_story_01": {
+      "type": "story_continuation",
+      "prompt": "The old lighthouse keeper noticed something unusual in the fog that morning.",
+      "target_length": 200,
+      "criteria": "creativity, coherence, engagement"
+    },
+    "creative_story_02": {
+      "type": "story_continuation",
+      "prompt": "Every time the train passed the abandoned station, Mira counted one more suitcase on the platform.",
+      "target_length": 200,
+      "criteria": "creativity, coherence, engagement"
+    },
+    "creative_story_03": {
+      "type": "story_continuation",
+      "prompt": "The recipe card was written in a hand that had been dead for forty years.",
+      "target_length": 200,
+      "criteria": "creativity, coherence, engagement"
+    },
+    "creative_story_04": {
+      "type": "story_continuation",
+      "prompt": "On the last day of the drought, the well gave back something that was not water.",
+      "target_length": 200,
+      "criteria": "creativity, coherence, engagement"
+    },
+    "creative_poem_01": {
+      "type": "poem_sonnet",
+      "prompt": "Write a sonnet about the sea remembering a drowned city.",
+      "target_length": 14,
+      "criteria": "imagery, rhythm, emotional resonance"
+    },
+    "creative_poem_02": {
+      "type": "poem_sonnet",
+      "prompt": "Write a sonnet about a library closing for the last time.",
+      "target_length": 14,
+      "criteria": "imagery, rhythm, emotional resonance"
+    },
+    "creative_poem_03": {
+      "type": "poem_sonnet",
+      "prompt": "Write a sonnet about a city seen from a night train.",
+      "target_length": 14,
+      "criteria": "imagery, rhythm, emotional resonance"
+    },
+    "creative_poem_04": {
+      "type": "poem_sonnet",
+      "prompt": "Write a sonnet about an unfinished conversation with a parent.",
+      "target_length": 14,
+      "criteria": "imagery, rhythm, emotional resonance"
+    },
+    "creative_dialogue_01": {
+      "type": "dialogue",
+      "prompt": "Two strangers share a hospital waiting room at 3 a.m. One of them knows something the other does not.",
+      "target_length": 200,
+      "criteria": "character voice, subtext, naturalness"
+    },
+    "creative_dialogue_02": {
+      "type": "dialogue",
+      "prompt": "A retired teacher and a former student meet in a supermarket twenty years later.",
+      "target_length": 200,
+      "criteria": "character voice, subtext, naturalness"
+    },
+    "creative_dialogue_03": {
+      "type": "dialogue",
+      "prompt": "Two colleagues disagree about whether to report a mistake that no one has noticed yet.",
+      "target_length": 200,
+      "criteria": "character voice, subtext, naturalness"
+    },
+    "creative_dialogue_04": {
+      "type": "dialogue",
+      "prompt": "An astronaut and a mission controller argue during the last three minutes of a launch window.",
+      "target_length": 200,
+      "criteria": "character voice, subtext, naturalness"
+    },
+    "creative_scene_01": {
+      "type": "scene_description",
+      "prompt": "A fish market at dawn in a coastal town, just after a storm.",
+      "target_length": 150,
+      "criteria": "sensory detail, atmosphere, precision"
+    },
+    "creative_scene_02": {
+      "type": "scene_description",
+      "prompt": "An empty Olympic swimming pool in winter, twenty years after the games.",
+      "target_length": 150,
+      "criteria": "sensory detail, atmosphere, precision"
+    },
+    "creative_scene_03": {
+      "type": "scene_description",
+      "prompt": "A rooftop garden in a city during the first hour of a blackout.",
+      "target_length": 150,
+      "criteria": "sensory detail, atmosphere, precision"
+    },
+    "creative_scene_04": {
+      "type": "scene_description",
+      "prompt": "A country railway station at midnight in freezing fog.",
+      "target_length": 150,
+      "criteria": "sensory detail, atmosphere, precision"
+    },
+    "creative_fable_01": {
+      "type": "fable",
+      "prompt": "Write a short fable whose moral is that generosity is a kind of memory.",
+      "target_length": 180,
+      "criteria": "clarity of moral, narrative economy, charm"
+    },
+    "creative_fable_02": {
+      "type": "fable",
+      "prompt": "Write a short fable whose moral is that the loudest voice is rarely the wisest.",
+      "target_length": 180,
+      "criteria": "clarity of moral, narrative economy, charm"
+    },
+    "creative_fable_03": {
+      "type": "fable",
+      "prompt": "Write a short fable whose moral is that a map is not the country.",
+      "target_length": 180,
+      "criteria": "clarity of moral, narrative economy, charm"
+    },
+    "creative_fable_04": {
+      "type": "fable",
+      "prompt": "Write a short fable whose moral is that borrowed courage still counts.",
+      "target_length": 180,
+      "criteria": "clarity of moral, narrative economy, charm"
+    }
+  }
+}

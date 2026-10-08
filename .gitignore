@@ -46,3 +46,9 @@ artifacts/profiles/*.json
 # Logs
 logs/
 *.log
+
+# Added by ggshield
+.cache_ggshield
+
+# P3 extended-corpus LLM / HF model cache (regenerated on demand; artifacts keep the results)
+jev_rsi/corpus_extended/_cache/

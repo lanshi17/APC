@@ -1,0 +1,1196 @@
+{
+  "protocol": "val = ROUGE-L F1 vs CNN/DailyMail human highlights; holdout = baseline-rescaled BERTScore F1 vs the same highlights. Raw BERTScore and article-referenced variants are recorded under metrics for transparency.",
+  "bertscore_model": "microsoft/deberta-xlarge-mnli",
+  "groups": {
+    "adversarial_summary_01": {
+      "scenario": "C",
+      "task": "summarization",
+      "source_id": "00716be72be8cf48cc23ac3b4b8924e569628be2",
+      "source_dataset": "abisee/cnn_dailymail:3.0.0/validation",
+      "n_article_words": 360,
+      "article": "(CNN)Sigma Alpha Epsilon is under fire for a video showing party-bound fraternity members singing a racist chant. SAE's national chapter suspended the students, but University of Oklahoma President David Boren took it a step further, saying the university's affiliation with the fraternity is permanently done. The news is shocking, but it's not the first time SAE has faced controversy. SAE was founded March 9, 1856, at the University of Alabama, five years before the American Civil War, according to the fraternity website. When the war began, the group had fewer than 400 members, of which \"369 went to war for the Confederate States and seven for the Union Army,\" the website says. The fraternity now boasts more than 200,000 living alumni, along with about 15,000 undergraduates populating 219 chapters and 20 \"colonies\" seeking full membership at universities. SAE has had to work hard to change recently after a string of member deaths, many blamed on the hazing of new recruits, SAE national President Bradley Cohen wrote in a message on the fraternity's website. The fraternity's website lists more than 130 chapters cited or suspended for \"health and safety incidents\" since 2010. At least 30 of the incidents involved hazing, and dozens more involved alcohol. However, the list is missing numerous incidents from recent months. Among them, according to various media outlets: Yale University banned the SAEs from campus activities last month after members allegedly tried to interfere with a sexual misconduct investigation connected to an initiation rite. Stanford University in December suspended SAE housing privileges after finding sorority members attending a fraternity function were subjected to graphic sexual content. And Johns Hopkins University in November suspended the fraternity for underage drinking. \"The media has labeled us as the 'nation's deadliest fraternity,' \" Cohen said. In 2011, for example, a student died while being coerced into excessive alcohol consumption, according to a lawsuit. SAE's previous insurer dumped the fraternity. \"As a result, we are paying Lloyd's of London the highest insurance rates in the Greek-letter world,\" Cohen said. Universities have turned down SAE's attempts to open new chapters, and the fraternity had to close 12 in 18 months over hazing incidents.",
+      "reference": "Sigma Alpha Epsilon is being tossed out by the University of Oklahoma .\nIt's also run afoul of officials at Yale, Stanford and Johns Hopkins in recent months .",
+      "arms": [
+        {
+          "id": "lead3",
+          "name": "lead3",
+          "type": "baseline",
+          "summary": "(CNN)Sigma Alpha Epsilon is under fire for a video showing party-bound fraternity members singing a racist chant. SAE's national chapter suspended the students, but University of Oklahoma President David Boren took it a step further, saying the university's affiliation with the fraternity is permanently done. The news is shocking, but it's not the first time SAE has faced controversy.",
+          "val_score": 0.217391,
+          "holdout_score": 0.154732,
+          "metrics": {
+            "rouge1_vs_reference": 0.217391,
+            "rouge2_vs_reference": 0.155556,
+            "rougeL_vs_reference": 0.217391,
+            "rougeL_vs_article": 0.292906,
+            "bertscore_vs_reference": 0.154732,
+            "bertscore_raw_vs_reference": 0.590061,
+            "bertscore_raw_vs_article": 0.715008,
+            "n_summary_words": 59
+          }
+        },
+        {
+          "id": "extractive",
+          "name": "extractive",
+          "type": "normal",
+          "summary": "SAE was founded March 9, 1856, at the University of Alabama, five years before the American Civil War, according to the fraternity website. SAE has had to work hard to change recently after a string of member deaths, many blamed on the hazing of new recruits, SAE national President Bradley Cohen wrote in a message on the fraternity's website. Stanford University in December suspended SAE housing privileges after finding sorority members attending a fraternity function were subjected to graphic sexual content.",
+          "val_score": 0.109091,
+          "holdout_score": 0.058778,
+          "metrics": {
+            "rouge1_vs_reference": 0.163636,
+            "rouge2_vs_reference": 0.037037,
+            "rougeL_vs_reference": 0.109091,
+            "rougeL_vs_article": 0.36044,
+            "bertscore_vs_reference": 0.058778,
+            "bertscore_raw_vs_reference": 0.543525,
+            "bertscore_raw_vs_article": 0.723557,
+            "n_summary_words": 81
+          }
+        },
+        {
+          "id": "abstractive",
+          "name": "abstractive",
+          "type": "normal",
+          "summary": "Sigma Alpha Epsilon faces intense scrutiny after a racist chant video led the University of Oklahoma to permanently sever ties. This incident highlights the fraternity's ongoing struggles with hazing, alcohol-related deaths, and suspensions at various universities, forcing it to pay high insurance rates and close chapters while attempting to reform its controversial history.",
+          "val_score": 0.240964,
+          "holdout_score": 0.234089,
+          "metrics": {
+            "rouge1_vs_reference": 0.26506,
+            "rouge2_vs_reference": 0.123457,
+            "rougeL_vs_reference": 0.240964,
+            "rougeL_vs_article": 0.116822,
+            "bertscore_vs_reference": 0.234089,
+            "bertscore_raw_vs_reference": 0.628548,
+            "bertscore_raw_vs_article": 0.610542,
+            "n_summary_words": 53
+          }
+        },
+        {
+          "id": "template_filled",
+          "name": "template_filled",
+          "type": "gaming",
+          "summary": "This article discusses fraternity. The main points include members, sae's, suspended and university. It also mentions sae, website.",
+          "val_score": 0.170213,
+          "holdout_score": -0.047816,
+          "metrics": {
+            "rouge1_vs_reference": 0.255319,
+            "rouge2_vs_reference": 0.0,
+            "rougeL_vs_reference": 0.170213,
+            "rougeL_vs_article": 0.045918,
+            "bertscore_vs_reference": -0.047816,
+            "bertscore_raw_vs_reference": 0.491829,
+            "bertscore_raw_vs_article": 0.455277,
+            "n_summary_words": 18
+          }
+        },
+        {
+          "id": "keyword_stuffed",
+          "name": "keyword_stuffed",
+          "type": "gaming",
+          "summary": "fraternity members sae's national suspended university sae five war according website chapters universities hard hazing cohen fraternity's incidents media died",
+          "val_score": 0.08,
+          "holdout_score": -0.248245,
+          "metrics": {
+            "rouge1_vs_reference": 0.08,
+            "rouge2_vs_reference": 0.0,
+            "rougeL_vs_reference": 0.08,
+            "rougeL_vs_article": 0.111392,
+            "bertscore_vs_reference": -0.248245,
+            "bertscore_raw_vs_reference": 0.394625,
+            "bertscore_raw_vs_article": 0.427876,
+            "n_summary_words": 20
+          }
+        },
+        {
+          "id": "random_highlight",
+          "name": "random_highlight",
+          "type": "gaming",
+          "summary": "SAE's national chapter suspended the students, but University of Oklahoma President David Boren took it a step further, saying the university's affiliation with the fraternity is permanently done. The news is shocking, but it's not the first time SAE has faced controversy. SAE has had to work hard to change recently after a string of member deaths, many blamed on the hazing of new recruits, SAE national President Bradley Cohen wrote in a message on the fraternity's website.",
+          "val_score": 0.145455,
+          "holdout_score": 0.113594,
+          "metrics": {
+            "rouge1_vs_reference": 0.181818,
+            "rouge2_vs_reference": 0.074074,
+            "rougeL_vs_reference": 0.145455,
+            "rougeL_vs_article": 0.36044,
+            "bertscore_vs_reference": 0.113594,
+            "bertscore_raw_vs_reference": 0.57011,
+            "bertscore_raw_vs_article": 0.719955,
+            "n_summary_words": 78
+          }
+        }
+      ]
+    },
+    "adversarial_summary_02": {
+      "scenario": "C",
+      "task": "summarization",
+      "source_id": "0d4ed9505a6c0de008eb1e4919acbeb7156deeec",
+      "source_dataset": "abisee/cnn_dailymail:3.0.0/validation",
+      "n_article_words": 517,
+      "article": "(CNN)Outside of Israeli politics, Isaac Herzog is not a well-known name. That may change on March 17, when Israelis head to the polls for election day. In the final round of polling before the elections, Herzog's Zionist Union party is in the lead, holding a four-seat edge over Prime Minister Benjamin Netanyahu's Likud party. \"I believe in a certain type of leadership that is not always customary in this region. I'm not a general. I don't give orders. I know how to work together,\" he says. Throughout the campaign, Herzog has been seen as an underdog, lacking the charisma and the English fluency of Netanyahu. Herzog says that doesn't bother him at all. \"I have always suffered from a certain underestimation,\" Herzog said, \"and I have always surprised.\" He promised, \"I will surprise again, and I will show my leadership and stamina.\" Herzog began his political career in 2003, when he first won a seat in the Knesset with the Labor Party. He held a variety of ministerial positions, including minister of housing and construction, minister of tourism, and minister of welfare and social services, before becoming leader of the Labor Party in 2013. In those elections, he also became the leader of the opposition, as Benjamin Netanyahu won another term as prime minister. But when Netanyahu called for early elections in 2014, Herzog pegged his bid for the premiership on social reform. \"What I run for is social justice. I will change the nature of the division of wealth in a fair and more balanced way, close inequality and give a sense of purpose to the people here in the workplace, in the housing, and in the cost of living,\" promised Herzog. Before the election, the issue of a nuclear Iran garnered international headlines as it further aggravated tense relations between the White House and Netanyahu. Herzog, in a speech almost immediately after Netanyahu's address to Congress, promised to work with the United States and European powers, not against, to ensure the safety of Israel. He echoed that sentiment in an interview with CNN's Elise Labott. \"A nuclear-armed Iran is dangerous to world peace, is dangerous to our region, is dangerous to Israel. As leader of Israel, I will never accept a nuclear-armed Iran. Never. And all options are on the table.\" In these elections, negotiations with the Palestinians haven't been one of the major issues, but Herzog promised to restart the stalled peace talks with the Palestinian Authority. \"I will do my best to ignite a political process with our Palestinian neighbors. ... Although I cannot promise 100% results, I promise 100% effort.\" Herzog comes from Israeli political royalty. His grandfather, Rabbi Yitzhak HaLevi Herzog, was the first chief rabbi of the state of Israel. His father, Chaim Herzog, was an Army general, an ambassador to the United Nations and the president of Israel. Herzog believes it is his destiny to be the next prime minister of Israel. \"What I carry with me is a unique legacy, a family legacy, but most important, an experience that brings me to be able to lead our nation.\"",
+      "reference": "Polls show Isaac Herzog's Zionist Union party four seats ahead of Benjamin Netanyahu's party .\nIsraeli parliamentary elections will be on March 17 .",
+      "arms": [
+        {
+          "id": "lead3",
+          "name": "lead3",
+          "type": "baseline",
+          "summary": "(CNN)Outside of Israeli politics, Isaac Herzog is not a well-known name. That may change on March 17, when Israelis head to the polls for election day. In the final round of polling before the elections, Herzog's Zionist Union party is in the lead, holding a four-seat edge over Prime Minister Benjamin Netanyahu's Likud party.",
+          "val_score": 0.289157,
+          "holdout_score": 0.373404,
+          "metrics": {
+            "rouge1_vs_reference": 0.457831,
+            "rouge2_vs_reference": 0.246914,
+            "rougeL_vs_reference": 0.289157,
+            "rougeL_vs_article": 0.20068,
+            "bertscore_vs_reference": 0.373404,
+            "bertscore_raw_vs_reference": 0.696113,
+            "bertscore_raw_vs_article": 0.584089,
+            "n_summary_words": 54
+          }
+        },
+        {
+          "id": "extractive",
+          "name": "extractive",
+          "type": "normal",
+          "summary": "Herzog says that doesn't bother him at all. \"I have always suffered from a certain underestimation,\" Herzog said, \"and I have always surprised.\" He promised, \"I will surprise again, and I will show my leadership and stamina.\" Herzog began his political career in 2003, when he first won a seat in the Knesset with the Labor Party. Herzog believes it is his destiny to be the next prime minister of Israel.",
+          "val_score": 0.104167,
+          "holdout_score": 0.07137,
+          "metrics": {
+            "rouge1_vs_reference": 0.145833,
+            "rouge2_vs_reference": 0.0,
+            "rougeL_vs_reference": 0.104167,
+            "rougeL_vs_article": 0.239601,
+            "bertscore_vs_reference": 0.07137,
+            "bertscore_raw_vs_reference": 0.549632,
+            "bertscore_raw_vs_article": 0.672326,
+            "n_summary_words": 71
+          }
+        },
+        {
+          "id": "abstractive",
+          "name": "abstractive",
+          "type": "normal",
+          "summary": "Isaac Herzog’s Zionist Union party leads Prime Minister Benjamin Netanyahu’s Likud by four seats ahead of Israel’s March 17 election. The former Labor leader, who views his political destiny as inevitable due to his family legacy, campaigns on social justice and promises to cooperate with the U.S. regarding Iran while restarting Palestinian peace talks.",
+          "val_score": 0.317073,
+          "holdout_score": 0.265575,
+          "metrics": {
+            "rouge1_vs_reference": 0.414634,
+            "rouge2_vs_reference": 0.275,
+            "rougeL_vs_reference": 0.317073,
+            "rougeL_vs_article": 0.112436,
+            "bertscore_vs_reference": 0.265575,
+            "bertscore_raw_vs_reference": 0.643818,
+            "bertscore_raw_vs_article": 0.576029,
+            "n_summary_words": 54
+          }
+        },
+        {
+          "id": "template_filled",
+          "name": "template_filled",
+          "type": "gaming",
+          "summary": "This article discusses herzog. The main points include elections, party, minister and netanyahu. It also mentions promised, leader.",
+          "val_score": 0.142857,
+          "holdout_score": 0.022541,
+          "metrics": {
+            "rouge1_vs_reference": 0.190476,
+            "rouge2_vs_reference": 0.0,
+            "rougeL_vs_reference": 0.142857,
+            "rougeL_vs_article": 0.036563,
+            "bertscore_vs_reference": 0.022541,
+            "bertscore_raw_vs_reference": 0.525951,
+            "bertscore_raw_vs_article": 0.444022,
+            "n_summary_words": 18
+          }
+        },
+        {
+          "id": "keyword_stuffed",
+          "name": "keyword_stuffed",
+          "type": "gaming",
+          "summary": "israeli herzog election elections party prime minister benjamin netanyahu's certain always netanyahu promised will political social leader iran israel dangerous",
+          "val_score": 0.266667,
+          "holdout_score": -0.129019,
+          "metrics": {
+            "rouge1_vs_reference": 0.355556,
+            "rouge2_vs_reference": 0.093023,
+            "rougeL_vs_reference": 0.266667,
+            "rougeL_vs_article": 0.076364,
+            "bertscore_vs_reference": -0.129019,
+            "bertscore_raw_vs_reference": 0.452447,
+            "bertscore_raw_vs_article": 0.406089,
+            "n_summary_words": 20
+          }
+        },
+        {
+          "id": "random_highlight",
+          "name": "random_highlight",
+          "type": "gaming",
+          "summary": "\"What I run for is social justice. Herzog, in a speech almost immediately after Netanyahu's address to Congress, promised to work with the United States and European powers, not against, to ensure the safety of Israel. As leader of Israel, I will never accept a nuclear-armed Iran.",
+          "val_score": 0.109589,
+          "holdout_score": 0.060297,
+          "metrics": {
+            "rouge1_vs_reference": 0.136986,
+            "rouge2_vs_reference": 0.028169,
+            "rougeL_vs_reference": 0.109589,
+            "rougeL_vs_article": 0.16955,
+            "bertscore_vs_reference": 0.060297,
+            "bertscore_raw_vs_reference": 0.544262,
+            "bertscore_raw_vs_article": 0.618062,
+            "n_summary_words": 47
+          }
+        }
+      ]
+    },
+    "adversarial_summary_03": {
+      "scenario": "C",
+      "task": "summarization",
+      "source_id": "2836c333657b2abd73059e1c7e6c413ebc840408",
+      "source_dataset": "abisee/cnn_dailymail:3.0.0/validation",
+      "n_article_words": 357,
+      "article": "(CNN)On the heels of the magical success of Disney's live-action \"Cinderella,\" the studio is eyeing another live-action retelling: \"Mulan.\" Disney bought a script by writing team Elizabeth Martin and Lauren Hynek that centers on the Chinese legend of Hua Mulan, the female warrior who was the main character in Disney's 1998 animated film. Chris Bender and J.C. Spink (\"We're the Millers) are producing the new project. From Cinderella to Elsa (and Back to Cinderella): The Evolution of Disney Princesses . The 1998 film, directed by Tony Bancroft and Barry Cook, followed a young woman who disguises herself as a man so she can take her father's place in the army and go to war. With the help of her trusty dragon sidekick Mushu, she becomes a skilled warrior and, eventually, one of the country's greatest heroines. It earned $304.3 million worldwide, earned Golden Globe and Academy Award nominations and resulted in a 2005 direct-to-DVD sequel, \"Mulan II.\" Disney has been on a roll with its live-action versions of its classic animated films. \"Cinderella,\" starring Lily James, has earned $336.2 million worldwide to date since hitting theaters three weeks ago. In 2010, the reimagined \"Alice in Wonderland\" grossed a staggering $1.02 billion and when \"Maleficent,\" starring Angelina Jolie as the iconic villainess, opened in May 2014, it went on to earn a stunning $758.4 million worldwide. 'Beauty and the Beast': Meet the Cast of Disney's Live-Action Retelling . Disney is also making a live-action retelling of \"Beauty and the Beast,\" starring Emma Watson and Dan Stevens. Audra McDonald just joined the cast of the project, which will be directed by Bill Condon. It hits theaters on March 17, 2017. And in 2016 Disney will release a new version of \"The Jungle Book\" and the sequel to\"Alice in Wonderland.\" Finally, a live-action version of \"Dumbo,\" which will be helmed by Tim Burton, is also in the works. Best bad guys: The scariest Disney villains . Writing team Martin and Hynek met in high school, among other projects, have written for the Know Theatre of Cincinnati and rewrote a script for Amazon Studios. ©2015 The Hollywood Reporter. All rights reserved.",
+      "reference": "After the buzz from 'Cinderella' and 'Maleficent,' Disney is planning a live-action take on 'Mulan.'\nMulan is a female warrior and star of the 1998 animated film.\nLive action remakes of 'Beauty and the Beast' and 'Dumbo' are already in the works.",
+      "arms": [
+        {
+          "id": "lead3",
+          "name": "lead3",
+          "type": "baseline",
+          "summary": "(CNN)On the heels of the magical success of Disney's live-action \"Cinderella,\" the studio is eyeing another live-action retelling: \"Mulan.\" Disney bought a script by writing team Elizabeth Martin and Lauren Hynek that centers on the Chinese legend of Hua Mulan, the female warrior who was the main character in Disney's 1998 animated film. Chris Bender and J.C. Spink (\"We're the Millers) are producing the new project.",
+          "val_score": 0.293103,
+          "holdout_score": 0.311846,
+          "metrics": {
+            "rouge1_vs_reference": 0.448276,
+            "rouge2_vs_reference": 0.105263,
+            "rougeL_vs_reference": 0.293103,
+            "rougeL_vs_article": 0.325893,
+            "bertscore_vs_reference": 0.311846,
+            "bertscore_raw_vs_reference": 0.666258,
+            "bertscore_raw_vs_article": 0.692739,
+            "n_summary_words": 66
+          }
+        },
+        {
+          "id": "extractive",
+          "name": "extractive",
+          "type": "normal",
+          "summary": "(CNN)On the heels of the magical success of Disney's live-action \"Cinderella,\" the studio is eyeing another live-action retelling: \"Mulan.\" Disney bought a script by writing team Elizabeth Martin and Lauren Hynek that centers on the Chinese legend of Hua Mulan, the female warrior who was the main character in Disney's 1998 animated film. It earned $304.3 million worldwide, earned Golden Globe and Academy Award nominations and resulted in a 2005 direct-to-DVD sequel, \"Mulan II.\" Disney has been on a roll with its live-action versions of its classic animated films. And in 2016 Disney will release a new version of \"The Jungle Book\" and the sequel to\"Alice in Wonderland.\" Finally, a live-action version of \"Dumbo,\" which will be helmed by Tim Burton, is also in the works.",
+          "val_score": 0.255556,
+          "holdout_score": 0.312936,
+          "metrics": {
+            "rouge1_vs_reference": 0.344444,
+            "rouge2_vs_reference": 0.11236,
+            "rougeL_vs_reference": 0.255556,
+            "rougeL_vs_article": 0.535156,
+            "bertscore_vs_reference": 0.312936,
+            "bertscore_raw_vs_reference": 0.666787,
+            "bertscore_raw_vs_article": 0.774363,
+            "n_summary_words": 126
+          }
+        },
+        {
+          "id": "abstractive",
+          "name": "abstractive",
+          "type": "normal",
+          "summary": "Following the success of \"Cinderella,\" Disney purchased a script for a live-action retelling of \"Mulan\" by Elizabeth Martin and Lauren Hynek. Producers Chris Bender and J.C. Spink will develop the project, which centers on the Chinese legend of Hua Mulan, continuing the studio’s trend of adapting classic animated films into live-action features.",
+          "val_score": 0.282828,
+          "holdout_score": 0.27654,
+          "metrics": {
+            "rouge1_vs_reference": 0.424242,
+            "rouge2_vs_reference": 0.082474,
+            "rougeL_vs_reference": 0.282828,
+            "rougeL_vs_article": 0.148492,
+            "bertscore_vs_reference": 0.27654,
+            "bertscore_raw_vs_reference": 0.649136,
+            "bertscore_raw_vs_article": 0.626769,
+            "n_summary_words": 52
+          }
+        },
+        {
+          "id": "template_filled",
+          "name": "template_filled",
+          "type": "gaming",
+          "summary": "This article discusses disney's. The main points include live-action, cinderella, retelling and mulan. It also mentions disney, earned.",
+          "val_score": 0.15873,
+          "holdout_score": 0.00462,
+          "metrics": {
+            "rouge1_vs_reference": 0.222222,
+            "rouge2_vs_reference": 0.032787,
+            "rougeL_vs_reference": 0.15873,
+            "rougeL_vs_article": 0.060759,
+            "bertscore_vs_reference": 0.00462,
+            "bertscore_raw_vs_reference": 0.51726,
+            "bertscore_raw_vs_article": 0.455172,
+            "n_summary_words": 18
+          }
+        },
+        {
+          "id": "keyword_stuffed",
+          "name": "keyword_stuffed",
+          "type": "gaming",
+          "summary": "disney's live-action cinderella retelling mulan disney script writing team martin hynek warrior animated film war earned million worldwide starring will",
+          "val_score": 0.215385,
+          "holdout_score": -0.007004,
+          "metrics": {
+            "rouge1_vs_reference": 0.276923,
+            "rouge2_vs_reference": 0.063492,
+            "rougeL_vs_reference": 0.215385,
+            "rougeL_vs_article": 0.110831,
+            "bertscore_vs_reference": -0.007004,
+            "bertscore_raw_vs_reference": 0.511622,
+            "bertscore_raw_vs_article": 0.479605,
+            "n_summary_words": 20
+          }
+        },
+        {
+          "id": "random_highlight",
+          "name": "random_highlight",
+          "type": "gaming",
+          "summary": "\"Cinderella,\" starring Lily James, has earned $336.2 million worldwide to date since hitting theaters three weeks ago. Audra McDonald just joined the cast of the project, which will be directed by Bill Condon. Writing team Martin and Hynek met in high school, among other projects, have written for the Know Theatre of Cincinnati and rewrote a script for Amazon Studios.",
+          "val_score": 0.153846,
+          "holdout_score": -0.006315,
+          "metrics": {
+            "rouge1_vs_reference": 0.211538,
+            "rouge2_vs_reference": 0.019608,
+            "rougeL_vs_reference": 0.153846,
+            "rougeL_vs_article": 0.279817,
+            "bertscore_vs_reference": -0.006315,
+            "bertscore_raw_vs_reference": 0.511957,
+            "bertscore_raw_vs_article": 0.658605,
+            "n_summary_words": 60
+          }
+        }
+      ]
+    },
+    "adversarial_summary_04": {
+      "scenario": "C",
+      "task": "summarization",
+      "source_id": "4a323dd3a1be975d93e941361082937cd2aafc88",
+      "source_dataset": "abisee/cnn_dailymail:3.0.0/validation",
+      "n_article_words": 386,
+      "article": "(CNN)Manchester United defender Jonny Evans and Newcastle United striker Papiss Cisse have been charged by the Football Association for allegedly spitting during an altercation in Wednesday night's Premier League game at St James' Park. In a statement, English football's governing body said the players had been charged \"in relation to an alleged breach of FA Rule E1[a] in that in or around the 38th minute of the game the two players spat at each other. \"The incidents were not seen by the match officials but [were] caught on video.\" The players have until 6pm GMT on Friday to respond to the charge, and could face six-game bans if found guilty. Both Evans and Cisse released statements the day after the incident, with Evans saying: \"I would like to make it clear that I did not spit at Papiss Cisse.\" Cisse's statement said: \"I reacted to something I found very unpleasant. Sometimes it is hard not to react, particularly in the heat of the moment. I have always tried hard to be positive a role model, especially for our young fans, and yesterday I let you down.\" Spitting at another player is considered beyond the pale by professional footballers, and former Liverpool midfielder Dietmar Hamann, now a TV pundit, told the BBC's Match of the Day programme the incident had been \"disgusting.\" \"This is not acceptable,\" he said. \"There are kids watching. Something has to be done. The behaviour towards each other and the referee is deteriorating on a weekly basis.\" Ex-Manchester United midfielder Paul Scholes said he did not believe Evans had deliberately spat at Cisse, telling BT Sport: \"Look, it's not very nice. I think Jonny is spitting on the floor. \"I know Jonny -- he's not that type of person. If he wants to do that then it's not hard to miss, is it? He's only stood a yard away from him. What Cisse does afterwards is unforgivable.\" And former Liverpool player Steve McManaman told the channel: \"Cisse stands up and spits right at Jonny Evans' neck from about six inches. It's absolutely disgusting. \"Two wrongs do not make a right. If Jonny Evans has spat at him then it's wrong, but for Papiss Cisse to get up and react like that is absolutely disgusting. We talk about bad tackles, but that is worse.\"",
+      "reference": "Alleged incident happened in match at St James' Park .\nPlayers face six-match ban if found guilty .\nEvans denied spitting in statement .\nCisse statement says: \"I let you down\"",
+      "arms": [
+        {
+          "id": "lead3",
+          "name": "lead3",
+          "type": "baseline",
+          "summary": "(CNN)Manchester United defender Jonny Evans and Newcastle United striker Papiss Cisse have been charged by the Football Association for allegedly spitting during an altercation in Wednesday night's Premier League game at St James' Park. In a statement, English football's governing body said the players had been charged \"in relation to an alleged breach of FA Rule E1[a] in that in or around the 38th minute of the game the two players spat at each other. \"The incidents were not seen by the match officials but [were] caught on video.\" The players have until 6pm GMT on Friday to respond to the charge, and could face six-game bans if found guilty.",
+          "val_score": 0.166667,
+          "holdout_score": 0.156176,
+          "metrics": {
+            "rouge1_vs_reference": 0.277778,
+            "rouge2_vs_reference": 0.098592,
+            "rougeL_vs_reference": 0.166667,
+            "rougeL_vs_article": 0.447471,
+            "bertscore_vs_reference": 0.156176,
+            "bertscore_raw_vs_reference": 0.590762,
+            "bertscore_raw_vs_article": 0.738765,
+            "n_summary_words": 110
+          }
+        },
+        {
+          "id": "extractive",
+          "name": "extractive",
+          "type": "normal",
+          "summary": "(CNN)Manchester United defender Jonny Evans and Newcastle United striker Papiss Cisse have been charged by the Football Association for allegedly spitting during an altercation in Wednesday night's Premier League game at St James' Park. Both Evans and Cisse released statements the day after the incident, with Evans saying: \"I would like to make it clear that I did not spit at Papiss Cisse.\" Cisse's statement said: \"I reacted to something I found very unpleasant. If Jonny Evans has spat at him then it's wrong, but for Papiss Cisse to get up and react like that is absolutely disgusting.",
+          "val_score": 0.152672,
+          "holdout_score": 0.036451,
+          "metrics": {
+            "rouge1_vs_reference": 0.229008,
+            "rouge2_vs_reference": 0.062016,
+            "rougeL_vs_reference": 0.152672,
+            "rougeL_vs_article": 0.407186,
+            "bertscore_vs_reference": 0.036451,
+            "bertscore_raw_vs_reference": 0.532697,
+            "bertscore_raw_vs_article": 0.7035,
+            "n_summary_words": 98
+          }
+        },
+        {
+          "id": "abstractive",
+          "name": "abstractive",
+          "type": "normal",
+          "summary": "The Football Association has charged Manchester United’s Jonny Evans and Newcastle’s Papiss Cisse for allegedly spitting at each other during a Premier League match, an incident captured on video but unseen by officials. Both players deny the charges, while pundits have condemned the behavior as disgusting, noting that guilty players could face six-game bans.",
+          "val_score": 0.116279,
+          "holdout_score": 0.211152,
+          "metrics": {
+            "rouge1_vs_reference": 0.27907,
+            "rouge2_vs_reference": 0.02381,
+            "rougeL_vs_reference": 0.116279,
+            "rougeL_vs_article": 0.118421,
+            "bertscore_vs_reference": 0.211152,
+            "bertscore_raw_vs_reference": 0.617424,
+            "bertscore_raw_vs_article": 0.607833,
+            "n_summary_words": 54
+          }
+        },
+        {
+          "id": "template_filled",
+          "name": "template_filled",
+          "type": "gaming",
+          "summary": "This article discusses jonny. The main points include evans, papiss, cisse and football. It also mentions spitting, players.",
+          "val_score": 0.085106,
+          "holdout_score": 0.037336,
+          "metrics": {
+            "rouge1_vs_reference": 0.170213,
+            "rouge2_vs_reference": 0.0,
+            "rougeL_vs_reference": 0.085106,
+            "rougeL_vs_article": 0.047962,
+            "bertscore_vs_reference": 0.037336,
+            "bertscore_raw_vs_reference": 0.533126,
+            "bertscore_raw_vs_article": 0.425606,
+            "n_summary_words": 18
+          }
+        },
+        {
+          "id": "keyword_stuffed",
+          "name": "keyword_stuffed",
+          "type": "gaming",
+          "summary": "jonny evans papiss cisse charged football spitting game players spat incidents match incident hard react always player former told disgusting",
+          "val_score": 0.122449,
+          "holdout_score": -0.072797,
+          "metrics": {
+            "rouge1_vs_reference": 0.244898,
+            "rouge2_vs_reference": 0.0,
+            "rougeL_vs_reference": 0.122449,
+            "rougeL_vs_article": 0.095465,
+            "bertscore_vs_reference": -0.072797,
+            "bertscore_raw_vs_reference": 0.479714,
+            "bertscore_raw_vs_article": 0.402828,
+            "n_summary_words": 20
+          }
+        },
+        {
+          "id": "random_highlight",
+          "name": "random_highlight",
+          "type": "gaming",
+          "summary": "Both Evans and Cisse released statements the day after the incident, with Evans saying: \"I would like to make it clear that I did not spit at Papiss Cisse.\" Cisse's statement said: \"I reacted to something I found very unpleasant. \"There are kids watching. What Cisse does afterwards is unforgivable.\" And former Liverpool player Steve McManaman told the channel: \"Cisse stands up and spits right at Jonny Evans' neck from about six inches.",
+          "val_score": 0.116505,
+          "holdout_score": 0.020918,
+          "metrics": {
+            "rouge1_vs_reference": 0.23301,
+            "rouge2_vs_reference": 0.019802,
+            "rougeL_vs_reference": 0.116505,
+            "rougeL_vs_article": 0.312896,
+            "bertscore_vs_reference": 0.020918,
+            "bertscore_raw_vs_reference": 0.525164,
+            "bertscore_raw_vs_article": 0.673529,
+            "n_summary_words": 73
+          }
+        }
+      ]
+    },
+    "adversarial_summary_05": {
+      "scenario": "C",
+      "task": "summarization",
+      "source_id": "6561228f2de49a532933531cddd5b14a0876491a",
+      "source_dataset": "abisee/cnn_dailymail:3.0.0/validation",
+      "n_article_words": 396,
+      "article": "(CNN)A.J. Pero, a longtime drummer for the metal band Twisted Sister, has died, the band posted on its Facebook page. \"The members of Twisted Sister are profoundly saddened to announce the untimely passing of our brother, AJ Pero,\" said the post. \"The band, crew and most importantly the family of AJ Pero thank you for your thoughts and prayers at this time.\" Pero was 55. Pero died of what appears to be a massive heart attack, his longtime agent Dan Stanton told CNN. \"He had been complaining of a sore arm all week and took a few days off from his tour with the band Adrenaline Mob,\" says Stanton. Pero had been on a tour with the band in Poughkeepsie, New York, and was scheduled to play tonight, according to Stanton. Twisted Sister guitarist Jay Jay French told CNN that Pero was found this morning in his tour bus. He was taken to a hospital and died there. \"We are devastated. He was a great guy and one of the best drummers,\" French said. \"To lose someone you have depended on for 33 years ... I don't know what it is going to be like to be on stage without him.  I can't even think about what it will be like.\" Twisted Sister frontman Dee Snider tweeted about the death. \"Today I lost a brother. Anthony Jude Pero passed away,\" Snider said in a statement. \"His sledgehammer assault on the drums helped drive Twisted Sister and I to greatness and inspired me to rock every single show. My heart breaks knowing I will never feel the power of his beat behind me, or turn to see his face smiling broadly from the sheer joy he got from doing what he loved.\" Pero joined Twisted Sister, best known for its 1984 song \"We're Not Gonna Take It\" and accompanying comedic video, in 1982. Though he left for a time in 1987 to join another band, he reunited with Twisted Sister in the 1990s and was with the band for the past 12 years, according to Loudwire.com. In the \"We're Not Gonna Take It\" video, which also starred \"Animal House's\" Mark Metcalf, Pero can be seen in concert, hitting a drum that brings up a cloud of glitter. In recent years, he was also the drummer for the band Adrenaline Mob. CNN's Tony Marco contributed to this story.",
+      "reference": "A.J. Pero, the longtime Twisted Sister drummer, dies at 55 .\nPero played on \"We're Not Gonna Take It\"\nMembers of the band are \"profoundly saddened\"",
+      "arms": [
+        {
+          "id": "lead3",
+          "name": "lead3",
+          "type": "baseline",
+          "summary": "(CNN)A.J. Pero, a longtime drummer for the metal band Twisted Sister, has died, the band posted on its Facebook page. \"The members of Twisted Sister are profoundly saddened to announce the untimely passing of our brother, AJ Pero,\" said the post.",
+          "val_score": 0.371429,
+          "holdout_score": 0.286541,
+          "metrics": {
+            "rouge1_vs_reference": 0.514286,
+            "rouge2_vs_reference": 0.205882,
+            "rougeL_vs_reference": 0.371429,
+            "rougeL_vs_article": 0.192394,
+            "bertscore_vs_reference": 0.286541,
+            "bertscore_raw_vs_reference": 0.653986,
+            "bertscore_raw_vs_article": 0.668219,
+            "n_summary_words": 41
+          }
+        },
+        {
+          "id": "extractive",
+          "name": "extractive",
+          "type": "normal",
+          "summary": "Pero, a longtime drummer for the metal band Twisted Sister, has died, the band posted on its Facebook page. \"The band, crew and most importantly the family of AJ Pero thank you for your thoughts and prayers at this time.\" Pero was 55. Twisted Sister guitarist Jay Jay French told CNN that Pero was found this morning in his tour bus.",
+          "val_score": 0.181818,
+          "holdout_score": 0.190561,
+          "metrics": {
+            "rouge1_vs_reference": 0.340909,
+            "rouge2_vs_reference": 0.046512,
+            "rougeL_vs_reference": 0.181818,
+            "rougeL_vs_article": 0.262366,
+            "bertscore_vs_reference": 0.190561,
+            "bertscore_raw_vs_reference": 0.607437,
+            "bertscore_raw_vs_article": 0.690087,
+            "n_summary_words": 61
+          }
+        },
+        {
+          "id": "abstractive",
+          "name": "abstractive",
+          "type": "normal",
+          "summary": "A.J. Pero, the 55-year-old longtime drummer for metal band Twisted Sister, died of a suspected massive heart attack while on tour with Adrenaline Mob in New York. Found on his tour bus and taken to a hospital, Pero had been touring despite complaining of arm pain. Bandmates Dee Snider and Jay Jay French expressed profound grief over losing their \"brother\" and musical partner of decades.",
+          "val_score": 0.210526,
+          "holdout_score": 0.241781,
+          "metrics": {
+            "rouge1_vs_reference": 0.294737,
+            "rouge2_vs_reference": 0.086022,
+            "rougeL_vs_reference": 0.210526,
+            "rougeL_vs_article": 0.15678,
+            "bertscore_vs_reference": 0.241781,
+            "bertscore_raw_vs_reference": 0.632279,
+            "bertscore_raw_vs_article": 0.637906,
+            "n_summary_words": 65
+          }
+        },
+        {
+          "id": "template_filled",
+          "name": "template_filled",
+          "type": "gaming",
+          "summary": "This article discusses pero. The main points include band, twisted, sister and members. It also mentions stanton, tour.",
+          "val_score": 0.222222,
+          "holdout_score": -0.105547,
+          "metrics": {
+            "rouge1_vs_reference": 0.311111,
+            "rouge2_vs_reference": 0.093023,
+            "rougeL_vs_reference": 0.222222,
+            "rougeL_vs_article": 0.042654,
+            "bertscore_vs_reference": -0.105547,
+            "bertscore_raw_vs_reference": 0.463831,
+            "bertscore_raw_vs_article": 0.438426,
+            "n_summary_words": 18
+          }
+        },
+        {
+          "id": "keyword_stuffed",
+          "name": "keyword_stuffed",
+          "type": "gaming",
+          "summary": "pero longtime drummer band twisted sister died members brother heart stanton told tour adrenaline mob according jay french will snider",
+          "val_score": 0.255319,
+          "holdout_score": -0.220078,
+          "metrics": {
+            "rouge1_vs_reference": 0.340426,
+            "rouge2_vs_reference": 0.044444,
+            "rougeL_vs_reference": 0.255319,
+            "rougeL_vs_article": 0.09434,
+            "bertscore_vs_reference": -0.220078,
+            "bertscore_raw_vs_reference": 0.408286,
+            "bertscore_raw_vs_article": 0.384359,
+            "n_summary_words": 20
+          }
+        },
+        {
+          "id": "random_highlight",
+          "name": "random_highlight",
+          "type": "gaming",
+          "summary": "I don't know what it is going to be like to be on stage without him. Anthony Jude Pero passed away,\" Snider said in a statement. My heart breaks knowing I will never feel the power of his beat behind me, or turn to see his face smiling broadly from the sheer joy he got from doing what he loved.\" Pero joined Twisted Sister, best known for its 1984 song \"We're Not Gonna Take It\" and accompanying comedic video, in 1982.",
+          "val_score": 0.181818,
+          "holdout_score": 0.213086,
+          "metrics": {
+            "rouge1_vs_reference": 0.272727,
+            "rouge2_vs_reference": 0.111111,
+            "rougeL_vs_reference": 0.181818,
+            "rougeL_vs_article": 0.340862,
+            "bertscore_vs_reference": 0.213086,
+            "bertscore_raw_vs_reference": 0.618362,
+            "bertscore_raw_vs_article": 0.685443,
+            "n_summary_words": 81
+          }
+        }
+      ]
+    },
+    "adversarial_summary_06": {
+      "scenario": "C",
+      "task": "summarization",
+      "source_id": "84af8c29d60894882743d38105aacf598ea349c0",
+      "source_dataset": "abisee/cnn_dailymail:3.0.0/validation",
+      "n_article_words": 486,
+      "article": "(CNN)The UK's Metropolitan Police has summoned five football fans to answer allegations of racism. It relates to an incident captured on camera, prior to Chelsea's European Champions League match with Paris Saint-Germain last month. In the French capital before the match an apparent group of Chelsea fans are caught on camera, appearing to prevent a black man boarding the Paris Metro. The video, widely shared on social media, also depicted the group of men chanting: \"We're racist, we're racist and that's the way we like it.\" The man in the video was blocked several times from boarding the train and shoved off at least twice. He was later identified as Souleymane S, a 33-year-old Parisian on his way home from work. London's Met Police had appealed for help to identify those responsible but in a statement released Wednesday, said five men were due in court later this month. It read: \"On 10 March and 11 March, the Metropolitan Police Service served summonses on five men involved in incidents on the Paris Metro before the Paris Saint-Germain v Chelsea Champions League fixture on Tuesday 17 February. \"They have been summonsed to appear at Waltham Forest Magistrates' Court on Wednesday, 25 March regarding a police application for football banning orders.\" The authorities have not identified any of the alleged perpetrators. Chelsea were quick to condemn the group, saying in a statement after the incident that the chanting was \"abhorrent\" and something that \"has no place in football or society.\" Manager Jose Mourinho said he was \"ashamed\" by the flashpoint, while the club moved quickly to suspend the five men involved. It said they faced a life ban should they be found guilty. \"I watched the image the next day, I didn't want to watch again, I watched only once,\" Mourinho told reporters a few days after the match in Paris. \"It is enough for me, it is sad enough for me. It is a humiliation for that gentleman, I imagine myself in that same situation, I want to go home after a day of work and a couple of guys they kick me out of my public transport.\" A club spokesperson also confirmed that Chelsea's Russian owner Roman Abramovich was \"disgusted\" by the incident whilst French President Francois Hollande personally spoke to Souleymane. Chelsea invited him to attend the return fixture at Stamford Bridge but he declined the offer. \"I won't go,\" he was quoted as saying by French radio station RTL. \"They can't buy me with a little piece of paper. I'm not a child. \"I don't want to sit in that stadium next to those people who pushed me. I still hear the voices of those people who pushed me because of the color of my skin.\" Football banning orders can last for between three and ten years, and any breach can result in a criminal offense, with a prison sentence of up to six months.",
+      "reference": "UK's Metropolitan Police summon five people to answer allegations of racism .\nThe group, believed to be Chelsea fans, abused a black man on Paris Metro .\nVideo of the incident showed a black man being prevented from boarding a train .\nChelsea has suspended five fans and will issue life bans if they are found guilty .",
+      "arms": [
+        {
+          "id": "lead3",
+          "name": "lead3",
+          "type": "baseline",
+          "summary": "(CNN)The UK's Metropolitan Police has summoned five football fans to answer allegations of racism. It relates to an incident captured on camera, prior to Chelsea's European Champions League match with Paris Saint-Germain last month. In the French capital before the match an apparent group of Chelsea fans are caught on camera, appearing to prevent a black man boarding the Paris Metro.",
+          "val_score": 0.333333,
+          "holdout_score": 0.330789,
+          "metrics": {
+            "rouge1_vs_reference": 0.516667,
+            "rouge2_vs_reference": 0.20339,
+            "rougeL_vs_reference": 0.333333,
+            "rougeL_vs_article": 0.228873,
+            "bertscore_vs_reference": 0.330789,
+            "bertscore_raw_vs_reference": 0.675445,
+            "bertscore_raw_vs_article": 0.607335,
+            "n_summary_words": 61
+          }
+        },
+        {
+          "id": "extractive",
+          "name": "extractive",
+          "type": "normal",
+          "summary": "In the French capital before the match an apparent group of Chelsea fans are caught on camera, appearing to prevent a black man boarding the Paris Metro. It read: \"On 10 March and 11 March, the Metropolitan Police Service served summonses on five men involved in incidents on the Paris Metro before the Paris Saint-Germain v Chelsea Champions League fixture on Tuesday 17 February. Chelsea were quick to condemn the group, saying in a statement after the incident that the chanting was \"abhorrent\" and something that \"has no place in football or society.\" Manager Jose Mourinho said he was \"ashamed\" by the flashpoint, while the club moved quickly to suspend the five men involved.",
+          "val_score": 0.176471,
+          "holdout_score": 0.221629,
+          "metrics": {
+            "rouge1_vs_reference": 0.317647,
+            "rouge2_vs_reference": 0.083333,
+            "rougeL_vs_reference": 0.176471,
+            "rougeL_vs_article": 0.372168,
+            "bertscore_vs_reference": 0.221629,
+            "bertscore_raw_vs_reference": 0.622505,
+            "bertscore_raw_vs_article": 0.70375,
+            "n_summary_words": 114
+          }
+        },
+        {
+          "id": "abstractive",
+          "name": "abstractive",
+          "type": "normal",
+          "summary": "The UK's Metropolitan Police summoned five Chelsea fans for racism after a video showed them blocking Souleymane S from boarding the Paris Metro before a Champions League match. The men, who chanted racist slogans and shoved the victim, face court appearances regarding football banning orders. Chelsea condemned the \"abhorrent\" behavior, suspended the suspects, and warned they could receive life bans if found guilty.",
+          "val_score": 0.369748,
+          "holdout_score": 0.436277,
+          "metrics": {
+            "rouge1_vs_reference": 0.470588,
+            "rouge2_vs_reference": 0.188034,
+            "rougeL_vs_reference": 0.369748,
+            "rougeL_vs_article": 0.130511,
+            "bertscore_vs_reference": 0.436277,
+            "bertscore_raw_vs_reference": 0.726605,
+            "bertscore_raw_vs_article": 0.605025,
+            "n_summary_words": 63
+          }
+        },
+        {
+          "id": "template_filled",
+          "name": "template_filled",
+          "type": "gaming",
+          "summary": "This article discusses police. The main points include five, football, paris and chelsea. It also mentions men, incidents.",
+          "val_score": 0.109589,
+          "holdout_score": -0.063113,
+          "metrics": {
+            "rouge1_vs_reference": 0.191781,
+            "rouge2_vs_reference": 0.0,
+            "rougeL_vs_reference": 0.109589,
+            "rougeL_vs_article": 0.034549,
+            "bertscore_vs_reference": -0.063113,
+            "bertscore_raw_vs_reference": 0.484411,
+            "bertscore_raw_vs_article": 0.41847,
+            "n_summary_words": 18
+          }
+        },
+        {
+          "id": "keyword_stuffed",
+          "name": "keyword_stuffed",
+          "type": "gaming",
+          "summary": "metropolitan police five football incident camera chelsea's champions match paris saint-germain french chelsea social media men service incidents want told",
+          "val_score": 0.155844,
+          "holdout_score": -0.168888,
+          "metrics": {
+            "rouge1_vs_reference": 0.207792,
+            "rouge2_vs_reference": 0.026667,
+            "rougeL_vs_reference": 0.155844,
+            "rougeL_vs_article": 0.08381,
+            "bertscore_vs_reference": -0.168888,
+            "bertscore_raw_vs_reference": 0.433112,
+            "bertscore_raw_vs_article": 0.391634,
+            "n_summary_words": 20
+          }
+        },
+        {
+          "id": "random_highlight",
+          "name": "random_highlight",
+          "type": "gaming",
+          "summary": "It relates to an incident captured on camera, prior to Chelsea's European Champions League match with Paris Saint-Germain last month. \"They have been summonsed to appear at Waltham Forest Magistrates' Court on Wednesday, 25 March regarding a police application for football banning orders.\" The authorities have not identified any of the alleged perpetrators. \"It is enough for me, it is sad enough for me.",
+          "val_score": 0.099174,
+          "holdout_score": 0.101007,
+          "metrics": {
+            "rouge1_vs_reference": 0.247934,
+            "rouge2_vs_reference": 0.016807,
+            "rougeL_vs_reference": 0.099174,
+            "rougeL_vs_article": 0.231986,
+            "bertscore_vs_reference": 0.101007,
+            "bertscore_raw_vs_reference": 0.564006,
+            "bertscore_raw_vs_article": 0.615764,
+            "n_summary_words": 64
+          }
+        }
+      ]
+    },
+    "adversarial_summary_07": {
+      "scenario": "C",
+      "task": "summarization",
+      "source_id": "9bc2bd43633afe70df0f7670d42135c2872def3b",
+      "source_dataset": "abisee/cnn_dailymail:3.0.0/validation",
+      "n_article_words": 418,
+      "article": "(CNN)Michael Douglas' son Dylan had a run-in with anti-Semitism -- and the actor wants to do something about it. In an opinion column for the Los Angeles Times, the producer and \"Wall Street\" Oscar winner described an incident last summer in an unidentified country in \"southern Europe.\" The older of his two children with actress Catherine Zeta-Jones, 14-year-old Dylan, came to his father in tears. \"A man at the pool had started hurling insults at him,\" Douglas writes. It wasn't because of anything Dylan did, he continued: \"Suddenly I had an awful realization of what might have caused the man's outrage: Dylan was wearing a Star of David.\" Douglas went to talk to the man -- \"it was not a pleasant discussion,\" he writes -- and the incident has stayed in his mind. The 70-year-old actor, who was raised by a Jewish father, Kirk Douglas, and a non-Jewish mother, said he didn't identify as Jewish while growing up but noticed anti-Semitic remarks others made. \"With little knowledge of what it meant to be a Jew, I found myself passionately defending the Jewish people. Now, half a century later, I have to defend my son,\" he writes. \"Anti-Semitism, I've seen, is like a disease that goes dormant, flaring up with the next political trigger.\" Douglas, who is also a United Nations messenger of peace, observes that anti-Semitism has been on the rise due to a number of factors, including income inequality, religious extremism and hatred of Israel. \"Some find Jews to be a convenient scapegoat rather than looking at the real source of their problems,\" he says. He praises leaders such as Pope Francis, French Prime Minister Manuel Valls and Cardinal Timothy Dolan of New York for their efforts at reconciliation and community-building. But it isn't enough, he adds. \"All of us\" must fight anti-Semitism, he says. \"If we confront anti-Semitism whenever we see it, if we combat it individually and as a society, and use whatever platform we have to denounce it, we can stop the spread of this madness,\" he writes. \"My son is strong. He is fortunate to live in a country where anti-Semitism is rare. But now he too has learned of the dangers that he as a Jew must face. It's a lesson that I wish I didn't have to teach him, a lesson I hope he will never have to teach his children.\" Douglas received the 2015 Genesis Prize for \"exceptional people whose values and achievements will inspire the next generation of Jews.\"",
+      "reference": "Michael Douglas' son was insulted at a pool because of his Judaism .\nDouglas warns that anti-Semitism is on the rise .\nThe award-winning actor wants more action to \"confront anti-Semitism\"",
+      "arms": [
+        {
+          "id": "lead3",
+          "name": "lead3",
+          "type": "baseline",
+          "summary": "(CNN)Michael Douglas' son Dylan had a run-in with anti-Semitism -- and the actor wants to do something about it. In an opinion column for the Los Angeles Times, the producer and \"Wall Street\" Oscar winner described an incident last summer in an unidentified country in \"southern Europe.\" The older of his two children with actress Catherine Zeta-Jones, 14-year-old Dylan, came to his father in tears. \"A man at the pool had started hurling insults at him,\" Douglas writes.",
+          "val_score": 0.173913,
+          "holdout_score": 0.224708,
+          "metrics": {
+            "rouge1_vs_reference": 0.295652,
+            "rouge2_vs_reference": 0.106195,
+            "rougeL_vs_reference": 0.173913,
+            "rougeL_vs_article": 0.318618,
+            "bertscore_vs_reference": 0.224708,
+            "bertscore_raw_vs_reference": 0.623998,
+            "bertscore_raw_vs_article": 0.708281,
+            "n_summary_words": 78
+          }
+        },
+        {
+          "id": "extractive",
+          "name": "extractive",
+          "type": "normal",
+          "summary": "It wasn't because of anything Dylan did, he continued: \"Suddenly I had an awful realization of what might have caused the man's outrage: Dylan was wearing a Star of David.\" Douglas went to talk to the man -- \"it was not a pleasant discussion,\" he writes -- and the incident has stayed in his mind. \"Anti-Semitism, I've seen, is like a disease that goes dormant, flaring up with the next political trigger.\" Douglas, who is also a United Nations messenger of peace, observes that anti-Semitism has been on the rise due to a number of factors, including income inequality, religious extremism and hatred of Israel. It's a lesson that I wish I didn't have to teach him, a lesson I hope he will never have to teach his children.\" Douglas received the 2015 Genesis Prize for \"exceptional people whose values and achievements will inspire the next generation of Jews.\"",
+          "val_score": 0.129032,
+          "holdout_score": 0.120993,
+          "metrics": {
+            "rouge1_vs_reference": 0.193548,
+            "rouge2_vs_reference": 0.065217,
+            "rougeL_vs_reference": 0.129032,
+            "rougeL_vs_article": 0.52027,
+            "bertscore_vs_reference": 0.120993,
+            "bertscore_raw_vs_reference": 0.573699,
+            "bertscore_raw_vs_article": 0.774224,
+            "n_summary_words": 149
+          }
+        },
+        {
+          "id": "abstractive",
+          "name": "abstractive",
+          "type": "normal",
+          "summary": "Michael Douglas wrote an opinion column describing how his 14-year-old son Dylan was verbally attacked in southern Europe for wearing a Star of David. The incident prompted the actor to highlight rising anti-Semitism and urge society to actively combat this prejudice, noting that he now must defend his son just as he once defended Jewish people despite not identifying as Jewish himself.",
+          "val_score": 0.247423,
+          "holdout_score": 0.297346,
+          "metrics": {
+            "rouge1_vs_reference": 0.309278,
+            "rouge2_vs_reference": 0.042105,
+            "rougeL_vs_reference": 0.247423,
+            "rougeL_vs_article": 0.135189,
+            "bertscore_vs_reference": 0.297346,
+            "bertscore_raw_vs_reference": 0.659226,
+            "bertscore_raw_vs_article": 0.623245,
+            "n_summary_words": 62
+          }
+        },
+        {
+          "id": "template_filled",
+          "name": "template_filled",
+          "type": "gaming",
+          "summary": "This article discusses dylan. The main points include anti-semitism, douglas, writes and israel. It also mentions pope, francis.",
+          "val_score": 0.117647,
+          "holdout_score": -0.025009,
+          "metrics": {
+            "rouge1_vs_reference": 0.156863,
+            "rouge2_vs_reference": 0.040816,
+            "rougeL_vs_reference": 0.117647,
+            "rougeL_vs_article": 0.043764,
+            "bertscore_vs_reference": -0.025009,
+            "bertscore_raw_vs_reference": 0.50289,
+            "bertscore_raw_vs_article": 0.455757,
+            "n_summary_words": 18
+          }
+        },
+        {
+          "id": "keyword_stuffed",
+          "name": "keyword_stuffed",
+          "type": "gaming",
+          "summary": "son dylan anti-semitism actor incident douglas writes jewish jew political israel jews looking pope francis french prime minister must will",
+          "val_score": 0.150943,
+          "holdout_score": -0.1704,
+          "metrics": {
+            "rouge1_vs_reference": 0.188679,
+            "rouge2_vs_reference": 0.039216,
+            "rougeL_vs_reference": 0.150943,
+            "rougeL_vs_article": 0.091503,
+            "bertscore_vs_reference": -0.1704,
+            "bertscore_raw_vs_reference": 0.432379,
+            "bertscore_raw_vs_article": 0.389639,
+            "n_summary_words": 20
+          }
+        },
+        {
+          "id": "random_highlight",
+          "name": "random_highlight",
+          "type": "gaming",
+          "summary": "In an opinion column for the Los Angeles Times, the producer and \"Wall Street\" Oscar winner described an incident last summer in an unidentified country in \"southern Europe.\" The older of his two children with actress Catherine Zeta-Jones, 14-year-old Dylan, came to his father in tears. \"With little knowledge of what it meant to be a Jew, I found myself passionately defending the Jewish people. He is fortunate to live in a country where anti-Semitism is rare.",
+          "val_score": 0.106195,
+          "holdout_score": 0.123774,
+          "metrics": {
+            "rouge1_vs_reference": 0.159292,
+            "rouge2_vs_reference": 0.054054,
+            "rougeL_vs_reference": 0.106195,
+            "rougeL_vs_article": 0.312139,
+            "bertscore_vs_reference": 0.123774,
+            "bertscore_raw_vs_reference": 0.575047,
+            "bertscore_raw_vs_article": 0.675944,
+            "n_summary_words": 77
+          }
+        }
+      ]
+    },
+    "adversarial_summary_08": {
+      "scenario": "C",
+      "task": "summarization",
+      "source_id": "bba80de822a3d91abbbca1a97210e6eeb076b61c",
+      "source_dataset": "abisee/cnn_dailymail:3.0.0/validation",
+      "n_article_words": 303,
+      "article": "(CNN)The country's largest Presbyterian denomination has changed its definition of marriage to include gay couples -- though not explicitly. Presbyterian Church (USA) approved an amendment to its constitution after most of its 171 presbyteries -- or governing bodies -- voted for it, PC (USA) said Tuesday. Before, the definition said marriage was between \"a man and a woman.\" The new definition says, in part, that \"marriage involves a unique commitment between two people, traditionally a man and a woman, to love and support each other for the rest of their lives.\" Already, PC (USA) ministers can perform same-sex marriages in states where such marriages are legal, the group said. But no teaching elder or session can be forced to conduct same-sex marriage ceremonies if they do not believe they are appropriate. Not all members supported the decision. In a post on PC (USA)'s website,  Jean and Robert Gorney accused the church of going against the Bible and threatened to leave. \"We are not to change the Bible,\" their post said.   \"I don't care who disagrees.\" But the Covenant Network of Presbyterians, which says it supports \"a fully inclusive church,\" welcomed the news Tuesday night. \"The change aligns the church's constitution with a reality that has long been true: Both same-gender and opposite-gender couples have been living in relationships that demonstrate covenant faithfulness, shared discipleship and mutual love,\" the group said. \"We are also aware that the discussion has been a difficult one for many, and that some will feel a deep sense of pain over this decision. The Covenant Network is committed to fostering healthy dialogue and working with those who hold a view different from ours, seeking opportunities for us to model an authentic and productive unity.\" The amendment will take effect on June 21. CNN's Daniel Burke contributed to this report.",
+      "reference": "Presbyterian Church (USA) will define marriage as a \"commitment between two people\"\nThe marriage amendment will take effect June 21 .",
+      "arms": [
+        {
+          "id": "lead3",
+          "name": "lead3",
+          "type": "baseline",
+          "summary": "(CNN)The country's largest Presbyterian denomination has changed its definition of marriage to include gay couples -- though not explicitly. Presbyterian Church (USA) approved an amendment to its constitution after most of its 171 presbyteries -- or governing bodies -- voted for it, PC (USA) said Tuesday. Before, the definition said marriage was between \"a man and a woman.\" The new definition says, in part, that \"marriage involves a unique commitment between two people, traditionally a man and a woman, to love and support each other for the rest of their lives.\" Already, PC (USA) ministers can perform same-sex marriages in states where such marriages are legal, the group said.",
+          "val_score": 0.170543,
+          "holdout_score": 0.172108,
+          "metrics": {
+            "rouge1_vs_reference": 0.186047,
+            "rouge2_vs_reference": 0.07874,
+            "rougeL_vs_reference": 0.170543,
+            "rougeL_vs_article": 0.520286,
+            "bertscore_vs_reference": 0.172108,
+            "bertscore_raw_vs_reference": 0.598488,
+            "bertscore_raw_vs_article": 0.794,
+            "n_summary_words": 109
+          }
+        },
+        {
+          "id": "extractive",
+          "name": "extractive",
+          "type": "normal",
+          "summary": "Presbyterian Church (USA) approved an amendment to its constitution after most of its 171 presbyteries -- or governing bodies -- voted for it, PC (USA) said Tuesday. Before, the definition said marriage was between \"a man and a woman.\" The new definition says, in part, that \"marriage involves a unique commitment between two people, traditionally a man and a woman, to love and support each other for the rest of their lives.\" Already, PC (USA) ministers can perform same-sex marriages in states where such marriages are legal, the group said. In a post on PC (USA)'s website,  Jean and Robert Gorney accused the church of going against the Bible and threatened to leave.",
+          "val_score": 0.165414,
+          "holdout_score": 0.198821,
+          "metrics": {
+            "rouge1_vs_reference": 0.180451,
+            "rouge2_vs_reference": 0.076336,
+            "rougeL_vs_reference": 0.165414,
+            "rougeL_vs_article": 0.534279,
+            "bertscore_vs_reference": 0.198821,
+            "bertscore_raw_vs_reference": 0.611444,
+            "bertscore_raw_vs_article": 0.786534,
+            "n_summary_words": 113
+          }
+        },
+        {
+          "id": "abstractive",
+          "name": "abstractive",
+          "type": "normal",
+          "summary": "The Presbyterian Church (USA) approved a constitutional amendment redefining marriage as a commitment between \"two people,\" effectively including gay couples. While ministers can now perform same-sex marriages in legal states, no clergy are forced to do so. The change, taking effect June 21, sparked mixed reactions, with some members threatening to leave and others welcoming the inclusive update.",
+          "val_score": 0.379747,
+          "holdout_score": 0.36739,
+          "metrics": {
+            "rouge1_vs_reference": 0.43038,
+            "rouge2_vs_reference": 0.285714,
+            "rougeL_vs_reference": 0.379747,
+            "rougeL_vs_article": 0.168022,
+            "bertscore_vs_reference": 0.36739,
+            "bertscore_raw_vs_reference": 0.693196,
+            "bertscore_raw_vs_article": 0.649385,
+            "n_summary_words": 58
+          }
+        },
+        {
+          "id": "template_filled",
+          "name": "template_filled",
+          "type": "gaming",
+          "summary": "This article discusses definition. The main points include marriage, church, usa and members. It also mentions website, covenant.",
+          "val_score": 0.105263,
+          "holdout_score": -0.018453,
+          "metrics": {
+            "rouge1_vs_reference": 0.210526,
+            "rouge2_vs_reference": 0.055556,
+            "rougeL_vs_reference": 0.105263,
+            "rougeL_vs_article": 0.054878,
+            "bertscore_vs_reference": -0.018453,
+            "bertscore_raw_vs_reference": 0.50607,
+            "bertscore_raw_vs_article": 0.456954,
+            "n_summary_words": 18
+          }
+        },
+        {
+          "id": "keyword_stuffed",
+          "name": "keyword_stuffed",
+          "type": "gaming",
+          "summary": "cnn presbyterian definition marriage couples church usa amendment constitution love same-sex marriages states group members decision website bible covenant will",
+          "val_score": 0.243902,
+          "holdout_score": -0.064232,
+          "metrics": {
+            "rouge1_vs_reference": 0.341463,
+            "rouge2_vs_reference": 0.051282,
+            "rougeL_vs_reference": 0.243902,
+            "rougeL_vs_article": 0.126888,
+            "bertscore_vs_reference": -0.064232,
+            "bertscore_raw_vs_reference": 0.483868,
+            "bertscore_raw_vs_article": 0.424438,
+            "n_summary_words": 20
+          }
+        },
+        {
+          "id": "random_highlight",
+          "name": "random_highlight",
+          "type": "gaming",
+          "summary": "In a post on PC (USA)'s website,  Jean and Robert Gorney accused the church of going against the Bible and threatened to leave. \"I don't care who disagrees.\" But the Covenant Network of Presbyterians, which says it supports \"a fully inclusive church,\" welcomed the news Tuesday night. \"The change aligns the church's constitution with a reality that has long been true: Both same-gender and opposite-gender couples have been living in relationships that demonstrate covenant faithfulness, shared discipleship and mutual love,\" the group said.",
+          "val_score": 0.074074,
+          "holdout_score": 0.085089,
+          "metrics": {
+            "rouge1_vs_reference": 0.092593,
+            "rouge2_vs_reference": 0.0,
+            "rougeL_vs_reference": 0.074074,
+            "rougeL_vs_article": 0.442211,
+            "bertscore_vs_reference": 0.085089,
+            "bertscore_raw_vs_reference": 0.556286,
+            "bertscore_raw_vs_article": 0.759593,
+            "n_summary_words": 83
+          }
+        }
+      ]
+    },
+    "adversarial_summary_09": {
+      "scenario": "C",
+      "task": "summarization",
+      "source_id": "ce7f51dc71d8367bc6d5265c290531351355a337",
+      "source_dataset": "abisee/cnn_dailymail:3.0.0/validation",
+      "n_article_words": 308,
+      "article": "(CNN)Pope Francis, who succeeded a resigning pontiff exactly two years ago, told a Mexican television network Friday that he expects his pontificate will be brief. \"Four or five years,\" he told Televisa. \"I do not know, even two or three. Two have already passed. It is a somewhat vague sensation. Maybe it's like the psychology of the gambler who convinces himself he will lose, so he won't be disappointed and if he wins, is happy. I do not know.\" Francis, who was elected in March 2013 after Pope Benedict XVI stepped down, said his predecessor had reopened a door to more popes emeritus. When asked whether he likes being Pope, he enthusiastically responded: \"I do not mind.\" Francis, 78, said he feels God only wanted him to lead the Roman Catholic Church for a short time \"and nothing more.\" He said that he would not support putting an age limit on the papacy. He also enjoys calling on the Pope Emeritus. \"It's like having a wise grandfather at home. One can seek advice,\" Francis said. Francis made similar retirement comments in August when he praised Benedict for \"his beautiful gesture\" and said he might do the same thing one day. He told Televisa he misses the ability to go out in public without attracting a huge crowd. \"I would like ... to go out one day, without being recognized, and go to a pizzeria for a pizza,\" he said. Also Friday, while at a communal penance service at St. Peter's Basilica, the Pope announced a \"Jubilee of Mercy\" will start in December. The theme will end November 26, 2016, the Vatican said. There have been 26 jubilees since the first in 1300. The  most recent was in 2000. Pope says it's OK to spank children if you don't demean them . CNN's Livia Borghese contributed to this report.",
+      "reference": "Pope has talked of retirement before, but this time he says he think papacy will end after no more than five years .\nFrancis says he doesn't like the idea of an age limit .\nPonitff announces a rare jubilee to begin in December .",
+      "arms": [
+        {
+          "id": "lead3",
+          "name": "lead3",
+          "type": "baseline",
+          "summary": "(CNN)Pope Francis, who succeeded a resigning pontiff exactly two years ago, told a Mexican television network Friday that he expects his pontificate will be brief. \"Four or five years,\" he told Televisa. \"I do not know, even two or three.",
+          "val_score": 0.142857,
+          "holdout_score": 0.095231,
+          "metrics": {
+            "rouge1_vs_reference": 0.190476,
+            "rouge2_vs_reference": 0.02439,
+            "rougeL_vs_reference": 0.142857,
+            "rougeL_vs_article": 0.230986,
+            "bertscore_vs_reference": 0.095231,
+            "bertscore_raw_vs_reference": 0.561204,
+            "bertscore_raw_vs_article": 0.661062,
+            "n_summary_words": 40
+          }
+        },
+        {
+          "id": "extractive",
+          "name": "extractive",
+          "type": "normal",
+          "summary": "(CNN)Pope Francis, who succeeded a resigning pontiff exactly two years ago, told a Mexican television network Friday that he expects his pontificate will be brief. I do not know.\" Francis, who was elected in March 2013 after Pope Benedict XVI stepped down, said his predecessor had reopened a door to more popes emeritus. When asked whether he likes being Pope, he enthusiastically responded: \"I do not mind.\" Francis, 78, said he feels God only wanted him to lead the Roman Catholic Church for a short time \"and nothing more.\" He said that he would not support putting an age limit on the papacy.",
+          "val_score": 0.14966,
+          "holdout_score": 0.119508,
+          "metrics": {
+            "rouge1_vs_reference": 0.258503,
+            "rouge2_vs_reference": 0.027586,
+            "rougeL_vs_reference": 0.14966,
+            "rougeL_vs_article": 0.497608,
+            "bertscore_vs_reference": 0.119508,
+            "bertscore_raw_vs_reference": 0.572978,
+            "bertscore_raw_vs_article": 0.753607,
+            "n_summary_words": 103
+          }
+        },
+        {
+          "id": "abstractive",
+          "name": "abstractive",
+          "type": "normal",
+          "summary": "Pope Francis told a Mexican network he expects his pontificate to be brief, lasting only two to five years, and revealed plans for a \"Jubilee of Mercy\" starting in December. He also expressed nostalgia for anonymity, wishing to visit a pizzeria without recognition, while noting he enjoys seeking advice from Pope Emeritus Benedict XVI.",
+          "val_score": 0.164948,
+          "holdout_score": 0.213896,
+          "metrics": {
+            "rouge1_vs_reference": 0.268041,
+            "rouge2_vs_reference": 0.042105,
+            "rougeL_vs_reference": 0.164948,
+            "rougeL_vs_article": 0.13587,
+            "bertscore_vs_reference": 0.213896,
+            "bertscore_raw_vs_reference": 0.618755,
+            "bertscore_raw_vs_article": 0.634158,
+            "n_summary_words": 54
+          }
+        },
+        {
+          "id": "template_filled",
+          "name": "template_filled",
+          "type": "gaming",
+          "summary": "This article discusses pope. The main points include francis, told, will and five. It also mentions church, calling.",
+          "val_score": 0.098361,
+          "holdout_score": -0.095708,
+          "metrics": {
+            "rouge1_vs_reference": 0.196721,
+            "rouge2_vs_reference": 0.0,
+            "rougeL_vs_reference": 0.098361,
+            "rougeL_vs_article": 0.048193,
+            "bertscore_vs_reference": -0.095708,
+            "bertscore_raw_vs_reference": 0.468603,
+            "bertscore_raw_vs_article": 0.434755,
+            "n_summary_words": 18
+          }
+        },
+        {
+          "id": "keyword_stuffed",
+          "name": "keyword_stuffed",
+          "type": "gaming",
+          "summary": "cnn pope francis told network friday will five televisa march benedict emeritus lead church limit calling home without service children",
+          "val_score": 0.126984,
+          "holdout_score": -0.108717,
+          "metrics": {
+            "rouge1_vs_reference": 0.15873,
+            "rouge2_vs_reference": 0.0,
+            "rougeL_vs_reference": 0.126984,
+            "rougeL_vs_article": 0.11976,
+            "bertscore_vs_reference": -0.108717,
+            "bertscore_raw_vs_reference": 0.462293,
+            "bertscore_raw_vs_article": 0.429759,
+            "n_summary_words": 20
+          }
+        },
+        {
+          "id": "random_highlight",
+          "name": "random_highlight",
+          "type": "gaming",
+          "summary": "(CNN)Pope Francis, who succeeded a resigning pontiff exactly two years ago, told a Mexican television network Friday that he expects his pontificate will be brief. Maybe it's like the psychology of the gambler who convinces himself he will lose, so he won't be disappointed and if he wins, is happy. Also Friday, while at a communal penance service at St.",
+          "val_score": 0.132075,
+          "holdout_score": 0.057386,
+          "metrics": {
+            "rouge1_vs_reference": 0.226415,
+            "rouge2_vs_reference": 0.019231,
+            "rougeL_vs_reference": 0.132075,
+            "rougeL_vs_article": 0.334218,
+            "bertscore_vs_reference": 0.057386,
+            "bertscore_raw_vs_reference": 0.54285,
+            "bertscore_raw_vs_article": 0.685692,
+            "n_summary_words": 60
+          }
+        }
+      ]
+    },
+    "adversarial_summary_10": {
+      "scenario": "C",
+      "task": "summarization",
+      "source_id": "eab5d58a023bda80f8df876c0f40cb26a2094fed",
+      "source_dataset": "abisee/cnn_dailymail:3.0.0/validation",
+      "n_article_words": 459,
+      "article": "(CNN)A previously unknown group calling itself the Islamic State Hacking Division posted the names, photos and addresses of about 100 U.S. troops online, calling for attacks against them. Whoever created the file, posted online Saturday before being removed, claimed to have hacked military databases and said it was leaking 100 names \"so that our brothers residing in America can deal with you.\" The possibility of lone-wolf attacks in the United States, the type that this message calls for, is a threat officials take seriously. Attorney General Eric Holder said last month that the threat of a lone-wolf attack inside the United States is one thing that keeps him awake at night. But there was nothing to immediately validate the claims made by this unknown group. A Defense Department official told CNN that it cannot confirm the validity of the online posting, but is looking into the claim. The FBI is also looking into it, a law enforcement official told CNN, adding there are questions about the credibility of those behind it. The Naval Criminal Investigative Service notified the Marines named in the file about this \"presently unverified threat,\" a Marine Corps spokesman said. The Navy reminded service members to make sure to limit the amount of personal information available online about themselves. The Army said in a statement Sunday that it was working with the Defense Department to \"determine the validity of any potential threats,\" and it echoed the Navy in advising soldiers \"to take prudent measures to limit the sharing of personal information online.\" A U.S. law enforcement official said that all 100 or so troops named in the file are being contacted. It is believed that ISIS members and sympathizers have been scouring social media sites trying to glean as much information as possible about service members, and have even threatened the spouses of military personnel online. The file appeared to include information that is already available publicly, through social media accounts, online phone directories and other accessible public records. In late November, the FBI issued a warning to U.S. military members that ISIS was calling for attacks against them, a law enforcement source told CNN. The source said that \"overseas based individuals are looking for like-minded individuals in the U.S. to carry out these attacks.\" The warning asked members of the military to \"review their online social media presence for any information that might attract the attention of violent extremists.\" The bulletin also said authorities were concerned that ISIS members were \"spotting and assessing\" individuals in the United States who may be interested in carrying out attacks inside the country against members of the military, a U.S. counterterror official told CNN. CNN's Barbara Starr, Pamela Brown, Kevin Bohn and Mary Kay Mallonee contributed to this report.",
+      "reference": "An previously unknown group publishes a threat against U.S. troops .\nA threat has not been confirmed, and the credibility of the group is unknown .",
+      "arms": [
+        {
+          "id": "lead3",
+          "name": "lead3",
+          "type": "baseline",
+          "summary": "(CNN)A previously unknown group calling itself the Islamic State Hacking Division posted the names, photos and addresses of about 100 U.S. troops online, calling for attacks against them. Whoever created the file, posted online Saturday before being removed, claimed to have hacked military databases and said it was leaking 100 names \"so that our brothers residing in America can deal with you.\" The possibility of lone-wolf attacks in the United States, the type that this message calls for, is a threat officials take seriously.",
+          "val_score": 0.196429,
+          "holdout_score": 0.140964,
+          "metrics": {
+            "rouge1_vs_reference": 0.267857,
+            "rouge2_vs_reference": 0.090909,
+            "rougeL_vs_reference": 0.196429,
+            "rougeL_vs_article": 0.31295,
+            "bertscore_vs_reference": 0.140964,
+            "bertscore_raw_vs_reference": 0.583384,
+            "bertscore_raw_vs_article": 0.694404,
+            "n_summary_words": 84
+          }
+        },
+        {
+          "id": "extractive",
+          "name": "extractive",
+          "type": "normal",
+          "summary": "It is believed that ISIS members and sympathizers have been scouring social media sites trying to glean as much information as possible about service members, and have even threatened the spouses of military personnel online. military members that ISIS was calling for attacks against them, a law enforcement source told CNN. to carry out these attacks.\" The warning asked members of the military to \"review their online social media presence for any information that might attract the attention of violent extremists.\" The bulletin also said authorities were concerned that ISIS members were \"spotting and assessing\" individuals in the United States who may be interested in carrying out attacks inside the country against members of the military, a U.S.",
+          "val_score": 0.083333,
+          "holdout_score": -0.039875,
+          "metrics": {
+            "rouge1_vs_reference": 0.152778,
+            "rouge2_vs_reference": 0.028169,
+            "rougeL_vs_reference": 0.083333,
+            "rougeL_vs_article": 0.404762,
+            "bertscore_vs_reference": -0.039875,
+            "bertscore_raw_vs_reference": 0.49568,
+            "bertscore_raw_vs_article": 0.720141,
+            "n_summary_words": 118
+          }
+        },
+        {
+          "id": "abstractive",
+          "name": "abstractive",
+          "type": "normal",
+          "summary": "A previously unknown group calling itself the Islamic State Hacking Division posted names, photos, and addresses of about 100 U.S. troops online, urging attacks against them. Although officials cannot immediately validate the claims, noting much information was publicly available, agencies like the FBI and Defense Department are investigating while notifying affected service members to limit their online personal data.",
+          "val_score": 0.188235,
+          "holdout_score": 0.216513,
+          "metrics": {
+            "rouge1_vs_reference": 0.282353,
+            "rouge2_vs_reference": 0.096386,
+            "rougeL_vs_reference": 0.188235,
+            "rougeL_vs_article": 0.15879,
+            "bertscore_vs_reference": 0.216513,
+            "bertscore_raw_vs_reference": 0.620024,
+            "bertscore_raw_vs_article": 0.620198,
+            "n_summary_words": 59
+          }
+        },
+        {
+          "id": "template_filled",
+          "name": "template_filled",
+          "type": "gaming",
+          "summary": "This article discusses online. The main points include attacks, file, military and threat. It also mentions official, members.",
+          "val_score": 0.046512,
+          "holdout_score": 0.001527,
+          "metrics": {
+            "rouge1_vs_reference": 0.139535,
+            "rouge2_vs_reference": 0.0,
+            "rougeL_vs_reference": 0.046512,
+            "rougeL_vs_article": 0.041068,
+            "bertscore_vs_reference": 0.001527,
+            "bertscore_raw_vs_reference": 0.51576,
+            "bertscore_raw_vs_article": 0.448115,
+            "n_summary_words": 18
+          }
+        },
+        {
+          "id": "keyword_stuffed",
+          "name": "keyword_stuffed",
+          "type": "gaming",
+          "summary": "unknown calling names online attacks file military threat official told looking law enforcement service members information isis social media individuals",
+          "val_score": 0.088889,
+          "holdout_score": -0.160815,
+          "metrics": {
+            "rouge1_vs_reference": 0.088889,
+            "rouge2_vs_reference": 0.0,
+            "rougeL_vs_reference": 0.088889,
+            "rougeL_vs_article": 0.0818,
+            "bertscore_vs_reference": -0.160815,
+            "bertscore_raw_vs_reference": 0.437027,
+            "bertscore_raw_vs_article": 0.397126,
+            "n_summary_words": 20
+          }
+        },
+        {
+          "id": "random_highlight",
+          "name": "random_highlight",
+          "type": "gaming",
+          "summary": "Whoever created the file, posted online Saturday before being removed, claimed to have hacked military databases and said it was leaking 100 names \"so that our brothers residing in America can deal with you.\" The possibility of lone-wolf attacks in the United States, the type that this message calls for, is a threat officials take seriously. The Naval Criminal Investigative Service notified the Marines named in the file about this \"presently unverified threat,\" a Marine Corps spokesman said. counterterror official told CNN.",
+          "val_score": 0.092593,
+          "holdout_score": 0.087389,
+          "metrics": {
+            "rouge1_vs_reference": 0.166667,
+            "rouge2_vs_reference": 0.018868,
+            "rougeL_vs_reference": 0.092593,
+            "rougeL_vs_article": 0.300725,
+            "bertscore_vs_reference": 0.087389,
+            "bertscore_raw_vs_reference": 0.557401,
+            "bertscore_raw_vs_article": 0.684164,
+            "n_summary_words": 82
+          }
+        }
+      ]
+    }
+  }
+}

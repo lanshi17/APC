@@ -1,0 +1,2456 @@
+{
+  "dataset": {
+    "n_frozen": 43,
+    "n_extended": 45,
+    "n_total": 88,
+    "n_arms_total": 485,
+    "n_decision_total": 77,
+    "by_scenario": {
+      "scenario_c": {
+        "description": "C: adversarial summarisation (val/holdout decoupling)",
+        "n_groups": 10,
+        "n_arms": 60,
+        "ids": [
+          "adversarial_summary_01",
+          "adversarial_summary_02",
+          "adversarial_summary_03",
+          "adversarial_summary_04",
+          "adversarial_summary_05",
+          "adversarial_summary_06",
+          "adversarial_summary_07",
+          "adversarial_summary_08",
+          "adversarial_summary_09",
+          "adversarial_summary_10"
+        ]
+      },
+      "scenario_a": {
+        "description": "A: creative writing, high-variance judge",
+        "n_groups": 20,
+        "n_arms": 200,
+        "ids": [
+          "creative_dialogue_01",
+          "creative_dialogue_02",
+          "creative_dialogue_03",
+          "creative_dialogue_04",
+          "creative_fable_01",
+          "creative_fable_02",
+          "creative_fable_03",
+          "creative_fable_04",
+          "creative_poem_01",
+          "creative_poem_02",
+          "creative_poem_03",
+          "creative_poem_04",
+          "creative_scene_01",
+          "creative_scene_02",
+          "creative_scene_03",
+          "creative_scene_04",
+          "creative_story_01",
+          "creative_story_02",
+          "creative_story_03",
+          "creative_story_04"
+        ]
+      },
+      "scenario_b": {
+        "description": "B: image captioning, text-only val vs vision holdout",
+        "n_groups": 15,
+        "n_arms": 90,
+        "ids": [
+          "caption_img_001",
+          "caption_img_002",
+          "caption_img_003",
+          "caption_img_004",
+          "caption_img_005",
+          "caption_img_006",
+          "caption_img_007",
+          "caption_img_008",
+          "caption_img_009",
+          "caption_img_010",
+          "caption_img_011",
+          "caption_img_012",
+          "caption_img_013",
+          "caption_img_014",
+          "caption_img_015"
+        ]
+      }
+    }
+  },
+  "per_scenario": {
+    "original": {
+      "description": "original frozen APC corpus (43 groups)",
+      "n_groups": 43,
+      "n_arms": 135,
+      "n_decision_groups": 32,
+      "informative_groups": [
+        "contract-s46",
+        "contract_gpt6-s42",
+        "financial-s45",
+        "financial_gpt56terra-s42",
+        "gepa-s43",
+        "gepa_gpt6_recheck_orig-s42",
+        "gpqa-s926",
+        "gpqa_resume_slice_quarantine-s926",
+        "hle-s923",
+        "hle_ablation-s924",
+        "math-s47",
+        "transfer_contract_to_math-s42",
+        "transfer_financial_to_math_gpt6-s42",
+        "transfer_math_to_contract-s42"
+      ],
+      "greedy_oracle_gap": 0.4009,
+      "conservative": {
+        "n_groups": 32,
+        "exact_oracle": 11,
+        "exact_rate": 0.3438,
+        "within_noise": 24,
+        "within_noise_rate": 0.75,
+        "avg_regret": 0.013831,
+        "max_regret": 0.2038,
+        "total_regret": 0.4426,
+        "n_collapse_cases": 6,
+        "collapse_avoided": 4
+      },
+      "greedy": {
+        "n_groups": 32,
+        "exact_oracle": 18,
+        "exact_rate": 0.5625,
+        "within_noise": 26,
+        "within_noise_rate": 0.8125,
+        "avg_regret": 0.012528,
+        "max_regret": 0.2038,
+        "total_regret": 0.4009,
+        "n_collapse_cases": 6,
+        "collapse_avoided": 4
+      },
+      "heuristic": {
+        "n_groups": 32,
+        "exact_oracle": 13,
+        "exact_rate": 0.4062,
+        "within_noise": 25,
+        "within_noise_rate": 0.7812,
+        "avg_regret": 0.013003,
+        "max_regret": 0.2038,
+        "total_regret": 0.4161,
+        "n_collapse_cases": 6,
+        "collapse_avoided": 4
+      },
+      "jev_static": {
+        "n_groups": 32,
+        "exact_oracle": 11,
+        "exact_rate": 0.3438,
+        "within_noise": 24,
+        "within_noise_rate": 0.75,
+        "avg_regret": 0.013825,
+        "max_regret": 0.2038,
+        "total_regret": 0.4424,
+        "n_collapse_cases": 6,
+        "collapse_avoided": 4
+      },
+      "loo_rsi": {
+        "n_groups": 32,
+        "exact_oracle": 11,
+        "exact_rate": 0.3438,
+        "within_noise": 24,
+        "within_noise_rate": 0.75,
+        "avg_regret": 0.013837,
+        "max_regret": 0.2038,
+        "total_regret": 0.4428,
+        "n_collapse_cases": 6,
+        "collapse_avoided": 4
+      },
+      "paired_greedy_vs_jev_static": {
+        "pair": "greedy - jev_static",
+        "mean_diff": -0.001297,
+        "ci95": [
+          -0.002872,
+          -0.000125
+        ],
+        "wins": 3,
+        "losses": 12,
+        "ties": 17,
+        "sign_test_p": 0.0352,
+        "interpretation": "negative mean_diff means lower regret for greedy"
+      },
+      "gate_reasons": {
+        "low_val_alignment": 22,
+        "normal_selection": 6,
+        "collapse_detected": 4
+      }
+    },
+    "scenario_c": {
+      "description": "Scenario C: adversarial summarisation (10 groups)",
+      "n_groups": 10,
+      "n_arms": 60,
+      "n_decision_groups": 10,
+      "informative_groups": [
+        "adversarial_summary_02",
+        "adversarial_summary_03",
+        "adversarial_summary_04",
+        "adversarial_summary_10"
+      ],
+      "greedy_oracle_gap": 0.239444,
+      "conservative": {
+        "n_groups": 10,
+        "exact_oracle": 2,
+        "exact_rate": 0.2,
+        "within_noise": 3,
+        "within_noise_rate": 0.3,
+        "avg_regret": 0.070305,
+        "max_regret": 0.195282,
+        "total_regret": 0.703045,
+        "n_collapse_cases": 10,
+        "collapse_avoided": 3
+      },
+      "greedy": {
+        "n_groups": 10,
+        "exact_oracle": 6,
+        "exact_rate": 0.6,
+        "within_noise": 7,
+        "within_noise_rate": 0.7,
+        "avg_regret": 0.023944,
+        "max_regret": 0.107829,
+        "total_regret": 0.239444,
+        "n_collapse_cases": 10,
+        "collapse_avoided": 7
+      },
+      "heuristic": {
+        "n_groups": 10,
+        "exact_oracle": 6,
+        "exact_rate": 0.6,
+        "within_noise": 7,
+        "within_noise_rate": 0.7,
+        "avg_regret": 0.023944,
+        "max_regret": 0.107829,
+        "total_regret": 0.239444,
+        "n_collapse_cases": 10,
+        "collapse_avoided": 7
+      },
+      "jev_static": {
+        "n_groups": 10,
+        "exact_oracle": 6,
+        "exact_rate": 0.6,
+        "within_noise": 7,
+        "within_noise_rate": 0.7,
+        "avg_regret": 0.023944,
+        "max_regret": 0.107829,
+        "total_regret": 0.239444,
+        "n_collapse_cases": 10,
+        "collapse_avoided": 7
+      },
+      "loo_rsi": {
+        "n_groups": 10,
+        "exact_oracle": 6,
+        "exact_rate": 0.6,
+        "within_noise": 7,
+        "within_noise_rate": 0.7,
+        "avg_regret": 0.023944,
+        "max_regret": 0.107829,
+        "total_regret": 0.239444,
+        "n_collapse_cases": 10,
+        "collapse_avoided": 7
+      },
+      "paired_greedy_vs_jev_static": {
+        "pair": "greedy - jev_static",
+        "mean_diff": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "wins": 0,
+        "losses": 0,
+        "ties": 10,
+        "sign_test_p": 1.0,
+        "interpretation": "negative mean_diff means lower regret for greedy"
+      },
+      "gate_reasons": {
+        "normal_selection": 8,
+        "low_val_alignment": 2
+      }
+    },
+    "scenario_a": {
+      "description": "Scenario A: high-variance judge (20 groups)",
+      "n_groups": 20,
+      "n_arms": 200,
+      "n_decision_groups": 20,
+      "informative_groups": [
+        "creative_dialogue_01",
+        "creative_dialogue_02",
+        "creative_dialogue_04",
+        "creative_fable_01",
+        "creative_fable_03",
+        "creative_fable_04",
+        "creative_scene_01",
+        "creative_scene_04",
+        "creative_story_01",
+        "creative_story_02",
+        "creative_story_03",
+        "creative_story_04"
+      ],
+      "greedy_oracle_gap": 0.71,
+      "conservative": {
+        "n_groups": 20,
+        "exact_oracle": 3,
+        "exact_rate": 0.15,
+        "within_noise": 3,
+        "within_noise_rate": 0.15,
+        "avg_regret": 0.176,
+        "max_regret": 0.62,
+        "total_regret": 3.52,
+        "n_collapse_cases": 7,
+        "collapse_avoided": 0
+      },
+      "greedy": {
+        "n_groups": 20,
+        "exact_oracle": 8,
+        "exact_rate": 0.4,
+        "within_noise": 8,
+        "within_noise_rate": 0.4,
+        "avg_regret": 0.0355,
+        "max_regret": 0.24,
+        "total_regret": 0.71,
+        "n_collapse_cases": 7,
+        "collapse_avoided": 5
+      },
+      "heuristic": {
+        "n_groups": 20,
+        "exact_oracle": 8,
+        "exact_rate": 0.4,
+        "within_noise": 8,
+        "within_noise_rate": 0.4,
+        "avg_regret": 0.0355,
+        "max_regret": 0.24,
+        "total_regret": 0.71,
+        "n_collapse_cases": 7,
+        "collapse_avoided": 5
+      },
+      "jev_static": {
+        "n_groups": 20,
+        "exact_oracle": 5,
+        "exact_rate": 0.25,
+        "within_noise": 5,
+        "within_noise_rate": 0.25,
+        "avg_regret": 0.1655,
+        "max_regret": 0.62,
+        "total_regret": 3.31,
+        "n_collapse_cases": 7,
+        "collapse_avoided": 1
+      },
+      "loo_rsi": {
+        "n_groups": 20,
+        "exact_oracle": 5,
+        "exact_rate": 0.25,
+        "within_noise": 5,
+        "within_noise_rate": 0.25,
+        "avg_regret": 0.1655,
+        "max_regret": 0.62,
+        "total_regret": 3.31,
+        "n_collapse_cases": 7,
+        "collapse_avoided": 1
+      },
+      "paired_greedy_vs_jev_static": {
+        "pair": "greedy - jev_static",
+        "mean_diff": -0.13,
+        "ci95": [
+          -0.234,
+          -0.0375
+        ],
+        "wins": 4,
+        "losses": 9,
+        "ties": 7,
+        "sign_test_p": 0.2668,
+        "interpretation": "negative mean_diff means lower regret for greedy"
+      },
+      "gate_reasons": {
+        "low_val_alignment": 11,
+        "normal_selection": 5,
+        "collapse_detected": 4
+      }
+    },
+    "scenario_b": {
+      "description": "Scenario B: multi-modal alignment (15 groups)",
+      "n_groups": 15,
+      "n_arms": 90,
+      "n_decision_groups": 15,
+      "informative_groups": [],
+      "greedy_oracle_gap": 0.0,
+      "conservative": {
+        "n_groups": 15,
+        "exact_oracle": 15,
+        "exact_rate": 1.0,
+        "within_noise": 15,
+        "within_noise_rate": 1.0,
+        "avg_regret": 0.0,
+        "max_regret": 0.0,
+        "total_regret": 0.0,
+        "n_collapse_cases": 2,
+        "collapse_avoided": 2
+      },
+      "greedy": {
+        "n_groups": 15,
+        "exact_oracle": 15,
+        "exact_rate": 1.0,
+        "within_noise": 15,
+        "within_noise_rate": 1.0,
+        "avg_regret": 0.0,
+        "max_regret": 0.0,
+        "total_regret": 0.0,
+        "n_collapse_cases": 2,
+        "collapse_avoided": 2
+      },
+      "heuristic": {
+        "n_groups": 15,
+        "exact_oracle": 15,
+        "exact_rate": 1.0,
+        "within_noise": 15,
+        "within_noise_rate": 1.0,
+        "avg_regret": 0.0,
+        "max_regret": 0.0,
+        "total_regret": 0.0,
+        "n_collapse_cases": 2,
+        "collapse_avoided": 2
+      },
+      "jev_static": {
+        "n_groups": 15,
+        "exact_oracle": 15,
+        "exact_rate": 1.0,
+        "within_noise": 15,
+        "within_noise_rate": 1.0,
+        "avg_regret": 0.0,
+        "max_regret": 0.0,
+        "total_regret": 0.0,
+        "n_collapse_cases": 2,
+        "collapse_avoided": 2
+      },
+      "loo_rsi": {
+        "n_groups": 15,
+        "exact_oracle": 15,
+        "exact_rate": 1.0,
+        "within_noise": 15,
+        "within_noise_rate": 1.0,
+        "avg_regret": 0.0,
+        "max_regret": 0.0,
+        "total_regret": 0.0,
+        "n_collapse_cases": 2,
+        "collapse_avoided": 2
+      },
+      "paired_greedy_vs_jev_static": {
+        "pair": "greedy - jev_static",
+        "mean_diff": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "wins": 0,
+        "losses": 0,
+        "ties": 15,
+        "sign_test_p": 1.0,
+        "interpretation": "negative mean_diff means lower regret for greedy"
+      },
+      "gate_reasons": {
+        "normal_selection": 10,
+        "low_val_alignment": 5
+      }
+    }
+  },
+  "boundary_conditions": {
+    "wins": [
+      {
+        "gid": "creative_dialogue_01",
+        "scenario": "scenario_a",
+        "greedy_arm": "step_by_step",
+        "jev_arm": "zero_shot",
+        "jev_reason": "low_val_alignment",
+        "greedy_regret": 0.24,
+        "jev_regret": 0.01,
+        "delta": 0.23
+      },
+      {
+        "gid": "creative_scene_01",
+        "scenario": "scenario_a",
+        "greedy_arm": "few_shot_2ex",
+        "jev_arm": "zero_shot",
+        "jev_reason": "low_val_alignment",
+        "greedy_regret": 0.03,
+        "jev_regret": 0.0,
+        "delta": 0.03
+      },
+      {
+        "gid": "creative_story_02",
+        "scenario": "scenario_a",
+        "greedy_arm": "few_shot_2ex",
+        "jev_arm": "zero_shot",
+        "jev_reason": "low_val_alignment",
+        "greedy_regret": 0.03,
+        "jev_regret": 0.01,
+        "delta": 0.02
+      },
+      {
+        "gid": "creative_story_03",
+        "scenario": "scenario_a",
+        "greedy_arm": "step_by_step",
+        "jev_arm": "zero_shot",
+        "jev_reason": "low_val_alignment",
+        "greedy_regret": 0.04,
+        "jev_regret": 0.0,
+        "delta": 0.04
+      },
+      {
+        "gid": "financial-s45",
+        "scenario": "original",
+        "greedy_arm": "apc-safe",
+        "jev_arm": "zero-shot",
+        "jev_reason": "low_val_alignment",
+        "greedy_regret": 0.0035,
+        "jev_regret": 0.0,
+        "delta": 0.0035
+      },
+      {
+        "gid": "financial_gpt56terra-s42",
+        "scenario": "original",
+        "greedy_arm": "manual",
+        "jev_arm": "zero-shot",
+        "jev_reason": "low_val_alignment",
+        "greedy_regret": 0.0029,
+        "jev_regret": 0.0025,
+        "delta": 0.0004
+      },
+      {
+        "gid": "transfer_financial_to_math_gpt6-s42",
+        "scenario": "original",
+        "greedy_arm": "transfer-ws",
+        "jev_arm": "transfer-0",
+        "jev_reason": "low_val_alignment",
+        "greedy_regret": 0.0004,
+        "jev_regret": 0.0,
+        "delta": 0.0004
+      }
+    ],
+    "losses": [
+      {
+        "gid": "contract-s42",
+        "scenario": "original",
+        "greedy_arm": "apc-full",
+        "jev_arm": "zero-shot",
+        "jev_reason": "low_val_alignment",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.0012,
+        "delta": -0.0012
+      },
+      {
+        "gid": "contract-s46",
+        "scenario": "original",
+        "greedy_arm": "apc-safe",
+        "jev_arm": "zero-shot",
+        "jev_reason": "low_val_alignment",
+        "greedy_regret": 0.0003,
+        "jev_regret": 0.0004,
+        "delta": -0.0001
+      },
+      {
+        "gid": "contract-s47",
+        "scenario": "original",
+        "greedy_arm": "manual",
+        "jev_arm": "zero-shot",
+        "jev_reason": "low_val_alignment",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.0006,
+        "delta": -0.0006
+      },
+      {
+        "gid": "contract_gpt6-s42",
+        "scenario": "original",
+        "greedy_arm": "manual",
+        "jev_arm": "zero-shot",
+        "jev_reason": "low_val_alignment",
+        "greedy_regret": 0.0008,
+        "jev_regret": 0.0009,
+        "delta": -0.0001
+      },
+      {
+        "gid": "creative_dialogue_02",
+        "scenario": "scenario_a",
+        "greedy_arm": "few_shot_2ex",
+        "jev_arm": "zero_shot",
+        "jev_reason": "low_val_alignment",
+        "greedy_regret": 0.05,
+        "jev_regret": 0.21,
+        "delta": -0.16
+      },
+      {
+        "gid": "creative_fable_02",
+        "scenario": "scenario_a",
+        "greedy_arm": "few_shot_2ex",
+        "jev_arm": "zero_shot",
+        "jev_reason": "low_val_alignment",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.17,
+        "delta": -0.17
+      },
+      {
+        "gid": "creative_fable_03",
+        "scenario": "scenario_a",
+        "greedy_arm": "cot",
+        "jev_arm": "zero_shot",
+        "jev_reason": "low_val_alignment",
+        "greedy_regret": 0.03,
+        "jev_regret": 0.17,
+        "delta": -0.14
+      },
+      {
+        "gid": "creative_fable_04",
+        "scenario": "scenario_a",
+        "greedy_arm": "few_shot_2ex",
+        "jev_arm": "zero_shot",
+        "jev_reason": "low_val_alignment",
+        "greedy_regret": 0.03,
+        "jev_regret": 0.27,
+        "delta": -0.24
+      },
+      {
+        "gid": "creative_poem_01",
+        "scenario": "scenario_a",
+        "greedy_arm": "few_shot_2ex",
+        "jev_arm": "zero_shot",
+        "jev_reason": "collapse_detected",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.54,
+        "delta": -0.54
+      },
+      {
+        "gid": "creative_poem_02",
+        "scenario": "scenario_a",
+        "greedy_arm": "few_shot_2ex",
+        "jev_arm": "zero_shot",
+        "jev_reason": "collapse_detected",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.46,
+        "delta": -0.46
+      },
+      {
+        "gid": "creative_poem_03",
+        "scenario": "scenario_a",
+        "greedy_arm": "few_shot_2ex",
+        "jev_arm": "zero_shot",
+        "jev_reason": "collapse_detected",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.62,
+        "delta": -0.62
+      },
+      {
+        "gid": "creative_poem_04",
+        "scenario": "scenario_a",
+        "greedy_arm": "few_shot_2ex",
+        "jev_arm": "zero_shot",
+        "jev_reason": "collapse_detected",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.52,
+        "delta": -0.52
+      },
+      {
+        "gid": "creative_story_01",
+        "scenario": "scenario_a",
+        "greedy_arm": "step_by_step",
+        "jev_arm": "zero_shot",
+        "jev_reason": "low_val_alignment",
+        "greedy_regret": 0.01,
+        "jev_regret": 0.08,
+        "delta": -0.07
+      },
+      {
+        "gid": "financial-s46",
+        "scenario": "original",
+        "greedy_arm": "manual",
+        "jev_arm": "zero-shot",
+        "jev_reason": "low_val_alignment",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.0038,
+        "delta": -0.0038
+      },
+      {
+        "gid": "financial-s47",
+        "scenario": "original",
+        "greedy_arm": "apc-safe",
+        "jev_arm": "zero-shot",
+        "jev_reason": "collapse_detected",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.0057,
+        "delta": -0.0057
+      },
+      {
+        "gid": "financial_gpt6-s42",
+        "scenario": "original",
+        "greedy_arm": "manual",
+        "jev_arm": "zero-shot",
+        "jev_reason": "low_val_alignment",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.0109,
+        "delta": -0.0109
+      },
+      {
+        "gid": "financial_gpt6_smoke-s42",
+        "scenario": "original",
+        "greedy_arm": "manual",
+        "jev_arm": "zero-shot",
+        "jev_reason": "low_val_alignment",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.0007,
+        "delta": -0.0007
+      },
+      {
+        "gid": "gpqa-s926",
+        "scenario": "original",
+        "greedy_arm": "espo",
+        "jev_arm": "z0",
+        "jev_reason": "collapse_detected",
+        "greedy_regret": 0.0111,
+        "jev_regret": 0.0127,
+        "delta": -0.0016
+      },
+      {
+        "gid": "hle-s921",
+        "scenario": "original",
+        "greedy_arm": "gepa",
+        "jev_arm": "z0",
+        "jev_reason": "collapse_detected",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.02,
+        "delta": -0.02
+      },
+      {
+        "gid": "math-s42",
+        "scenario": "original",
+        "greedy_arm": "apc-full",
+        "jev_arm": "zero-shot",
+        "jev_reason": "low_val_alignment",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.0006,
+        "delta": -0.0006
+      },
+      {
+        "gid": "math-s46",
+        "scenario": "original",
+        "greedy_arm": "apc-full",
+        "jev_arm": "zero-shot",
+        "jev_reason": "low_val_alignment",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.0005,
+        "delta": -0.0005
+      }
+    ],
+    "ties": [
+      {
+        "gid": "adversarial_summary_01",
+        "scenario": "scenario_c",
+        "greedy_arm": "abstractive",
+        "jev_arm": "abstractive",
+        "jev_reason": "normal_selection",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.0,
+        "delta": 0.0
+      },
+      {
+        "gid": "adversarial_summary_02",
+        "scenario": "scenario_c",
+        "greedy_arm": "abstractive",
+        "jev_arm": "abstractive",
+        "jev_reason": "normal_selection",
+        "greedy_regret": 0.107829,
+        "jev_regret": 0.107829,
+        "delta": 0.0
+      },
+      {
+        "gid": "adversarial_summary_03",
+        "scenario": "scenario_c",
+        "greedy_arm": "lead3",
+        "jev_arm": "lead3",
+        "jev_reason": "low_val_alignment",
+        "greedy_regret": 0.00109,
+        "jev_regret": 0.00109,
+        "delta": 0.0
+      },
+      {
+        "gid": "adversarial_summary_04",
+        "scenario": "scenario_c",
+        "greedy_arm": "lead3",
+        "jev_arm": "lead3",
+        "jev_reason": "normal_selection",
+        "greedy_regret": 0.054976,
+        "jev_regret": 0.054976,
+        "delta": 0.0
+      },
+      {
+        "gid": "adversarial_summary_05",
+        "scenario": "scenario_c",
+        "greedy_arm": "lead3",
+        "jev_arm": "lead3",
+        "jev_reason": "normal_selection",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.0,
+        "delta": 0.0
+      },
+      {
+        "gid": "adversarial_summary_06",
+        "scenario": "scenario_c",
+        "greedy_arm": "abstractive",
+        "jev_arm": "abstractive",
+        "jev_reason": "normal_selection",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.0,
+        "delta": 0.0
+      },
+      {
+        "gid": "adversarial_summary_07",
+        "scenario": "scenario_c",
+        "greedy_arm": "abstractive",
+        "jev_arm": "abstractive",
+        "jev_reason": "normal_selection",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.0,
+        "delta": 0.0
+      },
+      {
+        "gid": "adversarial_summary_08",
+        "scenario": "scenario_c",
+        "greedy_arm": "abstractive",
+        "jev_arm": "abstractive",
+        "jev_reason": "normal_selection",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.0,
+        "delta": 0.0
+      },
+      {
+        "gid": "adversarial_summary_09",
+        "scenario": "scenario_c",
+        "greedy_arm": "abstractive",
+        "jev_arm": "abstractive",
+        "jev_reason": "normal_selection",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.0,
+        "delta": 0.0
+      },
+      {
+        "gid": "adversarial_summary_10",
+        "scenario": "scenario_c",
+        "greedy_arm": "lead3",
+        "jev_arm": "lead3",
+        "jev_reason": "low_val_alignment",
+        "greedy_regret": 0.075549,
+        "jev_regret": 0.075549,
+        "delta": 0.0
+      },
+      {
+        "gid": "caption_img_001",
+        "scenario": "scenario_b",
+        "greedy_arm": "technical",
+        "jev_arm": "technical",
+        "jev_reason": "normal_selection",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.0,
+        "delta": 0.0
+      },
+      {
+        "gid": "caption_img_002",
+        "scenario": "scenario_b",
+        "greedy_arm": "factual",
+        "jev_arm": "factual",
+        "jev_reason": "low_val_alignment",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.0,
+        "delta": 0.0
+      },
+      {
+        "gid": "caption_img_003",
+        "scenario": "scenario_b",
+        "greedy_arm": "technical",
+        "jev_arm": "technical",
+        "jev_reason": "normal_selection",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.0,
+        "delta": 0.0
+      },
+      {
+        "gid": "caption_img_004",
+        "scenario": "scenario_b",
+        "greedy_arm": "technical",
+        "jev_arm": "technical",
+        "jev_reason": "normal_selection",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.0,
+        "delta": 0.0
+      },
+      {
+        "gid": "caption_img_005",
+        "scenario": "scenario_b",
+        "greedy_arm": "child_like",
+        "jev_arm": "child_like",
+        "jev_reason": "normal_selection",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.0,
+        "delta": 0.0
+      },
+      {
+        "gid": "caption_img_006",
+        "scenario": "scenario_b",
+        "greedy_arm": "verbose",
+        "jev_arm": "verbose",
+        "jev_reason": "normal_selection",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.0,
+        "delta": 0.0
+      },
+      {
+        "gid": "caption_img_007",
+        "scenario": "scenario_b",
+        "greedy_arm": "factual",
+        "jev_arm": "factual",
+        "jev_reason": "low_val_alignment",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.0,
+        "delta": 0.0
+      },
+      {
+        "gid": "caption_img_008",
+        "scenario": "scenario_b",
+        "greedy_arm": "factual",
+        "jev_arm": "factual",
+        "jev_reason": "low_val_alignment",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.0,
+        "delta": 0.0
+      },
+      {
+        "gid": "caption_img_009",
+        "scenario": "scenario_b",
+        "greedy_arm": "technical",
+        "jev_arm": "technical",
+        "jev_reason": "normal_selection",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.0,
+        "delta": 0.0
+      },
+      {
+        "gid": "caption_img_010",
+        "scenario": "scenario_b",
+        "greedy_arm": "factual",
+        "jev_arm": "factual",
+        "jev_reason": "low_val_alignment",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.0,
+        "delta": 0.0
+      },
+      {
+        "gid": "caption_img_011",
+        "scenario": "scenario_b",
+        "greedy_arm": "technical",
+        "jev_arm": "technical",
+        "jev_reason": "normal_selection",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.0,
+        "delta": 0.0
+      },
+      {
+        "gid": "caption_img_012",
+        "scenario": "scenario_b",
+        "greedy_arm": "technical",
+        "jev_arm": "technical",
+        "jev_reason": "normal_selection",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.0,
+        "delta": 0.0
+      },
+      {
+        "gid": "caption_img_013",
+        "scenario": "scenario_b",
+        "greedy_arm": "verbose",
+        "jev_arm": "factual",
+        "jev_reason": "low_val_alignment",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.0,
+        "delta": 0.0
+      },
+      {
+        "gid": "caption_img_014",
+        "scenario": "scenario_b",
+        "greedy_arm": "technical",
+        "jev_arm": "technical",
+        "jev_reason": "normal_selection",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.0,
+        "delta": 0.0
+      },
+      {
+        "gid": "caption_img_015",
+        "scenario": "scenario_b",
+        "greedy_arm": "factual",
+        "jev_arm": "factual",
+        "jev_reason": "normal_selection",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.0,
+        "delta": 0.0
+      },
+      {
+        "gid": "creative_dialogue_03",
+        "scenario": "scenario_a",
+        "greedy_arm": "persona_child",
+        "jev_arm": "persona_child",
+        "jev_reason": "normal_selection",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.0,
+        "delta": 0.0
+      },
+      {
+        "gid": "creative_dialogue_04",
+        "scenario": "scenario_a",
+        "greedy_arm": "persona_author",
+        "jev_arm": "persona_author",
+        "jev_reason": "normal_selection",
+        "greedy_regret": 0.08,
+        "jev_regret": 0.08,
+        "delta": 0.0
+      },
+      {
+        "gid": "creative_fable_01",
+        "scenario": "scenario_a",
+        "greedy_arm": "zero_shot",
+        "jev_arm": "zero_shot",
+        "jev_reason": "low_val_alignment",
+        "greedy_regret": 0.09,
+        "jev_regret": 0.09,
+        "delta": 0.0
+      },
+      {
+        "gid": "creative_scene_02",
+        "scenario": "scenario_a",
+        "greedy_arm": "persona_author",
+        "jev_arm": "persona_author",
+        "jev_reason": "normal_selection",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.0,
+        "delta": 0.0
+      },
+      {
+        "gid": "creative_scene_03",
+        "scenario": "scenario_a",
+        "greedy_arm": "temperature_high",
+        "jev_arm": "temperature_high",
+        "jev_reason": "normal_selection",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.0,
+        "delta": 0.0
+      },
+      {
+        "gid": "creative_scene_04",
+        "scenario": "scenario_a",
+        "greedy_arm": "step_by_step",
+        "jev_arm": "step_by_step",
+        "jev_reason": "normal_selection",
+        "greedy_regret": 0.04,
+        "jev_regret": 0.04,
+        "delta": 0.0
+      },
+      {
+        "gid": "creative_story_04",
+        "scenario": "scenario_a",
+        "greedy_arm": "zero_shot",
+        "jev_arm": "zero_shot",
+        "jev_reason": "low_val_alignment",
+        "greedy_regret": 0.04,
+        "jev_regret": 0.04,
+        "delta": 0.0
+      },
+      {
+        "gid": "financial-s43",
+        "scenario": "original",
+        "greedy_arm": "apc-safe",
+        "jev_arm": "apc-safe",
+        "jev_reason": "normal_selection",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.0,
+        "delta": 0.0
+      },
+      {
+        "gid": "financial-s44",
+        "scenario": "original",
+        "greedy_arm": "apc-safe",
+        "jev_arm": "apc-safe",
+        "jev_reason": "collapse_detected",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.0,
+        "delta": 0.0
+      },
+      {
+        "gid": "gepa-s42",
+        "scenario": "original",
+        "greedy_arm": "gepa",
+        "jev_arm": "gepa",
+        "jev_reason": "normal_selection",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.0,
+        "delta": 0.0
+      },
+      {
+        "gid": "gepa-s43",
+        "scenario": "original",
+        "greedy_arm": "gepa",
+        "jev_arm": "gepa",
+        "jev_reason": "normal_selection",
+        "greedy_regret": 0.0006,
+        "jev_regret": 0.0006,
+        "delta": 0.0
+      },
+      {
+        "gid": "gepa-s901",
+        "scenario": "original",
+        "greedy_arm": "z0-control",
+        "jev_arm": "z0-control",
+        "jev_reason": "low_val_alignment",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.0,
+        "delta": 0.0
+      },
+      {
+        "gid": "gepa_gpt6-s42",
+        "scenario": "original",
+        "greedy_arm": "gepa",
+        "jev_arm": "gepa",
+        "jev_reason": "normal_selection",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.0,
+        "delta": 0.0
+      },
+      {
+        "gid": "gepa_gpt6_recheck-s42",
+        "scenario": "original",
+        "greedy_arm": "champ-verbatim",
+        "jev_arm": "champ-verbatim",
+        "jev_reason": "low_val_alignment",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.0,
+        "delta": 0.0
+      },
+      {
+        "gid": "gepa_gpt6_recheck_orig-s42",
+        "scenario": "original",
+        "greedy_arm": "z0-paired",
+        "jev_arm": "z0-paired",
+        "jev_reason": "low_val_alignment",
+        "greedy_regret": 0.1402,
+        "jev_regret": 0.1402,
+        "delta": 0.0
+      },
+      {
+        "gid": "gepa_mt150-s911",
+        "scenario": "original",
+        "greedy_arm": "gepa",
+        "jev_arm": "gepa",
+        "jev_reason": "normal_selection",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.0,
+        "delta": 0.0
+      },
+      {
+        "gid": "gpqa_resume_slice_quarantine-s926",
+        "scenario": "original",
+        "greedy_arm": "z0",
+        "jev_arm": "z0",
+        "jev_reason": "low_val_alignment",
+        "greedy_regret": 0.2038,
+        "jev_regret": 0.2038,
+        "delta": 0.0
+      },
+      {
+        "gid": "hle-s923",
+        "scenario": "original",
+        "greedy_arm": "z0",
+        "jev_arm": "z0",
+        "jev_reason": "low_val_alignment",
+        "greedy_regret": 0.0092,
+        "jev_regret": 0.0092,
+        "delta": 0.0
+      },
+      {
+        "gid": "hle_ablation-s924",
+        "scenario": "original",
+        "greedy_arm": "base",
+        "jev_arm": "base",
+        "jev_reason": "low_val_alignment",
+        "greedy_regret": 0.0081,
+        "jev_regret": 0.0081,
+        "delta": 0.0
+      },
+      {
+        "gid": "hle_nt-s922",
+        "scenario": "original",
+        "greedy_arm": "z0",
+        "jev_arm": "z0",
+        "jev_reason": "low_val_alignment",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.0,
+        "delta": 0.0
+      },
+      {
+        "gid": "math-s47",
+        "scenario": "original",
+        "greedy_arm": "zero-shot",
+        "jev_arm": "zero-shot",
+        "jev_reason": "low_val_alignment",
+        "greedy_regret": 0.0002,
+        "jev_regret": 0.0002,
+        "delta": 0.0
+      },
+      {
+        "gid": "multiseed_summary-s42",
+        "scenario": "original",
+        "greedy_arm": "zero-shot",
+        "jev_arm": "zero-shot",
+        "jev_reason": "low_val_alignment",
+        "greedy_regret": 0.0,
+        "jev_regret": 0.0,
+        "delta": 0.0
+      },
+      {
+        "gid": "transfer_contract_to_math-s42",
+        "scenario": "original",
+        "greedy_arm": "transfer-0",
+        "jev_arm": "transfer-0",
+        "jev_reason": "low_val_alignment",
+        "greedy_regret": 0.0002,
+        "jev_regret": 0.0002,
+        "delta": 0.0
+      },
+      {
+        "gid": "transfer_math_to_contract-s42",
+        "scenario": "original",
+        "greedy_arm": "transfer-ws",
+        "jev_arm": "transfer-ws",
+        "jev_reason": "normal_selection",
+        "greedy_regret": 0.0196,
+        "jev_regret": 0.0196,
+        "delta": 0.0
+      }
+    ],
+    "by_scenario": {
+      "original": {
+        "wins": 3,
+        "losses": 12,
+        "ties": 17,
+        "win_ids": [
+          "financial-s45",
+          "financial_gpt56terra-s42",
+          "transfer_financial_to_math_gpt6-s42"
+        ],
+        "loss_ids": [
+          "contract-s42",
+          "contract-s46",
+          "contract-s47",
+          "contract_gpt6-s42",
+          "financial-s46",
+          "financial-s47",
+          "financial_gpt6-s42",
+          "financial_gpt6_smoke-s42",
+          "gpqa-s926",
+          "hle-s921",
+          "math-s42",
+          "math-s46"
+        ]
+      },
+      "scenario_c": {
+        "wins": 0,
+        "losses": 0,
+        "ties": 10,
+        "win_ids": [],
+        "loss_ids": []
+      },
+      "scenario_a": {
+        "wins": 4,
+        "losses": 9,
+        "ties": 7,
+        "win_ids": [
+          "creative_dialogue_01",
+          "creative_scene_01",
+          "creative_story_02",
+          "creative_story_03"
+        ],
+        "loss_ids": [
+          "creative_dialogue_02",
+          "creative_fable_02",
+          "creative_fable_03",
+          "creative_fable_04",
+          "creative_poem_01",
+          "creative_poem_02",
+          "creative_poem_03",
+          "creative_poem_04",
+          "creative_story_01"
+        ]
+      },
+      "scenario_b": {
+        "wins": 0,
+        "losses": 0,
+        "ties": 15,
+        "win_ids": [],
+        "loss_ids": []
+      }
+    }
+  },
+  "scenario_c": {
+    "available": true,
+    "protocol": "val = ROUGE-L F1 vs CNN/DailyMail human highlights; holdout = baseline-rescaled BERTScore F1 vs the same highlights. Raw BERTScore and article-referenced variants are recorded under metrics for transparency.",
+    "bertscore_model": "microsoft/deberta-xlarge-mnli",
+    "n_groups_captured_by_gaming": 0,
+    "n_groups": 10,
+    "mean_val_holdout_spearman": 0.5001,
+    "arms": {
+      "lead3": {
+        "type": "baseline",
+        "mean_val": 0.2355,
+        "mean_holdout": 0.2246
+      },
+      "extractive": {
+        "type": "normal",
+        "mean_val": 0.1507,
+        "mean_holdout": 0.1291
+      },
+      "abstractive": {
+        "type": "normal",
+        "mean_val": 0.2518,
+        "mean_holdout": 0.2761
+      },
+      "template_filled": {
+        "type": "gaming",
+        "mean_val": 0.1256,
+        "mean_holdout": -0.029
+      },
+      "keyword_stuffed": {
+        "type": "gaming",
+        "mean_val": 0.1706,
+        "mean_holdout": -0.135
+      },
+      "random_highlight": {
+        "type": "gaming",
+        "mean_val": 0.1211,
+        "mean_holdout": 0.0856
+      }
+    },
+    "rows": [
+      {
+        "gid": "adversarial_summary_01",
+        "val_holdout_spearman": 0.8286,
+        "greedy_arm": "abstractive",
+        "greedy_type": "normal",
+        "oracle_arm": "abstractive",
+        "oracle_type": "normal",
+        "captured_by_gaming": false,
+        "gaming_val_max": 0.1702,
+        "normal_holdout_max": 0.2341,
+        "gaming_holdout_max": 0.1136,
+        "gate_arm": "abstractive",
+        "gate_reason": "normal_selection",
+        "gate_regret": 0.0,
+        "greedy_regret": 0.0,
+        "features": {
+          "confidence": 0.9925,
+          "collapse_noul": 0.2704,
+          "alignment": 1.0,
+          "margin": 0.0236,
+          "n_arms": 6.0
+        }
+      },
+      {
+        "gid": "adversarial_summary_02",
+        "val_holdout_spearman": 0.3714,
+        "greedy_arm": "abstractive",
+        "greedy_type": "normal",
+        "oracle_arm": "lead3",
+        "oracle_type": "baseline",
+        "captured_by_gaming": false,
+        "gaming_val_max": 0.2667,
+        "normal_holdout_max": 0.2656,
+        "gaming_holdout_max": 0.0603,
+        "gate_arm": "abstractive",
+        "gate_reason": "normal_selection",
+        "gate_regret": 0.107829,
+        "greedy_regret": 0.107829,
+        "features": {
+          "confidence": 0.998,
+          "collapse_noul": 0.3371,
+          "alignment": 1.0,
+          "margin": 0.0279,
+          "n_arms": 6.0
+        }
+      },
+      {
+        "gid": "adversarial_summary_03",
+        "val_holdout_spearman": 0.6571,
+        "greedy_arm": "lead3",
+        "greedy_type": "baseline",
+        "oracle_arm": "extractive",
+        "oracle_type": "normal",
+        "captured_by_gaming": false,
+        "gaming_val_max": 0.2154,
+        "normal_holdout_max": 0.3129,
+        "gaming_holdout_max": 0.0046,
+        "gate_arm": "lead3",
+        "gate_reason": "low_val_alignment",
+        "gate_regret": 0.00109,
+        "greedy_regret": 0.00109,
+        "features": {
+          "confidence": 0.8495,
+          "collapse_noul": 0.1928,
+          "alignment": 0.4893,
+          "margin": 0.0103,
+          "n_arms": 6.0
+        }
+      },
+      {
+        "gid": "adversarial_summary_04",
+        "val_holdout_spearman": -0.1429,
+        "greedy_arm": "lead3",
+        "greedy_type": "baseline",
+        "oracle_arm": "abstractive",
+        "oracle_type": "normal",
+        "captured_by_gaming": false,
+        "gaming_val_max": 0.1224,
+        "normal_holdout_max": 0.2112,
+        "gaming_holdout_max": 0.0373,
+        "gate_arm": "lead3",
+        "gate_reason": "normal_selection",
+        "gate_regret": 0.054976,
+        "greedy_regret": 0.054976,
+        "features": {
+          "confidence": 0.9207,
+          "collapse_noul": 0.1354,
+          "alignment": 0.6664,
+          "margin": 0.014,
+          "n_arms": 6.0
+        }
+      },
+      {
+        "gid": "adversarial_summary_05",
+        "val_holdout_spearman": 0.058,
+        "greedy_arm": "lead3",
+        "greedy_type": "baseline",
+        "oracle_arm": "lead3",
+        "oracle_type": "baseline",
+        "captured_by_gaming": false,
+        "gaming_val_max": 0.2553,
+        "normal_holdout_max": 0.2418,
+        "gaming_holdout_max": 0.2131,
+        "gate_arm": "lead3",
+        "gate_reason": "normal_selection",
+        "gate_regret": 0.0,
+        "greedy_regret": 0.0,
+        "features": {
+          "confidence": 1.0,
+          "collapse_noul": 0.2413,
+          "alignment": 1.0,
+          "margin": 0.1161,
+          "n_arms": 6.0
+        }
+      },
+      {
+        "gid": "adversarial_summary_06",
+        "val_holdout_spearman": 0.7714,
+        "greedy_arm": "abstractive",
+        "greedy_type": "normal",
+        "oracle_arm": "abstractive",
+        "oracle_type": "normal",
+        "captured_by_gaming": false,
+        "gaming_val_max": 0.1558,
+        "normal_holdout_max": 0.4363,
+        "gaming_holdout_max": 0.101,
+        "gate_arm": "abstractive",
+        "gate_reason": "normal_selection",
+        "gate_regret": 0.0,
+        "greedy_regret": 0.0,
+        "features": {
+          "confidence": 0.9999,
+          "collapse_noul": 0.4338,
+          "alignment": 1.0,
+          "margin": 0.0364,
+          "n_arms": 6.0
+        }
+      },
+      {
+        "gid": "adversarial_summary_07",
+        "val_holdout_spearman": 0.4857,
+        "greedy_arm": "abstractive",
+        "greedy_type": "normal",
+        "oracle_arm": "abstractive",
+        "oracle_type": "normal",
+        "captured_by_gaming": false,
+        "gaming_val_max": 0.1509,
+        "normal_holdout_max": 0.2973,
+        "gaming_holdout_max": 0.1238,
+        "gate_arm": "abstractive",
+        "gate_reason": "normal_selection",
+        "gate_regret": 0.0,
+        "greedy_regret": 0.0,
+        "features": {
+          "confidence": 1.0,
+          "collapse_noul": 0.2225,
+          "alignment": 1.0,
+          "margin": 0.0735,
+          "n_arms": 6.0
+        }
+      },
+      {
+        "gid": "adversarial_summary_08",
+        "val_holdout_spearman": 0.3143,
+        "greedy_arm": "abstractive",
+        "greedy_type": "normal",
+        "oracle_arm": "abstractive",
+        "oracle_type": "normal",
+        "captured_by_gaming": false,
+        "gaming_val_max": 0.2439,
+        "normal_holdout_max": 0.3674,
+        "gaming_holdout_max": 0.0851,
+        "gate_arm": "abstractive",
+        "gate_reason": "normal_selection",
+        "gate_regret": 0.0,
+        "greedy_regret": 0.0,
+        "features": {
+          "confidence": 1.0,
+          "collapse_noul": 0.5208,
+          "alignment": 1.0,
+          "margin": 0.1358,
+          "n_arms": 6.0
+        }
+      },
+      {
+        "gid": "adversarial_summary_09",
+        "val_holdout_spearman": 0.9429,
+        "greedy_arm": "abstractive",
+        "greedy_type": "normal",
+        "oracle_arm": "abstractive",
+        "oracle_type": "normal",
+        "captured_by_gaming": false,
+        "gaming_val_max": 0.1321,
+        "normal_holdout_max": 0.2139,
+        "gaming_holdout_max": 0.0574,
+        "gate_arm": "abstractive",
+        "gate_reason": "normal_selection",
+        "gate_regret": 0.0,
+        "greedy_regret": 0.0,
+        "features": {
+          "confidence": 0.9308,
+          "collapse_noul": 0.107,
+          "alignment": 0.728,
+          "margin": 0.0153,
+          "n_arms": 6.0
+        }
+      },
+      {
+        "gid": "adversarial_summary_10",
+        "val_holdout_spearman": 0.7143,
+        "greedy_arm": "lead3",
+        "greedy_type": "baseline",
+        "oracle_arm": "abstractive",
+        "oracle_type": "normal",
+        "captured_by_gaming": false,
+        "gaming_val_max": 0.0926,
+        "normal_holdout_max": 0.2165,
+        "gaming_holdout_max": 0.0874,
+        "gate_arm": "lead3",
+        "gate_reason": "low_val_alignment",
+        "gate_regret": 0.075549,
+        "greedy_regret": 0.075549,
+        "features": {
+          "confidence": 0.794,
+          "collapse_noul": 0.2719,
+          "alignment": 0.3902,
+          "margin": 0.0082,
+          "n_arms": 6.0
+        }
+      }
+    ]
+  },
+  "scenario_a": {
+    "available": true,
+    "judge_model": "qwen3.8-flash",
+    "n_groups": 20,
+    "n_high_variance_groups": 0,
+    "mean_judge_std_10": 0.4717,
+    "spearman_variance_vs_greedy_regret": -0.243,
+    "n_gate_retreats": 15,
+    "rows": [
+      {
+        "gid": "creative_dialogue_01",
+        "kind": "dialogue",
+        "judge_std_mean_10": 0.5476,
+        "judge_std_max_10": 0.9798,
+        "greedy_arm": "step_by_step",
+        "oracle_arm": "few_shot_2ex",
+        "greedy_regret": 0.24,
+        "gate_arm": "zero_shot",
+        "gate_reason": "low_val_alignment",
+        "gate_regret": 0.01,
+        "features": {
+          "confidence": 0.3374,
+          "collapse_noul": 0.24,
+          "alignment": 0.0,
+          "margin": 0.0,
+          "n_arms": 10.0
+        }
+      },
+      {
+        "gid": "creative_dialogue_02",
+        "kind": "dialogue",
+        "judge_std_mean_10": 0.4996,
+        "judge_std_max_10": 1.1662,
+        "greedy_arm": "few_shot_2ex",
+        "oracle_arm": "cot",
+        "greedy_regret": 0.05,
+        "gate_arm": "zero_shot",
+        "gate_reason": "low_val_alignment",
+        "gate_regret": 0.21,
+        "features": {
+          "confidence": 0.5054,
+          "collapse_noul": 0.16,
+          "alignment": 0.0,
+          "margin": 0.0,
+          "n_arms": 10.0
+        }
+      },
+      {
+        "gid": "creative_dialogue_03",
+        "kind": "dialogue",
+        "judge_std_mean_10": 0.5142,
+        "judge_std_max_10": 1.2649,
+        "greedy_arm": "persona_child",
+        "oracle_arm": "persona_child",
+        "greedy_regret": 0.0,
+        "gate_arm": "persona_child",
+        "gate_reason": "normal_selection",
+        "gate_regret": 0.0,
+        "features": {
+          "confidence": 1.0,
+          "collapse_noul": 0.54,
+          "alignment": 1.0,
+          "margin": 0.05,
+          "n_arms": 10.0
+        }
+      },
+      {
+        "gid": "creative_dialogue_04",
+        "kind": "dialogue",
+        "judge_std_mean_10": 0.5057,
+        "judge_std_max_10": 0.8,
+        "greedy_arm": "persona_author",
+        "oracle_arm": "temperature_low",
+        "greedy_regret": 0.08,
+        "gate_arm": "persona_author",
+        "gate_reason": "normal_selection",
+        "gate_regret": 0.08,
+        "features": {
+          "confidence": 1.0,
+          "collapse_noul": 0.32,
+          "alignment": 1.0,
+          "margin": 0.05,
+          "n_arms": 10.0
+        }
+      },
+      {
+        "gid": "creative_fable_01",
+        "kind": "fable",
+        "judge_std_mean_10": 0.4428,
+        "judge_std_max_10": 0.7111,
+        "greedy_arm": "zero_shot",
+        "oracle_arm": "persona_author",
+        "greedy_regret": 0.09,
+        "gate_arm": "zero_shot",
+        "gate_reason": "low_val_alignment",
+        "gate_regret": 0.09,
+        "features": {
+          "confidence": 0.1965,
+          "collapse_noul": 0.0,
+          "alignment": 0.0,
+          "margin": 0.0,
+          "n_arms": 10.0
+        }
+      },
+      {
+        "gid": "creative_fable_02",
+        "kind": "fable",
+        "judge_std_mean_10": 0.4367,
+        "judge_std_max_10": 1.1662,
+        "greedy_arm": "few_shot_2ex",
+        "oracle_arm": "few_shot_2ex",
+        "greedy_regret": 0.0,
+        "gate_arm": "zero_shot",
+        "gate_reason": "low_val_alignment",
+        "gate_regret": 0.17,
+        "features": {
+          "confidence": 0.5024,
+          "collapse_noul": 0.0,
+          "alignment": 0.0,
+          "margin": 0.0,
+          "n_arms": 10.0
+        }
+      },
+      {
+        "gid": "creative_fable_03",
+        "kind": "fable",
+        "judge_std_mean_10": 0.3838,
+        "judge_std_max_10": 0.7483,
+        "greedy_arm": "cot",
+        "oracle_arm": "persona_author",
+        "greedy_regret": 0.03,
+        "gate_arm": "zero_shot",
+        "gate_reason": "low_val_alignment",
+        "gate_regret": 0.17,
+        "features": {
+          "confidence": 0.4962,
+          "collapse_noul": 0.0,
+          "alignment": 0.0,
+          "margin": 0.0,
+          "n_arms": 10.0
+        }
+      },
+      {
+        "gid": "creative_fable_04",
+        "kind": "fable",
+        "judge_std_mean_10": 0.6427,
+        "judge_std_max_10": 1.4967,
+        "greedy_arm": "few_shot_2ex",
+        "oracle_arm": "cot",
+        "greedy_regret": 0.03,
+        "gate_arm": "zero_shot",
+        "gate_reason": "low_val_alignment",
+        "gate_regret": 0.27,
+        "features": {
+          "confidence": 0.1651,
+          "collapse_noul": 0.0,
+          "alignment": 0.0,
+          "margin": 0.0,
+          "n_arms": 10.0
+        }
+      },
+      {
+        "gid": "creative_poem_01",
+        "kind": "poem_sonnet",
+        "judge_std_mean_10": 0.5917,
+        "judge_std_max_10": 1.3565,
+        "greedy_arm": "few_shot_2ex",
+        "oracle_arm": "few_shot_2ex",
+        "greedy_regret": 0.0,
+        "gate_arm": "zero_shot",
+        "gate_reason": "collapse_detected",
+        "gate_regret": 0.54,
+        "features": {
+          "confidence": 0.5054,
+          "collapse_noul": 1.0,
+          "alignment": 0.0,
+          "margin": 0.0,
+          "n_arms": 10.0
+        }
+      },
+      {
+        "gid": "creative_poem_02",
+        "kind": "poem_sonnet",
+        "judge_std_mean_10": 0.5061,
+        "judge_std_max_10": 0.8944,
+        "greedy_arm": "few_shot_2ex",
+        "oracle_arm": "few_shot_2ex",
+        "greedy_regret": 0.0,
+        "gate_arm": "zero_shot",
+        "gate_reason": "collapse_detected",
+        "gate_regret": 0.46,
+        "features": {
+          "confidence": 1.0,
+          "collapse_noul": 0.8,
+          "alignment": 1.0,
+          "margin": 0.1,
+          "n_arms": 10.0
+        }
+      },
+      {
+        "gid": "creative_poem_03",
+        "kind": "poem_sonnet",
+        "judge_std_mean_10": 0.4256,
+        "judge_std_max_10": 0.7483,
+        "greedy_arm": "few_shot_2ex",
+        "oracle_arm": "few_shot_2ex",
+        "greedy_regret": 0.0,
+        "gate_arm": "zero_shot",
+        "gate_reason": "collapse_detected",
+        "gate_regret": 0.62,
+        "features": {
+          "confidence": 1.0,
+          "collapse_noul": 0.8,
+          "alignment": 1.0,
+          "margin": 0.5,
+          "n_arms": 10.0
+        }
+      },
+      {
+        "gid": "creative_poem_04",
+        "kind": "poem_sonnet",
+        "judge_std_mean_10": 0.7042,
+        "judge_std_max_10": 1.5492,
+        "greedy_arm": "few_shot_2ex",
+        "oracle_arm": "few_shot_2ex",
+        "greedy_regret": 0.0,
+        "gate_arm": "zero_shot",
+        "gate_reason": "collapse_detected",
+        "gate_regret": 0.52,
+        "features": {
+          "confidence": 0.5004,
+          "collapse_noul": 0.8,
+          "alignment": 0.0,
+          "margin": 0.0,
+          "n_arms": 10.0
+        }
+      },
+      {
+        "gid": "creative_scene_01",
+        "kind": "scene_description",
+        "judge_std_mean_10": 0.4115,
+        "judge_std_max_10": 0.6325,
+        "greedy_arm": "few_shot_2ex",
+        "oracle_arm": "zero_shot",
+        "greedy_regret": 0.03,
+        "gate_arm": "zero_shot",
+        "gate_reason": "low_val_alignment",
+        "gate_regret": 0.0,
+        "features": {
+          "confidence": 0.5054,
+          "collapse_noul": 0.0,
+          "alignment": 0.0,
+          "margin": 0.0,
+          "n_arms": 10.0
+        }
+      },
+      {
+        "gid": "creative_scene_02",
+        "kind": "scene_description",
+        "judge_std_mean_10": 0.4714,
+        "judge_std_max_10": 0.7746,
+        "greedy_arm": "persona_author",
+        "oracle_arm": "zero_shot",
+        "greedy_regret": 0.0,
+        "gate_arm": "persona_author",
+        "gate_reason": "normal_selection",
+        "gate_regret": 0.0,
+        "features": {
+          "confidence": 1.0,
+          "collapse_noul": 0.0,
+          "alignment": 1.0,
+          "margin": 0.1,
+          "n_arms": 10.0
+        }
+      },
+      {
+        "gid": "creative_scene_03",
+        "kind": "scene_description",
+        "judge_std_mean_10": 0.5225,
+        "judge_std_max_10": 0.9798,
+        "greedy_arm": "temperature_high",
+        "oracle_arm": "cot",
+        "greedy_regret": 0.0,
+        "gate_arm": "temperature_high",
+        "gate_reason": "normal_selection",
+        "gate_regret": 0.0,
+        "features": {
+          "confidence": 1.0,
+          "collapse_noul": 0.0,
+          "alignment": 1.0,
+          "margin": 0.1,
+          "n_arms": 10.0
+        }
+      },
+      {
+        "gid": "creative_scene_04",
+        "kind": "scene_description",
+        "judge_std_mean_10": 0.4218,
+        "judge_std_max_10": 0.6325,
+        "greedy_arm": "step_by_step",
+        "oracle_arm": "persona_author",
+        "greedy_regret": 0.04,
+        "gate_arm": "step_by_step",
+        "gate_reason": "normal_selection",
+        "gate_regret": 0.04,
+        "features": {
+          "confidence": 1.0,
+          "collapse_noul": 0.0,
+          "alignment": 1.0,
+          "margin": 0.05,
+          "n_arms": 10.0
+        }
+      },
+      {
+        "gid": "creative_story_01",
+        "kind": "story_continuation",
+        "judge_std_mean_10": 0.3629,
+        "judge_std_max_10": 0.5477,
+        "greedy_arm": "step_by_step",
+        "oracle_arm": "persona_author",
+        "greedy_regret": 0.01,
+        "gate_arm": "zero_shot",
+        "gate_reason": "low_val_alignment",
+        "gate_regret": 0.08,
+        "features": {
+          "confidence": 0.3356,
+          "collapse_noul": 0.0,
+          "alignment": 0.0,
+          "margin": 0.0,
+          "n_arms": 10.0
+        }
+      },
+      {
+        "gid": "creative_story_02",
+        "kind": "story_continuation",
+        "judge_std_mean_10": 0.3019,
+        "judge_std_max_10": 0.8,
+        "greedy_arm": "few_shot_2ex",
+        "oracle_arm": "cot",
+        "greedy_regret": 0.03,
+        "gate_arm": "zero_shot",
+        "gate_reason": "low_val_alignment",
+        "gate_regret": 0.01,
+        "features": {
+          "confidence": 0.5014,
+          "collapse_noul": 0.0,
+          "alignment": 0.0,
+          "margin": 0.0,
+          "n_arms": 10.0
+        }
+      },
+      {
+        "gid": "creative_story_03",
+        "kind": "story_continuation",
+        "judge_std_mean_10": 0.3511,
+        "judge_std_max_10": 0.7483,
+        "greedy_arm": "step_by_step",
+        "oracle_arm": "zero_shot",
+        "greedy_regret": 0.04,
+        "gate_arm": "zero_shot",
+        "gate_reason": "low_val_alignment",
+        "gate_regret": 0.0,
+        "features": {
+          "confidence": 0.5028,
+          "collapse_noul": 0.0,
+          "alignment": 0.0,
+          "margin": 0.0,
+          "n_arms": 10.0
+        }
+      },
+      {
+        "gid": "creative_story_04",
+        "kind": "story_continuation",
+        "judge_std_mean_10": 0.3908,
+        "judge_std_max_10": 0.7483,
+        "greedy_arm": "zero_shot",
+        "oracle_arm": "step_by_step",
+        "greedy_regret": 0.04,
+        "gate_arm": "zero_shot",
+        "gate_reason": "low_val_alignment",
+        "gate_regret": 0.04,
+        "features": {
+          "confidence": 0.3281,
+          "collapse_noul": 0.0,
+          "alignment": 0.0,
+          "margin": 0.0,
+          "n_arms": 10.0
+        }
+      }
+    ]
+  },
+  "scenario_b": {
+    "available": true,
+    "val_judge": "text-only: caption + human references, no image",
+    "holdout_judge": "vision: image + caption, no human references",
+    "n_groups": 15,
+    "n_groups_captured_by_poetic": 3,
+    "styles": {
+      "factual": {
+        "mean_val": 0.7467,
+        "mean_holdout": 1.0
+      },
+      "verbose": {
+        "mean_val": 0.7467,
+        "mean_holdout": 0.9533
+      },
+      "concise": {
+        "mean_val": 0.5533,
+        "mean_holdout": 0.9933
+      },
+      "technical": {
+        "mean_val": 0.8333,
+        "mean_holdout": 0.99
+      },
+      "poetic": {
+        "mean_val": 0.4933,
+        "mean_holdout": 0.86
+      },
+      "child_like": {
+        "mean_val": 0.6467,
+        "mean_holdout": 0.92
+      }
+    },
+    "ranking_holdout": {
+      "mean_rank_score": {
+        "factual": 0.88,
+        "verbose": 0.44,
+        "concise": 0.4267,
+        "technical": 0.8933,
+        "poetic": 0.2,
+        "child_like": 0.16
+      },
+      "mean_spearman_val_rank": 0.5265,
+      "n_groups_negative": 1
+    },
+    "mean_val_holdout_spearman": 0.3458,
+    "rows": [
+      {
+        "gid": "caption_img_001",
+        "val_holdout_spearman": 0.6761,
+        "greedy_style": "technical",
+        "oracle_style": "factual",
+        "captured_by_poetic": false,
+        "greedy_regret": 0.0,
+        "gate_arm": "technical",
+        "gate_reason": "normal_selection",
+        "gate_regret": 0.0,
+        "val_vs_rank_spearman": 0.8286,
+        "rank_oracle_style": "technical",
+        "greedy_rank_score": 1.0,
+        "rank_regret": 0.0
+      },
+      {
+        "gid": "caption_img_002",
+        "val_holdout_spearman": 0.7151,
+        "greedy_style": "factual",
+        "oracle_style": "factual",
+        "captured_by_poetic": false,
+        "greedy_regret": 0.0,
+        "gate_arm": "factual",
+        "gate_reason": "low_val_alignment",
+        "gate_regret": 0.0,
+        "val_vs_rank_spearman": 0.6179,
+        "rank_oracle_style": "factual",
+        "greedy_rank_score": 1.0,
+        "rank_regret": 0.0
+      },
+      {
+        "gid": "caption_img_003",
+        "val_holdout_spearman": 0.343,
+        "greedy_style": "technical",
+        "oracle_style": "factual",
+        "captured_by_poetic": false,
+        "greedy_regret": 0.0,
+        "gate_arm": "technical",
+        "gate_reason": "normal_selection",
+        "gate_regret": 0.0,
+        "val_vs_rank_spearman": 0.1739,
+        "rank_oracle_style": "technical",
+        "greedy_rank_score": 1.0,
+        "rank_regret": 0.0
+      },
+      {
+        "gid": "caption_img_004",
+        "val_holdout_spearman": 0.6179,
+        "greedy_style": "technical",
+        "oracle_style": "factual",
+        "captured_by_poetic": false,
+        "greedy_regret": 0.0,
+        "gate_arm": "technical",
+        "gate_reason": "normal_selection",
+        "gate_regret": 0.0,
+        "val_vs_rank_spearman": 0.7714,
+        "rank_oracle_style": "factual",
+        "greedy_rank_score": 0.8,
+        "rank_regret": 0.2
+      },
+      {
+        "gid": "caption_img_005",
+        "val_holdout_spearman": 0.4874,
+        "greedy_style": "child_like",
+        "oracle_style": "factual",
+        "captured_by_poetic": true,
+        "greedy_regret": 0.0,
+        "gate_arm": "child_like",
+        "gate_reason": "normal_selection",
+        "gate_regret": 0.0,
+        "val_vs_rank_spearman": 0.6179,
+        "rank_oracle_style": "technical",
+        "greedy_rank_score": 0.4,
+        "rank_regret": 0.6
+      },
+      {
+        "gid": "caption_img_006",
+        "val_holdout_spearman": 0.4174,
+        "greedy_style": "verbose",
+        "oracle_style": "factual",
+        "captured_by_poetic": true,
+        "greedy_regret": 0.0,
+        "gate_arm": "verbose",
+        "gate_reason": "normal_selection",
+        "gate_regret": 0.0,
+        "val_vs_rank_spearman": 0.3947,
+        "rank_oracle_style": "technical",
+        "greedy_rank_score": 0.4,
+        "rank_regret": 0.6
+      },
+      {
+        "gid": "caption_img_007",
+        "val_holdout_spearman": 0.4174,
+        "greedy_style": "factual",
+        "oracle_style": "factual",
+        "captured_by_poetic": false,
+        "greedy_regret": 0.0,
+        "gate_arm": "factual",
+        "gate_reason": "low_val_alignment",
+        "gate_regret": 0.0,
+        "val_vs_rank_spearman": 0.759,
+        "rank_oracle_style": "factual",
+        "greedy_rank_score": 1.0,
+        "rank_regret": 0.0
+      },
+      {
+        "gid": "caption_img_008",
+        "val_holdout_spearman": 0.0,
+        "greedy_style": "factual",
+        "oracle_style": "factual",
+        "captured_by_poetic": false,
+        "greedy_regret": 0.0,
+        "gate_arm": "factual",
+        "gate_reason": "low_val_alignment",
+        "gate_regret": 0.0,
+        "val_vs_rank_spearman": 0.2777,
+        "rank_oracle_style": "technical",
+        "greedy_rank_score": 0.8,
+        "rank_regret": 0.2
+      },
+      {
+        "gid": "caption_img_009",
+        "val_holdout_spearman": 0.3985,
+        "greedy_style": "technical",
+        "oracle_style": "factual",
+        "captured_by_poetic": false,
+        "greedy_regret": 0.0,
+        "gate_arm": "technical",
+        "gate_reason": "normal_selection",
+        "gate_regret": 0.0,
+        "val_vs_rank_spearman": 0.8986,
+        "rank_oracle_style": "factual",
+        "greedy_rank_score": 0.8,
+        "rank_regret": 0.2
+      },
+      {
+        "gid": "caption_img_010",
+        "val_holdout_spearman": -0.6325,
+        "greedy_style": "factual",
+        "oracle_style": "factual",
+        "captured_by_poetic": false,
+        "greedy_regret": 0.0,
+        "gate_arm": "factual",
+        "gate_reason": "low_val_alignment",
+        "gate_regret": 0.0,
+        "val_vs_rank_spearman": -0.207,
+        "rank_oracle_style": "technical",
+        "greedy_rank_score": 0.8,
+        "rank_regret": 0.2
+      },
+      {
+        "gid": "caption_img_011",
+        "val_holdout_spearman": 0.4264,
+        "greedy_style": "technical",
+        "oracle_style": "factual",
+        "captured_by_poetic": false,
+        "greedy_regret": 0.0,
+        "gate_arm": "technical",
+        "gate_reason": "normal_selection",
+        "gate_regret": 0.0,
+        "val_vs_rank_spearman": 0.8827,
+        "rank_oracle_style": "technical",
+        "greedy_rank_score": 1.0,
+        "rank_regret": 0.0
+      },
+      {
+        "gid": "caption_img_012",
+        "val_holdout_spearman": 0.22,
+        "greedy_style": "technical",
+        "oracle_style": "factual",
+        "captured_by_poetic": false,
+        "greedy_regret": 0.0,
+        "gate_arm": "technical",
+        "gate_reason": "normal_selection",
+        "gate_regret": 0.0,
+        "val_vs_rank_spearman": 0.3339,
+        "rank_oracle_style": "technical",
+        "greedy_rank_score": 1.0,
+        "rank_regret": 0.0
+      },
+      {
+        "gid": "caption_img_013",
+        "val_holdout_spearman": 0.3592,
+        "greedy_style": "verbose",
+        "oracle_style": "factual",
+        "captured_by_poetic": true,
+        "greedy_regret": 0.0,
+        "gate_arm": "factual",
+        "gate_reason": "low_val_alignment",
+        "gate_regret": 0.0,
+        "val_vs_rank_spearman": 0.5161,
+        "rank_oracle_style": "technical",
+        "greedy_rank_score": 0.2,
+        "rank_regret": 0.8
+      },
+      {
+        "gid": "caption_img_014",
+        "val_holdout_spearman": 0.8799,
+        "greedy_style": "technical",
+        "oracle_style": "factual",
+        "captured_by_poetic": false,
+        "greedy_regret": 0.0,
+        "gate_arm": "technical",
+        "gate_reason": "normal_selection",
+        "gate_regret": 0.0,
+        "val_vs_rank_spearman": 0.5161,
+        "rank_oracle_style": "factual",
+        "greedy_rank_score": 0.4,
+        "rank_regret": 0.6
+      },
+      {
+        "gid": "caption_img_015",
+        "val_holdout_spearman": -0.1391,
+        "greedy_style": "factual",
+        "oracle_style": "factual",
+        "captured_by_poetic": false,
+        "greedy_regret": 0.0,
+        "gate_arm": "factual",
+        "gate_reason": "normal_selection",
+        "gate_regret": 0.0,
+        "val_vs_rank_spearman": 0.5161,
+        "rank_oracle_style": "factual",
+        "greedy_rank_score": 1.0,
+        "rank_regret": 0.0
+      }
+    ]
+  },
+  "calibration": {
+    "original": {
+      "n_decision_groups": 32,
+      "val_min": 0.0,
+      "val_median": 0.6597,
+      "val_max": 1.0,
+      "median_margin": 0.0006,
+      "margin_over_noise_band": 0.1,
+      "frac_alignment_saturated": 0.281,
+      "frac_collapse_noul_zero": 0.75,
+      "noise_band": 0.007,
+      "align_scale": 0.021
+    },
+    "scenario_c": {
+      "n_decision_groups": 10,
+      "val_min": 0.0465,
+      "val_median": 0.1573,
+      "val_max": 0.3797,
+      "median_margin": 0.0257,
+      "margin_over_noise_band": 3.7,
+      "frac_alignment_saturated": 0.6,
+      "frac_collapse_noul_zero": 0.0,
+      "noise_band": 0.007,
+      "align_scale": 0.021
+    },
+    "scenario_a": {
+      "n_decision_groups": 20,
+      "val_min": 0.0,
+      "val_median": 0.7,
+      "val_max": 0.9,
+      "median_margin": 0.0,
+      "margin_over_noise_band": 0.0,
+      "frac_alignment_saturated": 0.35,
+      "frac_collapse_noul_zero": 0.6,
+      "noise_band": 0.007,
+      "align_scale": 0.021
+    },
+    "scenario_b": {
+      "n_decision_groups": 15,
+      "val_min": 0.2,
+      "val_median": 0.6,
+      "val_max": 1.0,
+      "median_margin": 0.1,
+      "margin_over_noise_band": 14.3,
+      "frac_alignment_saturated": 0.667,
+      "frac_collapse_noul_zero": 0.6,
+      "noise_band": 0.007,
+      "align_scale": 0.021
+    }
+  },
+  "scale_sensitivity": {
+    "original": {
+      "scale": {
+        "sigma": 0.0002,
+        "align_scale": 0.0006,
+        "noise_band": 0.0002,
+        "n_gaps": 92
+      },
+      "fraction_alignment_saturated": 0.5,
+      "greedy": {
+        "n_groups": 32,
+        "exact_oracle": 18,
+        "exact_rate": 0.5625,
+        "within_noise": 26,
+        "within_noise_rate": 0.8125,
+        "avg_regret": 0.012528,
+        "max_regret": 0.2038,
+        "total_regret": 0.4009,
+        "n_collapse_cases": 6,
+        "collapse_avoided": 4
+      },
+      "jev_static_calibrated": {
+        "n_groups": 32,
+        "exact_oracle": 15,
+        "exact_rate": 0.4688,
+        "within_noise": 25,
+        "within_noise_rate": 0.7812,
+        "avg_regret": 0.013406,
+        "max_regret": 0.2038,
+        "total_regret": 0.429,
+        "n_collapse_cases": 6,
+        "collapse_avoided": 4
+      },
+      "gate_reasons": {
+        "normal_selection": 15,
+        "low_val_alignment": 13,
+        "collapse_detected": 4
+      },
+      "loo_rsi_calibrated": {
+        "n_groups": 32,
+        "exact_oracle": 11,
+        "exact_rate": 0.3438,
+        "within_noise": 24,
+        "within_noise_rate": 0.75,
+        "avg_regret": 0.013837,
+        "max_regret": 0.2038,
+        "total_regret": 0.4428,
+        "n_collapse_cases": 6,
+        "collapse_avoided": 4
+      }
+    },
+    "scenario_c": {
+      "scale": {
+        "sigma": 0.026015,
+        "align_scale": 0.078045,
+        "noise_band": 0.026015,
+        "n_gaps": 50
+      },
+      "fraction_alignment_saturated": 0.2,
+      "greedy": {
+        "n_groups": 10,
+        "exact_oracle": 6,
+        "exact_rate": 0.6,
+        "within_noise": 7,
+        "within_noise_rate": 0.7,
+        "avg_regret": 0.023944,
+        "max_regret": 0.107829,
+        "total_regret": 0.239444,
+        "n_collapse_cases": 10,
+        "collapse_avoided": 7
+      },
+      "jev_static_calibrated": {
+        "n_groups": 10,
+        "exact_oracle": 4,
+        "exact_rate": 0.4,
+        "within_noise": 5,
+        "within_noise_rate": 0.5,
+        "avg_regret": 0.043512,
+        "max_regret": 0.118665,
+        "total_regret": 0.435125,
+        "n_collapse_cases": 10,
+        "collapse_avoided": 5
+      },
+      "gate_reasons": {
+        "low_val_alignment": 7,
+        "normal_selection": 3
+      },
+      "loo_rsi_calibrated": {
+        "n_groups": 10,
+        "exact_oracle": 6,
+        "exact_rate": 0.6,
+        "within_noise": 7,
+        "within_noise_rate": 0.7,
+        "avg_regret": 0.023944,
+        "max_regret": 0.107829,
+        "total_regret": 0.239444,
+        "n_collapse_cases": 10,
+        "collapse_avoided": 7
+      }
+    },
+    "scenario_b": {
+      "scale": {
+        "sigma": 0.1,
+        "align_scale": 0.3,
+        "noise_band": 0.1,
+        "n_gaps": 75
+      },
+      "fraction_alignment_saturated": 0.0,
+      "greedy": {
+        "n_groups": 15,
+        "exact_oracle": 15,
+        "exact_rate": 1.0,
+        "within_noise": 15,
+        "within_noise_rate": 1.0,
+        "avg_regret": 0.0,
+        "max_regret": 0.0,
+        "total_regret": 0.0,
+        "n_collapse_cases": 2,
+        "collapse_avoided": 2
+      },
+      "jev_static_calibrated": {
+        "n_groups": 15,
+        "exact_oracle": 15,
+        "exact_rate": 1.0,
+        "within_noise": 15,
+        "within_noise_rate": 1.0,
+        "avg_regret": 0.0,
+        "max_regret": 0.0,
+        "total_regret": 0.0,
+        "n_collapse_cases": 2,
+        "collapse_avoided": 2
+      },
+      "gate_reasons": {
+        "low_val_alignment": 13,
+        "normal_selection": 2
+      },
+      "loo_rsi_calibrated": {
+        "n_groups": 15,
+        "exact_oracle": 15,
+        "exact_rate": 1.0,
+        "within_noise": 15,
+        "within_noise_rate": 1.0,
+        "avg_regret": 0.0,
+        "max_regret": 0.0,
+        "total_regret": 0.0,
+        "n_collapse_cases": 2,
+        "collapse_avoided": 2
+      }
+    }
+  },
+  "judge_variance_probe": {
+    "available": true,
+    "protocol": "6 independent judge draws at temperature 1.0 on identical (prompt, completion) pairs; first 5 Scenario A groups",
+    "models": {
+      "qwen3.8-flash": {
+        "n_arms": 50,
+        "draws": 6,
+        "temperature": 1.0,
+        "mean_arm_std_10": 0.5557,
+        "median_arm_std_10": 0.4714,
+        "max_arm_std_10": 1.3744,
+        "n_arms_std_gt_2": 0,
+        "frac_arms_std_gt_2": 0.0
+      },
+      "qwen3.8-27b": {
+        "n_arms": 50,
+        "draws": 6,
+        "temperature": 1.0,
+        "mean_arm_std_10": 0.6747,
+        "median_arm_std_10": 0.6897,
+        "max_arm_std_10": 1.3437,
+        "n_arms_std_gt_2": 0,
+        "frac_arms_std_gt_2": 0.0
+      }
+    }
+  }
+}
