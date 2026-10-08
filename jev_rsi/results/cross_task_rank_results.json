@@ -1,0 +1,1068 @@
+{
+  "protocol": "FUTURE_DIRECTIONS.md Priority 6: choose a transfer source by ranking rather than by regression, trained leave-target-out",
+  "n_cells": 12,
+  "n_targets": 6,
+  "features": [
+    "s_mean",
+    "s_pos_rate",
+    "s_best_rate",
+    "is_none",
+    "s_champion_mean",
+    "s_warm_mean"
+  ],
+  "structural_limit": "within a target every candidate shares the target-level features, so only source-level features can rank candidates; a source-only scorer is constant across targets and therefore equivalent to always choosing one fixed source",
+  "p6_target": {
+    "criterion": "top-1 on the multi-candidate targets >= 2/3",
+    "best_hindsight_constant": {
+      "mode": "fixed_contract",
+      "source": "contract",
+      "accuracy_multi": 0.6667,
+      "avg_regret_multi": 0.0034,
+      "note": "chosen with knowledge of the labels, so it is a ceiling, not a result"
+    },
+    "best_learned": {
+      "mode": "pairwise_rank",
+      "accuracy_multi": 0.0,
+      "avg_regret_multi": 0.0098
+    },
+    "met_by_learned_ranker": false,
+    "met_by_hindsight_constant": true,
+    "learned_fold_choices_unstable": true
+  },
+  "results": {
+    "cold": {
+      "mode": "cold",
+      "n_targets": 6,
+      "n_multi_candidate": 3,
+      "accuracy": 0.3333,
+      "accuracy_multi": 0.0,
+      "avg_regret": 0.00325,
+      "avg_regret_multi": 0.006433,
+      "rows": [
+        {
+          "target": "gpqa-s926",
+          "kind": "champion",
+          "candidates": [
+            "none",
+            "math",
+            "contract",
+            "financial"
+          ],
+          "chosen": "none",
+          "oracle": "financial",
+          "correct": false,
+          "chosen_gain": 0.0,
+          "oracle_gain": 0.0001,
+          "regret": 0.0001
+        },
+        {
+          "target": "hle-s921",
+          "kind": "champion",
+          "candidates": [
+            "none",
+            "math",
+            "contract",
+            "financial"
+          ],
+          "chosen": "none",
+          "oracle": "contract",
+          "correct": false,
+          "chosen_gain": 0.0,
+          "oracle_gain": 0.01,
+          "regret": 0.01
+        },
+        {
+          "target": "hle-s923",
+          "kind": "champion",
+          "candidates": [
+            "none",
+            "math",
+            "contract",
+            "financial"
+          ],
+          "chosen": "none",
+          "oracle": "contract",
+          "correct": false,
+          "chosen_gain": 0.0,
+          "oracle_gain": 0.0092,
+          "regret": 0.0092
+        },
+        {
+          "target": "transfer_contract_to_math-s42",
+          "kind": "warm-start",
+          "candidates": [
+            "none",
+            "contract"
+          ],
+          "chosen": "none",
+          "oracle": "contract",
+          "correct": false,
+          "chosen_gain": 0.0,
+          "oracle_gain": 0.0002,
+          "regret": 0.0002
+        },
+        {
+          "target": "transfer_financial_to_math_gpt6-s42",
+          "kind": "warm-start",
+          "candidates": [
+            "none",
+            "financial"
+          ],
+          "chosen": "none",
+          "oracle": "none",
+          "correct": true,
+          "chosen_gain": 0.0,
+          "oracle_gain": 0.0,
+          "regret": 0.0
+        },
+        {
+          "target": "transfer_math_to_contract-s42",
+          "kind": "warm-start",
+          "candidates": [
+            "none",
+            "math"
+          ],
+          "chosen": "none",
+          "oracle": "none",
+          "correct": true,
+          "chosen_gain": 0.0,
+          "oracle_gain": 0.0,
+          "regret": 0.0
+        }
+      ]
+    },
+    "global_mean": {
+      "mode": "global_mean",
+      "n_targets": 6,
+      "n_multi_candidate": 3,
+      "accuracy": 0.3333,
+      "accuracy_multi": 0.0,
+      "avg_regret": 0.00325,
+      "avg_regret_multi": 0.006433,
+      "rows": [
+        {
+          "target": "gpqa-s926",
+          "kind": "champion",
+          "candidates": [
+            "none",
+            "math",
+            "contract",
+            "financial"
+          ],
+          "chosen": "none",
+          "oracle": "financial",
+          "correct": false,
+          "chosen_gain": 0.0,
+          "oracle_gain": 0.0001,
+          "regret": 0.0001
+        },
+        {
+          "target": "hle-s921",
+          "kind": "champion",
+          "candidates": [
+            "none",
+            "math",
+            "contract",
+            "financial"
+          ],
+          "chosen": "none",
+          "oracle": "contract",
+          "correct": false,
+          "chosen_gain": 0.0,
+          "oracle_gain": 0.01,
+          "regret": 0.01
+        },
+        {
+          "target": "hle-s923",
+          "kind": "champion",
+          "candidates": [
+            "none",
+            "math",
+            "contract",
+            "financial"
+          ],
+          "chosen": "none",
+          "oracle": "contract",
+          "correct": false,
+          "chosen_gain": 0.0,
+          "oracle_gain": 0.0092,
+          "regret": 0.0092
+        },
+        {
+          "target": "transfer_contract_to_math-s42",
+          "kind": "warm-start",
+          "candidates": [
+            "none",
+            "contract"
+          ],
+          "chosen": "none",
+          "oracle": "contract",
+          "correct": false,
+          "chosen_gain": 0.0,
+          "oracle_gain": 0.0002,
+          "regret": 0.0002
+        },
+        {
+          "target": "transfer_financial_to_math_gpt6-s42",
+          "kind": "warm-start",
+          "candidates": [
+            "none",
+            "financial"
+          ],
+          "chosen": "none",
+          "oracle": "none",
+          "correct": true,
+          "chosen_gain": 0.0,
+          "oracle_gain": 0.0,
+          "regret": 0.0
+        },
+        {
+          "target": "transfer_math_to_contract-s42",
+          "kind": "warm-start",
+          "candidates": [
+            "none",
+            "math"
+          ],
+          "chosen": "none",
+          "oracle": "none",
+          "correct": true,
+          "chosen_gain": 0.0,
+          "oracle_gain": 0.0,
+          "regret": 0.0
+        }
+      ]
+    },
+    "source_mean": {
+      "mode": "source_mean",
+      "n_targets": 6,
+      "n_multi_candidate": 3,
+      "accuracy": 0.6667,
+      "accuracy_multi": 0.3333,
+      "avg_regret": 0.003367,
+      "avg_regret_multi": 0.006733,
+      "rows": [
+        {
+          "target": "gpqa-s926",
+          "kind": "champion",
+          "candidates": [
+            "none",
+            "math",
+            "contract",
+            "financial"
+          ],
+          "chosen": "contract",
+          "oracle": "financial",
+          "correct": false,
+          "chosen_gain": -0.0101,
+          "oracle_gain": 0.0001,
+          "regret": 0.0102
+        },
+        {
+          "target": "hle-s921",
+          "kind": "champion",
+          "candidates": [
+            "none",
+            "math",
+            "contract",
+            "financial"
+          ],
+          "chosen": "none",
+          "oracle": "contract",
+          "correct": false,
+          "chosen_gain": 0.0,
+          "oracle_gain": 0.01,
+          "regret": 0.01
+        },
+        {
+          "target": "hle-s923",
+          "kind": "champion",
+          "candidates": [
+            "none",
+            "math",
+            "contract",
+            "financial"
+          ],
+          "chosen": "contract",
+          "oracle": "contract",
+          "correct": true,
+          "chosen_gain": 0.0092,
+          "oracle_gain": 0.0092,
+          "regret": 0.0
+        },
+        {
+          "target": "transfer_contract_to_math-s42",
+          "kind": "warm-start",
+          "candidates": [
+            "none",
+            "contract"
+          ],
+          "chosen": "contract",
+          "oracle": "contract",
+          "correct": true,
+          "chosen_gain": 0.0002,
+          "oracle_gain": 0.0002,
+          "regret": 0.0
+        },
+        {
+          "target": "transfer_financial_to_math_gpt6-s42",
+          "kind": "warm-start",
+          "candidates": [
+            "none",
+            "financial"
+          ],
+          "chosen": "none",
+          "oracle": "none",
+          "correct": true,
+          "chosen_gain": 0.0,
+          "oracle_gain": 0.0,
+          "regret": 0.0
+        },
+        {
+          "target": "transfer_math_to_contract-s42",
+          "kind": "warm-start",
+          "candidates": [
+            "none",
+            "math"
+          ],
+          "chosen": "none",
+          "oracle": "none",
+          "correct": true,
+          "chosen_gain": 0.0,
+          "oracle_gain": 0.0,
+          "regret": 0.0
+        }
+      ]
+    },
+    "val_rank": {
+      "mode": "val_rank",
+      "n_targets": 6,
+      "n_multi_candidate": 3,
+      "accuracy": 0.0,
+      "accuracy_multi": 0.0,
+      "avg_regret": 0.006583,
+      "avg_regret_multi": 0.006433,
+      "rows": [
+        {
+          "target": "gpqa-s926",
+          "kind": "champion",
+          "candidates": [
+            "none",
+            "math",
+            "contract",
+            "financial"
+          ],
+          "chosen": "none",
+          "oracle": "financial",
+          "correct": false,
+          "chosen_gain": 0.0,
+          "oracle_gain": 0.0001,
+          "regret": 0.0001
+        },
+        {
+          "target": "hle-s921",
+          "kind": "champion",
+          "candidates": [
+            "none",
+            "math",
+            "contract",
+            "financial"
+          ],
+          "chosen": "none",
+          "oracle": "contract",
+          "correct": false,
+          "chosen_gain": 0.0,
+          "oracle_gain": 0.01,
+          "regret": 0.01
+        },
+        {
+          "target": "hle-s923",
+          "kind": "champion",
+          "candidates": [
+            "none",
+            "math",
+            "contract",
+            "financial"
+          ],
+          "chosen": "none",
+          "oracle": "contract",
+          "correct": false,
+          "chosen_gain": 0.0,
+          "oracle_gain": 0.0092,
+          "regret": 0.0092
+        },
+        {
+          "target": "transfer_contract_to_math-s42",
+          "kind": "warm-start",
+          "candidates": [
+            "none",
+            "contract"
+          ],
+          "chosen": "none",
+          "oracle": "contract",
+          "correct": false,
+          "chosen_gain": 0.0,
+          "oracle_gain": 0.0002,
+          "regret": 0.0002
+        },
+        {
+          "target": "transfer_financial_to_math_gpt6-s42",
+          "kind": "warm-start",
+          "candidates": [
+            "none",
+            "financial"
+          ],
+          "chosen": "financial",
+          "oracle": "none",
+          "correct": false,
+          "chosen_gain": -0.0004,
+          "oracle_gain": 0.0,
+          "regret": 0.0004
+        },
+        {
+          "target": "transfer_math_to_contract-s42",
+          "kind": "warm-start",
+          "candidates": [
+            "none",
+            "math"
+          ],
+          "chosen": "math",
+          "oracle": "none",
+          "correct": false,
+          "chosen_gain": -0.0196,
+          "oracle_gain": 0.0,
+          "regret": 0.0196
+        }
+      ]
+    },
+    "fixed_learned": {
+      "mode": "fixed_learned",
+      "n_targets": 6,
+      "n_multi_candidate": 3,
+      "accuracy": 0.3333,
+      "accuracy_multi": 0.0,
+      "avg_regret": 0.004933,
+      "avg_regret_multi": 0.0098,
+      "rows": [
+        {
+          "target": "gpqa-s926",
+          "kind": "champion",
+          "candidates": [
+            "none",
+            "math",
+            "contract",
+            "financial"
+          ],
+          "chosen": "contract",
+          "oracle": "financial",
+          "correct": false,
+          "chosen_gain": -0.0101,
+          "oracle_gain": 0.0001,
+          "regret": 0.0102
+        },
+        {
+          "target": "hle-s921",
+          "kind": "champion",
+          "candidates": [
+            "none",
+            "math",
+            "contract",
+            "financial"
+          ],
+          "chosen": "none",
+          "oracle": "contract",
+          "correct": false,
+          "chosen_gain": 0.0,
+          "oracle_gain": 0.01,
+          "regret": 0.01
+        },
+        {
+          "target": "hle-s923",
+          "kind": "champion",
+          "candidates": [
+            "none",
+            "math",
+            "contract",
+            "financial"
+          ],
+          "chosen": "none",
+          "oracle": "contract",
+          "correct": false,
+          "chosen_gain": 0.0,
+          "oracle_gain": 0.0092,
+          "regret": 0.0092
+        },
+        {
+          "target": "transfer_contract_to_math-s42",
+          "kind": "warm-start",
+          "candidates": [
+            "none",
+            "contract"
+          ],
+          "chosen": "none",
+          "oracle": "contract",
+          "correct": false,
+          "chosen_gain": 0.0,
+          "oracle_gain": 0.0002,
+          "regret": 0.0002
+        },
+        {
+          "target": "transfer_financial_to_math_gpt6-s42",
+          "kind": "warm-start",
+          "candidates": [
+            "none",
+            "financial"
+          ],
+          "chosen": "none",
+          "oracle": "none",
+          "correct": true,
+          "chosen_gain": 0.0,
+          "oracle_gain": 0.0,
+          "regret": 0.0
+        },
+        {
+          "target": "transfer_math_to_contract-s42",
+          "kind": "warm-start",
+          "candidates": [
+            "none",
+            "math"
+          ],
+          "chosen": "none",
+          "oracle": "none",
+          "correct": true,
+          "chosen_gain": 0.0,
+          "oracle_gain": 0.0,
+          "regret": 0.0
+        }
+      ]
+    },
+    "pairwise_rank": {
+      "mode": "pairwise_rank",
+      "n_targets": 6,
+      "n_multi_candidate": 3,
+      "accuracy": 0.3333,
+      "accuracy_multi": 0.0,
+      "avg_regret": 0.004933,
+      "avg_regret_multi": 0.0098,
+      "rows": [
+        {
+          "target": "gpqa-s926",
+          "kind": "champion",
+          "candidates": [
+            "none",
+            "math",
+            "contract",
+            "financial"
+          ],
+          "chosen": "contract",
+          "oracle": "financial",
+          "correct": false,
+          "chosen_gain": -0.0101,
+          "oracle_gain": 0.0001,
+          "regret": 0.0102
+        },
+        {
+          "target": "hle-s921",
+          "kind": "champion",
+          "candidates": [
+            "none",
+            "math",
+            "contract",
+            "financial"
+          ],
+          "chosen": "none",
+          "oracle": "contract",
+          "correct": false,
+          "chosen_gain": 0.0,
+          "oracle_gain": 0.01,
+          "regret": 0.01
+        },
+        {
+          "target": "hle-s923",
+          "kind": "champion",
+          "candidates": [
+            "none",
+            "math",
+            "contract",
+            "financial"
+          ],
+          "chosen": "none",
+          "oracle": "contract",
+          "correct": false,
+          "chosen_gain": 0.0,
+          "oracle_gain": 0.0092,
+          "regret": 0.0092
+        },
+        {
+          "target": "transfer_contract_to_math-s42",
+          "kind": "warm-start",
+          "candidates": [
+            "none",
+            "contract"
+          ],
+          "chosen": "none",
+          "oracle": "contract",
+          "correct": false,
+          "chosen_gain": 0.0,
+          "oracle_gain": 0.0002,
+          "regret": 0.0002
+        },
+        {
+          "target": "transfer_financial_to_math_gpt6-s42",
+          "kind": "warm-start",
+          "candidates": [
+            "none",
+            "financial"
+          ],
+          "chosen": "none",
+          "oracle": "none",
+          "correct": true,
+          "chosen_gain": 0.0,
+          "oracle_gain": 0.0,
+          "regret": 0.0
+        },
+        {
+          "target": "transfer_math_to_contract-s42",
+          "kind": "warm-start",
+          "candidates": [
+            "none",
+            "math"
+          ],
+          "chosen": "none",
+          "oracle": "none",
+          "correct": true,
+          "chosen_gain": 0.0,
+          "oracle_gain": 0.0,
+          "regret": 0.0
+        }
+      ]
+    },
+    "fixed_none": {
+      "mode": "fixed_none",
+      "n_targets": 6,
+      "n_multi_candidate": 3,
+      "accuracy": 0.3333,
+      "accuracy_multi": 0.0,
+      "avg_regret": 0.00325,
+      "avg_regret_multi": 0.006433,
+      "rows": [
+        {
+          "target": "gpqa-s926",
+          "kind": "champion",
+          "candidates": [
+            "none",
+            "math",
+            "contract",
+            "financial"
+          ],
+          "chosen": "none",
+          "oracle": "financial",
+          "correct": false,
+          "chosen_gain": 0.0,
+          "oracle_gain": 0.0001,
+          "regret": 0.0001
+        },
+        {
+          "target": "hle-s921",
+          "kind": "champion",
+          "candidates": [
+            "none",
+            "math",
+            "contract",
+            "financial"
+          ],
+          "chosen": "none",
+          "oracle": "contract",
+          "correct": false,
+          "chosen_gain": 0.0,
+          "oracle_gain": 0.01,
+          "regret": 0.01
+        },
+        {
+          "target": "hle-s923",
+          "kind": "champion",
+          "candidates": [
+            "none",
+            "math",
+            "contract",
+            "financial"
+          ],
+          "chosen": "none",
+          "oracle": "contract",
+          "correct": false,
+          "chosen_gain": 0.0,
+          "oracle_gain": 0.0092,
+          "regret": 0.0092
+        },
+        {
+          "target": "transfer_contract_to_math-s42",
+          "kind": "warm-start",
+          "candidates": [
+            "none",
+            "contract"
+          ],
+          "chosen": "none",
+          "oracle": "contract",
+          "correct": false,
+          "chosen_gain": 0.0,
+          "oracle_gain": 0.0002,
+          "regret": 0.0002
+        },
+        {
+          "target": "transfer_financial_to_math_gpt6-s42",
+          "kind": "warm-start",
+          "candidates": [
+            "none",
+            "financial"
+          ],
+          "chosen": "none",
+          "oracle": "none",
+          "correct": true,
+          "chosen_gain": 0.0,
+          "oracle_gain": 0.0,
+          "regret": 0.0
+        },
+        {
+          "target": "transfer_math_to_contract-s42",
+          "kind": "warm-start",
+          "candidates": [
+            "none",
+            "math"
+          ],
+          "chosen": "none",
+          "oracle": "none",
+          "correct": true,
+          "chosen_gain": 0.0,
+          "oracle_gain": 0.0,
+          "regret": 0.0
+        }
+      ]
+    },
+    "fixed_contract": {
+      "mode": "fixed_contract",
+      "n_targets": 6,
+      "n_multi_candidate": 3,
+      "accuracy": 0.8333,
+      "accuracy_multi": 0.6667,
+      "avg_regret": 0.0017,
+      "avg_regret_multi": 0.0034,
+      "rows": [
+        {
+          "target": "gpqa-s926",
+          "kind": "champion",
+          "candidates": [
+            "none",
+            "math",
+            "contract",
+            "financial"
+          ],
+          "chosen": "contract",
+          "oracle": "financial",
+          "correct": false,
+          "chosen_gain": -0.0101,
+          "oracle_gain": 0.0001,
+          "regret": 0.0102
+        },
+        {
+          "target": "hle-s921",
+          "kind": "champion",
+          "candidates": [
+            "none",
+            "math",
+            "contract",
+            "financial"
+          ],
+          "chosen": "contract",
+          "oracle": "contract",
+          "correct": true,
+          "chosen_gain": 0.01,
+          "oracle_gain": 0.01,
+          "regret": 0.0
+        },
+        {
+          "target": "hle-s923",
+          "kind": "champion",
+          "candidates": [
+            "none",
+            "math",
+            "contract",
+            "financial"
+          ],
+          "chosen": "contract",
+          "oracle": "contract",
+          "correct": true,
+          "chosen_gain": 0.0092,
+          "oracle_gain": 0.0092,
+          "regret": 0.0
+        },
+        {
+          "target": "transfer_contract_to_math-s42",
+          "kind": "warm-start",
+          "candidates": [
+            "none",
+            "contract"
+          ],
+          "chosen": "contract",
+          "oracle": "contract",
+          "correct": true,
+          "chosen_gain": 0.0002,
+          "oracle_gain": 0.0002,
+          "regret": 0.0
+        },
+        {
+          "target": "transfer_financial_to_math_gpt6-s42",
+          "kind": "warm-start",
+          "candidates": [
+            "none",
+            "financial"
+          ],
+          "chosen": "none",
+          "oracle": "none",
+          "correct": true,
+          "chosen_gain": 0.0,
+          "oracle_gain": 0.0,
+          "regret": 0.0
+        },
+        {
+          "target": "transfer_math_to_contract-s42",
+          "kind": "warm-start",
+          "candidates": [
+            "none",
+            "math"
+          ],
+          "chosen": "none",
+          "oracle": "none",
+          "correct": true,
+          "chosen_gain": 0.0,
+          "oracle_gain": 0.0,
+          "regret": 0.0
+        }
+      ]
+    },
+    "fixed_financial": {
+      "mode": "fixed_financial",
+      "n_targets": 6,
+      "n_multi_candidate": 3,
+      "accuracy": 0.3333,
+      "accuracy_multi": 0.3333,
+      "avg_regret": 0.006533,
+      "avg_regret_multi": 0.012867,
+      "rows": [
+        {
+          "target": "gpqa-s926",
+          "kind": "champion",
+          "candidates": [
+            "none",
+            "math",
+            "contract",
+            "financial"
+          ],
+          "chosen": "financial",
+          "oracle": "financial",
+          "correct": true,
+          "chosen_gain": 0.0001,
+          "oracle_gain": 0.0001,
+          "regret": 0.0
+        },
+        {
+          "target": "hle-s921",
+          "kind": "champion",
+          "candidates": [
+            "none",
+            "math",
+            "contract",
+            "financial"
+          ],
+          "chosen": "financial",
+          "oracle": "contract",
+          "correct": false,
+          "chosen_gain": -0.0044,
+          "oracle_gain": 0.01,
+          "regret": 0.0144
+        },
+        {
+          "target": "hle-s923",
+          "kind": "champion",
+          "candidates": [
+            "none",
+            "math",
+            "contract",
+            "financial"
+          ],
+          "chosen": "financial",
+          "oracle": "contract",
+          "correct": false,
+          "chosen_gain": -0.015,
+          "oracle_gain": 0.0092,
+          "regret": 0.0242
+        },
+        {
+          "target": "transfer_contract_to_math-s42",
+          "kind": "warm-start",
+          "candidates": [
+            "none",
+            "contract"
+          ],
+          "chosen": "none",
+          "oracle": "contract",
+          "correct": false,
+          "chosen_gain": 0.0,
+          "oracle_gain": 0.0002,
+          "regret": 0.0002
+        },
+        {
+          "target": "transfer_financial_to_math_gpt6-s42",
+          "kind": "warm-start",
+          "candidates": [
+            "none",
+            "financial"
+          ],
+          "chosen": "financial",
+          "oracle": "none",
+          "correct": false,
+          "chosen_gain": -0.0004,
+          "oracle_gain": 0.0,
+          "regret": 0.0004
+        },
+        {
+          "target": "transfer_math_to_contract-s42",
+          "kind": "warm-start",
+          "candidates": [
+            "none",
+            "math"
+          ],
+          "chosen": "none",
+          "oracle": "none",
+          "correct": true,
+          "chosen_gain": 0.0,
+          "oracle_gain": 0.0,
+          "regret": 0.0
+        }
+      ]
+    },
+    "fixed_math": {
+      "mode": "fixed_math",
+      "n_targets": 6,
+      "n_multi_candidate": 3,
+      "accuracy": 0.1667,
+      "accuracy_multi": 0.0,
+      "avg_regret": 0.00875,
+      "avg_regret_multi": 0.0109,
+      "rows": [
+        {
+          "target": "gpqa-s926",
+          "kind": "champion",
+          "candidates": [
+            "none",
+            "math",
+            "contract",
+            "financial"
+          ],
+          "chosen": "math",
+          "oracle": "financial",
+          "correct": false,
+          "chosen_gain": -0.0015,
+          "oracle_gain": 0.0001,
+          "regret": 0.0016
+        },
+        {
+          "target": "hle-s921",
+          "kind": "champion",
+          "candidates": [
+            "none",
+            "math",
+            "contract",
+            "financial"
+          ],
+          "chosen": "math",
+          "oracle": "contract",
+          "correct": false,
+          "chosen_gain": -0.0044,
+          "oracle_gain": 0.01,
+          "regret": 0.0144
+        },
+        {
+          "target": "hle-s923",
+          "kind": "champion",
+          "candidates": [
+            "none",
+            "math",
+            "contract",
+            "financial"
+          ],
+          "chosen": "math",
+          "oracle": "contract",
+          "correct": false,
+          "chosen_gain": -0.0075,
+          "oracle_gain": 0.0092,
+          "regret": 0.0167
+        },
+        {
+          "target": "transfer_contract_to_math-s42",
+          "kind": "warm-start",
+          "candidates": [
+            "none",
+            "contract"
+          ],
+          "chosen": "none",
+          "oracle": "contract",
+          "correct": false,
+          "chosen_gain": 0.0,
+          "oracle_gain": 0.0002,
+          "regret": 0.0002
+        },
+        {
+          "target": "transfer_financial_to_math_gpt6-s42",
+          "kind": "warm-start",
+          "candidates": [
+            "none",
+            "financial"
+          ],
+          "chosen": "none",
+          "oracle": "none",
+          "correct": true,
+          "chosen_gain": 0.0,
+          "oracle_gain": 0.0,
+          "regret": 0.0
+        },
+        {
+          "target": "transfer_math_to_contract-s42",
+          "kind": "warm-start",
+          "candidates": [
+            "none",
+            "math"
+          ],
+          "chosen": "math",
+          "oracle": "none",
+          "correct": false,
+          "chosen_gain": -0.0196,
+          "oracle_gain": 0.0,
+          "regret": 0.0196
+        }
+      ]
+    }
+  },
+  "choice_variation": {
+    "pairwise_rank": {
+      "n_distinct_choices_multi": 2,
+      "choices": [
+        "contract",
+        "none"
+      ]
+    },
+    "fixed_learned": {
+      "n_distinct_choices_multi": 2,
+      "choices": [
+        "contract",
+        "none"
+      ]
+    }
+  },
+  "learned_constant_per_fold": [
+    "contract",
+    "none",
+    "none",
+    "none",
+    "none",
+    "none"
+  ]
+}
