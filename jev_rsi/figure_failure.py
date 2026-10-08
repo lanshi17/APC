@@ -34,6 +34,29 @@ RESULTS = Path(__file__).resolve().parent / "results"
 POLICIES = [("greedy", "#2b6cb0"), ("heuristic", "#d69e2e"), ("jev_static", "#c53030")]
 GROUPS_FOR_LABEL = 8
 
+# Fixed PDF timestamp so figures are byte-reproducible (see build()).
+# 22 chars, exactly like matplotlib's "D:YYYYMMDDHHMMSS+HH'MM'", so the
+# byte-level substitution in _strip_pdf_dates never shifts xref offsets.
+_EPOCH = "D:19700101000000+00'00'"
+
+
+def _strip_pdf_dates(path: Path) -> None:
+    """Remove any remaining wall-clock /CreationDate|/ModDate from a PDF.
+
+    ``savefig(metadata=...)`` suppresses matplotlib's own stamp on current
+    versions, but the key can also arrive via a third-party backend, so scrub
+    the bytes as a belt-and-braces pass.  Both the regexp and its replacement
+    are fixed-width, so the file length never changes.
+    """
+    import re
+    data = path.read_bytes()
+    fixed = re.sub(rb"/CreationDate\s*\(D:\d{14}[^)]*\)",
+                   b"/CreationDate (" + _EPOCH.encode() + b")", data)
+    fixed = re.sub(rb"/ModDate\s*\(D:\d{14}[^)]*\)",
+                   b"/ModDate (" + _EPOCH.encode() + b")", fixed)
+    if fixed != data:
+        path.write_bytes(fixed)
+
 
 def _collect() -> List[Dict[str, Any]]:
     h = Harness()
@@ -149,7 +172,13 @@ def build(out_dir: Path) -> Path:
 
     out_dir.mkdir(parents=True, exist_ok=True)
     path = out_dir / "fig1_failure_by_group.pdf"
-    fig.savefig(path, bbox_inches="tight")
+    # Determinism: matplotlib stamps the PDF /CreationDate with the wall clock,
+    # which makes an otherwise identical figure differ byte-for-byte between
+    # runs.  The whole artifact set for this project is meant to be reproducible
+    # byte-for-byte, so pin the metadata to a fixed epoch instead.
+    fig.savefig(path, bbox_inches="tight",
+                metadata={"CreationDate": _EPOCH, "ModDate": _EPOCH})
+    _strip_pdf_dates(path)
     plt.close(fig)
     return path
 
