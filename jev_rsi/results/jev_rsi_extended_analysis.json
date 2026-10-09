@@ -1298,6 +1298,8 @@
     "n_groups_captured_by_gaming": 0,
     "n_groups": 10,
     "mean_val_holdout_spearman": 0.5001,
+    "val_min": 0.0465,
+    "val_max": 0.3797,
     "arms": {
       "lead3": {
         "type": "baseline",
@@ -1329,6 +1331,32 @@
         "mean_val": 0.1211,
         "mean_holdout": 0.0856
       }
+    },
+    "by_type": {
+      "baseline": {
+        "mean_val": 0.2355,
+        "mean_holdout": 0.2246,
+        "n_arms": 1
+      },
+      "normal": {
+        "mean_val": 0.2013,
+        "mean_holdout": 0.2026,
+        "n_arms": 2
+      },
+      "gaming": {
+        "mean_val": 0.1391,
+        "mean_holdout": -0.0261,
+        "n_arms": 3
+      }
+    },
+    "val_variant_capture": {
+      "bertscore_raw_vs_article": 0,
+      "bertscore_raw_vs_reference": 0,
+      "bertscore_vs_reference": 0,
+      "rouge1_vs_reference": 0,
+      "rouge2_vs_reference": 0,
+      "rougeL_vs_article": 1,
+      "rougeL_vs_reference": 0
     },
     "rows": [
       {
@@ -1995,10 +2023,10 @@
         "poetic": 0.2,
         "child_like": 0.16
       },
-      "mean_spearman_val_rank": 0.5265,
+      "mean_spearman_val_rank": 0.526507,
       "n_groups_negative": 1
     },
-    "mean_val_holdout_spearman": 0.3458,
+    "mean_val_holdout_spearman": 0.34578,
     "rows": [
       {
         "gid": "caption_img_001",

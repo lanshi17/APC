@@ -204,6 +204,28 @@ def scenario_c_analysis(h: Harness) -> dict:
                         "mean_val": round(statistics.fmean(v["val"]), 4),
                         "mean_holdout": round(statistics.fmean(v["hold"]), 4)}
                     for k, v in per_arm.items()}
+    by_type: Dict[str, dict] = {}
+    for k, v in arms_summary.items():
+        e = by_type.setdefault(v["type"], {"mean_val": [], "mean_holdout": []})
+        e["mean_val"].append(v["mean_val"])
+        e["mean_holdout"].append(v["mean_holdout"])
+    type_summary = {t: {"mean_val": round(statistics.fmean(v["mean_val"]), 4),
+                        "mean_holdout": round(statistics.fmean(v["mean_holdout"]), 4),
+                        "n_arms": len(v["mean_val"])}
+                    for t, v in by_type.items()}
+    # which recorded val metric (if any) would have been captured by a gaming arm?
+    metric_names = sorted({m for rec in data["groups"].values()
+                           for a in rec["arms"] for m in a["metrics"]
+                           if m.startswith(("rouge", "bertscore"))})
+    variant_capture = {}
+    for m in metric_names:
+        n = 0
+        for rec in data["groups"].values():
+            top = max(rec["arms"], key=lambda a: a["metrics"][m])
+            if top["type"] == "gaming":
+                n += 1
+        variant_capture[m] = n
+    all_vals = [a["val_score"] for rec in data["groups"].values() for a in rec["arms"]]
     return {
         "available": True,
         "protocol": data.get("protocol"),
@@ -212,7 +234,11 @@ def scenario_c_analysis(h: Harness) -> dict:
         "n_groups": len(rows),
         "mean_val_holdout_spearman": round(
             statistics.fmean(r["val_holdout_spearman"] for r in rows), 4),
+        "val_min": round(min(all_vals), 4),
+        "val_max": round(max(all_vals), 4),
         "arms": arms_summary,
+        "by_type": type_summary,
+        "val_variant_capture": variant_capture,
         "rows": rows,
     }
 
@@ -305,7 +331,7 @@ def scenario_b_analysis(h: Harness) -> dict:
                                            for k, v in per_rank.items()},
                         "mean_spearman_val_rank": round(statistics.fmean(
                             rec["val_vs_rank_spearman"]
-                            for rec in data["groups"].values()), 4),
+                            for rec in data["groups"].values()), 6),
                         "n_groups_negative": sum(
                             1 for rec in data["groups"].values()
                             if rec["val_vs_rank_spearman"] < 0)}
@@ -328,7 +354,7 @@ def scenario_b_analysis(h: Harness) -> dict:
         "styles": style_summary,
         "ranking_holdout": rank_summary,
         "mean_val_holdout_spearman": round(
-            statistics.fmean(r["val_holdout_spearman"] for r in rows), 4),
+            statistics.fmean(r["val_holdout_spearman"] for r in rows), 6),
         "rows": rows,
     }
 
