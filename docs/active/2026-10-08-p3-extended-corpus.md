@@ -319,9 +319,9 @@ P3 没有发现任何新的胜场区间。
 |---|---|
 | `patch_manuscript.py` | 把 §5.6（Table 8/9/10）、摘要/引言/结论更新、Discussion 段落幂等插入 `negative-result.md`；锚点缺失或重复即报错 |
 | `verify_numbers.py` | 从 JSON 产物重新推导论文引用的 45 个数字，逐个在正文中查证，任一不符即失败 |
-| `make_supplementary.py` | 由结果 JSON 生成 `supplementary.md` → `supplementary.pdf`（6 页：协议、逐组表、诊断、标定、复现） |
-| `make_tmlr.py` | 复用论文自身 `build.py` 的 body 转换，换成 TMLR 前导（`jmlr.cls` + `tmlr.sty`）→ 15 页投稿版 |
-| `update_paper_docs.py` | 向 `RESULTS_ANALYSIS.md` §10、`EXPERIMENT_PROTOCOL.md` §5、`README_JEV_RSI.md` 追加 P3 章节 |
+| `make_supplementary.py` | 由结果 JSON 生成 `supplementary.md` → `supplementary.pdf`（7 页：协议、逐组表、诊断、标定、获胜特征、复现） |
+| `make_tmlr.py` | 复用论文自身 `build.py` 的 body 转换，换成 TMLR 前导（`jmlr.cls` + `tmlr.sty`），把 9 处 arXiv 号改写为 `\citep{}` 并以 `tmlr.bst` 生成文献表 → 15 页投稿版 |
+| `update_paper_docs.py` | 向 `RESULTS_ANALYSIS.md` §10、`EXPERIMENT_PROTOCOL.md` §5、`README_JEV_RSI.md` 追加 P3 章节，并在冻结语料主表处加指向 77 组全量结果的注 |
 | `install_week4.sh` | 一键执行上述全部步骤 + 备份 + 投稿包（`bash docs/paper_patch/install_week4.sh`） |
 
 产物落点：`manuscript_negative/negative-result.{md,tex,pdf}`（15 页）、
@@ -339,11 +339,19 @@ P3 没有发现任何新的胜场区间。
    草稿版式（`build.py` 生成）。原因是草稿版式便于阅读与批注，且
    `build.py` 的注释已说明"camera-ready 时替换前导"，故未覆盖原文件。
 
-**TMLR 构建的一个本地修补**：TeX Live 的 `jmlr.cls` 已定义
-`aftertitskip` / `beforetitskip` / `interauthorskip` / `aftermaketitskip`，
-而上游 `tmlr.sty` 用 `\newlength` 重复定义会导致编译中断。修补版（四处
-`\@ifundefined` 守卫）作为 `docs/paper_patch/vendor/tmlr.sty` 入库，
-`make_tmlr.py` 会在下载的上游副本上自动施加同一补丁。
+**TMLR 构建的两个本地修补**（均入库 `docs/paper_patch/vendor/`）：
+
+1. TeX Live 的 `jmlr.cls` 已定义 `aftertitskip` / `beforetitskip` /
+   `interauthorskip` / `aftermaketitskip`，而上游 `tmlr.sty` 用 `\newlength`
+   重复定义会导致编译中断。修补版（四处 `\@ifundefined` 守卫）作为
+   `docs/paper_patch/vendor/tmlr.sty` 入库，`make_tmlr.py` 会在下载的上游副本上
+   自动施加同一补丁。
+2. `jmlr.cls` 在导言区声明 `plainnat.bst`，与正文的
+   `\bibliographystyle{tmlr}` 冲突——BibTeX 报 "Illegal, another `\bibstyle`
+   command" 后回退到 plainnat，正文 9 处引用全部渲染成 `(?)`。
+   `make_tmlr.py` 在首次 pdflatex 后清掉 `.aux` 中多余的 `\bibstyle` 行，
+   再按 pdflatex → bibtex → pdflatex ×2 固定跑四遍（latexmk 在 bbl 刚生成后
+   不会重跑 LaTeX）。文献库为 `vendor/references.bib`，样式 `vendor/tmlr.bst`。
 
 **复现论文数字**：
 
