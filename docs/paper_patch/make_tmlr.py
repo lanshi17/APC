@@ -54,15 +54,36 @@ PREAMBLE = r"""% jmlr.cls loads hyperref itself, so pass our option before the c
 
 
 def ensure_style() -> pathlib.Path:
-    """tmlr.sty must sit next to the .tex for latexmk to find it."""
+    r"""Make sure a *patched* tmlr.sty sits next to the .tex.
+
+    TeX Live's jmlr.cls already defines four title-spacing lengths that upstream
+    tmlr.sty re-creates with \newlength, so the stock file aborts the build.  We
+    ship the two-line guard patch in docs/paper_patch/vendor/tmlr.sty and fall
+    back to downloading + patching upstream when the vendored copy is absent.
+    """
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     dst = OUT_DIR / "tmlr.sty"
-    if dst.exists() and dst.stat().st_size > 2000:
-        return dst
-    r = subprocess.run(["curl", "-sSL", "-o", str(dst), STYLE_SRC],
-                       capture_output=True, text=True)
-    if r.returncode or dst.stat().st_size < 2000:
-        raise SystemExit(f"could not obtain tmlr.sty ({r.stderr.strip()})")
+    src = pathlib.Path(__file__).resolve().parent / "vendor" / "tmlr.sty"
+    if not dst.exists():
+        if src.exists():
+            shutil.copy2(src, dst)
+        else:
+            r = subprocess.run(["curl", "-sSL", "-o", str(dst), STYLE_SRC],
+                               capture_output=True, text=True)
+            if r.returncode or dst.stat().st_size < 2000:
+                raise SystemExit(f"could not obtain tmlr.sty ({r.stderr.strip()})")
+    s = dst.read_text(encoding="utf-8")
+    if "\@ifundefined{aftertitskip}" not in s:
+        unpatched = ("\\newlength\\aftertitskip     \\newlength\\beforetitskip\n"
+                     "\\newlength\\interauthorskip  \\newlength\\aftermaketitskip")
+        if unpatched not in s:
+            raise SystemExit("tmlr.sty has an unexpected layout; review the patch")
+        patched = "\n".join(
+            f"\\@ifundefined{{{n}}}{{\\newlength\\{n}}}{{}}"
+            for n in ("aftertitskip", "beforetitskip", "interauthorskip",
+                      "aftermaketitskip"))
+        dst.write_text(s.replace(unpatched, patched), encoding="utf-8")
+        print("patched freshly downloaded tmlr.sty")
     return dst
 
 
