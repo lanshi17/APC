@@ -305,5 +305,53 @@ P3 没有发现任何新的胜场区间。
    臂的 ROUGE-L 都低于 0.35，于是 25 组被判为"collapse 组"。这是尺度伪影，
    已由 5.3 的 calibration 表说明，未用于任何结论。
 6. **图片版权**：Flickr30k 图片按其研究用途引用，未再分发到论文仓库。
-7. **未做**：论文正文/LaTeX 整合（P1–P4）需要 `02_apc_paper` 写权限；
-   `qwen3.8-27b` 仅用于 judge 方差探针，未跑全量第二模型对照。
+7. **`qwen3.8-27b` 仅用于 judge 方差探针**，未跑全量第二模型对照（成本与计划
+   时间盒不成比例；探针已足以否定"judge 高方差"这一前提）。
+
+---
+
+## 7. Week 4：论文整合与投稿包（2026-10-09 完成）
+
+论文正文的整合由本仓库的 `docs/paper_patch/` 工具产出，全部改动写入
+`02_apc_paper`（论文仓库），本仓库不保存稿件副本：
+
+| 脚本 | 作用 |
+|---|---|
+| `patch_manuscript.py` | 把 §5.6（Table 8/9/10）、摘要/引言/结论更新、Discussion 段落幂等插入 `negative-result.md`；锚点缺失或重复即报错 |
+| `verify_numbers.py` | 从 JSON 产物重新推导论文引用的 45 个数字，逐个在正文中查证，任一不符即失败 |
+| `make_supplementary.py` | 由结果 JSON 生成 `supplementary.md` → `supplementary.pdf`（6 页：协议、逐组表、诊断、标定、复现） |
+| `make_tmlr.py` | 复用论文自身 `build.py` 的 body 转换，换成 TMLR 前导（`jmlr.cls` + `tmlr.sty`）→ 15 页投稿版 |
+| `update_paper_docs.py` | 向 `RESULTS_ANALYSIS.md` §10、`EXPERIMENT_PROTOCOL.md` §5、`README_JEV_RSI.md` 追加 P3 章节 |
+| `install_week4.sh` | 一键执行上述全部步骤 + 备份 + 投稿包（`bash docs/paper_patch/install_week4.sh`） |
+
+产物落点：`manuscript_negative/negative-result.{md,tex,pdf}`（15 页）、
+`manuscript_negative/supplementary.{md,pdf}`、`manuscript_negative/tmlr/`、
+`manuscript_negative/code.zip`、`submission_tmlr/`（投稿包：TMLR PDF/TEX、
+补充材料、`README_reproduce.md`、`code.zip`）。
+
+**与计划的两处落点偏差（已在论文仓库跟踪表中记录）**：
+
+1. 计划写"主表更新为 78 组"，实际做法是**保留冻结语料的 Table 1**，另加
+   Table 8 给出三场景 + 77 决策组合计——改写既有主表会让 §5.1–5.5 的全部数字
+   失去上下文。计划中的 78 与 70 本身也是计划方 43+10+20+15 / 决策组数的算术
+   误差，实测为 88 组 / 77 决策组（`scripts/p3_acceptance.py` 同时报告两者）。
+2. TMLR 版式落在 `manuscript_negative/tmlr/`，`negative-result.tex` 仍是
+   草稿版式（`build.py` 生成）。原因是草稿版式便于阅读与批注，且
+   `build.py` 的注释已说明"camera-ready 时替换前导"，故未覆盖原文件。
+
+**TMLR 构建的一个本地修补**：TeX Live 的 `jmlr.cls` 已定义
+`aftertitskip` / `beforetitskip` / `interauthorskip` / `aftermaketitskip`，
+而上游 `tmlr.sty` 用 `\newlength` 重复定义会导致编译中断。修补版（四处
+`\@ifundefined` 守卫）作为 `docs/paper_patch/vendor/tmlr.sty` 入库，
+`make_tmlr.py` 会在下载的上游副本上自动施加同一补丁。
+
+**复现论文数字**：
+
+```bash
+cd .                                   # 代码仓库
+python -m jev_rsi.experiments --corpus frozen    # 冻结产物逐字节不变
+python -m jev_rsi.analysis_extended
+python -m jev_rsi.experiments --corpus extended
+python scripts/p3_acceptance.py                  # 10 pass / 1 partial / 1 fail
+python docs/paper_patch/verify_numbers.py --md ../02_apc_paper/manuscript_negative/negative-result.md
+```
