@@ -57,26 +57,15 @@ APC/
 │       ├── storage/      # SQLAlchemy 仓储 + SQLite
 │       └── transfer/     # CapabilityDelta 模型迁移
 ├── configs/              # Task / Model / Genome / Optimizer 配置
-│   ├── tasks/            # financial_analysis.yaml 等 + external_math/mcq
-│   ├── models/           # glm / qwen / gpt / gpt6 / gpt56terra(不含密钥)
+│   ├── tasks/            # financial_analysis.yaml(财务报告分析)
+│   ├── models/           # glm.yaml / qwen.yaml / gpt.yaml(不含密钥)
 │   ├── genomes/          # base.json 基础基因组
 │   └── optimizer/        # default.yaml(3 代 × 20 候选 × 预算 100)
 ├── probes/v1/            # 15 个模型能力探针 YAML
 ├── datasets/             # dev / validation / holdout / perturbation
-├── scripts/              # 实验与分析脚本
-│   ├── bench/            # 基准评测(bench_*、auto_apc_gate、eval_robustness)
-│   ├── datasets/         # 数据集生成与合并(gen_*、merge_*、prepare_*)
-│   ├── analysis/         # 结果分析(analyze_*、compare_*)
-│   └── judge/            # 评测器校验与重判(test_external_judge 等)
-├── experiments/          # 实验结果 JSON(apcbench/ 为主要结果库)
-├── jev_rsi/              # JEV+RSI 元学习实验模块
 ├── artifacts/            # 编译产物、输出、评测、画像、迁移报告
-├── data/                 # SQLite 运行数据库(gitignore)
-└── docs/                 # 文档索引见 docs/README.md
-    ├── PRD-APC.md        # 产品需求文档(v1.0)
-    ├── REPRODUCE.md      # 完整复现序列
-    ├── active/           # 进行中:计划与状态跟踪
-    └── archive/          # 已完成快照
+├── tests/               # 集成测试入口(目录保留)
+└── PRD-APC.md            # 产品需求文档(v1.0)
 ```
 
 ## 快速开始
@@ -140,21 +129,21 @@ apc migrate run --task financial_report_analysis_v1 --source-model glm --target-
 
 ```bash
 # 主对比 4 臂:zero-shot / manual / apc-full(rule-root) / apc-safe(base-root),同判分口径
-.venv/bin/python scripts/bench/bench_real_full.py --task contract --model qwen
-.venv/bin/python scripts/bench/bench_real_full.py --task financial --methods apc-safe  # 单臂增量合并
+.venv/bin/python scripts/bench_real_full.py --task contract --model qwen
+.venv/bin/python scripts/bench_real_full.py --task financial --methods apc-safe  # 单臂增量合并
 # 跨任务 genome 迁移三臂:cold / transfer-0(零适配) / transfer-ws(续搜)
-.venv/bin/python scripts/bench/bench_real_transfer.py --source contract --target math --model qwen
+.venv/bin/python scripts/bench_real_transfer.py --source contract --target math --model qwen
 # 扰动鲁棒性(4 genome × financial perturbation 集)与 LLM-Judge 一致性抽检
-.venv/bin/python scripts/bench/bench_real_robust.py --task financial --n 20
-.venv/bin/python scripts/judge/real_judge_check.py --task financial --genome champ
+.venv/bin/python scripts/bench_real_robust.py --task financial --n 20
+.venv/bin/python scripts/real_judge_check.py --task financial --genome champ
 # 汇总结果表
-.venv/bin/python scripts/analysis/analyze_real.py
+.venv/bin/python scripts/analyze_real.py
 ```
 
 结果入库 `experiments/apcbench/real_*.json`,冠军 genome 入库 `artifacts/optimizations/real_*_champ*.json`。
 真实模型发现(F1–F11:饱和天花板、规则先验负债、GEPA/ESPO 官方基线对垒全平、token-starved
 判别实验、HLE-exact 高难对垒与 headroom 类型学、GPQA-Diamond 第二数据集复认)以实验 JSON 为准;
-完整复现序列(离线层 + 真实 API 层、断点续跑与配对同日等坑位注记)见 [REPRODUCE.md](docs/REPRODUCE.md)。
+完整复现序列(离线层 + 真实 API 层、断点续跑与配对同日等坑位注记)见 [REPRODUCE.md](REPRODUCE.md)。
 
 ### 4. LangGraph 可视化
 

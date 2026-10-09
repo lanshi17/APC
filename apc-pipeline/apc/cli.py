@@ -92,7 +92,7 @@ def _probe_suite(suite: str) -> pathlib.Path:
 
 
 @task_app.command("validate")
-def validate_task(config: str = typer.Option(str(_REPO_ROOT / "configs" / "tasks" / "financial_analysis.yaml"), "--config")):
+def validate_task(config: str = typer.Option("configs/tasks/financial_analysis.yaml", "--config")):
     from apc.core.task_spec import TaskSpec
 
     spec = TaskSpec.from_yaml(_resolve_task(config))
@@ -162,7 +162,7 @@ def build_profile(model: str = typer.Option(..., "--model"),
 @prompt_app.command("compile")
 def compile_prompt(task: str = typer.Option(..., "--task"),
                    model: str = typer.Option(..., "--model"),
-                   genome: str = typer.Option(str(_REPO_ROOT / "configs" / "genomes" / "base.json"), "--genome")):
+                   genome: str = typer.Option("configs/genomes/base.json", "--genome")):
     from apc.compiler.renderer import DefaultPromptCompiler
     from apc.core.genome import PromptGenome
     from apc.core.task_spec import TaskSpec
@@ -282,7 +282,7 @@ def _run_optimization(task_path: pathlib.Path, model: str, genome_path: pathlib.
 @opt_app.command("run")
 def run_optimize(task: str = typer.Option(..., "--task"),
                  model: str = typer.Option(..., "--model"),
-                 genome: str = typer.Option(str(_REPO_ROOT / "configs" / "genomes" / "base.json"), "--genome"),
+                 genome: str = typer.Option("configs/genomes/base.json", "--genome"),
                  budget: int = typer.Option(100, "--budget"),
                  seed: int = typer.Option(42, "--seed")):
     """进化搜索：变异只动 search_space，dev 淘汰 / validation 精英排序（FR-6）。"""

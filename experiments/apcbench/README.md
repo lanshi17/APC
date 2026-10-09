@@ -28,9 +28,9 @@
 ## 运行方法
 
 ```bash
-.venv/bin/python scripts/bench/bench_apc.py [BUDGET]   # 默认 100；输出 bench_results_b{BUDGET}.json
-.venv/bin/python scripts/bench/bench_transfer.py       # 迁移矩阵 → transfer_results.json
-.venv/bin/python scripts/analysis/analyze_bench.py        # 配对 bootstrap → summary.json
+.venv/bin/python scripts/bench_apc.py [BUDGET]   # 默认 100；输出 bench_results_b{BUDGET}.json
+.venv/bin/python scripts/bench_transfer.py       # 迁移矩阵 → transfer_results.json
+.venv/bin/python scripts/analyze_bench.py        # 配对 bootstrap → summary.json
 ```
 
 ## 主要结果（`summary.json`，b100，15 runs/方法）
@@ -46,7 +46,7 @@
 
 - 任务配置 `configs/tasks/contract_extraction.yaml`；数据
   `datasets/contract_extraction/`（dev 40 / validation 30 / holdout 30，
-  生成器 `scripts/datasets/gen_contract_dataset.py` 种子 20260908）。
+  生成器 `scripts/gen_contract_dataset.py` 种子 20260908）。
 - 仿真：`_contract_json` 与财务任务共用 `_prompt_skill` 基因动力学
   （同增益/亲和/饱和表），不同领域抽取逻辑；评测用任务内 Judge
   （parties 召回/amount 等值/date 精确/义务 bigram-F1/置信度接近）+
@@ -62,15 +62,15 @@
 - 全方法下降 ≈ −0.010（与 genome 无关的数据偏移）；无证据表明搜索冠军更脆弱。
 
 ```bash
-.venv/bin/python scripts/bench/bench_contract.py  # 合同任务 → contract_results.json
-.venv/bin/python scripts/bench/eval_robustness.py # 扰动评测 → robustness_results.json
+.venv/bin/python scripts/bench_contract.py  # 合同任务 → contract_results.json
+.venv/bin/python scripts/eval_robustness.py # 扰动评测 → robustness_results.json
 ```
 
 ## 任务 C：数学应用题（第三任务，b50，9 runs/方法）
 
 - 任务配置 `configs/tasks/math_reasoning.yaml`；数据
   `datasets/math_reasoning/`（dev 40 / validation 30 / holdout 30，
-  生成器 `scripts/datasets/gen_math_dataset.py` 种子 20260909；整数安全三题型：
+  生成器 `scripts/gen_math_dataset.py` 种子 20260909；整数安全三题型：
   求和/打折/平均，文档仅含解题数字）。
 - 仿真：`_math_json` 共用 `_prompt_skill`；按题型关键字精确求解；
   步骤通道（无推理脚手架只给 1 步，约束要求 ≥2 步）。
@@ -79,7 +79,7 @@
   （manual 强）；pgam − full 0.0000。
 - 跨任务 pooled（pgam−uniform，n=33）：+0.0004 [0.0000, 0.0008]，零结果。
 
-## 真实 LLM 烟囱（`scripts/bench/bench_real.py`）
+## 真实 LLM 烟囱（`scripts/bench_real.py`）
 
 同口径 2 样本链路（factory → client → runner → scorer），
 无凭证时明确 SKIP，有 key 后即跑。
@@ -88,7 +88,7 @@
 
 - 任务配置 `configs/tasks/constraint_following.yaml`；数据
   `datasets/constraint_following/`（dev 40 / validation 30 / holdout 30，
-  生成器 `scripts/datasets/gen_follow_dataset.py` 种子 20260910；
+  生成器 `scripts/gen_follow_dataset.py` 种子 20260910；
   20 主题 × 8 背景 × 3 口吻 × 2 句数 = 960 候选，防去重死锁）。
 - 仿真：`_follow_json` 任务内动力学（关键词/句数/数字三通道），激活
   instructions/constraints 位点；评测用任务内 Judge + 同权重 TrialScorer。
@@ -99,7 +99,7 @@
 - 跨任务 pooled（pgam−uniform，n=42）：+0.0004 [−0.0029, +0.0040]，零结果。
 
 ```bash
-.venv/bin/python scripts/bench/bench_follow.py  # 约束任务 → follow_results.json
+.venv/bin/python scripts/bench_follow.py  # 约束任务 → follow_results.json
 ```
 
 ## 任务 D 消融：SHA 分解（b50，n=9/方法）
