@@ -73,7 +73,7 @@ def ensure_style() -> pathlib.Path:
             if r.returncode or dst.stat().st_size < 2000:
                 raise SystemExit(f"could not obtain tmlr.sty ({r.stderr.strip()})")
     s = dst.read_text(encoding="utf-8")
-    if "\@ifundefined{aftertitskip}" not in s:
+    if r"\@ifundefined{aftertitskip}" not in s:
         unpatched = ("\\newlength\\aftertitskip     \\newlength\\beforetitskip\n"
                      "\\newlength\\interauthorskip  \\newlength\\aftermaketitskip")
         if unpatched not in s:
