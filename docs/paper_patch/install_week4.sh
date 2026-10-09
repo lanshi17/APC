@@ -59,6 +59,7 @@ run cp "$MANU/supplementary.pdf" "$SUBMIT/"
 run cp "$PP/README_reproduce.md" "$SUBMIT/"
 if git -C "$CODE" diff --quiet && git -C "$CODE" diff --cached --quiet; then
   run bash "$PAPER/make_anon_bundle.sh" "$SUBMIT/code.zip"
+  run cp "$SUBMIT/code.zip" "$MANU/code.zip"
 else
   echo "!! code repo has uncommitted changes -- code.zip would miss them;" \
        "commit first, then re-run step 6" >&2

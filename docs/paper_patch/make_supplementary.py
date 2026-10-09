@@ -222,7 +222,42 @@ def main() -> int:
                for k, v in sens.items()]) + "\n")
 
     # ---------------------------------------------------------------- S6
-    ap_("# S6. Reproduction\n")
+    bc = ana["boundary_conditions"]
+    ap_("# S6. Where the gate beats validation argmax\n")
+    ap_(f"Across the 77 decision groups the gate wins **{len(bc['wins'])}**, loses "
+        f"**{len(bc['losses'])}** and ties **{len(bc['ties'])}**. The wins and losses "
+        f"have opposite signatures, and both are useful for a practitioner.\n")
+    ap_(table(["Scenario", "Wins", "Losses", "Ties"],
+              [[k, v["wins"], v["losses"], v["ties"]]
+               for k, v in bc["by_scenario"].items()]) + "\n")
+    ap_("**Win profile.** Every win is a case where the arm the gate retreated to "
+        "was, in hindsight, the better arm; the retreat reason is always "
+        "`low_val_alignment` and the arm is a designated safe arm "
+        "(`zero_shot` / `zero-shot`).\n")
+    ap_(table(["Group", "Scenario", "Argmax arm", "Gate arm", "Reason",
+               "Argmax regret", "Gate regret", "Gain"],
+              [[w["gid"], w["scenario"], w["greedy_arm"], w["jev_arm"],
+                w["jev_reason"], f(w["greedy_regret"], 4), f(w["jev_regret"], 4),
+                f(w["delta"], 4)] for w in bc["wins"]]) + "\n")
+    ap_("**Loss profile.** Losses are dominated by the two mechanisms of the main "
+        "text: an unsafe fallback and a mis-scaled threshold. The ten largest are:\n")
+    big = sorted(bc["losses"], key=lambda r: r["delta"])[:10]
+    ap_(table(["Group", "Scenario", "Argmax arm", "Gate arm", "Reason",
+               "Argmax regret", "Gate regret", "Loss"],
+              [[r["gid"], r["scenario"], r["greedy_arm"], r["jev_arm"],
+                r["jev_reason"], f(r["greedy_regret"], 4), f(r["jev_regret"], 4),
+                f(abs(r["delta"]), 4)] for r in big]) + "\n")
+    reasons: dict[str, int] = {}
+    for r in bc["losses"]:
+        reasons[r["jev_reason"]] = reasons.get(r["jev_reason"], 0) + 1
+    ap_("Loss reasons: "
+        + ", ".join(f"`{k}` × {v}" for k, v in sorted(reasons.items(),
+                                                       key=lambda kv: -kv[1]))
+        + ". The gate is never wrong because it followed the validation signal: "
+          "every loss is a retreat it did not need to make.\n")
+
+    # ---------------------------------------------------------------- S7
+    ap_("# S7. Reproduction\n")
     ap_("```bash\n"
         "cd code\n"
         "python -m jev_rsi.corpus_extended.fetch_sources cnn_dailymail --n 10\n"

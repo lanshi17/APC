@@ -313,6 +313,36 @@ PATCHES = [
     ("reproducibility", REPRO_ANCHOR, REPRO_ADD),
 ]
 
+# Independent, idempotent edits (each checked by its own marker) so they can be
+# applied to a manuscript that already carries the main patch above.
+TABLE1_OLD = """**Table 1. Deployment outcomes over 32 decision groups.**
+Regret is (oracle \u2212 deployed) on the holdout slice; lower is better."""
+TABLE1_NEW = """**Table 1. Deployment outcomes over the frozen corpus (32 decision groups).**
+Regret is (oracle \u2212 deployed) on the holdout slice; lower is better.
+Full-corpus totals over all 77 deployment decisions, including the 45 groups of
+\u00a75.6, are in **Table 8**."""
+
+POST_EDITS = [
+    ("table 1 -> table 8 pointer", TABLE1_OLD, TABLE1_NEW,
+     "Full-corpus totals over all 77 deployment decisions"),
+]
+
+
+def apply_post(text: str) -> tuple[str, list[str]]:
+    log: list[str] = []
+    for name, old, new, marker in POST_EDITS:
+        if marker in text:
+            log.append(f"already applied: {name}")
+            continue
+        if old not in text:
+            log.append(f"skipped (anchor missing): {name}")
+            continue
+        if text.count(old) != 1:
+            raise SystemExit(f"anchor for {name!r} is not unique ({text.count(old)}x)")
+        text = text.replace(old, new, 1)
+        log.append(f"applied: {name}")
+    return text, log
+
 
 def apply(text: str, dry_run: bool = False) -> tuple[str, list[str]]:
     log: list[str] = []
@@ -349,6 +379,8 @@ def main() -> int:
         return 1
     src = md.read_text(encoding="utf-8")
     out, log = apply(src, args.dry_run)
+    out, log2 = apply_post(out)
+    log += log2
     for line in log:
         print(" -", line)
     if args.dry_run or out == src:

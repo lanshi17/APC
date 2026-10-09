@@ -141,6 +141,37 @@ TARGETS = [("RESULTS_ANALYSIS.md", RESULTS),
            ("EXPERIMENT_PROTOCOL.md", PROTOCOL),
            ("README_JEV_RSI.md", README)]
 
+NOTE = ("*(Frozen corpus. Full-corpus totals over the 77 decision groups of the P3 "
+        "extension are in \u00a710 below.)*")
+
+# Surgical pointers so the frozen-corpus tables are not mistaken for the whole
+# corpus.  Each is applied at most once, keyed on the note text itself.
+POST_EDITS = [
+    ("RESULTS_ANALYSIS.md", "### 3.1 Performance Comparison (32 Decision Groups)",
+     "### 3.1 Performance Comparison (32 Decision Groups)\n\n" + NOTE),
+    ("README_JEV_RSI.md", "### Main Results (32 Decision Groups)",
+     "### Main Results (32 Decision Groups)\n\n" + NOTE),
+]
+
+
+def apply_pointers(root: pathlib.Path) -> list[str]:
+    log = []
+    for name, old, new in POST_EDITS:
+        p = root / name
+        if not p.exists():
+            log.append(f"skip (missing): {name}")
+            continue
+        s = p.read_text(encoding="utf-8")
+        if NOTE in s:
+            log.append(f"already pointed: {name}")
+            continue
+        if s.count(old) != 1:
+            log.append(f"skip (anchor not unique/absent): {name}")
+            continue
+        p.write_text(s.replace(old, new, 1), encoding="utf-8")
+        log.append(f"pointer added: {name}")
+    return log
+
 
 def main() -> int:
     ap = argparse.ArgumentParser()
@@ -162,6 +193,8 @@ def main() -> int:
             continue
         p.write_text(s.rstrip("\n") + "\n" + block, encoding="utf-8")
         print(f"updated: {name} (+{len(block)} chars)")
+    for line in apply_pointers(root):
+        print(line)
     return 0
 
 

@@ -53,6 +53,48 @@ PREAMBLE = r"""% jmlr.cls loads hyperref itself, so pass our option before the c
 """
 
 
+# Inline identifiers used in the manuscript -> BibTeX keys in vendor/references.bib.
+# natbib prints author-year, so the surrounding prose is unchanged.
+CITE_MAP = [
+    ("(Feurer et al., NeurIPS 2015)", " \\citep{feurer2015autosklearn}"),
+    ("(1603.06560)", " \\citep{li2018hyperband}"),
+    ("(1807.01774)", " \\citep{falkner2018bohb}"),
+    ("(1611.01578)", " \\citep{zoph2017nas}"),
+    ("(1703.03400)", " \\citep{finn2017maml}"),
+    ("(1908.00709)", " \\citep{he2019automlsurvey}"),
+    ("(1907.06902)", " \\citep{dacrema2019worrying}"),
+    ("(1709.06560)", " \\citep{henderson2018matters}"),
+    ("(1909.03004)", " \\citep{wang2019showyourwork}"),
+]
+
+
+def to_bibtex_citations(body: str) -> tuple[str, int]:
+    """Rewrite ``(1603.06560)``-style mentions into natbib citations."""
+    n = 0
+    for old, new in CITE_MAP:
+        if old in body:
+            n += body.count(old)
+            body = body.replace(old, new)
+    return body, n
+
+
+def to_bibliography(body: str) -> str:
+    """Swap the hand-written reference list for ``\bibliography{references}``.
+
+    The markdown keeps a plain numbered list so the draft build needs no BibTeX;
+    the TMLR build replaces that block (which pandoc emits as its own section,
+    between ``References`` and the appendix) with a generated one.
+    """
+    start = body.find("\\section{References}")
+    if start < 0:
+        return body
+    nxt = body.find("\\section{", start + 1)
+    end = len(body) if nxt < 0 else nxt
+    return (body[:start]
+            + "\\bibliographystyle{tmlr}\n\\bibliography{references}\n\n"
+            + body[end:])
+
+
 def ensure_style() -> pathlib.Path:
     r"""Make sure a *patched* tmlr.sty sits next to the .tex.
 
@@ -62,8 +104,14 @@ def ensure_style() -> pathlib.Path:
     back to downloading + patching upstream when the vendored copy is absent.
     """
     OUT_DIR.mkdir(parents=True, exist_ok=True)
+    vendor = pathlib.Path(__file__).resolve().parent / "vendor"
+    for extra in ("tmlr.bst", "references.bib"):
+        target, source = OUT_DIR / extra, vendor / extra
+        if source.exists() and (not target.exists()
+                                or target.read_bytes() != source.read_bytes()):
+            shutil.copy2(source, target)
     dst = OUT_DIR / "tmlr.sty"
-    src = pathlib.Path(__file__).resolve().parent / "vendor" / "tmlr.sty"
+    src = vendor / "tmlr.sty"
     if not dst.exists():
         if src.exists():
             shutil.copy2(src, dst)
@@ -115,6 +163,9 @@ def main() -> int:
         lambda m: "\\texttt{" + m.group(1).replace("/", "/\\allowbreak{}")
         .replace("_", "_\\allowbreak{}") + "}", body)
     body = body.replace("@@SECT@@", "\\S{}")
+    body, n_cites = to_bibtex_citations(body)
+    body = to_bibliography(body)
+    print(f"citations: {n_cites} inline identifiers -> \\citep{{}}")
     tex = build.clean_unicode(
         PREAMBLE.replace("%TITLE%", TITLE) + build.lt2tab(body)) + "\n\\end{document}\n"
     out_tex = OUT_DIR / "negative-result-tmlr.tex"
@@ -126,22 +177,60 @@ def main() -> int:
     ensure_style()
     if args.body_only:
         return 0
-    if not shutil.which("latexmk"):
-        print("latexmk missing -- not compiling", file=sys.stderr)
-        return 0
-    r = subprocess.run(["latexmk", "-pdf", "-interaction=nonstopmode",
-                        "-halt-on-error", out_tex.name],
-                       cwd=OUT_DIR, capture_output=True, text=True,
-                       env={**os.environ, "TMPDIR": "/tmp"})
-    if r.returncode != 0:
-        print(r.stdout[-3000:], file=sys.stderr)
-        return r.returncode
+    for tool in ("pdflatex", "bibtex"):
+        if not shutil.which(tool):
+            print(f"{tool} missing -- not compiling", file=sys.stderr)
+            return 0
+
+    # Explicit sequence: latexmk's dependency heuristics stop before re-reading a
+    # freshly written .bbl, which leaves every \citep as "(?)".  Four fixed passes
+    # are slower by a second and deterministic.
+    env = {**os.environ, "TMPDIR": "/tmp"}
     pdf = out_tex.with_suffix(".pdf")
+    pdf.unlink(missing_ok=True)
+    runs = [["pdflatex", "-interaction=nonstopmode", "-halt-on-error", out_tex.name],
+            None,  # aux fix-up + bibtex, handled below
+            ["pdflatex", "-interaction=nonstopmode", out_tex.name],
+            ["pdflatex", "-interaction=nonstopmode", out_tex.name]]
+    for cmd in runs:
+        if cmd is None:
+            # jmlr.cls asks for plainnat.bst in the preamble and the body asks for
+            # tmlr.bst; BibTeX refuses two \bibstyle lines ("Illegal, another
+            # \bibstyle command") and falls back to the wrong style, which leaves
+            # every citation undefined.  Keep the last one -- ours.
+            aux = OUT_DIR / f"{out_tex.stem}.aux"
+            if aux.exists():
+                lines = aux.read_text(encoding="utf-8").splitlines()
+                styles = [i for i, l in enumerate(lines) if l.startswith("\\bibstyle")]
+                for i in reversed(styles[:-1]):
+                    del lines[i]
+                aux.write_text("\n".join(lines) + "\n", encoding="utf-8")
+                if len(styles) > 1:
+                    print(f"aux: dropped {len(styles) - 1} conflicting \\bibstyle line(s)")
+            r = subprocess.run(["bibtex", out_tex.stem], cwd=OUT_DIR,
+                               capture_output=True, text=True, env=env)
+            if r.returncode != 0:
+                print("bibtex failed", file=sys.stderr)
+                print((r.stdout or "")[-2000:], file=sys.stderr)
+                return r.returncode
+            continue
+        r = subprocess.run(cmd, cwd=OUT_DIR, capture_output=True, text=True, env=env)
+        if r.returncode != 0:
+            print(f"{cmd[0]} failed (exit {r.returncode})", file=sys.stderr)
+            print((r.stdout or "")[-3000:], file=sys.stderr)
+            return r.returncode
+    if not pdf.exists():
+        print("no PDF produced", file=sys.stderr)
+        return 1
+    log = (OUT_DIR / f"{out_tex.stem}.log").read_text(encoding="utf-8", errors="ignore")
+    if "There were undefined citations" in log:
+        print("warning: undefined citations remain in the TMLR build", file=sys.stderr)
     info = subprocess.run(["pdfinfo", str(pdf)], capture_output=True, text=True)
     pages = next((l.split()[-1] for l in info.stdout.splitlines()
                   if l.startswith("Pages")), "?")
     print(f"wrote {pdf} ({pages} pages)")
-    for pat in ("*.aux", "*.log", "*.fls", "*.fdb_latexmk", "*.out", "*.bbl", "*.blg"):
+    # keep the .bbl (submissions are often compiled without BibTeX), drop the rest
+    for pat in ("*.aux", "*.log", "*.fls", "*.fdb_latexmk", "*.out", "*.blg"):
         for f in OUT_DIR.glob(pat):
             f.unlink(missing_ok=True)
     return 0
