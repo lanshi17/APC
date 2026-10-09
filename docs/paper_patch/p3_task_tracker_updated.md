@@ -97,7 +97,7 @@
 ## 🔁 复现
 
 ```bash
-cd /mnt/data/Projects/DataScience/Analysis/02_APC
+cd ../02_APC        # the code repository (sibling of this paper repo)
 python -m jev_rsi.corpus_extended.build_scenario_{a,b,c}   # 命中磁盘缓存，无 API 花费
 python -m jev_rsi.experiments --corpus extended
 python -m jev_rsi.analysis_extended
