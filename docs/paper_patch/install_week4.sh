@@ -55,6 +55,10 @@ say "6. submission package"
 run mkdir -p "$SUBMIT"
 run cp "$MANU/tmlr/negative-result-tmlr.pdf" "$SUBMIT/"
 run cp "$MANU/tmlr/negative-result-tmlr.tex" "$SUBMIT/"
+# the bibliography trio, so the submitted .tex compiles standalone
+run cp "$MANU/tmlr/references.bib" "$SUBMIT/"
+run cp "$MANU/tmlr/tmlr.bst" "$SUBMIT/"
+run cp "$MANU/tmlr/negative-result-tmlr.bbl" "$SUBMIT/"
 run cp "$MANU/supplementary.pdf" "$SUBMIT/"
 run cp "$PP/README_reproduce.md" "$SUBMIT/"
 if git -C "$CODE" diff --quiet && git -C "$CODE" diff --cached --quiet; then

@@ -120,7 +120,7 @@ python docs/paper_patch/verify_numbers.py                  # 论文数字对账
 | `manuscript_negative/negative-result.pdf`（11+ 页） | `manuscript_negative/negative-result.pdf`（**15 页**） | ✅ |
 | `manuscript_negative/negative-result.tex`（TMLR 格式） | `manuscript_negative/tmlr/negative-result-tmlr.tex` + `references.bib` + `tmlr.bst`（TMLR 版式与 natbib 文献表）；`negative-result.tex` 保留草稿版式 | ✅（落点偏差见下） |
 | `manuscript_negative/supplementary.pdf` | `manuscript_negative/supplementary.pdf`（**7 页**，全部表格由结果 JSON 自动生成） | ✅ |
-| `manuscript_negative/code.zip` | `manuscript_negative/code.zip` = `submission_tmlr/code.zip`（2.1 MB，343 文件，匿名泄漏扫描通过） | ✅ |
+| `manuscript_negative/code.zip` | `manuscript_negative/code.zip` = `submission_tmlr/code.zip`（2.1 MB，345 文件，匿名泄漏扫描通过） | ✅ |
 | `README_reproduce.md` | `submission_tmlr/README_reproduce.md` | ✅ |
 | 投稿包 | `submission_tmlr/`（TMLR PDF/TEX、补充材料、README、code.zip） | ✅ |
 | Results 含全部 3 个场景 | `negative-result.md` §5.6（Table 8/9/10） | ✅ |
