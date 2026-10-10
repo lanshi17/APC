@@ -117,7 +117,7 @@ def ensure_style() -> pathlib.Path:
             shutil.copy2(src, dst)
         else:
             r = subprocess.run(["curl", "-sSL", "-o", str(dst), STYLE_SRC],
-                               capture_output=True, text=True)
+                               capture_output=True, text=True, errors="replace")
             if r.returncode or dst.stat().st_size < 2000:
                 raise SystemExit(f"could not obtain tmlr.sty ({r.stderr.strip()})")
     s = dst.read_text(encoding="utf-8")
@@ -208,13 +208,13 @@ def main() -> int:
                 if len(styles) > 1:
                     print(f"aux: dropped {len(styles) - 1} conflicting \\bibstyle line(s)")
             r = subprocess.run(["bibtex", out_tex.stem], cwd=OUT_DIR,
-                               capture_output=True, text=True, env=env)
+                               capture_output=True, text=True, errors="replace", env=env)
             if r.returncode != 0:
                 print("bibtex failed", file=sys.stderr)
                 print((r.stdout or "")[-2000:], file=sys.stderr)
                 return r.returncode
             continue
-        r = subprocess.run(cmd, cwd=OUT_DIR, capture_output=True, text=True, env=env)
+        r = subprocess.run(cmd, cwd=OUT_DIR, capture_output=True, text=True, errors="replace", env=env)
         if r.returncode != 0:
             print(f"{cmd[0]} failed (exit {r.returncode})", file=sys.stderr)
             print((r.stdout or "")[-3000:], file=sys.stderr)
@@ -225,7 +225,7 @@ def main() -> int:
     log = (OUT_DIR / f"{out_tex.stem}.log").read_text(encoding="utf-8", errors="ignore")
     if "There were undefined citations" in log:
         print("warning: undefined citations remain in the TMLR build", file=sys.stderr)
-    info = subprocess.run(["pdfinfo", str(pdf)], capture_output=True, text=True)
+    info = subprocess.run(["pdfinfo", str(pdf)], capture_output=True, text=True, errors="replace")
     pages = next((l.split()[-1] for l in info.stdout.splitlines()
                   if l.startswith("Pages")), "?")
     print(f"wrote {pdf} ({pages} pages)")

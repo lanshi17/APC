@@ -99,7 +99,7 @@ python -m jev_rsi.corpus_extended.probe_judge_variance \
 
 ```bash
 cd ../02_apc_paper/manuscript_negative
-python build.py                     # markdown -> negative-result.tex -> .pdf (15 pages)
+python build.py                     # markdown -> negative-result.tex -> .pdf (14 pages)
 python ../code/docs/paper_patch/make_supplementary.py       # -> supplementary.pdf
 python ../code/docs/paper_patch/make_tmlr.py                # -> tmlr/negative-result-tmlr.pdf
 ```
