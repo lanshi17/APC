@@ -55,8 +55,10 @@ No API key is needed to reproduce any number in the paper:
 * every **extended-corpus** model call (generation, judging, embedding) is
   response-cached on disk under `jev_rsi/corpus_extended/_cache/`, keyed by
   model, messages, temperature, `max_tokens`, seed and tag, so a re-run is free
-  and byte-identical. A DashScope key is only needed to *extend* the corpus,
-  not to reproduce it. `n_llm_calls` in each scenario artifact counts every
+  and needs no key. Re-scoring a scenario re-runs BERTScore and can differ from
+  the released scores in the sixth decimal; the analysis commands below consume
+  the released scores and are byte-identical. A DashScope key is only needed to
+  *extend* the corpus, not to reproduce it. `n_llm_calls` in each scenario artifact counts every
   call the artifact depends on, cache-served or not, so a replay from the
   released cache writes the same provenance as the original run.
 
@@ -126,6 +128,9 @@ manuscript markdown.
 * All judge scores are normalised 0–1 for the gate (raw 0–10 kept alongside).
 * Scenario B adds a vision **ranking** holdout because the 0–10 vision score
   saturates.
+* Re-running the scenario *builders* replays the released model calls and then
+  re-scores with BERTScore, whose float output is not guaranteed identical
+  across torch/transformers versions (observed drift: 1e-6 on one arm).
 * Judge calls keep the model's reasoning chain (~500 completion tokens each);
   generation calls disable it. A token ledger with per-call usage and cost is at
   `jev_rsi/corpus_extended/_cache/usage.jsonl`.

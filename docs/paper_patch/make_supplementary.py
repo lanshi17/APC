@@ -89,8 +89,9 @@ def main() -> int:
         "judge calls keep it, matching the protocol used for the frozen corpus. "
         "Every response is cached on disk keyed by model, messages, temperature, "
         "`max_tokens`, seed and tag, and every call is appended to a token ledger "
-        "(`corpus_extended/_cache/usage.jsonl`), so re-running the corpus is free "
-        "and byte-identical.\n")
+        "(`corpus_extended/_cache/usage.jsonl`), so re-running the corpus makes no "
+        "API calls and needs no key; the released scores, not a re-scored pass, "
+        "are what the tables below are built from.\n")
     ap_("**Deviations from the P3 plan, recorded for transparency.** "
         "(i) `gpt-4o`/`gpt-4o-vision` were unavailable (no API key), so the "
         "scenario builders use the Qwen models above; (ii) the plan's inline "
@@ -272,9 +273,13 @@ def main() -> int:
         "python -m jev_rsi.analysis_extended\n"
         "```\n")
     ap_("Every model response is cached and the cache ships with this bundle, so "
-        "the commands above need no API key and reproduce the JSON artifacts "
-        "byte-for-byte; only the metric models (BERTScore's deberta, the image "
-        "encoder) are fetched from Hugging Face on first use. "
+        "the scenario builders above need no API key: they replay the released "
+        "calls. Their scoring step re-runs BERTScore, a floating-point model "
+        "computation, so a re-scored scenario can differ from the released "
+        "scores in the sixth decimal; the metric models (BERTScore's deberta, "
+        "the image encoder) are fetched from Hugging Face on first use. The "
+        "analysis commands (`experiments`, `analysis_extended`) consume the "
+        "released scores and do reproduce the JSON artifacts byte-for-byte. "
         "Every table in this supplement is generated from those artifacts at build "
         "time (`docs/paper_patch/make_supplementary.py`), and "
         "`python docs/paper_patch/verify_numbers.py` re-checks the numbers quoted "

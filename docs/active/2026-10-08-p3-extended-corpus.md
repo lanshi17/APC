@@ -380,6 +380,8 @@ python docs/paper_patch/verify_numbers.py --md ../02_apc_paper/manuscript_negati
 | 匿名包里没有响应缓存与账本 | 论文声称发布的 model completions / token ledger | 匿名包由 `git archive HEAD` 生成，只含**已跟踪**文件，而 `corpus_extended/_cache/` 一直在 `.gitignore` 里 → 论文和包内 README 都承诺的"released cache"其实没发布。LLM 缓存 8.8 MB / 2010 次调用 + 账本 336 KB 已入库，只保留 3.1 GB 的 HF 权重不入库 |
 | 客户端构造时就取 API key | 无 key 无法用缓存重放 | `LLMClient.__init__` 里 `key or api_key()` 会立即抛错，即使每次调用都命中缓存 → 改为惰性解析，只在真正发请求（cache miss）时取 key。无 key 重放场景 A/C 已验证通过 |
 | 场景产物只记网络调用数 | 缓存重放写出不同溯源 | `n_llm_calls` 记的是 `n_calls`（网络调用），缓存重放会写成 0 或另一数字（B 的 arms 原本就记成 0，等于宣称 90 次真实生成没调模型）→ 改为记全部依赖调用（缓存或网络），三个场景重放现在逐字节一致 |
+| 场景重放并非逐字节一致 | "byte-identical replay" 的措辞 | 无 key 重放场景 A/C 成功，但 C 的 BERTScore 有一个臂在第 6 位小数上不同（-0.064232 vs -0.064233）：`rescale_with_baseline` 是浮点模型计算，跨 torch/transformers 版本不保证逐位可复现。论文数字来自已发布的 scores.json，重算并没有改变任何结论，但措辞必须收紧：构建器只承诺"无需 key 重放已发布调用"，"逐字节"只属于读取 scores 的分析命令（`experiments` / `analysis_extended`，已在匿名包内无 key 验证为逐字节一致） |
+| 匿名包内的模型权重缺失 | 构建器评分需要 1.6 GB deberta 权重 | 权重缓存（3.1 GB）不入包；首次运行从 Hugging Face 拉取，已在 README/补充材料写明。沙箱内一度网络不可达导致 C 构建失败，属环境限制而非包缺陷 |
 
 
 新增 `scripts/check_reproducibility.py`：重跑全部模块后断言两个仓库 `git status` 干净。
