@@ -325,9 +325,10 @@ P3 没有发现任何新的胜场区间。
 | `install_week4.sh` | 一键执行上述全部步骤 + 备份 + 投稿包（`bash docs/paper_patch/install_week4.sh`） |
 
 产物落点：`manuscript_negative/negative-result.{md,tex,pdf}`（15 页）、
-`manuscript_negative/supplementary.{md,pdf}`、`manuscript_negative/tmlr/`、
+`manuscript_negative/supplementary.{md,pdf}`（7 页）、`manuscript_negative/tmlr/`、
 `manuscript_negative/code.zip`、`submission_tmlr/`（投稿包：TMLR PDF/TEX、
-补充材料、`README_reproduce.md`、`code.zip`）。
+`references.bib` + `tmlr.bst` + `tmlr.sty` + `.bbl` + `figures/`、补充材料、
+`README_reproduce.md`、`code.zip`——可在包目录内独立编译，已实测 9 条引用全部解析）。
 
 **与计划的两处落点偏差（已在论文仓库跟踪表中记录）**：
 
