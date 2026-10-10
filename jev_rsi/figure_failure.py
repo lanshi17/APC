@@ -123,10 +123,11 @@ def build(out_dir: Path) -> Path:
     fig, axes = plt.subplots(2, 2, figsize=(7.2, 5.0))
     ax = axes[0][0]
     buckets = [
-        ("rho >= .8", [r for r in rows if r["rho"] is not None and r["rho"] >= .8]),
-        (".3 <= rho < .8", [r for r in rows if r["rho"] is not None and .3 <= r["rho"] < .8]),
-        ("rho < .3", [r for r in rows if r["rho"] is not None and r["rho"] < .3]),
-        ("rho undefined", [r for r in rows if r["rho"] is None]),
+        # same typography as the manuscript's Table 5 ("\u03c1 \u2265 0.8", ...)
+        ("\u03c1 \u2265 .8", [r for r in rows if r["rho"] is not None and r["rho"] >= .8]),
+        (".3 \u2264 \u03c1 < .8", [r for r in rows if r["rho"] is not None and .3 <= r["rho"] < .8]),
+        ("\u03c1 < .3", [r for r in rows if r["rho"] is not None and r["rho"] < .3]),
+        ("\u03c1 undefined", [r for r in rows if r["rho"] is None]),
     ]
     _grouped_bars(ax, [b[0] for b in buckets], [b[1] for b in buckets],
                   "(a) by val/holdout rank alignment")
