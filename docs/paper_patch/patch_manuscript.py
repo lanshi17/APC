@@ -328,6 +328,16 @@ Full-corpus totals over all 77 deployment decisions, including the 45 groups of
 \u00a75.6, are in **Table 8**."""
 
 POST_EDITS = [
+    # §5.5 quoted the collapse primitive's *maximum* (0.53, which in fact belongs
+    # to a group that does not collapse) as if it were the collapse groups'
+    # median; real_jev_results.json gives medians 0.42 (six collapse groups) vs
+    # 0.40 (the other 26).  The argument is unchanged -- the primitive still does
+    # not separate them -- but the number was wrong.
+    ("frozen: collapse separation medians",
+     "collapse groups from the rest (median 0.53 vs 0.40).",
+     "collapse groups from the rest (median 0.42 vs 0.40, and the 0.53 maximum "
+     "belongs to a group that does not collapse).",
+     "does not collapse)"),
     ("table 1 -> table 8 pointer", TABLE1_OLD, TABLE1_NEW,
      "Full-corpus totals over all 77 deployment decisions"),
     # repair the four blocks that the old single-"\n" join glued onto the

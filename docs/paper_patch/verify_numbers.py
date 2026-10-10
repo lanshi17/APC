@@ -268,6 +268,45 @@ def frozen_cases() -> list[tuple[str, str]]:
     add(("§5.5 ungated choice",
          f"correct on {live['models']['jev-1.13-free']['raw_choice_exact_oracle']}/32"))
 
+    # -- §5.5 rule firings (the live run's own diagnostics) ---------------
+    # The live artifact keeps the gate's per-group inputs, so the three
+    # statements the paper makes about them are recomputed here.  The collapse
+    # medians were wrong when first checked: the paper quoted the global
+    # maximum (0.53) as the collapse groups' median, and that maximum belongs
+    # to a group that does not collapse.  See the repair in patch_manuscript.py.
+    gm = live["models"]["jev-1.13-free"]["groups"]
+    mp = live["meta_params"]
+    coll_ids = set(jr["main_table"]["dataset"]["collapse_group_ids"])
+    veto = sum(1 for g in gm if g["gate_reason"] == "low_val_alignment")
+    align = [g["features"]["alignment"] for g in gm]
+    cvals = [g["features"]["collapse_noul"] for g in gm if g["gid"] in coll_ids]
+    ovals = [g["features"]["collapse_noul"] for g in gm if g["gid"] not in coll_ids]
+    def median(v: list[float]) -> float:
+        w = sorted(v)
+        n = len(w)
+        return w[n // 2] if n % 2 else (w[n // 2 - 1] + w[n // 2]) / 2
+    add(("§5.5 alignment veto", f"{veto} of {len(gm)} groups"))
+    add(("§5.5 vetos against its threshold", f"threshold of {mp['alignment_threshold']:.2f}"))
+    add(("§5.5 median trust score", f"median of {median(align):.3f}"))
+    add(("§5.5 collapse maximum",
+         f"maximum {max(ovals + cvals):.2f} against a threshold of "
+         f"{mp['collapse_threshold']:.2f}"))
+    add(("§5.5 collapse separation",
+         f"median {median(cvals):.2f} vs {median(ovals):.2f}"))
+    top_collapse = max(gm, key=lambda g: g["features"]["collapse_noul"])
+    if top_collapse["gid"] not in coll_ids:
+        add(("§5.5 the maximum is not a collapse group",
+             "belongs to a group that does not collapse"))
+
+    # -- §6.4 Table 6: gain prediction, both columns ----------------------
+    gp = xt["protocols"]["leave_target"]["gain_prediction"]
+    add(("Table 6 cold",
+         f"**{gp['cold']['mae']:.5f}** | {gp['cold']['mae_champion_only']:.5f}"))
+    add(("Table 6 global mean",
+         f"{gp['global_mean']['mae']:.5f} | **{gp['global_mean']['mae_champion_only']:.5f}**"))
+    add(("Table 6 source mean",
+         f"{gp['source_mean']['mae']:.5f} | {gp['source_mean']['mae_champion_only']:.5f}"))
+
     # -- §6.2 the floating-point loss ------------------------------------
     ba = rep["boundary_analysis"]
     lr = rep["loss_rows"][0]

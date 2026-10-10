@@ -383,6 +383,7 @@ python docs/paper_patch/verify_numbers.py --md ../02_apc_paper/manuscript_negati
 | 场景重放并非逐字节一致 | "byte-identical replay" 的措辞 | 无 key 重放场景 A/C 成功，但 C 的 BERTScore 有一个臂在第 6 位小数上不同（-0.064232 vs -0.064233）：`rescale_with_baseline` 是浮点模型计算，跨 torch/transformers 版本不保证逐位可复现。论文数字来自已发布的 scores.json，重算并没有改变任何结论，但措辞必须收紧：构建器只承诺"无需 key 重放已发布调用"，"逐字节"只属于读取 scores 的分析命令（`experiments` / `analysis_extended`，已在匿名包内无 key 验证为逐字节一致） |
 | 匿名包内的模型权重缺失 | 构建器评分需要 1.6 GB deberta 权重 | 权重缓存（3.1 GB）不入包；首次运行从 Hugging Face 拉取，已在 README/补充材料写明。沙箱内一度网络不可达导致 C 构建失败，属环境限制而非包缺陷 |
 | 冻结章节的数字没人核对 | 对账只覆盖 P3 的 45 个数字 | `verify_numbers.py` 原先只查扩展语料的数字；冻结语料 §5.1–§5.5 / §6.2–§6.4 的 60 个数字只受"产物字节不变"守卫保护，文字漂移不会被发现。已扩充到 **105 个数字**，并把论文自己算的派生量（85.8% 的 headroom 占比、ε 容差网格、400 点采样的 12/12 个不同值、λ 扫描、学到的常量 fold 分布）在脚本内重算+断言，不再信任文字 |
+| §5.5 把一个**最大值**当**中位数**引用 | 正文数字与产物不符（已发表过的原文） | §5.5 写 "the collapse test … does not separate the six collapse groups from the rest (median 0.53 vs 0.40)"。但 `real_jev_results.json` 的实际数据是：六个 collapse 组的 collapse 特征中位数 **0.42**（组内最大 0.49），其余 26 组中位数 **0.395**；**0.53 是全局最大**，而且它落在一个**不 collapse** 的组上。结论（该原语无法区分两类组）不受影响，但引用的数字是错的 → 正文改为 "median 0.42 vs 0.40, and the 0.53 maximum belongs to a group that does not collapse"，并对账脚本新增 5 项 §5.5 触发统计 + "最大值不属于 collapse 组" 的自动断言 |
 
 
 新增 `scripts/check_reproducibility.py`：重跑全部模块后断言两个仓库 `git status` 干净。
