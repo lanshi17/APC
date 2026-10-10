@@ -63,7 +63,7 @@ No API key is needed to reproduce any number in the paper:
 ```bash
 cd code                                     # the unpacked bundle
 
-# frozen corpus (43 groups / 32 decisions): 11 seconds, byte-identical
+# frozen corpus (43 groups / 32 decisions): 94 seconds, byte-identical
 python -m jev_rsi.experiments
 
 # extended corpus (88 groups / 485 arms / 77 decisions)
@@ -99,7 +99,7 @@ python -m jev_rsi.corpus_extended.probe_judge_variance \
 
 ```bash
 cd ../02_apc_paper/manuscript_negative
-python build.py                     # markdown -> negative-result.tex -> .pdf (14 pages)
+python build.py                     # markdown -> negative-result.tex -> .pdf (15 pages)
 python ../code/docs/paper_patch/make_supplementary.py       # -> supplementary.pdf
 python ../code/docs/paper_patch/make_tmlr.py                # -> tmlr/negative-result-tmlr.pdf
 ```

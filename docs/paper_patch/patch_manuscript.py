@@ -329,6 +329,33 @@ Full-corpus totals over all 77 deployment decisions, including the 45 groups of
 POST_EDITS = [
     ("table 1 -> table 8 pointer", TABLE1_OLD, TABLE1_NEW,
      "Full-corpus totals over all 77 deployment decisions"),
+    # repair the four blocks that the old single-"\n" join glued onto the
+    # sentence before them (the leading blank line they were written with)
+    ("setup: paragraph break", "validation scores.\n**Extended corpus.**",
+     "validation scores.\n\n**Extended corpus.**", "\n\n**Extended corpus.**"),
+    ("discussion: paragraph break", "nor silent.\n**Extended-corpus boundary conditions.**",
+     "nor silent.\n\n**Extended-corpus boundary conditions.**",
+     "\n\n**Extended-corpus boundary conditions.**"),
+    ("what-if: paragraph break",
+     "tested and rejected.\nThe extended corpus supplies",
+     "tested and rejected.\n\nThe extended corpus supplies",
+     "\n\nThe extended corpus supplies"),
+    ("conclusion: paragraph break",
+     "too weak to matter.\nWe then gave the hypothesis three more chances",
+     "too weak to matter.\n\nWe then gave the hypothesis three more chances",
+     "\n\nWe then gave the hypothesis three more chances"),
+    # the runtime claim was stale ("11 seconds" for a suite that takes ~94 s)
+    ("intro timing", "in **11\nseconds**.",
+     "in **94\nseconds** on a single CPU.", "in **94\nseconds**"),
+    ("conclusion timing", "an 11-second deterministic\nreproduction",
+     "a 94-second deterministic\nreproduction", "a 94-second deterministic"),
+    ("repro timing (setup)", "byte-for-byte in 11 seconds.",
+     "byte-for-byte in 94 seconds on the machine used here.",
+     "byte-for-byte in 94 seconds"),
+    ("repro timing (statement)",
+     "(11 seconds, byte-identical output on every run)",
+     "(94 seconds on the machine used here, byte-identical output on every run)",
+     "94 seconds on the machine used here, byte-identical"),
     # repair the reproducibility statement: (a) drop the heading + paragraph the
     # first attempt injected mid-sentence, (b) re-attach the paragraph at the end
     ("repro: drop injected block", REPRO_BROKEN, "\n", None),
@@ -340,7 +367,7 @@ POST_EDITS = [
 
 
 def check_structure(text: str) -> None:
-    """Catch the duplicate-heading / split-sentence class of patching bug."""
+    """Catch the duplicate-heading / split-sentence / merged-paragraph bugs."""
     heads = re.findall(r"^# .*$", text, flags=re.M)
     dupes = sorted({h for h in heads if heads.count(h) > 1})
     if dupes:
@@ -349,6 +376,16 @@ def check_structure(text: str) -> None:
     n = text.count("programmatically against those artifacts.")
     if n != 1:
         raise SystemExit(f"reproducibility statement sentence appears {n}x (want 1)")
+    # every added block that opens with a blank line must still start a paragraph
+    lines = text.splitlines()
+    for name, add in ((n, a) for n, _, a in PATCHES if a):
+        if not add.startswith("\n\n"):
+            continue
+        first = add.strip("\n").splitlines()[0][:40]
+        for i, line in enumerate(lines):
+            if line.startswith(first) and i and lines[i - 1].strip():
+                raise SystemExit(f"{name!r}: added paragraph merged onto the "
+                                 f"previous line (line {i + 1})")
 
 
 def apply_post(text: str) -> tuple[str, list[str]]:
@@ -387,7 +424,13 @@ def apply(text: str, dry_run: bool = False) -> tuple[str, list[str]]:
             raise SystemExit(f"anchor not found for {name!r}:\n{a[:120]}")
         if text.count(a) != 1:
             raise SystemExit(f"anchor for {name!r} is not unique ({text.count(a)}x)")
-        text = text.replace(a, a.rstrip() + "\n" + add.strip("\n") + "\n", 1)
+        # An added block that opens with a blank line is meant to be its own
+        # paragraph; one that does not continues the anchor's paragraph (the
+        # abstract) or its list (intro item 6).  Stripping the leading newlines
+        # and always joining with a single "\n" silently glued the four
+        # paragraph-opening blocks onto the sentence before them.
+        sep = "\n\n" if add.startswith("\n\n") else "\n"
+        text = text.replace(a, a.rstrip() + sep + add.strip("\n") + "\n", 1)
         log.append(f"inserted: {name}")
     return text, log
 
@@ -405,9 +448,9 @@ def main() -> int:
     out, log = apply(src, args.dry_run)
     out, log2 = apply_post(out)
     log += log2
-    check_structure(out)
     for line in log:
         print(" -", line)
+    check_structure(out)
     if args.dry_run or out == src:
         return 0
     md.write_text(out, encoding="utf-8")

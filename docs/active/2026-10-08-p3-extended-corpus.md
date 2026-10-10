@@ -324,7 +324,7 @@ P3 没有发现任何新的胜场区间。
 | `update_paper_docs.py` | 向 `RESULTS_ANALYSIS.md` §12、`EXPERIMENT_PROTOCOL.md` §7、`README_JEV_RSI.md` 追加 P3 章节，并在冻结语料主表处加指向 77 组全量结果的注 |
 | `install_week4.sh` | 一键执行上述全部步骤 + 备份 + 投稿包（`bash docs/paper_patch/install_week4.sh`） |
 
-产物落点：`manuscript_negative/negative-result.{md,tex,pdf}`（14 页）、
+产物落点：`manuscript_negative/negative-result.{md,tex,pdf}`（15 页）、
 `manuscript_negative/supplementary.{md,pdf}`（7 页）、`manuscript_negative/tmlr/`、
 `manuscript_negative/code.zip`、`submission_tmlr/`（投稿包：TMLR PDF/TEX、
 `references.bib` + `tmlr.bst` + `tmlr.sty` + `.bbl` + `figures/`、补充材料、
@@ -364,3 +364,18 @@ python -m jev_rsi.experiments --corpus extended
 python scripts/p3_acceptance.py                  # 10 pass / 1 partial / 1 fail
 python docs/paper_patch/verify_numbers.py --md ../02_apc_paper/manuscript_negative/negative-result.md
 ```
+
+### 交付后自查修正（PDF 内容缺陷）
+**交付后自查修正（PDF 内容缺陷）**：逐页扫描成品 PDF 的文本后，又发现并修掉五处内容
+缺陷，两版 PDF 均已重建、投稿包已刷新：
+
+| 缺陷 | 影响 | 修法 |
+|---|---|---|
+| Reproducibility 段被劈开、出现两个同名标题 | 我的补丁锚点取「标题 + 首句」，插入时切断原句 | 锚点移到该段结尾；新增幂等修复清掉已注入块；`check_structure()` 从此拒绝重复标题 |
+| 全文 `§` 渲染成字面 `\S{}` | 两版 PDF 共 16 处（11 处在 P3 之前就存在） | `build.py` 的 `REP` 表在同一循环里含 `§→@@SECT@@` 与 `@@SECT@@→\S{}`，占位符在 pandoc 之前被消耗；改为只在 pandoc 之后展开 |
+| 四段新增文字与上一段粘连 | setup / discussion / what-if / conclusion | 补丁用 `add.strip("\n")` + 单个 `\n` 拼接，吃掉 ADD 自带的空行；改为按前导换行数选分隔符，并补 4 处空行 |
+| 运行时间声明过时 | 手稿 4 处 + 3 个文档 | 实测 `python -m jev_rsi.experiments` ≈ 94 s（六模块全套 ≈ 6.5 min），原文写 11 s |
+| 图 1 轴标签与表 5 排版不一致 | Figure 1 | `rho >= .8` → `ρ ≥ .8`（与表 5 一致），图仍逐字节可复现 |
+
+补丁脚本现有两个结构性断言（标题重复、应独立成段的块被粘连），同类缺陷会让补丁直接
+失败，不再静默进 PDF。

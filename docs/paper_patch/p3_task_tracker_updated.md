@@ -52,7 +52,7 @@
 | **P2** 更新 Discussion | ✅ 已完成 | 反映P3实际发现 | §7 新增"Extended-corpus boundary conditions"（"情况 2：P3 仍为负结果"） |
 | **P3** TMLR 格式转换 | ✅ 已完成 | 编译无错 | `manuscript_negative/tmlr/negative-result-tmlr.pdf`（15 页，`jmlr.cls` + `tmlr.sty` + **`tmlr.bst` 作者-年份文献表**：正文 9 处 arXiv 号改写为 `\citep{}`，由 `references.bib` 生成） |
 | **P4** 补充材料准备 | ✅ 已完成 | code.zip + supplementary | `manuscript_negative/supplementary.pdf`（7 页，含获胜/失败特征 §S6）+ `manuscript_negative/code.zip` = `submission_tmlr/code.zip` + `README_reproduce.md` |
-| **终审** | ⏸️ 待人工确认 | 全文通读，投稿就绪 | 数字已由 `docs/paper_patch/verify_numbers.py` 逐条对账（45 项）；draft 14 页 / TMLR 15 页 / 补充材料 7 页均零错误 |
+| **终审** | ⏸️ 待人工确认 | 全文通读，投稿就绪 | 数字已由 `docs/paper_patch/verify_numbers.py` 逐条对账（45 项）；draft 15 页 / TMLR 15 页 / 补充材料 7 页均零错误 |
 
 ---
 
@@ -117,7 +117,7 @@ python docs/paper_patch/verify_numbers.py                  # 论文数字对账
 
 | 计划要求 | 实际路径 | 状态 |
 |---|---|---|
-| `manuscript_negative/negative-result.pdf`（11+ 页） | `manuscript_negative/negative-result.pdf`（**14 页**） | ✅ |
+| `manuscript_negative/negative-result.pdf`（11+ 页） | `manuscript_negative/negative-result.pdf`（**15 页**） | ✅ |
 | `manuscript_negative/negative-result.tex`（TMLR 格式） | `manuscript_negative/tmlr/negative-result-tmlr.tex` + `references.bib` + `tmlr.bst`（TMLR 版式与 natbib 文献表）；`negative-result.tex` 保留草稿版式 | ✅（落点偏差见下） |
 | `manuscript_negative/supplementary.pdf` | `manuscript_negative/supplementary.pdf`（**7 页**，全部表格由结果 JSON 自动生成） | ✅ |
 | `manuscript_negative/code.zip` | `manuscript_negative/code.zip` = `submission_tmlr/code.zip`（2.1 MB，345 文件，匿名泄漏扫描通过） | ✅ |
@@ -126,7 +126,7 @@ python docs/paper_patch/verify_numbers.py                  # 论文数字对账
 | Results 含全部 3 个场景 | `negative-result.md` §5.6（Table 8/9/10） | ✅ |
 | 主表更新为 78 组数据 | 冻结 Table 1 标题改为 frozen corpus (32) 并加注指向 **Table 8**（三场景 + **77** 决策组合计）；`RESULTS_ANALYSIS.md` §3.1 与 `README_JEV_RSI.md` 主结果表同样加指引 | ✅（计划数字本身有误，见下） |
 | Discussion 反映 P3 发现 | §7 "Extended-corpus boundary conditions"（情况 2：仍为负结果） | ✅ |
-| 论文编译通过（无 LaTeX 错误） | draft 14 页 / TMLR 15 页 / 补充材料 7 页，零错误 | ✅ |
+| 论文编译通过（无 LaTeX 错误） | draft 15 页 / TMLR 15 页 / 补充材料 7 页，零错误 | ✅ |
 | 符合 TMLR 格式要求（页数、参考文献样式） | `jmlr.cls` + `tmlr.sty` + `tmlr.bst`；正文 9 处 arXiv 号 → `\citep{}`，文献表由 `references.bib` 生成 | ✅ |
 | 补充材料完整 | 协议、逐组表、诊断、标定、获胜特征、复现命令 | ✅ |
 | 数字可追溯 | `code/docs/paper_patch/verify_numbers.py` 逐条核对 45 个数字 | ✅ |
@@ -146,3 +146,17 @@ python docs/paper_patch/verify_numbers.py                  # 论文数字对账
 冲突会让 BibTeX 报 "Illegal, another \bibstyle command" 并回退到错误样式（引用
 全部变 `(?)`）→ 构建脚本在首次 pdflatex 后清理 `.aux` 中多余的 `\bibstyle` 行，
 再跑 bibtex + 两次 pdflatex。
+
+**交付后自查修正（PDF 内容缺陷）**：逐页扫描成品 PDF 的文本后，又发现并修掉五处内容
+缺陷，两版 PDF 均已重建、投稿包已刷新：
+
+| 缺陷 | 影响 | 修法 |
+|---|---|---|
+| Reproducibility 段被劈开、出现两个同名标题 | 我的补丁锚点取「标题 + 首句」，插入时切断原句 | 锚点移到该段结尾；新增幂等修复清掉已注入块；`check_structure()` 从此拒绝重复标题 |
+| 全文 `§` 渲染成字面 `\S{}` | 两版 PDF 共 16 处（11 处在 P3 之前就存在） | `build.py` 的 `REP` 表在同一循环里含 `§→@@SECT@@` 与 `@@SECT@@→\S{}`，占位符在 pandoc 之前被消耗；改为只在 pandoc 之后展开 |
+| 四段新增文字与上一段粘连 | setup / discussion / what-if / conclusion | 补丁用 `add.strip("\n")` + 单个 `\n` 拼接，吃掉 ADD 自带的空行；改为按前导换行数选分隔符，并补 4 处空行 |
+| 运行时间声明过时 | 手稿 4 处 + 3 个文档 | 实测 `python -m jev_rsi.experiments` ≈ 94 s（六模块全套 ≈ 6.5 min），原文写 11 s |
+| 图 1 轴标签与表 5 排版不一致 | Figure 1 | `rho >= .8` → `ρ ≥ .8`（与表 5 一致），图仍逐字节可复现 |
+
+补丁脚本现有两个结构性断言（标题重复、应独立成段的块被粘连），同类缺陷会让补丁直接
+失败，不再静默进 PDF。

@@ -271,10 +271,12 @@ def main() -> int:
         "python -m jev_rsi.experiments --corpus extended\n"
         "python -m jev_rsi.analysis_extended\n"
         "```\n")
-    ap_("All model responses are cached; the commands above re-run in under a "
-        "minute with no API spend and reproduce the JSON artifacts byte-for-byte. "
-        "`python docs/paper_patch/verify_numbers.py` re-checks every number quoted "
-        "in the manuscript and in this supplement against those artifacts.\n")
+    ap_("All model responses are cached; the commands above re-run in about 100 "
+        "seconds with no API spend and reproduce the JSON artifacts byte-for-byte. "
+        "Every table in this supplement is generated from those artifacts at build "
+        "time (`docs/paper_patch/make_supplementary.py`), and "
+        "`python docs/paper_patch/verify_numbers.py` re-checks the numbers quoted "
+        "in the manuscript against them.\n")
 
     md_path = out_dir / "supplementary.md"
     md_path.write_text("\n".join(L), encoding="utf-8")
