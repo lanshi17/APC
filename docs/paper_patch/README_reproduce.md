@@ -79,9 +79,8 @@ python scripts/p3_acceptance.py
 
 # every number quoted in the manuscript, checked against the JSON artifacts
 python docs/paper_patch/verify_numbers.py --md ../02_apc_paper/manuscript_negative/negative-result.md
-
-`verify_numbers.py` checks 105 numbers: the 45 extended-corpus figures and 60 frozen-corpus figures from §5.1-§5.5 and §6.2-§6.4 (including derived ones -- the 85.8% headroom share, the tolerance grid, the sampling counts -- which it recomputes from the JSONs rather than trusting).
 ```
+`verify_numbers.py` checks 105 numbers: the 45 extended-corpus figures and 60 frozen-corpus figures from §5.1-§5.5 and §6.2-§6.4 (including derived ones -- the 85.8% headroom share, the tolerance grid, the sampling counts -- which it recomputes from the JSONs rather than trusting).
 
 Built artifacts (all byte-reproducible, `git status` stays clean):
 `jev_rsi/results/jev_rsi_results.json` (frozen),
