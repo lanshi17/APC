@@ -161,6 +161,10 @@ python scripts/check_reproducibility.py                   # 全套重跑后两�
 | 运行时间声明过时 | 手稿 4 处 + 3 个文档 | 实测 `python -m jev_rsi.experiments` ≈ 94 s（六模块全套 ≈ 6.5 min），原文写 11 s |
 | 图 1 轴标签与表 5 排版不一致 | Figure 1 | `rho >= .8` → `ρ ≥ .8`（与表 5 一致），图仍逐字节可复现 |
 | 冻结模块的默认语料被改成 `extended` | Figure 1、`repair_results.json`、`bayes_meta_results.json` | P3 把 `Harness()` 的默认语料从 frozen 改成 extended，而 `repair` / `bayes_meta` / `figure_failure` 都用无参 `Harness()` 构造并写固定路径 → 普通重跑会用 77 组产物覆盖已发表的 32 组产物（图 1 的 top-2 从 85.8% 变 32.9%，与图注和 §5 正文冲突）。默认改回 `frozen`，三个模块显式钉住 frozen，被覆盖产物已还原 |
+| 匿名包里没有响应缓存与账本 | 论文声称发布的 model completions / token ledger | 匿名包由 `git archive HEAD` 生成，只含**已跟踪**文件，而 `corpus_extended/_cache/` 一直在 `.gitignore` 里 → 论文和包内 README 都承诺的"released cache"其实没发布。LLM 缓存 8.8 MB / 2010 次调用 + 账本 336 KB 已入库，只保留 3.1 GB 的 HF 权重不入库 |
+| 客户端构造时就取 API key | 无 key 无法用缓存重放 | `LLMClient.__init__` 里 `key or api_key()` 会立即抛错，即使每次调用都命中缓存 → 改为惰性解析，只在真正发请求（cache miss）时取 key。无 key 重放场景 A/C 已验证通过 |
+| 场景产物只记网络调用数 | 缓存重放写出不同溯源 | `n_llm_calls` 记的是 `n_calls`（网络调用），缓存重放会写成 0 或另一数字（B 的 arms 原本就记成 0，等于宣称 90 次真实生成没调模型）→ 改为记全部依赖调用（缓存或网络），三个场景重放现在逐字节一致 |
+
 
 新增 `scripts/check_reproducibility.py`：重跑全部模块后断言两个仓库 `git status` 干净。
 它上线即抓到两个此前无人检查的问题——(a) 上述产物覆盖；(b) `jev_rsi_results.json`

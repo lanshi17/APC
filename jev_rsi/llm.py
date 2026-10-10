@@ -111,7 +111,11 @@ class LLMClient:
                  cache_dir: Path = CACHE_DIR, timeout: float = 240.0,
                  max_retries: int = 5, use_cache: bool = True):
         self.base_url = base_url.rstrip("/")
-        self.key = key or api_key()
+        # The key is resolved lazily: a bundle recipient replaying the released
+        # response cache must be able to run the builders with no credentials,
+        # and resolving it here made every cache-only replay raise.  It is only
+        # needed on a cache miss (see _auth_key).
+        self.key = key
         self.cache_dir = Path(cache_dir)
         self.cache_dir.mkdir(parents=True, exist_ok=True)
         self.timeout = timeout
@@ -131,6 +135,23 @@ class LLMClient:
 
     def _cache_path(self, key: str) -> Path:
         return self.cache_dir / f"{key}.json"
+
+    @property
+    def n_llm_calls(self) -> int:
+        """Calls the artifact depends on, served from cache or from the API.
+
+        The scenario builders record this instead of ``n_calls``: recording only
+        network calls made a replay from the released cache write different
+        provenance (0) than the original run (10), so the artifact was not
+        byte-reproducible.
+        """
+        return self.n_calls + self.n_cache_hits
+
+    def _auth_key(self) -> str:
+        """The API key, resolved on first real request (never on a cache hit)."""
+        if self.key is None:
+            self.key = api_key()
+        return self.key
 
     def _ledger(self, row: dict) -> None:
         LEDGER.parent.mkdir(parents=True, exist_ok=True)
@@ -171,7 +192,7 @@ class LLMClient:
         for attempt in range(self.max_retries):
             try:
                 r = httpx.post(f"{self.base_url}/chat/completions",
-                               headers={"Authorization": f"Bearer {self.key}",
+                               headers={"Authorization": f"Bearer {self._auth_key()}",
                                         "Content-Type": "application/json"},
                                json=body, timeout=self.timeout)
                 if r.status_code in _RETRY_STATUS:
@@ -226,7 +247,7 @@ class LLMClient:
         for attempt in range(self.max_retries):
             try:
                 r = httpx.post(f"{self.base_url}/embeddings",
-                               headers={"Authorization": f"Bearer {self.key}",
+                               headers={"Authorization": f"Bearer {self._auth_key()}",
                                         "Content-Type": "application/json"},
                                json=payload, timeout=self.timeout)
                 if r.status_code != 200:

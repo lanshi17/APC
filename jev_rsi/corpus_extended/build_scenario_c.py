@@ -220,7 +220,7 @@ def build_groups(use_llm: bool = True, model: str = PRIMARY_MODEL) -> dict:
             "generator_model": model,
             "generator_temperature": GEN_TEMPERATURE,
             "enable_thinking": False,
-            "n_llm_calls": 0 if client is None else client.n_calls,
+            "n_llm_calls": 0 if client is None else client.n_llm_calls,
             "source": "abisee/cnn_dailymail 3.0.0 validation (HuggingFace datasets-server)",
             "deterministic_arms": ["lead3", "extractive", "template_filled",
                                    "keyword_stuffed", "random_highlight"],

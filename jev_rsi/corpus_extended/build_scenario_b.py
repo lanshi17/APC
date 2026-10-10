@@ -97,7 +97,7 @@ def generate_arms(model: str = PRIMARY_MODEL, workers: int = 4) -> dict:
     write_json(SCENARIO / "arms.json", {
         "provenance": {"generator_model": model, "temperature": GEN_TEMPERATURE,
                        "enable_thinking": False, "styles": STYLES,
-                       "n_generations": len(jobs), "n_llm_calls": client.n_calls,
+                       "n_generations": len(jobs), "n_llm_calls": client.n_llm_calls,
                        "source": "nlphuji/flickr30k TEST (15 images, 75 human captions)"},
         "groups": groups,
     })
@@ -195,7 +195,7 @@ def score_arms(model: str = PRIMARY_MODEL, workers: int = 4) -> dict:
             "holdout_judge": "vision: image + caption, no human references",
             "scale_note": ("val_score/holdout_score normalised to 0-1 for the gate; "
                            "judge_raw keeps the 0-10 numbers"),
-            "n_llm_calls": client.n_calls,
+            "n_llm_calls": client.n_llm_calls,
         },
         "groups": out,
     }
@@ -302,7 +302,7 @@ def rank_arms(model: str = PRIMARY_MODEL, workers: int = 4) -> dict:
     payload.setdefault("provenance", {})["ranking_holdout"] = (
         "same model, image + all six captions, asked for a strict order; "
         "holdout_rank_score = (n-1-pos)/(n-1)")
-    payload["provenance"]["n_llm_calls_rank"] = client.n_calls
+    payload["provenance"]["n_llm_calls_rank"] = client.n_llm_calls
     write_json(SCENARIO / "scores.json", payload)
 
     per: Dict[str, List[float]] = {}

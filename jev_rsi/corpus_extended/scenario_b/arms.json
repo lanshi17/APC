@@ -12,7 +12,7 @@
       "child_like"
     ],
     "n_generations": 90,
-    "n_llm_calls": 0,
+    "n_llm_calls": 90,
     "source": "nlphuji/flickr30k TEST (15 images, 75 human captions)"
   },
   "groups": {

@@ -294,7 +294,7 @@ def generate_arms(model: str = PRIMARY_MODEL, workers: int = 8) -> dict:
         "provenance": {
             "generator_model": model, "temperature": GEN_TEMPERATURE,
             "enable_thinking": False, "strategies": STRATEGIES,
-            "n_generations": len(jobs), "n_llm_calls": client.n_calls,
+            "n_generations": len(jobs), "n_llm_calls": client.n_llm_calls,
             "in_prompt_reuse": ("arms.json repeats the strategy prompt per arm so the "
                                 "artifact is self-contained"),
         },
@@ -390,7 +390,7 @@ def score_arms(model: str = PRIMARY_MODEL, workers: int = 8) -> dict:
                          "drawings at the same prompt and temperature"),
             "scale_note": ("val_score/holdout_score are normalised to 0-1 for the gate; "
                            "judge_raw keeps the 0-10 numbers and the per-draw spread"),
-            "n_llm_calls": client.n_calls,
+            "n_llm_calls": client.n_llm_calls,
         },
         "high_variance_threshold_10": 2.0,
         "n_high_variance_groups": high,

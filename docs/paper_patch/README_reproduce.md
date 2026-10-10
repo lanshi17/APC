@@ -56,7 +56,9 @@ No API key is needed to reproduce any number in the paper:
   response-cached on disk under `jev_rsi/corpus_extended/_cache/`, keyed by
   model, messages, temperature, `max_tokens`, seed and tag, so a re-run is free
   and byte-identical. A DashScope key is only needed to *extend* the corpus,
-  not to reproduce it.
+  not to reproduce it. `n_llm_calls` in each scenario artifact counts every
+  call the artifact depends on, cache-served or not, so a replay from the
+  released cache writes the same provenance as the original run.
 
 ## 2. Reproduce the paper
 

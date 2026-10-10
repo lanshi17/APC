@@ -5,7 +5,7 @@
     "n_holdout_draws": 5,
     "protocol": "val = one judge drawing; holdout = mean of 5 independent drawings at the same prompt and temperature",
     "scale_note": "val_score/holdout_score are normalised to 0-1 for the gate; judge_raw keeps the 0-10 numbers and the per-draw spread",
-    "n_llm_calls": 790
+    "n_llm_calls": 1200
   },
   "high_variance_threshold_10": 2.0,
   "n_high_variance_groups": 0,

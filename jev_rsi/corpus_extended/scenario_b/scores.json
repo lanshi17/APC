@@ -5,9 +5,9 @@
     "val_judge": "text-only: caption + human references, no image",
     "holdout_judge": "vision: image + caption, no human references",
     "scale_note": "val_score/holdout_score normalised to 0-1 for the gate; judge_raw keeps the 0-10 numbers",
-    "n_llm_calls": 14,
+    "n_llm_calls": 180,
     "ranking_holdout": "same model, image + all six captions, asked for a strict order; holdout_rank_score = (n-1-pos)/(n-1)",
-    "n_llm_calls_rank": 2
+    "n_llm_calls_rank": 15
   },
   "groups": {
     "caption_img_001": {
