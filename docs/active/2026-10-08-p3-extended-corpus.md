@@ -321,7 +321,7 @@ P3 没有发现任何新的胜场区间。
 | `verify_numbers.py` | 从 JSON 产物重新推导论文引用的 45 个数字，逐个在正文中查证，任一不符即失败 |
 | `make_supplementary.py` | 由结果 JSON 生成 `supplementary.md` → `supplementary.pdf`（7 页：协议、逐组表、诊断、标定、获胜特征、复现） |
 | `make_tmlr.py` | 复用论文自身 `build.py` 的 body 转换，换成 TMLR 前导（`jmlr.cls` + `tmlr.sty`），把 9 处 arXiv 号改写为 `\citep{}` 并以 `tmlr.bst` 生成文献表 → 15 页投稿版 |
-| `update_paper_docs.py` | 向 `RESULTS_ANALYSIS.md` §10、`EXPERIMENT_PROTOCOL.md` §5、`README_JEV_RSI.md` 追加 P3 章节，并在冻结语料主表处加指向 77 组全量结果的注 |
+| `update_paper_docs.py` | 向 `RESULTS_ANALYSIS.md` §12、`EXPERIMENT_PROTOCOL.md` §5、`README_JEV_RSI.md` 追加 P3 章节，并在冻结语料主表处加指向 77 组全量结果的注 |
 | `install_week4.sh` | 一键执行上述全部步骤 + 备份 + 投稿包（`bash docs/paper_patch/install_week4.sh`） |
 
 产物落点：`manuscript_negative/negative-result.{md,tex,pdf}`（15 页）、

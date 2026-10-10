@@ -23,13 +23,13 @@ RESULTS = f"""
 ---
 
 {MARK}
-## 10. P3 Extended Corpus: Scenarios A, B, C
+## 12. P3 Extended Corpus: Scenarios A, B, C
 
 Section 5.6 of the manuscript (`manuscript_negative/negative-result.md`) adds 45
 decision groups (350 arms) whose purpose was to give the structured gate an
 advantage. Corpus total: **88 groups / 485 arms / 77 deployment decisions**.
 
-### 10.1 Deployment outcomes (77 decision groups)
+### 12.1 Deployment outcomes (77 decision groups)
 
 | Policy | Exact oracle | Within noise | Avg regret |
 |---|---|---|---|
@@ -41,7 +41,7 @@ Paired `greedy − jev_static` = −0.0343, 95% CI [−0.0658, −0.0082],
 W/L/T = 7/21/49, sign test p = 0.0125 — a larger and more robust deficit than
 the frozen corpus's (32 groups, −0.0013, p = .035).
 
-### 10.2 Per-scenario results
+### 12.2 Per-scenario results
 
 | Scenario | n | `greedy` | `jev` | Why structure lost |
 |---|---|---|---|---|
@@ -49,7 +49,7 @@ the frozen corpus's (32 groups, −0.0013, p = .035).
 | A: high-variance judge | 20 | 8/20 | 5/20 | The judge is not noisy (σ̄ = 0.47 of 10; 0/20 groups, 0/100 probed arms above σ = 2.0). The gate still retreats on 15/20 groups to `zero_shot`, which is not a safe arm here (+.1655 vs +.0355 regret) |
 | B: text vs vision judge | 15 | 15/15 | 15/15 | The two judges agree: Spearman(val, vision) = +.346, and +.527 against a non-saturating ranking holdout. Vision scores sit at the ceiling (5/6 styles ≥ 0.86) |
 
-### 10.3 Mechanism: scale migration, not a broken primitive
+### 12.3 Mechanism: scale migration, not a broken primitive
 
 The gate's three thresholds are constants calibrated on the frozen corpus.
 Median top-1/top-2 validation margin, in units of `NOISE_BAND` = 0.007:
@@ -132,7 +132,7 @@ python scripts/p3_acceptance.py                      # 10 pass / 1 partial / 1 f
 
 * Manuscript: §5.6 of `manuscript_negative/negative-result.md`
   (also `supplementary.pdf`, `tmlr/negative-result-tmlr.pdf`)
-* Results narrative: [RESULTS_ANALYSIS.md](RESULTS_ANALYSIS.md) §10
+* Results narrative: [RESULTS_ANALYSIS.md](RESULTS_ANALYSIS.md) §12
 * Protocol and deviations: [EXPERIMENT_PROTOCOL.md](EXPERIMENT_PROTOCOL.md) §5
 * Task tracking: [P3_TASK_TRACKER.md](P3_TASK_TRACKER.md)
 """
@@ -141,16 +141,49 @@ TARGETS = [("RESULTS_ANALYSIS.md", RESULTS),
            ("EXPERIMENT_PROTOCOL.md", PROTOCOL),
            ("README_JEV_RSI.md", README)]
 
-NOTE = ("*(Frozen corpus. Full-corpus totals over the 77 decision groups of the P3 "
-        "extension are in \u00a710 below.)*")
+def _note_results() -> str:
+    return ("*(Frozen corpus. Full-corpus totals over the 77 decision groups of the "
+            "P3 extension are in \u00a712 below.)*")
 
-# Surgical pointers so the frozen-corpus tables are not mistaken for the whole
-# corpus.  Each is applied at most once, keyed on the note text itself.
+
+def _note_readme() -> str:
+    return ("*(Frozen corpus. Full-corpus totals over the 77 decision groups of the "
+            "P3 extension are in the *P3 Extended Corpus* section below.)*")
+
+
+_OLD_NOTE = ("*(Frozen corpus. Full-corpus totals over the 77 decision groups of the "
+             "P3 extension are in \u00a710 below.)*")
+
+# Surgical fixes: pointers so the frozen-corpus tables are not mistaken for the
+# whole corpus, plus the renumbering of the appended block (the file already used
+# 10 and 11 before the P3 section, so the append must not reuse §10).  Entries are
+# applied in order, at most once each: the new text already being present (or, for
+# a deletion, the old text being absent) means "done".
+_H3_RESULTS = "### 3.1 Performance Comparison (32 Decision Groups)"
+_H3_README = "### Main Results (32 Decision Groups)"
 POST_EDITS = [
-    ("RESULTS_ANALYSIS.md", "### 3.1 Performance Comparison (32 Decision Groups)",
-     "### 3.1 Performance Comparison (32 Decision Groups)\n\n" + NOTE),
-    ("README_JEV_RSI.md", "### Main Results (32 Decision Groups)",
-     "### Main Results (32 Decision Groups)\n\n" + NOTE),
+    # repair an already-patched file: heading -> heading + stale note
+    ("RESULTS_ANALYSIS.md", _H3_RESULTS + "\n\n" + _OLD_NOTE,
+     _H3_RESULTS + "\n\n" + _note_results()),
+    ("README_JEV_RSI.md", _H3_README + "\n\n" + _OLD_NOTE,
+     _H3_README + "\n\n" + _note_readme()),
+    # fresh file: heading -> heading + note
+    ("RESULTS_ANALYSIS.md", _H3_RESULTS, _H3_RESULTS + "\n\n" + _note_results()),
+    ("README_JEV_RSI.md", _H3_README, _H3_README + "\n\n" + _note_readme()),
+    # renumber the appended block
+    ("RESULTS_ANALYSIS.md", "## 10. P3 Extended Corpus: Scenarios A, B, C",
+     "## 12. P3 Extended Corpus: Scenarios A, B, C"),
+    ("RESULTS_ANALYSIS.md", "### 10.1 Deployment outcomes (77 decision groups)",
+     "### 12.1 Deployment outcomes (77 decision groups)"),
+    ("RESULTS_ANALYSIS.md", "### 10.2 Per-scenario results",
+     "### 12.2 Per-scenario results"),
+    ("RESULTS_ANALYSIS.md", "### 10.3 Mechanism: scale migration, not a broken primitive",
+     "### 12.3 Mechanism: scale migration, not a broken primitive"),
+    # drop any stale note that survived an earlier round
+    ("RESULTS_ANALYSIS.md", _OLD_NOTE, ""),
+    ("README_JEV_RSI.md", _OLD_NOTE, ""),
+    ("README_JEV_RSI.md", "[RESULTS_ANALYSIS.md](RESULTS_ANALYSIS.md) \u00a710",
+     "[RESULTS_ANALYSIS.md](RESULTS_ANALYSIS.md) \u00a712"),
 ]
 
 
@@ -158,18 +191,19 @@ def apply_pointers(root: pathlib.Path) -> list[str]:
     log = []
     for name, old, new in POST_EDITS:
         p = root / name
+        tag = (new or f"drop: {old}").splitlines()[-1][:46]
         if not p.exists():
             log.append(f"skip (missing): {name}")
             continue
         s = p.read_text(encoding="utf-8")
-        if NOTE in s:
-            log.append(f"already pointed: {name}")
+        if (old not in s) if not new else (new in s):
+            log.append(f"already applied: {name} :: {tag}")
             continue
         if s.count(old) != 1:
-            log.append(f"skip (anchor not unique/absent): {name}")
+            log.append(f"skip (anchor not unique, {s.count(old)}x): {name} :: {tag}")
             continue
         p.write_text(s.replace(old, new, 1), encoding="utf-8")
-        log.append(f"pointer added: {name}")
+        log.append(f"applied: {name} :: {tag}")
     return log
 
 
