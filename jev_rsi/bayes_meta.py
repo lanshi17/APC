@@ -252,7 +252,7 @@ def landscape_granularity(h: Harness, box_name: str = "grid_box",
 
 
 def build_report() -> Dict[str, Any]:
-    h = Harness()
+    h = Harness(corpus="frozen")
     groups = h.decision_groups
     greedy = summarize(groups, h.evaluate("greedy", groups))
 

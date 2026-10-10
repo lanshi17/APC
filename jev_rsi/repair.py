@@ -189,7 +189,7 @@ def boundary_analysis(h: Harness) -> Dict[str, Any]:
 
 
 def build_report() -> Dict[str, Any]:
-    h = Harness()
+    h = Harness(corpus="frozen")
     diag = diagnose_loss(h)
 
     # a fine grid near zero: the loss looks like a boundary case, so show that

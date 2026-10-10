@@ -1,4 +1,5 @@
 {
+  "corpus": "frozen",
   "main_table": {
     "dataset": {
       "n_groups": 43,
@@ -30,7 +31,8 @@
         "financial-s47",
         "gpqa_resume_slice_quarantine-s926",
         "transfer_math_to_contract-s42"
-      ]
+      ],
+      "corpus": "frozen"
     },
     "policies": {
       "conservative": {

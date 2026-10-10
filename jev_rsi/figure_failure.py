@@ -59,7 +59,7 @@ def _strip_pdf_dates(path: Path) -> None:
 
 
 def _collect() -> List[Dict[str, Any]]:
-    h = Harness()
+    h = Harness(corpus="frozen")
     gate = JevGate(meta=MetaParams())
     heuristic = get_policy("heuristic")
     rows = []

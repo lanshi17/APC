@@ -100,6 +100,8 @@ python -m jev_rsi.corpus_extended.probe_judge_variance \
 ```bash
 cd ../02_apc_paper/manuscript_negative
 python build.py                     # markdown -> negative-result.tex -> .pdf (15 pages)
+python scripts/check_reproducibility.py   # re-runs the suite, asserts git stays clean
+                                         # --quick = frozen corpus and its five modules
 python ../code/docs/paper_patch/make_supplementary.py       # -> supplementary.pdf
 python ../code/docs/paper_patch/make_tmlr.py                # -> tmlr/negative-result-tmlr.pdf
 ```

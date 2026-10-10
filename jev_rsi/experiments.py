@@ -39,8 +39,15 @@ RESULTS = Path(__file__).resolve().parent / "results"
 # ---------------------------------------------------------------------------
 class Harness:
     def __init__(self, groups: Optional[List[Group]] = None,
-                 corpus: str = "extended"):
-        """``corpus``: ``extended`` (43 frozen + 45 P3 groups) or ``frozen``."""
+                 corpus: str = "frozen"):
+        """``corpus``: ``frozen`` (43 groups, the default) or ``extended``.
+
+        The frozen corpus is the default on purpose.  The modules whose
+        artifacts back the published frozen numbers (``repair``, ``bayes_meta``,
+        ``figure_failure``) construct ``Harness()`` with no arguments and write
+        to fixed result paths; defaulting to ``extended`` made a plain re-run
+        silently replace those artifacts with 77-group versions.
+        """
         if groups is None:
             groups = load_all_groups() if corpus == "extended" else load_groups()
         self.corpus = corpus

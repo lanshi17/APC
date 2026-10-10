@@ -103,6 +103,9 @@ python -m jev_rsi.experiments --corpus extended
 python -m jev_rsi.analysis_extended
 python scripts/p3_acceptance.py
 python docs/paper_patch/verify_numbers.py                  # 论文数字对账
+python scripts/check_reproducibility.py                   # 全套重跑后两个仓库 git 仍干净
+# 注意：冻结语料模块（repair / bayes_meta / figure_failure）以 frozen 为默认；
+# Harness(corpus=...) 的默认值曾是 extended，会让普通重跑覆盖已发表的冻结产物。
 ```
 
 ---
