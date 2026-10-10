@@ -59,8 +59,11 @@ run cp "$MANU/tmlr/negative-result-tmlr.tex" "$SUBMIT/"
 run cp "$MANU/tmlr/references.bib" "$SUBMIT/"
 run cp "$MANU/tmlr/tmlr.bst" "$SUBMIT/"
 run cp "$MANU/tmlr/negative-result-tmlr.bbl" "$SUBMIT/"
+run cp "$MANU/tmlr/tmlr.sty" "$SUBMIT/"
 run cp "$MANU/supplementary.pdf" "$SUBMIT/"
 run cp "$PP/README_reproduce.md" "$SUBMIT/"
+# the .tex pulls figures/fig1_failure_by_group.pdf, so the figure ships too
+run cp -r "$MANU/figures" "$SUBMIT/"
 if git -C "$CODE" diff --quiet && git -C "$CODE" diff --cached --quiet; then
   run bash "$PAPER/make_anon_bundle.sh" "$SUBMIT/code.zip"
   run cp "$SUBMIT/code.zip" "$MANU/code.zip"

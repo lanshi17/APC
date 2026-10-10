@@ -9,21 +9,24 @@ P3 extended corpus (Scenarios A, B, C, §5.6 of the paper).
 | `negative-result-tmlr.tex` | its LaTeX source (generated from the markdown) |
 | `references.bib` | the nine references cited in the paper |
 | `tmlr.bst` | the TMLR bibliography style used to typeset them |
+| `tmlr.sty` | the TMLR template style (with the four `\@ifundefined` guards that TeX Live's `jmlr.cls` needs) |
 | `negative-result-tmlr.bbl` | the generated bibliography, so the `.tex` also compiles without BibTeX |
 | `supplementary.pdf` | supplementary material: protocols, per-group tables, diagnostics, win profile (7 pages) |
 | `code.zip` | anonymised code bundle (`git archive` of the code repo HEAD, identity-scanned) |
 | `README_reproduce.md` | this file |
 
-To rebuild the submission from source:
+To rebuild the submission from source, with `figures/` alongside it:
 
 ```bash
 pdflatex negative-result-tmlr && bibtex negative-result-tmlr \
   && pdflatex negative-result-tmlr && pdflatex negative-result-tmlr
 ```
 
-Drop a second `\bibliographystyle` line if your class already sets one: BibTeX
-refuses two `\bibstyle` commands and silently falls back to the wrong style
-(`jmlr.cls` sets `plainnat.bst`, which renders every citation as `(?)`).
+`jmlr.cls` declares `plainnat.bst` in the preamble, so a first `pdflatex` pass
+writes two `\bibstyle` lines into the `.aux`. BibTeX rejects the second one
+(*Illegal, another \bibstyle command*), falls back to `plainnat.bst`, and every
+citation comes out as `(?)`. Delete the extra `\bibstyle{plainnat}` line before
+running BibTeX -- that is what `docs/paper_patch/make_tmlr.py` does.
 
 The authoritative sources live in two sibling repositories, which is why the
 review package ships a snapshot rather than a single tree:
