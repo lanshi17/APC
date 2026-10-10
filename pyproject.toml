@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+# The reproduction instructions in docs/paper_patch/README_reproduce.md and in
+# the anonymous bundle tell a reviewer to run `pip install -e '.[dev]'`.  This
+# file is what makes that command work; without it the very first step of the
+# reproduction path failed with "neither 'setup.py' nor 'pyproject.toml' found".
+# torch is deliberately not a dependency: it needs the CPU index on Linux, so it
+# is installed on its own line (see the README).
+[project]
+name = "jev-rsi"
+version = "0.1.0"
+description = "Validation argmax vs. a structured decision gate, frozen and P3 extended corpora"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy",
+    "scipy",
+    "httpx",
+    "matplotlib",
+    "rouge-score",
+    "bert-score",
+    "transformers<5",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[tool.setuptools]
+# Explicit, so neither the released result JSONs (jev_rsi/results) nor the
+# response cache (jev_rsi/corpus_extended/_cache, 3.1 GB when populated) can ever
+# be treated as package data.
+packages = ["jev_rsi", "jev_rsi.corpus_extended"]

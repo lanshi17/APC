@@ -42,8 +42,13 @@ Python 3.13. `code.zip` ships a `pyproject.toml`; the runs below need:
 
 ```bash
 python -m venv .venv && . .venv/bin/activate
-pip install -e '.[dev]'          # numpy, scipy, torch (CPU), transformers, bert-score
+pip install -e '.[dev]'          # numpy, scipy, httpx, matplotlib, rouge-score, bert-score, transformers<5
+pip install torch --index-url https://download.pytorch.org/whl/cpu   # CPU-only torch (BERTScore)
 ```
+
+`pyproject.toml` declares the runtime dependencies (and a `dev` extra) so that
+`pip install -e '.[dev]'` works from the unpacked bundle; `torch` is left out on
+purpose because it needs the CPU index shown above.
 
 `ROUGE-L` is pure Python; `BERTScore` uses `microsoft/deberta-xlarge-mnli`
 (downloaded on first use, ~1.6 GB, cached under `$HF_HOME`).

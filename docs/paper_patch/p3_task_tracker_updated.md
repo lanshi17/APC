@@ -168,6 +168,7 @@ python scripts/check_reproducibility.py                   # 全套重跑后两�
 | 匿名包内的模型权重缺失 | 构建器评分需要 1.6 GB deberta 权重 | 权重缓存（3.1 GB）不入包；首次运行从 Hugging Face 拉取，已在 README/补充材料写明。沙箱内一度网络不可达导致 C 构建失败，属环境限制而非包缺陷 |
 | 冻结章节的数字没人核对 | 对账只覆盖 P3 的 45 个数字 | `verify_numbers.py` 原先只查扩展语料的数字；冻结语料 §5.1–§5.5 / §6.2–§6.4 的 60 个数字只受"产物字节不变"守卫保护，文字漂移不会被发现。已扩充到 **105 个数字**，并把论文自己算的派生量（85.8% 的 headroom 占比、ε 容差网格、400 点采样的 12/12 个不同值、λ 扫描、学到的常量 fold 分布）在脚本内重算+断言，不再信任文字 |
 | §5.5 把一个**最大值**当**中位数**引用 | 正文数字与产物不符（已发表过的原文） | §5.5 写 "the collapse test … does not separate the six collapse groups from the rest (median 0.53 vs 0.40)"。但 `real_jev_results.json` 的实际数据是：六个 collapse 组的 collapse 特征中位数 **0.42**（组内最大 0.49），其余 26 组中位数 **0.395**；**0.53 是全局最大**，而且它落在一个**不 collapse** 的组上。结论（该原语无法区分两类组）不受影响，但引用的数字是错的 → 正文改为 "median 0.42 vs 0.40, and the 0.53 maximum belongs to a group that does not collapse"，并对账脚本新增 5 项 §5.5 触发统计 + "最大值不属于 collapse 组" 的自动断言 |
+| 匿名包的**首个安装命令**根本跑不通 | README 声称包内有 `pyproject.toml`，实际没有 | `docs/paper_patch/README_reproduce.md` 写 "`code.zip` ships a `pyproject.toml`" 并要求 `pip install -e '.[dev]'`，但代码仓库根目录既无 `pyproject.toml` 也无 `setup.py`/`requirements.txt`（唯一的 `pyproject.toml` 在 `apc-pipeline/` 子包里）；审稿人照做的第一步就是 `neither 'setup.py' nor 'pyproject.toml' found`。已新增根目录 `pyproject.toml`（声明 numpy/scipy/httpx/matplotlib/rouge-score/bert-score/transformers<5 + `dev` extra；torch 因需 CPU index 故意单列一行），并更正 README 的安装说明；`uv pip install -e '.[dev]' --dry-run` 已验证可解析，且从 `code.zip` 解包后同样可解析 |
 
 
 新增 `scripts/check_reproducibility.py`：重跑全部模块后断言两个仓库 `git status` 干净。
