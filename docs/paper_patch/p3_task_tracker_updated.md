@@ -166,6 +166,7 @@ python scripts/check_reproducibility.py                   # 全套重跑后两�
 | 场景产物只记网络调用数 | 缓存重放写出不同溯源 | `n_llm_calls` 记的是 `n_calls`（网络调用），缓存重放会写成 0 或另一数字（B 的 arms 原本就记成 0，等于宣称 90 次真实生成没调模型）→ 改为记全部依赖调用（缓存或网络），三个场景重放现在逐字节一致 |
 | 场景重放并非逐字节一致 | "byte-identical replay" 的措辞 | 无 key 重放场景 A/C 成功，但 C 的 BERTScore 有一个臂在第 6 位小数上不同（-0.064232 vs -0.064233）：`rescale_with_baseline` 是浮点模型计算，跨 torch/transformers 版本不保证逐位可复现。论文数字来自已发布的 scores.json，重算并没有改变任何结论，但措辞必须收紧：构建器只承诺"无需 key 重放已发布调用"，"逐字节"只属于读取 scores 的分析命令（`experiments` / `analysis_extended`，已在匿名包内无 key 验证为逐字节一致） |
 | 匿名包内的模型权重缺失 | 构建器评分需要 1.6 GB deberta 权重 | 权重缓存（3.1 GB）不入包；首次运行从 Hugging Face 拉取，已在 README/补充材料写明。沙箱内一度网络不可达导致 C 构建失败，属环境限制而非包缺陷 |
+| 冻结章节的数字没人核对 | 对账只覆盖 P3 的 45 个数字 | `verify_numbers.py` 原先只查扩展语料的数字；冻结语料 §5.1–§5.5 / §6.2–§6.4 的 60 个数字只受"产物字节不变"守卫保护，文字漂移不会被发现。已扩充到 **105 个数字**，并把论文自己算的派生量（85.8% 的 headroom 占比、ε 容差网格、400 点采样的 12/12 个不同值、λ 扫描、学到的常量 fold 分布）在脚本内重算+断言，不再信任文字 |
 
 
 新增 `scripts/check_reproducibility.py`：重跑全部模块后断言两个仓库 `git status` 干净。
