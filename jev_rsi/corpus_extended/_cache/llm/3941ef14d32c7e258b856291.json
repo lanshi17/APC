@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/few_shot_2ex",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The water had long since drained, leaving the lanes as concrete scars beneath a sky the color of wet ash. The starting blocks, once springboards for glory, stood like headstones in a graveyard of gold medals, their plastic surfaces cracked by frost and indifference, holding nothing but the cold memory of applause.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 201,
+  "completion_tokens": 61
+ },
+ "response_id": "chatcmpl-f6e9b077-008f-91d9-8197-bbff59743802",
+ "latency_s": 1.765,
+ "cached": false,
+ "cache_key": "3941ef14d32c7e258b856291"
+}

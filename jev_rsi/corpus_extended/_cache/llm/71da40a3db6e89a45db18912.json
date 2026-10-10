@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/factual",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "A young boy with brown hair, wearing a red jacket featuring an Italian flag patch and Kappa logo, crouches on a wooden floor while holding a hockey stick in front of a red-framed net.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 230,
+  "completion_tokens": 43
+ },
+ "response_id": "chatcmpl-2e95dec9-e38d-9748-b942-a9ac81137116",
+ "latency_s": 1.27,
+ "cached": false,
+ "cache_key": "71da40a3db6e89a45db18912"
+}

@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/zero_shot",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "“Abort, Commander. The telemetry on valve three is drifting,” Mission Control’s voice crackled through the headset, calm but firm.\n\nCommander Elias Thorne stared at the countdown clock: 02:45. He could feel the vibration of the engines building beneath his seat, a low hum turning into a roar. “Drifting? It’s within tolerance, Houston. I’ve flown this bird a hundred times.”\n\n“It’s not flying today; it’s launching. And those tolerances are for cruise, not ignition. Abort now.”\n\nElias gritted his teeth. The window was narrow, dictated by orbital mechanics that waited for no one. If they scrubbed now, the next launch wasn’t for six months. His career, his crew’s training, all of it hung on a decimal point. “Look at the primary sensors. They’re green. Secondary noise doesn’t kill missions.”\n\n“Secondary noise kills when you ignore it! That’s what happened with Apollo 13’s oxygen tank—”\n\n“Stop comparing me to ghosts!” Elias shouted, his hand hovering over the manual override. “I trust my eyes. I trust this ship. We go.”\n\nSilence stretched, thick and heavy. Then, a sigh from the ground. “Your call, Commander. But if that valve fails, I’m writing your obituary before you reach orbit.”\n\nElias smiled grimly, watching the numbers tick down. 00:10. He knew the risk. He also knew the sky.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 56,
+  "completion_tokens": 314
+ },
+ "response_id": "chatcmpl-0bc867a3-8f4e-9228-8108-0b2ddba29ac9",
+ "latency_s": 8.095,
+ "cached": false,
+ "cache_key": "fc865abfa7457b69c6b64f08"
+}

@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/temperature_low",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Words hang, suspended in the air between us.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 50,
+  "completion_tokens": 10
+ },
+ "response_id": "chatcmpl-fb987780-f75e-9c39-a515-a19cfe49c176",
+ "latency_s": 1.061,
+ "cached": false,
+ "cache_key": "ee534584d29adaa9f08428b9"
+}

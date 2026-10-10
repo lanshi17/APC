@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/temperature_low",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The fluorescent lights of the office hummed with a low, judgmental buzz. Elias stared at the spreadsheet, his cursor hovering over cell B12. A decimal point had slipped leftward, inflating their quarterly projection by ten percent. No one had noticed. The client was already signing off on the preliminary draft.\n\n\"We ship it,\" Mara said, leaning against her desk, arms crossed. Her voice was calm, pragmatic. \"It’s a rounding error in the grand scheme. Fixing it now delays the launch by three days. Three days means penalties. It means we look incompetent.\"\n\nElias rubbed his temples. \"If they catch it later, it’s not incompetence. It’s fraud. Or negligence. Either way, our reputation is gone.\"\n\n\"They won’t catch it,\" Mara insisted, though her eyes flickered away. \"And if they do, we say it was an oversight during final QA. We patch it quietly. No harm done.\"\n\nElias looked back at the number. It wasn’t just data; it was trust. Once broken, it didn’t heal with a quiet patch. He thought of the junior analysts who relied on this report to make hiring decisions. He thought of the sleepless nights ahead if he stayed silent.\n\n\"Send the correction,\" Elias said, his voice steady. \"Let them be angry for three days. I’d rather have their anger than my own conscience.\"",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 55,
+  "completion_tokens": 289
+ },
+ "response_id": "chatcmpl-febe406c-2606-9161-843b-79a711413d96",
+ "latency_s": 6.044,
+ "cached": false,
+ "cache_key": "40095c542106f9b8e1e7c401"
+}

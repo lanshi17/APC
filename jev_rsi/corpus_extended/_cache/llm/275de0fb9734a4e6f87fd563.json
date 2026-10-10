@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/few_shot_2ex",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The spreadsheet glowed under the fluorescent hum, a digital graveyard for the error that only they could see. Elias traced the cell with his cursor, trying to delete it like a bad memory; Mara watched him, her coffee going cold in her hand, knowing that silence was a loan taken out against their future peace, one that would eventually demand payment in full.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 203,
+  "completion_tokens": 72
+ },
+ "response_id": "chatcmpl-c4ee9622-27ab-9ad8-9a1e-cc03444a9553",
+ "latency_s": 2.01,
+ "cached": false,
+ "cache_key": "275de0fb9734a4e6f87fd563"
+}

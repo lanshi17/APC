@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/temperature_low",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Salt lips kiss stone, whispering names of sunken kings.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 50,
+  "completion_tokens": 13
+ },
+ "response_id": "chatcmpl-3eb58f9a-bba6-9dad-aa91-fe65b52347ae",
+ "latency_s": 1.209,
+ "cached": false,
+ "cache_key": "69dfa39ffd10c58d48a60fe1"
+}

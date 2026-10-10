@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/zero_shot",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The fluorescent lights hummed their dying tune, casting a sickly pallor over the vinyl chairs. At 3 a.m., the ER waiting room was a purgatory of coughing and silence. Elias sat rigid, clutching a crumpled insurance card. Across from him slumped Mara, head bowed, her coat soaked with rain that had long since stopped falling.\n\nElias knew something. He had seen the name on the intake board: *Vance*. He had also seen the black SUV parked illegally in the ambulance bay for two hours. He knew Vance wasn’t here for a broken arm or a fever. He knew the man who had just been wheeled into Trauma One was not alive. And he knew why.\n\nMara looked up, eyes red-rimmed and hollow. \"They’re taking too long,\" she whispered, her voice cracking. She didn’t know about the SUV. She didn’t know the police tape already ringed the perimeter outside, invisible to those inside. She only knew the fear of loss.\n\nElias shifted his weight, avoiding her gaze. The guilt tasted like copper in his mouth. He could tell her. He could warn her to run, to hide, to deny any connection. But if he spoke, he became an accomplice. If he stayed silent, he remained a witness.\n\nThe double doors swung open. A doctor emerged, face grave. Mara stood, trembling. Elias did not move.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 62,
+  "completion_tokens": 298
+ },
+ "response_id": "chatcmpl-3990d532-72f5-9fd4-95f8-50dd1f146613",
+ "latency_s": 6.669,
+ "cached": false,
+ "cache_key": "043bf4fa60716bef8159d464"
+}

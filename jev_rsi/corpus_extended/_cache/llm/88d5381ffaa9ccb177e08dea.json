@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/few_shot_2ex",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The fox memorized the map until he could recite every contour, proud of his perfect plan to cross the valley. He marched confidently toward the river marked as a thin blue line, only to find it swollen into a roaring flood that swept him away, while the hare, who had never looked at the paper, tasted the current with her paw and found the shallow stones where the water was still.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 203,
+  "completion_tokens": 80
+ },
+ "response_id": "chatcmpl-b8b1a9ee-6581-9993-b558-264eb3adc12b",
+ "latency_s": 3.309,
+ "cached": false,
+ "cache_key": "88d5381ffaa9ccb177e08dea"
+}

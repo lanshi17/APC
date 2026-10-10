@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/verbose",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "A young child crouches beside a red hockey net, wearing a vibrant red Kappa jersey with an Italian flag patch and blue emblem. Smiling warmly, they grip a hockey stick on the textured pavement. The white mesh backdrop contrasts with their denim jeans and dark shoes, creating a cheerful, active outdoor scene bathed in soft natural light.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 242,
+  "completion_tokens": 70
+ },
+ "response_id": "chatcmpl-8f29d316-340a-955a-b67e-a2c70b1a1715",
+ "latency_s": 1.859,
+ "cached": false,
+ "cache_key": "5509618f2c0d4e67057c4d83"
+}

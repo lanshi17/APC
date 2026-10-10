@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/judge/draw0",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "{\"score\": 2}",
+ "reasoning": "We need to rate creative writing on scale 0-10. Need output JSON only. Task: Write a sonnet about sea remembering drowned city. Criteria imagery, rhythm, emotional resonance. Response: 3 lines, not sonnet. Imagery some: waves hold memories stone spire, silence deep tides, salt preserves. Rhythm weak, not sonnet. Emotional resonance modest. Holistic. Probably 2 or 3. 0 unusable, 5 competent forgettable. This is not a sonnet, fragment. Maybe score 2. Need JSON only.",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 184,
+  "completion_tokens": 128
+ },
+ "response_id": "chatcmpl-02dc13ad-3f51-9ea1-affb-e6333916de36",
+ "latency_s": 3.134,
+ "cached": false,
+ "cache_key": "f798a4ca1bc950d8192afe4f"
+}

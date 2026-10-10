@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/factual",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Several silhouetted individuals are gathered on a rocky shoreline beneath overhanging tree branches, with calm water and a small boat visible in the background under bright, low-angle sunlight.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 198,
+  "completion_tokens": 38
+ },
+ "response_id": "chatcmpl-2af45a95-2dbc-9483-868b-afcbb2a00aef",
+ "latency_s": 1.209,
+ "cached": false,
+ "cache_key": "c1ec247f40d8577a4b0714ea"
+}

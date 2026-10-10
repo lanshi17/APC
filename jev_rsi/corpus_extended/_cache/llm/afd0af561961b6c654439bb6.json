@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/temperature_low",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "In the village of Oakhaven, old Elias was known for his empty pockets and full heart. He had no gold to give, so he gave stories instead. Every evening, he sat by the fire, recounting tales of ancestors who had built the stone bridges, planted the orchards, and survived the great floods. The children listened, wide-eyed, absorbing not just entertainment, but identity.\n\nOne harsh winter, a blizzard buried the main road, cutting off supplies. Panic spread as food stores dwindled. But young Mara remembered Elias’s tale of the hidden cellar beneath the old mill, dug during a previous famine decades ago. She led the villagers there, finding preserved grains and dried meats that saved them all.\n\nWhen spring returned, they thanked Mara, but she shook her head. “I only remembered what Elias taught us,” she said. “He didn’t just tell stories; he kept our history alive.”\n\nElias smiled, realizing his true wealth wasn’t in what he owned, but in what he passed on. Generosity, he understood, is not merely giving away possessions, but preserving the past so others can navigate their future. To give generously is to ensure that memory survives, becoming a lantern in the dark for those who come after.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 55,
+  "completion_tokens": 255
+ },
+ "response_id": "chatcmpl-e0ae2c33-8bf7-90bb-a131-956665f3d437",
+ "latency_s": 5.931,
+ "cached": false,
+ "cache_key": "afd0af561961b6c654439bb6"
+}

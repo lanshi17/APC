@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/few_shot_2ex",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The ink had faded to the color of old tea, but the flour-dusted \"fold gently\" remained as sharp as a knife. She traced the loop of her grandmother’s 'g' and felt the ghost in the kitchen, not as a presence, but as a rhythm: *one-two-fold, one-two-fold*, beating against the silence of the empty house.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 203,
+  "completion_tokens": 74
+ },
+ "response_id": "chatcmpl-6d2fd868-2cc0-977c-821d-2273757335f4",
+ "latency_s": 2.227,
+ "cached": false,
+ "cache_key": "5c42af94aedc565bf43ded23"
+}

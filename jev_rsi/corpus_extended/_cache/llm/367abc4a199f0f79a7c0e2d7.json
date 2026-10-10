@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/temperature_low",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The fluorescent lights hummed a low, dying note. Elias sat rigid, clutching a plastic cup of lukewarm coffee that had long since lost its steam. Across the linoleum floor, Mara stared at her phone, the screen’s blue glow carving hollows under her eyes. It was 3:17 a.m., the hour when hope goes to die in hospital waiting rooms.\n\nElias knew the truth. He had seen the doctor’s face before he’d been escorted out. The surgeon hadn’t looked tired; he had looked apologetic. A specific, practiced apology reserved for cases where intervention is futile. Elias’s wife wasn’t just critical; she was gone. The machines were merely keeping time until the family arrived to say goodbye.\n\nMara didn’t know this. She kept refreshing her inbox, expecting an update on her brother’s surgery. She believed the silence meant stability. She believed the nurse who had passed them both with a grim expression was simply busy.\n\nElias watched her tremble. He wanted to speak, to offer the mercy of bad news now rather than later, but his throat felt like sandpaper. Instead, he slid his untouched coffee toward her. It was a small, useless gesture in the vast, indifferent machinery of grief. She looked up, confused by the kindness, unaware that she was drinking from the cup of a man who had already lost everything.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 62,
+  "completion_tokens": 286
+ },
+ "response_id": "chatcmpl-580534da-18d2-90ff-b87a-fded325dc75a",
+ "latency_s": 7.171,
+ "cached": false,
+ "cache_key": "367abc4a199f0f79a7c0e2d7"
+}

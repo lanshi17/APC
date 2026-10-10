@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/verbose",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "A young girl with pigtails, wearing a pink tank top and brown shorts, joyfully runs through shallow ocean water. Her arms are bent as she splashes forward, creating white foam around her legs. The background shows gentle waves rolling toward shore under bright daylight. The scene captures carefree summer fun, with natural lighting highlighting the turquoise sea and sandy beach tones.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 210,
+  "completion_tokens": 75
+ },
+ "response_id": "chatcmpl-a6544c4f-027e-9a0b-93a3-ef22850e4338",
+ "latency_s": 2.601,
+ "cached": false,
+ "cache_key": "411e5429b28089fa20b0e4b1"
+}

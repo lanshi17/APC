@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/temperature_high",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The fluorescent lights hummed, a sterile lullaby for the sleepless. At 3 a.m., the waiting room was a graveyard of forgotten appointments and bad news. Two strangers sat in plastic chairs that offered no comfort. One was a young woman, clutching her phone like a life raft, eyes fixed on a screen that had stopped moving hours ago. She looked broken.\n\nOpposite her sat an older man in a rumpled suit, reading nothing, just staring at the wall. He seemed calm, almost serene, which irritated her. She needed someone to look as lost as she felt.\n\n\"Terrible night,\" she whispered, the silence finally becoming unbearable.\n\nHe looked up, his expression unreadable. \"It’s not about us,\" he said softly.\n\nShe frowned, confused by the abstraction. She opened her mouth to press him, to demand context, to share her own terrified narrative of a diagnosis pending or a loved one suffering. But before she could speak, the heavy double doors swung open.\n\nTwo doctors walked out. They didn’t check their tablets or consult charts. They simply turned their faces toward the room. Their shoulders dropped. One removed his glasses and rubbed his eyes with trembling hands.\n\nThe stranger nodded to her, a small, tragic gesture of solidarity. He had known. In those seconds of shared gaze, the secret became theirs alone: there would be no call tonight. The hope had already left the building.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 62,
+  "completion_tokens": 296
+ },
+ "response_id": "chatcmpl-0eec2adb-f412-954d-af63-31cb73f04247",
+ "latency_s": 6.921,
+ "cached": false,
+ "cache_key": "b617b3b01ca7f5022bfee7db"
+}

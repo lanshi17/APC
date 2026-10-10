@@ -1,0 +1,16 @@
+{
+ "tag": "probe/json",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "{\"score\": 5}",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 48,
+  "completion_tokens": 6
+ },
+ "response_id": "chatcmpl-f22cd46f-3a72-9bd7-bfa5-37990770bef4",
+ "latency_s": 0.992,
+ "cached": false,
+ "cache_key": "4c26bbb86f2d51d557a44a65"
+}

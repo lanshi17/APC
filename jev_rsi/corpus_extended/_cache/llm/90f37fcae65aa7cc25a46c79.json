@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/step_by_step",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "###FINAL###\nShelves empty, silence falls; the final door shuts tight.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 83,
+  "completion_tokens": 17
+ },
+ "response_id": "chatcmpl-37f06dc8-3d8a-93ad-9166-73cbb7fc29d4",
+ "latency_s": 1.458,
+ "cached": false,
+ "cache_key": "90f37fcae65aa7cc25a46c79"
+}

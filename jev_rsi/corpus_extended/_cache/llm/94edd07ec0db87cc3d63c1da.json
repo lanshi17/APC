@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/temperature_high",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "On the last day of the drought, the well gave back something that was not water.\n\nElara had been pumping since dawn, her arm ached from the dry heaving of the iron crank. The village had long since moved on, abandoning the old stone circle at the valley’s edge, but she remained. Her family’s lineage was tied to this aquifer; if it died, so did they.\n\nAt noon, under a sky bleached white and merciless, the rope went slack. No splash echoed from the deep black throat. Only a hum, low and vibrating through the soles of her worn boots. She peered into the abyss. Instead of the usual stagnant darkness, a soft, amber light pulsed upward. It wasn’t liquid. It coalesced into forms within the shaft—shadows moving like fish in current.\n\nShe lowered a tin bucket, trembling. It returned empty of water, but warm to the touch. Inside lay a single seed, translucent as glass, thrumming with that same inner light. The drought hadn’t killed the earth; it had merely paused its breathing, waiting for someone stubborn enough to listen. As Elara cradled the seed against her sun-cracked chest, a single drop of rain fell onto the parched dust beside the well. It sounded louder than thunder.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 57,
+  "completion_tokens": 271
+ },
+ "response_id": "chatcmpl-bf098ff4-9d9d-9c05-9ab6-266d2c6c216b",
+ "latency_s": 6.08,
+ "cached": false,
+ "cache_key": "94edd07ec0db87cc3d63c1da"
+}

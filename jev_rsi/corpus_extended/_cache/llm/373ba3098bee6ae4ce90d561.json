@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/zero_shot",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "In the heart of a dense forest, two creatures prepared for the Great Debate. A boastful Rooster, whose voice echoed like thunder, strutted before the assembly. “I am the wisest,” he crowed, flapping his wings aggressively. “My song wakes the sun! My words command the dawn! Who dares challenge my intellect?”\n\nThe animals trembled, intimidated by his volume and confidence. They nodded eagerly, assuming that such power must equal truth.\n\nBeside him sat an old Tortoise, slow and silent. He had spent decades observing the seasons, listening to the wind, and studying the stars. When it was his turn, he spoke softly. “The Rooster’s call is loud,” the Tortoise said gently, “but it does not change the weather. Wisdom lies in patience, not projection. The loudest bark often hides the emptiest mind.”\n\nA sudden storm rolled in. The Rooster panicked, screaming louder, but his noise brought no shelter. The Tortoise calmly guided the frightened animals to a deep, safe cave. As they huddled together, dry and safe, they realized that while the Rooster’s voice shook the trees, it was the Tortoise’s quiet understanding that saved them all.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 58,
+  "completion_tokens": 254
+ },
+ "response_id": "chatcmpl-5539e933-aef2-929e-8d30-6e7c750c8b7e",
+ "latency_s": 12.976,
+ "cached": false,
+ "cache_key": "373ba3098bee6ae4ce90d561"
+}

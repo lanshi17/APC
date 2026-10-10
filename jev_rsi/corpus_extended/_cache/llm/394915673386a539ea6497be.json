@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/creative_mode",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Static hums where love once spoke; we hang up before the sentence breaks.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 58,
+  "completion_tokens": 16
+ },
+ "response_id": "chatcmpl-8573c252-aeb3-9871-8ff6-56f1f0fdebf0",
+ "latency_s": 1.025,
+ "cached": false,
+ "cache_key": "394915673386a539ea6497be"
+}

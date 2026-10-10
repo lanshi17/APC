@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/constrained",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The timid mouse stood frozen at the edge of the dark forest, his heart pounding against his ribs like a trapped bird. He needed to cross the woods to deliver medicine to his sick sister, but the shadows terrified him more than any predator could. A brave badger noticed his hesitation and offered to walk beside him for the first mile. The mouse accepted the offer, feeling a strange warmth spread through his chest as he took that first shaky step into the unknown territory.\n\nAs they walked deeper into the trees, the badger shared stories of past fears he had overcome. The mouse listened intently, realizing that courage was not the absence of fear but the decision to move forward despite it. When they reached the halfway point, the badger stopped and turned back, leaving the mouse alone in the silence. Instead of turning around, the mouse continued walking, carrying the weight of their conversation in his mind like a lantern in the night.\n\nHe emerged from the treeline just as dawn broke, delivering the medicine with steady hands and a calm spirit. His sister looked at him with wonder, asking how he had managed such a dangerous journey alone. The mouse smiled softly, knowing that the borrowed strength had become his own once used. Courage grows when shared.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 77,
+  "completion_tokens": 251
+ },
+ "response_id": "chatcmpl-7d1a4e9c-cff9-9424-bbc2-70f7471b850a",
+ "latency_s": 5.691,
+ "cached": false,
+ "cache_key": "3bf081bb5c00408ff691ca67"
+}

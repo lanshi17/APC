@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/step_by_step",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "(1) **Brainstorming Directions:**\n*   *Direction A:* A timid mouse borrows a lion’s roar from a magical flute to scare off a hawk, realizing the voice wasn't his but the courage was.\n*   *Direction B:* A shy firefly lends its glow to a lost moth, allowing the moth to navigate safely, proving that shared light is still guidance.\n*   *Direction C:* A young knight uses an enchanted shield that absorbs fear, learning that even artificial bravery can protect the vulnerable until true strength develops.\n\n(2) **Selection:** Direction A offers the most direct metaphorical resonance with \"borrowed courage.\" It contrasts internal feeling with external action effectively.\n\n(3) **Drafting:**\n\n###FINAL###\nElara was a field mouse who trembled at thunder and froze at shadows. One autumn evening, she found a hollow reed left behind by a wandering bard. When she blew into it, it emitted not a whistle, but a deep, resonant growl—the voice of a great bear.\n\nA fox crept toward her burrow, eyes gleaming. Elara raised the reed, shaking violently. She blew. The bear’s growl erupted from the tiny instrument, echoing through the tall grass. The fox halted, ears flattening, and retreated into the dark.\n\nElara lowered the reed, her heart still pounding, her legs still weak. She had felt no different than before; the terror remained. Yet, the fox was gone. She realized that while the voice belonged to the bear, the decision to blow belonged to her. Courage, she learned, does not always start in the gut. Sometimes, it starts in the hand, borrowed from a tool or a trick, yet its result—safety, survival, victory—is entirely real. Borrowed courage still counts.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 85,
+  "completion_tokens": 379
+ },
+ "response_id": "chatcmpl-da7d9208-29cf-92a1-a62a-9634f617e7a6",
+ "latency_s": 6.722,
+ "cached": false,
+ "cache_key": "d32fdd82bb368d5f18b41668"
+}

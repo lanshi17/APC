@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/constrained",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The waves hold memories of stone and spire.\n\nSilence presses deep beneath the shifting tides.\n\nSalt preserves what time cannot erase here.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 74,
+  "completion_tokens": 30
+ },
+ "response_id": "chatcmpl-81eb8733-d6e2-9861-8182-43cf343ea401",
+ "latency_s": 1.288,
+ "cached": false,
+ "cache_key": "fb834cb06523a0ad48cb7033"
+}

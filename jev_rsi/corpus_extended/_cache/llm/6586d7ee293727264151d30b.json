@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/temperature_high",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "You started, then silence grew; the words died unborn in our shared, quiet grief.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 50,
+  "completion_tokens": 18
+ },
+ "response_id": "chatcmpl-c762c2eb-e139-952f-ac5d-ab71307d5091",
+ "latency_s": 1.297,
+ "cached": false,
+ "cache_key": "6586d7ee293727264151d30b"
+}

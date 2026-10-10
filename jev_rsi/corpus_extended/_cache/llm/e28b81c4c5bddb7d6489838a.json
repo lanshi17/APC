@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/poetic",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Crowned with corn like golden horns, she wears the earth’s bounty as a halo. Beads cascade down her neck, each one a whispered prayer to ancient rhythms. Her gaze holds the horizon—vast, timeless, and unbroken by wind or war.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 205,
+  "completion_tokens": 53
+ },
+ "response_id": "chatcmpl-c91d9115-759f-9b20-95de-658a04ab2abd",
+ "latency_s": 1.861,
+ "cached": false,
+ "cache_key": "e28b81c4c5bddb7d6489838a"
+}

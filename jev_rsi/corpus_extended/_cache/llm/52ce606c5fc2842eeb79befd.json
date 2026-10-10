@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/temperature_low",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The fog had swallowed the world whole, a thick, gray wool that muffled even the crash of the waves against the rocks. Elias, whose hands were mapped with scars from decades of rope and rust, squinted through the salt-crusted glass of the lantern room. He knew this silence; it was usually the prelude to storms or shipwrecks. But today, the air felt heavy with something else—anticipation.\n\nThen he saw it. Not a ship’s mast, nor a drifting spar, but a light. It pulsed with a rhythm that defied the erratic flicker of lightning or the steady beam of his own rotating Fresnel lens. It was blue, cold and sharp, cutting through the murk like a needle through silk. Elias rubbed his eyes, blaming the fatigue of another sleepless night, but the light remained. It moved slowly, deliberately, hovering just above the waterline where no vessel could safely navigate.\n\nHis heart hammered against his ribs, a frantic bird trapped in a cage of bone. The old stories whispered by fishermen about \"sea-wraiths\" and \"ghost-lights\" suddenly seemed less like folklore and more like warnings. As the blue glow intensified, reflecting off the wet stone of the gallery, Elias realized with a chilling certainty that the light wasn’t trying to warn ships away. It was calling them in. And for the first time in forty years, he didn’t reach for the logbook to record the anomaly. He reached for the door.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 53,
+  "completion_tokens": 306
+ },
+ "response_id": "chatcmpl-1e12a524-eed2-989b-a681-c01a9db36d15",
+ "latency_s": 6.908,
+ "cached": false,
+ "cache_key": "52ce606c5fc2842eeb79befd"
+}

@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/temperature_low",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The sky bleeds bruised purple over the harbor, heavy with the memory of last night’s gale. Salt spray still clings to the air, sharp and metallic, mixing with the pungent, briny scent of fresh catch. Wooden crates, slick with rainwater, line the cobblestones like jagged teeth. Fishermen, their faces etched with exhaustion and relief, haul nets that drip seaweed and silver scales onto the wet stone.\n\nA seagull screams, diving for a discarded shrimp tail, its cry echoing off the damp brick warehouses. The storm has passed, but the town remains suspended in the quiet aftermath. Nets hang limp from rusted hooks, swaying gently in the residual breeze. Under the flickering glow of sodium lamps, hands move quickly, sorting herring from mackerel, life returning to the rhythm of trade. Dawn breaks not with a shout, but with the soft slap of water against hulls and the murmur of voices bargaining over the morning’s bounty.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 54,
+  "completion_tokens": 205
+ },
+ "response_id": "chatcmpl-92ff4cd1-eea7-94dc-b92a-938a68862dbf",
+ "latency_s": 4.439,
+ "cached": false,
+ "cache_key": "5f01ecc11e11c1f263fdcb58"
+}

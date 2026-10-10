@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/few_shot_2ex",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The glass is cold against my cheekbone’s ridge,\nA frame of frost for the electric sprawl.\nThe city hums its low, metallic bridge,\nAnd lights cascade like rain within a hall.\n\nI watch the windows flicker, pass, and die,\nEach square a life I’ll never get to know;\nThey blink beneath the smog-stained, starless sky,\nLike eyes that close when waking dreams are slow.\n\nWe tear through shadows, stitching time with speed,\nThe dark outside is thick as velvet cloth,\nBut here, inside, there’s nothing left to need—\nJust rhythm, rail, and memory of growth.\n\nThe town recedes into the black unknown,\nA kingdom built on sleep, yet never gone.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 200,
+  "completion_tokens": 159
+ },
+ "response_id": "chatcmpl-75e2e407-2662-9d91-9b8f-753d403b17a1",
+ "latency_s": 3.765,
+ "cached": false,
+ "cache_key": "9442ead7c2a961cfd3f27b31"
+}

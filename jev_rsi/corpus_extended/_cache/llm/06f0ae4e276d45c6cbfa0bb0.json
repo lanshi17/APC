@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/few_shot_2ex",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The dust motes dance in light that starts to fade,\nNo whispered page-turns break the heavy air;\nThe catalog drawers stand with locks displayed,\nAnd silence settles on the empty stair.\nWe packed the shelves into cardboard boxes tight,\nEach spine a memory, each cover worn;\nThe fluorescent hum gives up its final bite,\nBefore the key turns in the iron door.\nWhat once held worlds within these quiet rows\nNow holds only shadows, deep and thin;\nThe story ends before the reader knows\nHow much of self was lost beneath the din.\nThe sign goes dark. The building breathes no more.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 200,
+  "completion_tokens": 132
+ },
+ "response_id": "chatcmpl-f9724bf4-819e-9f22-9770-ab5e88d6af6d",
+ "latency_s": 4.179,
+ "cached": false,
+ "cache_key": "06f0ae4e276d45c6cbfa0bb0"
+}

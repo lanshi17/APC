@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/temperature_high",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Mr. Henderson spotted her before she saw him, standing near the frozen peas aisle. It had been two decades since he’d handed her the essay that changed his perspective on teaching, or so she’d claimed back then. He adjusted his glasses, squinting at the woman unpacking groceries into a reusable tote. Was it Sarah? She looked older, yes, but carried herself with the same quiet confidence.\n\nHe approached tentatively, holding up a box of low-sodium stock as if presenting evidence. \"Sarah?\" he asked, his voice raspy from disuse after years of retirement silence.\n\nShe turned, eyes widening in recognition before narrowing in playful accusation. \"Professor Henderson? Here I thought you lived off your pension and good intentions.\"\n\nThey laughed, a warm, familiar sound that echoed slightly in the sterile chill of the grocery section. The years seemed to collapse into this moment, stripped of grades and formalities. She mentioned she was buying soup for her mother; he confessed he was only here because his kitchen sink leaked again. Small talk bloomed where deep connection should have been, tentative and bright. For ten minutes, they weren’t teacher and student, just two people navigating adulthood’s mundane aisles, sharing stories over boxes of pasta and canned tomatoes, remembering who they used to be while discovering who they had become.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 54,
+  "completion_tokens": 269
+ },
+ "response_id": "chatcmpl-0e788b3b-8e05-9172-9dcf-2becba6c316d",
+ "latency_s": 7.391,
+ "cached": false,
+ "cache_key": "4a27c67f5d2f284be3195e05"
+}

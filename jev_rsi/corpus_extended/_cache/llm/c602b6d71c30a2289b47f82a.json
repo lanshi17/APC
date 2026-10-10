@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/zero_shot",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The concrete bowl holds nothing but winter’s breath. Once, this vast basin churned with the collective roar of eighty thousand souls and the frantic splashing of elite bodies pushing human limits. Now, it is a silent scar on the landscape, a monument to forgotten glory.\n\nIce forms in jagged shards across the shallow bottom, trapping dead leaves in translucent amber cages. The starting blocks stand like skeletal fingers against the grey sky, peeling paint revealing rust beneath. Wind whistles through the empty diving towers, a hollow note that echoes where applause once thundered.\n\nTwenty years have erased the crowds, the medals, the national anthems played at dawn. Only the geometry remains—the perfect rectangles, the measured depths. It is not abandoned so much as released, returned to the earth before it was ever claimed by sport. A cold, clean emptiness waits for snow, indifferent to the history it swallowed whole.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 53,
+  "completion_tokens": 183
+ },
+ "response_id": "chatcmpl-2d0487ac-736d-9b1d-add4-d4b57bf0ad2f",
+ "latency_s": 4.652,
+ "cached": false,
+ "cache_key": "c602b6d71c30a2289b47f82a"
+}

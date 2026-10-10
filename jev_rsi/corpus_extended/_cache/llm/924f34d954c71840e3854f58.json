@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/concise",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Man bathing in wooden barrel outdoors.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 234,
+  "completion_tokens": 8
+ },
+ "response_id": "chatcmpl-52a2350c-d231-9b91-be4a-fbe7d2f0f632",
+ "latency_s": 1.016,
+ "cached": false,
+ "cache_key": "924f34d954c71840e3854f58"
+}

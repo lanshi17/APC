@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/factual",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "A man wearing high-visibility clothing and ear protection operates a green John Deere tractor equipped with a rear-mounted attachment on a paved road bordered by a metal fence and vegetation.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 214,
+  "completion_tokens": 36
+ },
+ "response_id": "chatcmpl-d34fa10e-86cb-9eab-9517-c78123b32b85",
+ "latency_s": 1.207,
+ "cached": false,
+ "cache_key": "75194ce268b311f7ee75d7c9"
+}

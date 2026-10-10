@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/creative_mode",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "A sonnet demands fourteen lines, not words.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 59,
+  "completion_tokens": 10
+ },
+ "response_id": "chatcmpl-0d3fd37a-057e-9119-8a2c-a746852752a2",
+ "latency_s": 0.677,
+ "cached": false,
+ "cache_key": "8ca92aa8e7dcdbecccf5ce89"
+}

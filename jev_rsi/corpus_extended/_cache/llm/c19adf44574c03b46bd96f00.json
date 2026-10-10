@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/poetic",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "In the bustling heart of a city, an artist’s canvas blooms with vibrant life—a window into another world. Raindrops dance on umbrellas, while brushstrokes whisper tales of distant streets and sunlit spires, capturing moments that linger long after they fade.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 205,
+  "completion_tokens": 54
+ },
+ "response_id": "chatcmpl-8585f0bf-6d02-9eec-9ef0-2adfc2016221",
+ "latency_s": 1.942,
+ "cached": false,
+ "cache_key": "c19adf44574c03b46bd96f00"
+}

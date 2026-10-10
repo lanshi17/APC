@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/few_shot_2ex",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The aisle smelled of floor wax and ripe bananas, a scent that transported Mrs. Gable straight back to the chalk dust of Room 304. She was reaching for a tin of peaches when a hand brushed hers—not aggressively, but with a hesitation she recognized instantly. It was Leo, now broad-shouldered and graying at the temples, holding a basket full of organic kale. He didn’t say *hello*; he said, \"Mrs. Gable,\" the way he used to answer roll call, voice dropping an octave in respect. She smiled, letting go of the peaches so he could take them instead, a small surrender of authority that felt, after twenty years, like the only lesson that had ever truly stuck.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 202,
+  "completion_tokens": 150
+ },
+ "response_id": "chatcmpl-8544c53e-cdd5-9bc4-bfd7-a87d91554d21",
+ "latency_s": 3.561,
+ "cached": false,
+ "cache_key": "34b4ac9f8018e968e69ffa9d"
+}

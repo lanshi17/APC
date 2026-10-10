@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/factual",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "This image shows a person with dark skin, adorned with corn cobs on their head, red and yellow beaded headbands, white face paint around the eyes, long beaded earrings, multiple necklaces (including beaded strands and cowrie shell necklaces), and a thin stick held between their lips.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 198,
+  "completion_tokens": 63
+ },
+ "response_id": "chatcmpl-83b21e49-52f9-9549-8c3d-414ea0c7dfac",
+ "latency_s": 2.244,
+ "cached": false,
+ "cache_key": "5b044f4e5e203e33850d54ef"
+}

@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/creative_mode",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Salted stars\nIn deep, dark vaults",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 58,
+  "completion_tokens": 10
+ },
+ "response_id": "chatcmpl-07bc5300-2877-9cbc-994f-ed7499ed4943",
+ "latency_s": 0.766,
+ "cached": false,
+ "cache_key": "41c9fe71f4400e81ca37f76a"
+}

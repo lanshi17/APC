@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/cot",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "To succeed, this piece needs high-stakes brevity. The dialogue must be clipped, overlapping, and jargon-heavy to reflect professional urgency. Subtext is key: the controller’s rigid adherence to protocol versus the astronaut’s visceral trust in instinct. Naturalness comes from avoiding exposition; neither explains *why* they disagree—the reader infers it from the ticking clock. Use short sentences to mimic adrenaline. The conflict isn’t personal; it’s structural. One represents safety margins, the other represents human intuition. The ending should be ambiguous or abrupt, capturing the split-second decision that defines their roles.\n\n###FINAL###\n\n\"Go/no-go on fuel pressure?\" Miller’s voice was gravel, tight against the helmet seal.\n\n\"Holding at ninety-four percent. Marginal,\" Chen replied, eyes flicking across telemetry screens. \"Abort recommended.\"\n\n\"The window closes in sixty seconds, Control. I’m reading steady. My hands are telling me it’s good.\"\n\n\"Your hands aren't certified, Miller. Sensors are. Drop it.\"\n\nA beat of silence, heavy with the hum of cooling fans. Outside, the gantry retracted like a closing jaw.\n\n\"If I abort, we lose six months. If I launch, you get your data.\"\n\n\"That’s not the calculus here. Safety protocols—\"\n\n\"Safety protocols didn't land us on the moon. Instinct did.\" Miller’s finger hovered over the ignition switch. \"I’m going up. Clear the pad.\"\n\n\"Miller, do not—!\"\n\nThe engine roared, swallowing Chen’s warning whole.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 84,
+  "completion_tokens": 321
+ },
+ "response_id": "chatcmpl-95497ec0-dab1-99c2-b32c-43b8294e9efa",
+ "latency_s": 7.088,
+ "cached": false,
+ "cache_key": "a63dc1a7904b8fd0eb996784"
+}

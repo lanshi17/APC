@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/concise",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Worker on sidewalk with caution tape.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 202,
+  "completion_tokens": 8
+ },
+ "response_id": "chatcmpl-c1ca2dd6-8921-9b8e-97d2-ea9174d970a0",
+ "latency_s": 2.364,
+ "cached": false,
+ "cache_key": "d7fcc634f3ab293f811bbacd"
+}

@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/poetic",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "In a sun-dappled garden, childhood dreams take flight—a vibrant pool of rainbows beside a toy tractor’s red chariot. A child bends low, pulling like a tiny farmer tending fields of laughter, where every blade of grass hums with the joy of endless summer afternoons.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 301,
+  "completion_tokens": 61
+ },
+ "response_id": "chatcmpl-a5e35cca-97ae-96e1-998c-c81024ba8822",
+ "latency_s": 4.168,
+ "cached": false,
+ "cache_key": "ec5759b66c2e98efe4ee65de"
+}

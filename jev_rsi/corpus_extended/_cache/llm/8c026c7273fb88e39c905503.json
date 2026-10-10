@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/concise",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Woman with corn headdress",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 202,
+  "completion_tokens": 6
+ },
+ "response_id": "chatcmpl-8e53a933-c1c4-960e-af8e-8423fcca1194",
+ "latency_s": 1.168,
+ "cached": false,
+ "cache_key": "8c026c7273fb88e39c905503"
+}

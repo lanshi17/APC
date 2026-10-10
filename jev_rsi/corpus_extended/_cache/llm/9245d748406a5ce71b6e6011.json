@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/factual",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Two men stand outdoors near a sunburst-patterned gate surrounded by greenery, with one in a teal shirt holding an object while the other in a dark shirt looks on.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 198,
+  "completion_tokens": 36
+ },
+ "response_id": "chatcmpl-6ee1e052-88cd-93f5-8de7-978bb3bae7f4",
+ "latency_s": 1.204,
+ "cached": false,
+ "cache_key": "9245d748406a5ce71b6e6011"
+}

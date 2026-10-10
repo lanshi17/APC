@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/concise",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Skateboarder performing mid-air trick",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 234,
+  "completion_tokens": 9
+ },
+ "response_id": "chatcmpl-f72b23e5-fb12-9c25-9c1b-f88bf33beef5",
+ "latency_s": 0.929,
+ "cached": false,
+ "cache_key": "2afb28dab4f6a4ed1be3bddb"
+}

@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/zero_shot",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The card smelled of lavender and old grief. My grandmother’s handwriting, slanted and hurried, detailed a recipe for lemon drizzle cake that didn’t exist in any modern cookbook. It called for \"sunlight caught in the morning dew\" and \"a pinch of silence.\" I stood in her kitchen, forty years after she died, holding paper that felt like skin.\n\nI tried to bake it. I used real lemons, real sugar, real butter. The oven ticked and groaned, heating the air with mundane electricity. But as the batter rose, the scent changed. Not citrus, but something sharper—ozone and wet earth. The cake came out pale, translucent, trembling on the wire rack. When I cut into it, there was no steam, only a cold mist that curled around my fingers.\n\nEating it wasn’t about taste; it was about memory. Each bite transported me back to this very room, decades ago. I saw her hands, young and strong, kneading dough while humming a song I had forgotten. I felt the weight of her absence not as a void, but as a presence, thick and suffocating. The last crumb dissolved on my tongue, leaving only the faint, metallic taste of time itself, ticking away in the dark.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 55,
+  "completion_tokens": 262
+ },
+ "response_id": "chatcmpl-9589a4d5-f2ab-917d-82bf-34455ad2663a",
+ "latency_s": 5.554,
+ "cached": false,
+ "cache_key": "268f0d1c4ac2f48d0777c274"
+}

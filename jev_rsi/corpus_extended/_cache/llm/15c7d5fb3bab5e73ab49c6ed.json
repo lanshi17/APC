@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/zero_shot",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The spreadsheet glowed under the harsh office lights, a digital tombstone for their quarterly projections. Elena’s cursor hovered over cell C42, where a misplaced decimal had inflated revenue by half a million dollars. It was a ghost error, invisible to the naked eye and unnoticed by the auditors who had already signed off.\n\n“Just leave it,” Marcus whispered, leaning against the partition. His voice was low, pragmatic. “No one saw it. If we flag it now, we trigger a full audit. We’ll look incompetent. The board meets Friday; let them have their win.”\n\nElena stared at the number, feeling the weight of integrity press against her ribs. “It’s not our win, Marcus. It’s a lie we’re selling them. When this inevitably cracks during the next review, our reputations won’t just be damaged; they’ll be destroyed.”\n\nShe looked up, meeting his eyes. There was fear there, but also resignation. She knew the cost of silence wasn’t just financial—it was moral erosion. With a sigh that seemed to carry the weight of the entire firm, she clicked ‘Delete.’ Then, with trembling fingers, she began typing an email to the compliance officer. The truth would hurt, but it wouldn’t haunt them forever.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 55,
+  "completion_tokens": 260
+ },
+ "response_id": "chatcmpl-322d01ff-690d-9dc3-8337-4e2b4f309754",
+ "latency_s": 6.327,
+ "cached": false,
+ "cache_key": "15c7d5fb3bab5e73ab49c6ed"
+}

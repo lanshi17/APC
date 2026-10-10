@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/concise",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Silhouetted figures by water under tree.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 202,
+  "completion_tokens": 11
+ },
+ "response_id": "chatcmpl-2febe32d-9dec-9431-8b6e-68bd181a3b93",
+ "latency_s": 1.357,
+ "cached": false,
+ "cache_key": "6ac2350e037988fb348fd74a"
+}

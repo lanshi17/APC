@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/concise",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Artist painting street scene outdoors.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 202,
+  "completion_tokens": 7
+ },
+ "response_id": "chatcmpl-bf04a962-aaa5-9bc2-81d9-0aa41b059ef8",
+ "latency_s": 0.872,
+ "cached": false,
+ "cache_key": "52a99c8998c82c2f2160bd9c"
+}

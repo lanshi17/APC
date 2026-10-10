@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/factual",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "A blonde-haired person wearing a gray-and-white striped long-sleeve shirt and blue jeans is mid-air on a skateboard, with their knees bent and one arm extended for balance, while several people stand in the background near trees and a concrete structure.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 230,
+  "completion_tokens": 51
+ },
+ "response_id": "chatcmpl-aa7ab1d3-6d77-9faf-a7b9-030d115f22a4",
+ "latency_s": 2.946,
+ "cached": false,
+ "cache_key": "f5416e15bee1de66134961d8"
+}

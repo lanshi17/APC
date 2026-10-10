@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/temperature_high",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The village sleeps beneath a shroud of freezing fog, thick and white as cotton wool. At the station, the iron tracks vanish into the gloom, swallowing any sense of distance or direction. Silence reigns here, absolute and heavy, broken only by the occasional drip of condensation from the rusted canopy above. The old signal gantry looms like a skeleton against the grey nothingness, its red lamp pulsing faintly, a dying heartbeat in the cold dark.\n\nI stand on the platform’s edge, breath visible in sharp, fleeting plumes before the damp air reclaims it. The concrete is slick with ice, reflecting the weak yellow glow of a solitary streetlamp flickering nearby. No train comes tonight; none have for years, they say. Yet I wait, bound by habit or perhaps by something more primal—a hope that movement might return to this frozen stillness. A distant dog barks, swallowed instantly by the mist, leaving only deeper isolation. Time seems suspended, held in check by the biting cold, until the very concept of arrival feels like a memory.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 49,
+  "completion_tokens": 220
+ },
+ "response_id": "chatcmpl-61c4fb52-fd56-9d85-bd4e-f3671177e355",
+ "latency_s": 5.532,
+ "cached": false,
+ "cache_key": "3f662bf3b2cff76045462d82"
+}

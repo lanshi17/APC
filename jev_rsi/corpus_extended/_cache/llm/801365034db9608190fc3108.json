@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/temperature_high",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The quarterly report lay between them, a silent accusation in PDF format. “It’s minor,” Julian said, leaning back in his ergonomic chair, tapping his pen against the desk. “A decimal point off by one in an archived ledger from three years ago. Nobody noticed it then; nobody will notice it now.”\n\nElena didn’t look up from her screen, her fingers frozen over the keyboard. She could feel the weight of the error pressing against the air in their shared office. “Julian, if we sign off on this knowing it’s wrong, we’re not just missing data. We’re building a foundation on sand. What happens when someone runs a long-term projection based on this baseline?”\n\n“We fix it next quarter,” he insisted, his voice tightening. “We save ourselves the scrutiny for this one cycle. Is that really unethical?”\n\nElena finally turned, meeting his eyes. The silence stretched, thick with unspoken consequences. She thought of the quiet trust required to work together, and how quickly that trust fractures when convenience outweighs integrity. \n\n“No,” she said softly, pulling up the edit window. “But being human isn’t about hiding mistakes because they’re invisible. It’s about choosing truth even when no one is watching.”",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 55,
+  "completion_tokens": 254
+ },
+ "response_id": "chatcmpl-83b150ce-c03d-9d07-900d-3107fa7ca3b6",
+ "latency_s": 5.857,
+ "cached": false,
+ "cache_key": "801365034db9608190fc3108"
+}

@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/temperature_high",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Last light fades. Silence reclaims the rows of forgotten tales and whispered dreams, closed forever now.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 51,
+  "completion_tokens": 20
+ },
+ "response_id": "chatcmpl-1bf3077e-e66b-92a2-a8e6-4d1039d753b7",
+ "latency_s": 1.165,
+ "cached": false,
+ "cache_key": "00ed3c9ed3afa0316b928560"
+}

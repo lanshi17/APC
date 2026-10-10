@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/child_like",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "WOW! LOOK AT THAT MAN SWEEPING THE YARD!! 🧹✨ He’s got a BIG, BIG broom made of sticks and he’s sweeping SO HARD his arm is all the way UP in the sky!! Like he’s trying to high-five the clouds!! ☁️🙌\n\nAnd look at those people walking behind him!!! One lady is wearing a HUGE white robe like she’s a GHOST but a NICE ghost!!! 👻 And another person has a RED thing on their back—maybe it’s a backpack or maybe it’s a DRAGON?? 🐉 Whoa!!\n\nThere’s even a little wooden box with a handle—like a toy chest for giants!!! And a big bag full of… STUFF?! Maybe treasure? Or leaves? I dunno but it looks IMPORTANT. 💼🍂\n\nThe building behind them is sooo long and green-roofed—it looks like a castle from a fairy tale!! But instead of knights, there are monks and sweepers!! So cool!!!\n\nI wanna go there and help sweep!! And wear the white robe!! And ride the dragon-backpack guy!! WOOO-HOOO!!! 🎉👣",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 199,
+  "completion_tokens": 249
+ },
+ "response_id": "chatcmpl-8f40fa5f-b7fd-94bd-aab3-7818fe7adeb3",
+ "latency_s": 6.762,
+ "cached": false,
+ "cache_key": "be65aa6a666432653b9c2e92"
+}

@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/few_shot_2ex",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The bullfrog bellowed at the moon, claiming his thunderous croak held the night in check. The owl sat silent on a branch, watching the water for ripples that meant fish. When the frog’s voice finally gave out, dry and defeated, the owl had already eaten well.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 206,
+  "completion_tokens": 60
+ },
+ "response_id": "chatcmpl-059e5023-d2a0-9247-a9ae-fe0767f5f7b3",
+ "latency_s": 2.213,
+ "cached": false,
+ "cache_key": "b43b351e1042187367a472dc"
+}

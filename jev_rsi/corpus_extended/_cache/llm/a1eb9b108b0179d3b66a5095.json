@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/verbose",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "A street artist in a blue jacket and beige cap paints a vibrant cityscape on an easel, surrounded by other artworks. The scene is lively with people walking past under umbrellas, suggesting rain. Colors are rich—reds, blues, greens—with soft lighting enhancing the artistic mood amidst urban bustle.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 210,
+  "completion_tokens": 62
+ },
+ "response_id": "chatcmpl-43b53c47-4c0e-93a6-ac86-1ae1ed66786b",
+ "latency_s": 3.303,
+ "cached": false,
+ "cache_key": "a1eb9b108b0179d3b66a5095"
+}

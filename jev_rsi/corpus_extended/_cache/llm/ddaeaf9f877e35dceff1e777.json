@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/verbose",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "A young blond skateboarder mid-air performs a trick above concrete ramps, wearing striped gray-and-white long-sleeve shirt and blue jeans. Behind him, blurred spectators watch against lush green trees under bright daylight. The scene captures dynamic motion, youthful energy, and casual outdoor recreation in a skatepark setting — vibrant yet relaxed.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 242,
+  "completion_tokens": 66
+ },
+ "response_id": "chatcmpl-5252bb3b-3c73-93dc-86c1-15d4e3436f08",
+ "latency_s": 1.952,
+ "cached": false,
+ "cache_key": "ddaeaf9f877e35dceff1e777"
+}

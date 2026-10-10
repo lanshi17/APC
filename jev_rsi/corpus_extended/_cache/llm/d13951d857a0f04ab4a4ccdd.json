@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/zero_shot",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Words hang suspended, heavy with the things we never said to each other.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 50,
+  "completion_tokens": 15
+ },
+ "response_id": "chatcmpl-c990dd7c-318e-9907-98db-65eb0fe16898",
+ "latency_s": 1.209,
+ "cached": false,
+ "cache_key": "d13951d857a0f04ab4a4ccdd"
+}

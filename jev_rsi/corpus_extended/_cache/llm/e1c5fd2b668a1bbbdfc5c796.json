@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/persona_child",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The lights go out. Shhh. Goodbye books!",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 64,
+  "completion_tokens": 12
+ },
+ "response_id": "chatcmpl-3d29327d-2ccd-9bf1-910e-268b881c1483",
+ "latency_s": 0.775,
+ "cached": false,
+ "cache_key": "e1c5fd2b668a1bbbdfc5c796"
+}

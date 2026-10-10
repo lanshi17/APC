@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/constrained",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "In a dense forest, the bullfrog boasted of his thunderous call. He claimed that volume equated to authority among all creatures. The other animals grew weary of his constant, booming declarations. They sought advice from the wise old owl perched silently nearby.\n\nThe frog challenged the owl to prove her wisdom was superior. She remained quiet for several days, observing the changing seasons closely. When the first frost arrived, she warned the community to seek shelter. The frog ignored her gentle whisper and continued to croak loudly. His noise distracted him from the biting cold approaching rapidly.\n\nHe shivered in the dark while others slept safely indoors. The owl’s silence had carried more weight than his roar. True guidance often arrives without fanfare or dramatic presentation. Quiet observation reveals what loudness conceals.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 82,
+  "completion_tokens": 161
+ },
+ "response_id": "chatcmpl-fae061a6-b063-9592-a6f0-c89ee32cd510",
+ "latency_s": 5.281,
+ "cached": false,
+ "cache_key": "dc429a78a010db58b1b3e513"
+}

@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_c/abstractive",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Pope Francis told a Mexican network he expects his pontificate to be brief, lasting only two to five years, and revealed plans for a \"Jubilee of Mercy\" starting in December. He also expressed nostalgia for anonymity, wishing to visit a pizzeria without recognition, while noting he enjoys seeking advice from Pope Emeritus Benedict XVI.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 503,
+  "completion_tokens": 68
+ },
+ "response_id": "chatcmpl-b4fbb688-a6eb-9191-9f4e-1f1920cc5575",
+ "latency_s": 1.82,
+ "cached": false,
+ "cache_key": "5583bb20cb018768e475f502"
+}

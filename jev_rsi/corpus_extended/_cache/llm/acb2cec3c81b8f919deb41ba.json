@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/persona_child",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Okay, listen! You have to hear this story I learned in school. It’s about a really loud Rooster and a tiny, quiet Cricket.\n\nOne day, the Rooster stood on his fence post and yelled, “I am the king of the farm! Everyone should listen to ME!” He flapped his wings so hard that dust flew everywhere. The other animals just covered their ears because it was super annoying. Even the cows looked bored. The Rooster thought being loud meant he was smart, but he didn’t know anything about the weather or where the best seeds were.\n\nThen, a little green Cricket hopped up. She was so small you could barely see her. She didn’t shout at all. She just whispered, “Hey guys, look at the clouds. A big storm is coming soon. We need to hide our food.”\n\nThe Rooster laughed, “You’re too quiet! Nobody hears you!” But suddenly, thunder rumbled like giant drums. Rain started pouring down. All the animals ran to shelter. They realized the Cricket knew something important, even though she spoke softly.\n\nSee? Being loud doesn’t make you right. Sometimes, the wisest advice comes from the person who talks the least. Just like my grandma says: “Listen more, talk less.” Cool, right?",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 71,
+  "completion_tokens": 268
+ },
+ "response_id": "chatcmpl-a5ee0909-b8a5-9599-a202-b82e424795e2",
+ "latency_s": 6.368,
+ "cached": false,
+ "cache_key": "acb2cec3c81b8f919deb41ba"
+}

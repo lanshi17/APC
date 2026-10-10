@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_c/abstractive",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Following the success of \"Cinderella,\" Disney purchased a script for a live-action retelling of \"Mulan\" by Elizabeth Martin and Lauren Hynek. Producers Chris Bender and J.C. Spink will develop the project, which centers on the Chinese legend of Hua Mulan, continuing the studio’s trend of adapting classic animated films into live-action features.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 618,
+  "completion_tokens": 73
+ },
+ "response_id": "chatcmpl-412441a8-d4c1-96e5-85c0-49f2c67b4a69",
+ "latency_s": 2.312,
+ "cached": false,
+ "cache_key": "18a771eae4eed8c6edc18125"
+}

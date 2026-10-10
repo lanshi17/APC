@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/temperature_low",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "In the heart of a dense, ancient forest, two creatures competed for leadership. The first was a bullfrog, whose voice boomed like thunder across the marshes. He spent his days croaking loudly, declaring himself king because no one could outshout him. \"Listen to me!\" he bellowed, shaking the reeds. \"My power is undeniable!\"\n\nThe second was an old owl, who sat silently on a high branch, observing the world with calm, amber eyes. When a sudden storm approached, the frog panicked, screaming warnings that were lost in the wind’s howl. His noise only confused the smaller animals, causing them to scatter into dangerous open spaces.\n\nThe owl, however, remained still. She noticed the subtle drop in pressure and the shift in bird flight patterns. With a soft, precise hoot, she guided the trembling mice and rabbits toward the shelter of deep burrows. As rain lashed down, the frog’s loud cries were drowned out by nature’s fury, leaving him soaked and shivering. The animals, safe and dry, looked up at the quiet guardian above. They realized that true wisdom does not announce itself with volume; it reveals itself through clarity and action.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 58,
+  "completion_tokens": 247
+ },
+ "response_id": "chatcmpl-c1243729-7c25-9170-83a5-ff193c657124",
+ "latency_s": 5.686,
+ "cached": false,
+ "cache_key": "6db1544331f1e7562524e319"
+}

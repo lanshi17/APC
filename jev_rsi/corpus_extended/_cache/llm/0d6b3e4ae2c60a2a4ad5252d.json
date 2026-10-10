@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/temperature_low",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The final light dims, books sleep in dark silence.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 51,
+  "completion_tokens": 11
+ },
+ "response_id": "chatcmpl-b8fa10eb-2fa3-9bc7-90a6-c0d287ca3e4e",
+ "latency_s": 0.899,
+ "cached": false,
+ "cache_key": "0d6b3e4ae2c60a2a4ad5252d"
+}

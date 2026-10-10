@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_c/abstractive",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Michael Douglas wrote an opinion column describing how his 14-year-old son Dylan was verbally attacked in southern Europe for wearing a Star of David. The incident prompted the actor to highlight rising anti-Semitism and urge society to actively combat this prejudice, noting that he now must defend his son just as he once defended Jewish people despite not identifying as Jewish himself.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 617,
+  "completion_tokens": 70
+ },
+ "response_id": "chatcmpl-904e9c68-0cce-9164-acc7-350be4ae10d7",
+ "latency_s": 2.031,
+ "cached": false,
+ "cache_key": "04eaa65748e64f6b382d329e"
+}

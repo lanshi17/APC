@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/creative_mode",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The timid mouse, Pip, trembled before the looming shadow of Barnaby Bear. His own heart hammered a frantic rhythm against his ribs, useless and small. He possessed no claws, no teeth, only fear.\n\nDesperate, Pip climbed into the hollow trunk of an ancient oak where he’d found a discarded glove belonging to the village blacksmith. Inside the leather lay a single, glowing ember from the forge’s eternal fire. It was not magic, but heat—raw, borrowed courage.\n\nPip tucked the ember into his fur. The warmth spread through his chilled limbs, mimicking the steady pulse of bravery. He stepped out, chest puffed with the ghost of another’s strength. Barnaby roared, expecting prey. But Pip didn’t flinch; the ember kept him warm, keeping him standing tall.\n\nHe squeaked, a sound surprisingly loud in the quiet clearing. Barnaby blinked, confused by this tiny creature who seemed larger than life. The bear backed away, unnerved by a spirit that wasn’t entirely there.\n\nPip exhaled as the bear retreated. The ember cooled, returning to ash. Yet, the relief remained. Courage, even when rented from the flames of others, still moves mountains—or at least, scares bears.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 61,
+  "completion_tokens": 257
+ },
+ "response_id": "chatcmpl-4a30f033-a5b8-9b51-a156-d8c8d510385f",
+ "latency_s": 7.002,
+ "cached": false,
+ "cache_key": "34f63713a842871d7812d6c5"
+}

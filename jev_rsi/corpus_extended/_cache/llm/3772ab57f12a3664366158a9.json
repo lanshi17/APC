@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/temperature_low",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Lights blur past, a fleeting dream of steel and glass.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 51,
+  "completion_tokens": 12
+ },
+ "response_id": "chatcmpl-fcecc777-5fe5-9419-bc95-5d2dff296479",
+ "latency_s": 1.067,
+ "cached": false,
+ "cache_key": "3772ab57f12a3664366158a9"
+}

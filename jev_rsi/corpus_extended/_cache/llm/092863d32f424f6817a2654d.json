@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/few_shot_2ex",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The countdown bled away in the static. “Cut it,” Houston’s voice crackled, thin and frigid as vacuum. “Window’s closing.”\n\n“Fuel’s not empty,” she whispered, her fingers dancing over the manual override, sweating inside her gloves. “And neither is my hope.”",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 204,
+  "completion_tokens": 61
+ },
+ "response_id": "chatcmpl-fdf4e187-287e-92c2-8538-39c4d9206b37",
+ "latency_s": 2.763,
+ "cached": false,
+ "cache_key": "092863d32f424f6817a2654d"
+}

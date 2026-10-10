@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/constrained",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The salt spray still clings to the wooden planks of the pier. Grey clouds hang low over the churning sea, promising more rain later in the day. Fishermen haul their nets with trembling hands, exhausted by the night’s struggle against the waves. The air smells sharply of brine and diesel fuel.\n\nSilver scales catch the weak morning light as the first crates arrive at the auction house. Seagulls circle overhead, waiting for scraps that will inevitably drop from the busy tables. Vendors shout prices, though their voices are muffled by the persistent wind. A child watches a crab scuttle away from its bucket with wide eyes.\n\nThe town slowly wakes up beneath the storm’s lingering shadow. Coffee steam rises from paper cups held by shivering hands. Life continues despite the weather’s harshness. Dawn breaks quietly now.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 78,
+  "completion_tokens": 169
+ },
+ "response_id": "chatcmpl-851e0e55-b82d-90c1-a02a-6257a2ef4f71",
+ "latency_s": 3.625,
+ "cached": false,
+ "cache_key": "7492b15287b2aef0baac6197"
+}

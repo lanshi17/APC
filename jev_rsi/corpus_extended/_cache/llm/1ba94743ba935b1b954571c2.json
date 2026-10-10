@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/constrained",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The fluorescent lights hummed above the aisle as Mrs. Gable reached for a tin of soup. She paused when a man in a sharp suit stepped into her path, his face familiar yet changed by time. It was Julian, who had sat in the back row of her tenth-grade history class two decades ago. He smiled softly, recognizing the woman who had once scolded him for sleeping during lectures about the Industrial Revolution.\n\nJulian explained that he now worked as an architect, designing sustainable homes across the city. Mrs. Gable listened with genuine interest, noting how the restless boy had transformed into a composed professional. They stood there amidst stacks of canned goods, bridging the gap between their past and present lives. The conversation flowed naturally, touching on family, career paths, and the quiet passage of years.\n\nShe thanked him for stopping to chat despite his busy schedule. Julian nodded respectfully, appreciating the mentorship she had unknowingly provided all those years ago. Their brief reunion served as a gentle reminder of enduring human connections. Time heals old wounds.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 78,
+  "completion_tokens": 215
+ },
+ "response_id": "chatcmpl-b31ee3be-5320-9b64-9133-878547b0b955",
+ "latency_s": 5.304,
+ "cached": false,
+ "cache_key": "1ba94743ba935b1b954571c2"
+}

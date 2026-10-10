@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/temperature_low",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "In the high peaks of the Andes, two hikers, Leo and Mara, prepared for a treacherous ascent. Leo carried a pristine, laminated map, its lines crisp and colors vibrant. He trusted it implicitly, believing the paper held the truth of the mountain. Mara, however, carried only her worn boots and a compass, knowing that terrain shifts with seasons and storms.\n\nAs they climbed, a sudden blizzard erased the world in white. Leo consulted his map, pointing confidently toward a marked trail. \"The path is here,\" he insisted, stepping onto what looked like solid ground but was actually a thin crust over a deep crevasse. The ice cracked beneath him, sending him sliding dangerously toward the edge. Mara grabbed his pack just in time, pulling him back to safety.\n\nShaken, Leo stared at his perfect map, now useless against the chaotic reality of the storm. \"Why did it fail?\" he whispered.\n\nMara brushed snow from her jacket. \"Because the map describes the land, Leo; it does not *become* the land. When you confuse the symbol for the substance, you walk blind into danger.\"\n\nLeo folded his map away, finally looking up at the real, unpredictable mountain before them.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 55,
+  "completion_tokens": 255
+ },
+ "response_id": "chatcmpl-088674eb-bb22-96aa-b0b5-7a643b17e72b",
+ "latency_s": 5.893,
+ "cached": false,
+ "cache_key": "1dcf08b595394b73941e41a2"
+}

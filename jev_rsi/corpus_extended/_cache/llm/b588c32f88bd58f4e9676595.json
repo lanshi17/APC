@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/technical",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "**Subjects:**  \n- Primary subject: Male, mid-teens to early 20s, curly brown hair, wearing red hooded sweatshirt and light-colored shorts. Leaning over balcony railing, extending right arm downward holding green glass bottle (partially obscured label).  \n- Secondary subject: Male, late teens to early 30s, short dark hair, white t-shirt with red collar trim, khaki cargo pants. Standing below on ground level, looking upward toward primary subject; left hand near waist, possibly holding small object or adjusting clothing.  \n- Background group: Four individuals visible on upper balcony — two females (one blonde, one brunette), one male with beard, one partially obscured person. All leaning forward, observing interaction between primary and secondary subjects.\n\n**Setting:**  \nUrban residential exterior. Multi-story building with stucco facade, ornate wrought-iron balconies featuring scrollwork railings. Architectural details include recessed window frames, decorative cornice moldings, louvered vent panel on wall adjacent to lower doorway. Ground-level entrance has weathered teal-painted door frame.\n\n**Lighting:**  \nNatural daylight, diffuse overhead illumination. Shadows cast beneath balconies and along vertical surfaces indicate sun positioned high and slightly behind camera plane. No artificial lighting sources visible. Contrast moderate; highlights on skin and fabric suggest clear sky conditions.\n\n**Composition:**  \nVertical orientation. Diagonal visual flow created by line of sight from upper balcony down to street level",
+ "reasoning": "",
+ "finish_reason": "length",
+ "usage": {
+  "prompt_tokens": 209,
+  "completion_tokens": 300
+ },
+ "response_id": "chatcmpl-5b5c38b5-184d-91a3-8e0a-fc115db819eb",
+ "latency_s": 5.066,
+ "cached": false,
+ "cache_key": "b588c32f88bd58f4e9676595"
+}

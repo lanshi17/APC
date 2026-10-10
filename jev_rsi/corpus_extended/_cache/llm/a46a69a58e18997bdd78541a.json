@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/technical",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "**Subject(s):** Two human figures, appearing to be male adolescents or young adults. One wears a light teal short-sleeved t-shirt and grey trousers; the other wears a dark olive-green t-shirt and black trousers. Both are wearing athletic-style footwear. They are standing in close proximity, facing each other slightly, with hands extended toward one another near waist level.\n\n**Setting:** Outdoor residential garden environment. Dominant vegetation includes dense green shrubbery flanking both sides of the frame, low ground-cover plants along a curved border, and manicured lawn in foreground. A white lattice gate or fence panel is visible behind the subjects, partially obscured by foliage. Stepping stones embedded in grass lead toward the central area where subjects stand.\n\n**Lighting:** Bright, direct daylight consistent with midday sun. Strong highlights on upper surfaces of clothing and skin; defined shadows cast beneath feet and along plant bases suggest overhead illumination. No artificial lighting sources present.\n\n**Composition:** Vertical orientation. Subjects positioned centrally within middle third of frame, framed symmetrically by vertical masses of foliage on left and right. Foreground features diagonal curve of planted bed leading eye upward toward subjects. Background elements (gate, trees) provide depth without distraction. Camera angle appears at approximately subject chest height, creating neutral perspective. Focus sharp across entire scene; no motion blur detected.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 209,
+  "completion_tokens": 273
+ },
+ "response_id": "chatcmpl-47a95fb3-19e2-99e9-afc9-52fe7c9ac11a",
+ "latency_s": 7.143,
+ "cached": false,
+ "cache_key": "a46a69a58e18997bdd78541a"
+}

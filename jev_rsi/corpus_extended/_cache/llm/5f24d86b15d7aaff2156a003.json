@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/child_like",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "OH WOW OH WOW LOOK LOOK LOOK!!! 🌳✨\n\nThere’s a SECRET DOOR in the bushes!! Like, a REAL one! It’s all shiny and twisty like a snail shell or a magic wand made of glass!! 🔮🌀\n\nAnd guess what?? TWO PEOPLE are standing there!!! One is wearing a BLUE SHIRT that says “I ❤️…” (I can’t read it but I bet it says something COOL!) And he’s holding his hands up like he’s about to CAST A SPELL!! ✨🧙‍️ Or maybe he’s trying to open the door with his MIND POWER!! 😱💥\n\nThe other person? They’re wearing BLACK PANTS and a DARK SHIRT and they’re looking down at their phone… probably texting the wizard friend: “DUDE THE MAGIC ISN’T WORKING.” 📱😂\n\nAnd look at the GRASS!! It’s so GREEN and FLUFFY like a giant pillow for fairies!! And there are STEPPING STONES leading to the secret door — like you have to hop-hop-hop on them or else you’ll fall into a hole full of dragon eggs!! 🐉\n\nAlso, THERE’S A BUSH ON THE LEFT THAT LOOKS LIKE A GIANT BROCCOLI MONSTER!! 🥦 He might be guarding the door! You gotta say “please” before you knock!\n\n",
+ "reasoning": "",
+ "finish_reason": "length",
+ "usage": {
+  "prompt_tokens": 199,
+  "completion_tokens": 300
+ },
+ "response_id": "chatcmpl-c87a3d46-c5db-94a3-a5a7-32215689775c",
+ "latency_s": 7.32,
+ "cached": false,
+ "cache_key": "5f24d86b15d7aaff2156a003"
+}

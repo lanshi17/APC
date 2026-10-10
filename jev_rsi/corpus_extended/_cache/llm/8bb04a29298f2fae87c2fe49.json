@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/persona_author",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The candle trembled in the drafty hall, its flame a fragile whisper against the encroaching dark. Elara stood before it, her hands shaking so violently that the iron key rattled like a loose tooth. She had never faced the shadow-beast alone; she had only watched from behind her father’s broad back, safe in the certainty of his roar.\n\nNow, he was gone. The silence was a heavy blanket, suffocating and cold.\n\n\"Take mine,\" a voice whispered from the shadows. It was not a ghost, but the memory of every hand that had steadied hers before. Every teacher who said *you can*, every friend who said *I believe*. These were not lies; they were deposits in the vault of her spirit.\n\nElara closed her eyes. She did not summon new strength; she simply reached into the bank of borrowed faith. She pulled out courage like silver coins, warm and heavy. It felt alien, yet undeniable.\n\nShe stepped forward. The beast lunged, expecting prey, but found instead a girl wearing armor forged by others’ love. Her light did not flicker. It blazed. And when the dawn broke, it revealed that bravery need not be self-made to be real.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 66,
+  "completion_tokens": 255
+ },
+ "response_id": "chatcmpl-d9b7866e-f5cc-9e47-b444-494d22e8eb89",
+ "latency_s": 6.003,
+ "cached": false,
+ "cache_key": "8bb04a29298f2fae87c2fe49"
+}

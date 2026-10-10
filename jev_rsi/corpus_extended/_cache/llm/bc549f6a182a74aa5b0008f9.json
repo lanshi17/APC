@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/concise",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Man operating green John Deere tractor",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 218,
+  "completion_tokens": 8
+ },
+ "response_id": "chatcmpl-cce9b0a3-1ec9-99bf-bb22-3649b6aa0058",
+ "latency_s": 3.016,
+ "cached": false,
+ "cache_key": "bc549f6a182a74aa5b0008f9"
+}

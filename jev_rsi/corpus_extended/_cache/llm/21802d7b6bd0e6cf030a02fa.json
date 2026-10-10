@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_c/abstractive",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The Presbyterian Church (USA) approved a constitutional amendment redefining marriage as a commitment between \"two people,\" effectively including gay couples. While ministers can now perform same-sex marriages in legal states, no clergy are forced to do so. The change, taking effect June 21, sparked mixed reactions, with some members threatening to leave and others welcoming the inclusive update.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 467,
+  "completion_tokens": 74
+ },
+ "response_id": "chatcmpl-16935234-5ac4-9bcd-9f69-da3540d98f55",
+ "latency_s": 1.738,
+ "cached": false,
+ "cache_key": "21802d7b6bd0e6cf030a02fa"
+}

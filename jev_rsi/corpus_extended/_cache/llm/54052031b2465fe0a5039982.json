@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/verbose",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "A striking portrait of an African woman adorned with vibrant red and yellow beaded headgear, corn cobs as ceremonial ornaments, and intricate necklaces. Her face bears traditional white markings, while long beaded earrings frame her solemn expression. Set against a hazy savanna backdrop under soft daylight, the image radiates cultural pride, ancestral heritage, and quiet dignity in earthy tones.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 210,
+  "completion_tokens": 78
+ },
+ "response_id": "chatcmpl-55bdd8fd-52b4-9343-a15b-b8778c66801c",
+ "latency_s": 2.004,
+ "cached": false,
+ "cache_key": "54052031b2465fe0a5039982"
+}

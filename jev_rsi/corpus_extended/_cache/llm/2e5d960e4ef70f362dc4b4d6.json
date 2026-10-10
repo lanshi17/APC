@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/creative_mode",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "In the kingdom of Echo Valley, the Stone Gargoyles ruled by volume. Their granite throats boomed thunderous pronouncements, shaking leaves from trees and rattling windows in their frames. They demanded silence to hear their own majesty, believing that truth was heavy enough to crush doubt.\n\nOne stormy night, a tiny Moss Sprite named Whisp dared to speak. Her voice was barely a whisper, softer than rain on ferns. The Gargoyles laughed, their stone lips cracking wide. \"Silence, small weed! Only the loud lead!\"\n\nBut the storm intensified. Lightning struck the highest spire, shattering the Gargoyles’ confidence as they froze, paralyzed by the sudden darkness. In the pitch black, only Whisp could see, for her eyes were tuned to the faintest glimmers of bioluminescence hidden in the cracks of reality. She didn’t shout; she simply hummed a low, steady note that guided the trapped villagers safely through the labyrinthine streets, avoiding the debris where the proud statues lay broken.\n\nWhen dawn broke, the people looked not at the shattered giants, but at the quiet green patch on the surviving wall. They learned then that wisdom does not need amplification to be heard; it needs only to be present when noise fails.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 66,
+  "completion_tokens": 267
+ },
+ "response_id": "chatcmpl-a64e08a8-3832-9f4e-9963-2fa4fb5e6349",
+ "latency_s": 7.456,
+ "cached": false,
+ "cache_key": "2e5d960e4ef70f362dc4b4d6"
+}

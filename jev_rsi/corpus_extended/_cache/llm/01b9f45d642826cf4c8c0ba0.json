@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/few_shot_2ex",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The fluorescent lights hummed a flat, dying note over the vinyl chairs. The young man in the hoodie stared at his shoes, twisting a paper cup until it collapsed; he didn’t know that the woman beside him had already seen the scan results, or that her hand wasn’t shaking from cold, but because she had just signed the form releasing him to a world that would no longer hold him.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 210,
+  "completion_tokens": 80
+ },
+ "response_id": "chatcmpl-715f20e6-f541-950b-8982-b8b69863828c",
+ "latency_s": 1.879,
+ "cached": false,
+ "cache_key": "01b9f45d642826cf4c8c0ba0"
+}

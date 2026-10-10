@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/factual",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "In an outdoor courtyard of a traditional Japanese building with a green-tiled roof, a man in light blue hakama and white kimono sweeps the ground with a long-handled broom while two others—one in white ceremonial attire and another in dark clothing—walk nearby, with additional people visible in the background near stacked wooden crates.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 198,
+  "completion_tokens": 67
+ },
+ "response_id": "chatcmpl-cf1c7bdc-7474-9122-bbc8-37200751fc90",
+ "latency_s": 1.9,
+ "cached": false,
+ "cache_key": "322c0c0392b360e6b0a17475"
+}

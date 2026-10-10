@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/constrained",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The countdown clock ticked down with merciless precision while Commander Vance stared at the telemetry screen. He insisted that a minor fluctuation in fuel pressure was actually a critical warning sign requiring immediate abort protocols. Mission Control dismissed his concern as sensor noise from the turbulent upper atmosphere during ascent. Vance refused to ignore data that could potentially jeopardize the entire crew’s safety on this specific trajectory.\n\nController Sarah adjusted her headset and leaned closer to the microphone, keeping her voice steady despite the rising tension. She explained that all secondary systems were functioning within acceptable margins according to pre-launch simulations. The window would close forever if they delayed for another inspection of non-critical valves. Vance argued that caution outweighed schedule adherence when human lives hung in the balance above Earth.\n\nSilence stretched between them as the final seconds evaporated into history without resolution or compromise. The engines ignited only after Vance made a silent nod of reluctant acceptance toward the green light. They launched knowing trust had fractured along with the atmosphere outside their fragile vessel. Time waits for no one.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 80,
+  "completion_tokens": 207
+ },
+ "response_id": "chatcmpl-f0d3f1be-cb99-929b-bff2-61b4b759d34c",
+ "latency_s": 7.215,
+ "cached": false,
+ "cache_key": "f60f8c858574839bf2994f09"
+}

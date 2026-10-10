@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/zero_shot",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "In the shadow of Mount Silence, a young hare named Pip trembled. His sister was trapped beneath a fallen branch in the dark ravine. Every other animal refused to help, citing their own fears as valid excuses. Pip knew he was terrified; his legs shook like leaves in a storm.\n\nDesperate, he ran to Old Tortoise, who slept beneath an oak. \"Please,\" Pip whispered, \"lend me your bravery. I cannot do this alone.\"\n\nThe Tortoise opened one eye. \"Courage is not a cloak you can wear, little one. But remember: when you act despite fear, that action *is* courage. You need no loan. You have it already.\"\n\nPip didn’t feel braver. He felt exactly the same. Yet, driven by love, he crawled into the ravine. His heart hammered, but he lifted the branch and pulled his sister free. They emerged into the sunlight, gasping but safe.\n\nThe animals cheered for Pip’s sudden bravery. Pip smiled weakly. He hadn’t borrowed courage from the Tortoise; he had simply found his own hidden within the fear. Sometimes, acting scared is just another word for being brave.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 53,
+  "completion_tokens": 244
+ },
+ "response_id": "chatcmpl-5a8044fc-7741-9aba-945c-05c4fffb00f3",
+ "latency_s": 6.94,
+ "cached": false,
+ "cache_key": "6fa8f4bb055199f6012a302d"
+}

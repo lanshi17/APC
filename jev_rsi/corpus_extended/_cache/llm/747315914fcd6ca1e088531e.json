@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/concise",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "child pushing toy car",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 298,
+  "completion_tokens": 5
+ },
+ "response_id": "chatcmpl-30563eea-ca00-9720-9e51-46bb23465e2b",
+ "latency_s": 1.711,
+ "cached": false,
+ "cache_key": "747315914fcd6ca1e088531e"
+}

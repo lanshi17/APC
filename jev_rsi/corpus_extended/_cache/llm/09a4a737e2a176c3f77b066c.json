@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/constrained",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The phone hangs heavy in the silent room.\nWords stuck inside my throat like jagged stones.\nWe circle topics that we cannot touch.\nFear keeps us apart across the miles.\n\nTime slips away while we say nothing.\nRegret grows roots beneath our careful steps.\nA simple truth remains forever hidden.\nDistance widens with every passing day.\n\nSilence wins again",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 74,
+  "completion_tokens": 79
+ },
+ "response_id": "chatcmpl-d58f0967-43f5-9c14-a9f6-59db4136e454",
+ "latency_s": 2.799,
+ "cached": false,
+ "cache_key": "09a4a737e2a176c3f77b066c"
+}

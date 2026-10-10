@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/child_like",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "WOW WOW WOW!!! Look look LOOK!!!\n\nThere’s a man in BLACK clothes and he’s CROUCHING down like a froggy!! He’s playing with the sidewalk!! Is he building something?? Or is he looking for treasure?! 🕵️♂️💎\n\nAnd there are CONES everywhere!! Orange ones! Red ones! One even has a LID on top like a giant candy jar!! 🍬\n\nLook at the yellow tape!! It says “CAUTION” but I think it means “DON’T TOUCH OR YOU’LL GET IN TROUBLE!!” (But maybe we can peek under it… just a little!) 👀⚠️\n\nThere’s a tree right next to him — did he plant flowers around it?? They’re so pretty!! Pink and white!! Like birthday cake sprinkles!! 🌸🌼\n\nOhhh and there’s a SHOVEL leaning against the tree!! And another one near the cart!! Are they digging for dinosaurs?? 🦖\n\nThe ground looks all broken up like a puzzle!! Maybe he’s fixing it!! Or making a secret tunnel!! 🕳️\n\nI wanna help!! Can I wear a hard hat too?? And bring my toy truck?? VROOM VROOM!! 🚛\n\nThis is the BEST construction site EVER!! Even better than the park!! (But don’t tell Mommy.) ",
+ "reasoning": "",
+ "finish_reason": "length",
+ "usage": {
+  "prompt_tokens": 199,
+  "completion_tokens": 300
+ },
+ "response_id": "chatcmpl-9f2159a0-b133-9503-943f-f971fd398ca2",
+ "latency_s": 7.339,
+ "cached": false,
+ "cache_key": "b068567876e14a809cf975e1"
+}

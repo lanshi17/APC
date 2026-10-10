@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/persona_child",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Okay, so you know how we have that big countdown timer? Like, when the rocket is about to go up and everything has to be perfect? Well, guess what happened yesterday! The astronaut guy and the lady who sits at the desk with all the buttons were fighting! And I mean *really* fighting.\n\nIt was the last three minutes before they could launch. You know, if they miss it, they have to wait like forever for the next time. So, the mission controller said, “No, no! We can’t go! The computer says there’s a tiny glitch in the fuel valve!” She looked super stressed, like her hair was standing on end.\n\nBut the astronaut said, “I feel fine! The ship feels good! Let me check!” He started pressing buttons really fast. Boom, boom, boom! He was yelling into his headset, “I’ve got it fixed! It’s just a sensor error!” The controller wasn’t sure. She kept saying, “Wait! Wait! Check again!” But he was like, “We’re running out of time!”\n\nMy mom says grown-ups get grumpy when they’re tired, but this was serious. In the end, I think they didn’t launch because she wouldn’t let him. Bummer! Now they have to wait two days. I bet they are still mad at each other. Do you think rockets have feelings too?",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 69,
+  "completion_tokens": 287
+ },
+ "response_id": "chatcmpl-39730418-db19-9785-adbd-3ce48f793f26",
+ "latency_s": 5.566,
+ "cached": false,
+ "cache_key": "358d68dcf2437f2f416b1fc3"
+}

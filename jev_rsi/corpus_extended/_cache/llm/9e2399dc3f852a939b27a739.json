@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/concise",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "People at an igloo",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 234,
+  "completion_tokens": 6
+ },
+ "response_id": "chatcmpl-01b95a68-c6cb-9747-8aba-f2dc78c5e093",
+ "latency_s": 0.925,
+ "cached": false,
+ "cache_key": "9e2399dc3f852a939b27a739"
+}

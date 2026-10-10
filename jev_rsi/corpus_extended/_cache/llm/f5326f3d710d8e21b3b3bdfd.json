@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/persona_author",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The fluorescent lights hummed a low, sickly tune, casting the waiting room in a bruised purple pallor. Elias sat rigid, his hands clasped so tightly the knuckles bleached white. Across from him, Mara stared at the floor tiles, tracing the grout lines like a map of her own unraveling mind. The clock on the wall ticked backward, or perhaps that was just the exhaustion distorting time’s flow.\n\nElias knew the truth before the doctor even emerged. He had seen the file left carelessly open on the receptionist’s desk ten minutes ago. He saw the name—Mara’s sister—and the code that meant *irreversible*. But he said nothing. He watched Mara’s shoulders slump, observing the way her breath hitched, a fragile thing trying to survive in a sterile cage.\n\nHe felt the weight of his silence like a stone in his gut. To speak would be cruelty; to remain silent was complicity. When the heavy double doors finally swung open, Elias didn’t look up. He let Mara stand first, letting her believe the hope she carried was hers alone, until the moment it shattered against the cold reality waiting beyond the threshold.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 75,
+  "completion_tokens": 244
+ },
+ "response_id": "chatcmpl-9119d55f-2331-9233-be46-37210bc30715",
+ "latency_s": 4.951,
+ "cached": false,
+ "cache_key": "f5326f3d710d8e21b3b3bdfd"
+}

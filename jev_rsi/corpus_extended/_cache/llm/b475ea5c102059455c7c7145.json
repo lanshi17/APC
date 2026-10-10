@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/poetic",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Two figures stand in a sunlit garden, their shadows stretching like ink across stone paths. They hold something fragile between them—a moment suspended, delicate as a leaf trembling on the edge of falling. Greenery whispers around them, guarding this quiet exchange beneath summer’s bright eye.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 205,
+  "completion_tokens": 56
+ },
+ "response_id": "chatcmpl-1deb0065-c137-93a4-b806-6c83034192c2",
+ "latency_s": 3.118,
+ "cached": false,
+ "cache_key": "b475ea5c102059455c7c7145"
+}

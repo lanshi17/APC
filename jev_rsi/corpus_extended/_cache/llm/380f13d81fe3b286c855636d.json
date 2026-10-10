@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/poetic",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "In the courtyard of ancient wisdom, a dancer in white robes sweeps away yesterday's whispers, while another, veiled like a moonlit secret, tends to the earth's quiet breath—two souls painting stillness on stone, where time dissolves into dust motes dancing in sacred light.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 205,
+  "completion_tokens": 59
+ },
+ "response_id": "chatcmpl-bf86a1fc-68de-9e81-97cc-4a03bc1ff825",
+ "latency_s": 4.708,
+ "cached": false,
+ "cache_key": "380f13d81fe3b286c855636d"
+}

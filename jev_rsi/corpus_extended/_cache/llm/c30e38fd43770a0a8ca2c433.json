@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/zero_shot",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "In the village of Oakhaven, an old merchant named Elias possessed a single, magnificent jar of honey. It was golden, thick, and smelled of summer blooms long past. One autumn, as frost threatened the fields, a young traveler named Kael arrived, shivering and empty-handed.\n\nElias did not speak of price or debt. He simply scooped a generous ladle of the sweet gold into Kael’s rough wooden bowl. “Eat,” Elias said softly. “The bees remember the flowers; let your body remember the warmth.”\n\nKael ate in silence, feeling a strange comfort settle in his chest. Years later, Elias had passed away, and Kael returned to Oakhaven. The village was cold, the stores bare. Kael, now a prosperous trader, carried no honey, but he carried the memory of that first kindness. He distributed bread and blankets to the villagers, mirroring Elias’s gesture without being asked.\n\nWhen questioned, Kael smiled. “I am not giving charity,” he explained. “I am keeping a promise made by the heart. Generosity is not just an act; it is a way of remembering who we were when someone helped us become who we are.”",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 55,
+  "completion_tokens": 246
+ },
+ "response_id": "chatcmpl-e0873b3a-f8b0-963c-a7dd-3d67cb25cdfa",
+ "latency_s": 6.244,
+ "cached": false,
+ "cache_key": "c30e38fd43770a0a8ca2c433"
+}

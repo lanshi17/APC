@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/poetic",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Golden hair like sunlit wheat, he dances mid-air on wheels of wild freedom. The world blurs below—faces watching like distant stars—as gravity bends to his will, a fleeting god soaring over concrete dreams and green whispers.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 237,
+  "completion_tokens": 47
+ },
+ "response_id": "chatcmpl-9bd26672-b8d5-926a-98e1-cc06b655e558",
+ "latency_s": 1.624,
+ "cached": false,
+ "cache_key": "2efb12f4d4ccd89e343272b6"
+}

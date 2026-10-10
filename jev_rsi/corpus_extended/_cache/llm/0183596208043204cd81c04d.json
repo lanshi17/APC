@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/temperature_high",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The ink was faded to the color of dried tea leaves, swirling across brittle, yellowed parchment. I found it tucked inside a hollowed-out cookbook in my grandmother’s attic, wedged between instructions for lemon bars and a recipe for pot roast that no one ever ate.\n\nHer handwriting had always been jagged, hurried, as if she feared the pen would break or the thought would vanish before captured. Here, in this final note, that urgency was frozen in time. Forty years had passed since her heart stopped beating, yet these words remained alive on the page, waiting for hands that would never tremble again.\n\n*“Two eggs,”* it read. *“One cup of flour. A pinch of love you can’t measure.”* Below that, a stain—maybe vanilla, maybe salt from a tear shed decades ago when kitchen light fell softly around shoulders now buried six feet under oak wood. The card smelled faintly of dust and something else: nutmeg? No, memory itself.\n\nI traced her looped ‘g’ with my fingertip, careful not to scratch away history. There was no date at the top, only this strange intimacy—a message from beyond silence. Who was supposed to bake this cake? Me? Did I remember her voice saying it aloud, mixing batter while singing off-key folk songs about lost trains?\n\nMaybe. Or perhaps that was just what the paper wanted me to believe.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 55,
+  "completion_tokens": 287
+ },
+ "response_id": "chatcmpl-060488f9-d9f6-96fc-b0d0-7a9e4ed6ecce",
+ "latency_s": 7.673,
+ "cached": false,
+ "cache_key": "0183596208043204cd81c04d"
+}

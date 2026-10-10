@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/factual",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "A man in a black shirt and cap is crouching on a sidewalk near an open utility access point, surrounded by construction tools, planters, traffic cones, and yellow caution tape.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 198,
+  "completion_tokens": 39
+ },
+ "response_id": "chatcmpl-d6cd4d89-858f-9cfb-a38b-87f1a1a3e41d",
+ "latency_s": 1.469,
+ "cached": false,
+ "cache_key": "cfbf65d82b58970ad8ad32ed"
+}

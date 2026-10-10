@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/poetic",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Beneath the tree’s ancient embrace, two souls sit in quiet communion. The woman’s dark hair a crown of night, the man’s light shirt like dawn’s first glow. Between them, life unfolds—soft whispers and tiny breaths blending with rustling leaves above.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 237,
+  "completion_tokens": 57
+ },
+ "response_id": "chatcmpl-032bc142-81e2-95df-a642-030ec531ac5d",
+ "latency_s": 1.712,
+ "cached": false,
+ "cache_key": "de48dac0ef306d511e80b72b"
+}

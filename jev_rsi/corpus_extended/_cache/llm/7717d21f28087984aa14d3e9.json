@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/poetic",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Snow-block igloo gleams like a frozen cathedral, its wooden door a golden mouth whispering warmth. Bundled pilgrims gather on red snowshoes—bright berries against winter’s gray hush—awaiting entry into ice’s sacred embrace.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 237,
+  "completion_tokens": 51
+ },
+ "response_id": "chatcmpl-35b2628b-c80f-9c1a-b6f6-b20bc4e40677",
+ "latency_s": 3.877,
+ "cached": false,
+ "cache_key": "7717d21f28087984aa14d3e9"
+}

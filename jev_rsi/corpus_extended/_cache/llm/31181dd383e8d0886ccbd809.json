@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/constrained",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The tension in the office grew as two colleagues stared at the flawed report. One believed that honesty required immediate disclosure of the error to the management team. The other argued that silence was preferable since no one had noticed the mistake yet. They worried about potential repercussions for their department's reputation and future funding opportunities.\n\nArguments escalated as they weighed professional integrity against personal convenience and career safety. The advocate for truth emphasized that hidden errors often cause larger problems later on. He insisted that correcting mistakes early demonstrates responsibility and builds long-term trust with clients. Conversely, the colleague who favored silence feared being labeled incompetent by senior leadership figures. She suggested that a minor typo did not warrant such drastic action or public scrutiny.\n\nNeither side could reach a consensus despite hours of heated discussion and emotional stress. The ethical dilemma remained unresolved as the workday came to an abrupt end. Both knew that ignoring the issue might lead to significant consequences down the road. Time would ultimately reveal whether their choice mattered.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 79,
+  "completion_tokens": 194
+ },
+ "response_id": "chatcmpl-e68ffcf1-c4f2-9802-8727-f187e3912542",
+ "latency_s": 13.836,
+ "cached": false,
+ "cache_key": "31181dd383e8d0886ccbd809"
+}

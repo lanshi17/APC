@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/judge/draw1",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "{\"score\": 8}",
+ "reasoning": "We need answer user asks rate creative writing 0-10 and reply JSON only {\"score\": number}. We must produce final JSON only. Need assess holistically. Text is evocative, coherent, creative with some clichés but strong. Rate maybe 8? Need ensure only JSON.",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 444,
+  "completion_tokens": 69
+ },
+ "response_id": "chatcmpl-78dcfd39-7aa6-9abb-ab97-097fe445ae7d",
+ "latency_s": 2.331,
+ "cached": false,
+ "cache_key": "ed76cb863fb87506cbc33f4f"
+}

@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/verbose",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Four silhouetted figures rest on a rocky shore beneath leafy branches, gazing toward calm waters where a small boat drifts. The golden-hour light bathes the scene in warm amber tones, casting deep shadows and creating a serene, contemplative mood. Distant hills fade into soft haze, enhancing the tranquil, timeless atmosphere of quiet companionship by the sea.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 210,
+  "completion_tokens": 76
+ },
+ "response_id": "chatcmpl-53b2baf9-3069-903e-a1fb-44ef125b2a55",
+ "latency_s": 2.032,
+ "cached": false,
+ "cache_key": "b2e8f7130149998a1a7df079"
+}

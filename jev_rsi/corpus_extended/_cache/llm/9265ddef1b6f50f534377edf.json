@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/poetic",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Balconies bloom with curious faces, leaning like sunflowers toward the street’s drama below. A red-shirted youth pours green liquid skyward—gravity reversed, laughter spilling downward—as if joy itself were a potion shared between floors in this urban theater of light and life.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 205,
+  "completion_tokens": 57
+ },
+ "response_id": "chatcmpl-30f4811c-c344-97e5-9ad8-aa72bae99bdf",
+ "latency_s": 2.04,
+ "cached": false,
+ "cache_key": "9265ddef1b6f50f534377edf"
+}

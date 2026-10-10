@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/zero_shot",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The sky hangs low and bruised, a watercolor wash of slate and pearl. Dawn hasn’t fully broken; it’s more like a reluctant exhale in the humid air. The storm has passed, leaving behind a debris field of tangled kelp and shattered crab shells on the wet cobblestones.\n\nAt the market, the silence is heavy, punctuated only by the rhythmic *slap-slap* of ice being shoveled onto beds of silver scales. Fishermen, their oilskins still dripping, move with exhausted precision. Their eyes are red-rimmed, hollowed by sleepless nights watching waves crest over gunwales. There is no shouting yet, just the quiet negotiation of survival.\n\nA single gull screams overhead, diving toward a discarded gut pile. The smell is sharp—brine, diesel, and raw flesh—but beneath it lies the clean, metallic scent of rain-washed stone. For now, the chaos is paused. The catch is landed. The town breathes again, waiting for the sun to burn off the mist and wake the hungry mouths of the coast.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 54,
+  "completion_tokens": 224
+ },
+ "response_id": "chatcmpl-ec0aa525-dbd6-9624-b73b-9048dacbb0d9",
+ "latency_s": 4.187,
+ "cached": false,
+ "cache_key": "ce7fcb6e37ab2473b6562cd6"
+}

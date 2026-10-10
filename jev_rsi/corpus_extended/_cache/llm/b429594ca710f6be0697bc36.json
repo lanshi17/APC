@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/constrained",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The thick mist clung to the rocky shore like a damp shroud. Elias rubbed his tired eyes and squinted toward the water. A faint, pulsing light bobbed just beyond the usual breakers. It was not the steady beam of the lighthouse itself. This new glow seemed to breathe with an unnatural rhythm.\n\nHe grabbed his heavy coat and stepped out into the cold air. The salt spray bit at his cheeks as he walked closer. The source of the light remained elusive in the gray veil. Suddenly, the fog parted slightly around a dark, jagged shape. It looked like the hull of a ship long lost at sea.\n\nElias felt a chill that had nothing to do with the weather. He raised his lantern to illuminate the strange vessel better. The wood was barnacled but intact, defying decades of decay. There were no sails, yet it drifted gently against the tide. A voice whispered from within the hollow structure. The keeper froze in place immediately.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 77,
+  "completion_tokens": 201
+ },
+ "response_id": "chatcmpl-52e78fe9-0024-9ef6-b937-16ec74271fd8",
+ "latency_s": 5.517,
+ "cached": false,
+ "cache_key": "b429594ca710f6be0697bc36"
+}

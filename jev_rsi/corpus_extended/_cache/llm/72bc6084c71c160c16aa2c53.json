@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/child_like",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "OH WOW LOOK AT THAT GIRL!!! She’s in the OCEAN and her pigtails are FLYING UP IN THE AIR like two little bird wings!! Look look look—she’s making a HUGE SPLASH with her foot!! *SPLASH SPLASH!* Water is going EVERYWHERE!\n\nShe’s wearing a pink swirly tank top and brown shorts and she looks SO HAPPY and SNEAKY like she’s doing a secret dance move!! Her hands are on her hips and she’s smiling BIG!! I wanna do that too!! Can we go to the beach NOW?? Please please please?? I wanna make my hair fly up and splash water everywhere!! WHEEEEE!!! 🌊👧",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 199,
+  "completion_tokens": 151
+ },
+ "response_id": "chatcmpl-5caafb43-5e58-995a-9919-22ad7696dba6",
+ "latency_s": 5.895,
+ "cached": false,
+ "cache_key": "72bc6084c71c160c16aa2c53"
+}

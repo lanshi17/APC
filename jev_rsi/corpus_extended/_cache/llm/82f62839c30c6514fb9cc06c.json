@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/temperature_high",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The dawn light bleeds through lingering storm clouds, casting a bruised purple glow over the cobblestones. The sea, still heaving with residual rage, laps aggressively against the wooden pilings, leaving a scent of ozone and crushed kelp in its wake. Nets lie sprawled like discarded lace on wet asphalt, heavy with the day’s reluctant catch: silver sardons, iridescent mackerel, and a single, battered cod staring blindly into the grey morning.\n\nFishermen move with deliberate slowness, their oilskins slicked by rain that refuses to stop entirely. Laughter is scarce; instead, the air hums with the quiet, rhythmic slap of fish tails against scales and the distant cry of gulls scavenging scraps near the pier. Ice crates clatter open, releasing plumes of cold vapor that merge with the rising fog. In this transient hour, before the crowds descend for their bargains, the market feels less like commerce and more like a ritual of survival, anchored by salt, silence, and the raw beauty of what the storm left behind.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 54,
+  "completion_tokens": 222
+ },
+ "response_id": "chatcmpl-72b6ef80-7dd7-9cbd-8e58-56c01e056fe6",
+ "latency_s": 5.36,
+ "cached": false,
+ "cache_key": "82f62839c30c6514fb9cc06c"
+}

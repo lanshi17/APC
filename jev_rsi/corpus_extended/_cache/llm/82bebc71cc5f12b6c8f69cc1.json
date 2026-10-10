@@ -1,0 +1,16 @@
+{
+ "tag": "probe/default",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The cat rested on the mat and slept the entire day.",
+ "reasoning": "We need to respond to user: \"Summarize in one sentence: The cat sat on the mat and slept all day.\" Need final one sentence. Keep concise.",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 79,
+  "completion_tokens": 49
+ },
+ "response_id": "chatcmpl-9266e79d-0712-96f1-880a-bdef5f96dcb3",
+ "latency_s": 1.35,
+ "cached": false,
+ "cache_key": "82bebc71cc5f12b6c8f69cc1"
+}

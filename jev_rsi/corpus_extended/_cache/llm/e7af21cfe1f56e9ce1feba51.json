@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/creative_mode",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "In the Kingdom of Paperland, King Inkwell ruled with a map so detailed it seemed alive. Every contour line was etched in gold, every river marked in sapphire ink. He believed that if he controlled the map, he controlled reality. One day, a wandering explorer named Terra arrived, carrying nothing but dust on her boots and wind in her hair.\n\nKing Inkwell challenged her to a contest of navigation. \"I will guide you using my perfect chart,\" he boasted, spreading his parchment across the table. \"You, with your messy notes, shall follow.\"\n\nTerra smiled and stepped off the table’s edge into the actual forest outside the castle walls. The King, confused by her absence, looked down at his map. There, in the center of his pristine drawing, stood a small, muddy boot print. He panicked. According to his rules, the boot shouldn’t exist; the terrain was flat. Yet, the smell of damp earth and pine needles drifted in through the window, mocking his dry, static lines. He realized too late that while his map described the land, only the land could define itself.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 63,
+  "completion_tokens": 229
+ },
+ "response_id": "chatcmpl-e06b4cd6-7cd5-9103-bffe-daa8e9d75dfb",
+ "latency_s": 7.293,
+ "cached": false,
+ "cache_key": "e7af21cfe1f56e9ce1feba51"
+}

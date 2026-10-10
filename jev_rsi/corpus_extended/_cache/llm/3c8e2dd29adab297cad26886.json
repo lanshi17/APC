@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/few_shot_2ex",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The train rattled past the skeleton of the old depot, its windows fogged with breath and regret. Mira pressed her forehead to the cold glass, watching the dust settle on a single suitcase where there had been none before, then two where there had been one. The platform was growing heavier, not with people, but with the silence they left behind.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 205,
+  "completion_tokens": 71
+ },
+ "response_id": "chatcmpl-a66a4f7b-e8b0-9f7a-a762-16975b9cd8ef",
+ "latency_s": 2.088,
+ "cached": false,
+ "cache_key": "3c8e2dd29adab297cad26886"
+}

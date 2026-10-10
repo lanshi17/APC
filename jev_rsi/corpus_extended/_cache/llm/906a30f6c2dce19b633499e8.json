@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/zero_shot",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The Great Explorer, Elias, spent his life perfecting a map of the Whispering Woods. He drew every contour with obsessive precision, marking each stream’s bend and every hill’s exact elevation. His parchment was flawless, a masterpiece of ink and geometry. When he finally arrived at the forest’s edge, he unrolled his chart, confident it would guide him effortlessly through the wilderness.\n\nHe stepped onto the first trail, expecting the familiar scent of damp earth and pine. Instead, he encountered a sudden, violent storm that obscured his vision entirely. The wind howled, tearing leaves from branches that his map had depicted as static. A fallen oak blocked the path where his chart promised clear passage. Elias tried to navigate by memory, but the reality before him shifted constantly—mudslides rearranged the terrain, and new paths emerged while old ones vanished.\n\nConfused and shivering, he clutched his pristine paper. It remained unchanged, dry, and accurate in its abstraction, yet utterly useless against the chaotic, living truth of the woods. He realized too late that while his map described the shape of the land, it could never capture its breath, its danger, or its spirit. The symbol is not the thing itself; to confuse the two is to be lost in the very place you thought you knew.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 55,
+  "completion_tokens": 266
+ },
+ "response_id": "chatcmpl-4b0963f2-56b4-9db2-aae2-3dd309483f55",
+ "latency_s": 6.354,
+ "cached": false,
+ "cache_key": "906a30f6c2dce19b633499e8"
+}

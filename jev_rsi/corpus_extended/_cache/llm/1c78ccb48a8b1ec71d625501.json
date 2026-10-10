@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/factual",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "This image shows an outdoor art market or street fair, where a person wearing a hooded jacket and cap is viewing a colorful painting of a cityscape on an easel, while other individuals browse nearby artworks under umbrellas.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 198,
+  "completion_tokens": 46
+ },
+ "response_id": "chatcmpl-331a90d7-869e-92bb-91ec-518e668373d4",
+ "latency_s": 1.909,
+ "cached": false,
+ "cache_key": "1c78ccb48a8b1ec71d625501"
+}

@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/verbose",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "A worker in dark clothing crouches near a broken sidewalk, surrounded by construction tools and planters. Yellow caution tape stretches across the foreground, framing an orange traffic cone on the right. The scene is set outdoors under overcast lighting, with muted earth tones dominating—concrete grays, rusty oranges, and faded greens—evoking a gritty, urban mood of ongoing repair amidst decay.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 210,
+  "completion_tokens": 80
+ },
+ "response_id": "chatcmpl-941ab1e8-7112-92f4-9d6a-127dc2fdb2da",
+ "latency_s": 4.656,
+ "cached": false,
+ "cache_key": "00500f5fc7d151d2093b4a27"
+}

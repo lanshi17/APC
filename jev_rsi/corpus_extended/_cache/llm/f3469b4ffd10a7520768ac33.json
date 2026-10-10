@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/persona_author",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "In the shadow of a crumbling oak, two creatures debated the coming storm. The Crow, perched high on a splintered branch, screamed at the sky. “Look! The clouds boil like witch’s brew! Flee now, or drown in chaos!” His voice was jagged, tearing through the humid air with frantic urgency. Every bird fled to cover, trembling at his certainty.\n\nBelow, in the damp earth, the Tortoise moved slowly. He tasted the rain before it fell, feeling the subtle shift in pressure against his shell. He watched the ants march in disciplined lines toward higher ground, their silence more profound than the Crow’s shriek.\n\n“Wait,” the Tortoise murmured, though no one heard him over the avian panic. He knew the storm was merely passing thunder, not destruction.\n\nWhen the brief squall broke, leaving only mist and sunlight, the birds returned, shaken but safe. The Crow preened, claiming credit for saving them. The Tortoise simply ate a blade of grass, knowing that wisdom rarely announces itself. It listens.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 71,
+  "completion_tokens": 220
+ },
+ "response_id": "chatcmpl-b95e8d98-660a-9f27-ba25-669acadecbc7",
+ "latency_s": 5.548,
+ "cached": false,
+ "cache_key": "f3469b4ffd10a7520768ac33"
+}

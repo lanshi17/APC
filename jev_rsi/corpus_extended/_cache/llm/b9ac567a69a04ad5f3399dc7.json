@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/constrained",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The sudden silence descends like a heavy blanket over the concrete jungle. Elevators stop mid-shaft, leaving passengers suspended in dark steel boxes far below the rooftop garden. The hum of air conditioners fades into an eerie void that presses against the eardrums.\n\nShadows lengthen across the succulents as the city lights extinguish one by one. Stars begin to pierce through the smog, revealing themselves with surprising clarity against the velvet sky. A single moth flutters near the wilting lavender, confused by the absence of artificial glow.\n\nTime slows down in this unexpected pause from urban chaos. Neighbors emerge onto their balconies, whispering to each other in the dim twilight. We stand together, watching the darkness reclaim its territory.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 77,
+  "completion_tokens": 154
+ },
+ "response_id": "chatcmpl-a21f8130-dd8b-969f-8697-20b013c12e36",
+ "latency_s": 3.944,
+ "cached": false,
+ "cache_key": "b9ac567a69a04ad5f3399dc7"
+}

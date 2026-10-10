@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/cot",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "To succeed, the piece must balance strict sonnet form (14 lines) with the requested brevity. Since 14 words across 14 lines allows only one word per line, the imagery must be stark and symbolic, relying on juxtaposition to convey the emotional weight of silence and distance without grammatical connectors.\n\n###FINAL###\nDoor\nCreaks\nVoice\nTrails\nOff\nPause\nClock\nTicks\nDust\nSettles\nUnsaid\nLies\nBetween\nUs",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 76,
+  "completion_tokens": 105
+ },
+ "response_id": "chatcmpl-e81b21dc-219a-9519-8e94-2e9972e3d83f",
+ "latency_s": 2.463,
+ "cached": false,
+ "cache_key": "98fc2d99807d97ceaef79164"
+}

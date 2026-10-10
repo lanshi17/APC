@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/persona_author",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The dust had settled into a fine, gray powder that coated the tongue like ash. For three years, the sky had been a bleached bone, offering nothing but heat and silence. The well, our ancient anchor, stood open-mouthed and dry, its stones slick with thirst rather than moisture.\n\nOn the final day, when the last goat collapsed in the yard, I lowered the bucket one last time. It descended through the dark throat of the earth, hitting no water, only the hollow echo of emptiness. But as I hauled it up, heavy and trembling, the weight was wrong. Too dense. Too cold.\n\nInside lay not clear liquid, but a swirling vortex of iridescent ink, thick as molasses, pulsing with a faint, rhythmic light. It smelled of ozone and old secrets. As I stared, paralyzed by the impossibility, the ink began to rise over the rim, defying gravity, creeping up my arms like living vines. It didn’t burn; it remembered. It whispered names I had forgotten—my mother’s lullaby, the first raindrop that ever kissed my cheek, the taste of green things growing before the world cracked.\n\nThe drought hadn’t ended. It had simply transformed. We were no longer waiting for water. We were drowning in memory.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 70,
+  "completion_tokens": 268
+ },
+ "response_id": "chatcmpl-c1b13dfd-4e4b-9657-ad30-6349ed9a3ebc",
+ "latency_s": 5.248,
+ "cached": false,
+ "cache_key": "f3c525471e0943c7aa4cbb64"
+}

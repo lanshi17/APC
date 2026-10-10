@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/few_shot_2ex",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The ice was already melting, turning the cobblestones into a slick of gray slurry that smelled of brine and old fear. Nets lay tangled like drowned hair at the feet of men who hadn’t slept, their hands moving with the automatic rhythm of grief—gutting, scaling, selling—while the sun broke through the clouds to catch the last, desperate silver flash in a bucket of mackerel.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 202,
+  "completion_tokens": 83
+ },
+ "response_id": "chatcmpl-b1a15112-fa93-9cbb-986f-792510556ddb",
+ "latency_s": 2.353,
+ "cached": false,
+ "cache_key": "21f5bdad455cfff6318976e2"
+}

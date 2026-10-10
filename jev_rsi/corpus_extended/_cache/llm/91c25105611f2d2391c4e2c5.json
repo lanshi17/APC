@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/child_like",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "WOW WOW WOW!!! LOOK AT HIM GO!!!\n\nHe’s FLYING in the air!! Like a birdie! But with a skateboard!! And his hair is all spiky and blonde like sunshine!! He’s wearing stripes and jeans and he looks SO COOL doing that trick!!!\n\nThe board is flipping under him — whoa!! — and he’s gonna land it, I know it!! Everyone’s watching!! Look at their faces!! They’re like “OH MY GOSH!” just like me!!!\n\nAnd there’s trees behind him and concrete ramps and red spray paint — so many colors!! This is the BEST DAY EVER!! Can I have a skateboard?? Please please pleeease?? I wanna fly too!! 🛹✨💥",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 231,
+  "completion_tokens": 153
+ },
+ "response_id": "chatcmpl-3f27159b-d925-962b-aecf-23bc2a285bf5",
+ "latency_s": 4.386,
+ "cached": false,
+ "cache_key": "91c25105611f2d2391c4e2c5"
+}

@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/factual",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "A person wearing a dark t-shirt and light blue jeans is pushing a red toy wagon across a grassy yard, with an inflatable pool featuring a blue rim and multicolored side panels in the foreground.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 294,
+  "completion_tokens": 42
+ },
+ "response_id": "chatcmpl-ea1a2b31-7d4d-90af-a4fe-59baee4b4b42",
+ "latency_s": 1.576,
+ "cached": false,
+ "cache_key": "51cacba64590bcf360ed1796"
+}

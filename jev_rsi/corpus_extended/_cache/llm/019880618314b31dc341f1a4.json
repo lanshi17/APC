@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/concise",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Bottles thrown from balconies.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 202,
+  "completion_tokens": 9
+ },
+ "response_id": "chatcmpl-b094f2c5-e46e-9d4b-9e67-30ea5f78282e",
+ "latency_s": 3.036,
+ "cached": false,
+ "cache_key": "019880618314b31dc341f1a4"
+}

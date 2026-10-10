@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/temperature_high",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Salt whispers of streets lost to the deep blue.\nThe tide returns what stone and silence knew,\nA drowned kingdom breathing beneath the moon’s silver hue.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 50,
+  "completion_tokens": 32
+ },
+ "response_id": "chatcmpl-093e334e-587b-9192-a267-2e8228890e87",
+ "latency_s": 1.725,
+ "cached": false,
+ "cache_key": "b4ff97b91b1d6cf7df737ef6"
+}

@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/few_shot_2ex",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The salt does not forget the shape of stone,\nNor how the marble columns held their breath.\nBelow the waves, a kingdom sits alone,\nPreserving life within its watery death.\n\nThe kelp grows thick across the market square,\nWhere merchants bargained once for gold and grain;\nNow only shadows dance in brine-wrapped air,\nAnd silence answers every silent pain.\n\nThe moon pulls tides that wash the empty gates,\nA rhythmic pulse against the coral skin;\nShe counts the years the ocean imitates\nThe heartbeat of the world she’s trapped within.\n\nNo voice remains to beg for mercy’s ear,\nYet memory is sharper than fear.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 199,
+  "completion_tokens": 143
+ },
+ "response_id": "chatcmpl-4c583d21-c13a-9db0-9370-2ee86f0a7218",
+ "latency_s": 3.978,
+ "cached": false,
+ "cache_key": "5c0e736967125089a03b604e"
+}

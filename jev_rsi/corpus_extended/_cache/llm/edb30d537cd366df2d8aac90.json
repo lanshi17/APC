@@ -1,0 +1,16 @@
+{
+ "tag": "probe/vision-json",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "{\"caption\": \"Two men stand in a lush garden, one holding a small object while the other looks on attentively.\"}",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 203,
+  "completion_tokens": 27
+ },
+ "response_id": "chatcmpl-0641f2eb-b004-9be4-b970-e38390c852f4",
+ "latency_s": 1.626,
+ "cached": false,
+ "cache_key": "edb30d537cd366df2d8aac90"
+}

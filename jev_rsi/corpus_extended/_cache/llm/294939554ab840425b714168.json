@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/verbose",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "A woman with dark hair in a bun, wearing black, sits beside a man holding a baby near a tree. A stroller stands nearby. The scene unfolds by water under soft daylight, surrounded by greenery. Calm and intimate, the family shares quiet time outdoors, bathed in gentle natural light that enhances the peaceful mood of togetherness.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 242,
+  "completion_tokens": 73
+ },
+ "response_id": "chatcmpl-7d787b2f-776b-9dcc-9223-4584fc85441d",
+ "latency_s": 2.389,
+ "cached": false,
+ "cache_key": "294939554ab840425b714168"
+}

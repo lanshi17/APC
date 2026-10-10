@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/judge/draw0",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "{\"score\": 8}",
+ "reasoning": "We need to rate creative writing on scale 0-10 based on creativity, coherence, engagement. Output JSON only {\"score\": <number>}. Need decide score. The piece is quite good: sensory, coherent, engaging. Creativity perhaps strong but premise straightforward. Maybe 8 or 9. Need only JSON.",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 406,
+  "completion_tokens": 75
+ },
+ "response_id": "chatcmpl-f4226cb9-3127-9fb8-86d1-545ed2cdc3a2",
+ "latency_s": 2.686,
+ "cached": false,
+ "cache_key": "3d8763996024a5614f13497a"
+}

@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/temperature_high",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "In the heart of the Emerald Valley lived Barnaby, a beaver renowned for his meticulous nature. Barnaby trusted nothing more than his map—a hand-drawn scroll he had spent months perfecting, marking every bend in the river and each cluster of pine with precise ink. He believed that because the map was orderly, it represented the true essence of their home.\n\nOne crisp autumn morning, Barnaby set out to find a rare blue lily, guided strictly by the coordinates on his scroll. The map showed the path as straight and clear. But when he reached the indicated spot, he found only thorny briars and roaring whitewater. Confused, he consulted the map again. \"The paper says otherwise,\" he insisted to a passing heron, blaming the landscape for being wrong. He tried to force his way through the dense woods, ignoring the obvious, winding animal trails that lay just off-paper. Exhausted and soaked, Barnaby finally sat down, realizing the terrain did not fit his plan because his plan could not capture the terrain’s wild, breathing reality.\n\nThe moral is simple: The symbol is never the substance; do not confuse the description with the territory.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 55,
+  "completion_tokens": 239
+ },
+ "response_id": "chatcmpl-e6c92de9-d997-96ea-a84c-52a6a8044abe",
+ "latency_s": 7.049,
+ "cached": false,
+ "cache_key": "944c5d00468a384aaa642a84"
+}

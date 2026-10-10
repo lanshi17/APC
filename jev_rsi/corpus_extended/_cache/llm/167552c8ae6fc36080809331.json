@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/zero_shot",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The dust had settled into the cracks of my skin, a second epidermis born of thirst. For three years, the sky was a bleached bone, offering nothing but heat and silence. The well, our only lifeline, had shrunk to a muddy slurry that tasted of iron and despair. We dug deeper, hands bleeding into the earth, praying for moisture.\n\nOn the last day, as the sun dipped below the horizon like a dying ember, the bucket struck something hard. Not rock. Not mud. It rang with a hollow, metallic clarity. I hauled it up, expecting rusted tools or forgotten debris. Instead, the rope held a small, perfect sphere of obsidian, cool to the touch despite the scorching air. Inside, swirling like trapped smoke, was light.\n\nI touched it. A voice echoed in my mind, not heard but felt: *Enough.*\n\nThe ground beneath us trembled. The dry aquifer cracked open, not with water, but with memory. Visions flooded my senses—rivers that once roared, rains that danced on leaves, laughter echoing through canyons now silent. We didn’t get rain that night. We got grief. And in that crushing weight of what we had lost, we finally remembered how to cry.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 57,
+  "completion_tokens": 265
+ },
+ "response_id": "chatcmpl-a87af622-7181-9f4d-a918-9c0af6d1f458",
+ "latency_s": 6.127,
+ "cached": false,
+ "cache_key": "167552c8ae6fc36080809331"
+}

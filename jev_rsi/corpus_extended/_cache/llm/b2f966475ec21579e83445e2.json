@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/constrained",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The steel wheels hum a rhythmic song.\nOutside, the glass reflects my tired face.\nCity lights blur into streaks of gold.\nA silent parade of sleeping windows passes.\n\nNeon signs flicker like dying stars.\nShadows stretch long beneath the bridge.\nThe urban grid glows with amber heat.\nRain slicks the dark and empty streets.\n\nDistance grows between the observer and observed.\nEach mile pulls us further from home.\nSilence fills the carriage with weight.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 75,
+  "completion_tokens": 104
+ },
+ "response_id": "chatcmpl-5f32ab73-56cb-994d-907c-a73894c1743b",
+ "latency_s": 3.193,
+ "cached": false,
+ "cache_key": "b2f966475ec21579e83445e2"
+}

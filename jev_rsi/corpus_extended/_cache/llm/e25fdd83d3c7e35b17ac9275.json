@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_c/abstractive",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The UK's Metropolitan Police summoned five Chelsea fans for racism after a video showed them blocking Souleymane S from boarding the Paris Metro before a Champions League match. The men, who chanted racist slogans and shoved the victim, face court appearances regarding football banning orders. Chelsea condemned the \"abhorrent\" behavior, suspended the suspects, and warned they could receive life bans if found guilty.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 684,
+  "completion_tokens": 78
+ },
+ "response_id": "chatcmpl-1a3cc744-7477-9cf5-9f63-2b34adf6062a",
+ "latency_s": 2.09,
+ "cached": false,
+ "cache_key": "e25fdd83d3c7e35b17ac9275"
+}

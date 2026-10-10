@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/constrained",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The ink had faded to a bruised purple, barely visible beneath the yellowed parchment. My grandmother’s handwriting looped and crossed in ways that felt intimate yet distant, like a whisper from another room. She died long before I learned to read, so these letters were strangers to me until now. Each stroke carried the weight of forgotten meals and quiet kitchen rituals.\n\nI traced the recipe for her famous apple tart with trembling fingers. The instructions were sparse, relying on intuition rather than precise measurements. \"Bake until golden,\" she wrote, a vague command that demanded patience. It was not just a list of ingredients but a map of her presence. The house smelled faintly of cinnamon when I opened the drawer where it had been stored.\n\nHer death certificate sat on the counter beside my laptop. I typed out the steps carefully, trying to preserve the ghost in digital form. The oven preheated with a low hum, filling the empty apartment with warmth. I placed the pie inside and waited. Time moved slowly.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 79,
+  "completion_tokens": 206
+ },
+ "response_id": "chatcmpl-68e5f8e2-4903-9af8-8462-6f7a8445a1a3",
+ "latency_s": 5.513,
+ "cached": false,
+ "cache_key": "c259ede2c8418be8953f27fe"
+}

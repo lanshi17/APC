@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/persona_author",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Mid-sentence, your chair empties. I wait for the breath to return. It does not.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 63,
+  "completion_tokens": 21
+ },
+ "response_id": "chatcmpl-1ed33fdd-caa9-98b0-a2e9-c63daded0ee7",
+ "latency_s": 2.04,
+ "cached": false,
+ "cache_key": "1b38fb132d0eea035facbc01"
+}

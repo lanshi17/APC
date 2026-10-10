@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/few_shot_2ex",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The keeper wiped the condensation from his eye, expecting the usual gray nothingness. Instead, the fog had thickened into a velvet curtain, and behind it, three lanterns floated at knee-height—drifting not like ships, but like fireflies trapped in amber.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 201,
+  "completion_tokens": 55
+ },
+ "response_id": "chatcmpl-b9d88796-2a6f-9ded-8091-117130035a12",
+ "latency_s": 2.011,
+ "cached": false,
+ "cache_key": "7c7b1d70fa21561eaaa65f40"
+}

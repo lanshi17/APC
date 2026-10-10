@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/temperature_low",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The rhythm of the rails was a metronome for Mira’s growing dread. *Clack-clack, clack-clack.* The train slowed as it approached the rusted skeleton of Oakhaven Station, a place erased from modern maps but not from memory. Through the grime-streaked window, she saw them: suitcases.\n\nYesterday, there had been three. Brown leather, battered by time, sitting in a neat row like silent sentinels. Today, there were four. A new one, bright red and pristine, stood slightly apart, its handle gleaming under the pale afternoon sun. It looked fresh, untouched by the decay that consumed everything else here.\n\nMira pressed her forehead against the cold glass. Who had placed it there? No one stopped at Oakhaven anymore. The tracks were overgrown, the platform cracked by weeds. Yet, every day, the count increased. Five yesterday. Six today. They weren’t just accumulating; they were waiting.\n\nAs the train picked up speed, leaving the station behind, Mira noticed something chilling. The red suitcase wasn’t alone. Beside it, barely visible in the shadow of the old ticket booth, sat a small, worn teddy bear. It hadn’t been there this morning. Someone—or something—was still traveling through these forgotten places, collecting lives left behind, one suitcase at a time.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 57,
+  "completion_tokens": 280
+ },
+ "response_id": "chatcmpl-669c9597-c853-9222-b1df-2fab73b4b270",
+ "latency_s": 5.755,
+ "cached": false,
+ "cache_key": "beb63f294a65de03d1c909e5"
+}

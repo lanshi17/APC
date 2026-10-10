@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/zero_shot",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Neon blurs, steel wheels sing; city lights fade into dark.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 51,
+  "completion_tokens": 15
+ },
+ "response_id": "chatcmpl-e725c723-74e2-9f47-b728-18b8bf8b013b",
+ "latency_s": 0.842,
+ "cached": false,
+ "cache_key": "49a423845037cf388dffcb92"
+}

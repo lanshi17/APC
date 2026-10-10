@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/technical",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "**Subject:**  \nSingle human subject, adult female (based on facial structure and adornment), facing camera in frontal orientation. Head decorated with two dried maize cobs positioned horizontally above forehead, secured by beaded headband composed of red and yellow glass beads arranged in parallel horizontal bands. Additional feather-like plant material affixed to apex of headpiece. Face bears white pigment applied symmetrically across cheeks, nose bridge, and chin. Ears fitted with long dangling earrings constructed from orange-red seed or bead strands terminating in small cowrie shells. Neck encircled by multiple layered necklaces: thick coils of brown wooden or clay beads; thinner strands of cream-colored cylindrical beads; additional yellow-beaded choker at throat base. Lower chest area displays draped garlands of large oval cowrie shells alternating with vertical strings of red and yellow beads.\n\n**Setting:**  \nOutdoor environment under clear sky. Background consists of flat, arid terrain with sparse low vegetation visible along horizon line. No man-made structures present. Ground surface appears sandy or dusty. Sky occupies upper third of frame, uniformly pale blue-gray without cloud formation.\n\n**Lighting:**  \nNatural daylight illumination, diffuse and even. Shadows minimal, suggesting overcast conditions or indirect sun. Highlights visible on forehead, nasal tip, and glossy bead surfaces indicate soft directional light source from front-left quadrant. No artificial lighting evident.\n\n**Composition:**  \nVertical portrait format. Subject centered vertically and horizontally within frame. Cropping begins at mid-chest",
+ "reasoning": "",
+ "finish_reason": "length",
+ "usage": {
+  "prompt_tokens": 209,
+  "completion_tokens": 300
+ },
+ "response_id": "chatcmpl-a5fd9b3d-ed71-9a5d-8f10-ace95a9e24d7",
+ "latency_s": 5.747,
+ "cached": false,
+ "cache_key": "c1128a3ac1cce9748646d55c"
+}

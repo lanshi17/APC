@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/child_like",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "OH WOW!!! LOOK AT HER!!! SHE’S SO COOL!!! 🌟\n\nShe’s got CORN ON HER HEAD — like, actual yellow corn cobs with fluffy white bits sticking out! It’s like a crown made of snack food!! 😱👑\n\nAnd her face? She painted it with SILVER STUFF — sparkly and shiny like magic glitter from space! ✨✨ And she has a little silver stick poking out of her lip?! Is that a toothpick?? Or a tiny sword?? I don’t know but it’s AWESOME.\n\nHer earrings are LONG LONG LONG strings of orange beads with seashells dangling at the end — clack-clack-clack when she moves! 🔔\n\nAround her neck? SO MANY NECKLACES! Brown ones, red ones, yellow ones, white shell ones — they’re all stacked up like a giant bead tower! She looks like she raided a jewelry store AND a beach AND a farm all at once!! 🏺🌊🌽\n\nShe’s smiling… kinda… in a serious way. Like she’s guarding treasure or about to tell a secret story under the stars. 🌌\n\nI wanna be just like her when I grow up! Can we go find some corn and paint our faces too?? PLEASE?? 🥺💖\n\n#CrownOfCorn #GlitterFace #BeadTowerQueen #AdventureTime",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 199,
+  "completion_tokens": 296
+ },
+ "response_id": "chatcmpl-483cc738-84a6-9529-8e7a-7e62b91c8648",
+ "latency_s": 7.795,
+ "cached": false,
+ "cache_key": "50b0a5e8bfd2a92631041677"
+}

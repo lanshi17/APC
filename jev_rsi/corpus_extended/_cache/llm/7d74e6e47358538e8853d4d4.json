@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/factual",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "A young girl with braided hair, wearing a pink tank top and brown shorts, stands in shallow ocean water while splashing around.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 198,
+  "completion_tokens": 28
+ },
+ "response_id": "chatcmpl-8c6b888a-b119-977a-a9fc-193c779ab0d5",
+ "latency_s": 1.854,
+ "cached": false,
+ "cache_key": "7d74e6e47358538e8853d4d4"
+}

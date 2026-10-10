@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/temperature_high",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "In the heart of a ancient forest, a Storm-Panther claimed dominion over all beasts. Its roar shook the leaves and silenced birds, convincing every creature that might equaled mastery. \"When I speak,\" bellowed the Panther, \"the world trembles because it knows my power.\"\n\nThe other animals bowed low, fearing not wisdom, but volume. Yet, when a creeping shadow of plague touched the water source, panic erupted. The Panther roared louder than ever, demanding others fix the disaster, adding chaos to crisis with its frantic, noisy demands. No one could hear a thing through the din.\n\nFrom beneath a mossy stone emerged an old Tortoise, who had remained silent during every debate about who ruled the forest. Without looking up, she simply crawled toward the eastern slope where pure mountain springs bubbled unseen behind thorns. One by one, bewildered animals followed the quiet leader until they were drinking clean water again.\n\n\"Your noise scared us into inaction,\" the Panther admitted shamefully.\nThe Tortoise blinked slowly. \"A whisper guides better than a shout when truth walks alongside.\"",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 58,
+  "completion_tokens": 228
+ },
+ "response_id": "chatcmpl-3c8f87f8-d9fe-9d48-954c-c2cfa73089c0",
+ "latency_s": 6.209,
+ "cached": false,
+ "cache_key": "fad30709054dbd3225867afc"
+}

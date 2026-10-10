@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/verbose",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "A group of people in winter gear gathers around a small igloo made of ice blocks, with snow piled on its roof. The setting is a snowy forest under soft daylight, creating a cool, crisp mood. Individuals wear colorful jackets—red, blue, black—and some carry backpacks. A wooden door in the igloo invites entry, suggesting curiosity and communal exploration amidst serene natural beauty.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 242,
+  "completion_tokens": 79
+ },
+ "response_id": "chatcmpl-b352c278-850b-9a97-baf5-cf0346dbc147",
+ "latency_s": 2.479,
+ "cached": false,
+ "cache_key": "35da51688ed63deee7365cd5"
+}

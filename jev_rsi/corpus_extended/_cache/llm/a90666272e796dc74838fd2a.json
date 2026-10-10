@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/verbose",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Three young men engage in playful chaos on a sunlit urban balcony, one leaning over the railing holding a green bottle while another below reaches up with an object. The scene bursts with casual energy against beige walls and ornate black railings, capturing spontaneous youthful mischief under bright daylight.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 210,
+  "completion_tokens": 57
+ },
+ "response_id": "chatcmpl-9a82a583-d382-94e1-96d7-3ee0a913fb77",
+ "latency_s": 1.949,
+ "cached": false,
+ "cache_key": "a90666272e796dc74838fd2a"
+}

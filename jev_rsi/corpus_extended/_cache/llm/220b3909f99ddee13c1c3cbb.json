@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/few_shot_2ex",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The grid died with a sigh, and the skyline’s electric hum vanished into a silence so thick it felt like cotton. On the roof, the tomatoes didn’t notice the dark; they only felt the sudden absence of heat from the building’s vents. A woman knelt in the dirt, her hands already stained black, realizing that for the first time in years, she could hear the city breathing instead of roaring.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 201,
+  "completion_tokens": 83
+ },
+ "response_id": "chatcmpl-93ab3e14-8c4a-9144-9049-3f40284cd1d7",
+ "latency_s": 2.413,
+ "cached": false,
+ "cache_key": "220b3909f99ddee13c1c3cbb"
+}

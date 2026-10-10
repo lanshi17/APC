@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/zero_shot",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Salt lips press tight on sunken spires, holding the drowned city’s last breath in cold, blue memory.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 50,
+  "completion_tokens": 23
+ },
+ "response_id": "chatcmpl-d00e3451-80c0-9c6b-beef-5758f1367836",
+ "latency_s": 1.224,
+ "cached": false,
+ "cache_key": "f7ad5c493d5656166e33a252"
+}

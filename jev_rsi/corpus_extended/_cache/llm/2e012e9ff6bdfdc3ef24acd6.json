@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/zero_shot",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The platform is a ghost of itself, swallowed by the freezing fog. It doesn’t roll in; it settles, heavy and wet, coating the iron rails with a slick, black frost that gleams under the dying amber light of the single, flickering lamp. Silence here is not empty but thick, pressing against the eardrums like cotton wool. The old station building looms ahead, its windows opaque with condensation, hiding whatever warmth might linger within.\n\nA lone pigeon sits on the bench, feathers puffed into a grey ball, trembling slightly. Its coo is swallowed instantly by the mist. Somewhere down the line, a distant signal clinks—a hollow, metallic sound that echoes strangely, suggesting motion where there is only stillness. The air tastes of coal dust and ice. Time feels suspended, held in this breathless pause between departures, where the world has shrunk to the length of the platform and the cold bite of midnight.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 49,
+  "completion_tokens": 195
+ },
+ "response_id": "chatcmpl-9a3a8c85-3aff-94b6-ac1b-a41298159502",
+ "latency_s": 5.383,
+ "cached": false,
+ "cache_key": "2e012e9ff6bdfdc3ef24acd6"
+}

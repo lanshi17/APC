@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/persona_child",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Look out! The lights go zooming by like fireflies inside a giant glass box.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 64,
+  "completion_tokens": 18
+ },
+ "response_id": "chatcmpl-6e995c65-79d9-9ccc-a11e-1dfa401af1b8",
+ "latency_s": 1.721,
+ "cached": false,
+ "cache_key": "30fddfd9175975bac38eda86"
+}

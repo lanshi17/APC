@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/verbose",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "A child in a black shirt and blue jeans pushes a red toy car across a sunlit grassy yard. Beside them, a vibrant inflatable pool with rainbow panels gleams under natural daylight. Lush green trees frame the scene, casting soft shadows. The mood is playful and carefree, evoking summer leisure and childhood exploration outdoors.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 306,
+  "completion_tokens": 69
+ },
+ "response_id": "chatcmpl-296aa304-2459-95c3-8352-a5bc534772f0",
+ "latency_s": 2.964,
+ "cached": false,
+ "cache_key": "45f4d5a68c93a1be3b39e82a"
+}

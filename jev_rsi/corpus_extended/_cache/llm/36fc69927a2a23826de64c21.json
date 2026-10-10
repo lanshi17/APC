@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/concise",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Child hockey player crouching",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 234,
+  "completion_tokens": 7
+ },
+ "response_id": "chatcmpl-b1081736-a72b-9dc7-baa9-13c3403ff108",
+ "latency_s": 1.16,
+ "cached": false,
+ "cache_key": "36fc69927a2a23826de64c21"
+}

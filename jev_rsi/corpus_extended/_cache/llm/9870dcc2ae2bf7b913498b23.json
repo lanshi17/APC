@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/constrained",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "An old oak tree stood alone on a barren hill, its roots deep in dry earth. One autumn, a small bird landed on its lowest branch, shivering from the cold wind. The tree noticed the creature’s trembling and decided to offer shelter despite having no leaves left to spare. It whispered softly for the bird to rest within its hollow trunk until dawn broke.\n\nThe following spring, the bird returned with seeds clutched tightly in its beak. These were not just any seeds but rare varieties gathered from distant valleys where food had been scarce. The tree accepted them without hesitation, planting them carefully into its own bark crevices. New green shoots emerged quickly, creating a lush canopy that provided shade for many others who arrived later.\n\nYears passed, and the forest grew thick around the original hillside spot. Animals remembered the kindness shown by the lone tree when times were hardest. They carried stories of its generosity to their offspring, ensuring the deed was never forgotten. Kindness echoes long after the giver has gone silent.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 79,
+  "completion_tokens": 207
+ },
+ "response_id": "chatcmpl-a3916be6-3469-9160-a228-99623df16330",
+ "latency_s": 5.773,
+ "cached": false,
+ "cache_key": "9870dcc2ae2bf7b913498b23"
+}

@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/constrained",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The old tracks rusted beneath the weight of forgotten journeys. Mira watched from her window as the dusty platform drifted by in silence. She noticed a single leather suitcase resting near the edge. It looked untouched, waiting for a passenger who would never return. The train slowed slightly before picking up speed again.\n\nNext time, she counted two suitcases standing side by side. Their colors faded into the grey mist that clung to the station walls. No one walked along the cracked tiles or opened the doors. The empty seats inside the cars remained cold and unoccupied. Mira felt a strange pull toward those abandoned items. They seemed to hold memories of people who vanished without trace.\n\nOn the third pass, three suitcases lined up neatly. They formed a small barrier against the encroaching weeds. The train whistle blew, breaking the heavy quiet of the afternoon. Mira realized the count matched the number of lost souls she knew. Each bag represented a life left behind in haste. The cycle repeated with eerie precision every single day. Now four wait",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 81,
+  "completion_tokens": 209
+ },
+ "response_id": "chatcmpl-c5a43221-19d9-9be5-b234-731d564d0b3a",
+ "latency_s": 5.355,
+ "cached": false,
+ "cache_key": "16f70904534993c7c3530e62"
+}

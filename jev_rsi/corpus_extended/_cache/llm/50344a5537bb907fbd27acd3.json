@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/concise",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Shinto priests sweeping courtyard",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 202,
+  "completion_tokens": 6
+ },
+ "response_id": "chatcmpl-670fec8f-749a-9942-be9f-f7360e5f4a8e",
+ "latency_s": 1.083,
+ "cached": false,
+ "cache_key": "50344a5537bb907fbd27acd3"
+}

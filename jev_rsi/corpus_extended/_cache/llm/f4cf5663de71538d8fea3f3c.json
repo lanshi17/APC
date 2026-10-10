@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/factual",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "A group of people wearing winter clothing, including hats and backpacks, stand on snowshoes outside a small igloo with an open wooden door in a snowy forested area.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 230,
+  "completion_tokens": 37
+ },
+ "response_id": "chatcmpl-4dcb2f0b-d9ae-9446-b211-7c712268f3ed",
+ "latency_s": 2.241,
+ "cached": false,
+ "cache_key": "f4cf5663de71538d8fea3f3c"
+}

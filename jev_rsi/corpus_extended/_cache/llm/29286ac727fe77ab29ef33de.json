@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/temperature_high",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The thick, gray fog clung to the cliffs like a living shroud, muting the crash of waves into muffled thuds. Elias, eighty years weathered and worn as the stone tower itself, climbed the spiral stairs with his usual heavy tread. The lantern’s steady pulse should have been the only heartbeat in that silence.\n\nBut then he saw it. A pale, flickering light, not far out, where no vessel could possibly survive such rocky shores. It wasn’t the erratic beam of a fishing skiff or the harsh glare of a tourist boat. It was soft, blue-white, and rhythmically pulsating, mimicking the great lens behind him but inverted, as if mirroring his signal back from another time.\n\nElias rubbed his rheumy eyes, blaming the damp chill for his trick of vision. Yet when he looked again, the ghostly beacon remained. He felt an icy prickle crawl up his spine, unrelated to the wind. The local legends spoke of ships swallowed by storms, returning eternally to seek their missed ports. He gripped the cold railing, knuckles white. Was it rescue? Or warning? As the fog deepened around his ankles, turning to ice, Elias whispered, \"Turn away,\" praying the impossible ship wouldn’t change course toward the rocks below.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 53,
+  "completion_tokens": 267
+ },
+ "response_id": "chatcmpl-9c23805f-64f2-91b1-9e34-ce47ef0d2822",
+ "latency_s": 7.352,
+ "cached": false,
+ "cache_key": "29286ac727fe77ab29ef33de"
+}

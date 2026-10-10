@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/few_shot_2ex",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The phone lies dark upon the kitchen tile,\nA black mirror holding no reflection back.\nWe spoke of rain, and then we spoke of while,\nAnd silence filled the space where words should track.\n\nI wanted ask if you remember how\nThe porch light flickered when the storm broke through?\nOr did you see me leave it there somehow,\nWith half a sentence stuck inside my shoe?\n\nYou said *tomorrow*, but tomorrow came\nAnd went like water down a drain unseen.\nNow I am left to sort the guilt and shame,\nTo read the white spaces between the green.\n\nThe line is dead; the dial tone is long gone.\nI’m still waiting for the next dawn.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 199,
+  "completion_tokens": 148
+ },
+ "response_id": "chatcmpl-82e06d6a-aa3d-9702-b407-338d1ec03a88",
+ "latency_s": 12.645,
+ "cached": false,
+ "cache_key": "8ded677dbaabf9a482caabb5"
+}

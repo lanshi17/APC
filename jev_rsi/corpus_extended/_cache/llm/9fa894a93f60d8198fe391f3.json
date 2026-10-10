@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/temperature_low",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The dust had settled into the creases of Elias’s face, a second skin of gray grit. For three hundred days, the well had been a mouth agape in silent scream, swallowing hope and returning only dry air. He lowered the bucket one last time, not out of expectation, but ritual. The rope frayed against his palms, biting deep.\n\nIt hit bottom with a hollow *thud*, not the splash he’d dreamed of for months. He pulled it up, heavy with something unexpected. Inside wasn’t water, nor mud, nor stone. It was light. A soft, pulsing amber glow spilled over the rim, warm as a hearth fire after winter. It didn’t burn; it soothed.\n\nElias stared, tears cutting clean tracks through the grime on his cheeks. The drought hadn’t ended with rain. It had ended with memory. The light carried the scent of wet earth from a decade ago, the sound of children laughing by the creek that no longer existed. It was the village’s collective grief, distilled and returned.\n\nHe didn’t drink it. He couldn’t. Instead, he poured it back down, watching the glow sink into the dark throat of the earth. The well remained empty, but the silence changed. It was no longer hungry. It was full.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 57,
+  "completion_tokens": 269
+ },
+ "response_id": "chatcmpl-30f6001f-027a-997f-be17-f5fd4d8c5049",
+ "latency_s": 6.71,
+ "cached": false,
+ "cache_key": "9fa894a93f60d8198fe391f3"
+}

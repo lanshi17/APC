@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/poetic",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "A worker kneels, mending the city’s fractured skin—concrete bones exposed beneath caution tape like yellow veins. Orange sentinels guard the wound where tools rest idle; life flows around this quiet repair, as if time paused to stitch sidewalk scars with careful hands.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 205,
+  "completion_tokens": 56
+ },
+ "response_id": "chatcmpl-25557210-2f95-9bfa-ac28-7b09b31cd015",
+ "latency_s": 5.051,
+ "cached": false,
+ "cache_key": "36d094fba0a1b279d023a29e"
+}

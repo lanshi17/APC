@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/temperature_high",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The 4:15 to nowhere shuddered along the rusted tracks, its rhythm a metronome counting down to an unknown climax. Mira pressed her forehead against the cold glass, watching the grey blur of countryside snap into focus as they slowed near the abandoned Halverton Station. It had been dead for years, vines choking the signage, windows shattered like frozen tears. But the platform was not empty.\n\nFirst stop: one suitcase. Brown leather, battered, standing alone beneath the flickering overhead light that shouldn’t have worked. Mira blinked, wondering if exhaustion played tricks. \n\nThe next morning, two. Identical in size, arranged in a neat row. Her stomach churned. A game? A prank? She checked the schedule; no other trains stopped here. Only hers. And she only passed through at dawn.\n\nBy the fourth day, five stood there, forming a semi-circle around a single, unlit lantern. The silence from outside bled through the thick glass, heavy and suffocating. Who was placing them? How did they know the exact second her carriage would glide past? \n\nMira noticed a small tag on the edge of the newest bag. It didn’t say “Lost.” It said, *“Coming.”* As the train picked up speed again, dragging her back toward civilization, Mira realized with dawning horror that she wasn’t leaving the station behind. She was being marked. And today, six more suitcases waited, open and empty, inviting her home.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 57,
+  "completion_tokens": 306
+ },
+ "response_id": "chatcmpl-2472d7c9-4c70-9d5d-b69e-7e3b0364dd68",
+ "latency_s": 7.916,
+ "cached": false,
+ "cache_key": "e09619098a383e562db6a415"
+}

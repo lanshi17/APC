@@ -1,0 +1,16 @@
+{
+ "tag": "probe/nothink",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The cat slept on the mat all day.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 43,
+  "completion_tokens": 9
+ },
+ "response_id": "chatcmpl-506874b2-6ae6-963d-b23d-1429ba6c83b2",
+ "latency_s": 1.004,
+ "cached": false,
+ "cache_key": "dfcb98a33c6a7321b369baa6"
+}

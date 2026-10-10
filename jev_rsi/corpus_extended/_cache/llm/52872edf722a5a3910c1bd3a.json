@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/temperature_high",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "In the shadowed hollow of Old Oak, timid Pip the mouse trembled before a looming fox. The beast’s eyes were cold coins, its breath smelling of wet earth and hunger. Pip wanted to flee, but his paws felt rooted in mud, paralyzed by terror. He could not find the strength to stand alone.\n\nJust then, Barnaby Bear stepped from the ferns, placing a massive, fuzzy paw gently on Pip’s shoulder. “I’m right behind you,” he rumbled softly. The bear didn’t roar; he simply stood, a wall of calm solidity. Pip looked at the bear’s stillness and borrowed it. He straightened his spine, not through internal will, but by anchoring himself to Barnaby’s presence. His fear didn’t vanish, yet it no longer owned him. He scurried away with purpose, the fox watching, confused by the mouse’s sudden, unnatural poise.\n\nLater, Barnaby said, “You were brave.”\nPip shook his head. “No, I was just near you.”\n\nBarnaby smiled. “Courage is often contagious. Whether you grow it yourself or catch it from another, when you move despite the fear, that action is what counts. Borrowed fire still burns away darkness",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 53,
+  "completion_tokens": 260
+ },
+ "response_id": "chatcmpl-c9e055d8-f63b-9c8d-866a-803b3c8439c7",
+ "latency_s": 6.769,
+ "cached": false,
+ "cache_key": "52872edf722a5a3910c1bd3a"
+}

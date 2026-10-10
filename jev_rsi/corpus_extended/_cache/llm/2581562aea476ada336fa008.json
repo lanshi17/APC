@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/few_shot_2ex",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The cracked earth exhaled a breath of gold, and the bucket came up heavy with coins, cold and clinking, as if the drought had been holding its tongue until it could afford to speak.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 205,
+  "completion_tokens": 40
+ },
+ "response_id": "chatcmpl-554a42f8-08a8-9fc5-a2aa-42f1a1d0f377",
+ "latency_s": 3.392,
+ "cached": false,
+ "cache_key": "2581562aea476ada336fa008"
+}

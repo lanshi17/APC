@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/judge/draw0",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "{\"score\": 9}",
+ "reasoning": "We need answer user's request: rate creative writing 0-10, reply JSON only {\"score\": number}. Need think briefly. Task line: The recipe card was written in a hand that had been dead for forty years. Response is strong, coherent, engaging, creative. Maybe 9? Need output JSON only. Ensure valid JSON.",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 415,
+  "completion_tokens": 79
+ },
+ "response_id": "chatcmpl-090b81da-9482-9274-9f89-1f1c3665dafe",
+ "latency_s": 2.142,
+ "cached": false,
+ "cache_key": "eb86d8aba2a19027435e203d"
+}

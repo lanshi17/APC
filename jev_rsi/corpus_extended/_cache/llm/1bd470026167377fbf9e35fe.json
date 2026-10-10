@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/few_shot_2ex",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The 11:42 was a ghost, its taillights swallowed whole by the white wall of fog that pressed against the platform. Ice rimed the edges of the wooden bench, and the stationmaster’s breath hung in the air like a suspended sentence, waiting for a train that had forgotten how to run.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 197,
+  "completion_tokens": 65
+ },
+ "response_id": "chatcmpl-36907fbc-2c8e-9a6e-af9d-28bfbcaed47c",
+ "latency_s": 2.824,
+ "cached": false,
+ "cache_key": "1bd470026167377fbf9e35fe"
+}

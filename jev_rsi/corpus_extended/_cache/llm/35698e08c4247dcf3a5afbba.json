@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/temperature_low",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The concrete bowl yawns open, a vast, dry throat against the grey winter sky. Twenty years have passed since the roar of crowds and the splash of champions faded into memory. Now, only wind whistles through the empty stands, carrying dust and the scent of decay.\n\nCracks spiderweb across the diving platforms, where once gravity was defied for gold. The starting blocks are bleached white by sun and frost, their numbers barely legible beneath layers of grime. A single plastic cup tumbles across the pool floor, skittering like a ghost in the silence.\n\nNature reclaims what humanity built. Weeds push through the tile grout, stubborn green veins in the sterile blue mosaic. The water is gone, but the shape remains—a monument to fleeting glory, now hollowed out by time. It stands not as a temple of sport, but as a tombstone for ambition, waiting patiently for the next rain to fill its emptiness with nothing but reflection.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 53,
+  "completion_tokens": 199
+ },
+ "response_id": "chatcmpl-92a6803f-6a2f-9b36-b96c-dbacb589e8e7",
+ "latency_s": 4.621,
+ "cached": false,
+ "cache_key": "35698e08c4247dcf3a5afbba"
+}

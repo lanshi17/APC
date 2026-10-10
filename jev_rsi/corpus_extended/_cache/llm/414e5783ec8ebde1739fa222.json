@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/judge/draw0",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "{\"score\": 7}",
+ "reasoning": "We need to rate creative writing 0 to 10 holistically against criteria clarity of moral, narrative economy, charm. Response is a short fable. Moral explicitly stated. Narrative somewhat economical but a bit expository. Charm: animals, Rooster/Tortoise, storm, safe cave. Not exceptional, maybe 7. Need JSON only.",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 417,
+  "completion_tokens": 80
+ },
+ "response_id": "chatcmpl-5c3b59ab-02e1-94fb-b511-9b7433d23de2",
+ "latency_s": 2.527,
+ "cached": false,
+ "cache_key": "414e5783ec8ebde1739fa222"
+}

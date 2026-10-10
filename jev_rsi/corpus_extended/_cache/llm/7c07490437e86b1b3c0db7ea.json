@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/factual",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "This image captures a dynamic scene of people leaning out from balconies above a narrow urban street, with one individual in a red hoodie holding a green bottle and another person below gripping a long wooden pole.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 198,
+  "completion_tokens": 41
+ },
+ "response_id": "chatcmpl-37c4fd19-dea5-94a3-b08f-5f6c6a593985",
+ "latency_s": 1.613,
+ "cached": false,
+ "cache_key": "7c07490437e86b1b3c0db7ea"
+}

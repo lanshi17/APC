@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_c/abstractive",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Sigma Alpha Epsilon faces intense scrutiny after a racist chant video led the University of Oklahoma to permanently sever ties. This incident highlights the fraternity's ongoing struggles with hazing, alcohol-related deaths, and suspensions at various universities, forcing it to pay high insurance rates and close chapters while attempting to reform its controversial history.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 577,
+  "completion_tokens": 63
+ },
+ "response_id": "chatcmpl-2e858609-3190-9d93-98e6-5c49748426c2",
+ "latency_s": 1.991,
+ "cached": false,
+ "cache_key": "47bd6bd51f243d07d516c30c"
+}

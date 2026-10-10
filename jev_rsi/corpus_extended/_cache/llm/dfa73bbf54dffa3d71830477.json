@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/constrained",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The fluorescent lights hummed with a low, persistent buzz that seemed to vibrate through the sterile floor tiles. Outside, the rain lashed against the darkened windows of the emergency ward, blurring the city lights into smeared streaks of neon and shadow. Neither person spoke, their eyes fixed on the empty space between them as if guarding a fragile boundary. The air smelled faintly of antiseptic and old coffee, creating a sensory backdrop for their silent vigil. Time stretched thin in this liminal space where waiting felt like an eternal suspension.\n\nOne man clutched a folded paper tightly in his sweating palm, the creases worn soft from repeated handling. He glanced at the other figure, a woman whose calm demeanor masked a turbulent inner world she kept carefully hidden. His knowledge was not of diagnosis or prognosis, but of a name whispered in a different hallway just hours before. She did not know he had seen her husband enter the trauma bay, broken and bleeding under the harsh surgical lamps. This secret sat heavy in his chest, a stone that refused to settle.\n\nHe shifted slightly, the plastic chair creaking under his weight, drawing no attention from her stillness. Her gaze remained locked on the closed double doors, hoping for a miracle or perhaps fearing its absence. He wanted to tell her, yet silence felt kinder than the truth arriving too soon. The clock above the reception desk ticked forward, indifferent to human suffering or hope. Dawn would come eventually.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 86,
+  "completion_tokens": 299
+ },
+ "response_id": "chatcmpl-6bc1f9d5-43cd-9cd1-a1e7-18dae33d42bb",
+ "latency_s": 6.684,
+ "cached": false,
+ "cache_key": "dfa73bbf54dffa3d71830477"
+}

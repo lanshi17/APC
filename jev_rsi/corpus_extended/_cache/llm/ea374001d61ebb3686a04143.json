@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/judge/draw2",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "{\"score\": 9}",
+ "reasoning": "We need to rate creative writing 0-10 based on creativity, coherence, engagement. Need reply JSON only. Need think briefly.\n\nPassage: strong premise, sensory imagery, coherent arc, engagement high. Maybe exceptional? A few familiar magical realism elements but elegant. Score maybe 9. Need output JSON only.",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 419,
+  "completion_tokens": 75
+ },
+ "response_id": "chatcmpl-37685aac-16b6-9b2a-afbd-2728359c4f42",
+ "latency_s": 3.069,
+ "cached": false,
+ "cache_key": "ea374001d61ebb3686a04143"
+}

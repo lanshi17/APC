@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_c/abstractive",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "A previously unknown group calling itself the Islamic State Hacking Division posted names, photos, and addresses of about 100 U.S. troops online, urging attacks against them. Although officials cannot immediately validate the claims, noting much information was publicly available, agencies like the FBI and Defense Department are investigating while notifying affected service members to limit their online personal data.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 632,
+  "completion_tokens": 72
+ },
+ "response_id": "chatcmpl-70a2d350-ace1-941f-8bd1-85846664be2f",
+ "latency_s": 1.504,
+ "cached": false,
+ "cache_key": "3e7831ef09a1887785a1bca1"
+}

@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/temperature_low",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The platform is a ghost of itself, swallowed by the freezing fog. It clings to the iron rails like wet wool, muffling the world until only silence remains. A single sodium lamp buzzes overhead, casting sickly orange pools on the cracked concrete. Frost feathers the edges of the timetable board, obscuring destinations that no longer matter.\n\nSomewhere in the white void, a distant signal clicks—a mechanical heartbeat in the cold. The air tastes of coal dust and old rain. There are no passengers, no trains, just the oppressive weight of waiting. The bench sits empty, its wooden slats glazed with ice, reflecting nothing but the gray haze. Time feels suspended here, trapped between the last departure and an arrival that may never come. The fog thickens, erasing the far end of the station, leaving only this small, shivering island of light in an ocean of dark, frozen mist.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 49,
+  "completion_tokens": 184
+ },
+ "response_id": "chatcmpl-895cbecc-d49f-997c-a482-b3fa2c3f6bd3",
+ "latency_s": 4.163,
+ "cached": false,
+ "cache_key": "aed2c69754f55a49a1718547"
+}

@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/temperature_low",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The village of Oakhaven lived in perpetual shadow, for the Great Wolf prowled the nearby woods. No one dared to leave their homes after dusk, fearing the beast’s glowing eyes. Young Elara, however, needed medicine for her sick brother. She stood trembling at the forest’s edge, paralyzed by fear.\n\nOld Man Thorne, a retired hunter with shaking hands, watched her from his porch. He could not go himself; his legs were too weak. But he saw her resolve. \"Take my whistle,\" he said, pressing a worn bone charm into her palm. \"It is not magic, but it carries the memory of every brave man who ever blew it. When you feel small, blow it. Let their courage fill your lungs.\"\n\nElara stepped into the dark. The wind howled, and shadows danced like claws. Fear gripped her throat. Remembering Thorne’s words, she raised the whistle and blew. The sharp, clear note pierced the night. It was not her own bravery that sounded, but the echo of generations before her. The wolf paused, confused by the sudden authority in the air, then retreated.\n\nElara returned home safe. She had borrowed courage, yet it saved her life. For courage is not always born within; sometimes, it is passed hand to hand, and it still counts.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 53,
+  "completion_tokens": 273
+ },
+ "response_id": "chatcmpl-9bc4b62e-4961-906b-9bdd-2c96fc5f114a",
+ "latency_s": 6.045,
+ "cached": false,
+ "cache_key": "f1fa0989601e25400a804fc0"
+}

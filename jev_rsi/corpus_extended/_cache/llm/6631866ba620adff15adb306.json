@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/verbose",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "A man in high-visibility gear and ear protection operates a green John Deere tractor, towing blue machinery on an asphalt road. Behind him, a chain-link fence borders grassy fields under bright daylight. The scene blends industrial labor with rural tranquility, its vivid colors contrasting against muted greens and grays — evoking focused productivity amid open countryside calmness.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 226,
+  "completion_tokens": 73
+ },
+ "response_id": "chatcmpl-ce1082f8-c525-941f-b8a3-f829b803bef1",
+ "latency_s": 3.184,
+ "cached": false,
+ "cache_key": "6631866ba620adff15adb306"
+}

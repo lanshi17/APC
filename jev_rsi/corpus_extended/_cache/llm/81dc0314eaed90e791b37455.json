@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/persona_child",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Hey, Mom didn't finish her sentence.\nIt left me hanging in the air.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 63,
+  "completion_tokens": 18
+ },
+ "response_id": "chatcmpl-3689120b-d9e4-9cd7-a070-18063a4d1700",
+ "latency_s": 1.292,
+ "cached": false,
+ "cache_key": "81dc0314eaed90e791b37455"
+}

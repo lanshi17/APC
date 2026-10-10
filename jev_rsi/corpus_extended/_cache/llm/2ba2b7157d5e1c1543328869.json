@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/poetic",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "A man floats in a wooden tub, sun-kissed and serene, like a king on liquid throne. His smile blooms gentle as dawn; water whispers secrets to his skin. Robes of red stand guard nearby—this is no bath, but baptism into joy.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 237,
+  "completion_tokens": 55
+ },
+ "response_id": "chatcmpl-b9a5fb67-2c42-980c-a651-f69193b94519",
+ "latency_s": 3.794,
+ "cached": false,
+ "cache_key": "2ba2b7157d5e1c1543328869"
+}

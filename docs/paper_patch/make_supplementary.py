@@ -271,8 +271,10 @@ def main() -> int:
         "python -m jev_rsi.experiments --corpus extended\n"
         "python -m jev_rsi.analysis_extended\n"
         "```\n")
-    ap_("All model responses are cached; the commands above re-run in about 100 "
-        "seconds with no API spend and reproduce the JSON artifacts byte-for-byte. "
+    ap_("Every model response is cached and the cache ships with this bundle, so "
+        "the commands above need no API key and reproduce the JSON artifacts "
+        "byte-for-byte; only the metric models (BERTScore's deberta, the image "
+        "encoder) are fetched from Hugging Face on first use. "
         "Every table in this supplement is generated from those artifacts at build "
         "time (`docs/paper_patch/make_supplementary.py`), and "
         "`python docs/paper_patch/verify_numbers.py` re-checks the numbers quoted "

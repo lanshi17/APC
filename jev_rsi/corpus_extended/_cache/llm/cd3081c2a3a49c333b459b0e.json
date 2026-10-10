@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_c/abstractive",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Isaac Herzog’s Zionist Union party leads Prime Minister Benjamin Netanyahu’s Likud by four seats ahead of Israel’s March 17 election. The former Labor leader, who views his political destiny as inevitable due to his family legacy, campaigns on social justice and promises to cooperate with the U.S. regarding Iran while restarting Palestinian peace talks.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 756,
+  "completion_tokens": 68
+ },
+ "response_id": "chatcmpl-896ab33a-7b0e-9b9f-bc91-92189263c6b2",
+ "latency_s": 1.879,
+ "cached": false,
+ "cache_key": "cd3081c2a3a49c333b459b0e"
+}

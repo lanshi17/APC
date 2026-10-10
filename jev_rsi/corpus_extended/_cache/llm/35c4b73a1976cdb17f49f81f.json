@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/factual",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "A woman in a black sleeveless top and a man in a light-colored t-shirt sit outdoors on grass near a body of water, with the man holding a baby who is looking toward the camera; to their left stands an empty stroller with dark fabric and gold trim, and a tree trunk occupies the right edge of the frame.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 230,
+  "completion_tokens": 68
+ },
+ "response_id": "chatcmpl-9acdf3cb-0f94-9387-b80f-8c5d9b89712a",
+ "latency_s": 2.01,
+ "cached": false,
+ "cache_key": "35c4b73a1976cdb17f49f81f"
+}

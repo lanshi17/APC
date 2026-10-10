@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/few_shot_2ex",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The miser hoarded every seed until his cellar groaned with them, while the beggar scattered her few crumbs to the sparrows. Years later, when the drought turned the soil to dust and the miser’s vaults lay empty of hope, he watched from a window as the sparrows returned—not for him, but for the one who had fed them, their chirping songs weaving a living memory that outlasted his gold.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 203,
+  "completion_tokens": 87
+ },
+ "response_id": "chatcmpl-62bd3d92-3840-9f62-8a49-278e2742bdd2",
+ "latency_s": 3.01,
+ "cached": false,
+ "cache_key": "d691f887d65ff85c1fd82e50"
+}

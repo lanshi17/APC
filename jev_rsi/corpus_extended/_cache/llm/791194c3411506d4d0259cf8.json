@@ -1,0 +1,16 @@
+{
+ "tag": "probe/seed7",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The lighthouse stands as a steadfast guardian against the stormy sea.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 35,
+  "completion_tokens": 14
+ },
+ "response_id": "chatcmpl-5c5bf494-8650-91d1-8d1e-61a0780baab3",
+ "latency_s": 0.817,
+ "cached": false,
+ "cache_key": "791194c3411506d4d0259cf8"
+}

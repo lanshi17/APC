@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/concise",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Two men, one holding a small white object.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 202,
+  "completion_tokens": 11
+ },
+ "response_id": "chatcmpl-1e71918b-7ce5-9675-bff9-0360d20f063f",
+ "latency_s": 1.416,
+ "cached": false,
+ "cache_key": "2594e64dc31ca556eb9b1cd9"
+}

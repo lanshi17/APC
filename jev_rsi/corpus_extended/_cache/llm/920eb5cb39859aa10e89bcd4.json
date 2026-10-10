@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/technical",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "**Subjects:**\n- Foreground left: Adult male, wearing white short-sleeved top and light blue hakama (traditional trousers), holding a long-handled broom with natural bristles; mid-stride, sweeping motion.\n- Center-right: Two figures in ceremonial attire — one draped in white hooded robe over red undergarment, the other in dark kimono with obi sash; walking side-by-side, facing forward.\n- Background right: Three distant adults standing near stacked wooden crates or shelves; two appear to be observing, one partially obscured.\n- Ground objects: Small wooden box-like structure with vertical handles; transparent plastic bag containing indistinct contents; scattered reddish-brown debris on pavement.\n\n**Setting:**\n- Outdoor courtyard of traditional Japanese architectural complex.\n- Structure features green-tiled roof with exposed eaves, dark timber columns, and open veranda.\n- Paved stone ground surface.\n- Stacked wooden units visible behind pillars suggest storage or ritual equipment area.\n- Daytime scene; no artificial lighting apparent.\n\n**Lighting:**\n- Natural daylight, diffuse illumination suggesting overcast sky or shaded environment.\n- Soft shadows cast beneath subjects and objects.\n- Even tonal distribution across frame; minimal contrast highlights or deep blacks.\n\n**Composition:**\n- Horizontal orientation.\n- Rule-of-thirds alignment: foreground sweeper occupies lower-left third; central procession aligned vertically along center axis.\n- Depth",
+ "reasoning": "",
+ "finish_reason": "length",
+ "usage": {
+  "prompt_tokens": 209,
+  "completion_tokens": 300
+ },
+ "response_id": "chatcmpl-1fabbe9a-f1f7-9813-8672-276526f0c8b6",
+ "latency_s": 4.882,
+ "cached": false,
+ "cache_key": "920eb5cb39859aa10e89bcd4"
+}

@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_c/abstractive",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "A.J. Pero, the 55-year-old longtime drummer for metal band Twisted Sister, died of a suspected massive heart attack while on tour with Adrenaline Mob in New York. Found on his tour bus and taken to a hospital, Pero had been touring despite complaining of arm pain. Bandmates Dee Snider and Jay Jay French expressed profound grief over losing their \"brother\" and musical partner of decades.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 604,
+  "completion_tokens": 85
+ },
+ "response_id": "chatcmpl-e7fe8f2a-e2fe-9262-a148-61ec3c28db70",
+ "latency_s": 2.084,
+ "cached": false,
+ "cache_key": "6fc5770150272d2bcffdf58c"
+}

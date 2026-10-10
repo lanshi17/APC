@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/factual",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "A shirtless man with a beard and mustache is reclining in a large wooden barrel filled with water, holding a small yellow object in his right hand while covered from the waist down by a white cloth.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 230,
+  "completion_tokens": 43
+ },
+ "response_id": "chatcmpl-4b7329d0-097b-9b8e-ac30-77b7b98ed4f9",
+ "latency_s": 2.393,
+ "cached": false,
+ "cache_key": "eaf7e2e6404d4baf7863ce57"
+}

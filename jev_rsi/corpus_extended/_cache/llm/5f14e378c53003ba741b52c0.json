@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/technical",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "**Subject:** Human figure (juvenile/young adult), short dark hair, wearing black t-shirt and light blue jeans. Interacting with a red plastic ride-on toy vehicle featuring large black wheels.\n**Setting:** Outdoor residential lawn. Foreground left contains a circular inflatable pool with blue trim and multicolored vertical panels (pink, yellow, green, purple). Extreme bottom-left corner shows partial view of a bright green object. Background consists of dense mature trees and foliage; a hammock is suspended in the mid-background right.\n**Lighting:** Natural daylight. Bright, directional sunlight creates high contrast and distinct shadows on the grass. Dappled light patterns visible on the ground due to tree canopy.\n**Composition:** Asymmetrical arrangement. Inflatable pool dominates the left foreground/mid-ground. The human subject and toy vehicle are positioned in the right mid-ground, angled away from the camera. Deep background filled with vegetation. Framed by a thin black border.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 305,
+  "completion_tokens": 198
+ },
+ "response_id": "chatcmpl-445fdee2-0305-9276-8ac4-6bf2323554ee",
+ "latency_s": 3.544,
+ "cached": false,
+ "cache_key": "5f14e378c53003ba741b52c0"
+}

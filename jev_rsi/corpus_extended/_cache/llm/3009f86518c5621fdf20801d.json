@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/temperature_high",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The concrete bowl stretches out, a vast, frozen wound in the city’s skin. Where athletes once carved fluid lines through electric blue, now only silence gathers dust. Winter wind whistles through the empty lanes, lifting grit from the starting blocks that no longer vibrate with nervous energy. The diving tower stands skeletal against a pale, indifferent sky, casting long, jagged shadows across the drained basin. \n\nCracks vein the surface like broken veins, colonized by stubborn weeds pushing up from below. There is no applause, only the distant hum of traffic and the crunch of gravel under solitary feet. Twenty years have erased the roar, leaving behind a monument to transience. The pool is no longer a place of victory or defeat; it is simply a hole in the earth, waiting for rain, or snow, or nothing at all. It remembers everything, yet says nothing.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 53,
+  "completion_tokens": 176
+ },
+ "response_id": "chatcmpl-045f2cb7-14c3-986c-b5f5-91f3ba95c2a2",
+ "latency_s": 4.594,
+ "cached": false,
+ "cache_key": "3009f86518c5621fdf20801d"
+}

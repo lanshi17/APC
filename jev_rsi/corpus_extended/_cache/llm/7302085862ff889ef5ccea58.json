@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/constrained",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The cracked earth had waited for months under a relentless sun. Dust coated every surface in the small village, turning familiar paths into gray ghosts. Elderly residents remembered when rain was common, not a myth whispered to children. The well stood at the center of town, its stone rim worn smooth by generations of hands drawing up life.\n\nOn that final day, the bucket did not splash against rising water. Instead, it pulled up something heavy and dark, wrapped in ancient cloth. A strange silence fell over the crowd as they leaned in closer. No one spoke, fearing that sound might break the fragile moment before them.\n\nThe cloth contained seeds from plants long extinct in this region. Hope returned with the weight of those tiny grains. Life began again.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 81,
+  "completion_tokens": 151
+ },
+ "response_id": "chatcmpl-419a6b7e-2cc2-9f9a-88df-9134a84d9dc3",
+ "latency_s": 4.298,
+ "cached": false,
+ "cache_key": "7302085862ff889ef5ccea58"
+}

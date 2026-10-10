@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/verbose",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Two people stand close together in a sunlit garden, one in a teal shirt and jeans holding the other’s hand as they examine something small. Lush green ivy climbs a white lattice gate behind them, while neatly trimmed shrubs and vibrant grass frame the scene. Bright daylight casts soft shadows, creating a calm, intimate mood amid nature’s tranquility.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 210,
+  "completion_tokens": 73
+ },
+ "response_id": "chatcmpl-a935dc58-a377-9e4c-85e1-3ffa11d4659c",
+ "latency_s": 2.688,
+ "cached": false,
+ "cache_key": "682ae8a3b47bb4e354af8857"
+}

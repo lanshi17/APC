@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/constrained",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The platform lies buried under a thick blanket of white mist that swallows the distant signals. Cold air bites at exposed skin, carrying the faint scent of rust and damp earth from the nearby tracks. A single yellow bulb flickers overhead, casting long, trembling shadows across the cracked concrete tiles. Silence dominates this space, broken only by the occasional drip of melting ice falling into puddles. The world feels suspended in time, isolated from any human connection or warmth.\n\nBeneath the iron canopy, a bench sits empty, its wooden slats frosted over with delicate patterns of ice crystals. Pigeons huddle together in the corner, their feathers puffed against the biting chill of the midnight hour. The fog rolls in deeper now, obscuring the view down the line where the rails vanish into gray nothingness. Each breath creates a small cloud that dissipates quickly into the overwhelming cold. There is no train coming tonight, only the waiting stillness of the abandoned station.\n\nShadows stretch endlessly across the desolate ground.\nThe wind stops moving through the trees.\nDarkness holds the entire landscape close.\nNo sound breaks the frozen quiet.\nEnd",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 73,
+  "completion_tokens": 236
+ },
+ "response_id": "chatcmpl-3ce51f38-9105-975f-b115-08707d8eab2b",
+ "latency_s": 5.62,
+ "cached": false,
+ "cache_key": "beb4d8189eb722080df9635b"
+}

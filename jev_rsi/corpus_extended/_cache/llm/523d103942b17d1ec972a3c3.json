@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/temperature_high",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Neon blurs, steel hums. Dark city lights streak past in silent flight.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 51,
+  "completion_tokens": 18
+ },
+ "response_id": "chatcmpl-023cbe9d-4897-949c-8bb2-4add247a24c8",
+ "latency_s": 1.096,
+ "cached": false,
+ "cache_key": "523d103942b17d1ec972a3c3"
+}

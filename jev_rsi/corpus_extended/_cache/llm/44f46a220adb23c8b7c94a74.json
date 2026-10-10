@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/temperature_high",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The hum died first. That constant, electric purr beneath the soles vanished, leaving a sudden, ringing silence. I stood among the lavender rows on the forty-second floor, the city’s skyline abruptly extinguished below us. Where neon signs once buzzed with urgency, now only skeletal shadows of buildings rose against the bruised purple twilight.\n\nThe air felt thinner, stripped of its electronic tension. In the void, nature rushed back to fill the space. The wind stirred the tomato leaves with renewed violence, carrying the scent of damp earth and basil up from my small patch of green. Down there, panic might be brewing in the dark streets, but up here, the stars appeared unobstructed for the first time since winter.\n\nA cricket chirped nearby, hidden in a terracotta pot, marking the new rhythm of the night. No sirens cut through the quiet. Just the soft drip of condensation from a leaf, measuring time in water instead of watts.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 53,
+  "completion_tokens": 199
+ },
+ "response_id": "chatcmpl-e2d90bc3-0ca5-90e2-bc90-b80a694b69c5",
+ "latency_s": 5.48,
+ "cached": false,
+ "cache_key": "44f46a220adb23c8b7c94a74"
+}

@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/judge/holdout",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "{\"score\": 10}",
+ "reasoning": "The user wants me to rate the description \"Man operating green John Deere tractor\" against the image. Let me look carefully at the image. I see a man wearing high-visibility clothing (yellow jacket, orange pants, ear protection) sitting on and operating a tractor. The tractor is green with yellow wheels, and the brand \"John Deere\" is visible on the side. The description is accurate and well supported. No invented details, no contradictions. This deserves a 10. I'll output JSON only.",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 330,
+  "completion_tokens": 116
+ },
+ "response_id": "chatcmpl-5017ea44-f00a-998d-9b8f-49981919d9bb",
+ "latency_s": 4.14,
+ "cached": false,
+ "cache_key": "d415e80a1d0ad5ba72fb3beb"
+}

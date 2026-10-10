@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/concise",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Family with baby by lake",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 234,
+  "completion_tokens": 6
+ },
+ "response_id": "chatcmpl-05d7c316-921a-9c44-a5b8-c96fcba41f08",
+ "latency_s": 2.275,
+ "cached": false,
+ "cache_key": "4791c14bfa61f3fd291acf85"
+}

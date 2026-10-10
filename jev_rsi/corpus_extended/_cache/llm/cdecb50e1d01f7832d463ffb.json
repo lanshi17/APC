@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/poetic",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Behind the mesh’s ghostly veil, a young guardian crouches—red jersey like autumn flame, Italian flag stitched to his sleeve. Hockey stick becomes sword; smile, his shield. In this frozen arena, he dreams not of goals, but of glory yet unspoken.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 237,
+  "completion_tokens": 57
+ },
+ "response_id": "chatcmpl-2331e14c-d37d-93f2-98e5-13fc4a31696a",
+ "latency_s": 3.065,
+ "cached": false,
+ "cache_key": "cdecb50e1d01f7832d463ffb"
+}

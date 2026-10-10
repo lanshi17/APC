@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/zero_shot",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The fog had thickened into a suffocating, woolen blanket by dawn, swallowing the jagged rocks below whole. Elias, whose hands were permanently stained with salt and rust from decades of tending the light, leaned against the cold iron railing. He expected nothing but the usual groan of wind and the distant crash of waves against the stone foundation.\n\nBut today, the silence was wrong. It wasn’t empty; it was holding its breath.\n\nThrough the milky haze, a shape emerged—not a ship, for there was no hull, no mast, no wake. It was a floating cluster of lanterns, glowing with an unnatural, sickly green hue. They drifted without wind, moving in perfect, synchronized circles around the lighthouse beam’s path. Elias squinted, his heart hammering against his ribs like a trapped bird. The light shouldn’t be visible through such density, yet these orbs pierced the fog as if they owned it.\n\nOne lantern broke formation, drifting closer to the gallery. As it neared, the glass didn’t reflect the gray morning; instead, it mirrored Elias’s own face, but older, gaunt, and weeping tears of black ink. He stumbled back, his boots slipping on the wet metal. The keeper’s logbook lay open on the desk behind him, the final entry unfinished. He looked down at his own trembling hands, realizing with a chilling clarity that he had been dead for three days.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 53,
+  "completion_tokens": 297
+ },
+ "response_id": "chatcmpl-4bcdbc79-6b27-92f7-a559-fcf81d8aae9f",
+ "latency_s": 6.474,
+ "cached": false,
+ "cache_key": "22dbffe6e09e96ae83ff92ce"
+}

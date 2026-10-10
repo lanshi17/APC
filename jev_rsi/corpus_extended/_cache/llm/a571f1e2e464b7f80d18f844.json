@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/few_shot_2ex",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The hare lent his shadow to the mouse, who had no courage of her own. When the hawk circled overhead, the mouse ran with a stride that was not hers, leaping across the clearing in a blur of borrowed boldness. The hawk, deceived by the size of the leap, broke off its dive. Later, when the shadow returned to the hare, he asked if the mouse had truly been brave. \"No,\" said the mouse, trembling again, \"but I survived.\"",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 201,
+  "completion_tokens": 99
+ },
+ "response_id": "chatcmpl-ef202fb5-c7a6-999b-a593-68f43fd9ec86",
+ "latency_s": 3.285,
+ "cached": false,
+ "cache_key": "a571f1e2e464b7f80d18f844"
+}

@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/verbose",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "A bearded man relaxes shirtless in a large wooden tub filled with murky water, holding an apple and smiling slightly. His legs are covered by a white cloth. The scene is brightly lit by natural sunlight, casting sharp shadows on the cobblestone ground. A person in red robes stands nearby, suggesting a historical or festival setting with a casual, cheerful mood.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 242,
+  "completion_tokens": 75
+ },
+ "response_id": "chatcmpl-c98bda58-6cd6-9c68-8288-c6ac629a8f12",
+ "latency_s": 2.078,
+ "cached": false,
+ "cache_key": "b0e7abf342f9685aeb66a472"
+}

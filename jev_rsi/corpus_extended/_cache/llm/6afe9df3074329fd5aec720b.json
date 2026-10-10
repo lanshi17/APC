@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/concise",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Girl jumping in ocean waves.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 202,
+  "completion_tokens": 7
+ },
+ "response_id": "chatcmpl-660215bd-d4e4-9821-b0af-8dcfd8720e10",
+ "latency_s": 1.485,
+ "cached": false,
+ "cache_key": "6afe9df3074329fd5aec720b"
+}

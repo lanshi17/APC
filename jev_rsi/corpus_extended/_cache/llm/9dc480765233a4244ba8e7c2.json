@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_c/abstractive",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Ahead of Israel's March 17 election, Isaac Herzog's Zionist Union leads Netanyahu's Likud by four seats in final polling. Herzog, long seen as an underdog, pledges social justice, cooperation with the U.S. and Europe on a nuclear Iran, and renewed peace talks with Palestinians. He cites a family political legacy as he seeks the premiership.",
+ "reasoning": "We need answer user's request: summarize article in 2-3 sentences about 60 words, faithful, cover main event/key details, output only summary. Need produce final only summary. Need likely ~60 words. Article: Isaac Herzog Zionist Union leading polls before March 17 Israeli election, underdog but vows social justice, opposes nuclear Iran, restart peace talks, political dynasty. Need 2-3 sentences. Count about 60. Draft: \"Ahead of Israel's March 17 election, Isaac Herzog's Zionist Union leads Netanyahu's Likud by four seats in final polling. Herzog, long seen as an underdog, pledges social justice, cooperation with the U.S. and Europe on a nuclear Iran, and renewed peace talks with Palestinians. He cites a family political legacy as he seeks the premiership.\" Count: Ahead1 of2 Israel's3 March4 17 5 election6 Isaac7 Herzog's8 Zionist9 Union10 leads11 Netanyahu's12 Likud13 by14 four15 seats16 in17 final18 polling19 Herzog20 long21 seen22 as23 an24 underdog25 pledges26 social27 justice28 cooperation29 with30 the31 U.S32 and33 Europe34 on35 a36 nuclear37 Iran38 and39 renewed40 peace41 talks42 with43 Palestinians44 He45 cites46 a47 family48 political49 legacy50 as51 he52 seeks53 the54 premiership55. 55 words, 3 sentences? Actually first sentence ends polling. second sentence underdog... Palestinians. third He... Good. About 60. Need output only summary. Ensure faithful. Could include \"four-seat edge\" not by four seats. Fine. Maybe \"final round of polling\". Need no extra. Final.",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 792,
+  "completion_tokens": 488
+ },
+ "response_id": "chatcmpl-521f4d3b-2d86-94bb-bafb-2c78059a0278",
+ "latency_s": 8.731,
+ "cached": false,
+ "cache_key": "9dc480765233a4244ba8e7c2"
+}

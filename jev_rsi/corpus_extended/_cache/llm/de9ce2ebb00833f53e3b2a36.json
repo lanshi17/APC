@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/temperature_low",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The countdown clock bled red: 03:00.\n\n“Abort,” Commander Vance said, his voice flat against the comms static. “Hydraulic pressure on thruster four is drifting.”\n\nMission Control’s lead controller, Sarah Jenkins, leaned into her mic, knuckles white. “It’s within tolerance, Vance. We’ve seen this ghost before. It stabilizes at T-minus one.”\n\n“It doesn’t stabilize, Sarah. It hesitates. I feel it in my teeth.” Vance stared out the viewport at the gray Atlantic below. The rocket hummed, a beast waking up. “If that valve sticks during staging, we’re debris.”\n\n“You have a go from Flight Director. You are cleared for launch.”\n\n“I’m not clearing myself.”\n\nTwo minutes. The silence stretched, thick with the smell of ozone and fear. Jenkins watched the telemetry spike, then dip. A glitch? Or a warning? She looked at the faces around her console—tired, hopeful, terrified. They needed this window. The next was six months away.\n\n“One minute,” the automated voice droned.\n\nVance closed his eyes. He thought of his daughter’s drawing taped to the dashboard. *Go home safe.*\n\n“Hold position,” he whispered.\n\nJenkins froze. To override now was mutiny; to let him abort was failure. The clock ticked down, indifferent to their war.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 56,
+  "completion_tokens": 291
+ },
+ "response_id": "chatcmpl-44028238-d855-90ec-aa52-c056775eaab4",
+ "latency_s": 8.112,
+ "cached": false,
+ "cache_key": "de9ce2ebb00833f53e3b2a36"
+}

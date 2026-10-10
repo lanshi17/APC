@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/constrained",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The young cartographer spent years perfecting his map of the distant valley. He believed that every contour line and shaded region captured the truth of the land with absolute precision. His work was celebrated for its clarity and detailed accuracy, earning him great respect among scholars. The paper seemed to hold all the secrets of the terrain within its neat borders.\n\nWhen he finally arrived at the site, the reality defied his expectations. The air smelled of damp earth and pine needles, a scent absent from his ink drawings. A sudden storm turned the dry creek bed into a rushing torrent, confusing his planned route. Birds sang in complex melodies that no notation system could ever hope to replicate faithfully.\n\nHe realized that symbols are merely shadows cast by living things. The map offered guidance but never replaced the immediate experience of walking through the wild. Understanding comes from presence, not just from careful observation on paper. Maps describe territory; they do not replace it.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 79,
+  "completion_tokens": 188
+ },
+ "response_id": "chatcmpl-72a934d7-07b5-9b10-9804-0bbaa10ec0b0",
+ "latency_s": 4.724,
+ "cached": false,
+ "cache_key": "6ed95f446128d9d3ad2dca2d"
+}

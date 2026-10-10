@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_c/abstractive",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The Football Association has charged Manchester United’s Jonny Evans and Newcastle’s Papiss Cisse for allegedly spitting at each other during a Premier League match, an incident captured on video but unseen by officials. Both players deny the charges, while pundits have condemned the behavior as disgusting, noting that guilty players could face six-game bans.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 587,
+  "completion_tokens": 66
+ },
+ "response_id": "chatcmpl-12a9558c-541f-9f34-bad4-e4b95dff0c01",
+ "latency_s": 1.651,
+ "cached": false,
+ "cache_key": "ecea3403970dbac0a2f0e5e4"
+}

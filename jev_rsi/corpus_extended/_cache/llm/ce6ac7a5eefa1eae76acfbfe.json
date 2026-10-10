@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/persona_child",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The sea remembers Atlantis! Look, bubbles?",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 63,
+  "completion_tokens": 9
+ },
+ "response_id": "chatcmpl-c432160d-abb2-9db9-a03c-8f002308956f",
+ "latency_s": 1.46,
+ "cached": false,
+ "cache_key": "ce6ac7a5eefa1eae76acfbfe"
+}

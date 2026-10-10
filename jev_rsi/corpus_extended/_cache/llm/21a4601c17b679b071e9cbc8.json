@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/temperature_low",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The ink was faded, a bruised purple against the yellowed cardstock. It wasn’t just old; it was ancient, preserved in the dry air of the attic like a pressed flower. The handwriting belonged to Elara, my great-grandmother, who had passed away forty years before I was born. Yet, here was her script, looping and elegant, describing a lemon drizzle cake that no one in our family had ever tasted.\n\nI traced the letters with a trembling finger. *Zest two lemons,* she wrote. *Whisk until the arms ache.* There was a strange intimacy in the instruction, a ghostly hand guiding mine across decades. The recipe didn’t list measurements in cups or grams, but in feelings: *a handful of hope, a pinch of sorrow.* It felt less like cooking instructions and more like a confession.\n\nAs I gathered the ingredients, the kitchen filled with the sharp scent of citrus. When I finally bit into the warm slice, the flavor was impossible—bright, bitter, and sweet all at once. It tasted like memory itself. For a fleeting second, the silence of the house broke, replaced by the phantom sound of laughter from another century. I wasn’t just eating a cake; I was consuming time, digesting the life of a woman I never knew, yet suddenly understood.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 55,
+  "completion_tokens": 271
+ },
+ "response_id": "chatcmpl-d01efa2a-06dc-9e81-afa9-5a5fa20b9c4e",
+ "latency_s": 6.316,
+ "cached": false,
+ "cache_key": "21a4601c17b679b071e9cbc8"
+}

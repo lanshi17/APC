@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_b/gen/poetic",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "She dances with the tide, a flicker of joy against the endless blue. Her laughter scatters like seashells in the foam, as waves whisper secrets to her feet—nature’s lullaby sung just for her.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 205,
+  "completion_tokens": 47
+ },
+ "response_id": "chatcmpl-969f3b56-52df-9787-a201-95fbf874c3ac",
+ "latency_s": 1.952,
+ "cached": false,
+ "cache_key": "765178c3a25e1789b08d0dc4"
+}

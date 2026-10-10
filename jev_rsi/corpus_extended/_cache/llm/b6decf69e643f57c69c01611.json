@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/constrained",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The heavy doors swing shut for the final time. Dust motes dance in the fading afternoon light. Shelves stand silent, holding their breath within.\n\nStories sleep behind glass that will not open again. The librarian locks the gate with a trembling hand. Silence rushes in to fill every empty corner.\n\nBooks rest forever now.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 75,
+  "completion_tokens": 66
+ },
+ "response_id": "chatcmpl-93f1355b-13e9-99ef-9d80-df4bb6238784",
+ "latency_s": 1.822,
+ "cached": false,
+ "cache_key": "b6decf69e643f57c69c01611"
+}

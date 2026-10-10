@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/zero_shot",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Shelves stand empty, dust settles on silence.\nThe heavy door clicks shut, locking the past.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 51,
+  "completion_tokens": 21
+ },
+ "response_id": "chatcmpl-5e5510ad-b685-9bbc-b804-0d295c81ad97",
+ "latency_s": 6.05,
+ "cached": false,
+ "cache_key": "fef184f44c45846ccb11bc06"
+}

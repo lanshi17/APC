@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_a/gen/constrained",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "The concrete bowl sits silent beneath a pale winter sky. Frost clings to the diving boards, turning them into brittle sculptures of ice. No water fills the vast expanse, only shadows and dust. The surrounding bleachers are empty, covered in a thin layer of snow that muffles all sound. Time has slowed here, waiting for nothing specific.\n\nGraffiti tags mar the pristine white tiles where athletes once stood. Vines creep through cracks in the foundation, reclaiming human ambition with patient green fingers. A stray dog wanders the perimeter, sniffing at rusted gates. The air smells of damp earth and forgotten metal. Nature does not care about medals or records. It simply grows over what remains behind.\n\nSilence echoes loud.",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 77,
+  "completion_tokens": 150
+ },
+ "response_id": "chatcmpl-e862760f-e58f-9d72-841f-5f862598a9cb",
+ "latency_s": 4.723,
+ "cached": false,
+ "cache_key": "14e0f7601e5dc50cd0d30dc8"
+}

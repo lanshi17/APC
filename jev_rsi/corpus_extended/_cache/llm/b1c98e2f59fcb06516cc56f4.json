@@ -1,0 +1,16 @@
+{
+ "tag": "scenario_c/abstractive",
+ "model_requested": "qwen3.8-flash",
+ "model_returned": "qwen3.8-flash",
+ "text": "Capitalizing on the success of its live-action “Cinderella,” Disney has purchased a script by Elizabeth Martin and Lauren Hynek for a live-action retelling of “Mulan,” based on the 1998 animated film about Hua Mulan, a young woman who disguises herself as a man to fight in the army. Chris Bender and J.C. Spink are producing the project.",
+ "reasoning": "We need answer user's request: summarize article in 2-3 sentences about 60 words, faithful, main event key details, output only summary. Need produce final only summary. Need likely around 60 words. Article: Disney following Cinderella success is developing live-action Mulan, bought script by Elizabeth Martin and Lauren Hynek, producers Chris Bender and J.C. Spink. 1998 animated film earned $304.3M etc. Disney has live-action remakes incl Beauty and Beast, Jungle Book, Dumbo. Need 2-3 sentences about 60 words. Let's draft: \"Capitalizing on the success of its live-action 'Cinderella,' Disney has purchased a script by Elizabeth Martin and Lauren Hynek for a live-action retelling of 'Mulan,' based on the 1998 animated film about Hua Mulan, a young woman who disguises herself as a man to fight in the army. Chris Bender and J.C. Spink are producing the project.\" Count words? Capitalizing1 on2 the3 success4 of5 its6 live-action7 Cinderella8 Disney9 has10 purchased11 a12 script13 by14 Elizabeth15 Martin16 and17 Lauren18 Hynek19 for20 a21 live-action22 retelling23 of24 Mulan25 based26 on27 the28 1998 29 animated30 film31 about32 Hua33 Mulan34 a35 young36 woman37 who38 disguises39 herself40 as41 a42 man43 to44 fight45 in46 the47 army48 Chris49 Bender50 and51 J.C.52 Spink53 are54 producing55 the56 project57. 57 words, 2 sentences. Good. Need maybe mention key details: script, producers, based on legend. Could include worldwide earnings? Not necessary. Main event: Disney eyeing live-action Mulan after Cinderella, bought script, producers. 57 words. Output only summary. Ensure no extra.",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 654,
+  "completion_tokens": 544
+ },
+ "response_id": "chatcmpl-9d309177-deeb-9155-8537-720c695001ee",
+ "latency_s": 7.917,
+ "cached": false,
+ "cache_key": "b1c98e2f59fcb06516cc56f4"
+}
