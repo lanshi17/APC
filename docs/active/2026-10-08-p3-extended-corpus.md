@@ -376,6 +376,13 @@ python docs/paper_patch/verify_numbers.py --md ../02_apc_paper/manuscript_negati
 | 四段新增文字与上一段粘连 | setup / discussion / what-if / conclusion | 补丁用 `add.strip("\n")` + 单个 `\n` 拼接，吃掉 ADD 自带的空行；改为按前导换行数选分隔符，并补 4 处空行 |
 | 运行时间声明过时 | 手稿 4 处 + 3 个文档 | 实测 `python -m jev_rsi.experiments` ≈ 94 s（六模块全套 ≈ 6.5 min），原文写 11 s |
 | 图 1 轴标签与表 5 排版不一致 | Figure 1 | `rho >= .8` → `ρ ≥ .8`（与表 5 一致），图仍逐字节可复现 |
+| 冻结模块的默认语料被改成 `extended` | Figure 1、`repair_results.json`、`bayes_meta_results.json` | P3 把 `Harness()` 的默认语料从 frozen 改成 extended，而 `repair` / `bayes_meta` / `figure_failure` 都用无参 `Harness()` 构造并写固定路径 → 普通重跑会用 77 组产物覆盖已发表的 32 组产物（图 1 的 top-2 从 85.8% 变 32.9%，与图注和 §5 正文冲突）。默认改回 `frozen`，三个模块显式钉住 frozen，被覆盖产物已还原 |
+
+新增 `scripts/check_reproducibility.py`：重跑全部模块后断言两个仓库 `git status` 干净。
+它上线即抓到两个此前无人检查的问题——(a) 上述产物覆盖；(b) `jev_rsi_results.json`
+自 P3 起会多写一个 `corpus` 字段，而入库产物早于该改动，所以"每次运行逐字节一致"
+相对仓库而言是假的。产物已重生成（只多两个键，数字未变）。
+
 
 补丁脚本现有两个结构性断言（标题重复、应独立成段的块被粘连），同类缺陷会让补丁直接
 失败，不再静默进 PDF。
