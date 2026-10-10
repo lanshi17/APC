@@ -77,7 +77,7 @@ PROTOCOL = f"""
 ---
 
 {MARK}
-## 5. P3 Extended Corpus: Protocol (post-registration, 2025-01-04)
+## 7. P3 Extended Corpus: Protocol (post-registration, 2025-01-04)
 
 The frozen protocol in §1–§3 is unchanged.  P3 adds three scenarios, each with a
 pre-registered premise and a pre-registered falsification band; the premises
@@ -133,7 +133,7 @@ python scripts/p3_acceptance.py                      # 10 pass / 1 partial / 1 f
 * Manuscript: §5.6 of `manuscript_negative/negative-result.md`
   (also `supplementary.pdf`, `tmlr/negative-result-tmlr.pdf`)
 * Results narrative: [RESULTS_ANALYSIS.md](RESULTS_ANALYSIS.md) §12
-* Protocol and deviations: [EXPERIMENT_PROTOCOL.md](EXPERIMENT_PROTOCOL.md) §5
+* Protocol and deviations: [EXPERIMENT_PROTOCOL.md](EXPERIMENT_PROTOCOL.md) §7
 * Task tracking: [P3_TASK_TRACKER.md](P3_TASK_TRACKER.md)
 """
 
@@ -179,11 +179,17 @@ POST_EDITS = [
      "### 12.2 Per-scenario results"),
     ("RESULTS_ANALYSIS.md", "### 10.3 Mechanism: scale migration, not a broken primitive",
      "### 12.3 Mechanism: scale migration, not a broken primitive"),
+    # ... and the protocol block (the file already used 5 and 6)
+    ("EXPERIMENT_PROTOCOL.md",
+     "## 5. P3 Extended Corpus: Protocol (post-registration, 2025-01-04)",
+     "## 7. P3 Extended Corpus: Protocol (post-registration, 2025-01-04)"),
     # drop any stale note that survived an earlier round
     ("RESULTS_ANALYSIS.md", _OLD_NOTE, ""),
     ("README_JEV_RSI.md", _OLD_NOTE, ""),
     ("README_JEV_RSI.md", "[RESULTS_ANALYSIS.md](RESULTS_ANALYSIS.md) \u00a710",
      "[RESULTS_ANALYSIS.md](RESULTS_ANALYSIS.md) \u00a712"),
+    ("README_JEV_RSI.md", "[EXPERIMENT_PROTOCOL.md](EXPERIMENT_PROTOCOL.md) \u00a75",
+     "[EXPERIMENT_PROTOCOL.md](EXPERIMENT_PROTOCOL.md) \u00a77"),
 ]
 
 
