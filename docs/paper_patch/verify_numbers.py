@@ -392,7 +392,17 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--md", default=str(PAPER_MD))
     args = ap.parse_args()
-    md = pathlib.Path(args.md).read_text(encoding="utf-8")
+    p = pathlib.Path(args.md)
+    if not p.exists():
+        # The manuscript lives in its own repository and is not part of the code
+        # bundle, so the default path only resolves on the authors' machine.
+        raise SystemExit(
+            f"cannot read the manuscript at {p}\n"
+            "  this checker compares the prose against the JSON artifacts, so it needs\n"
+            "  the manuscript markdown, which ships with the paper repository and not\n"
+            "  with the code bundle.  Pass --md <path>, or set APC_PAPER_DIR to the\n"
+            "  paper repository root (default: ../02_apc_paper).")
+    md = p.read_text(encoding="utf-8")
     md = md.replace("\u2212", "-")   # the manuscript uses U+2212 for negatives
     md = " ".join(md.split())        # the prose is hard-wrapped, so collapse it
     missing = check(md)

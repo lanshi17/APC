@@ -85,7 +85,7 @@ python scripts/p3_acceptance.py
 # every number quoted in the manuscript, checked against the JSON artifacts
 python docs/paper_patch/verify_numbers.py --md ../02_apc_paper/manuscript_negative/negative-result.md
 ```
-`verify_numbers.py` checks 105 numbers: the 45 extended-corpus figures and 60 frozen-corpus figures from §5.1-§5.5 and §6.2-§6.4 (including derived ones -- the 85.8% headroom share, the tolerance grid, the sampling counts -- which it recomputes from the JSONs rather than trusting).
+`verify_numbers.py` checks 114 numbers: 45 extended-corpus figures and 69 frozen-corpus figures from §5.1-§5.5 and §6.2-§6.4 (including derived ones -- the 85.8% headroom share, the tolerance grid, the sampling counts, the live run's gate firings -- which it recomputes from the JSONs rather than trusting). It needs the manuscript markdown, which ships with the paper repository rather than the code bundle, so it runs in the layout of §3.
 
 Built artifacts (all byte-reproducible, `git status` stays clean):
 `jev_rsi/results/jev_rsi_results.json` (frozen),
@@ -110,11 +110,16 @@ python -m jev_rsi.corpus_extended.probe_judge_variance \
 ```bash
 cd ../02_apc_paper/manuscript_negative
 python build.py                     # markdown -> negative-result.tex -> .pdf (15 pages)
-python scripts/check_reproducibility.py   # re-runs the suite, asserts git stays clean
-                                         # --quick = frozen corpus and its five modules
+python ../code/scripts/check_reproducibility.py   # re-runs the suite, asserts git stays clean
+                                                  # --quick = frozen corpus and its five modules
 python ../code/docs/paper_patch/make_supplementary.py       # -> supplementary.pdf
 python ../code/docs/paper_patch/make_tmlr.py                # -> tmlr/negative-result-tmlr.pdf
 ```
+
+All three builds pin `SOURCE_DATE_EPOCH` (2026-10-11) and `FORCE_SOURCE_DATE`, so
+pdfTeX stamps a fixed date and the draft's `\date{\today}` prints it: re-running
+them on identical sources reproduces the shipped PDFs byte-for-byte (without the
+pin, two builds differ in their metadata and the draft's title-page date).
 
 `docs/paper_patch/` in the code bundle holds the three generators plus
 `patch_manuscript.py`, the idempotent script that inserted the §5.6 results,

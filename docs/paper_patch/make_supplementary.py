@@ -19,6 +19,14 @@ import statistics
 import subprocess
 import sys
 
+# pdfTeX stamps the build time into every PDF it writes, and the draft preamble
+# prints \date{\today}, so two builds of identical sources differed both in
+# their bytes and in the title-page date.  Pinning the epoch makes the documents
+# reproducible; FORCE_SOURCE_DATE makes \today print the pinned date instead of
+# the wall clock.  1791676800 = 2026-10-11, this package's release date.
+os.environ.setdefault("SOURCE_DATE_EPOCH", "1791676800")
+os.environ["FORCE_SOURCE_DATE"] = "1"
+
 CODE = pathlib.Path(__file__).resolve().parents[2]      # <repo>/docs/paper_patch
 PAPER_REPO = pathlib.Path(os.environ.get("APC_PAPER_DIR", CODE.parent / "02_apc_paper"))
 EXT = CODE / "jev_rsi/corpus_extended"
