@@ -117,9 +117,16 @@ python ../code/docs/paper_patch/make_tmlr.py                # -> tmlr/negative-r
 ```
 
 All three builds pin `SOURCE_DATE_EPOCH` (2026-10-11) and `FORCE_SOURCE_DATE`, so
-pdfTeX stamps a fixed date and the draft's `\date{\today}` prints it: re-running
-them on identical sources reproduces the shipped PDFs byte-for-byte (without the
-pin, two builds differ in their metadata and the draft's title-page date).
+pdfTeX stamps a fixed date and the draft's `\date{\today}` prints it: without the
+pin, two builds differed in their metadata and the draft's title-page date moved
+with the calendar.
+
+What that buys depends on the engine. The two pdflatex documents
+(`negative-result.pdf`, `tmlr/negative-result-tmlr.pdf`) rebuild **byte-for-byte**.
+`supplementary.pdf` goes through xelatex (`pandoc --pdf-engine=xelatex`), which
+picks a random six-letter tag for every font subset it embeds, so a rebuild is
+identical in text and pagination but not in bytes -- expect that one file to show
+up as modified after a rebuild.
 
 `docs/paper_patch/` in the code bundle holds the three generators plus
 `patch_manuscript.py`, the idempotent script that inserted the §5.6 results,
