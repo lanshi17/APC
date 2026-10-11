@@ -11,8 +11,8 @@
 ## API 配置
 
 ```bash
-JEV_API_BASE=https://api.lanshi.chat/v1
-JEV_API_KEY=sk-83f562...2959
+JEV_API_BASE=https://api.example.com/v1
+JEV_API_KEY=<redacted>
 JEV_MODEL=jev-1.13.0
 ```
 
